@@ -11,6 +11,6 @@ more details.
 For a basic installation of all required mathematical files and plugins, 
 download the latest Cellerator install file. 
 
-For the python version, see the pycellerator project.
+For the python version, see the pycellerator project at https://github.com/biomathman/pycellerator
 
 
