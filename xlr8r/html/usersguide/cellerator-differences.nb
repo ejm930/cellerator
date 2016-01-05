@@ -1,0 +1,655 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     19247,        558]*)
+(*NotebookOutlinePosition[     19907,        581]*)
+(*  CellTagsIndexPosition[     19863,        577]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+    \(<< Cellerator.m\)], "Input"],
+
+Cell[BoxData[
+    \("Cellerator\[Trademark] 1.5.8 (1-July-2005) loaded 13-Aug-2005 12:43 \
+using Mathematica Version 5.2 for Mac OS X (June 20, 2005)"\)], "Print"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(interpret[{{{A1, A2} \[RightTeeArrow] B, 
+          hill[vmax \[Rule] \ {T1, T2}, \ nhill \[Rule] \ n, \ 
+            basalRate \[Rule] \ {r0, r1}, \ khalf \[Rule] \ K]}}]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{
+        RowBox[{"{", 
+          RowBox[{
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["A1", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+              "0"}], ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["A2", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+              "0"}], ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["B", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], 
+              "\[Equal]", \(r0 + \((r1 + T1\ A1[t] + T2\ A2[t])\)\^n\/\(K\^n \
++ \((r1 + T1\ A1[t] + T2\ A2[t])\)\^n\)\)}]}], "}"}], ",", \({A1, A2, B}\)}], 
+      "}"}]], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    StyleBox[\({{{A1, A2, \[Ellipsis]} \[RightTeeArrow] 
+            B, \[IndentingNewLine]hill[
+            vmax \[Rule] \ {T1, T2, \[Ellipsis]}, \ nhill \[Rule] \ n, \ 
+            basalRate \[Rule] \ {r0, r1}, \ khalf \[Rule] \ K]}}\),
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]]], "Input",
+  FontSize->16,
+  FontWeight->"Plain",
+  Background->RGBColor[0.752941, 1, 0.878431]],
+
+Cell[BoxData[
+    StyleBox[
+      RowBox[{
+        RowBox[{
+          SuperscriptBox["B", "\[Prime]",
+            MultilineFunction->None], "[", "t", "]"}], 
+        "\[Equal]", \(r0 + \((r1 + T1\ A1[t] + T2\ A2[t] + \[CenterEllipsis])\
+\)\^n\/\(K\^n + \((r1 + T1\ A1[t] + T2\ A2[t] + \[CenterEllipsis])\)\^n\)\)}],
+      
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]]], "Input",
+  FontSize->16,
+  FontWeight->"Plain",
+  Background->RGBColor[0.752941, 1, 0.878431]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(<< xlr8r.m\)], "Input"],
+
+Cell[BoxData[
+    \("MathSBML 2.5.4 (9-August-2005) loaded 13-August-2005 13:17:39.107566 \
+using Mathematica 5.2 for Mac OS X (June 20, 2005)"\)], "Print"],
+
+Cell[BoxData[
+    \("xlr8r 0.20 (11-August-2005) loaded 13-August-2005 13:17:39.282193 \
+using Mathematica 5.2 for Mac OS X (June 20, 2005)"\)], "Print"]
+}, Open  ]],
+
+Cell[BoxData[
+    StyleBox[\({{A1, A2, \[Ellipsis]} \[RightTeeArrow] B, 
+        hill[{T1, T2, \[Ellipsis]}, K, n, r, v]}\),
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]]], "Input",
+  FontSize->16,
+  FontWeight->"Plain",
+  Background->RGBColor[0.752941, 1, 0.878431]],
+
+Cell[BoxData[
+    StyleBox[
+      RowBox[{
+        RowBox[{
+          SuperscriptBox["B", "\[Prime]",
+            MultilineFunction->None], "[", "t", "]"}], 
+        "\[Equal]", \(\(v\ \((r + T1\ A1[t] + T2\ A2[t] + \
+\[CenterEllipsis])\)\^n\)\/\(K\^n + \((r + T1\ A1[t] + T2\ A2[t] + \
+\[CenterEllipsis])\)\^n\)\)}],
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]]], "Input",
+  FontSize->16,
+  FontWeight->"Plain",
+  Background->RGBColor[0.752941, 1, 0.878431]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(interpret[{{{A1, A2} \[RightTeeArrow] B, 
+          hill[{T1, T2}, K, n, r, v]}}]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{
+        RowBox[{"{", 
+          RowBox[{
+            RowBox[{
+              SuperscriptBox["B", "\[Prime]",
+                MultilineFunction->None], "[", "t", "]"}], 
+            "\[Equal]", \(\(v\ \((r + T1\ A1[t] + T2\ A2[t])\)\^n\)\/\(K\^n + \
+\((r + T1\ A1[t] + T2\ A2[t])\)\^n\)\)}], "}"}], ",", \({B}\)}], 
+      "}"}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    RowBox[{
+      StyleBox["interpret",
+        FontColor->GrayLevel[0]], 
+      StyleBox["[",
+        FontColor->GrayLevel[0]], 
+      RowBox[{
+        StyleBox["{",
+          FontColor->GrayLevel[0]], 
+        RowBox[{
+          StyleBox["{",
+            FontColor->GrayLevel[0]], 
+          RowBox[{
+            RowBox[{
+              RowBox[{
+                StyleBox["{",
+                  FontColor->GrayLevel[0]], 
+                StyleBox[\(A1, A2\),
+                  FontWeight->"Bold",
+                  FontColor->RGBColor[0.500008, 0, 0.500008]], 
+                StyleBox["}",
+                  FontWeight->"Bold",
+                  FontColor->RGBColor[0.500008, 0, 0.500008]]}], 
+              StyleBox["\[RightTeeArrow]",
+                FontWeight->"Bold",
+                FontColor->RGBColor[0.500008, 0, 0.500008]], 
+              StyleBox["B",
+                FontWeight->"Bold",
+                FontColor->RGBColor[0.500008, 0, 0.500008]]}], 
+            StyleBox[",",
+              FontWeight->"Bold",
+              FontColor->RGBColor[0.500008, 0, 0.500008]], 
+            StyleBox["\[IndentingNewLine]",
+              FontWeight->"Bold",
+              FontColor->RGBColor[0.500008, 0, 0.500008]], 
+            
+            StyleBox[\(hill[vmax \[Rule] \ {T1, T2}, \ nhill \[Rule] \ n, \ 
+                basalRate \[Rule] \ {r0, r1}, \ khalf \[Rule] \ K]\),
+              FontWeight->"Bold",
+              FontColor->RGBColor[0.500008, 0, 0.500008]]}], 
+          StyleBox["}",
+            FontWeight->"Bold",
+            FontColor->RGBColor[0.500008, 0, 0.500008]]}], 
+        StyleBox["}",
+          FontWeight->"Bold",
+          FontColor->RGBColor[0.500008, 0, 0.500008]]}], 
+      StyleBox["]",
+        FontWeight->"Bold"]}]], "Input"],
+
+Cell[BoxData[
+    InterpretationBox[\("Error: extra "\[InvisibleSpace]"Basal rate"\
+\[InvisibleSpace]" "\[InvisibleSpace]{r1}\[InvisibleSpace]" in "\
+\[InvisibleSpace]{{{A1, A2}} \[RightTeeArrow] B, 
+          hill[{T1, T2}, K, n, {r0, r1}]}\[InvisibleSpace]" ignored."\),
+      SequenceForm[ "Error: extra ", "Basal rate", " ", {r1}, " in ", {
+        RightTeeArrow[ {{A1, A2}}, B], 
+        hill[ {T1, T2}, K, n, {r0, r1}]}, " ignored."],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{
+        RowBox[{"{", 
+          RowBox[{
+            RowBox[{
+              SuperscriptBox["B", "\[Prime]",
+                MultilineFunction->None], "[", "t", "]"}], 
+            "\[Equal]", \(\((r0 + T1\ A1[t] + T2\ A2[t])\)\^n\/\(K\^n + \((r0 \
++ T1\ A1[t] + T2\ A2[t])\)\^n\)\)}], "}"}], ",", \({B}\)}], "}"}]], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    StyleBox[
+      RowBox[{
+        RowBox[{
+          SuperscriptBox["B", "\[Prime]",
+            MultilineFunction->None], "[", "t", "]"}], 
+        "\[Equal]", \(\((r0 + T1\ A1[t] + T2\ A2[t] + \[CenterEllipsis])\)\^n\
+\/\(K\^n + \((r0 + T1\ A1[t] + T2\ A2[t] + \[CenterEllipsis])\)\^n\)\)}],
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]]], "Input",
+  FontSize->16,
+  FontWeight->"Plain",
+  Background->RGBColor[0.752941, 1, 0.878431]],
+
+Cell[BoxData[{
+    StyleBox[\({\({A1, A2, \[Ellipsis]} \[RightTeeArrow] B\)\&En, \ 
+        hill[T, K, n, r, v]}\),
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]], "\[IndentingNewLine]", 
+    StyleBox[\({\(A1 + A2 + \[CenterEllipsis] \[RightTeeArrow] B\)\&En, \ 
+        hill[T, K, n, r, v]}\),
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]]}], "Input",
+  FontSize->16,
+  FontWeight->"Plain",
+  Background->RGBColor[0.752941, 1, 0.878431]],
+
+Cell[BoxData[
+    RowBox[{
+      StyleBox[
+        RowBox[{
+          RowBox[{
+            SuperscriptBox["B", "\[Prime]",
+              MultilineFunction->None], "[", "t", "]"}], 
+          "\[Equal]", \(\(v\ \((r + 
+                    T\ \((A1[t] + A2[t] + \[CenterEllipsis])\)\^n\ En[
+                        t])\)\)\/\(K\^n + \((A1[t] + A2[t] + \
+\[CenterEllipsis])\)\^n\)\)}],
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+      StyleBox["=",
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+      RowBox[{
+        StyleBox["-",
+          FontWeight->"Bold",
+          FontColor->RGBColor[0.500008, 0, 0.500008]], 
+        RowBox[{
+          SuperscriptBox[
+            StyleBox["Ai",
+              FontWeight->"Bold",
+              FontColor->RGBColor[0.500008, 0, 0.500008]], "\[Prime]",
+            MultilineFunction->None], 
+          StyleBox["[",
+            FontWeight->"Bold",
+            FontColor->RGBColor[0.500008, 0, 0.500008]], 
+          StyleBox["t",
+            FontWeight->"Bold",
+            FontColor->RGBColor[0.500008, 0, 0.500008]], 
+          StyleBox["]",
+            FontWeight->"Bold",
+            FontColor->RGBColor[0.500008, 0, 0.500008]]}]}]}]], "Input",
+  FontSize->16,
+  FontWeight->"Plain",
+  Background->RGBColor[0.752941, 1, 0.878431]],
+
+Cell[BoxData[
+    StyleBox[\({{\(A1 \[RightTeeArrow] B\)\&En1, \ 
+          hill[T1, K1, n1, r1, v1]}, {\(A2 \[RightTeeArrow] B\)\&En2, \ 
+          hill[T2, K2, n2, r2, v2]}, \[Ellipsis]}\),
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]]], "Input",
+  FontSize->16,
+  FontWeight->"Plain",
+  Background->RGBColor[0.752941, 1, 0.878431]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(interpret[{{\(A1 \[RightTeeArrow] B\)\&En1, \ 
+          hill[T1, K1, n1, r1, v] 1}, {\(A2 \[RightTeeArrow] B\)\&En2, \ 
+          hill[T2, K2, n2, r2, v2]}}]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{
+        RowBox[{"{", 
+          RowBox[{
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["A1", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], 
+              "\[Equal]", \(-\(\(v\ \((r1 + 
+                          T1\ A1[t]\^n1\ En1[t])\)\)\/\(K1\^n1 + 
+                      A1[t]\^n1\)\)\)}], ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["A2", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], 
+              "\[Equal]", \(-\(\(v2\ \((r2 + 
+                          T2\ A2[t]\^n2\ En2[t])\)\)\/\(K2\^n2 + 
+                      A2[t]\^n2\)\)\)}], ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["B", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], 
+              "\[Equal]", \(\(v\ \((r1 + T1\ A1[t]\^n1\ En1[t])\)\)\/\(K1\^n1 \
++ A1[t]\^n1\) + \(v2\ \((r2 + T2\ A2[t]\^n2\ En2[t])\)\)\/\(K2\^n2 + \
+A2[t]\^n2\)\)}], ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["En1", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+              "0"}], ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["En2", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+              "0"}]}], "}"}], ",", \({A1, A2, B, En1, En2}\)}], 
+      "}"}]], "Output"]
+}, Open  ]],
+
+Cell[BoxData[{
+    RowBox[{
+      StyleBox[
+        RowBox[{
+          SuperscriptBox["B", "\[Prime]",
+            MultilineFunction->None], "[", "t", "]"}],
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+      StyleBox["\[Equal]",
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+      RowBox[{
+        StyleBox[\(\[Sum]\+i\),
+          FontWeight->"Bold",
+          FontColor->RGBColor[0.500008, 0, 0.500008]], 
+        StyleBox[\(\(v\_i\ \((r\_i + 
+                    T\_i\ A\_i[t]\^ni\ En\_i[t])\)\)\/\(K\_i\^ni + 
+                A\_i[t]\^ni\)\),
+          FontWeight->"Bold",
+          FontColor->RGBColor[0.500008, 0, 
+          0.500008]]}]}], "\[IndentingNewLine]", 
+    StyleBox[
+      RowBox[{
+        RowBox[{
+          SuperscriptBox[\(A\_i\), "\[Prime]",
+            MultilineFunction->None], "[", "t", "]"}], 
+        "=", \(-\(\(v\_i\ \((r\_i + 
+                    T\_i\ A\_i[t]\^ni\ En\_i[t])\)\)\/\(K\_i\^ni + 
+                A\_i[t]\^ni\)\)\)}],
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]]}], "Input",
+  FontSize->16,
+  FontWeight->"Plain",
+  Background->RGBColor[0.752941, 1, 0.878431]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(<< cellerator.m\)], "Input"],
+
+Cell[BoxData[
+    \("Cellerator\[Trademark] 1.5.8 (1-July-2005) loaded 13-Aug-2005 13:09 \
+using Mathematica Version 5.2 for Mac OS X (June 20, 2005)"\)], "Print"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(interpret[{{\(A \[RightTeeArrow] B\)\&En, \ 
+          hill[khalf \[Rule] \ K, \ nhill \[Rule] \ n, \ 
+            vmax \[Rule] \ T]}}]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{
+        RowBox[{"{", 
+          RowBox[{
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["A", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], 
+              "\[Equal]", \(-\(\(T\ A[t]\^n\ En[t]\)\/\(K\^n + 
+                      A[t]\^n\)\)\)}], ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["B", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], 
+              "\[Equal]", \(\(T\ A[t]\^n\ En[t]\)\/\(K\^n + A[t]\^n\)\)}], 
+            ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["En", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+              "0"}]}], "}"}], ",", \({A, B, En}\)}], "}"}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(interpret[{{\(A \[RightTeeArrow] B\)\&En, 
+          hill[T, K, n, b, v]}}]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{
+        RowBox[{"{", 
+          RowBox[{
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["A", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], 
+              "\[Equal]", \(-\(\(v\ \((b + T\ A[t]\^n\ En[t])\)\)\/\(K\^n + 
+                      A[t]\^n\)\)\)}], ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["B", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], 
+              "\[Equal]", \(\(v\ \((b + T\ A[t]\^n\ En[t])\)\)\/\(K\^n + 
+                    A[t]\^n\)\)}], ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["En", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+              "0"}]}], "}"}], ",", \({A, B, En}\)}], "}"}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(interpret[{{\(A1\ A2 \[RightTeeArrow] B\)\&En, 
+          hill[T, K, n, b, v]}}]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{
+        RowBox[{"{", 
+          RowBox[{
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["A1", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], 
+              "\[Equal]", \(-\(\(v\ \((b + 
+                          T\ \((A1[t]\ A2[t])\)\^n\ En[
+                              t])\)\)\/\(K\^n + \((A1[t]\ A2[t])\)\^n\)\)\)}],
+             ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["A2", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], 
+              "\[Equal]", \(-\(\(v\ \((b + 
+                          T\ \((A1[t]\ A2[t])\)\^n\ En[
+                              t])\)\)\/\(K\^n + \((A1[t]\ A2[t])\)\^n\)\)\)}],
+             ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["B", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], 
+              "\[Equal]", \(\(v\ \((b + 
+                        T\ \((A1[t]\ A2[t])\)\^n\ En[
+                            t])\)\)\/\(K\^n + \((A1[t]\ A2[t])\)\^n\)\)}], 
+            ",", 
+            RowBox[{
+              RowBox[{
+                SuperscriptBox["En", "\[Prime]",
+                  MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+              "0"}]}], "}"}], ",", \({A1, A2, B, En}\)}], "}"}]], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    StyleBox[\({\(A1\ A2\ A3\ \[CenterEllipsis] \[RightTeeArrow] B\)\&En, 
+        hill[T, K, n, b, v]}\),
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]]], "Input",
+  FontSize->16,
+  FontWeight->"Plain",
+  Background->RGBColor[0.752941, 1, 0.878431]],
+
+Cell[BoxData[
+    RowBox[{
+      RowBox[{
+        StyleBox[
+          RowBox[{
+            SuperscriptBox["B", "\[Prime]",
+              MultilineFunction->None], "[", "t", "]"}],
+          FontWeight->"Bold",
+          FontColor->RGBColor[0.500008, 0, 0.500008]], 
+        StyleBox["\[Equal]",
+          FontWeight->"Bold",
+          FontColor->RGBColor[0.500008, 0, 0.500008]], 
+        StyleBox[\(\(v\ \((b + 
+                    T\ \((A1[t]\ A2[t] \[CenterEllipsis])\)\^n\ En[
+                        t])\)\)\/\(K\^n + \((A1[t]\ A2[t])\)\^n\)\),
+          FontWeight->"Bold",
+          FontColor->RGBColor[0.500008, 0, 0.500008]]}], 
+      StyleBox["=",
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+      StyleBox[
+        RowBox[{"-", 
+          RowBox[{
+            SuperscriptBox[\(A\_i\), "\[Prime]",
+              MultilineFunction->None], "[", "t", "]"}]}],
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]]}]], "Input",
+  FontSize->16,
+  FontWeight->"Plain",
+  Background->RGBColor[0.752941, 1, 0.878431]]
+},
+FrontEndVersion->"5.2 for Macintosh",
+ScreenRectangle->{{0, 1920}, {0, 1174}},
+WindowSize->{727, 672},
+WindowMargins->{{21, Automatic}, {Automatic, 202}},
+ShowSelection->True
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 48, 1, 27, "Input"],
+Cell[1827, 56, 163, 2, 39, "Print"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2027, 63, 204, 3, 59, "Input"],
+Cell[2234, 68, 811, 21, 45, "Output"]
+}, Open  ]],
+Cell[3060, 92, 425, 9, 86, "Input"],
+Cell[3488, 103, 495, 13, 73, "Input"],
+
+Cell[CellGroupData[{
+Cell[4008, 120, 43, 1, 27, "Input"],
+Cell[4054, 123, 156, 2, 39, "Print"],
+Cell[4213, 127, 153, 2, 39, "Print"]
+}, Open  ]],
+Cell[4381, 132, 297, 7, 46, "Input"],
+Cell[4681, 141, 490, 13, 73, "Input"],
+
+Cell[CellGroupData[{
+Cell[5196, 158, 114, 2, 27, "Input"],
+Cell[5313, 162, 384, 10, 45, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5734, 177, 1779, 47, 43, "Input"],
+Cell[7516, 226, 474, 8, 23, "Print"],
+Cell[7993, 236, 372, 9, 45, "Output"]
+}, Open  ]],
+Cell[8380, 248, 483, 12, 73, "Input"],
+Cell[8866, 262, 497, 11, 92, "Input"],
+Cell[9366, 275, 1346, 37, 73, "Input"],
+Cell[10715, 314, 364, 8, 94, "Input"],
+
+Cell[CellGroupData[{
+Cell[11104, 326, 191, 3, 37, "Input"],
+Cell[11298, 331, 1494, 36, 113, "Output"]
+}, Open  ]],
+Cell[12807, 370, 1209, 33, 145, "Input"],
+
+Cell[CellGroupData[{
+Cell[14041, 407, 48, 1, 27, "Input"],
+Cell[14092, 410, 163, 2, 39, "Print"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[14292, 417, 168, 3, 37, "Input"],
+Cell[14463, 422, 836, 21, 45, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[15336, 448, 108, 2, 37, "Input"],
+Cell[15447, 452, 870, 21, 45, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[16354, 478, 113, 2, 37, "Input"],
+Cell[16470, 482, 1379, 33, 82, "Output"]
+}, Open  ]],
+Cell[17864, 518, 293, 7, 58, "Input"],
+Cell[18160, 527, 1083, 29, 73, "Input"]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

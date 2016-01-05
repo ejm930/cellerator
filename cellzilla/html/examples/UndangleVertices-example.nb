@@ -1,0 +1,637 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     22818,        628]
+NotebookOptionsPosition[     21208,        567]
+NotebookOutlinePosition[     21666,        585]
+CellTagsIndexPosition[     21623,        582]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+UndangleVertices-example.nb
+UndangleVertices, UndangleEdges example\
+\>", "Section",
+ CellChangeTimes->{{3.454616493069165*^9, 3.4546164962937117`*^9}, {
+   3.454617165097115*^9, 3.45461716610536*^9}, {3.4546175566843147`*^9, 
+   3.454617556998733*^9}, 3.454617821271494*^9, {3.4546182823933973`*^9, 
+   3.454618284403924*^9}, 3.4546185355642757`*^9, {3.4546188466058817`*^9, 
+   3.454618850495126*^9}, {3.454622798430842*^9, 3.4546228006815033`*^9}, {
+   3.4546972998510923`*^9, 3.454697302063283*^9}, {3.4548769614758177`*^9, 
+   3.45487696487158*^9}, {3.454877016601164*^9, 3.4548770230067463`*^9}, {
+   3.4549464679022923`*^9, 3.454946472766996*^9}, {3.454952051881212*^9, 
+   3.4549520564947844`*^9}, {3.4549528105725307`*^9, 3.454952827618351*^9}, 
+   3.561679300545093*^9}],
+
+Cell["\<\
+Example Cellzilla2D notebook.
+
+GPL License applies. 
+See http://xlr8r.info and http://cellzilla.info for further details.\
+\>", "Text",
+ CellChangeTimes->{{3.454616499378996*^9, 3.4546165376658583`*^9}, 
+   3.454617821271595*^9, 3.5616791145636873`*^9, 3.561679300545196*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"<<", "Cellzilla2D.m"}]], "Input",
+ CellChangeTimes->{{3.4546177024873037`*^9, 3.4546177066717863`*^9}, {
+   3.4546177419301577`*^9, 3.454617750289276*^9}, 3.454617821271983*^9, 
+   3.561679300545328*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"Cellzilla2D\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\" (3.0.0 (11-Nov-2012)) loaded Sun 11 Nov 2012 \
+19:18:37\\nusing \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"xCellerator \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"0.92 and \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"XSSA \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"1204002\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"\\nGPL License Terms Apply\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]]}],
+  SequenceForm[
+   Style["Cellzilla2D", FontFamily -> "Ubuntu,Arial", FontSize -> 12, 
+    FontWeight -> "Bold"], 
+   Style[" (3.0.0 (11-Nov-2012)) loaded Sun 11 Nov 2012 19:18:37\nusing ", 
+    FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["xCellerator ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", 
+    FontWeight -> "Bold"], 
+   Style["0.92 and ", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["XSSA ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> 
+    "Bold"], 
+   Style["1204002", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["\nGPL License Terms Apply", FontColor -> RGBColor[1, 0, 0], 
+    FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> Bold]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.454946483733527*^9, 3.454952105523391*^9, 
+  3.561679117346508*^9, 3.561679300546544*^9}]
+}, Open  ]],
+
+Cell["Create a tissue with a point and an edge that aren't used.", "Text",
+ CellChangeTimes->{{3.454948265977695*^9, 3.454948276878396*^9}, 
+   3.561679300546611*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"v", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", " ", "0"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", " ", "2"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", " ", "1"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", " ", "2"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"e", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"1", ",", "2"}], "}"}], ",", "  ", 
+      RowBox[{"{", 
+       RowBox[{"2", ",", " ", "3"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"3", ",", " ", "1"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"3", ",", " ", "4"}], "}"}]}], "}"}]}], ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"c", "=", 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "3"}], "}"}], "}"}]}], ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{"q", "=", 
+  RowBox[{"Tissue", "[", 
+   RowBox[{"v", ",", "e", ",", "c"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.4549465214768143`*^9, 3.4549465715843163`*^9}, {
+   3.4549466872435713`*^9, 3.454946688432949*^9}, {3.4549519838067102`*^9, 
+   3.454951986376079*^9}, {3.454952022012528*^9, 3.4549520235389013`*^9}, 
+   3.561679300546994*^9}],
+
+Cell[BoxData[
+ RowBox[{"Tissue", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "4"}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2", ",", "3"}], "}"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.454946571907584*^9, 3.4549466892980547`*^9, 
+  3.4549519868185062`*^9, 3.4549520239446163`*^9, 3.454952105717558*^9, 
+  3.454952862927421*^9, 3.5616791191136093`*^9, 3.561679300547309*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DanglingEdges", "[", "q", "]"}]], "Input",
+ CellChangeTimes->{{3.454952003316556*^9, 3.454952015925557*^9}, 
+   3.561679300547426*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", "4", "}"}]], "Output",
+ CellChangeTimes->{3.454952016431603*^9, 3.4549521057712507`*^9, 
+  3.4549528652509623`*^9, 3.5616791216850843`*^9, 3.561679300547503*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DanglingVertices", "[", "q", "]"}]], "Input",
+ CellChangeTimes->{{3.454952032049158*^9, 3.454952036791519*^9}, 
+   3.5616793005475807`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", "5", "}"}]], "Output",
+ CellChangeTimes->{3.4549520373353863`*^9, 3.45495210592349*^9, 
+  3.454952867370398*^9, 3.561679123437709*^9, 3.561679300547645*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ShowTissue", "[", 
+  RowBox[{"q", ",", " ", 
+   RowBox[{"\"\<Vertices\>\"", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"Yellow", ",", " ", 
+      RowBox[{"PointSize", "[", ".06", "]"}]}], "}"}]}], ",", " ", 
+   RowBox[{"\"\<VertexNumbers\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", " ", 
+      RowBox[{"FontSize", "\[Rule]", " ", "20"}]}], "}"}]}], ",", " ", 
+   RowBox[{"\"\<CellNumbers\>\"", "\[Rule]", " ", "True"}], " ", ",", " ", 
+   RowBox[{"\"\<EdgeNumbers\>\"", "\[Rule]", " ", "True"}], ",", " ", 
+   RowBox[{"\"\<EdgeNumberStyle\>\"", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"Black", ",", " ", 
+      RowBox[{"FontSize", "\[Rule]", " ", "18"}]}], "}"}]}], ",", " ", 
+   RowBox[{"\"\<All\>\"", "\[Rule]", " ", "True"}], " ", ",", " ", 
+   RowBox[{"\"\<EdgeStyles\>\"", "\[Rule]", " ", "Dashed"}], ",", " ", 
+   RowBox[{"Background", "\[Rule]", " ", "LightOrange"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.4549465735607367`*^9, 3.4549467188044243`*^9}, {
+   3.454947510970971*^9, 3.4549475178079557`*^9}, {3.454947606865212*^9, 
+   3.4549476074126787`*^9}, {3.454947653925746*^9, 3.45494768179688*^9}, {
+   3.454947951943265*^9, 3.4549479912037163`*^9}, {3.5616791252032413`*^9, 
+   3.5616791720842943`*^9}, 3.5616793005478992`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    {RGBColor[0.88, 1, 0.88], PolygonBox[{{0, 0}, {2, 0}, {1, 2}}]}, 
+    {GrayLevel[0], InsetBox["\<\"1\"\>", {1., 0.6666666666666666}]}}, {
+    {Dashing[{Small, Small}], LineBox[{{0, 0}, {2, 0}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"1\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {1., 0.}]}}, 
+    {Dashing[{Small, Small}], LineBox[{{2, 0}, {1, 2}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"2\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {1.5, 1.}]}}, 
+    {Dashing[{Small, Small}], LineBox[{{1, 2}, {0, 0}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"3\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {0.5, 1.}]}}, 
+    {Dashing[{Small, Small}], LineBox[{{1, 2}, {2, 1}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"4\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {1.5, 1.5}]}}}, 
+   {RGBColor[1, 1, 0], PointSize[0.06], PointBox[{0, 0}], PointBox[{2, 0}], 
+    PointBox[{1, 2}], PointBox[{2, 1}], PointBox[{2, 2}]}, 
+   {RGBColor[1, 0, 0], 
+    StyleBox[{InsetBox["1", {0, 0}], InsetBox["2", {2, 0}], 
+      InsetBox["3", {1, 2}], InsetBox["4", {2, 1}], InsetBox["5", {2, 2}]},
+     FontSize->20]}, {}, {}, 
+   {GrayLevel[0], Thickness[Tiny], LineBox[{{0, 0}, {2, 0}}], 
+    LineBox[{{2, 0}, {1, 2}}], LineBox[{{1, 2}, {0, 0}}]}},
+  Background->RGBColor[1, 0.9, 0.8]]], "Output",
+ CellChangeTimes->{
+  3.4549465759671507`*^9, {3.4549466115910587`*^9, 3.454946719279154*^9}, {
+   3.454947507958685*^9, 3.454947547897935*^9}, {3.45494760013547*^9, 
+   3.454947607714526*^9}, {3.454947651680431*^9, 3.4549476821499853`*^9}, {
+   3.45494795660996*^9, 3.454947992040045*^9}, 3.454951988897887*^9, 
+   3.454952025529458*^9, 3.4549521059629393`*^9, 3.4549528692765493`*^9, {
+   3.561679139590661*^9, 3.561679172520708*^9}, 3.5616793005509987`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Undangling Vertices removes vertex 5 which is not attached to anything\
+\>", "Section",
+ CellChangeTimes->{{3.561679218971366*^9, 3.5616792286029043`*^9}, 
+   3.5616793005510693`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ShowTissue", "[", 
+  RowBox[{
+   RowBox[{"UndangleVertices", "[", "q", "]"}], ",", 
+   RowBox[{"\"\<Vertices\>\"", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"Yellow", ",", " ", 
+      RowBox[{"PointSize", "[", ".06", "]"}]}], "}"}]}], ",", " ", 
+   RowBox[{"\"\<VertexNumbers\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", " ", 
+      RowBox[{"FontSize", "\[Rule]", " ", "20"}]}], "}"}]}], ",", " ", 
+   RowBox[{"\"\<CellNumbers\>\"", "\[Rule]", " ", "True"}], " ", ",", " ", 
+   RowBox[{"\"\<EdgeNumbers\>\"", "\[Rule]", " ", "True"}], ",", " ", 
+   RowBox[{"\"\<EdgeNumberStyle\>\"", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"Black", ",", " ", 
+      RowBox[{"FontSize", "\[Rule]", " ", "18"}]}], "}"}]}], ",", " ", 
+   RowBox[{"\"\<All\>\"", "\[Rule]", " ", "True"}], " ", ",", " ", 
+   RowBox[{"\"\<EdgeStyles\>\"", "\[Rule]", " ", "Dashed"}], ",", " ", 
+   RowBox[{"Background", "\[Rule]", " ", "LightOrange"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.4549528702428217`*^9, 3.454952898350665*^9}, 
+   3.561679186344458*^9, 3.561679300551428*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    {RGBColor[0.88, 1, 0.88], PolygonBox[{{0, 0}, {2, 0}, {1, 2}}]}, 
+    {GrayLevel[0], InsetBox["\<\"1\"\>", {1., 0.6666666666666666}]}}, {
+    {Dashing[{Small, Small}], LineBox[{{0, 0}, {2, 0}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"1\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {1., 0.}]}}, 
+    {Dashing[{Small, Small}], LineBox[{{2, 0}, {1, 2}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"2\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {1.5, 1.}]}}, 
+    {Dashing[{Small, Small}], LineBox[{{1, 2}, {0, 0}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"3\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {0.5, 1.}]}}, 
+    {Dashing[{Small, Small}], LineBox[{{1, 2}, {2, 1}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"4\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {1.5, 1.5}]}}}, 
+   {RGBColor[1, 1, 0], PointSize[0.06], PointBox[{0, 0}], PointBox[{2, 0}], 
+    PointBox[{1, 2}], PointBox[{2, 1}]}, 
+   {RGBColor[1, 0, 0], 
+    StyleBox[{InsetBox["1", {0, 0}], InsetBox["2", {2, 0}], 
+      InsetBox["3", {1, 2}], InsetBox["4", {2, 1}]},
+     FontSize->20]}, {}, {}, 
+   {GrayLevel[0], Thickness[Tiny], LineBox[{{0, 0}, {2, 0}}], 
+    LineBox[{{2, 0}, {1, 2}}], LineBox[{{1, 2}, {0, 0}}]}},
+  Background->RGBColor[1, 0.9, 0.8]]], "Output",
+ CellChangeTimes->{3.4549528988199663`*^9, 3.561679187203129*^9, 
+  3.5616793005533123`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Undangle edge removes edge 4 which is not attached to anything, but the \
+dangling vertices are still there\
+\>", "Section",
+ CellChangeTimes->{{3.561679237523193*^9, 3.5616792542508173`*^9}, 
+   3.561679300553343*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ShowTissue", "[", 
+  RowBox[{
+   RowBox[{"UndangleEdges", "[", "q", "]"}], ",", 
+   RowBox[{"\"\<Vertices\>\"", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"Yellow", ",", " ", 
+      RowBox[{"PointSize", "[", ".06", "]"}]}], "}"}]}], ",", " ", 
+   RowBox[{"\"\<VertexNumbers\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", " ", 
+      RowBox[{"FontSize", "\[Rule]", " ", "20"}]}], "}"}]}], ",", " ", 
+   RowBox[{"\"\<CellNumbers\>\"", "\[Rule]", " ", "True"}], " ", ",", " ", 
+   RowBox[{"\"\<EdgeNumbers\>\"", "\[Rule]", " ", "True"}], ",", " ", 
+   RowBox[{"\"\<EdgeNumberStyle\>\"", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"Black", ",", " ", 
+      RowBox[{"FontSize", "\[Rule]", " ", "18"}]}], "}"}]}], ",", " ", 
+   RowBox[{"\"\<All\>\"", "\[Rule]", " ", "True"}], " ", ",", " ", 
+   RowBox[{"\"\<EdgeStyles\>\"", "\[Rule]", " ", "Dashed"}], ",", " ", 
+   RowBox[{"Background", "\[Rule]", " ", "LightOrange"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.454952905918874*^9, 3.454952908948957*^9}, 
+   3.561679207911693*^9, 3.561679300553494*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    {RGBColor[0.88, 1, 0.88], PolygonBox[{{0, 0}, {2, 0}, {1, 2}}]}, 
+    {GrayLevel[0], InsetBox["\<\"1\"\>", {1., 0.6666666666666666}]}}, {
+    {Dashing[{Small, Small}], LineBox[{{0, 0}, {2, 0}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"1\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {1., 0.}]}}, 
+    {Dashing[{Small, Small}], LineBox[{{2, 0}, {1, 2}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"2\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {1.5, 1.}]}}, 
+    {Dashing[{Small, Small}], LineBox[{{1, 2}, {0, 0}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"3\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {0.5, 1.}]}}}, 
+   {RGBColor[1, 1, 0], PointSize[0.06], PointBox[{0, 0}], PointBox[{2, 0}], 
+    PointBox[{1, 2}], PointBox[{2, 1}], PointBox[{2, 2}]}, 
+   {RGBColor[1, 0, 0], 
+    StyleBox[{InsetBox["1", {0, 0}], InsetBox["2", {2, 0}], 
+      InsetBox["3", {1, 2}], InsetBox["4", {2, 1}], InsetBox["5", {2, 2}]},
+     FontSize->20]}, {}, {}, 
+   {GrayLevel[0], Thickness[Tiny], LineBox[{{0, 0}, {2, 0}}], 
+    LineBox[{{2, 0}, {1, 2}}], LineBox[{{1, 2}, {0, 0}}]}},
+  Background->RGBColor[1, 0.9, 0.8]]], "Output",
+ CellChangeTimes->{3.454952909367001*^9, 3.561679209440233*^9, 
+  3.5616793005544453`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Undangling Vertices after Undangling edges takes care of all the extra stuff\
+\>", "Section",
+ CellChangeTimes->{{3.561679266634768*^9, 3.561679300554475*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ShowTissue", "[", 
+  RowBox[{
+   RowBox[{"UndangleVertices", "[", 
+    RowBox[{"UndangleEdges", "[", "q", "]"}], "]"}], ",", " ", 
+   RowBox[{"\"\<Vertices\>\"", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"Yellow", ",", " ", 
+      RowBox[{"PointSize", "[", ".06", "]"}]}], "}"}]}], ",", " ", 
+   RowBox[{"\"\<VertexNumbers\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"Red", ",", " ", 
+      RowBox[{"FontSize", "\[Rule]", " ", "20"}]}], "}"}]}], ",", " ", 
+   RowBox[{"\"\<CellNumbers\>\"", "\[Rule]", " ", "True"}], " ", ",", " ", 
+   RowBox[{"\"\<EdgeNumbers\>\"", "\[Rule]", " ", "True"}], ",", " ", 
+   RowBox[{"\"\<EdgeNumberStyle\>\"", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"Black", ",", " ", 
+      RowBox[{"FontSize", "\[Rule]", " ", "18"}]}], "}"}]}], ",", " ", 
+   RowBox[{"\"\<All\>\"", "\[Rule]", " ", "True"}], " ", ",", " ", 
+   RowBox[{"\"\<EdgeStyles\>\"", "\[Rule]", " ", "Dashed"}], ",", " ", 
+   RowBox[{"Background", "\[Rule]", " ", "LightOrange"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.4549529135397263`*^9, 3.454952926222074*^9}, 
+   3.561679261240026*^9, 3.5616793005546293`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    {RGBColor[0.88, 1, 0.88], PolygonBox[{{0, 0}, {2, 0}, {1, 2}}]}, 
+    {GrayLevel[0], InsetBox["\<\"1\"\>", {1., 0.6666666666666666}]}}, {
+    {Dashing[{Small, Small}], LineBox[{{0, 0}, {2, 0}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"1\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {1., 0.}]}}, 
+    {Dashing[{Small, Small}], LineBox[{{2, 0}, {1, 2}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"2\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {1.5, 1.}]}}, 
+    {Dashing[{Small, Small}], LineBox[{{1, 2}, {0, 0}}], 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"3\"\>",
+        StripOnInput->False,
+        LineColor->GrayLevel[0],
+        FrontFaceColor->GrayLevel[0],
+        BackFaceColor->GrayLevel[0],
+        GraphicsColor->GrayLevel[0],
+        FontSize->18,
+        FontColor->GrayLevel[0]], {0.5, 1.}]}}}, 
+   {RGBColor[1, 1, 0], PointSize[0.06], PointBox[{0, 0}], PointBox[{2, 0}], 
+    PointBox[{1, 2}]}, 
+   {RGBColor[1, 0, 0], 
+    StyleBox[{InsetBox["1", {0, 0}], InsetBox["2", {2, 0}], 
+      InsetBox["3", {1, 2}]},
+     FontSize->20]}, {}, {}, 
+   {GrayLevel[0], Thickness[Tiny], LineBox[{{0, 0}, {2, 0}}], 
+    LineBox[{{2, 0}, {1, 2}}], LineBox[{{1, 2}, {0, 0}}]}},
+  Background->RGBColor[1, 0.9, 0.8]]], "Output",
+ CellChangeTimes->{3.454952926615664*^9, 3.5616792621671543`*^9, 
+  3.561679300555451*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{717, 787},
+WindowMargins->{{Automatic, -1402}, {60, Automatic}},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 790, 13, 100, "Section"],
+Cell[1360, 37, 285, 7, 87, "Text"],
+Cell[CellGroupData[{
+Cell[1670, 48, 227, 4, 40, "Input"],
+Cell[1900, 54, 1999, 52, 62, "Print"]
+}, Open  ]],
+Cell[3914, 109, 166, 2, 30, "Text"],
+Cell[CellGroupData[{
+Cell[4105, 115, 1411, 43, 98, "Input"],
+Cell[5519, 160, 1013, 30, 60, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6569, 195, 158, 3, 40, "Input"],
+Cell[6730, 200, 189, 3, 40, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6956, 208, 163, 3, 40, "Input"],
+Cell[7122, 213, 184, 3, 40, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7343, 221, 1296, 24, 98, "Input"],
+Cell[8642, 247, 2581, 59, 388, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11272, 312, 193, 4, 74, "Section"],
+Cell[CellGroupData[{
+Cell[11490, 320, 1102, 22, 98, "Input"],
+Cell[12595, 344, 2172, 54, 388, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14816, 404, 228, 5, 100, "Section"],
+Cell[CellGroupData[{
+Cell[15069, 413, 1097, 22, 98, "Input"],
+Cell[16169, 437, 1848, 44, 388, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18066, 487, 169, 3, 100, "Section"],
+Cell[CellGroupData[{
+Cell[18260, 494, 1151, 23, 117, "Input"],
+Cell[19414, 519, 1766, 44, 388, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

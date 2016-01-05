@@ -1,0 +1,92 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>ShowOutwardNormals</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info/" border="0"><img src="logo.svg" alt="The xCellerator Project" width="150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style="font-size:x-large;font-weight:bold;">ShowOutwardNormals</td>
+
+            <td align="right"><a class="button" href="./index.html">Cellzilla2D Home</a></td>
+          </tr>
+        </table>
+        <hr color="#FF7636">
+
+        <p class="header">Description</p>
+
+        <p>Generates a graphic for the outward pointing normal unit vectors to the edges of a polygon.</p>
+
+        <p><span class="function">Needs["Cellzilla2D`"];</span></p>
+
+        <p class="header">Return Value</p>
+
+        <p><span class="function">ShowOutwardNormals[{{x1,y1}, {x2,y2}}, dir, flag]</span></p>
+
+        <p><span class="function">dir</span> is any list of graphics directives</p>
+
+        <p><span class="function">flag</span> if True, prints the polygon; if not, only shows the arrow.</p>
+
+        <p><span class="function">ShowOutwardNormals[Tissue, options]</span> displays the normal vectors to cells
+        and/or edges as specified by the options</p>
+
+        <p class="header">Options</p>
+
+        <p><span class="function">"Cells"-&gt;{}</span> List of cell numbers; the outward pointing normal vectors will
+        be drawn for each edge of the specified cells, with the styles defined by option <span class=
+        "function">"Style"</span>.</p>
+
+        <p><span class="function">"Edges"-&gt;{}</span> List of edges numbers; opposite normal vectors will be drawn
+        with the styles defined by option <span class="function">"Style"</span> for each edge 
+        specified. Since an "outward" direction is undefined in the absence of specific edges, 
+        two oppostive vectors are drawn for each edge.</p>
+
+        <p><span class="function">"Style"-&gt; {}</span> - any Graphics option or directive, e.g., Red or Dotted.</p>
+
+        <p class="header">Example</p>
+
+        <p>[ <a href="examples/ShowOutwardNormals-example.nb.zip">Download Example as Zipped Mathematica Notebook</a>
+        ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name="display" src=
+        "./examples/ShowOutwardNormals-example.htm" id="display" style="background-color:white;"><a href="">View as
+        html.</a></iframe></p>
+
+        <p class="header">Implementation Notes</p>
+
+        <p class="header">See Also</p>
+
+        <p><a class="function" href="ShowEdgeNormal.html">ShowEdgeNormal</a>, <a class="function" href=
+        "NormalVector.html">NormalVector</a>, <a href="OutwardNormalVector.html" class=
+        "function">OutwardNormalVector</a></p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4" width="125" height="37" border="0" alt=
+            "SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2012 Nov 9]</span>
+    </div>
+  </center>
+</body>
+</html>

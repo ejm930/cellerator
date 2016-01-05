@@ -1,0 +1,316 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     12364,        307]
+NotebookOptionsPosition[     11384,        273]
+NotebookOutlinePosition[     11821,        290]
+CellTagsIndexPosition[     11778,        287]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["RandomBiBi", "Section",
+ CellChangeTimes->{3.5554692379893637`*^9, 3.555469269398251*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"RandomBiBi is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.555468662872848*^9, 3.555469269398472*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}]}], 
+    "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.555468662926499*^9, 3.555469269398707*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 \[ShortRightArrow] $Complex$En$S1$, \
+kf1}\\n{$Complex$En$S1$ \[ShortRightArrow] En + S1, kr1}\\n{En + S2 \
+\[ShortRightArrow] $Complex$En$S2$, kf2}\\n{$Complex$En$S2$ \
+\[ShortRightArrow] En + S2, kr2}\\n{S2 + $Complex$En$S1$ \[ShortRightArrow] \
+$Complex$En$S1$S2$, kf2}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S2 + \
+$Complex$En$S1$, kr2}\\n{S1 + $Complex$En$S2$ \[ShortRightArrow] \
+$Complex$En$S1$S2$, kf1}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S1 + \
+$Complex$En$S2$, kr1}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] En + P1 + P2, \
+k}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.55546866297945*^9, 3.555469269398809*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"RandomBiBi is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.5554686630259953`*^9, 3.555469269398885*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.555468663074346*^9, 3.555469269398972*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 \[ShortRightArrow] $Complex$En$S1$, \
+kf1}\\n{$Complex$En$S1$ \[ShortRightArrow] En + S1, kr1}\\n{En + S2 \
+\[ShortRightArrow] $Complex$En$S2$, kf2}\\n{$Complex$En$S2$ \
+\[ShortRightArrow] En + S2, kr2}\\n{S2 + $Complex$En$S1$ \[ShortRightArrow] \
+$Complex$En$S1$S2$, kf2}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S2 + \
+$Complex$En$S1$, kr2}\\n{S1 + $Complex$En$S2$ \[ShortRightArrow] \
+$Complex$En$S1$S2$, kf1}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S1 + \
+$Complex$En$S2$, kr1}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] En + P1 + P2, \
+k}\\n{En + Inh \[ShortRightArrow] $Complex$En$Inh$, kfi}\\n{$Complex$En$Inh$ \
+\[ShortRightArrow] En + Inh, kri}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.555468663120047*^9, 3.555469269399077*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"RandomBiBi is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.55546866316925*^9, 3.555469269399152*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"CI1", "[", 
+      RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+     RowBox[{"CI2", "[", 
+      RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.555468663213529*^9, 3.5554692693992662`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 \[ShortRightArrow] $Complex$En$S1$, \
+kf1}\\n{$Complex$En$S1$ \[ShortRightArrow] En + S1, kr1}\\n{En + S2 \
+\[ShortRightArrow] $Complex$En$S2$, kf2}\\n{$Complex$En$S2$ \
+\[ShortRightArrow] En + S2, kr2}\\n{S2 + $Complex$En$S1$ \[ShortRightArrow] \
+$Complex$En$S1$S2$, kf2}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S2 + \
+$Complex$En$S1$, kr2}\\n{S1 + $Complex$En$S2$ \[ShortRightArrow] \
+$Complex$En$S1$S2$, kf1}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S1 + \
+$Complex$En$S2$, kr1}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] En + P1 + P2, \
+k}\\n{En + Inh1 \[ShortRightArrow] $Complex$En$Inh1$, \
+kfi1}\\n{$Complex$En$Inh1$ \[ShortRightArrow] En + Inh1, kri1}\\n{En + Inh2 \
+\[ShortRightArrow] $Complex$En$Inh2$, kfi1}\\n{$Complex$En$Inh2$ \
+\[ShortRightArrow] En + Inh2, kri2}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.555468663263981*^9, 3.555469269399378*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"RandomBiBi is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.555468663312976*^9, 3.555469269399455*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.555468663358918*^9, 3.555469269399541*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 \[ShortRightArrow] $Complex$En$S1$, \
+kf1}\\n{$Complex$En$S1$ \[ShortRightArrow] En + S1, kr1}\\n{En + S2 \
+\[ShortRightArrow] $Complex$En$S2$, kf2}\\n{$Complex$En$S2$ \
+\[ShortRightArrow] En + S2, kr2}\\n{S2 + $Complex$En$S1$ \[ShortRightArrow] \
+$Complex$En$S1$S2$, kf2}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S2 + \
+$Complex$En$S1$, kr2}\\n{S1 + $Complex$En$S2$ \[ShortRightArrow] \
+$Complex$En$S1$S2$, kf1}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S1 + \
+$Complex$En$S2$, kr1}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] En + P1 + P2, \
+k}\\n{En + Inh \[ShortRightArrow] $Complex$En$Inh$, kfi}\\n{$Complex$En$Inh$ \
+\[ShortRightArrow] En + Inh, kri}\\n{Inh + $Complex$En$S1$ \[ShortRightArrow] \
+$Complex$En$S1$Inh$, kfi}\\n{$Complex$En$S1$Inh$ \[ShortRightArrow] Inh + \
+$Complex$En$S1$, kri}\\n{Inh + $Complex$En$S2$ \[ShortRightArrow] \
+$Complex$En$S2$Inh$, kfi}\\n{$Complex$En$S2$Inh$ \[ShortRightArrow] Inh + \
+$Complex$En$S2$, kri}\\n{Inh + $Complex$En$S1$S2$ \[ShortRightArrow] \
+$Complex$En$S1$S2$Inh$, kfi}\\n{$Complex$En$S1$S2$Inh$ \[ShortRightArrow] Inh \
++ $Complex$En$S1$S2$, kri}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.555468663409631*^9, 3.5554692693996773`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"RandomBiBi is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.555468663454042*^9, 3.555469269399748*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"NCI1", "[", 
+      RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+     RowBox[{"NCI2", "[", 
+      RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.555468663512342*^9, 3.555469269399846*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 \[ShortRightArrow] $Complex$En$S1$, \
+kf1}\\n{$Complex$En$S1$ \[ShortRightArrow] En + S1, kr1}\\n{En + S2 \
+\[ShortRightArrow] $Complex$En$S2$, kf2}\\n{$Complex$En$S2$ \
+\[ShortRightArrow] En + S2, kr2}\\n{S2 + $Complex$En$S1$ \[ShortRightArrow] \
+$Complex$En$S1$S2$, kf2}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S2 + \
+$Complex$En$S1$, kr2}\\n{S1 + $Complex$En$S2$ \[ShortRightArrow] \
+$Complex$En$S1$S2$, kf1}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S1 + \
+$Complex$En$S2$, kr1}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] En + P1 + P2, \
+k}\\n{En + Inh1 \[ShortRightArrow] $Complex$En$Inh1$, \
+kfi1}\\n{$Complex$En$Inh1$ \[ShortRightArrow] En + Inh1, kri1}\\n{Inh1 + \
+$Complex$En$S1$ \[ShortRightArrow] $Complex$En$S1$Inh1$, \
+kfi1}\\n{$Complex$En$S1$Inh1$ \[ShortRightArrow] Inh1 + $Complex$En$S1$, \
+kri1}\\n{Inh1 + $Complex$En$S2$ \[ShortRightArrow] $Complex$En$S2$Inh1$, \
+kfi1}\\n{$Complex$En$S2$Inh1$ \[ShortRightArrow] Inh1 + $Complex$En$S2$, \
+kri1}\\n{Inh1 + $Complex$En$S1$S2$ \[ShortRightArrow] \
+$Complex$En$S1$S2$Inh1$, kfi1}\\n{$Complex$En$S1$S2$Inh1$ \[ShortRightArrow] \
+Inh1 + $Complex$En$S1$S2$, kri1}\\n{En + Inh2 \[ShortRightArrow] \
+$Complex$En$Inh2$, kfi2}\\n{$Complex$En$Inh2$ \[ShortRightArrow] En + Inh2, \
+kri2}\\n{Inh2 + $Complex$En$S1$ \[ShortRightArrow] $Complex$En$S1$Inh2$, \
+kfi2}\\n{$Complex$En$S1$Inh2$ \[ShortRightArrow] Inh2 + $Complex$En$S1$, \
+kri2}\\n{Inh2 + $Complex$En$S2$ \[ShortRightArrow] $Complex$En$S2$Inh2$, \
+kfi2}\\n{$Complex$En$S2$Inh2$ \[ShortRightArrow] Inh2 + $Complex$En$S2$, \
+kri2}\\n{Inh2 + $Complex$En$S1$S2$ \[ShortRightArrow] \
+$Complex$En$S1$S2$Inh2$, kfi2}\\n{$Complex$En$S1$S2$Inh2$ \[ShortRightArrow] \
+Inh2 + $Complex$En$S1$S2$, kri2}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467597219879*^9, 3.555468346495862*^9, 
+  3.555468663568364*^9, 3.555469269400028*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{974, 867},
+WindowMargins->{{Automatic, -1290}, {Automatic, 32}},
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 95, 1, 74, "Section"],
+Cell[CellGroupData[{
+Cell[699, 27, 270, 6, 26, "Print"],
+Cell[972, 35, 564, 16, 36, "Print"],
+Cell[1539, 53, 769, 13, 195, "Print"],
+Cell[2311, 68, 272, 6, 26, "Print"],
+Cell[2586, 76, 650, 18, 36, "Print"],
+Cell[3239, 96, 880, 14, 233, "Print"],
+Cell[4122, 112, 269, 6, 26, "Print"],
+Cell[4394, 120, 745, 20, 36, "Print"],
+Cell[5142, 142, 1004, 16, 271, "Print"],
+Cell[6149, 160, 270, 6, 26, "Print"],
+Cell[6422, 168, 651, 18, 68, "Print"],
+Cell[7076, 188, 1326, 20, 347, "Print"],
+Cell[8405, 210, 270, 6, 26, "Print"],
+Cell[8678, 218, 745, 20, 68, "Print"],
+Cell[9426, 240, 1930, 29, 499, "Print"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

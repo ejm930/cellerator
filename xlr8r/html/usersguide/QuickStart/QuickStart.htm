@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+        "HTMLFiles/xhtml-math11-f.dtd">
+
+<!-- Created by Wolfram Mathematica 8.0 : www.wolfram.com -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>
+  Untitled
+ </title>
+ <link href="HTMLFiles/QuickStart.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<p class="Text">
+ load xlr8r
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/QuickStart_1.gif" alt="QuickStart_1.gif" width="79" height="15" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/QuickStart_2.gif" alt="QuickStart_2.gif" width="571" height="74" style="vertical-align:middle;" usemap="#map_2" />
+<map name="map_2">
+<area shape="rect" coords="0,72,171,57" href="http://www.gnu.org/licenses/gpl.html" />
+</map>
+</p>
+
+<p class="Text">
+ define a model<br /><br />It might help to open the xCellerator palette (from the Palettes menu, above) 
+</p>
+
+
+
+<p class="Text">
+ This is a model of a simple enzymatic transition that is initiated by an input signal &ldquo;input&rdquo; and the product is degraded at a constant rate d. 
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/QuickStart_3.gif" alt="QuickStart_3.gif" width="195" height="86" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/QuickStart_4.gif" alt="QuickStart_4.gif" width="408" height="27" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ Test the model by running a simulation. <br /><br />All parameters that are not set will default to a value of 1.&nbsp;&nbsp;In the following simulation, the parameter d=0 but all other parameters such as k1,k2, k3,k4 are automatically set to 1. This is useful for testing a model, but eventually you will have to tune your parameters to the correct values.<br /><br />All initial conditions (values of variables such as S, P, X, etc at t=0) will default to zero. In the following simulation, the initical value of &ldquo;input&rdquo; and &ldquo;X&rdquo; are 1, and the initial values of S and P are both zero, since they are not specified.<br /><br />When running your own simulations you should take special care here to make sure that the units of all of your parameters and initial conditions are consistent, e.g., if you mix nanoMoles with microMoles, make sure to apply to appropriate conversion factors to your values. <br /><br />We use the frozen option to keep the enzyme X fixed. This can also be done by adding a reaction <span><span>{&Oslash;&hArr;X,kf,kr} with </span></span>kf/kr set to the desired steady state value. However, if we use the reaction, we will have to wait for the reaction to reach steady state; the frozen option puts it there immediately. 
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/QuickStart_5.gif" alt="QuickStart_5.gif" width="242" height="130" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/QuickStart_6.gif" alt="QuickStart_6.gif" width="360" height="187" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/QuickStart_7.gif" alt="QuickStart_7.gif" width="427" height="92" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ Instead of specifying an input for the reactang S, we want to keep it zero until such time that an input signal turns it on. We define a stimulus function:
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/QuickStart_8.gif" alt="QuickStart_8.gif" width="470" height="15" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/QuickStart_9.gif" alt="QuickStart_9.gif" width="237" height="15" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/QuickStart_10.gif" alt="QuickStart_10.gif" width="360" height="227" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ run a simulation using the stimulus function for the variable &ldquo;input&rdquo;<br /><br />use runPlot instead of automatic plotting to give more control over plots.
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/QuickStart_11.gif" alt="QuickStart_11.gif" width="588" height="92" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/QuickStart_12.gif" alt="QuickStart_12.gif" width="360" height="186" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ Use manipulate to play with some of the parameters and initial conditions. 
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/QuickStart_13.gif" alt="QuickStart_13.gif" width="596" height="300" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/QuickStart_14.gif" alt="QuickStart_14.gif" width="405" height="339" style="vertical-align:middle" />
+</p>
+
+
+
+
+<div style="font-family:Helvetica; font-size:11px; width:100%; border:1px none #999999; border-top-style:solid; padding-top:2px; margin-top:20px;">
+ <a href="http://www.wolfram.com/products/mathematica/" style="color:#000; text-decoration:none;">
+  <img src="HTMLFiles/spikeyIcon.png" alt="Spikey" width="20" height="21" style="padding-right:2px; border:0px solid white; vertical-align:middle;" />
+  <span style="color:#555555">Created with</span> Wolfram <span style="font-style: italic;">Mathematica</span> 8.0
+ </a>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      3716,        134]
+NotebookOptionsPosition[      3170,        109]
+NotebookOutlinePosition[      3556,        126]
+CellTagsIndexPosition[      3513,        123]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["ExpandReactions-example.nb", "Section",
+ CellChangeTimes->{{3.456328470782836*^9, 3.4563284763632174`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"<<", "xSSA.m"}]], "Input",
+ CellChangeTimes->{{3.445961846262224*^9, 3.445961847188615*^9}, {
+  3.4563284806503067`*^9, 3.456328481650529*^9}, {3.5085988240083523`*^9, 
+  3.508598824901249*^9}}],
+
+Cell[BoxData["\<\"xSSAlite 1.2.01 (1-March-2011) loaded \
+Tue-8-Mar-2011-10:48:45 using Mathematica 8.0 for Linux x86 (64-bit) \
+(November 7, 2010)(8.0.0)\"\>"], "Print",
+ CellChangeTimes->{3.4563284939654493`*^9, 3.508598826788498*^9, 
+  3.508598925335334*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ExpandReactions", "[", "\[IndentingNewLine]", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      OverscriptBox[
+       RowBox[{"S", "\[RightArrowLeftArrow]", "P"}], "e"], ",", 
+      TagBox[
+       SubscriptBox["k", "1"],
+       DisplayForm], ",", 
+      TagBox[
+       SubscriptBox["k", "2"],
+       DisplayForm], ",", 
+      TagBox[
+       SubscriptBox["k", "3"],
+       DisplayForm], ",", 
+      TagBox[
+       SubscriptBox["k", "4"],
+       DisplayForm]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       TagBox["P",
+        DisplayForm], "\[Rule]", "Q"}], ",", 
+      TagBox["k5",
+       DisplayForm]}], "}"}]}], "\[IndentingNewLine]", "}"}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.445962052021097*^9, 3.445962137593389*^9}, {
+  3.5085988194650993`*^9, 3.508598904194254*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"e", "+", "S"}], "\[Rule]", 
+      RowBox[{"S", "\[Diamond]", "e"}]}], ",", 
+     SubscriptBox["k", "1"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"S", "\[Diamond]", "e"}], "\[Rule]", 
+      RowBox[{"e", "+", "S"}]}], ",", 
+     SubscriptBox["k", "2"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"S", "\[Diamond]", "e"}], "\[Rule]", 
+      RowBox[{"e", "+", "P"}]}], ",", 
+     SubscriptBox["k", "3"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"P", "\[Rule]", 
+      RowBox[{"e", "+", 
+       RowBox[{"S", "\[Diamond]", "e"}]}]}], ",", 
+     SubscriptBox["k", "4"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"P", "\[Rule]", "Q"}], ",", "k5"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.445962105120728*^9, 3.445962138100594*^9}, 
+   3.445962237832744*^9, 3.456328495468987*^9, {3.508598865592576*^9, 
+   3.508598925460516*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{588, 603},
+WindowMargins->{{Automatic, 477}, {Automatic, 221}},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 113, 1, 72, "Section"],
+Cell[CellGroupData[{
+Cell[705, 27, 218, 4, 30, "Input"],
+Cell[926, 33, 261, 4, 62, "Print"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1224, 42, 889, 29, 156, "Input"],
+Cell[2116, 73, 1026, 32, 50, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

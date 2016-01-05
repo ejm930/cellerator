@@ -1,0 +1,452 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     18399,        443]
+NotebookOptionsPosition[     17806,        418]
+NotebookOutlinePosition[     18193,        435]
+CellTagsIndexPosition[     18150,        432]
+WindowFrame->Generic*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["ModelToSXML Example File", "Section",
+ CellChangeTimes->{{3.454446521645286*^9, 3.4544465228076077`*^9}, {
+   3.4544482916243134`*^9, 3.4544483006317053`*^9}, 3.454511444347208*^9, {
+   3.454523445133017*^9, 3.4545234469742002`*^9}, {3.454523769899035*^9, 
+   3.4545237714245358`*^9}, {3.454523987986794*^9, 3.454524011105583*^9}}],
+
+Cell[BoxData[
+ RowBox[{"<<", "xlr8r.m"}]], "Input",
+ CellChangeTimes->{{3.454445216221637*^9, 3.454445217327381*^9}, 
+   3.4545240111056833`*^9}],
+
+Cell[BoxData[
+ RowBox[{"<<", "CelleratorML.m"}]], "Input",
+ CellChangeTimes->{{3.45444548689896*^9, 3.454445527883609*^9}, 
+   3.4545240111057673`*^9}],
+
+Cell["\<\
+Define a Cellerator Model and save it to the xml file ring.xml\
+\>", "Text",
+ CellChangeTimes->{{3.4544483467142057`*^9, 3.454448380999442*^9}, 
+   3.454524011105846*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"MyReactions", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       UnderoverscriptBox[
+        RowBox[{"X", "\[DoubleLongLeftRightArrow]", "XP"}], "ZP", "Z"], ",", 
+       RowBox[{"MM", "[", 
+        RowBox[{"K", ",", "v", ",", "K", ",", "v"}], "]"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       UnderoverscriptBox[
+        RowBox[{"Y", "\[DoubleLongLeftRightArrow]", "YP"}], "XP", "X"], ",", 
+       RowBox[{"MM", "[", 
+        RowBox[{"K", ",", "v", ",", "K", ",", "v"}], "]"}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       UnderoverscriptBox[
+        RowBox[{"Z", "\[DoubleLongLeftRightArrow]", "ZP"}], "YP", "Y"], ",", 
+       RowBox[{"MM", "[", 
+        RowBox[{"K", ",", "v", ",", "K", ",", "v"}], "]"}]}], "}"}]}], 
+    "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MyIC", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"X", "\[Rule]", " ", "1"}], ",", " ", 
+     RowBox[{"Y", "\[Rule]", " ", "2"}], ",", " ", 
+     RowBox[{"Z", "\[Rule]", " ", "3"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MyParameters", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"v", "\[Rule]", " ", "1"}], ",", " ", 
+     RowBox[{"K", "\[Rule]", " ", ".5"}]}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.454445597825631*^9, 3.4544456300932217`*^9}, {
+   3.454448400073749*^9, 3.454448404695442*^9}, {3.4545234629522142`*^9, 
+   3.454523471767909*^9}, 3.454524011106367*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ModelToSXML", "[", " ", 
+  RowBox[{"MyReactions", ",", " ", 
+   RowBox[{"\"\<InitialConditions\>\"", "\[Rule]", " ", "MyIC"}], ",", " ", 
+   RowBox[{"\"\<Parameters\>\"", "\[Rule]", " ", "MyParameters"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.4544483848598413`*^9, 3.454448433687396*^9}, {
+  3.4545132736886377`*^9, 3.454513274936269*^9}, {3.454523478079309*^9, 
+  3.454523649957026*^9}, {3.454523729799199*^9, 3.4545237308337927`*^9}, {
+  3.454523994314884*^9, 3.454524011106846*^9}}],
+
+Cell[BoxData[
+ RowBox[{"XMLElement", "[", 
+  RowBox[{"\<\"CelleratorModel\"\>", ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"Name\"\>", "\[Rule]", "\<\"Model5\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"XMLElement", "[", 
+      RowBox[{"\<\"ListOfCelleratorReactions\"\>", ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\<\"CelleratorReaction\"\>", ",", 
+           RowBox[{"{", "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"XMLElement", "[", 
+             RowBox[{"\<\"math\"\>", ",", 
+              RowBox[{"{", 
+               
+               RowBox[{"\<\"xmlns\"\>", 
+                "\[Rule]", "\<\"http://www.w3.org/1998/Math/MathML\"\>"}], 
+               "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"XMLElement", "[", 
+                RowBox[{"\<\"list\"\>", ",", 
+                 RowBox[{"{", "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"apply\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"Underoverscript\"\>", "}"}]}], "]"}], 
+                    ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"apply\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"DoubleLongLeftRightArrow\"\>", "}"}]}], 
+                    "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"X\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"XP\"\>", "}"}]}], "]"}]}], "}"}]}], 
+                    "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"ZP\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"Z\"\>", "}"}]}], "]"}]}], "}"}]}], 
+                    "]"}], ",", 
+                   RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"apply\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"MM\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"K\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"v\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"K\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"v\"\>", "}"}]}], "]"}]}], "}"}]}], 
+                    "]"}]}], "}"}]}], "]"}], "}"}]}], "]"}], "}"}]}], "]"}], 
+         ",", 
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\<\"CelleratorReaction\"\>", ",", 
+           RowBox[{"{", "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"XMLElement", "[", 
+             RowBox[{"\<\"math\"\>", ",", 
+              RowBox[{"{", 
+               
+               RowBox[{"\<\"xmlns\"\>", 
+                "\[Rule]", "\<\"http://www.w3.org/1998/Math/MathML\"\>"}], 
+               "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"XMLElement", "[", 
+                RowBox[{"\<\"list\"\>", ",", 
+                 RowBox[{"{", "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"apply\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"Underoverscript\"\>", "}"}]}], "]"}], 
+                    ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"apply\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"DoubleLongLeftRightArrow\"\>", "}"}]}], 
+                    "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"Y\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"YP\"\>", "}"}]}], "]"}]}], "}"}]}], 
+                    "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"XP\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"X\"\>", "}"}]}], "]"}]}], "}"}]}], 
+                    "]"}], ",", 
+                   RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"apply\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"MM\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"K\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"v\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"K\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"v\"\>", "}"}]}], "]"}]}], "}"}]}], 
+                    "]"}]}], "}"}]}], "]"}], "}"}]}], "]"}], "}"}]}], "]"}], 
+         ",", 
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\<\"CelleratorReaction\"\>", ",", 
+           RowBox[{"{", "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"XMLElement", "[", 
+             RowBox[{"\<\"math\"\>", ",", 
+              RowBox[{"{", 
+               
+               RowBox[{"\<\"xmlns\"\>", 
+                "\[Rule]", "\<\"http://www.w3.org/1998/Math/MathML\"\>"}], 
+               "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"XMLElement", "[", 
+                RowBox[{"\<\"list\"\>", ",", 
+                 RowBox[{"{", "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"apply\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"Underoverscript\"\>", "}"}]}], "]"}], 
+                    ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"apply\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"DoubleLongLeftRightArrow\"\>", "}"}]}], 
+                    "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"Z\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"ZP\"\>", "}"}]}], "]"}]}], "}"}]}], 
+                    "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"YP\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"Y\"\>", "}"}]}], "]"}]}], "}"}]}], 
+                    "]"}], ",", 
+                   RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"apply\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"MM\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"K\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"v\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"K\"\>", "}"}]}], "]"}], ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\<\"ci\"\>", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "\<\"v\"\>", "}"}]}], "]"}]}], "}"}]}], 
+                    "]"}]}], "}"}]}], "]"}], "}"}]}], "]"}], "}"}]}], "]"}]}],
+         "}"}]}], "]"}], ",", 
+     RowBox[{"XMLElement", "[", 
+      RowBox[{"\<\"ListOfCelleratorParameters\"\>", ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\<\"Parameter\"\>", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\<\"Identifier\"\>", "\[Rule]", "\<\"v\"\>"}], ",", 
+             RowBox[{"\<\"Value\"\>", "\[Rule]", "\<\"1\"\>"}]}], "}"}], ",", 
+           
+           RowBox[{"{", "}"}]}], "]"}], ",", 
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\<\"Parameter\"\>", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\<\"Identifier\"\>", "\[Rule]", "\<\"K\"\>"}], ",", 
+             RowBox[{"\<\"Value\"\>", "\[Rule]", "\<\"0.5\"\>"}]}], "}"}], 
+           ",", 
+           RowBox[{"{", "}"}]}], "]"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"XMLElement", "[", 
+      RowBox[{"\<\"ListOfCelleratorIC\"\>", ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\<\"InitialValue\"\>", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\<\"Identifier\"\>", "\[Rule]", "\<\"X\"\>"}], ",", 
+             RowBox[{"\<\"Value\"\>", "\[Rule]", "\<\"1\"\>"}]}], "}"}], ",", 
+           
+           RowBox[{"{", "}"}]}], "]"}], ",", 
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\<\"InitialValue\"\>", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\<\"Identifier\"\>", "\[Rule]", "\<\"Y\"\>"}], ",", 
+             RowBox[{"\<\"Value\"\>", "\[Rule]", "\<\"2\"\>"}]}], "}"}], ",", 
+           
+           RowBox[{"{", "}"}]}], "]"}], ",", 
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\<\"InitialValue\"\>", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\<\"Identifier\"\>", "\[Rule]", "\<\"Z\"\>"}], ",", 
+             RowBox[{"\<\"Value\"\>", "\[Rule]", "\<\"3\"\>"}]}], "}"}], ",", 
+           
+           RowBox[{"{", "}"}]}], "]"}]}], "}"}]}], "]"}]}], "}"}]}], 
+  "]"}]], "Output",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{{3.454448415697753*^9, 3.454448434598772*^9}, {
+   3.454513212368752*^9, 3.4545132262576933`*^9}, {3.4545132756699257`*^9, 
+   3.454513284985347*^9}, {3.454523639672949*^9, 3.4545236504667673`*^9}, 
+   3.454523731554685*^9, {3.454524001411831*^9, 3.454524011111829*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{771, 1067},
+WindowMargins->{{399, Automatic}, {59, Automatic}},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+FrontEndVersion->"7.0 for Linux x86 (64-bit) (February 25, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[568, 22, 337, 4, 73, "Section"],
+Cell[908, 28, 145, 3, 32, "Input"],
+Cell[1056, 33, 151, 3, 32, "Input"],
+Cell[1210, 38, 180, 4, 31, "Text"],
+Cell[1393, 44, 1529, 41, 121, "Input"],
+Cell[CellGroupData[{
+Cell[2947, 89, 515, 9, 55, "Input"],
+Cell[3465, 100, 14313, 314, 992, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

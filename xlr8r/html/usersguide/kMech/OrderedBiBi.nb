@@ -1,0 +1,193 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      6388,        184]
+NotebookOptionsPosition[      5644,        156]
+NotebookOutlinePosition[      6081,        173]
+CellTagsIndexPosition[      6038,        170]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["OrderedBiBi", "Section",
+ CellChangeTimes->{{3.55546887185422*^9, 3.55546887405449*^9}, 
+   3.555468914464856*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"OrderedBiBi is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467552771968*^9, 3.55546834343699*^9, 
+  3.555468659581794*^9, 3.5554689144651337`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"OrderedBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}]}], 
+    "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467552771968*^9, 3.55546834343699*^9, 
+  3.5554686596226463`*^9, 3.555468914465365*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 \[ShortRightArrow] $Complex$En$S1$, \
+kf1}\\n{$Complex$En$S1$ \[ShortRightArrow] En + S1, kr1}\\n{S2 + \
+$Complex$En$S1$ \[ShortRightArrow] $Complex$En$S1$S2$, \
+kf2}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S2 + $Complex$En$S1$, \
+kr2}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] P1 + $Complex$En$S2$, \
+k}\\n{$Complex$En$S2$ \[ShortRightArrow] En + P2, k}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467552771968*^9, 3.55546834343699*^9, 
+  3.555468659671397*^9, 3.555468914465563*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"OrderedBiBi is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467552771968*^9, 3.55546834343699*^9, 
+  3.5554686597552757`*^9, 3.555468914465746*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"OrderedBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467552771968*^9, 3.55546834343699*^9, 
+  3.555468659811846*^9, 3.555468914465966*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 \[ShortRightArrow] $Complex$En$S1$, \
+kf1}\\n{$Complex$En$S1$ \[ShortRightArrow] En + S1, kr1}\\n{S2 + \
+$Complex$En$S1$ \[ShortRightArrow] $Complex$En$S1$S2$, \
+kf2}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S2 + $Complex$En$S1$, \
+kr2}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] P1 + $Complex$En$S2$, \
+k}\\n{$Complex$En$S2$ \[ShortRightArrow] En + P2, k}\\n{En + Inh \
+\[ShortRightArrow] $Complex$En$Inh$, kfi}\\n{$Complex$En$Inh$ \
+\[ShortRightArrow] En + Inh, kri}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467552771968*^9, 3.55546834343699*^9, 
+  3.555468659858901*^9, 3.555468914466176*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"OrderedBiBi is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467552771968*^9, 3.55546834343699*^9, 
+  3.555468659905984*^9, 3.5554689144663553`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"OrderedBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"CI1", "[", 
+      RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+     RowBox[{"CI2", "[", 
+      RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467552771968*^9, 3.55546834343699*^9, 
+  3.5554686599495907`*^9, 3.555468914466606*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 \[ShortRightArrow] $Complex$En$S1$, \
+kf1}\\n{$Complex$En$S1$ \[ShortRightArrow] En + S1, kr1}\\n{S2 + \
+$Complex$En$S1$ \[ShortRightArrow] $Complex$En$S1$S2$, \
+kf2}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] S2 + $Complex$En$S1$, \
+kr2}\\n{$Complex$En$S1$S2$ \[ShortRightArrow] P1 + $Complex$En$S2$, \
+k}\\n{$Complex$En$S2$ \[ShortRightArrow] En + P2, k}\\n{En + Inh1 \
+\[ShortRightArrow] $Complex$En$Inh1$, kfi1}\\n{$Complex$En$Inh1$ \
+\[ShortRightArrow] En + Inh1, kri1}\\n{En + Inh2 \[ShortRightArrow] \
+$Complex$En$Inh2$, kfi1}\\n{$Complex$En$Inh2$ \[ShortRightArrow] En + Inh2, \
+kri2}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467552771968*^9, 3.55546834343699*^9, 
+  3.555468660037375*^9, 3.555468914466847*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 867},
+WindowMargins->{{Automatic, -1067}, {72, Automatic}},
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 120, 2, 74, "Section"],
+Cell[CellGroupData[{
+Cell[724, 28, 272, 6, 26, "Print"],
+Cell[999, 36, 566, 16, 32, "Print"],
+Cell[1568, 54, 581, 10, 138, "Print"],
+Cell[2152, 66, 272, 6, 26, "Print"],
+Cell[2427, 74, 650, 18, 55, "Print"],
+Cell[3080, 94, 693, 12, 176, "Print"],
+Cell[3776, 108, 272, 6, 26, "Print"],
+Cell[4051, 116, 745, 20, 55, "Print"],
+Cell[4799, 138, 817, 14, 214, "Print"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

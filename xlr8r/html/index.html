@@ -1,0 +1,190 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="include/main.css" type=
+  "text/css">
+
+  <title></title>
+</head>
+
+<body>
+  <center>
+    <div style="width:640px" class="main">
+    <div class="logo"><img src="include/logo.svg" alt=
+    "The xCellerator Project" width="200"></div>
+
+    <center>
+      <p><a class="vbutton" href=
+      "http://sf.net/projects/xlr8r/files/">Download</a> <a class=
+      "vbutton" href="./usersguide/index.html">Users Reference</a>
+      <a class="vbutton" href="./examples/index.html">Examples</a>
+      <a class="vbutton" href="./docs/index.html">Publications</a>
+    <!--  <a class="vbutton" href="./people/index.html">About Us</a>-->
+    
+<!--      <a class="vbutton" href="./docs/index.html">Documents</a>-->
+      </p>
+    </center>
+
+    <div style=
+    "border-top:medium solid #ff7636; border-bottom:medium solid #ff7636; padding-top:5px; padding-bottom:5px;">
+    <span style=
+    "font-family:verdana,arial,helvetica;font-size:18pt;color:brown;">
+      xCellerator:<br>
+      A Mathematica package for biological modeling</span>
+    </div>
+
+    <center>
+      <p class="abs600"><b>xCellerator</b> is a Mathematica package
+      designed to aide biological modeling via the automated
+      conversion of chemical reactions into ODEs and their
+      subsequent solution via numerical integration.</p>
+
+      <p class="abs600"><b>installation</b> instructions for the
+      base package are given <a href=
+      "./usersguide/install.html">here</a>.</p>
+
+      <p class="abs600">The software can be <b>downloaded</b> from
+      <a href=
+      "http://sourceforge.net/projects/xlr8r/files/">here</a></p>
+
+      <p class="abs600"><b>xCellerator</b> is really a family of
+      computer programs. Components include:</p>
+
+      <ul class="abs500">
+        <li><a href="./usersguide/index.html" style=
+        "font-weight:bold;">xlr8r</a> - Reaction translation to ODE
+        and numerical solution. The reaction syntax is backwards
+        compatiable with <a href=
+        "./cellerator">Cellerator</a> but is more
+        general.</li>
+
+        <li><a href="http://www.cellzilla.info/" style=
+        "font-weight:bold;">Cellzilla</a> - Simulation of a
+        Cellerator reaction network on a two-dimensional
+        template.</li>
+
+        <li><a href="http://www.xlr8r.info/SSA/index.html" style=
+        "font-weight:bold;">SSA</a> - Stochastic simulation usings
+        Gillespie's stochastic simulation algorithm.</li>
+
+        <li><a href="http://www.xlr8r.info/SSA/" style=
+        "font-weight:bold;">xSSA</a> - extended SSA algorithm for
+        stochastic simulation of most Cellerator reactions (not
+        just mass action).</li>
+
+        <li><a href="http://www.xlr8r.info/CelleratorML/" style=
+        "font-weight:bold;">CelleratorML/CellzillaML</a> - an
+        XML-based text file format for saving Cellerator and
+        Cellzilla models.</li>
+
+        <li><a href="http://sbml.org" style=
+        "font-weight:bold;">SBML</a> support through
+        <b>xlr8r2SBML</b> and <b>SBML2xlr8r</b> plugins and
+        <a href="./mathsbml" style=
+        "font-weight:bold;">MathSBML</a>.</li>
+
+        <li><a href="http://pyxlr8r.com" style=
+        "font-weight:bold;">py[xlr8r]</a> - A Mathematica-free
+        implementation of Cellerator in Python. (under development!
+        Not all features have been implmented yet.)</li>
+      </ul>
+
+      <p class="abs600">In addition there are a number of other
+      programs that are compatible with xCellerator that can be
+      used to extend its functionality. These include:</p>
+
+      <ul class="abs500">
+        <li><a href="http://sigmoid.org" style=
+        "font-weight:bold;">Sigmoid</a> - an online database of
+        Cellerator models and a downloadable database manager,
+        <b>Sigmoid Model Explorer</b> that can be used to query the
+        database and perform simulations using xCellerator.</li>
+
+        <li><a href=
+        "http://www.igb.uci.edu/tools/sb/metabolic-modeling.html"
+        style="font-weight:bold;">kmech</a> - a Cellerator based
+        enzyme mechanism language. Since xCellerator release 0.88
+        kMech has been fully integrated into the xCellerator
+        distribution.</li>
+
+        <li><a href=
+        "http://www.igb.uci.edu/tools/sb/metabolic-modeling.html"
+        style="font-weight:bold;">RedoxMech</a> - a Cellerator
+        based oxidoreductase modeling framework.</li>
+
+        <li><a href="http://xlr8r.info/mPower/index.html" style=
+        "font-weight:bold;">mPower</a> - Voronoi, Delaunay, and
+        power diagram computation in n-dimensions via QHULL and
+        regtet.</li>
+
+        <li><b><a href=
+        "http://cambium.sourceforge.net/">Cambium</a></b> - a
+        mathematical process language for describing developmental
+        models; the plugin provides support for model conversion.
+        (in development)</li>
+
+        <li><a href="./cellerator" style=
+        "font-weight:bold;">Cellerator</a> is a similar program,
+        that also converts reactions to odes, implemented by the
+        same team of developers. It is not as general as xlr8r, and
+        less efficient. Cellerator has a more restrictive use and
+        distribution license.</li>
+      </ul>
+
+      <p class="abs600">For all inquiries please contact Bruce
+      (-dot-) E (-dot-) Shapiro (-at-) csun (-dot-) edu.</p>
+      <hr color="#FF7636">
+    </center>
+
+    <center>
+      <a rel="license" href=
+      "http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt=
+      "Creative Commons License" style="border-width:0" src=
+      "http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a>
+      <a href="http://www.gnu.org/licenses/gpl.html"><img alt=
+      "CC-GNU GPL" border="0" src="include/gpl.png"></a> <a href=
+      "http://bnmc.caltech.edu"><img src="include/bnmc.png" height=
+      "50"></a> <a href="http://www.csun.edu"><img src="include/Matty.svg"
+      height="50"></a> <a href="http://www.uci.edu"><img src=
+      "include/anteater.jpg" height="50"></a>
+    </center>
+
+    <p style="font-size:x-small;text-align:justify;">The contents
+    of this web page and its subsidiary web pages are licensed
+    under a <a rel="license" href=
+    "http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative
+    Commons Attribution-Noncommercial-Share Alike 3.0 Unported
+    License</a>. Unless otherwise specified, all software posted on
+    this and its subsidiary web pages are released under the
+    <a href="http://www.gnu.org/licenses/gpl.html">GNU GPL</a>
+    version 3 or later.</p>
+
+    <p style="font-size:x-small; text-align:justify">Development of
+    xCellerator was supported in part by the US National Science
+    Foundation Frontiers in Integrative Biological Resarch Grant
+    0330786; and by the Beckman Institute at the California
+    Institute of Technology. xCellerator&#8482;, Cellerator&#8482;,
+    xlr8r&#8482;, cellzilla&#8482;, growzilla&#8482; and
+    arrowzilla&#8482; are trademarks of the authors and may not be
+    used without permission. Cellerator and Cellerator based
+    technology is protected under United States Patent Number
+    7,319,945.</p>
+
+    <div class="logo">
+      <a href=
+      "http://sourceforge.net/projects/xlr8r/files"><img src=
+      "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+      width="125" height="37" border="0" alt=
+      "SourceForge.net Logo"></a>
+    </div><br>
+    <img src=
+    "/cgi-sys/Count.cgi?df=xcelleratorplusclellerator&trgb=000000&st=34048&prgb=aaaaaa&ft=0&comma=T">
+    </div><br>
+    <br>
+
+    <p><span style="font-size:xx-small;">22 Oct 2012</span></p>
+  </center>
+</body>
+</html>

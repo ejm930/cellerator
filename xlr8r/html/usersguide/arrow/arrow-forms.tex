@@ -1,0 +1,634 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{textcomp}
+\usepackage{url}
+\begin{document}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1ex}
+\section*{\begin{center}
+Mass Action Reactions
+\end{center}}
+\begin{center}
+\begin{tabular}{|p{3in}|p{2in}|}
+\hline Reaction & Description or Expansion \\
+%\hline ${\tt A\to B}$ & Standard mass action \\
+\hline ${\tt \emptyset \to X}$ & Creation (introduction) \\
+\hline ${\tt X \to \emptyset}$ & Annihilation (removal)\\
+\hline ${\tt p_1 A_1 + p_2 A_2 + \cdots \to}$ ${\tt q_1 B_1 + q_2 B_2 + \cdots
+}$ & Standard mass action with stoichiometry\\
+\hline ${\tt A\rightleftarrows B}$ &
+$\left\{\begin{matrix}{\tt A\to B}\\ {\tt B\to A}\end{matrix}\right.$\\
+\hline ${\tt p_1 A_1 + p_2 A_2 + \cdots \rightleftarrows}$ ${\tt q_1 B_1 + q_2 B_2 + \cdots
+}$ & 
+$\left\{\begin{matrix}
+{\tt p_1 A_1 + \cdots  \to q_1 B_1 + \cdots}\\
+{\tt q_1B_1+ \cdots \to p_1 A_q + \cdots}
+\end{matrix}\right.
+$
+\\ \hline
+\multicolumn{2}{|l|}{Representation of
+${\tt A+X\rightleftarrows A\_X \rightleftarrows B+X}$ }
+\\\hline
+${\tt A {\overset {X}{\rightleftarrows}}B}$ &
+$\left\{\begin{matrix}
+{\tt A+X\to A\_X}\\
+{\tt A\_X \to A+X}\\
+{\tt A\_X \to B+X}\\
+{\tt B+X \to A\_X }
+\end{matrix}\right.$\\\hline
+\multicolumn{2}{|l|}{Representation of
+${\tt A+X\rightleftarrows A\_X \rightleftarrows B\_X \rightleftarrows B+X}$ }
+\\\hline
+${\tt A{\overset{X}{\rightleftharpoons}} B}$&
+$\left\{\begin{matrix}
+{\tt A+X\to A\_X}\\
+{\tt A\_X \to A+X}\\
+{\tt A\_X \to B\_X}\\
+{\tt B\_X \to A\_X}\\
+{\tt B\_X \to B+X}\\
+{\tt B+X \to B\_X }
+\end{matrix}\right.$\\\hline
+\multicolumn{2}{|l|}{Typical Cascades}\\\hline
+${\tt A_1 \to A_2 \to A_3 \cdots }$ &
+$\left\{\begin{matrix}
+{\tt A_1 \to A_2}\\
+{\tt A_2 \to A_3}\\\vdots 
+\end{matrix}\right.$
+ \\ \hline
+${\tt A_1 \rightleftarrows A_2 \rightleftarrows A_3 \cdots }$ & 
+$\left\{\begin{matrix}
+{\tt A_1 \rightleftarrows A_2}\\
+{\tt A_2 \rightleftarrows A_3}\\\vdots 
+\end{matrix}\right.$
+\\ \hline
+$\overset{\tt X}{\tt A_1 \rightleftarrows A_2 \rightleftarrows A_3 \cdots }$ & 
+$\left\{\begin{matrix}
+{\tt A_1 \overset{X}\rightleftarrows A_2}\\
+{\tt A_2 \overset{X}\rightleftarrows A_3}\\\vdots 
+\end{matrix}\right.$
+\\ \hline
+$\overset{\tt \{X_1,X_2\dots\}}{\tt A_1 \rightleftarrows A_2 \rightleftarrows A_3 \cdots }$ & 
+$\left\{\begin{matrix}
+{\tt A_1 \overset{X_1}\rightleftarrows A_2}\\
+{\tt A_2 \overset{X_2}\rightleftarrows A_3}\\\vdots 
+\end{matrix}\right.$
+\\ \hline
+\end{tabular}
+\end{center}
+\newpage
+\section*{\begin{center}
+{Michaelis-Menten-Henri Style Reactions}
+\end{center}}
+
+\begin{center}
+\begin{tabular}{|p{2in}|p{3in}|}
+\hline
+\multicolumn{2}{|l|}{
+Syntax ${\tt \{A\implies B, MM[K,v]\}}$ or 
+${\tt \{A\overset{X}\implies B, MM[K,v]\}}$
+}
+\\
+\hline ${\tt A\implies B}$ & ${\tt [B]'=\dfrac{v[A]}{K+[A]}=-[A]' }$ \\ \hline
+ ${\tt A\overset{X}\implies B}$ & ${\tt [B]'=\dfrac{v[A][X]}{K+[A]}=-[A]' }$ \\ \hline
+  ${\tt A\Longleftrightarrow B}$ & ${\tt [B]'=\dfrac{v_A[A]}{K_A+[A]}-\dfrac{v_B[B]}{K_B+[B]}=-[A]' }$ \\ \hline
+  ${\tt A\underset{Y}{\overset{X}{\Longleftrightarrow}} B}$ & ${\tt [B]'=\dfrac{v_A[A][X]}{K_A+[A]}-\dfrac{v_B[B][Y]}{K_B+[B]}=-[A]' }$ \\ \hline
+\multicolumn{2}{|l|}{
+Syntax ${\tt \{A\implies B, MM[k_1,k_2,k_3]\}}$ or 
+${\tt \{A\overset{X}\implies B, MM[k_1,k_2,k_3]\}}$
+}
+\\
+\hline ${\tt A\implies B}$ & ${\tt [B]'=\dfrac{k_1[A]}{\frac{k_2+k_3}{k_1}+[A]}=-[A]' }$ \\ \hline
+ ${\tt A\overset{X}\implies B}$ & ${\tt [B]'=\dfrac{k_1 [A][X]}{\frac{k_2+k_3}{k_1}+[A]}=-[A]' }$  \\ \hline
+\multicolumn{2}{|l|}{Cascades}\\\hline
+${\tt A_1 \implies A_2 \implies A_3 \implies \cdots}$ & 
+$\left\{\begin{matrix}
+{\tt A_1 \implies A_2}\\
+{\tt A_2 \implies A_3}\\ \vdots
+\end{matrix}\right.$ \\ \hline
+$\overset{\tt X}{{\tt A_1 \implies A_2 \implies A_3 \implies \cdots}}$ & 
+$\left\{\begin{matrix}
+{\tt A_1 \overset{X}\implies A_2}\\
+{\tt A_2 \overset{X}\implies A_3}\\ \vdots
+\end{matrix}\right.$ \\ \hline
+$\overset{\tt \{X_1,X_2,\dots\}}{{\tt A_1 \implies A_2 \implies A_3 \implies \cdots}}$ & 
+$\left\{\begin{matrix}
+{\tt A_1 \overset{X_1}\implies A_2}\\
+{\tt A_2 \overset{X_2}\implies A_3}\\ \vdots
+\end{matrix}\right.$ \\ \hline
+\end{tabular}
+\end{center}
+
+\pagebreak
+
+\section*{
+\begin{center}
+Regulatory Hill Functions
+\end{center}}
+\begin{center}
+\begin{tabular}{|p{2in}|p{3in}|}
+\hline 
+\multicolumn{2}{|l|}{Syntax 
+${\tt \{ A\mapsto B, hill[v,n,K,b,T]\}}$
+}
+\\
+\hline
+${\tt A\mapsto B}$ & 
+$
+{\tt [B]'=\dfrac{v(b+T[A])^n}{K^n+(b+T[A])^n}}\text{ and }{\tt[A]'=0}$
+\\\hline
+
+
+\multicolumn{2}{|l|}{Syntax 
+${\tt
+\{ A_1+A_2+\cdots \mapsto B, hill[v,n,K,b,\{T_1,T_2,\dots\}] \} 
+}$
+}
+\\ \hline
+$
+\begin{array}{l}
+{\tt A_1 + A_2 +\cdots \mapsto B}\text{ or }\\
+{\tt\{A_1, A_2,A_3,\dots\} \mapsto B}\text{ or}\\
+\left\{
+\begin{matrix}
+{\tt A_1\mapsto B}\\
+{\tt A_2\mapsto B}\\
+{\tt A_3\mapsto B}\\
+\vdots
+\end{matrix}\right.
+\end{array}
+$
+& 
+$
+\begin{array}{l}
+{\tt [B]'=\dfrac{v(b+T_1[A_1]+T_2[A_2]+\cdots)^n}{K^n+(b+T_1[A_1]+T_2[A_2]+\cdots)^n}}\\ \\
+{\tt [A_1]'=[A_2]'=\cdots = 0}
+\end{array}
+$
+
+ \\ \hline
+
+\end{tabular}
+\end{center}
+
+\section*{
+\begin{center}
+Catalytic Hill Functions
+\end{center}}
+
+\begin{center}
+\begin{tabular}{|p{2in}|p{3in}|}
+\hline
+\multicolumn{2}{|l|}{Syntax 
+${\tt 
+\{ A\overset{X}\mapsto B, hill[v,n,K,b,T]\}}$
+}
+\\
+\hline
+${\tt A\overset{X}{\mapsto} B}$ & 
+$
+{\tt [B]'=\dfrac{v[X](b+T[A])^n}{K^n+(b+T[A])^n} = -[A]' }$
+\\\hline
+\multicolumn{2}{|l|}{Syntax 
+${\tt \{ A_1+A_2+\cdots \mapsto B, hill[v,n,K,b,\{T_1,T_2,\dots\}]\}}$
+}
+\\ \hline
+$
+\begin{array}{l}
+{\tt A_1 + A_2 +\cdots \overset{X}\mapsto B}\text{ or }\\
+{\tt\{A_1, A_2,A_3,\dots\} \overset{X}\mapsto B}\text{ or }\\
+\left\{
+\begin{matrix}
+{\tt A_1\overset{X}\mapsto B}\\
+{\tt A_2\overset{X}\mapsto B}\\
+{\tt A_3\overset{X}\mapsto B}\\
+\vdots
+\end{matrix}\right.
+\end{array}
+$
+ & 
+$
+\begin{array}{l}
+{\tt [B]'=\dfrac{v[X](b+T_1[A_1]+T_2[A_2]+\cdots)^n}{K^n+(b+T_1[A_1]+T_2[A_2]+\cdots)^n}}\\ \\
+{\tt [A_1]'=[A_2]'=\cdots = -[B]'}
+\end{array}
+$
+
+
+\\  \hline
+
+\end{tabular}
+\end{center}
+
+\newpage
+
+\section*{
+\begin{center}
+Logistic Rate Functions
+\end{center}}
+
+\begin{center}
+\begin{tabular}{|p{2in}|p{3in}|}
+\hline
+\multicolumn{2}{|l|}{Syntax 
+$\{\tt A\mapsto B, GRN[v,\beta, n,h]\}$
+}
+\\
+\hline
+${\tt A{\mapsto} B}$ & 
+$\begin{array}{l} \\
+{\tt [B]'=\dfrac{v}{1+e^{-h-\beta [A]^n}}}\\
+{\tt [A]'=0 } \\ \\
+\end{array}
+$
+\\\hline
+\multicolumn{2}{|l|}{Syntax 
+$\{\tt A_1+A_2+\cdots \mapsto B, GRN[v, \{\beta_1,\beta_2,\dots\}, \{n_1,n_2,\dots\},h]\}$
+}
+\\
+\hline
+$
+\begin{array}{l}
+{\tt A_1 + A_2 + \cdots \mapsto B }\text{ or}\\
+{\tt \{A_1,A_2,\dots\} \mapsto B}\text{ or}\\
+\left\{
+\begin{matrix}
+{\tt A_1\to B}\\ 
+{\tt A_2\to B}\\\vdots
+\end{matrix}
+\right.
+\end{array}
+$
+&
+$
+\begin{array}{l}
+{\tt[B]'=\dfrac{v}{1+e^{-h-\beta_1 [A_1]^{n_1} - \beta_2 [A_2]^{n_2} - \cdots}}}\\ \\
+{\tt [A_1]' = [A_2]'=\cdots = 0}
+\end{array}
+$
+\\\hline
+\end{tabular}
+\end{center}
+
+\section*{
+\begin{center}
+S-System  Rate Functions \\ (Synergistic Systems)
+\end{center}}
+
+\begin{center}
+\begin{tabular}{|p{2in}|p{3in}|}
+\hline
+\multicolumn{2}{|l|}{Syntax 
+$\{\tt A\mapsto B, SSystem[\tau,K_{+},K_{-},c_{+},c_{-}]\}$
+}
+\\ \hline
+${\tt A\mapsto B}$
+&
+$ \begin{array}{l}
+\\
+{\tt [B]'=\dfrac{1}{\tau}\left( K_{+}[A]^{C_{+}} - K_{-}[A]^{C_{-}} \right)}
+\\ \\
+{\tt [A]'=0}\\ \\
+\end{array}$
+\\ \hline
+\multicolumn{2}{|l|}{Syntax 
+$\{\tt A_1+A_2+\cdots\mapsto B, SSystem[\tau,K_{+},K_{-},\{p_1,p_2,\dots\},\{m_1,m_2,\dots\}]\}$
+}
+\\ \hline
+$\begin{array}{l}
+{\tt A_1 + A_2 + \cdots \mapsto B}\text{ or }\\
+{\tt \{A_1, A_2,\dots\} \mapsto B}\text{ or }\\
+\left\{
+\begin{matrix}
+{\tt A_1\to B}\\{\tt A_2\to B}\\\vdots
+\end{matrix}
+\right.
+\end{array}
+$
+
+&
+$
+\begin{array}{l}
+{\tt [B]'=\dfrac{ K_{+}[A_1]^{p_1}[A_2]^{p_2}\cdots - K_{-}[A_1]^{m_1}[A_2]^{m_2}\cdots}{\tau}}\\ \\
+{\tt [A_1]'=[A_2]'=\cdots=0}
+\end{array}
+$
+\\ \hline
+
+\end{tabular}
+\end{center}
+
+\pagebreak
+
+\section*{
+\begin{center}
+NHCA Rate Function \\(Non-Hierarchical Cooperative Activation)
+\end{center}}
+
+\begin{center}
+\begin{tabular}{|p{1.5in}|p{4.5in}|}
+\hline
+\multicolumn{2}{|l|}{Syntax 
+$\{\tt A\mapsto B, NHCA[v, \{\alpha, \beta\}, n, m, k]\}$
+}
+\\ \hline
+${\tt A \mapsto B}$ &
+$\begin{array}{l}
+{\tt [B]'=\dfrac{v(1+\alpha [A]^n)^m}{(1+\alpha [A]^n)^m + k (1+\beta [A]^n)^m}}\\
+{\tt [A]'=0}
+\end{array}
+$
+\\\hline
+\multicolumn{2}{|l|}{Syntax 
+$\{\tt A_1 + A_2 + \cdots \mapsto B, NHCA[v, \{\{\alpha_1,\beta_1\}, \{\alpha_2,\beta_2\},\dots\}, \{n_1,n_2,\dots\}, m, k]\}$
+}\\
+\multicolumn{2}{|l|}{Syntax 
+$\{\tt A_1 + A_2 + \cdots \mapsto B, NHCA[v, \{\{\alpha_1,\beta_1\}, \{\alpha_2,\beta_2\},\dots\}, n, m, k]\}$
+}
+\\\hline
+$
+\begin{array}{l}
+  {\tt A_1+A_2+\cdots \mapsto B} \text{ or }\\
+  {\tt \{A_1, A_2, \cdots\} \mapsto B} \text{ or } \\
+  \left\{
+    \begin{matrix}
+      {\tt A_1 \mapsto B}\\
+      {\tt A_2 \mapsto B}\\
+      {\tt \vdots}
+    \end{matrix}
+  \right.
+\end{array}
+$
+&
+$
+\begin{array}{l}
+{\tt
+[B]'=\dfrac{v\prod_j(1+\alpha_j [A_j]^{n_j})^m}
+{\prod_j(1+\alpha_j [A_j]^{n_j})^m + k \prod_j(1+\beta_j [B_j]^{n_j})^m}
+}
+\\ \\
+{\tt [A_1]'=[A_2]' = \cdots = 0}
+\end{array}
+$
+\\\hline
+\multicolumn{2}{|l|}{Syntax 
+$\{\tt A \mapsto B, NHCA[v,T, n, m, k]\}$
+}\\ 
+\multicolumn{2}{|l|}{Syntax 
+$\{\tt A_1+A_2+\cdots \mapsto B, NHCA[v,\{T_1,T_2,\dots\}, \{n_1,n_2,\dots\}, m, k]\}$
+}\\ 
+
+
+\hline
+${\tt A \mapsto B}$&
+$\begin{array}{l}
+{\tt [B]'=\dfrac{v(1+T\mathcal{U}(T)[A]^n)^m}{(1+T\mathcal{U}(T) [A]^n)^m + k (1+T\mathcal{U}(-T) [A]^n)^m}}\\
+{\tt [A]'=0}
+\end{array}$
+\\\hline
+$
+\begin{array}{l}
+	{\tt A_1 + A_2 + \cdots \mapsto B} \text{ or }\\
+	{\tt \{A_1,A_2,\dots\} \mapsto B} \text{ or } \\
+	\left\{
+		\begin{matrix}
+			{\tt A_1 \mapsto B}\\
+			{\tt A_2 \mapsto B}\\
+			\vdots
+		\end{matrix}
+	\right .
+\end{array}
+$ &
+$
+\begin{array}{l}
+	{\tt [B]' =
+\dfrac{v\prod_j (1+T_j\mathcal{U}(T_j)[A_i]^{n_j})^m}
+{\prod_j (1+T_j\mathcal{U}(-T_j)[A_j]^{n_j})^m + k \prod_j (1+T_j\mathcal{U}(-T_j)[A_j]^{n_j})^m}	
+	 } \\
+	{\tt [A_1]'=[A_2]'=\cdots = 0}
+\end{array}
+$
+\\ \hline
+\end{tabular}
+\end{center}
+
+\pagebreak
+
+\section*{
+\begin{center}
+MWC/GWMC Rate Function \\(Generalized Monod-Wyman-Changeaux)
+\end{center}}
+\begin{center}
+\begin{tabular}{|p{1.5in}|p{5.5in}|}
+\hline
+\multicolumn{2}{|l|}{Syntax 
+$\{\tt A\overset{X}\Rightarrow B, MWC[k_{cat}, n, c, \ell,K]\}$
+}
+\\ \hline 
+${\tt A\overset{X}\Rightarrow B}$ &
+$\begin{array}{l}
+{\tt
+[B]' = k_{cat}[X]\dfrac
+{\alpha(1+\alpha)^{n-1}+c\ell\alpha(1+c\alpha)^{n-1}}
+{(1+\alpha)^{n}+\ell\alpha(1+c\alpha)^{n}}
+}\text{ where } \alpha=\dfrac{[A]}{K}
+\\
+{\tt [A]'=-[B]'}
+\end{array}
+$ 
+\\ \hline
+${\tt S\underset{\{A,I\}}{\overset{X}\Rightarrow} P}$ &
+
+$\begin{array}{l}
+{\tt
+[B]' = k_{cat}[X]\dfrac
+{s(1+s)^{n-1}+cL s(1+c s)^{n-1}}
+{(1+s)^{n}+Ls(1+c s)^{n}}
+}
+\\
+\text{with } L=\left(\dfrac{1+i}{1+a}\right)^n \ell,\ 
+s=\dfrac{[S]}{K},\
+i=\dfrac{[I]}{K_I},\ 
+a=\dfrac{[A]}{K_A}
+\\
+{\tt [A]'=-[B]'}
+\end{array}
+$ \\ \hline
+\multicolumn{2}{|l|}{Syntax 
+$\{\tt \underset{\{\{A_1,A_2,\dots\}, \{I_1,I_2,\dots\}\}}{\{S_1,S_2,\dots\}\overset{X}\Rightarrow \{ P_1,P_2,\dots \}}, MWC[\{k_1,k_2\dots \},n,c,\ell,K]\}$
+}
+\\ \hline 
+\multicolumn{2}{|l|}{
+$\begin{array}{l}
+{\tt [P_q]'=k_q[X]\dfrac 
+{\prod_i(1+a_i)^n \prod_j(1+s_j)^{n-1} {\prod_k s_k} +
+\ell \prod_i(cs_i) \prod_j(1+cs_j)^{n-1} \prod_k(1+i_k)^n
+}
+{\prod_i(1+a_i)^n \prod_j(1+s_j)^n +\ell \prod_i(1+cs_i)^{n-1} \prod_j(1+i_j)^n
+}
+
+} \\
+\text{where }
+s_j = \dfrac{[S_j]}{K_{S_j}}, \
+a_j = \dfrac{[A_j]}{K_{A_j}}, \
+i_j = \dfrac{[I_j]}{K_{I_j}}
+\end{array}$
+
+}\\\hline
+\multicolumn{2}{|l|}{Syntax 
+$\{\tt \underset{
+\{\{A_1,A_2,\dots\}, 
+\{I_1,I_2,\dots\}\},
+\{
+\{C'_{11},C'_{12},\dots\}
+\{C'_{21},C'_{22},\dots\},\dots,
+\{A'_{11},A'_{12},\dots\},\dots \}
+}
+{\{S_1,S_2,\dots\}\overset{X}\Rightarrow \{ P_1,P_2,\dots \}}, MWC[\{k_1,k_2,\dots\},n,c,\ell,K]\}$
+}
+\\ 
+\multicolumn{2}{|l|}{
+here $C_{j1},C_{j2},\dots$ are competitive inhibitors of $S_j$,
+$A'_{i1},A'_{i2},\dots$ are competitive activators of $A_i$
+}
+\\ \hline 
+\multicolumn{2}{|l|}{
+$\begin{array}{l}
+	[P_q]'=\dfrac 
+	{\prod_i(1+a_i+\overline{a_i})^{\tt n}
+	 \prod_j(1+s_j+\overline{s_j})^{\tt n-1}
+	 \prod_m s_m + 
+	 L \prod_i({\tt c}s_i)
+	 \prod_j(1+{\tt c}s_j +{\tt c}\overline{s_j})^{\tt n-1}+
+	 \prod_m(1+i_m)^{\tt n}
+	}
+	{\prod_i(1+a_i+\overline{a_i})^{\tt n}
+	 \prod_j(1+s_j)^{\tt n}
+	  + 
+	 L 
+	 \prod_j(1+{\tt c}s_j +{\tt c}\overline{s_j})^{\tt n-1}+
+	 \prod_m(1+i_m)^{\tt n}
+	}
+\\
+	\text{where }
+	s_j=\dfrac{[S_j]}{K_{S_j}},\ 
+	a_j=\dfrac{[A_j]}{K_{A_j}},\ 
+	i_j=\dfrac{[I_j]}{K_{I_j}},\
+	\overline{s_j} = \sum_q\dfrac{[C_{jq}]}{K_{S_{jq}}},\ 
+	\overline{a_j} = \sum_q\dfrac{[A'_{jq}]}{K_{A'_{jq}}}
+\end{array}
+$
+}
+\\ \hline
+\end{tabular}
+\end{center}
+
+
+\pagebreak
+
+\section*{
+\begin{center}
+Rational Function Rate Law
+\end{center}}
+\begin{center}
+\begin{tabular}{|p{5in}|}
+\hline
+$
+\begin{array}{l}
+{\tt \{\{\{ A_1, A_2,\dots \}, \{B_1,B_2,\dots\}\} \Rightarrow X}
+\\\hspace{1in}
+{\tt
+rational[\{a_0,\dots\},\{b_0,\dots\},\{p_1,\dots\},\{q_1,\dots\}]\}
+}\end{array}$ \\ \hline
+$\begin{array}{l}
+	{\tt [X]'=\dfrac
+	{a_0 + a_1[A_1]^{p_1} + a_2[A_2]^{p_2} + \cdots }
+	{b_0 + b_1[B_1]^{q_1} + b_2[B_2]^{q_2} + \cdots }
+	
+	}\\
+	{\tt [A_1]'=[A_2]'=\cdots = [B_1]'=[B_2]'=\cdots = 0}
+\end{array}$
+\\ \hline
+\end{tabular}
+\end{center}
+
+\section*{\begin{center}User-Defined Stoichiometric Rate Laws\end{center}}
+
+
+\begin{center}
+\begin{tabular}{|p{1.5in}|p{5.5in}|}
+\hline
+\multicolumn{2}{|l|}
+{
+$
+\begin{array}{l}
+\text{Syntax } 
+	{\tt \{p_1A_1 + p_2A_2 + \cdots \Rightarrow q_1B_1 + q_2 B_2 + \cdots, } 
+	{\tt f[A_1[t],A_2[t],\dots, B_1[t],B_2[t],\dots] \} } 
+\end{array}
+$
+}
+\\ \hline 
+\multicolumn{2}{|c|}{
+	${\tt [X_i]'= (q_i-p_i)f[A_1[t],A_2[t],\dots,B_1[t],\dots] } $
+
+}
+\\ \hline
+\end{tabular}
+\end{center}
+
+\section*{\begin{center}User-Defined Regulatory Rate Laws\end{center}}
+
+\begin{center}
+\begin{tabular}{|p{2.in}|p{3.in}|}
+\hline
+${\tt \{A\mapsto B,  name[r, T, n, h, f]\} }$ &
+${\tt [B]' = rf(h+T[A]^n)}$
+\\ \hline
+$\begin{array}{l}
+	{\tt A_1+A_2+\cdots \mapsto B} \text{ or } \\
+	{\tt \{A_1,A_2,\dots\} \mapsto B} \text{ or } \\
+	\left\{
+		\begin{matrix}
+			{\tt A_1 \mapsto B}\\
+			{\tt A_2 \mapsto B}\\
+			\vdots
+		\end{matrix}
+	\right.
+\end{array}
+$ &
+${\tt [B]' = rf(h+T_1[A_1]^{n_1} + T_2[A_2]^{n_2} + \cdots )}$\\
+\hline 
+\end{tabular}
+\end{center}
+
+\section*{\begin{center}Flux-Only Reactions\end{center}}
+\begin{center}
+\begin{tabular}{|l|}\hline
+${\tt
+\{ p_1 X_1 + p_2 X_2 + \cdots \to q_1 Y_2 + q_2 Y_2 + \cdots,
+}$ \\
+\hspace{1in}
+${\tt Flux[}
+\textit{lower bounds }, 
+\textit{variable name}, 
+\textit{upper bounds}, 
+\textit{value}, 
+\textit{objective coefficient}] \}
+$
+\\\hline 
+\end{tabular}
+\end{center}
+
+
+\textcopyleft\ 2012. Creative Commons Attribution Non-commercial Share Alike 3.0 Unported License terms apply. For more detail see \url{http://creativecommons.org/licenses/by-nc-sa/3.0/}
+
+This document was last revised on \today. 
+
+
+
+\end{document}

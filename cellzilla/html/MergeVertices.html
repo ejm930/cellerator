@@ -1,0 +1,83 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>MergeVertices</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info" border="0"><img src="logo.svg" alt=
+        "The xCellerator Project" width="150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style="font-size:x-large;font-weight:bold;">
+            MergeVertices</td>
+
+            <td align="right"><a class="button" href="./index.html">Cellzilla2D
+            Home</a></td>
+          </tr>
+        </table>
+        <hr color="#ff7636">
+
+        <p class="header">Description</p>
+
+        <p><span class="function">Needs["Cellzilla2D`"];</span></p>
+
+        <p>Merges two vertices in a tissue together, if they are connected by a
+        common edge. The two vertices are replaced with a new vertex at the
+        midpoint of the old edge. The old edge is removed, and all references
+        to edge and vertex numbers are updated.</p>
+
+        <p class="header">Return Value</p>
+
+        <p><span class="function">MergeVertices[tissue, {i, j} ]</span> returns
+        a new tissue object with the edge between vertices i and j removed and
+        the vertices replaced with a new vertex halfware between.</p>
+
+        <p><span class="function">MergeVertices[tissue, k ]</span> returns a
+        new tissue object edge k removed.</p>
+
+        <p class="header">Options</p>
+
+        <p><span class="function">"Changes"&#8594;False</span> - if True,
+        instead of returning the tissue, a list <span class=
+        "function">{changes, newtissue}</span> is returned, where <span class=
+        "function">changes</span> is a rule list giving the associations
+        between old and new edge numbers.</p>
+
+        <p class="header">Example</p>
+
+        <p class="header">Implementation Notes</p>
+
+        <p class="header">See Also</p>
+
+        <p><a href="./RemoveCell.html" class="function">RemoveEdge</a></p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2012 Nov 9]</span>
+    </div>
+  </center>
+</body>
+</html>

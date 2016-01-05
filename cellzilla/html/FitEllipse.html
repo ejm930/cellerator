@@ -1,0 +1,105 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>FitEllipse</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info/" border="0"><img src=
+        "logo.svg" alt="The xCellerator Project" width=
+        "150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style=
+            "font-size:x-large;font-weight:bold;">FitEllipse</td>
+
+            <td align="right"><a class="button" href=
+            "./index.html">Cellzilla2D Home</a></td>
+          </tr>
+        </table>
+        <hr color="#ff7636">
+
+        <p class="header">Description</p>
+
+        <p>Fits an ellipse to a set of points.</p>
+
+        <p><span class="function">Needs["Cellzilla2D`"];</span></p>
+
+        <p class="header">Return Value</p>
+
+        <p><span class="function">FitEllipse[{{x1,y}, {x2, y2},
+        ...}]</span> returns information about a "best fit" ellipse
+        as an option list:<br><br>
+        <span class="function">"Angle"</span>&#8594;angle (in
+        radians) between semimajor-axis and x-axis<br><br>
+        <span class="function">"Axes"&#8594;{vx,vy}</span> vector
+        in direction of semi-major axis and length equal to
+        semi-major axis;<br><br>
+        <span class="function">"Graphics"&#8594;</span>graphics
+        object with simple plot of object and directions of major
+        and minor axes.</p>
+
+        <p class="header">Options</p>
+
+        <p class="header">Example</p>
+
+        <p>[ <a href="examples/FitEllipse-example.nb.zip">Download
+        Example as Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name=
+        "display" src="./examples/FitEllipse-example.htm" id=
+        "display" style="background-color:white;"><a href="">View
+        as html.</a></iframe></p>
+
+        <p class="header">Implementation Notes</p>
+
+        <p>The primary axes are found by first translating the
+        ellipse into center-of-mass coordinates V={{x1', y1'),
+        {x2',y2'},...} where each {xi', yi'}={xi,yi}-{xc,yc}, and
+        {xc,yc} is the center of mass. Then the eigenvalues and
+        eigenvectors of the matrix</p>
+
+        <center>
+          M=V<sup>T</sup>V
+        </center>are calculated. The ratio of of semi-major to
+        semi-minor axis is taken as the square root of the ratio of
+        the larger eigenvalue to the smaller eigenvalue. The actual
+        values of a and be determined so that &#960;ab equals the
+        area of the original polygon. The directions of the
+        semi-major and semi-minor axes are given by the normalized
+        eigenvectors.
+
+        <p class="header">See Also</p><p><a href="PrimaryAxes.html" class="function">PrimaryAxes</a></p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt=
+            "SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2012 Nov 9
+      ]</span>
+    </div>
+  </center>
+</body>
+</html>

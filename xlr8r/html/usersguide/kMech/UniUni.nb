@@ -1,0 +1,258 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      8728,        249]
+NotebookOptionsPosition[      7756,        215]
+NotebookOutlinePosition[      8192,        232]
+CellTagsIndexPosition[      8149,        229]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["UniUni", "Section",
+ CellChangeTimes->{{3.555468798766151*^9, 3.555468832198237*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"UniUni is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.555468658542029*^9, 3.555468832198494*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.5554686586050253`*^9, 3.555468832198743*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S \[ShortRightArrow] $Complex$S$En$, \
+kf}\\n{$Complex$S$En$ \[ShortRightArrow] En + S, kr}\\n{$Complex$S$En$ \
+\[ShortRightArrow] En + P, k}\\n{En + Inh \[ShortRightArrow] \
+$Complex$En$Inh$, kfi}\\n{$Complex$En$Inh$ \[ShortRightArrow] En + Inh, \
+kri}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.555468658655299*^9, 3.555468832198895*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"UniUni is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.555468658703784*^9, 3.555468832198983*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.555468658747253*^9, 3.555468832199065*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S \[ShortRightArrow] $Complex$S$En$, \
+kf}\\n{$Complex$S$En$ \[ShortRightArrow] En + S, kr}\\n{$Complex$S$En$ \
+\[ShortRightArrow] En + P, k}\\n{En + Inh \[ShortRightArrow] \
+$Complex$En$Inh$, kfi}\\n{$Complex$En$Inh$ \[ShortRightArrow] En + Inh, \
+kri}\\n{Inh + $Complex$S$En$ \[ShortRightArrow] $Complex$S$En$Inh$, \
+kfi}\\n{$Complex$S$En$Inh$ \[ShortRightArrow] Inh + $Complex$S$En$, kri}\\n{S \
++ $Complex$En$Inh$ \[ShortRightArrow] $Complex$S$En$Inh$, \
+kf}\\n{$Complex$S$En$Inh$ \[ShortRightArrow] S + $Complex$En$Inh$, kr}\"\>", 
+   "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.555468658797113*^9, 3.555468832199181*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"UniUni is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.555468658841713*^9, 3.5554688321993628`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"inh", ",", "kfi", ",", "kri", ",", "residualRate"}], "]"}]}], 
+    "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.555468658925256*^9, 3.5554688321994658`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S \[ShortRightArrow] $Complex$S$En$, \
+kf}\\n{$Complex$S$En$ \[ShortRightArrow] En + S, kr}\\n{$Complex$S$En$ \
+\[ShortRightArrow] En + P, k}\\n{En + Inh \[ShortRightArrow] \
+$Complex$En$Inh$, kfi}\\n{$Complex$En$Inh$ \[ShortRightArrow] En + Inh, \
+kri}\\n{Inh + $Complex$S$En$ \[ShortRightArrow] $Complex$S$En$Inh$, \
+kfi}\\n{$Complex$S$En$Inh$ \[ShortRightArrow] Inh + $Complex$S$En$, kri}\\n{S \
++ $Complex$En$Inh$ \[ShortRightArrow] $Complex$S$En$Inh$, \
+kf}\\n{$Complex$S$En$Inh$ \[ShortRightArrow] S + $Complex$En$Inh$, \
+kr}\\n{$Complex$S$En$Inh$ \[ShortRightArrow] P + $Complex$En$Inh$, k \
+residualRate}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.555468658970004*^9, 3.555468832199594*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"UniUni is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.555468659010124*^9, 3.555468832199668*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"UCI", "[", 
+      RowBox[{"inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.555468659061809*^9, 3.555468832199823*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S \[ShortRightArrow] $Complex$S$En$, \
+kf}\\n{$Complex$S$En$ \[ShortRightArrow] En + S, kr}\\n{$Complex$S$En$ \
+\[ShortRightArrow] En + P, k}\\n{Inh + $Complex$S$En$ \[ShortRightArrow] \
+$Complex$S$En$Inh$, kfi}\\n{$Complex$S$En$Inh$ \[ShortRightArrow] Inh + \
+$Complex$S$En$, kri}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.5554686591015387`*^9, 3.555468832199946*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"UniUni is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.5554686591718817`*^9, 3.5554688322000227`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.555468659210381*^9, 3.555468832200109*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S \[ShortRightArrow] $Complex$S$En$, \
+kf}\\n{$Complex$S$En$ \[ShortRightArrow] En + S, kr}\\n{$Complex$S$En$ \
+\[ShortRightArrow] En + P, k}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467546514522*^9, 3.555468342370376*^9, 
+  3.555468659251979*^9, 3.555468832200191*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 867},
+WindowMargins->{{Automatic, -940}, {35, Automatic}},
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 91, 1, 74, "Section"],
+Cell[CellGroupData[{
+Cell[695, 27, 266, 6, 26, "Print"],
+Cell[964, 35, 554, 15, 32, "Print"],
+Cell[1521, 52, 478, 9, 119, "Print"],
+Cell[2002, 63, 266, 6, 26, "Print"],
+Cell[2271, 71, 553, 15, 32, "Print"],
+Cell[2827, 88, 758, 13, 195, "Print"],
+Cell[3588, 103, 268, 6, 26, "Print"],
+Cell[3859, 111, 581, 16, 32, "Print"],
+Cell[4443, 129, 837, 14, 214, "Print"],
+Cell[5283, 145, 266, 6, 26, "Print"],
+Cell[5552, 153, 553, 15, 32, "Print"],
+Cell[6108, 170, 508, 9, 119, "Print"],
+Cell[6619, 181, 270, 6, 26, "Print"],
+Cell[6892, 189, 467, 13, 32, "Print"],
+Cell[7362, 204, 366, 7, 81, "Print"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

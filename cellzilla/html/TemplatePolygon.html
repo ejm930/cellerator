@@ -1,0 +1,110 @@
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <meta name="generator" content="Bluefish 1.0.7">
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+  <title>TemplatePolygon</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info/" border="0"><img src="logo.svg" alt=
+        "The xCellerator Project" width="150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style="font-size:x-large;font-weight:bold;">
+            TemplatePolygon</td>
+
+            <td align="right"><a class="button" href="./index.html">Cellzilla2D
+            Home</a></td>
+          </tr>
+        </table>
+        <hr color="#ff7636">
+
+        <p class="header">Description</p>
+
+        <p>Generates a <a href="Tissue.html" class="function">Tissue</a> object
+        consisiting of a single polygonal cell.</p>
+
+        <p><span class="function">Needs["Cellzilla2D`"];</span></p>
+
+        <p class="header">Return Value</p>
+
+        <p>The argument sequence is idential to <a href=
+        "RegularPolygon.html">RegularPolygon</a>.</p>
+
+        <p><span class="function">TemplatePolygon[n]</span> returns a <a href=
+        "Tissue.html" class="function">Tissue</a> with a single cell consisting
+        of a regular n-gon inscribed in the unit circle, with one vertex at
+        (0,1).</p>
+
+        <p><span class="function">TemplatePolygon[n, &#952;]</span> returns
+        <a href="Tissue.html" class="function">Tissue</a> with a single cell
+        consisting of a regular n-gon inscribed in the unit circle, with one
+        vertex at (Cos[&#952;],Sin[&#952;]).</p>
+
+        <p><span class="function">TemplatePolygon[n, &#952;, a]</span> returns
+        <a href="Tissue.html" class="function">Tissue</a> with a single cell
+        consisting of a regular n-gon inscribed in the unit circle with
+        starting vertex at &#952; but stretched (or squeezed) in the
+        y-direction by a factor of a.</p>
+
+        <p><span class="function">TemplatePolygon[n, &#952;, a,rnd]</span>
+        returns <a href="Tissue.html" class="function">Tissue</a> with a single
+        cell consisting of a regular n-gon inscribed in the unit circle with
+        starting vertex at &#952; but stretched (or squeezed) in the
+        y-direction by a factor of a, and with a random number between -rnd and
+        rnd added to each vertex.</p>
+
+        <p><span class="function">TemplatePolygon[n, &#952;, a,rnd,
+        &#966;]</span> return <a href="Tissue.html" class="function">Tissue</a>
+        with a single cell consisting of a regular n-gon inscribed in the unit
+        circle with starting vertex at &#952; but stretched (or squeezed) in
+        the y-direction by a factor of a; each vertex is randomized (or -1
+        means don't randomize); then the whole thing is rotated by an angle of
+        &#966; about the origin.</p>
+
+        <p class="header">Options</p>
+
+        <p class="header">Example</p>
+        
+        <p>[ <a href="examples/TemplatePolygon-example.nb.zip">Download Example
+        as Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name="display"
+        src="./examples/TemplatePolygon-example.htm" id="display" style=
+        "background-color:white;"><a href="">View as html.</a></iframe></p>
+        
+
+        <p class="header">Implementation Notes</p>
+
+        <p class="header">See Also</p>
+
+        <p><a href="RegularPolygon.html" class=
+        "function">RegularPolygon</a></p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[12 Nov 2012]</span>
+    </div>
+  </center>
+</body>
+</html>

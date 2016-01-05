@@ -1,0 +1,204 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      8249,        195]
+NotebookOptionsPosition[      7537,        169]
+NotebookOutlinePosition[      8069,        188]
+CellTagsIndexPosition[      8026,        185]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Cellzilla2D Installer", "Title",
+ CellChangeTimes->{{3.504485227970614*^9, 3.504485229832902*^9}, {
+  3.5076829337770233`*^9, 3.5076829402075033`*^9}}],
+
+Cell[TextData[{
+ "25 Feb 2011\n\nB.E.Shapiro Version 1.0 for xlr8r-0.78\nTested in ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " 7 and 8 \nshould be compatable with all operating systems."
+}], "Subsubtitle",
+ CellChangeTimes->{{3.5044852363626966`*^9, 3.504485271444233*^9}, {
+  3.504485372749297*^9, 3.5044853911854277`*^9}, {3.507391269504168*^9, 
+  3.5073912720556517`*^9}, {3.507685701682889*^9, 3.5076857048180857`*^9}}],
+
+Cell[TextData[{
+ "How to use this installer:\n(1) Open this file in ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " 7 or higher\n(2) From the menu bar select Evaluation/Notebook\n(3) Answer \
+the dialogs on the pop-up menu - the rest should be done automatically."
+}], "Subsubtitle",
+ CellChangeTimes->{{3.5044852783852367`*^9, 3.504485353801318*^9}, {
+   3.507389922465856*^9, 3.507389925137548*^9}, 3.507682945031848*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"SelectAFile", ":=", " ", "\[IndentingNewLine]", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", " ", 
+       RowBox[{"f", ",", " ", "appsfolder", ",", " ", "old"}], "}"}], ",", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"appsfolder", "=", 
+        RowBox[{"ToFileName", "[", 
+         RowBox[{"$UserBaseDirectory", ",", " ", "\"\<Applications\>\""}], 
+         "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"old", " ", "=", " ", 
+        RowBox[{"ToFileName", "[", 
+         RowBox[{"appsfolder", ",", " ", "\"\<Cellzilla2D.m\>\""}], "]"}]}], 
+       ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{"While", "[", 
+        RowBox[{"True", ",", " ", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"f", "=", 
+           RowBox[{"SystemDialogInput", "[", 
+            RowBox[{"\"\<FileOpen\>\"", ",", " ", 
+             RowBox[{"ToFileName", "[", 
+              RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ",", " ", 
+             RowBox[{
+             "WindowTitle", "\[Rule]", " ", 
+              "\"\<Please select Celzilla2D.m:\>\""}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"Not", "[", 
+             RowBox[{"StringQ", "[", "f", "]"}], "]"}], ",", " ", 
+            RowBox[{"Abort", "[", "]"}]}], "]"}], ";", " ", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"StringLength", "[", "f", "]"}], "\[GreaterEqual]", " ",
+               "13"}], " ", "\[And]", " ", 
+             RowBox[{
+              RowBox[{"StringTake", "[", 
+               RowBox[{"f", ",", 
+                RowBox[{"-", "13"}]}], "]"}], "\[Equal]", " ", 
+              "\"\<Cellzilla2D.m\>\""}]}], ",", " ", "\[IndentingNewLine]", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"FileExistsQ", "[", "old", "]"}], ",", " ", 
+               RowBox[{"DeleteFile", "[", "old", "]"}]}], "]"}], ";", " ", 
+             "\[IndentingNewLine]", 
+             RowBox[{"CopyFile", "[", 
+              RowBox[{"f", ",", " ", "old"}], "]"}], ";", " ", 
+             "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"If", "[", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"ChoiceDialog", "[", 
+                RowBox[{
+                "f", "<>", "\"\< ----> \>\"", "<>", "old", "<>", 
+                 "\"\<\\n\\nInstallation Completed.\>\""}], "]"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"Return", "[", "]"}], ",", " ", "\[IndentingNewLine]", 
+               
+               RowBox[{"Return", "[", "]"}]}], "\[IndentingNewLine]", "]"}], 
+             ";"}]}], " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           "]"}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+            "ChoiceDialog", "[", 
+             "\"\<The selected file must have file type .m. Select OK to try \
+again or cancel to quit.\>\"", "]"}], ",", " ", "True", ",", " ", 
+            RowBox[{"Abort", "[", "]"}]}], "]"}]}]}], "\[IndentingNewLine]", 
+        "]"}]}]}], "\[IndentingNewLine]", "]"}]}], ";"}], " "}]], "Input",
+ CellChangeTimes->{{3.5076840243232527`*^9, 3.507684117513176*^9}, {
+   3.507684209492955*^9, 3.507684210774273*^9}, {3.507684301718431*^9, 
+   3.507684303014806*^9}, {3.5076843378851223`*^9, 3.507684377990361*^9}, {
+   3.507684424982915*^9, 3.507684426286317*^9}, {3.507684607189406*^9, 
+   3.50768462802872*^9}, {3.5076846693008413`*^9, 3.507684672132553*^9}, {
+   3.5076847944539127`*^9, 3.507684866385666*^9}, 3.507684897562001*^9, {
+   3.507685117136058*^9, 3.507685166234166*^9}, {3.50768519682659*^9, 
+   3.507685209531818*^9}, {3.507685265443617*^9, 3.50768528990865*^9}, {
+   3.507685324229703*^9, 3.507685381216414*^9}, {3.507685442016049*^9, 
+   3.50768558299722*^9}, {3.5348661113713293`*^9, 3.5348661396417313`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{
+   "ChoiceDialog", "[", "\[IndentingNewLine]", 
+    "\"\<Welcome to the Cellzilla2D installer.\\n\\nThis program will only \
+install Cellzilla2D and not xCellerator, which must be installed separately \
+in order to run Cellzilla2D.\\n\\nClick OK to continue to select a \
+Cellzilla2D.m file to install.\>\"", "]"}], ",", " ", "\[IndentingNewLine]", 
+   "SelectAFile"}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.5044799987256203`*^9, 3.5044800442674522`*^9}, {
+   3.504480137470756*^9, 3.50448017138127*^9}, {3.504480279399579*^9, 
+   3.504480284005734*^9}, {3.5044842093151417`*^9, 3.504484213421404*^9}, {
+   3.50448427569003*^9, 3.5044844183122053`*^9}, {3.504484517918963*^9, 
+   3.504484647720573*^9}, {3.5044846805256844`*^9, 3.504484718948864*^9}, {
+   3.504484796073242*^9, 3.504485132431264*^9}, 3.507394757484947*^9, 
+   3.507682945057581*^9, {3.507683594262342*^9, 3.5076837006022167`*^9}, {
+   3.50768373681146*^9, 3.507683741522346*^9}, {3.507683790586338*^9, 
+   3.507683948856752*^9}, {3.507684038223295*^9, 3.5076840503426456`*^9}, {
+   3.507684084188654*^9, 3.507684086373275*^9}, {3.5076841223331633`*^9, 
+   3.507684176741675*^9}, {3.50768440616434*^9, 3.507684406635771*^9}, {
+   3.507684469803212*^9, 3.507684478846489*^9}, {3.507684509002759*^9, 
+   3.5076845099225492`*^9}, {3.5076853947239027`*^9, 
+   3.5076853975474243`*^9}, {3.507685516899192*^9, 3.507685517570202*^9}, {
+   3.507685656306649*^9, 3.507685694562069*^9}}],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.53486609646052*^9, 3.534866134136704*^9, 
+  3.5348661697245283`*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1134, 750},
+WindowMargins->{{276, Automatic}, {89, Automatic}},
+ShowSelection->True,
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.25, 1.25 Inherited],
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "NaturalColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 157, 2, 85, "Title"],
+Cell[727, 26, 434, 8, 116, "Subsubtitle"],
+Cell[1164, 36, 430, 8, 95, "Subsubtitle"],
+Cell[1597, 46, 4234, 87, 740, "Input"],
+Cell[CellGroupData[{
+Cell[5856, 137, 1525, 24, 188, "Input"],
+Cell[7384, 163, 125, 2, 49, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

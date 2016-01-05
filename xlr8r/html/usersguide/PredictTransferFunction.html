@@ -1,0 +1,114 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>xCellerator</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src=
+        "logo.svg" alt="The xCellerator Project" width="150"></a>
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="blackfunction" style=
+            "font-size:x-large;font-weight:bold;">
+            PredictTransferFunction</td>
+
+            <td align="right"><a class="button" href=
+            "index.html">Reference Home</a></td>
+          </tr>
+        </table>
+        <hr color="#ff7636">
+
+        <p>Performs Parametric Variation on an initial condition or
+        a parameter value.</p>
+
+        <p style="font-size:x-small;">New in version 0.68</p>
+        <hr color="#ff7636">
+
+        <p><span class=
+        "blackfunction">PredictTransferFunction[system, {time,
+        tbegin, tend}, {input, min, max, delta}, output,
+        options]</span><br>
+        <br>
+        repeatedly executes <a href="run.html" class=
+        "blackfunction">run</a>, varying the value of <span class=
+        "blackfunction">input</span>=<span class=
+        "blackfunction">min</span>, <span class=
+        "blackfunction">min+delta</span> <span class=
+        "blackfunction">min+2*delta</span> <span class=
+        "blackfunction">...</span> <span class=
+        "blackfunction">max</span></p>
+
+        <p><span class="blackfunction">system</span> is any valid
+        system as it would normally be input to <a href="run.html"
+        class="blackfunction">run</a></p>
+
+        <p>The symbol <span class="blackfunction">input</span> may
+        refer to either a chemical species in a reaction or a rate
+        constant.</p>
+
+        <p>The symbol <span class="blackfunction">output</span> is
+        either the name of a single variable, or a list of
+        variables.</p>
+
+        <p><span class="blackfunction">options</span> includes any
+        standard option for <a href="run.html" class=
+        "blackfunction">run</a> as well as the following:</p>
+
+        <blockquote>
+          <span class=
+          "blackfunction">"Integrate"&#8594;False</span>, if
+          <span class="blackfunction">True</span>, integrates the
+          output variables from <span class=
+          "blackfunction">tbegin</span> to <span class=
+          "blackfunction">tend</span>; otherwise, just returns the
+          value of the variable.<br>
+          <br>
+          <span class="blackfunction">"Function"</span>&#8594;
+          optional function to be applied to either the values of
+          variable (if <span class=
+          "blackfunction">"Integrate"&#8594;False</span>) or the
+          variable before integration (if <span class=
+          "blackfunction">"Integrate"-&gt;True</span>).
+        </blockquote>
+
+        <div>
+          <p><span class="header">Example</span> <a href=
+          "PredictTransferFunction/PredictTransferFunction.nb"
+          class="nblink" style="font-weight:normal;">(Download as
+          Mathematica Notebook)</a></p> <p><iframe src=
+          "PredictTransferFunction/PredictTransferFunction.htm"
+          style="width:7in;height:6in;background:white">No frames:
+          download notebook file.</iframe></p>
+        </div>
+
+        <div class="logo" style="text-align:center;">
+          <a href=
+          "http://sourceforge.net/projects/xlr8r/files/"><img src=
+          "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+          width="125" height="37" border="0" alt=
+          "SourceForge.net Logo"></a>
+        </div>
+      </div><br>
+      <span style="font-size:xx-small;">[19 July 2012]</span>
+    </div>
+  </center>
+</body>
+</html>

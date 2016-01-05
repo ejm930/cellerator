@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+        "HTMLFiles/xhtml-math11-f.dtd">
+
+<!-- Created by Wolfram Mathematica 8.0 : www.wolfram.com -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>
+  DelaunayEdges-example
+ </title>
+ <link href="HTMLFiles/DelaunayEdges-example.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<p class="Section">
+ DelaunayEdges-example.nb
+</p>
+
+
+
+<p class="Text">
+ Example Cellzilla2D notebook.<br /><br />GPL License applies. <br />See http://xlr8r.info and http://cellzilla.info for further details.
+</p>
+
+
+
+<p class="CellLabel">
+ In[1]:=
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/DelaunayEdges-example_1.gif" alt="DelaunayEdges-example_1.gif" width="127" height="15" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/DelaunayEdges-example_2.gif" alt="DelaunayEdges-example_2.gif" width="434" height="35" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ Create a tissue with a point and an edge that aren't used.
+</p>
+
+
+
+<p class="Text">
+ <span style='font-size: 16px;'>Generate a square tissue object with randomized centers</span>
+</p>
+
+
+
+<p class="CellLabel">
+ In[2]:=
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/DelaunayEdges-example_3.gif" alt="DelaunayEdges-example_3.gif" width="408" height="35" style="vertical-align:middle" />
+</p>
+
+<p class="CellLabel">
+ Out[3]=
+</p>
+
+
+
+<p class="Output">
+ <img src="HTMLFiles/DelaunayEdges-example_4.gif" alt="DelaunayEdges-example_4.gif" width="360" height="359" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ <span style='font-size: 16px;'>Find the centroids of the cells</span>
+</p>
+
+
+
+<p class="CellLabel">
+ In[4]:=
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/DelaunayEdges-example_5.gif" alt="DelaunayEdges-example_5.gif" width="118" height="15" style="vertical-align:middle" />
+</p>
+
+<p class="CellLabel">
+ Out[4]=
+</p>
+
+
+
+<p class="Output">
+ <img src="HTMLFiles/DelaunayEdges-example_6.gif" alt="DelaunayEdges-example_6.gif" width="628" height="111" style="vertical-align:middle" />
+</p>
+
+<p class='Text' style='font-size: 14px;'>
+ <span style='font-size: 18px;'>Find the Delaunay Triangulation of the centroids</span>
+</p>
+
+
+
+<p class="CellLabel">
+ In[5]:=
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/DelaunayEdges-example_7.gif" alt="DelaunayEdges-example_7.gif" width="165" height="15" style="vertical-align:middle" />
+</p>
+
+<p class="CellLabel">
+ Out[5]=
+</p>
+
+
+
+<p class="Output">
+ <img src="HTMLFiles/DelaunayEdges-example_8.gif" alt="DelaunayEdges-example_8.gif" width="676" height="548" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ <span style='font-size: 16px;'>Plot the Delaunay Triangulation of the Centroids, and observe that the Delaunay of the centroids is not the same as the connectivity - there may be a msising or extra connection. </span>
+</p>
+
+
+
+<p class="CellLabel">
+ In[6]:=
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/DelaunayEdges-example_9.gif" alt="DelaunayEdges-example_9.gif" width="411" height="15" style="vertical-align:middle" />
+</p>
+
+<p class="CellLabel">
+ In[8]:=
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/DelaunayEdges-example_10.gif" alt="DelaunayEdges-example_10.gif" width="453" height="15" style="vertical-align:middle" />
+</p>
+
+<p class="CellLabel">
+ Out[8]=
+</p>
+
+
+
+<p class="Output">
+ <img src="HTMLFiles/DelaunayEdges-example_11.gif" alt="DelaunayEdges-example_11.gif" width="360" height="359" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ <span style='font-size: 16px;'>Observe that the Voronoi of the centroids is not the same as the original tissue.</span>
+</p>
+
+
+
+<p class="CellLabel">
+ In[9]:=
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/DelaunayEdges-example_12.gif" alt="DelaunayEdges-example_12.gif" width="221" height="15" style="vertical-align:middle" />
+</p>
+
+<p class="CellLabel">
+ In[11]:=
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/DelaunayEdges-example_13.gif" alt="DelaunayEdges-example_13.gif" width="461" height="15" style="vertical-align:middle" />
+</p>
+
+<p class="CellLabel">
+ Out[11]=
+</p>
+
+
+
+<p class="Output">
+ <img src="HTMLFiles/DelaunayEdges-example_14.gif" alt="DelaunayEdges-example_14.gif" width="360" height="367" style="vertical-align:middle" />
+</p>
+
+<p class="Subsubsection">
+ Overlay the Voronoi Boundarys (purple, dotted) on the actual tissue
+</p>
+
+
+
+<p class="CellLabel">
+ In[21]:=
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/DelaunayEdges-example_15.gif" alt="DelaunayEdges-example_15.gif" width="602" height="15" style="vertical-align:middle" />
+</p>
+
+<p class="CellLabel">
+ Out[21]=
+</p>
+
+
+
+<p class="Output">
+ <img src="HTMLFiles/DelaunayEdges-example_16.gif" alt="DelaunayEdges-example_16.gif" width="360" height="367" style="vertical-align:middle" />
+</p>
+
+
+
+
+<div style="font-family:Helvetica; font-size:11px; width:100%; border:1px none #999999; border-top-style:solid; padding-top:2px; margin-top:20px;">
+ <a href="http://www.wolfram.com/products/mathematica/" style="color:#000; text-decoration:none;">
+  <img src="HTMLFiles/spikeyIcon.png" alt="Spikey" width="20" height="21" style="padding-right:2px; border:0px solid white; vertical-align:middle;" />
+  <span style="color:#555555">Created with</span> Wolfram <span style="font-style: italic;">Mathematica</span> 8.0
+ </a>
+</div>
+</body>
+
+</html>

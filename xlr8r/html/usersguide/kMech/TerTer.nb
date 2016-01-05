@@ -1,0 +1,136 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      4033,        127]
+NotebookOptionsPosition[      3410,        102]
+NotebookOutlinePosition[      3847,        119]
+CellTagsIndexPosition[      3804,        116]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["TerTer", "Section",
+ CellChangeTimes->{3.555469370450852*^9, 3.555469410935732*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"TerTer is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.55546760949219*^9, 3.555468347847108*^9, 
+  3.555468664247711*^9, 3.5554694109358397`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], "En"], ",", 
+     RowBox[{"TerTer", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.55546760949219*^9, 3.555468347847108*^9, 
+  3.555468664309362*^9, 3.555469410935937*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 + S2 + S3 \[ShortRightArrow] \
+$Complex$En$S1$S2$S3$, kf}\\n{$Complex$En$S1$S2$S3$ \[ShortRightArrow] En + \
+S1 + S2 + S3, kr}\\n{$Complex$En$S1$S2$S3$ \[ShortRightArrow] En + P1 + P2 + \
+P3, k}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.55546760949219*^9, 3.555468347847108*^9, 
+  3.555468664356632*^9, 3.555469410936015*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"TerTer is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.55546760949219*^9, 3.555468347847108*^9, 
+  3.5554686644019814`*^9, 3.5554694109360943`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], "En"], ",", 
+     RowBox[{"TerTer", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.55546760949219*^9, 3.555468347847108*^9, 
+  3.555468664455291*^9, 3.5554694109361877`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 + S2 + S3 \[ShortRightArrow] \
+$Complex$En$S1$S2$S3$, kf}\\n{$Complex$En$S1$S2$S3$ \[ShortRightArrow] En + \
+S1 + S2 + S3, kr}\\n{$Complex$En$S1$S2$S3$ \[ShortRightArrow] En + P1 + P2 + \
+P3, k}\\n{En + Inh \[ShortRightArrow] $Complex$En$Inh$, \
+kfi}\\n{$Complex$En$Inh$ \[ShortRightArrow] En + Inh, kri}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.55546760949219*^9, 3.555468347847108*^9, 
+  3.55546866450933*^9, 3.555469410936281*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 867},
+WindowMargins->{{Automatic, -1006}, {Automatic, 63}},
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 89, 1, 74, "Section"],
+Cell[CellGroupData[{
+Cell[693, 27, 267, 6, 26, "Print"],
+Cell[963, 35, 550, 15, 36, "Print"],
+Cell[1516, 52, 421, 8, 81, "Print"],
+Cell[1940, 62, 269, 6, 26, "Print"],
+Cell[2212, 70, 637, 17, 36, "Print"],
+Cell[2852, 89, 530, 9, 119, "Print"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

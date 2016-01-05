@@ -1,0 +1,112 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 1.0.7">
+  <meta name="generator" content="Bluefish 1.0.7">
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>SaveCellzillaModel</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src=
+        "logo.jpg" alt="The xCellerator Project" width=
+        "150"></a><br>
+        xlr8r:CelleratorML
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style=
+            "font-size:x-large;font-weight:bold;">
+            SaveCellzillaModel</td>
+
+            <td align="right"><a class="button" href=
+            "./index.html">CelleratorML Home</a></td>
+          </tr>
+        </table>
+        <hr color="purple">
+
+        <p>Saves a Cellzilla model as CellzillaML.</p>
+        <hr color="purple">
+
+        <p><span class="function">Needs["CelleratorML`"];<br>
+        Needs["Cellzilla2D`"];</span></p>
+        <hr color="purple">
+
+        <p class="header">Return Value</p>
+
+        <p><span class="function">SaveCellzillaModel[filename,
+        options]</span><br>
+        saves to the specified XML file.</p>
+
+        <p><span class=
+        "function">SaveCellzillaModel[options]</span><br>
+        writes the xml to the screen.</p>
+
+        <p class="header">Options</p><span class=
+        "function">"Models"&#8594;{file1,file2,URL3,...}</span> -
+        required list of cellerator models<span class=
+        "function"><br>
+        "Centers"&#8594;{{x1,y1},{x2,y2},..}</span> - required if
+        <span class="function">Tissue</span> is not
+        present<span class="function"><br>
+        "Tissue"&#8594;Tissue[..]</span> - required if <span class=
+        "function">Centers</span> is not present<span class=
+        "function"><br>
+        "Parameters"&#8594;{sym&#8594;value,sym&#8594;value,..}<br>
+        "InitialConditions"{A[1]&#8594;value,A[2]&#8594;value,...,
+        Z[n]&#8594;value}<br>
+        "DiffusingSpecies"&#8594;{{species,rate}, {species, rate},
+        ..}<br>
+        "Quiet"&#8594;False<br>
+        "Description"&#8594;</span> - Optional text annotation
+
+        <p class="header">Example</p>
+
+        <p>[ <a href=
+        "examples/SaveCellzillaModel-example.nb.zip">Download as
+        Zipped Mathematica Notebook</a> ]</p><iframe frameborder=
+        "1" width="100%" height="520" name="display" src=
+        "./examples/SaveCellzillaModel-example.htm" id="display"
+        style="background-color:white;"><a href="">View as
+        html.</a></iframe>
+
+        <p class="header">Implementation Notes</p>
+
+        <p class="header">See Also</p>
+
+        <p><a href=
+        "CellzillaModelToXML.html">CellzillaModelToXML</a> - for
+        XML only</p>
+
+        <p><a href=
+        "CellzillaModelToSXML.html">CellzillaModelToSXML</a> -
+        symbolic SXML</p>
+
+        <p><a href="ModelToXML.html">ModelToxML</a> - for a
+        Cellerator Model</p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt=
+            "SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2009-06-20T15:35:10-0700
+      ]</span>
+    </div>
+  </center>
+</body>
+</html>

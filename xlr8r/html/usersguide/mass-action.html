@@ -1,0 +1,465 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+  <meta name="encoding" content="UTF-8">
+  <title>xCellerator</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src=
+        "logo.svg" alt="The xCellerator Project" width="150"></a>
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td style=
+            "font-size:x-large;font-weight:bold;font-fammily:verdana;">
+            Mass Action Reactions</td>
+
+            <td align="right"><a class="button" href=
+            "index.html">Reference Home</a></td>
+          </tr>
+        </table>
+        <hr color="purple">
+
+        <table border="0" width="100%">
+          <tr>
+            <td align="center" style=
+            "font-size:10pt;padding: 10pt 10pt 10pt 3pt;">
+              <p><a href="#basic"><img src="mass-action/basic.gif"
+              class="buttonclear" alt="Basic" style="height:12pt;"></a>&nbsp;&nbsp;
+              <a href="#reversible"><img src=
+              "mass-action/reversible.gif" class="buttonclear"  style="height:12pt;" alt=
+              "Basic-Reversible"></a>&nbsp;&nbsp; <a href=
+              "#basic-catalytic"><img src=
+              "mass-action/basic-catalytic.gif"  style="height:22pt;" class="buttonclear"
+              alt=
+              "Catalytic, No Complex Formation"></a>&nbsp;&nbsp;
+              <a href="#catalytic"><img src=
+              "mass-action/catalytic-with-complex.gif" style="height:22pt;" class=
+              "buttonclear" alt=
+              "substrate complex"></a>&nbsp;&nbsp; <a href=
+              "#reversible-catalytic"><img src=
+              "mass-action/catalytic-with-complex-reversible.gif" style="height:28pt;"
+              class="buttonclear" alt=
+              "substrate complex reversible"></a>&nbsp;&nbsp;
+              <a href="#two-complex-catalytic"><img src=
+              "mass-action/catalytic-two-complexes.gif" style="height:22pt;" class=
+              "buttonclear" alt=
+              "catalytic, substrate/enzyme and product/enzyme complex">
+              </a> 
+              </p>
+            </td>
+           
+      
+        </table>
+        <hr color="purple">
+        <a name="basic"></a>
+
+        <h2>Basic Form</h2>
+
+        <p>The canonical form for a mass action reaction in
+        xCellerator is</p>
+
+        <blockquote>
+          <img src="mass-action/mass-action-arrow1.gif" style=
+          "height:0.5in">
+        </blockquote>where <span class=
+        "inlinefunc">p<sub>1</sub>,p<sub>2</sub>,...,
+        q<sub>1</sub>,q<sub>2</sub>,...</span>, are numbers (not
+        symbols) representing stoichiometries, and <span class=
+        "inlinefunc">A<sub>1</sub>,A<sub>2</sub>,...</span>
+        represent chemical species. It is interpreted as
+
+        <blockquote>
+          <img src="mass-action/mass-action-equation2.gif" style=
+          "height:0.5in;">
+        </blockquote>where the product runs over all the species on
+        the left side of the arrow, and <span class=
+        "inlinefunc">p<sub>i</sub></span> and <span class=
+        "inlinefunc">q<sub>i</sub></span> are the stoichiometries
+        of <span class="inlinefunc">A<sub>i</sub></span> on the
+        left-hand side and right-hand sides of the arrow,
+        respectively.
+
+        <p>An equivalent textual form for <img src=
+        "mass-action/basic.gif" style=
+        "vertical-align:top;height:12pt;"> is <span class=
+        "inlinefunc">ShortRightArrow[A, B]</span>.</p>
+
+        <p><b>Note:</b> The standard rule arrow (which can be
+        entered as -&gt;) can also be used for this type of arrow,
+        as in <span class="inlinefunc">A-&gt;B</span>.</p>
+
+        <h3>For example:</h3>
+
+        <blockquote>
+          <img src="mass-action/mass-action-example3.gif">
+        </blockquote>The stoichiometries may be any combination of
+        integers, rational, or real numbers. Variable
+        stoichiometries are not supported. Missing rate constants
+        default to 1:
+
+        <blockquote>
+          <img src="mass-action/mass-action-example4.gif">
+        </blockquote><a name="reversible"></a>
+
+        <h2>Basic Form, Reversible</h2>
+
+        <p>The canonical form for a reversible mass action reaction
+        in xCellerator is</p>
+
+        <blockquote>
+          <img src="mass-action/mass-action-arrow5.gif" style=
+          "height:50px;">
+        </blockquote>It is equivalent to the pair of reactions
+
+        <blockquote>
+          <img src="mass-action/mass-action-arrow6.gif" style=
+          "height:50px;">
+        </blockquote>Missing rate constants default to 1.
+
+        <p>An equivalent textual form for <img src=
+        "mass-action/reversible-green.gif" style=
+        "vertical-align:middle;"> is <span class=
+        "Function">RightArrowLeftArrow[A, B]</span>.</p><a name=
+        "basic-catalytic"></a>
+
+        <h2>Basic Form, Catalytic</h2>
+
+        <p>The canonical form for a simple catalytic is</p>
+
+        <blockquote>
+          <img src="mass-action/basic-catalytic-arrow.gif" style=
+          "height:36pt">
+        </blockquote>or
+
+        <blockquote>
+          <img src=
+          "mass-action/basic-catalytic-arrow-instantiated.gif"
+          style="height:24pt">
+        </blockquote>which is equivalent to the basic reaction
+
+        <blockquote>
+          <img src=
+          "mass-action/basic-catalytic-equivalent-arrow.gif" style=
+          "height:12pt;">
+        </blockquote>The essential observation is that the
+        concentration of the catalyst (e.g., <span class=
+        "function">C</span> does not change.
+
+        <h3>For example,</h3>
+
+        <blockquote>
+          <img src="mass-action/example1.gif">
+        </blockquote>There may be multiple reactants and products
+        (but there must be only one catalyst) and stoichiometries
+        may be specified for the reactants and products:
+
+        <blockquote>
+          <img src="mass-action/example1a.gif">
+        </blockquote>
+
+        <p>An equivalent textual form for is</p>
+
+        <blockquote>
+          <span class="inlinefunc">Overscript[ShortRightArrow[A,
+          B], C]</span>.
+        </blockquote>
+
+        <p><b>Note:</b> Overscripts can be entered at the keyboard
+        by typing [control]-7.</p><a name="catalytic"></a>
+
+        <h2>Catalytic, Reactant-Enzyme Complex</h2>
+
+        <p>The basic catalytic reaction is</p>
+
+        <blockquote>
+          <img src="mass-action/catalytic-with-complex-green.gif"
+          style="height:36pt">
+        </blockquote>or
+
+        <blockquote>
+          <img src=
+          "mass-action/catalytic-with-complex-instantiated.gif"
+          style="height:24pt">
+        </blockquote>
+
+        <p>This represents the biochemical conversion</p>
+
+        <blockquote>
+          <img src="mass-action/catalytic-with-complex-biochem.gif"
+          style="height:36pt;vertical-align:middle"> &nbsp;&nbsp;
+          (NOTE: this is NOT Cellerator syntax)
+        </blockquote>
+
+        <h3>For Example,</h3>
+
+        <blockquote>
+          <img src="mass-action/example2.gif">
+        </blockquote>
+
+        <p>Note that the <span class="inlinefunc">Bind[A,X]</span>
+        wrappers are automatically generated. This wrapper
+        represents a new variable formed by joining together in a
+        complex the variables listed as its arguments. For more
+        information on this see <a class="inlinefunc" href=
+        "Bind.html">Bind</a>.</p>
+
+        <p>The rate constants are optional and default to
+        <span class=
+        "inlinefunc">k<sub>1</sub>=k<sub>2</sub>=k<sub>3</sub>=1,k<sub>4</sub>=0</span></p>
+
+        <p><b>The user is strongly cautioned to resist the
+        temptation to designate the Enyzme by the variable
+        <span class="inlinefunc">E</span> which represents the base
+        of the natural logarithm in Mathematica</b>.</p>
+
+        <p>An equivalent textual form for <img src=
+        "mass-action/catalytic-with-complex-green-reaction-only.gif"
+        style="vertical-align:bottom;height:18pt;"> is</p>
+
+        <blockquote>
+          <span class=
+          "inlinefunc">Overscript[RightArrowLeftArrow[A, B],
+          C]</span>.
+        </blockquote><a name="reversible-catalytic"></a>
+
+        <h2>Reversible Catalytic, Reactant-Enzyme Complex</h2>
+
+        <p>The basic template is</p>
+
+        <blockquote>
+          <img src="mass-action/reversible-catalytic-template.gif"
+          style="height:60pt;">
+        </blockquote>or
+
+        <blockquote>
+          <img src=
+          "mass-action/reversible-catalytic-instantiated.gif"
+          style="height:24pt;">
+        </blockquote>
+
+        <p>This reaction is equivalent to the pair of
+        reactions:</p>
+
+        <blockquote>
+          <img src="mass-action/reversible-catalytic-expanded.gif"
+          style="height:24pt;">
+        </blockquote>It can have either six or eight rate
+        constants.
+
+        <p>If eight rate constants are given, they are partitioned
+        into two sets of 4, as shown above.</p>
+
+        <p>If six rate constants are given, they are partitioned
+        into two sets of 3, so that</p>
+
+        <blockquote>
+          <img src="mass-action/reversible-catalytic-six.gif"
+          style="height:24pt;">
+        </blockquote>
+
+        <p>becomes</p>
+
+        <blockquote>
+          <img src=
+          "mass-action/reversible-catalytic-six-expanded.gif"
+          style="height:24pt;">
+        </blockquote>
+
+        <p>An equivalent textual form for <img src=
+        "mass-action/catalytic-with-complex-reversible-green.gif"
+        style="vertical-align:middle;height:24pt"> is</p>
+
+        <blockquote>
+          <span class=
+          "inlinefunc">Underoverscript[RightArrowLeftArrow[A, B],
+          R, F]</span>.
+        </blockquote>
+
+			<a name="two-complex-catalytic"></a>
+        <h2>Two Complex Catalytic</h2>
+
+        <p>The canonical template is:</p>
+
+        <blockquote>
+          <img src="mass-action/two-complex-catalytic-template.gif"
+          style="height:50pt">
+        </blockquote>or
+
+        <blockquote>
+          <img src=
+          "mass-action/two-complex-catalytic-instantiated.gif"
+          style="height:24pt">
+        </blockquote>
+
+        <p>represents the biochemical process</p>
+
+        <blockquote>
+          <img src="mass-action/two-complex-catalytic-biochem.gif"
+          style="height:36pt; vertical-align:middle"> &nbsp;&nbsp;
+          (NOTE: this is NOT Cellerator syntax)
+        </blockquote>
+
+        <p>It must have precisely six rate constants.</p>
+
+        <p>An equivalent textual form for <img src=
+        "mass-action/two-complex-catalytic-green.gif" style=
+        "vertical-align:middle;height:18pt"> is</p>
+
+        <blockquote>
+          <span class="inlinefunc">Overscript[Equilibrium[A, B],
+          C]</span>.
+        </blockquote>
+
+        <h3>For Example,</h3>
+
+        <blockquote>
+          <img src="mass-action/example4.gif">
+        </blockquote><a name="table"></a>
+
+        <h2>Summary of Mass Action Arrow Forms</h2>
+
+        <center>
+          <table border="1" width="600" style="font-size:small;"
+          bgcolor="lightblue">
+            <tr>
+              <td align="center" style=
+              "font-size:medium;font-weight:bold;">Arrow</td>
+
+              <td align="center" style=
+              "font-size:medium;font-weight: bold;">What it
+              represents</td>
+            </tr>
+
+            <tr>
+              <td align="center"><img src="arrows/eq1.gif"></td>
+
+              <td align="center">Mass action</td>
+            </tr>
+
+            <tr>
+              <td align="center"><img src="arrows/eq2.gif"></td>
+
+              <td align="center">Mass action with specified
+              stoichiomitries</td>
+            </tr>
+
+            <tr>
+              <td align="center"><img src="arrows/eq3.gif"></td>
+
+              <td align="center"><img src="arrows/eq4.gif"></td>
+            </tr><!-- Overscript[A->B,C] -->
+
+            <tr>
+              <td align="center"><img src="arrows/eq5.gif"></td>
+
+              <td align="center"><img src="arrows/eq6.gif"></td>
+            </tr><!-- STANDARD CATALYTIC WITH ENZYMATIC COMPLEX -->
+
+            <tr>
+              <td align="center"><img src="arrows/eq7.gif"></td>
+
+              <td align="center"><img src="arrows/eq8.gif"></td>
+            </tr>
+            <!-- BI-DIRECTIONAL CATALYTIC WITH ENZYMATIC COMPLEX -->
+
+            <tr>
+              <td align="center"><img src="arrows/eq9.gif" alt=
+              "OverscriptUnderscript[A&lt;==&gt;B, ER,EF]"></td>
+
+              <td align="center"><img src="arrows/eq10.gif"></td>
+            </tr>
+            <!-- BI-DIRECTIONAL CATALYTIC WITH TWO ENZYMATIC COMPLEXes -->
+
+            <tr>
+              <td align="center"><img src="arrows/eq11.gif" alt=
+              "OverscriptUnderscript[Equilibrium[A,B], ER,EF]"></td>
+
+              <td align="center"><img src="arrows/eq12.gif"></td>
+            </tr><!-- Cascades A->B->C->...  -->
+
+            <tr>
+              <td align="center"><img src="arrows/cascade1.gif"
+              alt="A-&gt;B-&gt;C-&gt; ..."></td>
+
+              <td align="center"><img src=
+              "arrows/cascade1def.gif"></td>
+            </tr><!-- Cascades A<->B<->C<->...  -->
+
+            <tr>
+              <td align="center"><img src="arrows/cascade2.gif"
+              alt="A-&gt;B-&gt;C-&gt; ..."></td>
+
+              <td align="center"><img src=
+              "arrows/cascade2def.gif"></td>
+            </tr><!-- Enzymatic Cascade, one enzyme  -->
+
+            <tr>
+              <td align="center"><img src="arrows/cascade3.gif"
+              alt="Enzymatic Cascade, one enzyme"></td>
+
+              <td align="center"><img src=
+              "arrows/cascade3def.gif"></td>
+            </tr><!-- Enzymatic Cascade, cascade of enzymes  -->
+
+            <tr>
+              <td align="center"><img src="arrows/cascade4.gif"
+              alt="Enzymatic Cascade, cascade of enzyme"></td>
+
+              <td align="center"><img src=
+              "arrows/cascade4def.gif"></td>
+            </tr>
+            <!--Two way Enzymatic Cascade, single pair of enzymes  -->
+
+            <tr>
+              <td align="center"><img src="arrows/cascade5.gif"
+              alt="Two way Enzymatic Cascade"></td>
+
+              <td align="center"><img src=
+              "arrows/cascade5def.gif"></td>
+            </tr>
+            <!--Enzymatic Cascade, two intermediate complexes at each step  -->
+
+            <tr>
+              <td align="center"><img src="arrows/cascade6.gif"
+              alt="Enzymatic Cascade w/2 inter. complexes"></td>
+
+              <td align="center"><img src=
+              "arrows/cascade6def.gif"></td>
+            </tr>
+
+            <tr>
+              <td align="center"><img src="arrows/cascade7.gif"
+              alt="Enzymatic Cascade multiple enzymes w/2 inter. complexes"></td>
+
+              <td align="center"><img src=
+              "arrows/cascade7def.gif"></td>
+            </tr>
+          </table><br>
+        </center>
+      </div>
+
+      <div class="logo">
+        <a href="http://sourceforge.net"><img src=
+        "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+        width="125" height="37" border="0" alt=
+        "SourceForge.net Logo"></a>
+      </div>
+    </div><br>
+    
+    <span style="font-size:xx-small;">[2 Sept 2012]</span>
+  </center>
+</body>
+</html>

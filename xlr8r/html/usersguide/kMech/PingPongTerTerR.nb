@@ -1,0 +1,103 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      2959,         94]
+NotebookOptionsPosition[      2446,         72]
+NotebookOutlinePosition[      2882,         89]
+CellTagsIndexPosition[      2839,         86]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["PingPongTerTerR", "Section",
+ CellChangeTimes->{{3.55546916322053*^9, 3.555469168502133*^9}, 
+   3.555469199592852*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"PingPongTerTerR is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.5554675925764008`*^9, 3.5554683462009697`*^9, 
+  3.555468662523411*^9, 3.55546919959307*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx", ",", "Eny"}]], ",", 
+     RowBox[{"PingPongTerTerR", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2", ",", 
+       "kf3", ",", "kr3", ",", "k3"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.5554675925764008`*^9, 3.5554683462009697`*^9, 
+  3.555468662572198*^9, 3.555469199593307*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 \[ShortRightArrow] $Complex$S1$En$, \
+kf1}\\n{$Complex$S1$En$ \[ShortRightArrow] En + S1, kr1}\\n{$Complex$S1$En$ \
+\[ShortRightArrow] Enx + P1, k1}\\n{Enx + S2 \[ShortRightArrow] \
+$Complex$Enx$S2$, kf2}\\n{$Complex$Enx$S2$ \[ShortRightArrow] Enx + S2, \
+kr2}\\n{$Complex$Enx$S2$ \[ShortRightArrow] Eny, k2}\\n{Eny + S3 \
+\[ShortRightArrow] $Complex$S3$Eny$, kf3}\\n{$Complex$S3$Eny$ \
+\[ShortRightArrow] Eny + S3, kr3}\\n{$Complex$S3$Eny$ \[ShortRightArrow] En + \
+P2 + P3, k3}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.5554675925764008`*^9, 3.5554683462009697`*^9, 
+  3.55546866261338*^9, 3.5554691995935383`*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 867},
+WindowMargins->{{Automatic, -957}, {Automatic, 27}},
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 125, 2, 74, "Section"],
+Cell[CellGroupData[{
+Cell[729, 28, 278, 6, 26, "Print"],
+Cell[1010, 36, 693, 18, 68, "Print"],
+Cell[1706, 56, 712, 12, 195, "Print"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

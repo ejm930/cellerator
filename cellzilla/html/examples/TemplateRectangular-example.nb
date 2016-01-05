@@ -1,0 +1,1076 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     52826,       1067]
+NotebookOptionsPosition[     52048,       1036]
+NotebookOutlinePosition[     52506,       1054]
+CellTagsIndexPosition[     52463,       1051]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["TemplateRectangular - example.nb", "Section",
+ CellChangeTimes->{{3.455291632941292*^9, 3.45529163711734*^9}, 
+   3.561579075305094*^9}],
+
+Cell["\<\
+Example Cellzilla2D notebook.
+
+GPL License applies. 
+See http://xlr8r.info and http://cellzilla.info for further details\
+\>", "Text",
+ CellChangeTimes->{
+  3.455291666175642*^9, {3.5615790551305647`*^9, 3.561579075305153*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"<<", "Cellzilla2D.m"}]], "Input",
+ CellChangeTimes->{{3.455275718390193*^9, 3.455275729331229*^9}, {
+   3.455276337819021*^9, 3.4552763785294123`*^9}, {3.4552918078354588`*^9, 
+   3.455291808012578*^9}, {3.4552920056233997`*^9, 3.455292006290444*^9}, {
+   3.455296614125011*^9, 3.455296616780404*^9}, 3.5615790753052197`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"Cellzilla2D\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\" (2.3.6 (10-Nov-2012)) loaded Sat 10 Nov 2012 \
+15:30:51\\nusing \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"xCellerator \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"0.90 and \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"XSSA \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"1204002\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"\\nGPL License Terms Apply\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]]}],
+  SequenceForm[
+   Style["Cellzilla2D", FontFamily -> "Ubuntu,Arial", FontSize -> 12, 
+    FontWeight -> "Bold"], 
+   Style[" (2.3.6 (10-Nov-2012)) loaded Sat 10 Nov 2012 15:30:51\nusing ", 
+    FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["xCellerator ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", 
+    FontWeight -> "Bold"], 
+   Style["0.90 and ", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["XSSA ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> 
+    "Bold"], 
+   Style["1204002", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["\nGPL License Terms Apply", FontColor -> RGBColor[1, 0, 0], 
+    FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> Bold]],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.455276378874589*^9, 3.4552778476076393`*^9, 3.455277886278791*^9, {
+   3.455291808622452*^9, 3.4552918187817793`*^9}, 3.455291852495399*^9, {
+   3.4552919849388723`*^9, 3.455292007263129*^9}, 3.455292047317663*^9, 
+   3.455292136064673*^9, 3.4552922238151608`*^9, 3.455292257534178*^9, {
+   3.455292584634664*^9, 3.455292609177257*^9}, {3.4552926465153103`*^9, 
+   3.4552926878092318`*^9}, 3.45529287887868*^9, {3.455292969117016*^9, 
+   3.455292995284266*^9}, {3.455293201229034*^9, 3.4552932411984673`*^9}, 
+   3.4552933182542343`*^9, 3.455293348875757*^9, 3.455293553299325*^9, 
+   3.45529359621868*^9, 3.455293632964629*^9, 3.455293725106484*^9, 
+   3.455293847803178*^9, {3.4552938887720222`*^9, 3.455293900553379*^9}, 
+   3.4552940378305407`*^9, 3.455294379480501*^9, 3.455294411246628*^9, 
+   3.4552963824606037`*^9, 3.455296617199636*^9, {3.455296822862049*^9, 
+   3.455296840203464*^9}, {3.561579051113944*^9, 3.5615790753058853`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"tissue1", "=", 
+   RowBox[{"TemplateRectangular", "[", 
+    RowBox[{"4", ",", "3"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ShowTissue", "[", 
+  RowBox[{"tissue1", ",", " ", 
+   RowBox[{"\"\<CellNumbers\>\"", "\[Rule]", " ", "True"}], ",", " ", 
+   RowBox[{"ImageSize", "\[Rule]", " ", "200"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.45529652757959*^9, 3.455296566668878*^9}, 
+   3.56157907530599*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{{
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{0, 0}, {1, 0}, {1, 1}, {0, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"1\"\>", {0.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{1, 0}, {2, 0}, {2, 1}, {1, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"2\"\>", {1.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{2, 0}, {3, 0}, {3, 1}, {2, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"3\"\>", {2.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, 0}, {4, 0}, {4, 1}, {3, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"4\"\>", {3.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{0, 1}, {1, 1}, {1, 2}, {0, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"5\"\>", {0.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{1, 1}, {2, 1}, {2, 2}, {1, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"6\"\>", {1.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{2, 1}, {3, 1}, {3, 2}, {2, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"7\"\>", {2.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, 1}, {4, 1}, {4, 2}, {3, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"8\"\>", {3.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{0, 2}, {1, 2}, {1, 3}, {0, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"9\"\>", {0.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{1, 2}, {2, 2}, {2, 3}, {1, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"10\"\>", {1.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{2, 2}, {3, 2}, {3, 3}, {2, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"11\"\>", {2.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, 2}, {4, 2}, {4, 3}, {3, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"12\"\>", {3.5, 2.5}]}}}, {{
+     {GrayLevel[0], LineBox[{{0, 0}, {1, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {0.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{0, 0}, {0, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {0., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{1, 0}, {2, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {1.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{1, 0}, {1, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {1., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{2, 0}, {3, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {2.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{2, 0}, {2, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {2., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, 0}, {4, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{3, 0}, {3, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, 0}, {4, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{0, 1}, {1, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {0.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{0, 1}, {0, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {0., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{1, 1}, {2, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {1.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{1, 1}, {1, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {1., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{2, 1}, {3, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {2.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{2, 1}, {2, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {2., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, 1}, {4, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{3, 1}, {3, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, 1}, {4, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{0, 2}, {1, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {0.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{0, 2}, {0, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {0., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{1, 2}, {2, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {1.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{1, 2}, {1, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {1., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{2, 2}, {3, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {2.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{2, 2}, {2, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {2., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, 2}, {4, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{3, 2}, {3, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, 2}, {4, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{0, 3}, {1, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {0.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{1, 3}, {2, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {1.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{2, 3}, {3, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {2.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{3, 3}, {4, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, 3.}]}}}, {}, {}, {}, {}, 
+   {GrayLevel[0], Thickness[Tiny], LineBox[{{0, 0}, {1, 0}}], 
+    LineBox[{{0, 0}, {0, 1}}], LineBox[{{1, 0}, {2, 0}}], 
+    LineBox[{{2, 0}, {3, 0}}], LineBox[{{3, 0}, {4, 0}}], 
+    LineBox[{{4, 0}, {4, 1}}], LineBox[{{0, 1}, {0, 2}}], 
+    LineBox[{{4, 1}, {4, 2}}], LineBox[{{0, 2}, {0, 3}}], 
+    LineBox[{{4, 2}, {4, 3}}], LineBox[{{0, 3}, {1, 3}}], 
+    LineBox[{{1, 3}, {2, 3}}], LineBox[{{2, 3}, {3, 3}}], 
+    LineBox[{{3, 3}, {4, 3}}]}},
+  ImageSize->200]], "Output",
+ CellChangeTimes->{{3.455296551062149*^9, 3.4552965673009167`*^9}, {
+  3.455296823093107*^9, 3.4552968405259237`*^9}, {3.561579051326417*^9, 
+  3.561579075311108*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"tissue2", "=", 
+   RowBox[{"TemplateRectangular", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"3", ",", " ", "13", ",", " ", "1"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "5"}], ",", " ", "5", ",", "  ", "1"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ShowTissue", "[", 
+  RowBox[{"tissue2", ",", " ", 
+   RowBox[{"\"\<CellNumbers\>\"", "\[Rule]", " ", "True"}]}], "]"}]}], "Input",\
+
+ CellChangeTimes->{{3.455276120644717*^9, 3.4552761237387857`*^9}, {
+   3.45529200929609*^9, 3.4552920130275173`*^9}, {3.455292142676425*^9, 
+   3.4552921441654997`*^9}, {3.455292226346794*^9, 3.455292234385771*^9}, {
+   3.455293113362668*^9, 3.4552931136426163`*^9}, {3.455293188693375*^9, 
+   3.4552931888494053`*^9}, {3.4552937171263027`*^9, 3.455293727619174*^9}, {
+   3.455293906129879*^9, 3.455293926168391*^9}, {3.455294039339938*^9, 
+   3.4552940717218447`*^9}, {3.455294390180936*^9, 3.455294393396574*^9}, {
+   3.45529442415831*^9, 3.455294461826127*^9}, {3.455296571350945*^9, 
+   3.455296583688916*^9}, {3.561579043533402*^9, 3.561579044163581*^9}, 
+   3.5615790753112297`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{{
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, -5}, {4, -5}, {4, -4}, {3, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"1\"\>", {3.5, -4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4, -5}, {5, -5}, {5, -4}, {4, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"2\"\>", {4.5, -4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5, -5}, {6, -5}, {6, -4}, {5, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"3\"\>", {5.5, -4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6, -5}, {7, -5}, {7, -4}, {6, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"4\"\>", {6.5, -4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7, -5}, {8, -5}, {8, -4}, {7, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"5\"\>", {7.5, -4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8, -5}, {9, -5}, {9, -4}, {8, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"6\"\>", {8.5, -4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{9, -5}, {10, -5}, {10, -4}, {9, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"7\"\>", {9.5, -4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{10, -5}, {11, -5}, {11, -4}, {10, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"8\"\>", {10.5, -4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{11, -5}, {12, -5}, {12, -4}, {11, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"9\"\>", {11.5, -4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{12, -5}, {13, -5}, {13, -4}, {12, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"10\"\>", {12.5, -4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, -4}, {4, -4}, {4, -3}, {3, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"11\"\>", {3.5, -3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4, -4}, {5, -4}, {5, -3}, {4, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"12\"\>", {4.5, -3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5, -4}, {6, -4}, {6, -3}, {5, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"13\"\>", {5.5, -3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6, -4}, {7, -4}, {7, -3}, {6, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"14\"\>", {6.5, -3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7, -4}, {8, -4}, {8, -3}, {7, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"15\"\>", {7.5, -3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8, -4}, {9, -4}, {9, -3}, {8, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"16\"\>", {8.5, -3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{9, -4}, {10, -4}, {10, -3}, {9, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"17\"\>", {9.5, -3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{10, -4}, {11, -4}, {11, -3}, {10, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"18\"\>", {10.5, -3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{11, -4}, {12, -4}, {12, -3}, {11, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"19\"\>", {11.5, -3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{12, -4}, {13, -4}, {13, -3}, {12, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"20\"\>", {12.5, -3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, -3}, {4, -3}, {4, -2}, {3, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"21\"\>", {3.5, -2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4, -3}, {5, -3}, {5, -2}, {4, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"22\"\>", {4.5, -2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5, -3}, {6, -3}, {6, -2}, {5, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"23\"\>", {5.5, -2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6, -3}, {7, -3}, {7, -2}, {6, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"24\"\>", {6.5, -2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7, -3}, {8, -3}, {8, -2}, {7, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"25\"\>", {7.5, -2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8, -3}, {9, -3}, {9, -2}, {8, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"26\"\>", {8.5, -2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{9, -3}, {10, -3}, {10, -2}, {9, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"27\"\>", {9.5, -2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{10, -3}, {11, -3}, {11, -2}, {10, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"28\"\>", {10.5, -2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{11, -3}, {12, -3}, {12, -2}, {11, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"29\"\>", {11.5, -2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{12, -3}, {13, -3}, {13, -2}, {12, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"30\"\>", {12.5, -2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, -2}, {4, -2}, {4, -1}, {3, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"31\"\>", {3.5, -1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4, -2}, {5, -2}, {5, -1}, {4, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"32\"\>", {4.5, -1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5, -2}, {6, -2}, {6, -1}, {5, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"33\"\>", {5.5, -1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6, -2}, {7, -2}, {7, -1}, {6, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"34\"\>", {6.5, -1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7, -2}, {8, -2}, {8, -1}, {7, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"35\"\>", {7.5, -1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8, -2}, {9, -2}, {9, -1}, {8, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"36\"\>", {8.5, -1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{9, -2}, {10, -2}, {10, -1}, {9, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"37\"\>", {9.5, -1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{10, -2}, {11, -2}, {11, -1}, {10, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"38\"\>", {10.5, -1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{11, -2}, {12, -2}, {12, -1}, {11, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"39\"\>", {11.5, -1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{12, -2}, {13, -2}, {13, -1}, {12, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"40\"\>", {12.5, -1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, -1}, {4, -1}, {4, 0}, {3, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"41\"\>", {3.5, -0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4, -1}, {5, -1}, {5, 0}, {4, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"42\"\>", {4.5, -0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5, -1}, {6, -1}, {6, 0}, {5, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"43\"\>", {5.5, -0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6, -1}, {7, -1}, {7, 0}, {6, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"44\"\>", {6.5, -0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7, -1}, {8, -1}, {8, 0}, {7, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"45\"\>", {7.5, -0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8, -1}, {9, -1}, {9, 0}, {8, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"46\"\>", {8.5, -0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{9, -1}, {10, -1}, {10, 0}, {9, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"47\"\>", {9.5, -0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{10, -1}, {11, -1}, {11, 0}, {10, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"48\"\>", {10.5, -0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{11, -1}, {12, -1}, {12, 0}, {11, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"49\"\>", {11.5, -0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{12, -1}, {13, -1}, {13, 0}, {12, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"50\"\>", {12.5, -0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, 0}, {4, 0}, {4, 1}, {3, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"51\"\>", {3.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4, 0}, {5, 0}, {5, 1}, {4, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"52\"\>", {4.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5, 0}, {6, 0}, {6, 1}, {5, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"53\"\>", {5.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6, 0}, {7, 0}, {7, 1}, {6, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"54\"\>", {6.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7, 0}, {8, 0}, {8, 1}, {7, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"55\"\>", {7.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8, 0}, {9, 0}, {9, 1}, {8, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"56\"\>", {8.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{9, 0}, {10, 0}, {10, 1}, {9, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"57\"\>", {9.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{10, 0}, {11, 0}, {11, 1}, {10, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"58\"\>", {10.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{11, 0}, {12, 0}, {12, 1}, {11, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"59\"\>", {11.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{12, 0}, {13, 0}, {13, 1}, {12, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"60\"\>", {12.5, 0.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, 1}, {4, 1}, {4, 2}, {3, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"61\"\>", {3.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4, 1}, {5, 1}, {5, 2}, {4, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"62\"\>", {4.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5, 1}, {6, 1}, {6, 2}, {5, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"63\"\>", {5.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6, 1}, {7, 1}, {7, 2}, {6, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"64\"\>", {6.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7, 1}, {8, 1}, {8, 2}, {7, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"65\"\>", {7.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8, 1}, {9, 1}, {9, 2}, {8, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"66\"\>", {8.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{9, 1}, {10, 1}, {10, 2}, {9, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"67\"\>", {9.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{10, 1}, {11, 1}, {11, 2}, {10, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"68\"\>", {10.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{11, 1}, {12, 1}, {12, 2}, {11, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"69\"\>", {11.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{12, 1}, {13, 1}, {13, 2}, {12, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"70\"\>", {12.5, 1.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, 2}, {4, 2}, {4, 3}, {3, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"71\"\>", {3.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4, 2}, {5, 2}, {5, 3}, {4, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"72\"\>", {4.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5, 2}, {6, 2}, {6, 3}, {5, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"73\"\>", {5.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6, 2}, {7, 2}, {7, 3}, {6, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"74\"\>", {6.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7, 2}, {8, 2}, {8, 3}, {7, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"75\"\>", {7.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8, 2}, {9, 2}, {9, 3}, {8, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"76\"\>", {8.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{9, 2}, {10, 2}, {10, 3}, {9, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"77\"\>", {9.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{10, 2}, {11, 2}, {11, 3}, {10, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"78\"\>", {10.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{11, 2}, {12, 2}, {12, 3}, {11, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"79\"\>", {11.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{12, 2}, {13, 2}, {13, 3}, {12, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"80\"\>", {12.5, 2.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, 3}, {4, 3}, {4, 4}, {3, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"81\"\>", {3.5, 3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4, 3}, {5, 3}, {5, 4}, {4, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"82\"\>", {4.5, 3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5, 3}, {6, 3}, {6, 4}, {5, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"83\"\>", {5.5, 3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6, 3}, {7, 3}, {7, 4}, {6, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"84\"\>", {6.5, 3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7, 3}, {8, 3}, {8, 4}, {7, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"85\"\>", {7.5, 3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8, 3}, {9, 3}, {9, 4}, {8, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"86\"\>", {8.5, 3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{9, 3}, {10, 3}, {10, 4}, {9, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"87\"\>", {9.5, 3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{10, 3}, {11, 3}, {11, 4}, {10, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"88\"\>", {10.5, 3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{11, 3}, {12, 3}, {12, 4}, {11, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"89\"\>", {11.5, 3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{12, 3}, {13, 3}, {13, 4}, {12, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"90\"\>", {12.5, 3.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3, 4}, {4, 4}, {4, 5}, {3, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"91\"\>", {3.5, 4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4, 4}, {5, 4}, {5, 5}, {4, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"92\"\>", {4.5, 4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5, 4}, {6, 4}, {6, 5}, {5, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"93\"\>", {5.5, 4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6, 4}, {7, 4}, {7, 5}, {6, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"94\"\>", {6.5, 4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7, 4}, {8, 4}, {8, 5}, {7, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"95\"\>", {7.5, 4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8, 4}, {9, 4}, {9, 5}, {8, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"96\"\>", {8.5, 4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{9, 4}, {10, 4}, {10, 5}, {9, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"97\"\>", {9.5, 4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{10, 4}, {11, 4}, {11, 5}, {10, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"98\"\>", {10.5, 4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{11, 4}, {12, 4}, {12, 5}, {11, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"99\"\>", {11.5, 4.5}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{12, 4}, {13, 4}, {13, 5}, {12, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"100\"\>", {12.5, 4.5}]}}}, {{
+     {GrayLevel[0], LineBox[{{3, -5}, {4, -5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, -5.}]}}, {
+     {GrayLevel[0], LineBox[{{3, -5}, {3, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., -4.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, -5}, {5, -5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4.5, -5.}]}}, {
+     {GrayLevel[0], LineBox[{{4, -5}, {4, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., -4.5}]}}, {
+     {GrayLevel[0], LineBox[{{5, -5}, {6, -5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5.5, -5.}]}}, {
+     {GrayLevel[0], LineBox[{{5, -5}, {5, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5., -4.5}]}}, {
+     {GrayLevel[0], LineBox[{{6, -5}, {7, -5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6.5, -5.}]}}, {
+     {GrayLevel[0], LineBox[{{6, -5}, {6, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6., -4.5}]}}, {
+     {GrayLevel[0], LineBox[{{7, -5}, {8, -5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7.5, -5.}]}}, {
+     {GrayLevel[0], LineBox[{{7, -5}, {7, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7., -4.5}]}}, {
+     {GrayLevel[0], LineBox[{{8, -5}, {9, -5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8.5, -5.}]}}, {
+     {GrayLevel[0], LineBox[{{8, -5}, {8, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8., -4.5}]}}, {
+     {GrayLevel[0], LineBox[{{9, -5}, {10, -5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9.5, -5.}]}}, {
+     {GrayLevel[0], LineBox[{{9, -5}, {9, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9., -4.5}]}}, {
+     {GrayLevel[0], LineBox[{{10, -5}, {11, -5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10.5, -5.}]}}, {
+     {GrayLevel[0], LineBox[{{10, -5}, {10, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10., -4.5}]}}, {
+     {GrayLevel[0], LineBox[{{11, -5}, {12, -5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11.5, -5.}]}}, {
+     {GrayLevel[0], LineBox[{{11, -5}, {11, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11., -4.5}]}}, {
+     {GrayLevel[0], LineBox[{{12, -5}, {13, -5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12.5, -5.}]}}, {
+     {GrayLevel[0], LineBox[{{12, -5}, {12, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12., -4.5}]}}, {
+     {GrayLevel[0], LineBox[{{13, -5}, {13, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {13., -4.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, -4}, {4, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, -4.}]}}, {
+     {GrayLevel[0], LineBox[{{3, -4}, {3, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., -3.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, -4}, {5, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4.5, -4.}]}}, {
+     {GrayLevel[0], LineBox[{{4, -4}, {4, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., -3.5}]}}, {
+     {GrayLevel[0], LineBox[{{5, -4}, {6, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5.5, -4.}]}}, {
+     {GrayLevel[0], LineBox[{{5, -4}, {5, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5., -3.5}]}}, {
+     {GrayLevel[0], LineBox[{{6, -4}, {7, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6.5, -4.}]}}, {
+     {GrayLevel[0], LineBox[{{6, -4}, {6, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6., -3.5}]}}, {
+     {GrayLevel[0], LineBox[{{7, -4}, {8, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7.5, -4.}]}}, {
+     {GrayLevel[0], LineBox[{{7, -4}, {7, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7., -3.5}]}}, {
+     {GrayLevel[0], LineBox[{{8, -4}, {9, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8.5, -4.}]}}, {
+     {GrayLevel[0], LineBox[{{8, -4}, {8, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8., -3.5}]}}, {
+     {GrayLevel[0], LineBox[{{9, -4}, {10, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9.5, -4.}]}}, {
+     {GrayLevel[0], LineBox[{{9, -4}, {9, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9., -3.5}]}}, {
+     {GrayLevel[0], LineBox[{{10, -4}, {11, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10.5, -4.}]}}, {
+     {GrayLevel[0], LineBox[{{10, -4}, {10, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10., -3.5}]}}, {
+     {GrayLevel[0], LineBox[{{11, -4}, {12, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11.5, -4.}]}}, {
+     {GrayLevel[0], LineBox[{{11, -4}, {11, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11., -3.5}]}}, {
+     {GrayLevel[0], LineBox[{{12, -4}, {13, -4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12.5, -4.}]}}, {
+     {GrayLevel[0], LineBox[{{12, -4}, {12, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12., -3.5}]}}, {
+     {GrayLevel[0], LineBox[{{13, -4}, {13, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {13., -3.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, -3}, {4, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, -3.}]}}, {
+     {GrayLevel[0], LineBox[{{3, -3}, {3, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., -2.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, -3}, {5, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4.5, -3.}]}}, {
+     {GrayLevel[0], LineBox[{{4, -3}, {4, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., -2.5}]}}, {
+     {GrayLevel[0], LineBox[{{5, -3}, {6, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5.5, -3.}]}}, {
+     {GrayLevel[0], LineBox[{{5, -3}, {5, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5., -2.5}]}}, {
+     {GrayLevel[0], LineBox[{{6, -3}, {7, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6.5, -3.}]}}, {
+     {GrayLevel[0], LineBox[{{6, -3}, {6, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6., -2.5}]}}, {
+     {GrayLevel[0], LineBox[{{7, -3}, {8, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7.5, -3.}]}}, {
+     {GrayLevel[0], LineBox[{{7, -3}, {7, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7., -2.5}]}}, {
+     {GrayLevel[0], LineBox[{{8, -3}, {9, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8.5, -3.}]}}, {
+     {GrayLevel[0], LineBox[{{8, -3}, {8, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8., -2.5}]}}, {
+     {GrayLevel[0], LineBox[{{9, -3}, {10, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9.5, -3.}]}}, {
+     {GrayLevel[0], LineBox[{{9, -3}, {9, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9., -2.5}]}}, {
+     {GrayLevel[0], LineBox[{{10, -3}, {11, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10.5, -3.}]}}, {
+     {GrayLevel[0], LineBox[{{10, -3}, {10, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10., -2.5}]}}, {
+     {GrayLevel[0], LineBox[{{11, -3}, {12, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11.5, -3.}]}}, {
+     {GrayLevel[0], LineBox[{{11, -3}, {11, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11., -2.5}]}}, {
+     {GrayLevel[0], LineBox[{{12, -3}, {13, -3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12.5, -3.}]}}, {
+     {GrayLevel[0], LineBox[{{12, -3}, {12, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12., -2.5}]}}, {
+     {GrayLevel[0], LineBox[{{13, -3}, {13, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {13., -2.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, -2}, {4, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, -2.}]}}, {
+     {GrayLevel[0], LineBox[{{3, -2}, {3, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., -1.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, -2}, {5, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4.5, -2.}]}}, {
+     {GrayLevel[0], LineBox[{{4, -2}, {4, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., -1.5}]}}, {
+     {GrayLevel[0], LineBox[{{5, -2}, {6, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5.5, -2.}]}}, {
+     {GrayLevel[0], LineBox[{{5, -2}, {5, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5., -1.5}]}}, {
+     {GrayLevel[0], LineBox[{{6, -2}, {7, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6.5, -2.}]}}, {
+     {GrayLevel[0], LineBox[{{6, -2}, {6, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6., -1.5}]}}, {
+     {GrayLevel[0], LineBox[{{7, -2}, {8, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7.5, -2.}]}}, {
+     {GrayLevel[0], LineBox[{{7, -2}, {7, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7., -1.5}]}}, {
+     {GrayLevel[0], LineBox[{{8, -2}, {9, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8.5, -2.}]}}, {
+     {GrayLevel[0], LineBox[{{8, -2}, {8, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8., -1.5}]}}, {
+     {GrayLevel[0], LineBox[{{9, -2}, {10, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9.5, -2.}]}}, {
+     {GrayLevel[0], LineBox[{{9, -2}, {9, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9., -1.5}]}}, {
+     {GrayLevel[0], LineBox[{{10, -2}, {11, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10.5, -2.}]}}, {
+     {GrayLevel[0], LineBox[{{10, -2}, {10, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10., -1.5}]}}, {
+     {GrayLevel[0], LineBox[{{11, -2}, {12, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11.5, -2.}]}}, {
+     {GrayLevel[0], LineBox[{{11, -2}, {11, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11., -1.5}]}}, {
+     {GrayLevel[0], LineBox[{{12, -2}, {13, -2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12.5, -2.}]}}, {
+     {GrayLevel[0], LineBox[{{12, -2}, {12, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12., -1.5}]}}, {
+     {GrayLevel[0], LineBox[{{13, -2}, {13, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {13., -1.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, -1}, {4, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, -1.}]}}, {
+     {GrayLevel[0], LineBox[{{3, -1}, {3, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., -0.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, -1}, {5, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4.5, -1.}]}}, {
+     {GrayLevel[0], LineBox[{{4, -1}, {4, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., -0.5}]}}, {
+     {GrayLevel[0], LineBox[{{5, -1}, {6, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5.5, -1.}]}}, {
+     {GrayLevel[0], LineBox[{{5, -1}, {5, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5., -0.5}]}}, {
+     {GrayLevel[0], LineBox[{{6, -1}, {7, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6.5, -1.}]}}, {
+     {GrayLevel[0], LineBox[{{6, -1}, {6, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6., -0.5}]}}, {
+     {GrayLevel[0], LineBox[{{7, -1}, {8, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7.5, -1.}]}}, {
+     {GrayLevel[0], LineBox[{{7, -1}, {7, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7., -0.5}]}}, {
+     {GrayLevel[0], LineBox[{{8, -1}, {9, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8.5, -1.}]}}, {
+     {GrayLevel[0], LineBox[{{8, -1}, {8, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8., -0.5}]}}, {
+     {GrayLevel[0], LineBox[{{9, -1}, {10, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9.5, -1.}]}}, {
+     {GrayLevel[0], LineBox[{{9, -1}, {9, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9., -0.5}]}}, {
+     {GrayLevel[0], LineBox[{{10, -1}, {11, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10.5, -1.}]}}, {
+     {GrayLevel[0], LineBox[{{10, -1}, {10, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10., -0.5}]}}, {
+     {GrayLevel[0], LineBox[{{11, -1}, {12, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11.5, -1.}]}}, {
+     {GrayLevel[0], LineBox[{{11, -1}, {11, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11., -0.5}]}}, {
+     {GrayLevel[0], LineBox[{{12, -1}, {13, -1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12.5, -1.}]}}, {
+     {GrayLevel[0], LineBox[{{12, -1}, {12, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12., -0.5}]}}, {
+     {GrayLevel[0], LineBox[{{13, -1}, {13, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {13., -0.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, 0}, {4, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{3, 0}, {3, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, 0}, {5, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{4, 0}, {4, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{5, 0}, {6, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{5, 0}, {5, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{6, 0}, {7, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{6, 0}, {6, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{7, 0}, {8, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{7, 0}, {7, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{8, 0}, {9, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{8, 0}, {8, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{9, 0}, {10, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{9, 0}, {9, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{10, 0}, {11, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{10, 0}, {10, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{11, 0}, {12, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{11, 0}, {11, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{12, 0}, {13, 0}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12.5, 0.}]}}, {
+     {GrayLevel[0], LineBox[{{12, 0}, {12, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{13, 0}, {13, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {13., 0.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, 1}, {4, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{3, 1}, {3, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, 1}, {5, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{4, 1}, {4, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{5, 1}, {6, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{5, 1}, {5, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{6, 1}, {7, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{6, 1}, {6, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{7, 1}, {8, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{7, 1}, {7, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{8, 1}, {9, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{8, 1}, {8, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{9, 1}, {10, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{9, 1}, {9, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{10, 1}, {11, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{10, 1}, {10, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{11, 1}, {12, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{11, 1}, {11, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{12, 1}, {13, 1}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12.5, 1.}]}}, {
+     {GrayLevel[0], LineBox[{{12, 1}, {12, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{13, 1}, {13, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {13., 1.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, 2}, {4, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{3, 2}, {3, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, 2}, {5, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{4, 2}, {4, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{5, 2}, {6, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{5, 2}, {5, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{6, 2}, {7, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{6, 2}, {6, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{7, 2}, {8, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{7, 2}, {7, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{8, 2}, {9, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{8, 2}, {8, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{9, 2}, {10, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{9, 2}, {9, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{10, 2}, {11, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{10, 2}, {10, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{11, 2}, {12, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{11, 2}, {11, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{12, 2}, {13, 2}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12.5, 2.}]}}, {
+     {GrayLevel[0], LineBox[{{12, 2}, {12, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{13, 2}, {13, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {13., 2.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, 3}, {4, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{3, 3}, {3, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., 3.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, 3}, {5, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{4, 3}, {4, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., 3.5}]}}, {
+     {GrayLevel[0], LineBox[{{5, 3}, {6, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{5, 3}, {5, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5., 3.5}]}}, {
+     {GrayLevel[0], LineBox[{{6, 3}, {7, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{6, 3}, {6, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6., 3.5}]}}, {
+     {GrayLevel[0], LineBox[{{7, 3}, {8, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{7, 3}, {7, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7., 3.5}]}}, {
+     {GrayLevel[0], LineBox[{{8, 3}, {9, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{8, 3}, {8, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8., 3.5}]}}, {
+     {GrayLevel[0], LineBox[{{9, 3}, {10, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{9, 3}, {9, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9., 3.5}]}}, {
+     {GrayLevel[0], LineBox[{{10, 3}, {11, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{10, 3}, {10, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10., 3.5}]}}, {
+     {GrayLevel[0], LineBox[{{11, 3}, {12, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{11, 3}, {11, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11., 3.5}]}}, {
+     {GrayLevel[0], LineBox[{{12, 3}, {13, 3}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12.5, 3.}]}}, {
+     {GrayLevel[0], LineBox[{{12, 3}, {12, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12., 3.5}]}}, {
+     {GrayLevel[0], LineBox[{{13, 3}, {13, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {13., 3.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, 4}, {4, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, 4.}]}}, {
+     {GrayLevel[0], LineBox[{{3, 4}, {3, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3., 4.5}]}}, {
+     {GrayLevel[0], LineBox[{{4, 4}, {5, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4.5, 4.}]}}, {
+     {GrayLevel[0], LineBox[{{4, 4}, {4, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4., 4.5}]}}, {
+     {GrayLevel[0], LineBox[{{5, 4}, {6, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5.5, 4.}]}}, {
+     {GrayLevel[0], LineBox[{{5, 4}, {5, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5., 4.5}]}}, {
+     {GrayLevel[0], LineBox[{{6, 4}, {7, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6.5, 4.}]}}, {
+     {GrayLevel[0], LineBox[{{6, 4}, {6, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6., 4.5}]}}, {
+     {GrayLevel[0], LineBox[{{7, 4}, {8, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7.5, 4.}]}}, {
+     {GrayLevel[0], LineBox[{{7, 4}, {7, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7., 4.5}]}}, {
+     {GrayLevel[0], LineBox[{{8, 4}, {9, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8.5, 4.}]}}, {
+     {GrayLevel[0], LineBox[{{8, 4}, {8, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8., 4.5}]}}, {
+     {GrayLevel[0], LineBox[{{9, 4}, {10, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9.5, 4.}]}}, {
+     {GrayLevel[0], LineBox[{{9, 4}, {9, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9., 4.5}]}}, {
+     {GrayLevel[0], LineBox[{{10, 4}, {11, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10.5, 4.}]}}, {
+     {GrayLevel[0], LineBox[{{10, 4}, {10, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10., 4.5}]}}, {
+     {GrayLevel[0], LineBox[{{11, 4}, {12, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11.5, 4.}]}}, {
+     {GrayLevel[0], LineBox[{{11, 4}, {11, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11., 4.5}]}}, {
+     {GrayLevel[0], LineBox[{{12, 4}, {13, 4}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12.5, 4.}]}}, {
+     {GrayLevel[0], LineBox[{{12, 4}, {12, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12., 4.5}]}}, {
+     {GrayLevel[0], LineBox[{{13, 4}, {13, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {13., 4.5}]}}, {
+     {GrayLevel[0], LineBox[{{3, 5}, {4, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {3.5, 5.}]}}, {
+     {GrayLevel[0], LineBox[{{4, 5}, {5, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {4.5, 5.}]}}, {
+     {GrayLevel[0], LineBox[{{5, 5}, {6, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {5.5, 5.}]}}, {
+     {GrayLevel[0], LineBox[{{6, 5}, {7, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {6.5, 5.}]}}, {
+     {GrayLevel[0], LineBox[{{7, 5}, {8, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {7.5, 5.}]}}, {
+     {GrayLevel[0], LineBox[{{8, 5}, {9, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {8.5, 5.}]}}, {
+     {GrayLevel[0], LineBox[{{9, 5}, {10, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {9.5, 5.}]}}, {
+     {GrayLevel[0], LineBox[{{10, 5}, {11, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {10.5, 5.}]}}, {
+     {GrayLevel[0], LineBox[{{11, 5}, {12, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {11.5, 5.}]}}, {
+     {GrayLevel[0], LineBox[{{12, 5}, {13, 5}}]}, 
+     {GrayLevel[0], InsetBox["\<\"\"\>", {12.5, 5.}]}}}, {}, {}, {}, {}, 
+   {GrayLevel[0], Thickness[Tiny], LineBox[{{3, -5}, {4, -5}}], 
+    LineBox[{{3, -5}, {3, -4}}], LineBox[{{4, -5}, {5, -5}}], 
+    LineBox[{{5, -5}, {6, -5}}], LineBox[{{6, -5}, {7, -5}}], 
+    LineBox[{{7, -5}, {8, -5}}], LineBox[{{8, -5}, {9, -5}}], 
+    LineBox[{{9, -5}, {10, -5}}], LineBox[{{10, -5}, {11, -5}}], 
+    LineBox[{{11, -5}, {12, -5}}], LineBox[{{12, -5}, {13, -5}}], 
+    LineBox[{{13, -5}, {13, -4}}], LineBox[{{3, -4}, {3, -3}}], 
+    LineBox[{{13, -4}, {13, -3}}], LineBox[{{3, -3}, {3, -2}}], 
+    LineBox[{{13, -3}, {13, -2}}], LineBox[{{3, -2}, {3, -1}}], 
+    LineBox[{{13, -2}, {13, -1}}], LineBox[{{3, -1}, {3, 0}}], 
+    LineBox[{{13, -1}, {13, 0}}], LineBox[{{3, 0}, {3, 1}}], 
+    LineBox[{{13, 0}, {13, 1}}], LineBox[{{3, 1}, {3, 2}}], 
+    LineBox[{{13, 1}, {13, 2}}], LineBox[{{3, 2}, {3, 3}}], 
+    LineBox[{{13, 2}, {13, 3}}], LineBox[{{3, 3}, {3, 4}}], 
+    LineBox[{{13, 3}, {13, 4}}], LineBox[{{3, 4}, {3, 5}}], 
+    LineBox[{{13, 4}, {13, 5}}], LineBox[{{3, 5}, {4, 5}}], 
+    LineBox[{{4, 5}, {5, 5}}], LineBox[{{5, 5}, {6, 5}}], 
+    LineBox[{{6, 5}, {7, 5}}], LineBox[{{7, 5}, {8, 5}}], 
+    LineBox[{{8, 5}, {9, 5}}], LineBox[{{9, 5}, {10, 5}}], 
+    LineBox[{{10, 5}, {11, 5}}], LineBox[{{11, 5}, {12, 5}}], 
+    LineBox[{{12, 5}, {13, 5}}]}}]], "Output",
+ CellChangeTimes->{{3.455294393860415*^9, 3.4552944626847553`*^9}, 
+   3.455296384593781*^9, 3.455296584734688*^9, {3.455296823652521*^9, 
+   3.455296841122897*^9}, {3.561579051753708*^9, 3.5615790753469257`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{640, 750},
+WindowMargins->{{Automatic, -1267}, {Automatic, 72}},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 142, 2, 74, "Section"],
+Cell[712, 26, 237, 7, 87, "Text"],
+Cell[CellGroupData[{
+Cell[974, 37, 349, 5, 40, "Input"],
+Cell[1326, 44, 2857, 64, 62, "Print"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4220, 113, 451, 10, 79, "Input"],
+Cell[4674, 125, 5725, 111, 181, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10436, 241, 1172, 24, 60, "Input"],
+Cell[11611, 267, 40409, 765, 384, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

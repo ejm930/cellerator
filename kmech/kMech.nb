@@ -1,0 +1,2865 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[    101253,       2856]
+NotebookOptionsPosition[     98797,       2777]
+NotebookOutlinePosition[     99559,       2802]
+CellTagsIndexPosition[     99516,       2799]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["kMech", "Title",
+ CellChangeTimes->{{3.555459686397827*^9, 3.555459687605463*^9}}],
+
+Cell["\<\
+Note: use of kMech requires installation of xCellerator/xlr8r.m\
+\>", "Subsubtitle",
+ CellChangeTimes->{{3.555460621382923*^9, 3.5554606573669777`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Abstract from original citation\
+\>", "Section",
+ CellChangeTimes->{{3.5554605479993753`*^9, 3.5554605547024937`*^9}}],
+
+Cell[TextData[{
+ "Chin-Rang Yang , Bruce E. Shapiro , Eric D. Mjolsness and\nG. Wesley \
+Hatfield, \[OpenCurlyDoubleQuote]An enzyme mechanism language for the \
+mathematical\nmodeling of metabolic pathways,\[CloseCurlyDoubleQuote] ",
+ StyleBox["Bioinformatics 21",
+  FontWeight->"Bold"],
+ "(6):774-780,\ndoi:10.1093/bioinformatics/bti068 (2005)\n\nWe have developed \
+an enzyme mechanism language for the mathematical modeling of metabolic \
+pathways. This language, kMech, is a comprehensive collection of single and \
+multiple substrate enzyme reactions and regulatory mechanisms that extends \
+Cellerator function for the mathematical modeling of enzyme reactions. Each \
+mechanism has been codified to generate a set of elementary reactions that \
+can be translated by Cellerator into ordinary differential equations (ODEs) \
+solvable by Mathematica. We have also developed methods that use common \
+kinetic measurements to estimate physical constants required to solve these \
+ODEs. Because kMech assembles fundamental modular association-dissociation \
+reaction mechanisms to describe complex enzyme mechanisms, the \
+kMech/Cellerator dynamic modeling system is more flexible, and easily \
+extended, than commonly used simulation systems based on Michaelis-Menten \
+kinetic equations. We have initially used this system to model branched chain \
+amino acid biosynthesis in Escherichia coli. Our simulations of metabolic and \
+genetic perturbations predict experimentally observed results."
+}], "Text",
+ CellChangeTimes->{{3.555460538817133*^9, 3.5554605712649527`*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["revision Log", "Section",
+ CellChangeTimes->{{3.555459714781636*^9, 3.555459716144059*^9}}],
+
+Cell[TextData[{
+ "8-31-12 1.01 Fix inconsistency of Inh_ arguments used with inh and inh_ \
+arguments used with Inh internally (this is an upper/lower case matching \
+error)\n\n1.0 Reverse engineer from extant copy on IGB website. The original \
+version was developed by Chin-Rang Yang and is described in the following \
+reference:\n\nChin-Rang Yang , Bruce E. Shapiro , Eric D. Mjolsness and\nG. \
+Wesley Hatfield, \[OpenCurlyDoubleQuote]An enzyme mechanism language for the \
+mathematical\nmodeling of metabolic pathways,\[CloseCurlyDoubleQuote] ",
+ StyleBox["Bioinformatics 21",
+  FontWeight->"Bold"],
+ "(6):774-780,\ndoi:10.1093/bioinformatics/bti068 (2005)\n \n Additional \
+information may be available at the original download site\n ",
+ "http://www.igb.uci.edu/tools/sb/metabolic-modeling/35-kmech.html"
+}], "Text",
+ CellChangeTimes->{{3.555459733461699*^9, 3.555459760076495*^9}, {
+  3.555460089099122*^9, 3.555460163777935*^9}, {3.555460225619581*^9, 
+  3.555460346242578*^9}, {3.555460588182968*^9, 3.555460600729658*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["licensing", "Section",
+ CellChangeTimes->{{3.555460363721303*^9, 3.5554603653209267`*^9}}],
+
+Cell["\<\
+This software is part of the xCellerator system. 
+
+xCellerator is free software:  you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.\
+\>", "Text",
+ CellChangeTimes->{{3.5554603828085623`*^9, 3.555460432329329*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["source Code", "Section",
+ CellChangeTimes->{{3.555459724661551*^9, 3.5554597266126842`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"BeginPackage", "[", "\"\<kMech`\>\"", "]"}], ";"}], "\n"}], "\n", 
+
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"kMech", "::", "usage"}], "=", "\n", 
+    "\"\<kMech translates complicated enzymatic reactions and inhibition \
+models using elementary reactions provided in xCellerator.\>\""}], ";"}], 
+  "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"$KmechVersion", " ", "=", " ", "\"\<1.01\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"End", "[", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Name", " ", "Concatenation", " ", "for", " ", "Enzyme"}], "-", 
+    RowBox[{"Substrates", " ", "Complexes"}]}], " ", "*)"}]}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.555458413514868*^9, 3.555458430904002*^9}, {
+  3.555459654583469*^9, 3.5554596725030603`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"NC", "[", "V_Symbol", "]"}], ":=", " ", 
+   RowBox[{"ToExpression", "[", 
+    RowBox[{"StringJoin", "[", 
+     RowBox[{"\"\<$Complex$\>\"", ",", 
+      RowBox[{"ToString", "[", "V", "]"}], ",", "\"\<$\>\""}], "]"}], "]"}]}],
+   ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NC", "[", 
+    RowBox[{"V__", ",", "W_Symbol"}], "]"}], ":=", " ", 
+   RowBox[{"ToExpression", "[", 
+    RowBox[{"StringJoin", "[", 
+     RowBox[{
+      RowBox[{"ToString", "[", 
+       RowBox[{"NC", "[", "V", "]"}], "]"}], ",", 
+      RowBox[{"ToString", "[", "W", "]"}], ",", "\"\<$\>\""}], "]"}], "]"}]}],
+   ";"}]}], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Name", " ", "Concatenation", " ", "for", " ", "Multiple", " ", 
+    "Inhibitors", " ", "Reaction"}], " ", "*)"}], "\n", "\n", " ", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"NC2", "[", "V_", "]"}], ":=", 
+     RowBox[{"ToExpression", "[", 
+      RowBox[{"\"\<$Complex$\>\"", "<>", 
+       RowBox[{"ToString", "[", "V", "]"}], "<>", "\"\<$\>\""}], "]"}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"NC2", "[", 
+      RowBox[{"V__", ",", "W_"}], "]"}], ":=", 
+     RowBox[{"ToExpression", "[", 
+      RowBox[{
+       RowBox[{"ToString", "[", 
+        RowBox[{"NC2", "[", "V", "]"}], "]"}], "<>", 
+       RowBox[{"ToString", "[", "W", "]"}]}], "]"}]}], ";"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Name", " ", "Concatenation", " ", "for", " ", "Initial", " ", 
+    "Condition"}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"InitialCondition", "[", "varName_", "]"}], "=", 
+     RowBox[{"ToExpression", "[", 
+      RowBox[{
+       RowBox[{"ToString", "[", "varName", "]"}], "<>", 
+       "\"\<[0]\[Equal]0\>\""}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"InitialConditionGenerator", "[", "varList_", "]"}], ":=", 
+     RowBox[{"Map", "[", 
+      RowBox[{"InitialCondition", ",", "varList"}], "]"}]}], ";"}], 
+   "\n"}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Kf", ",", " ", 
+    RowBox[{
+    "Kr", " ", "Estimation", " ", "for", " ", "Mass", " ", "Action", " ", 
+     "Model"}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Kf", "[", 
+      RowBox[{"Km_", ",", "Kcat_", ",", "Lamda_"}], "]"}], ":=", 
+     RowBox[{"N", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"Lamda", "*", "Kcat"}], ")"}], "/", "Km"}], "]"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Kf2S", "[", 
+      RowBox[{"Km1_", ",", "Km2_", ",", "Kcat_", ",", "Lamda_"}], "]"}], ":=", 
+     RowBox[{"N", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"Lamda", "*", "Kcat"}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{"Km1", " ", "Km2"}], ")"}]}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Kf3S", "[", 
+      RowBox[{"Km1_", ",", "Km2_", ",", "Km3_", ",", "Kcat_", ",", "Lamda_"}],
+       "]"}], ":=", 
+     RowBox[{"N", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"Lamda", "*", "Kcat"}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{"Km1", " ", "Km2", " ", "Km3"}], ")"}]}], "]"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Kr", "[", 
+      RowBox[{"Kcat_", ",", "Lamda_"}], "]"}], ":=", 
+     RowBox[{"Max", "[", 
+      RowBox[{"0", ",", 
+       RowBox[{"N", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"Lamda", "-", "1"}], ")"}], "*", "Kcat"}], "]"}]}], "]"}]}],
+     ";"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Kfi", ",", 
+    RowBox[{
+    "Kri", " ", "Estimation", " ", "for", " ", "Inhibition", " ", "model"}]}],
+    " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Kfi", "[", 
+      RowBox[{"Km_", ",", "Kcat_", ",", "Lamda_", ",", "Omega_"}], "]"}], ":=", 
+     RowBox[{"N", "[", 
+      RowBox[{"Omega", "*", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Lamda", "*", "Kcat"}], ")"}], "/", "Km"}]}], "]"}]}], ";"}],
+    "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Kri", "[", 
+      RowBox[{"Km_", ",", "Kcat_", ",", "Lamda_", ",", "Omega_", ",", "Ki_"}],
+       "]"}], ":=", 
+     RowBox[{"N", "[", 
+      RowBox[{"Omega", "*", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Lamda", "*", "Kcat"}], ")"}], "/", "Km"}], "*", "Ki"}], 
+      "]"}]}], ";"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Models", " ", "of", " ", 
+    RowBox[{"Inhibition", ":"}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Competitive", " ", "Inhibition"}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Enz", "[", "\n", 
+     RowBox[{
+      OverscriptBox[
+       RowBox[{
+        RowBox[{"{", "S_", "}"}], "\[RightArrowLeftArrow]", 
+        RowBox[{"{", "P_", "}"}]}], "En_"], ",", 
+      RowBox[{"UniUni", "[", 
+       RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+      RowBox[{"CI", "[", 
+       RowBox[{"inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ":=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S", "+", "En"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En"}], "]"}]}], ",", " ", "kf", ",", " ", "kr"}],
+        "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+         RowBox[{"En", "+", "P"}]}], ",", "k"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"En", "+", "inh"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"En", ",", "inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+       "}"}]}], "}"}]}], " ", ";"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.5554598696348457`*^9, 3.555459900019115*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Non", "-", 
+     RowBox[{"Competitive", " ", "Inhibition"}]}], ",", 
+    RowBox[{
+    "assume", " ", "that", " ", "inhibitor", " ", "will", " ", "not", " ", 
+     "interfer", " ", "substrate", " ", "binding", " ", "on", " ", "enzyme"}],
+     ",", " ", 
+    RowBox[{
+     RowBox[{
+     "means", " ", "substrate", " ", "still", " ", "can", " ", "bing", " ", 
+      "Enzyme"}], "-", 
+     RowBox[{"Inhibitor", " ", "complex"}]}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Enz", "[", "\n", 
+     RowBox[{
+      OverscriptBox[
+       RowBox[{
+        RowBox[{"{", "S_", "}"}], "\[RightArrowLeftArrow]", 
+        RowBox[{"{", "P_", "}"}]}], "En_"], ",", 
+      RowBox[{"UniUni", "[", 
+       RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+      RowBox[{"NCI", "[", 
+       RowBox[{"inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ":=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S", "+", "En"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En"}], "]"}]}], ",", " ", "kf", ",", " ", "kr"}],
+        "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+         RowBox[{"En", "+", "P"}]}], ",", "k"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"En", "+", "inh"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"En", ",", "inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S", ",", "En"}], "]"}], "+", "inh"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En", ",", "inh"}], "]"}]}], ",", "kfi", ",", 
+        "kri"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S", "+", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "inh"}], "]"}]}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En", ",", "inh"}], "]"}]}], ",", "kf", ",", 
+        "kr"}], "}"}]}], "}"}]}], ";"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.5554598778882008`*^9, 3.55545989252076*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Non", "-", 
+     RowBox[{"Competitive", " ", "Inhibition"}]}], ",", " ", 
+    RowBox[{"Enzyme", "-", 
+     RowBox[{
+     "Inhibitor", " ", "complex", " ", "has", " ", "residual", " ", "enzyme", 
+      " ", "activity"}]}], ",", " ", 
+    RowBox[{"residualRate", " ", "=", " ", 
+     RowBox[{"0", " ", "to", " ", "1"}]}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Enz", "[", "\n", 
+     RowBox[{
+      OverscriptBox[
+       RowBox[{
+        RowBox[{"{", "S_", "}"}], "\[RightArrowLeftArrow]", 
+        RowBox[{"{", "P_", "}"}]}], "En_"], ",", 
+      RowBox[{"UniUni", "[", 
+       RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+      RowBox[{"NCI", "[", 
+       RowBox[{"inh_", ",", "kfi_", ",", "kri_", ",", "residualRate_"}], 
+       "]"}]}], "]"}], ":=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S", "+", "En"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En"}], "]"}]}], ",", " ", "kf", ",", " ", "kr"}],
+        "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+         RowBox[{"En", "+", "P"}]}], ",", "k"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"En", "+", "inh"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"En", ",", " ", "inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S", ",", "En"}], "]"}], "+", "inh"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En", ",", "inh"}], "]"}]}], ",", "kfi", ",", 
+        "kri"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S", "+", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "inh"}], "]"}]}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En", ",", "inh"}], "]"}]}], ",", "kf", ",", 
+        "kr"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En", ",", "inh"}], "]"}], "\[ShortRightArrow]", 
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "inh"}], "]"}], "+", "P"}]}], ",", 
+        RowBox[{"residualRate", "*", "k"}]}], "}"}]}], "}"}]}], ";"}], 
+  "     "}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.555459911945284*^9, 3.555459931802552*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Un", "-", 
+    RowBox[{"Competitive", " ", "Inhibition"}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Enz", "[", "\n", 
+     RowBox[{
+      OverscriptBox[
+       RowBox[{
+        RowBox[{"{", "S_", "}"}], "\[RightArrowLeftArrow]", 
+        RowBox[{"{", "P_", "}"}]}], "En_"], ",", 
+      RowBox[{"UniUni", "[", 
+       RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+      RowBox[{"UCI", "[", 
+       RowBox[{"inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ":=", 
+    RowBox[{"{", " ", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S", "+", "En"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En"}], "]"}]}], ",", " ", "kf", ",", " ", "kr"}],
+        "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+         RowBox[{"En", "+", "P"}]}], ",", "k"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S", ",", "En"}], "]"}], "+", "inh"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S", ",", "En", ",", "inh"}], "]"}]}], ",", "kfi", ",", 
+        "kri"}], "}"}]}], "}"}]}], ";"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.555459938370791*^9, 3.555459944312539*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Reaction", " ", "Schema", " ", "Translations", " ", "for", " ", 
+    "Multiple", " ", "Substrates", " ", "Reaction"}], " ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Using", " ", "Cellerator", " ", "reactions", " ", "as", " ", "building", 
+    " ", "blocks", " ", "for", " ", "the", " ", "complicated", " ", 
+    "enzymatic", " ", "reactions"}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S_", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P_", "}"}]}], "En_"], ",", 
+       RowBox[{"UniUni", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S", ",", "En"}], "]"}]}], ",", " ", "kf", ",", " ", 
+         "kr"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P"}]}], ",", "k"}], "}"}]}], "}"}]}], " ", 
+    ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"UniBi", " ", "and", " ", "BiUni", " ", "Models"}], " ", "*)"}], 
+   "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P1_", "}"}]}], "En_"], ",", 
+       RowBox[{"BiUni", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "S2", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf", ",", 
+         "kr"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"En", "+", "P1"}]}], ",", "k"}], "}"}]}], "}"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P1_", "}"}]}], "En_"], ",", 
+       RowBox[{"OrderedBiUni", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}]}], ",", "kf1", ",", "kr1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf2", ",", 
+         "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"En", "+", "P1"}]}], ",", "k"}], "}"}]}], "}"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S1_", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"UniBi", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}]}], ",", "kf", ",", "kr"}], "}"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P1", "+", "P2"}]}], ",", "k"}], "}"}]}], 
+      "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P1_", "}"}]}], "En_"], ",", 
+       RowBox[{"BiUni", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "S2", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf", ",", 
+         "kr"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"En", "+", "P1"}]}], ",", "k"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+        "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S1_", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"UniBi", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}]}], ",", "kf", ",", "kr"}], "}"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P1", "+", "P2"}]}], ",", "k"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+        "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S1_", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"UniBi", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{"Inhn_", ",", "kfin_", ",", "krin_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}]}], ",", "kf", ",", "kr"}], "}"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P1", "+", "P2"}]}], ",", "k"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inhn"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inhn"}], "]"}]}], ",", "kfin", ",", "krin"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}], "+", "Inhn"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "Inhn"}], "]"}]}], ",", "kfin", ",", 
+         "krin"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "Inhn"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "Inhn"}], "]"}]}], ",", "kf", ",", 
+         "kr"}], "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P1_", "}"}]}], "En_"], ",", 
+       RowBox[{"BiUni", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{"Inhn_", ",", "kfin_", ",", "krin_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "S2", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf", ",", 
+         "kr"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"En", "+", "P1"}]}], ",", "k"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inhn"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inhn"}], "]"}]}], ",", "kfin", ",", "krin"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "+", "Inhn"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2", ",", "Inhn"}], "]"}]}], ",", 
+         "kfin", ",", "krin"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "Inhn"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2", ",", "Inhn"}], "]"}]}], ",", 
+         "kf", ",", "kr"}], "}"}]}], "}"}]}], ";"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Bi", " ", "Bi", " ", "or", " ", "Sequential", " ", "Model"}], " ",
+    "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"S1", "+", "S2", "+", 
+      RowBox[{
+       RowBox[{"En", "<->", "ES1S2"}], 
+       RowBox[{"(", "X", ")"}]}]}], "->", 
+     RowBox[{"En", "+", "P1", "+", 
+      RowBox[{"P2", " ", "kf"}]}]}], ",", "kr", ",", "k"}], " ", "*)"}], " ", 
+  "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"BiBi", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "S2", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf", ",", 
+         "kr"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"En", "+", "P1", "+", "P2"}]}], ",", "k"}], "}"}]}], 
+      "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"OrderedBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}]}], ",", "kf1", ",", "kr1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf2", ",", 
+         "kr2"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S2"}], "]"}], "+", "P1"}]}], ",", "k"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P2"}]}], ",", "k"}], "}"}]}], "}"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"OrderedBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}]}], ",", "kf1", ",", "kr1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf2", ",", 
+         "kr2"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S2"}], "]"}], "+", "P1"}]}], ",", "k"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P2"}]}], ",", "k"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+        "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"OrderedBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}], ",", 
+       RowBox[{"CI1", "[", 
+        RowBox[{"Inh1_", ",", "kfi1_", ",", "kri1_"}], "]"}], ",", 
+       RowBox[{"CI2", "[", 
+        RowBox[{"Inh2_", ",", "kfi2_", ",", "kri2_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}]}], ",", "kf1", ",", "kr1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf2", ",", 
+         "kr2"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S2"}], "]"}], "+", "P1"}]}], ",", "k"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P2"}]}], ",", "k"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh1"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh1"}], "]"}]}], ",", "kfi1", ",", "kri1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh2"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh2"}], "]"}]}], ",", "kfi1", ",", "kri2"}], 
+        "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"RandomBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}]}], ",", "kf1", ",", "kr1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S2"}], "]"}]}], ",", "kf2", ",", "kr2"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf2", ",", 
+         "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S2"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf1", ",", 
+         "kr1"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"En", "+", "P1", "+", "P2"}]}], ",", "k"}], "}"}]}], 
+      "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"RandomBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}]}], ",", "kf1", ",", "kr1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S2"}], "]"}]}], ",", "kf2", ",", "kr2"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf2", ",", 
+         "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S2"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf1", ",", 
+         "kr1"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"En", "+", "P1", "+", "P2"}]}], ",", "k"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+        "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"RandomBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}], ",", 
+       RowBox[{"CI1", "[", 
+        RowBox[{"Inh1_", ",", "kfi1_", ",", "kri1_"}], "]"}], ",", 
+       RowBox[{"CI2", "[", 
+        RowBox[{"Inh2_", ",", "kfi2_", ",", "kri2_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}]}], ",", "kf1", ",", "kr1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S2"}], "]"}]}], ",", "kf2", ",", "kr2"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf2", ",", 
+         "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S2"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf1", ",", 
+         "kr1"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"En", "+", "P1", "+", "P2"}]}], ",", "k"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh1"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh1"}], "]"}]}], ",", "kfi1", ",", "kri1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh2"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh2"}], "]"}]}], ",", "kfi1", ",", "kri2"}], 
+        "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"RandomBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}]}], ",", "kf1", ",", "kr1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S2"}], "]"}]}], ",", "kf2", ",", "kr2"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf2", ",", 
+         "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S2"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf1", ",", 
+         "kr1"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"En", "+", "P1", "+", "P2"}]}], ",", "k"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}], "+", "Inh"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "Inh"}], "]"}]}], ",", "kfi", ",", 
+         "kri"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S2"}], "]"}], "+", "Inh"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S2", ",", "Inh"}], "]"}]}], ",", "kfi", ",", 
+         "kri"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "+", "Inh"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2", ",", "Inh"}], "]"}]}], ",", 
+         "kfi", ",", "kri"}], "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"RandomBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}], ",", 
+       RowBox[{"NCI1", "[", 
+        RowBox[{"Inh1_", ",", "kfi1_", ",", "kri1_"}], "]"}], ",", 
+       RowBox[{"NCI2", "[", 
+        RowBox[{"Inh2_", ",", "kfi2_", ",", "kri2_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1"}], "]"}]}], ",", "kf1", ",", "kr1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S2"}], "]"}]}], ",", "kf2", ",", "kr2"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf2", ",", 
+         "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S2"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf1", ",", 
+         "kr1"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"En", "+", "P1", "+", "P2"}]}], ",", "k"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh1"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh1"}], "]"}]}], ",", "kfi1", ",", "kri1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}], "+", "Inh1"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "Inh1"}], "]"}]}], ",", "kfi1", ",", 
+         "kri1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S2"}], "]"}], "+", "Inh1"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S2", ",", "Inh1"}], "]"}]}], ",", "kfi1", ",", 
+         "kri1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "+", "Inh1"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2", ",", "Inh1"}], "]"}]}], ",", 
+         "kfi1", ",", "kri1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh2"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh2"}], "]"}]}], ",", "kfi2", ",", "kri2"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1"}], "]"}], "+", "Inh2"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "Inh2"}], "]"}]}], ",", "kfi2", ",", 
+         "kri2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S2"}], "]"}], "+", "Inh2"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S2", ",", "Inh2"}], "]"}]}], ",", "kfi2", ",", 
+         "kri2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "+", "Inh2"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2", ",", "Inh2"}], "]"}]}], ",", 
+         "kfi2", ",", "kri2"}], "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"BiBi", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "S2", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf", ",", 
+         "kr"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"En", "+", "P1", "+", "P2"}]}], ",", "k"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+        "}"}]}], "}"}]}], ";"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "More", " ", "than", " ", "two", " ", "substrates", " ", "and", " ", "two",
+     " ", "products"}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S__", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P__", "}"}]}], "En_"], ",", 
+       RowBox[{"MulS", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"Plus", "[", "S", "]"}], "+", "En"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S"}], "]"}]}], ",", "kf", ",", "kr"}], "}"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", 
+           RowBox[{"Plus", "[", "P", "]"}]}]}], ",", "k"}], "}"}]}], "}"}]}], 
+    ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_", ",", "P3_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"BiTer", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "S2", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}]}], ",", "kf", ",", 
+         "kr"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"En", "+", "P1", "+", "P2", "+", "P3"}]}], ",", "k"}], 
+        "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_", ",", "S3_"}], "}"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"TerBi", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "S2", "+", "S3", "+", "En"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2", ",", "S3"}], "]"}]}], ",", 
+         "kf", ",", "kr"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2", ",", "S3"}], "]"}], 
+          "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P1", "+", "P2"}]}], ",", "k"}], "}"}]}], 
+      "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_", ",", "S3_"}], "}"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_", ",", "P3_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"TerTer", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "S2", "+", "S3", "+", "En"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2", ",", "S3"}], "]"}]}], ",", 
+         "kf", ",", "kr"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2", ",", "S3"}], "]"}], 
+          "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P1", "+", "P2", "+", "P3"}]}], ",", "k"}], 
+        "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_", ",", "S3_"}], "}"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_", ",", "P3_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"TerTer", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "S2", "+", "S3", "+", "En"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2", ",", "S3"}], "]"}]}], ",", 
+         "kf", ",", "kr"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "S1", ",", "S2", ",", "S3"}], "]"}], 
+          "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P1", "+", "P2", "+", "P3"}]}], ",", "k"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+        "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Ping", " ", "Pong", " ", "Model"}], " ", "*)"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"A", "+", 
+       RowBox[{"En", "<->", 
+        RowBox[{"(", "EnA", ")"}]}]}], " ", "->", 
+      RowBox[{"Enx", "+", "C"}]}], ",", "kfA", ",", "krA", ",", "k1", ",", 
+     "En"}], " ", "*)"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Enx", "+", 
+       RowBox[{"B", "<->", "EnxB"}]}], " ", "->", 
+      RowBox[{"E", "+", "F"}]}], ",", "kfB", ",", "krB", ",", "k2", ",", 
+     "En"}], " ", "*)"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "x", " ", "is", " ", "a", " ", "transfered", " ", "functional", " ", 
+     "group"}], " ", "*)"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_"}]], ",", 
+       RowBox[{"PingPong", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+         "k2_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En"}], "]"}]}], ",", " ", "kf1", ",", " ", 
+         "kr1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"Enx", "+", "P1"}]}], ",", "k1"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", "Enx"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx"}], "]"}]}], ",", " ", "kf2", ",", " ", 
+         "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P2"}]}], ",", "k2"}], "}"}]}], "}"}]}], 
+    ";"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"PingPong", " ", "Model", " ", "with", " ", "Non"}], "-", 
+     RowBox[{"Competitive", " ", "Inhibition"}]}], ",", " ", 
+    RowBox[{
+    "100", "%", " ", "inhibition", " ", "when", " ", "saturated", " ", "with",
+      " ", "inhibitor"}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Enz", "[", "\n", 
+     RowBox[{
+      OverscriptBox[
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+        RowBox[{"{", 
+         RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+       RowBox[{"En_", ",", "Enx_"}]], ",", 
+      RowBox[{"PingPong", "[", 
+       RowBox[{
+       "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+        "k2_"}], "]"}], ",", 
+      RowBox[{"NCI", "[", 
+       RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ":=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S1", ",", "En"}], "]"}]}], ",", " ", "kf1", ",", " ", 
+        "kr1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"NC", "[", 
+          RowBox[{"S1", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+         RowBox[{"Enx", "+", "P1"}]}], ",", "k1"}], "}"}], ",", "\n", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S2", "+", "Enx"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S2", ",", "Enx"}], "]"}]}], ",", " ", "kf2", ",", " ", 
+        "kr2"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"NC", "[", 
+          RowBox[{"S2", ",", "Enx"}], "]"}], "\[ShortRightArrow]", 
+         RowBox[{"En", "+", "P2"}]}], ",", "k2"}], "}"}], ",", "\n", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"En", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En"}], "]"}], "+", "Inh"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S1", ",", "En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", 
+        "kri"}], "}"}], ",", "\n", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Enx", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"Enx", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx"}], "]"}], "+", "Inh"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S2", ",", "Enx", ",", "Inh"}], "]"}]}], ",", "kfi", ",", 
+        "kri"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S1", "+", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh"}], "]"}]}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S1", ",", "En", ",", "Inh"}], "]"}]}], ",", "kf1", ",", 
+        "kr1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S2", "+", 
+          RowBox[{"NC", "[", 
+           RowBox[{"Enx", ",", "Inh"}], "]"}]}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S2", ",", "Enx", ",", "Inh"}], "]"}]}], ",", "kf2", ",", 
+        "kr2"}], "}"}]}], "}"}]}], ";"}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"PingPong", " ", "Model", " ", "with", " ", "Non"}], "-", 
+     RowBox[{"Competitive", " ", "Inhibition"}]}], ",", " ", 
+    RowBox[{
+    "has", " ", "residual", " ", "activity", " ", "when", " ", "saturated", 
+     " ", "with", " ", "inhibitor"}]}], " ", "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "Inhibitor", " ", "binds", " ", "enzyme", " ", "causing", " ", 
+     "conformation", " ", "change"}], ",", " ", 
+    RowBox[{"2", " ", "substrates", " ", "moving", " ", "apart"}], ",", 
+    RowBox[{"reduce", " ", "the", " ", "catalytic", " ", "activity"}], ",", 
+    " ", 
+    RowBox[{"but", " ", "not", " ", "100", "%", " ", "inhibition"}]}], " ", 
+   "*)"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"k2", ":", " ", 
+     RowBox[{"kcat", " ", "without", " ", "inhibitor"}]}], ",", " ", 
+    RowBox[{"residualRate", ":", " ", 
+     RowBox[{"residual", " ", "enzyme", " ", "activity", " ", 
+      RowBox[{"(", 
+       RowBox[{"0", " ", "to", " ", "1"}], ")"}], " ", "with", " ", 
+      "saturated", " ", "inhibitor"}]}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_"}]], ",", 
+       RowBox[{"PingPong", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+         "k2_"}], "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_", ",", "residualRate_"}], 
+        "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En"}], "]"}]}], ",", " ", "kf1", ",", " ", 
+         "kr1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"Enx", "+", "P1"}]}], ",", " ", "k1"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", "Enx"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx"}], "]"}]}], ",", " ", "kf2", ",", " ", 
+         "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P2"}]}], ",", " ", "k2"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "Inh"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En", ",", "Inh"}], "]"}]}], ",", " ", "kf1", 
+         ",", " ", "kr1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En", ",", "Inh"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "Inh"}], "]"}], "+", "P1"}]}], ",", 
+         RowBox[{"residualRate", "*", "k1"}]}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"Enx", ",", "Inh"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx", ",", "Inh"}], "]"}]}], ",", " ", "kf2", 
+         ",", " ", "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx", ",", "Inh"}], "]"}], 
+          "\[ShortRightArrow]", 
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"Enx", ",", "Inh"}], "]"}], "+", "P2"}]}], ",", 
+         RowBox[{"residualRate", "*", "k2"}]}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"S1", ",", "En"}], "]"}], "+", "Inh"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En", ",", "Inh"}], "]"}]}], ",", "kfi", ",", 
+         "kri"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Enx", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"Enx", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"S2", ",", "Enx"}], "]"}], "+", "Inh"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx", ",", "Inh"}], "]"}]}], ",", "kfi", ",", 
+         "kri"}], "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_"}]], ",", 
+       RowBox[{"PingPong", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+         "k2_"}], "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{
+        "Inh_", ",", "kfi1_", ",", "kri1_", ",", "kfi2_", ",", "kri2_", ",", 
+         "residualRate_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En"}], "]"}]}], ",", " ", "kf1", ",", " ", 
+         "kr1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"Enx", "+", "P1"}]}], ",", " ", "k1"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", "Enx"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx"}], "]"}]}], ",", " ", "kf2", ",", " ", 
+         "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P2"}]}], ",", " ", "k2"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "Inh"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En", ",", "Inh"}], "]"}]}], ",", " ", "kf1", 
+         ",", " ", "kr1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En", ",", "Inh"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "Inh"}], "]"}], "+", "P1"}]}], ",", 
+         RowBox[{"residualRate", "*", "k1"}]}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"Enx", ",", "Inh"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx", ",", "Inh"}], "]"}]}], ",", " ", "kf2", 
+         ",", " ", "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx", ",", "Inh"}], "]"}], 
+          "\[ShortRightArrow]", 
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"Enx", ",", "Inh"}], "]"}], "+", "P2"}]}], ",", 
+         RowBox[{"residualRate", "*", "k2"}]}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"En", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"En", ",", "Inh"}], "]"}]}], ",", "kfi1", ",", "kri1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"S1", ",", "En"}], "]"}], "+", "Inh"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En", ",", "Inh"}], "]"}]}], ",", "kfi1", ",", 
+         "kri1"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Enx", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"Enx", ",", "Inh"}], "]"}]}], ",", "kfi2", ",", "kri2"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"S2", ",", "Enx"}], "]"}], "+", "Inh"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx", ",", "Inh"}], "]"}]}], ",", "kfi2", ",", 
+         "kri2"}], "}"}]}], "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"PingPong", " ", "Model", " ", "with", " ", "non"}], "-", 
+     RowBox[{
+     "competitive", " ", "inhibition", " ", "for", " ", "the", " ", "2", "nd",
+       " ", "substrate"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_"}]], ",", 
+       RowBox[{"PingPong", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+         "k2_"}], "]"}], ",", 
+       RowBox[{"NCI2", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_", ",", "residualRate_"}], 
+        "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En"}], "]"}]}], ",", " ", "kf1", ",", " ", 
+         "kr1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"Enx", "+", "P1"}]}], ",", " ", "k1"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", "Enx"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx"}], "]"}]}], ",", " ", "kf2", ",", " ", 
+         "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P2"}]}], ",", " ", "k2"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "Inh"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En", ",", "Inh"}], "]"}]}], ",", " ", "kf1", 
+         ",", " ", "kr1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En", ",", "Inh"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"En", ",", "Inh"}], "]"}], "+", "P1"}]}], ",", 
+         RowBox[{"residualRate", "*", "k1"}]}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S2", "+", 
+           RowBox[{"NC", "[", 
+            RowBox[{"Enx", ",", "Inh"}], "]"}]}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx", ",", "Inh"}], "]"}]}], ",", " ", "kf2", 
+         ",", " ", "kr2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx", ",", "Inh"}], "]"}], 
+          "\[ShortRightArrow]", 
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"Enx", ",", "Inh"}], "]"}], "+", "P2"}]}], ",", 
+         RowBox[{"residualRate", "*", "k2"}]}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Enx", "+", "Inh"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"Enx", ",", "Inh"}], "]"}]}], ",", "kfi", ",", "kri"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"NC", "[", 
+            RowBox[{"S2", ",", "Enx"}], "]"}], "+", "Inh"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx", ",", "Inh"}], "]"}]}], ",", "kfi", ",", 
+         "kri"}], "}"}]}], "}"}]}], ";"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "PingPong", " ", "Model", " ", "with", " ", "Competitive", " ", 
+     "Inhibition", " ", "for", " ", "the", " ", "1", "st", " ", "substrate", 
+     " ", "reaction"}], ",", " ", 
+    RowBox[{
+     RowBox[{"and", " ", "Non"}], "-", 
+     RowBox[{
+     "Competitive", " ", "Inhibition", " ", "for", " ", "the", " ", "2", "nd",
+       " ", "substrate", " ", "reaction"}]}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Enz", "[", "\n", 
+     RowBox[{
+      OverscriptBox[
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+        RowBox[{"{", 
+         RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+       RowBox[{"En_", ",", "Enx_"}]], ",", 
+      RowBox[{"PingPong", "[", 
+       RowBox[{
+       "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+        "k2_"}], "]"}], ",", 
+      RowBox[{"CI", "[", 
+       RowBox[{"Inh1_", ",", "kfi1_", ",", "kri1_"}], "]"}], ",", 
+      RowBox[{"NCI", "[", 
+       RowBox[{"Inh2_", ",", "kfi2_", ",", "kri2_"}], "]"}]}], "]"}], ":=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S1", ",", "En"}], "]"}]}], ",", " ", "kf1", ",", " ", 
+        "kr1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"NC", "[", 
+          RowBox[{"S1", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+         RowBox[{"Enx", "+", "P1"}]}], ",", " ", "k1"}], "}"}], ",", "\n", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"En", "+", "Inh1"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"En", ",", "Inh1"}], "]"}]}], ",", "kfi1", ",", "kri1"}], 
+       "}"}], ",", "\n", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S2", "+", "Enx"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S2", ",", "Enx"}], "]"}]}], ",", " ", "kf2", ",", " ", 
+        "kr2"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"NC", "[", 
+          RowBox[{"S2", ",", "Enx"}], "]"}], "\[ShortRightArrow]", 
+         RowBox[{"En", "+", "P2"}]}], ",", " ", "k2"}], "}"}], ",", "\n", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Enx", "+", "Inh2"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"Enx", ",", "Inh2"}], "]"}]}], ",", "kfi2", ",", "kri2"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S2", ",", "Enx"}], "]"}], "+", "Inh2"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S2", ",", "Enx", ",", "Inh2"}], "]"}]}], ",", "kfi2", ",", 
+        "kri2"}], "}"}], ",", "\n", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"S2", "+", 
+          RowBox[{"NC", "[", 
+           RowBox[{"Enx", ",", "Inh2"}], "]"}]}], "\[RightArrowLeftArrow]", 
+         RowBox[{"NC", "[", 
+          RowBox[{"S2", ",", "Enx", ",", "Inh2"}], "]"}]}], ",", "kf2", ",", 
+        "kr2"}], "}"}]}], "}"}]}], ";"}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "PingPong", " ", "Model", " ", "with", " ", "3", "substrates", " ", "and", 
+    " ", "3", " ", "products"}], " ", "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{"pingpong", " ", "with", " ", "part", " ", "orderedBiBi"}], " ", 
+   "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"random", " ", "addition"}], ",", " ", 
+    RowBox[{"ordered", " ", "release"}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_", ",", "S3_"}], "}"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_", ",", "P3_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_", ",", "Eny_"}]], ",", 
+       RowBox[{"PingPongTerTerF", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", "k2_",
+          ",", "kf3_", ",", "kr3_", ",", "k3_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "S2", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "S2", ",", "En"}], "]"}]}], ",", "kf1", ",", 
+         "kr1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "S2", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+          
+          RowBox[{"P1", "+", "Enx"}]}], ",", "k1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Enx", "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"Eny", ",", "P2"}], "]"}]}], ",", "kf2", ",", "kr2"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"Eny", ",", "P2"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"Eny", "+", "P2"}]}], ",", "k2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S3", "+", "Eny"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S3", ",", "Eny"}], "]"}]}], ",", "kf3", ",", "kr3"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S3", ",", "Eny"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P3"}]}], ",", "k3"}], "}"}]}], "}"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"ordered", " ", "addition"}], ",", " ", 
+     RowBox[{"random", " ", "release"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_", ",", "S3_"}], "}"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_", ",", "P3_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_", ",", "Eny_"}]], ",", 
+       RowBox[{"PingPongTerTerR", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", "k2_",
+          ",", "kf3_", ",", "kr3_", ",", "k3_"}], "]"}]}], "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S1", "+", "En"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En"}], "]"}]}], ",", "kf1", ",", "kr1"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S1", ",", "En"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"Enx", "+", "P1"}]}], ",", "k1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Enx", "+", "S2"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"Enx", ",", "S2"}], "]"}]}], ",", "kf2", ",", "kr2"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"Enx", ",", "S2"}], "]"}], "\[ShortRightArrow]", "Eny"}], 
+         ",", "k2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"S3", "+", "Eny"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"NC", "[", 
+           RowBox[{"S3", ",", "Eny"}], "]"}]}], ",", "kf3", ",", "kr3"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NC", "[", 
+           RowBox[{"S3", ",", "Eny"}], "]"}], "\[ShortRightArrow]", 
+          RowBox[{"En", "+", "P2", "+", "P3"}]}], ",", "k3"}], "}"}]}], 
+      "}"}]}], ";"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "PingPong", " ", "Model", " ", "with", " ", "Three", " ", "Inhibitors", 
+     " ", "Non"}], "-", 
+    RowBox[{"Competitive", " ", "Inhibition"}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Enz", "[", "\n", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_"}]], ",", 
+       RowBox[{"PingPong", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+         "k2_"}], "]"}], ",", 
+       RowBox[{"NCmI", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"Inh1_", ",", "kfiInh1_", ",", "kriInh1_"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"Inh2_", ",", "kfiInh2_", ",", "kriInh2_"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"Inh3_", ",", "kfiInh3_", ",", "kriInh3_"}], "}"}]}], 
+        "]"}]}], "]"}], ":=", "\n", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "inhibitorInfo", "}"}], ",", 
+       RowBox[{
+        RowBox[{"CatalyticRxn", "=", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"S1", "+", 
+               RowBox[{"Apply", "[", 
+                RowBox[{"En", ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}]}], 
+              "\[RightArrowLeftArrow]", 
+              RowBox[{"NC2", "[", 
+               RowBox[{"S1", ",", 
+                RowBox[{"Apply", "[", 
+                 RowBox[{"En", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}]}], 
+               "]"}]}], ",", " ", "kf1", ",", " ", "kr1"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"NC2", "[", 
+               RowBox[{"S1", ",", 
+                RowBox[{"Apply", "[", 
+                 RowBox[{"En", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}]}], "]"}],
+               "\[ShortRightArrow]", 
+              RowBox[{
+               RowBox[{"Apply", "[", 
+                RowBox[{"Enx", ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}], "+", 
+               "P1"}]}], ",", "k1"}], "}"}], ",", "\n", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"S2", "+", 
+               RowBox[{"Apply", "[", 
+                RowBox[{"Enx", ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}]}], 
+              "\[RightArrowLeftArrow]", 
+              RowBox[{"NC2", "[", 
+               RowBox[{"S2", ",", 
+                RowBox[{"Apply", "[", 
+                 RowBox[{"Enx", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}]}], 
+               "]"}]}], ",", " ", "kf2", ",", " ", "kr2"}], "}"}], ",", "\n", 
+           
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"NC2", "[", 
+               RowBox[{"S2", ",", 
+                RowBox[{"Apply", "[", 
+                 RowBox[{"Enx", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}]}], "]"}],
+               "\[ShortRightArrow]", 
+              RowBox[{
+               RowBox[{"Apply", "[", 
+                RowBox[{"En", ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}], "+", 
+               "P2"}]}], ",", "k2"}], "}"}]}], "}"}]}], ";", "\n", 
+        RowBox[{"inhibitorInfo", "=", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"Inh1", ",", " ", "kfiInh1", ",", "kriInh1"}], "}"}], ",",
+            " ", 
+           RowBox[{"{", 
+            RowBox[{"Inh2", ",", " ", "kfiInh2", ",", "kriInh2"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"Inh3", ",", " ", "kfiInh3", ",", "kriInh3"}], "}"}]}], 
+          "}"}]}], ";", "\n", 
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"inhibitor", "=", "1"}], ",", 
+          RowBox[{"inhibitor", "<=", "3"}], ",", 
+          RowBox[{"inhibitor", "++"}], ",", 
+          RowBox[{
+           RowBox[{"InhibitionRxn", "[", "inhibitor", "]"}], "=", 
+           RowBox[{"Flatten", "[", 
+            RowBox[{
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{"{", "\n", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"Apply", "[", 
+                    RowBox[{"En", ",", 
+                    RowBox[{"RotateRight", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "j", ",", "k"}], "}"}], ",", 
+                    RowBox[{"inhibitor", "-", "1"}]}], "]"}]}], "]"}], "+", 
+                    RowBox[{"inhibitorInfo", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"inhibitor", ",", "1"}], "]"}], "]"}]}], 
+                    "\[RightArrowLeftArrow]", 
+                    RowBox[{"Apply", "[", 
+                    RowBox[{"En", ",", 
+                    RowBox[{"RotateRight", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "j", ",", "k"}], "}"}], ",", 
+                    RowBox[{"inhibitor", "-", "1"}]}], "]"}]}], "]"}]}], ",", 
+                   
+                   RowBox[{"inhibitorInfo", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"inhibitor", ",", "2"}], "]"}], "]"}], ",", 
+                   RowBox[{"inhibitorInfo", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"inhibitor", ",", "3"}], "]"}], "]"}]}], "}"}], 
+                 ",", "\n", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"NC2", "[", 
+                    RowBox[{"S1", ",", 
+                    RowBox[{"Apply", "[", 
+                    RowBox[{"En", ",", 
+                    RowBox[{"RotateRight", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "j", ",", "k"}], "}"}], ",", 
+                    RowBox[{"inhibitor", "-", "1"}]}], "]"}]}], "]"}]}], 
+                    "]"}], "+", 
+                    RowBox[{"inhibitorInfo", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"inhibitor", ",", "1"}], "]"}], "]"}]}], 
+                    "\[RightArrowLeftArrow]", "\n", "   ", 
+                    RowBox[{"NC2", "[", 
+                    RowBox[{"S1", ",", 
+                    RowBox[{"Apply", "[", 
+                    RowBox[{"En", ",", 
+                    RowBox[{"RotateRight", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "j", ",", "k"}], "}"}], ",", 
+                    RowBox[{"inhibitor", "-", "1"}]}], "]"}]}], "]"}]}], 
+                    "]"}]}], ",", 
+                   RowBox[{"inhibitorInfo", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"inhibitor", ",", "2"}], "]"}], "]"}], ",", 
+                   RowBox[{"inhibitorInfo", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"inhibitor", ",", "3"}], "]"}], "]"}]}], "}"}], 
+                 ",", "\n", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"Apply", "[", 
+                    RowBox[{"Enx", ",", 
+                    RowBox[{"RotateRight", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "j", ",", "k"}], "}"}], ",", 
+                    RowBox[{"inhibitor", "-", "1"}]}], "]"}]}], "]"}], "+", 
+                    RowBox[{"inhibitorInfo", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"inhibitor", ",", "1"}], "]"}], "]"}]}], 
+                    "\[RightArrowLeftArrow]", "\n", "   ", 
+                    RowBox[{"Apply", "[", 
+                    RowBox[{"Enx", ",", 
+                    RowBox[{"RotateRight", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "j", ",", "k"}], "}"}], ",", 
+                    RowBox[{"inhibitor", "-", "1"}]}], "]"}]}], "]"}]}], ",", 
+                   
+                   RowBox[{"inhibitorInfo", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"inhibitor", ",", "2"}], "]"}], "]"}], ",", 
+                   RowBox[{"inhibitorInfo", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"inhibitor", ",", "3"}], "]"}], "]"}]}], "}"}], 
+                 ",", "\n", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"NC2", "[", 
+                    RowBox[{"S2", ",", 
+                    RowBox[{"Apply", "[", 
+                    RowBox[{"Enx", ",", 
+                    RowBox[{"RotateRight", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "j", ",", "k"}], "}"}], ",", 
+                    RowBox[{"inhibitor", "-", "1"}]}], "]"}]}], "]"}]}], 
+                    "]"}], "+", 
+                    RowBox[{"inhibitorInfo", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"inhibitor", ",", "1"}], "]"}], "]"}]}], 
+                    "\[RightArrowLeftArrow]", 
+                    RowBox[{"NC2", "[", 
+                    RowBox[{"S2", ",", 
+                    RowBox[{"Apply", "[", 
+                    RowBox[{"Enx", ",", 
+                    RowBox[{"RotateRight", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "j", ",", "k"}], "}"}], ",", 
+                    RowBox[{"inhibitor", "-", "1"}]}], "]"}]}], "]"}]}], 
+                    "]"}]}], ",", 
+                   RowBox[{"inhibitorInfo", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"inhibitor", ",", "2"}], "]"}], "]"}], ",", 
+                   RowBox[{"inhibitorInfo", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"inhibitor", ",", "3"}], "]"}], "]"}]}], "}"}]}], 
+                "\n", "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"j", ",", "0", ",", "1"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"k", ",", "0", ",", "1"}], "}"}]}], "]"}], ",", "1"}],
+             "]"}]}]}], "]"}], ";", "\n", 
+        RowBox[{"Union", "[", 
+         RowBox[{"CatalyticRxn", ",", 
+          RowBox[{"Flatten", "[", 
+           RowBox[{
+            RowBox[{"Map", "[", 
+             RowBox[{"InhibitionRxn", ",", 
+              RowBox[{"{", 
+               RowBox[{"1", ",", "2", ",", "3"}], "}"}]}], "]"}], ",", "2"}], 
+           "]"}]}], "]"}]}]}], "]"}]}], ";"}], "\n"}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+     RowBox[{
+     "\"\< kMech \>\"", "<>", "kMech`Private`$KmechVersion", "<>", 
+      "\"\< is loaded \>\""}], ",", 
+     RowBox[{"FontFamily", "\[Rule]", "\"\<Ubuntu,Arial\>\""}]}], "]"}], 
+   "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"EndPackage", "[", " ", "]"}], ";"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.555458452985448*^9, 3.555458472490102*^9}, {
+  3.55545871463932*^9, 3.5554587162385187`*^9}, {3.555459287189012*^9, 
+  3.55545930895782*^9}, {3.55545941830227*^9, 3.555459430977806*^9}}]
+}, Closed]]
+}, Open  ]]
+},
+AutoGeneratedPackage->Automatic,
+WindowSize->{868, 867},
+WindowMargins->{{392, Automatic}, {-144, Automatic}},
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.5, 1.5 Inherited],
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> 
+     FrontEnd`FileName[{"Report"}, "StandardReport.nb", CharacterEncoding -> 
+       "UTF-8"]]]}, Visible -> False, FrontEndVersion -> 
+  "8.0 for Linux x86 (64-bit) (October 10, 2011)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 88, 1, 127, "Title"],
+Cell[670, 25, 162, 3, 47, "Subsubtitle"],
+Cell[CellGroupData[{
+Cell[857, 32, 128, 3, 113, "Section"],
+Cell[988, 37, 1575, 23, 546, "Text"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[2600, 65, 97, 1, 66, "Section"],
+Cell[2700, 68, 1034, 16, 358, "Text"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[3771, 89, 96, 1, 66, "Section"],
+Cell[3870, 92, 754, 16, 382, "Text"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[4661, 113, 98, 1, 66, "Section"],
+Cell[4762, 116, 917, 25, 328, "Input",
+ InitializationCell->True],
+Cell[5682, 143, 679, 20, 139, "Input",
+ InitializationCell->True],
+Cell[6364, 165, 789, 23, 166, "Input",
+ InitializationCell->True],
+Cell[7156, 190, 674, 20, 220, "Input",
+ InitializationCell->True],
+Cell[7833, 212, 1556, 50, 301, "Input",
+ InitializationCell->True],
+Cell[9392, 264, 895, 29, 166, "Input",
+ InitializationCell->True],
+Cell[10290, 295, 1495, 42, 279, "Input",
+ InitializationCell->True],
+Cell[11788, 339, 2424, 69, 360, "Input",
+ InitializationCell->True],
+Cell[14215, 410, 2696, 77, 391, "Input",
+ InitializationCell->True],
+Cell[16914, 489, 1489, 43, 225, "Input",
+ InitializationCell->True],
+Cell[18406, 534, 11648, 332, 1927, "Input",
+ InitializationCell->True],
+Cell[30057, 868, 23399, 666, 3249, "Input",
+ InitializationCell->True],
+Cell[53459, 1536, 7935, 232, 1338, "Input",
+ InitializationCell->True],
+Cell[61397, 1770, 3737, 107, 526, "Input",
+ InitializationCell->True],
+Cell[65137, 1879, 13611, 371, 1732, "Input",
+ InitializationCell->True],
+Cell[78751, 2252, 3331, 93, 526, "Input",
+ InitializationCell->True],
+Cell[82085, 2347, 4750, 134, 751, "Input",
+ InitializationCell->True],
+Cell[86838, 2483, 11318, 273, 1336, "Input",
+ InitializationCell->True],
+Cell[98159, 2758, 610, 15, 112, "Input",
+ InitializationCell->True]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

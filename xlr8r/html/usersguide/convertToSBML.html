@@ -1,0 +1,115 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>xCellerator</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src=
+        "logo.svg" alt="The xCellerator Project" width="150"></a>
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="blackfunction" style=
+            "font-size:x-large;font-weight:bold;">
+            convertToSBML</td>
+
+            <td align="right"><a class="button" href=
+            "index.html">Reference Home</a></td>
+          </tr>
+        </table>
+        <hr color="purple">
+
+        <p><span class="blackfunction">convertToSBML[network, ic,
+        rates, id, name, compartment]</span> converts an xlr8r
+        model into SBML Level 2 Version 1</p>
+        <hr color="#FF7636">
+        <span style="font-size:x-small">Requires xlr8r 0.25,
+        MathSBML 2.5.25, xlr8r2SBML.m</span>
+
+        <p><span class="blackfunction">network</span> is any xlr8r
+        model that is compatable with <a class="blackfunction"
+        href="interpret.html">interpret</a>.</p>
+
+        <p><span class="blackfunction">ic</span> is any list of
+        xlr8r initial conditions such as <span class=
+        "blackfunction">{x<sub>1</sub>-&gt;a<sub>1</sub>,
+        x<sub>2</sub>-&gt;a<sub>2</sub>,...}</span>.</p>
+
+        <p><span class="blackfunction">rates</span> is any list of
+        replacement rules that will be converted to SBML parameter
+        values, as in <span class="blackfunction">{a-&gt;27,
+        b-&gt;3, ...}</span></p>
+
+        <p><span class="blackfunction">id</span> is the desired
+        SBML model id.</p>
+
+        <p><span class="blackfunction">name</span> is the desired
+        SBML model name.</p>
+
+        <p><span class="blackfunction">compartment</span> is the
+        desired SBML compartment id.</p>
+
+        <p>The output of is an XML string.</p><span class=
+        "header">Example</span>
+        <pre class="blackfunction">
+        &lt;&lt;xlr8r.m;
+        &lt;&lt;mathsbml.m;
+        &lt;&lt;xlr8r2SBML.m;
+        ...
+        <span class="bluefunction">(* define the model *)</span>
+        m={{A+En-&gt;X, k1},{X-&gt;A+En, k2}, {X-&gt;B+En, k3}};
+        r={k1-&gt;0.01, k2-&gt;0.05, k3-&gt;1};
+        ic={A-&gt;1, En-&gt;1, B-&gt;0};
+        ...
+        <span class=
+"bluefunction">(* do stuff in xlr8r with the model *)</span>
+        ...
+        interpret[m]<span class="greenfunction">
+        {{A'[t]==-k1 A[t] En[t] + k2 X[t], 
+             B'[t]==k3 X[t],
+             En'[t]= ...}
+            {A, B, En, X}</span>
+        ...
+        <span class=
+"bluefunction">(* generate SBML for the model *)</span>
+        sbml=convertToSBML[m, ic, rates, "enzmod", 
+           "Simple Enzymatic Reaction", "cell"];
+        ...
+        <span class=
+"bluefunction">(* Save the sbml to an xml file *)</span>       
+        Export["myfile.xml", sbml];
+</pre><span class="header">Implementation Notes</span>
+
+        <ul>
+          <li>Models are converted to SBML Level 2 Version 1.</li>
+        </ul><span class="header">See also</span>
+
+        <ul>
+          <li><a class="blackfunction" href=
+          "SBML2xlr8r.html">SBML2xlr8r</a></li>
+        </ul><br>
+
+        <div class="logo" style=
+        "text-align:center;&gt; &lt;A href="><img src=
+        "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+        width="125" height="37" border="0" alt=
+        "SourceForge.net Logo"></div>
+      </div><br>
+      <span style="font-size:xx-small;">[rev 18 July 2012]</span>
+    </div>
+  </center>
+</body>
+</html>

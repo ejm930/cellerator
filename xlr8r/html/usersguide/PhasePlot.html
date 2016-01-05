@@ -1,0 +1,90 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>xCellerator</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src=
+        "logo.svg" alt="The xCellerator Project" width="150"></a>
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="blackfunction" style=
+            "font-size:x-large;font-weight:bold;">PhasePlot</td>
+
+            <td align="right"><a class="button" href=
+            "index.html">Reference Home</a></td>
+          </tr>
+        </table>
+        <hr color="#ff7636">
+
+        <p>Makes a parametric plot of two variables in a
+        simulation.</p>
+
+        <p style="font-size:x-small;">New in version 0.68</p>
+        <hr color="#ff7636">
+
+        <p><span class="blackfunction">PhasePlot[num, {xvar, yvar},
+        {tbegin, tend}, options]</span></p>
+
+        <p><span class="blackfunction">num</span> is the output of
+        <a href="run.html" class="blackfunction">run</a></p>
+
+        <p><span class="blackfunction">xvar</span> is the system
+        variable plotted on the x-axis</p>
+
+        <p><span class="blackfunction">yvar</span> is the system
+        variable plotted on the y-axis</p>
+
+        <p><span class="blackfunction">tbegin, tend</span> give the
+        range of times to use to select the dat to plot</p>
+
+        <p><span class="blackfunction">options</span> are any options
+        for <a href=
+        "http://reference.wolfram.com/mathematica/ref/Plot.html"
+        class="blackfunction">Plot</a></p>
+
+        <p>The resulting plot is a plot of <span class=
+        "blackfunction">yvar</span> as a function of <span class=
+        "blackfunction">xvar</span> from t=<span class=
+        "blackfunction">tbegin</span> to <span class=
+        "blackfunction">tend</span></p>
+        <h3>Example</h3>
+
+        <p><a href="PhasePlot-Example.png"><img src=
+        "PhasePlot-Example.png" width="500" alt=
+        "PhasePlot example"></a></p><span class=
+        "header">Implementation Notes</span>
+
+        <p><span class="blackfunction">PhasePlot</span> is a wrapper for
+        <a href=
+        "http://reference.wolfram.com/mathematica/ref/ParametricPlot.html"
+        class="blackfunction">ParametricPlot</a>.</p><br>
+        <br>
+        <br>
+
+        <div class="logo" style="text-align:center;">
+          <a href="http://sourceforge.net/projects/xlr8r/files/"><img src=
+          "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+          width="125" height="37" border="0" alt=
+          "SourceForge.net Logo"></a>
+        </div>
+      </div><br>
+     </div>    <br>
+      <span style="font-size:xx-small;">[21 July 2012]</span>
+ 
+  </center>
+</body>
+</html>

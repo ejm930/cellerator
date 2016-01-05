@@ -1,0 +1,88 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>CellsOnTop</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info/" border="0"><img src="logo.svg" alt="The xCellerator Project" width="150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style="font-size:large;font-weight:bold;" width="50%" valign="top">CellsOnTop,
+            CellsOnBottom, CellsOnLeft, CellsOnRight, EdgesOnTop, EdgesOnBottom, EdgesOnLeft, EdgesOnRight,
+            VerticesOnTop, VerticesOnBotom, VerticesOnLeft, VerticesOnRight</td>
+
+            <td align="right" valign="top"><a class="button" href="./index.html">Cellzilla2D Home</a></td>
+          </tr>
+        </table>
+        <hr color="#FF7636">
+
+        <p class="header">Description</p>
+
+        <p><span class="function">Needs["Cellzilla2D`"];</span></p>
+
+        <p class="header">Return Value</p>
+
+        <p>Returns a list of cells, edges, or vertex numbers that lie on the left, right, top or bottom of an object,
+        as defined by the outward projecting normal vector.</p>
+
+        <p class="header">Options</p>
+
+        <p class="header">Example</p>
+
+        <p>[ <a href="examples/EdgesOnTop-example.nb.zip">Download Example as Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name="display" src="./examples/EdgesOnTop-example.htm" id=
+        "display" style="background-color:white;"><a href="">View as html.</a></iframe></p>
+
+        <p class="header">Implementation Notes</p>
+
+        <p>In some cases (such as the example shown) some of the identifications may be counter-intuitive.</p>
+
+        <p>A vertex is on the left, right, top, or bottom of the tissue if (a) it is on the boundary and (b) the dot
+        product of all the outward vectors returned by <a href="CellOutwardVector.html" class=
+        "function">CellOutwardVector</a> for that vertex and the canonical direction vector is positive. The canonical
+        direction vectors are {0,1}, {0,-1}, {1,0}, {-1,0} for top, bottom, right, and left, respectively.</p>
+
+        <p>An edge is on the left, right, top, or bottom if either endpoint is on the left, right, top, or bottom of
+        the tissue, respectively.</p>
+
+        <p>A cell is on the left, right, top, or bottom if any of its component edges are on the left, right, top or
+        bottom of th tissue.</p>
+
+        <p class="header">See Also</p>
+        
+        <p><a class="function" href="CellOutwardVector.html">CellOutwardVector</a>,
+        <a class="function" href="VertexOutwardVector.html">VertexOutwardVector</a>
+        </p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4" width="125" height="37" border="0" alt=
+            "SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[ 9 Nov 2012 ]</span>
+    </div>
+  </center>
+</body>
+</html>

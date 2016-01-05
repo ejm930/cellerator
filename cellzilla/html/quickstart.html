@@ -1,0 +1,138 @@
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>Cellzilla Protocols</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info/" border="0"><img src="logo.svg" alt=
+        "The xCellerator Project" width="150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="sans" style="font-size:x-large;font-weight:bold;">
+            Cellzilla Quick Start</td>
+
+            <td align="right"><a class="button" href="./index.html">Cellzilla2D
+            Home</a></td>
+          </tr>
+        </table>
+        <hr color="#FF7636">
+
+        <ol>
+          <li>
+            <p class="header">Download and Install Cellzilla2D</p>
+
+            <p>Download and installation instructions are given <a href=
+            "Installation.html">here</a>.</p>
+          </li>
+
+          <li>
+            <p class="header">Create a Cellerator model</p>
+
+            <p>Cellzilla needs a model of a network in a <b>single
+            compartment</b>; this model is then automatically reproduced on a
+            template that you will specify. Quick start instructions for xlr8r
+            are <a href=
+            "http://xlr8r.info/usersguide/Quick-Start.html">here</a>.</p>
+          </li>
+
+          <li>
+            <p class="header">Create a geometric template</p>
+
+            <p>The template consists of a representation of a two dimensional
+            tissue composed of cells, stored in a data structure called a
+            <a href="Tissue.html" class="function">Tissue</a>. Each cell is a
+            separate compartment in this data structure.</p>
+
+            <p>You can use a pre-defined template, such as the ones picture
+            <a href="Tissue-Templates.html">here</a>; look in the index on
+            <a href="index.html">main Cellzilla web page</a> for functions
+            starting with the name <span class="function">Template</span> to
+            generate one of these.</p>
+
+            <p>You can also define the tissue directly from an external
+            template by formatting the data structure as described <a href=
+            "Tissue.html">here</a>, or by reading from a PLY file or flat file
+            tissue description.</p>
+          </li>
+
+          <li>
+            <p class="header">Populate your model to the template (static simulations)</p>
+
+            <p>The easiest way to do this is with the function <a href=
+            "CelleratorNetwork.html" class=
+            "function">CelleratorNetwork</a>, which is used to generate
+            simulations on non-growing, static tissue.</p>
+            
+  
+          </li>
+
+          <li>
+            <p class="header">Run a simulation on the Static Tissue</p>
+
+            <p>Run a simulation and plot the results, e.g., with <a class=
+            "function" href="RunSim.html">RunSim</a> and <a href="SimPlot.html"
+            class="function">SimPlot</a>. You may want to plot your results on
+            a template with <a href="SimAnimate.html" class=
+            "function">SimAnimate</a>.</p>
+
+            <p>A simple example that does all of the above steps on a
+            rectangular template using coupled simple harmonic oscillators is
+            given <a href="SimAnimate.html">here</a></p>
+            
+            <p>The results of static simulations - e.g., the values of variables
+            as a function of time - are computed entirely in memory and will
+            be forgotten when you quit Mathematica. If you will need them in 
+            the future they can be saved with the built-in Mathematica function 
+            Save.</p>
+          </li>
+          
+          <li><p class="header">Incorporate growth and cell division</p>
+          
+          <p>The function <a class="function" href="grow.html">grow</a> incorporates the 
+           functionality of <span class="function">CelleratorNetwork</span> and <span 
+           class="function">RunSim</span> when 
+            cell growth and/or cell division is going to occur. (Note that cell growth and
+            division are included only starting in Version 3.)</p>   
+            
+            <p>Because the tissue is constantly changing the entire system is 
+            recomputed after each cell division. This leads to a heavy demand on
+            computer resources. Consequently, rather than saving the solution
+            internally in memory, it is written to disk after each cell division.
+            These files can easily be recovered for later examination and plotting. 
+            Several functions such as <span class="function">GetSavedFile</span>, 
+            <span class="function">SimAnimate</span>, 
+            <span class="function">ShowTissue</span> and 
+            <span class="function">SimPlot</span> have interactive features that allow you to select the desired
+            file and perform these functions. </p>       
+          </li>
+        </ol>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2012-11-08 ]</span>
+    </div>
+  </center>
+</body>
+</html>

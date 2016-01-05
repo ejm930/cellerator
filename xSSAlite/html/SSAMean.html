@@ -1,0 +1,100 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.0.3" >
+  <meta name="generator" content="Bluefish 2.0.3" >
+  <meta name="generator" content="Bluefish 2.0.3" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>SSAMean</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src="logo.jpg" alt="The xCellerator Project" width="150"></a><br>
+        xSSA
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style="font-size:x-large;font-weight:bold;">SSAMean</td>
+
+            <td align="right"><a class="button" href="./index.html">xSSA Home</a></td>
+          </tr>
+        </table>
+        <hr color="purple">
+
+        <p><span class="function">Needs["xSSA`"];</span></p>
+
+        <p class="header">Return Value</p>
+
+        <p><span class="function">SSAMean[{s1, s2, ...}]</span> returns mean and standard deviations of the simulations
+        as a function of time. Statistics are based on linear interpolation, and not the precise value of the species
+        at any given time point. For example, if in a particular instantiation X=49 from t=0 to 10, and then changes to
+        50 at t=10, the value used at t=5 that will be used from that instantiation will be 49.5 and not 49.</p>
+
+        <p>(It is planned to add the option to use the exact (rather than intepolated) value in a future release.)</p>
+
+        <p><span class="function">SSAMean</span> returns the following lists of interpolating functions:</p>
+
+        <p><span class="function">{"Means"&#8594;<span style="font-family:times;font-style:italic;color:black;">list of
+        interpolating functions</span>,<br>
+        "StandardDeviations"&#8594;<span style="font-family:times;font-style:italic;color:black;">list of interpolating
+        functions</span>,<br>
+        "MeanPlusSigma"&#8594;<span style="font-family:times;font-style:italic;color:black;">list of interpolating
+        functions</span>,<br>
+        "MeanPlus2Sigma"&#8594;<span style="font-family:times;font-style:italic;color:black;">list of interpolating
+        functions</span>,<br>
+        "MeanPlus3Sigma"&#8594;<span style="font-family:times;font-style:italic;color:black;">list of interpolating
+        functions</span>,<br>
+        "MeanMinusSigma"&#8594;<span style="font-family:times;font-style:italic;color:black;">list of interpolating
+        functions</span>,<br>
+        "MeanMinus2Sigma"&#8594;<span style="font-family:times;font-style:italic;color:black;">list of interpolating
+        functions</span>,<br>
+        "MeanMinus3Sigma"&#8594;<span style="font-family:times;font-style:italic;color:black;">list of interpolating
+        functions</span><br>
+        }</span></p>
+
+        <p>Each list of interpolating function has a format similar to</p>
+
+        <p><span class="function">{v1&#8594;InterpolatingFunction[{{tmin, tmax}}, "&lt;&gt;"],<br>
+        v2&#8594;InterpolatingFunction[{{tmin, tmax}}, "&lt;&gt;"],<br>
+        v2&#8594;InterpolatingFunction[{{tmin, tmax}}, "&lt;&gt;"], ..}</span></p><p>        where <span class="tt">v1, v2, v3,
+        ..</span> are the variables in the simulation. </p>
+
+        <p class="header">Options</p>
+        
+        <p><span class="function">"Points"</span> &rarr; 100  (number of points to use)</p>
+
+        <p><span class="function">"Rates"</span> &rarr; False (whether to include rates)</p>
+        
+        <p class="header">Example</p>
+
+        <p>[ <a href="./examples/SSAMean-example.nb.zip">Download Example as Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name="display" src="./examples/SSAMean-example.htm" id=
+        "display" style="background-color:white;"><a href="">View as html.</a></iframe></p>
+
+        <p class="header">Implementation Notes</p>
+
+        <p class="header">See Also</p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net"><img src="http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[Tue Nov  8 13:51:06 2011 ]</span>
+    </div>
+  </center>
+</body>
+</html>

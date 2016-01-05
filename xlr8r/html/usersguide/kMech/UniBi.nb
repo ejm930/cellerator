@@ -1,0 +1,182 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      5844,        173]
+NotebookOptionsPosition[      5105,        145]
+NotebookOutlinePosition[      5541,        162]
+CellTagsIndexPosition[      5498,        159]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData["UniBi"], "Section",
+ CellChangeTimes->{{3.55546943008289*^9, 3.555469445676258*^9}, 
+   3.555469495946821*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"UniBi is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467614441942*^9, 3.555468348373657*^9, 
+  3.555468664789979*^9, 3.5554694959470778`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S1", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"UniBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467614441942*^9, 3.555468348373657*^9, 
+  3.555468664834468*^9, 3.555469495947279*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 \[ShortRightArrow] $Complex$En$S1$, kf}\
+\\n{$Complex$En$S1$ \[ShortRightArrow] En + S1, kr}\\n{$Complex$En$S1$ \
+\[ShortRightArrow] En + P1 + P2, k}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467614441942*^9, 3.555468348373657*^9, 
+  3.555468664881301*^9, 3.555469495947529*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"UniBi is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467614441942*^9, 3.555468348373657*^9, 
+  3.555468664930825*^9, 3.5554694959477177`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S1", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"UniBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467614441942*^9, 3.555468348373657*^9, 
+  3.555468664981822*^9, 3.555469495947916*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 \[ShortRightArrow] $Complex$En$S1$, kf}\
+\\n{$Complex$En$S1$ \[ShortRightArrow] En + S1, kr}\\n{$Complex$En$S1$ \
+\[ShortRightArrow] En + P1 + P2, k}\\n{En + Inh \[ShortRightArrow] \
+$Complex$En$Inh$, kfi}\\n{$Complex$En$Inh$ \[ShortRightArrow] En + Inh, \
+kri}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467614441942*^9, 3.555468348373657*^9, 
+  3.555468665041144*^9, 3.5554694959480886`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"UniBi is a kMech enzyme reaction wrapper.\"\>", 
+   "Subsubsection"],
+  StyleForm[#, "Subsubsection"]& ]], "Print",
+ CellChangeTimes->{3.555467614441942*^9, 3.555468348373657*^9, 
+  3.555468665140359*^9, 3.555469495948265*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"\<\"Enz\"\>", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S1", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"UniBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inhn", ",", "kfin", ",", "krin"}], "]"}]}], "]"}], "Input"],
+  StyleForm[#, "Input"]& ]], "Print",
+ CellChangeTimes->{3.555467614441942*^9, 3.555468348373657*^9, 
+  3.555468665178829*^9, 3.555469495948489*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox["\<\"Expands to\\n{En + S1 \[ShortRightArrow] $Complex$En$S1$, kf}\
+\\n{$Complex$En$S1$ \[ShortRightArrow] En + S1, kr}\\n{$Complex$En$S1$ \
+\[ShortRightArrow] En + P1 + P2, k}\\n{En + Inh \[ShortRightArrow] \
+$Complex$En$Inh$, kfi}\\n{$Complex$En$Inh$ \[ShortRightArrow] En + Inh, \
+kri}\\n{En + Inhn \[ShortRightArrow] $Complex$En$Inhn$, \
+kfin}\\n{$Complex$En$Inhn$ \[ShortRightArrow] En + Inhn, krin}\\n{Inhn + \
+$Complex$En$S1$ \[ShortRightArrow] $Complex$En$S1$Inhn$, \
+kfin}\\n{$Complex$En$S1$Inhn$ \[ShortRightArrow] Inhn + $Complex$En$S1$, \
+krin}\\n{S1 + $Complex$En$Inhn$ \[ShortRightArrow] $Complex$En$S1$Inhn$, \
+kf}\\n{$Complex$En$S1$Inhn$ \[ShortRightArrow] S1 + $Complex$En$Inhn$, \
+kr}\"\>", "Output"],
+  StyleForm[#, "Output"]& ]], "Print",
+ CellChangeTimes->{3.555467614441942*^9, 3.555468348373657*^9, 
+  3.5554686652402678`*^9, 3.555469495948736*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 867},
+WindowMargins->{{Automatic, -952}, {70, Automatic}},
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 124, 2, 71, "Section"],
+Cell[CellGroupData[{
+Cell[728, 28, 267, 6, 26, "Print"],
+Cell[998, 36, 498, 14, 36, "Print"],
+Cell[1499, 52, 377, 7, 81, "Print"],
+Cell[1879, 61, 267, 6, 26, "Print"],
+Cell[2149, 69, 583, 16, 36, "Print"],
+Cell[2735, 87, 491, 9, 119, "Print"],
+Cell[3229, 98, 265, 6, 26, "Print"],
+Cell[3497, 106, 672, 18, 68, "Print"],
+Cell[4172, 126, 905, 15, 233, "Print"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

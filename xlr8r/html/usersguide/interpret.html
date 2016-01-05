@@ -1,0 +1,152 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>xCellerator</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src=
+        "logo.svg" alt="The xCellerator Project" width="150"></a>
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="blackfunction" style=
+            "font-size:x-large;font-weight:bold;">interpret</td>
+
+            <td align="right"><a class="button" href=
+            "index.html">Reference Home</a></td>
+          </tr>
+        </table>
+        <hr color="#FF7636">
+
+        <p><span class="blackfunction">interpret[<span class=
+        "mital">reaction-list</span>]</span> converts a list of
+        reactions</p>
+
+        <blockquote class="blackfunction">
+          {{<span class="mital">arrow-form<sub>1</sub>,
+          rate-information<sub>1</sub></span>}, <span class=
+          "mital">{arrow-form<sub>1</sub>,
+          rate-information<sub>2</sub></span>,...}}
+        </blockquote>into differential equations
+
+        <blockquote class="blackfunction">
+          {{<span class="mital">ode<sub>1</sub>,
+          ode<sub>2</sub>,...</span>},{<span class=
+          "mital">var<sub>1</sub>,var<sub>2</sub>...</span>}}
+        </blockquote>
+        
+         <p>The variable <span class="blackfunction">Global`t</span>
+        is used for the time argument.</p>
+
+        <p>The output of interpret can be evaluate by <span class=
+        "blackfunction">NDSolve</span> as in the following example
+        (<a href="interpret/interpret.nb">Download Mathematica .nb
+        file</a>):</p>
+
+        <div style="text-align: center">
+          <iframe src="interpret/interpret.htm" style=
+          "width:7in;height:3in;background:white"><a href=
+          "interpret/interpret.nb">Download Mathematica .nb
+          file</a>&lt;&lt;/iframe&gt;</iframe>
+        </div>
+
+        <p>The format of <span class=
+        "mital"><b>rate-information</b></span> and <span class=
+        "mital"><b>arrow-form</b></span> vary with the type of reaction
+        being described. For more information see:</p>
+
+        <ul>
+          <li>
+            <p><a href="arrow-forms.html">Summary of basic arrow
+            forms</a></p>
+          </li>
+
+          <li>
+            <p><a href="Flux.html">Flux Reactions</a> - reactions
+            for which only a flux and not a specific kinetic rate
+            law is known.</p>
+          </li>
+
+          <li>
+            <p><a href="GMWC.html">(Generalized) MWC reactions</a>
+            - kinetic descriptions based on the
+            Monod-Wyman-Changeaux models.</p>
+          </li>
+
+          <li>
+            <p><a href="GRN.html">GRN functions</a> - kinetics
+            described by sigmoidal activating functions similar to
+            those found in neural networks.</p>
+          </li>
+
+          <li>
+            <p><a href="hill.html">Hill functions</a> - kinetics
+            described by hill functions.</p>
+          </li>
+
+          <li>
+            <p><a href="mass-action.html">Mass Action reactions</a>
+            - law of mass action.</p>
+          </li>
+
+          <li>
+            <p><a href="MM.html">Michaelis-Menten reactions</a></p>
+          </li>
+
+          <li>
+            <p><a href="NHCA.html">NHCA reactions</a> - non
+            hierarchical cooperativee activation models.</p>
+          </li>
+
+          <li>
+            <p><a href="rational.html">Rational function
+            reactions</a> - rate laws described by rational
+            functions (ratios of polynomials).</p>
+          </li>
+
+          <li>
+            <p><a href="SSystem.html">S-Systems</a> - power law
+            approximations.</p>
+          </li>
+
+          <li>
+            <p><a href="user.html">User-defined reactions</a> -
+            rate laws given by any user defined function, similar
+            to those in SBML.</p>
+          </li>
+        </ul>
+
+       
+        <br>&nbsp;
+        
+        
+	<span style="font-size:large;color:brown;font-family:verdana;font-weight:bold">See Also:</span> 
+      <a class="blackfunction" href="ODE.html">ODE</a>  
+ <br>&nbsp;
+        
+      <div class="logo">
+        <a href=
+        "http://sourceforge.net/projects/xlr8r/files/"><img src=
+        "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+        width="125" height="37" border="0" alt=
+        "SourceForge.net Logo"></a>
+      </div>
+    </div><br>
+    <span style="font-size:xx-small;">[rev 29 July 2012]</span>
+  </center>
+</body>
+</html>

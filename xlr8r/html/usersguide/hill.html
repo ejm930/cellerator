@@ -1,0 +1,129 @@
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <meta name="generator" content="Bluefish 2.2.2">
+  <meta name="generator" content="Bluefish 2.2.2">
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>xCellerator</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src="logo.svg" alt=
+        "The xCellerator Project" width="150"></a>
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="blackfunction" style=
+            "font-size:x-large;font-weight:bold;">Hill</td>
+
+            <td align="right"><a class="button" href="index.html">Reference
+            Home</a></td>
+          </tr>
+        </table>
+        <hr color="#FF7636">
+
+        <p><span class="blackfunction">Hill</span> is an uninstantiated
+        function used to indicate parameter values for a hill-function based
+        reaction.</p>
+
+        <p><span class="blackfunction">Hill[..]</span> and <span class=
+        "blackfunction">hill[..]</span> may be used interchangeably.</p>
+
+        <h2>Catalytic Hill-Function Reactions</h2>
+
+        <p>The canonical form for a <b>catalytic hill reaction</b> is:</p>
+
+        <div style="text-align: center"><img src="hill/hill1.png"></div>
+
+        <p>The interpreted differential equation is:</p>
+
+        <div style="text-align: center"><img src="hill/hill3.png"></div>
+
+        <p>In a catalytic hill reaction both the reactant (A) and the product
+        (B) change values. The catalyst (En) does not change. The first term
+        here produces an inhibitory Hill function, while the second one 
+        produces an activating Hill function. To get only inhibition, set
+        v=0; to get only activation, set v1=0.</p>
+        
+        
+        <p>All parameters
+        are optional and may be omitted starting from the right. Default
+        parameter values are: v=1, n=1, K=1, &#946;=1, T=1, v1=0:</p>
+
+        <blockquote>
+          <span class="blackfunction">hill[v,n,k,&#946;,T]</span> is equivalent
+          to <span class="blackfunction">hill[v, n, k, &#946;, T, 0]</span><br>
+          <span class="blackfunction">hill[v,n,k,&#946;]</span> is equivalent
+          to <span class="blackfunction">hill[v, n, k, &#946;, 1, 0]</span><br>
+          <span class="blackfunction">hill[v,n,k]]</span> is equivalent to
+          <span class="blackfunction">hill[v, n, k, 0, 1, 0]</span><br>
+          <span class="blackfunction">hill[v,n]</span> is equivalent to
+          <span class="blackfunction">hill[v, n,1, 0, 1, 0]</span><br>
+          <span class="blackfunction">hill[v]</span> is equivalent to
+          <span class="blackfunction">hill[v, 1, 1, 0, 1, 0]</span><br>
+          <span class="blackfunction">hill[]</span> is equivalent to
+          <span class="blackfunction">hill[1, 1, 1, 0, 1, 0]</span><br>
+        </blockquote>
+
+        <h3>Multiple Substrates - Equivalent Forms</h3><br>
+
+        <div style="text-align: center"><img src="hill/hill4.png"></div>
+
+        <p>If multiple catalytic reactions have the same product their
+        corresponding ODE terms are added. <span style="color:blue;">Note that
+        this is different from the way regulatory hill reactions are
+        combined:</span></p>
+
+        <div style="text-align: center"><img src="hill/hill5.png"></div>
+
+        <h2>Regulatory Hill Reactions</h2>
+
+        <p>The canonical form for a <b>regulatory hill reaction</b> is:</p>
+
+        <div style="text-align: center"><img src="hill/hill6.png"></div>
+
+        <p>In a regulatory hill reaction, the value of the product (B) changes
+        but the value of the regulator (A) does not:</p>
+
+        <div style="text-align: center"><img src="hill/hill7.png"></div>
+        
+        <p>The first term in the equation for B here is the inhibitory hill function,
+        and the second term is the activating. To get only an activating function, set
+        v1 to 0; to get only an inhibitory function, set v to 0. </p>
+
+        <p>If there are multiple regulatory hill reactions with the same
+        product, then they are combined vectorally using the T's as
+        weights:</p>
+
+        <div style="text-align: center"><img src="hill/hill8.png"></div>
+
+        <p>Note that all parameters except for (<span style=
+        "blackfunction">T</span>) are ignored in all but the first
+        reaction.</p>
+
+        <p>The following is equivalent:</p>
+
+        <div style="text-align: center"><img src="hill/hill9.png"></div><br>
+
+        <div class="logo" style="text-align:center;">
+          <a href="http://sourceforge.net/projects/xlr8r/files/"><img src=
+          "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4" width=
+          "125" height="37" border="0" alt="SourceForge.net Logo"></a>
+        </div>
+      </div><br>
+      <span style="font-size:xx-small;">[rev: 18 July 2012]</span>
+    </div>
+  </center>
+</body>
+</html>

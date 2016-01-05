@@ -1,0 +1,81 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>xCellerator</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src=
+        "logo.svg" alt="The xCellerator Project" width="150"></a>
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="blackfunction" style=
+            "font-size:x-large;font-weight:bold;">
+            OptimizeFluxModel</td>
+
+            <td align="right"><a class="button" href=
+            "index.html">Reference Home</a></td>
+          </tr>
+        </table>
+        <hr color="#FF7636">
+
+        <p><span class=
+        "blackfunction">OptimizeFluxModel[model]</span> performs a
+        flux optimization using the Nelder Mead Simplex
+        Algorithm.</p>
+
+        <p><span class="blackfunction">model</span> must be a list
+        of xCellerator <a href="flux.html" class=
+        "blackfunction">Flux</a> reactions. If any kinetic
+        reactions are included and Error will be generated.</p>
+
+        <p>The return value is a list of the form</p>
+        <pre class="blackfunction">
+   {maxval, {v1-&gt;val, v2-&gt;val,...}}
+</pre>
+
+        <p>where <span class="blackfunction">max</span> is the
+        maximum value of the objective function and each
+        <span class="blackfunction">val</span> is the value of the
+        corresponding flux variable <span class=
+        "blackfunction">vi</span> where the maximum is
+        obtained.</p>
+
+        <h2>Example:</h2>
+
+        <p style="text-align:left;"><a href="flux/flux.nb">Download
+        Example as Mathematica Notebook</a></p><iframe src=
+        "flux/flux.htm" width="700" height="700" style=
+        "background:White">Frames are not supported. <a href=
+        "flux/flux.nb">Download Example as Mathematica
+        Notebook</a></iframe>
+      </div>
+
+      <div class="logo">
+        <a href=
+        "http://sourceforge.net/projects/xlr8r/files/"><img src=
+        "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+        width="125" height="37" border="0" alt=
+        "SourceForge.net Logo"></a>
+      </div>
+    </div><br>
+    <br>
+    <span style="font-size:xx-small;">[31 Aug 2012]</span>
+  </center>
+</body>
+</html>

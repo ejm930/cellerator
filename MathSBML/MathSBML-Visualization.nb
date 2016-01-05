@@ -1,0 +1,1821 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     83409,       1812]
+NotebookOptionsPosition[     82537,       1777]
+NotebookOutlinePosition[     82977,       1794]
+CellTagsIndexPosition[     82934,       1791]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["MathSBML-Visualization.nb", "Title",
+ CellChangeTimes->{{3.5062187776817427`*^9, 3.5062187887109613`*^9}}],
+
+Cell[TextData[{
+ StyleBox["Visualzation package for MathSBML",
+  FontSize->24],
+ ",\n for ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " Version 8 Compatibility\n2.24.201l - initial build extracted from MathSBML \
+2.9.0"
+}], "Text",
+ CellChangeTimes->{{3.5049746120770793`*^9, 3.5049746455789957`*^9}, 
+   3.5062187613953133`*^9}],
+
+Cell[CellGroupData[{
+
+Cell["File Description", "Section",
+ CellChangeTimes->{{3.395408039119268*^9, 3.395408049088715*^9}, {
+  3.5062180912805367`*^9, 3.5062181026997566`*^9}}],
+
+Cell[TextData[{
+ StyleBox[" ",
+  FontSize->16],
+ StyleBox["Filename:\tMathSBML-Visualization.nb\n Description:\tMathSBML is \
+an SBML reader for ",
+  FontSize->12],
+ StyleBox["Mathematica \n \t\t",
+  FontSize->12,
+  FontSlant->"Italic"],
+ StyleBox["This is part of the MathSBML Package\n Organization: \tCaltech \
+Biological Network Modeling Center\n License:\tLGPL \n \n",
+  FontSize->12],
+ "    This file is part of MathSBML.\n \n    MathSBML is free software: you \
+can redistribute it and/or modify\n    it under the terms of the GNU Lesser \
+General Public License as published by\n    the Free Software Foundation, \
+either version 3 of the License, or\n    (at your option) any later version.\n\
+\n    This program is distributed in the hope that it will be useful,\n    \
+but WITHOUT ANY WARRANTY; without even the implied warranty of\n    \
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU \
+General Public License for more details.\n\n    You should have received a \
+copy of the GNU Lesser General Public License\n    along with this program.  \
+If not, see <http://www.gnu.org/licenses/>.",
+ StyleBox["\n ",
+  FontSize->12]
+}], "Text",
+ CellChangeTimes->{{3.388248302205469*^9, 3.388248304035112*^9}, 
+   3.388264681197356*^9, {3.3882668683761797`*^9, 3.388266875242931*^9}, 
+   3.388353386077384*^9, {3.388363325911048*^9, 3.3883633263870773`*^9}, 
+   3.3883996477410192`*^9, {3.388761163736053*^9, 3.38876116441009*^9}, {
+   3.389125922604425*^9, 3.389125923136166*^9}, {3.390045172241888*^9, 
+   3.39004517571679*^9}, {3.39019850450497*^9, 3.3901985115655603`*^9}, {
+   3.392748682342765*^9, 3.392748683344193*^9}, {3.3954080212118177`*^9, 
+   3.395408027048024*^9}, {3.395690507776781*^9, 3.3956905087487507`*^9}, {
+   3.3973955266739798`*^9, 3.397395527497595*^9}, {3.401465824219963*^9, 
+   3.401465836954739*^9}, 3.506217737019514*^9, {3.5062177764407835`*^9, 
+   3.506217778375187*^9}, 3.506217826938072*^9, {3.5062180797833166`*^9, 
+   3.506218242226402*^9}, {3.506218771379331*^9, 3.506218773095334*^9}, 
+   3.537137308545011*^9},
+ FontSize->10,
+ Background->None]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["visualization", "Section",
+ CellChangeTimes->{{3.3955987166009493`*^9, 3.3955987182926273`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["visualizeSBMLModel", "Subsection"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"vis$boxWidth", "=", ".15"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vis$boxHeight", "=", ".05"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vis$box", " ", "=", " ", 
+   RowBox[{"0.5", 
+    RowBox[{"{", 
+     RowBox[{"vis$boxWidth", ",", " ", "vis$boxHeight"}], "}"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vis$radius", "=", "0.025"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vis$fontSize", "=", "12"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vis$headerFontSize", "=", "18"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vis$fontFamily", "=", "\"\<Times\>\""}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vis$data", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"new$visdata", "[", "]"}], ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", " ", 
+      RowBox[{"vis$data", "=", 
+       RowBox[{"{", "}"}]}]}], "]"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"save$visdata", "[", "data___", "]"}], ":=", " ", 
+   RowBox[{"AppendTo", "[", 
+    RowBox[{"vis$data", ",", " ", 
+     RowBox[{"{", "data", "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"get$visdata", "[", "]"}], ":=", " ", "vis$data"}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"visualizeSBMLModel", "[", 
+     RowBox[{"file_", ",", " ", 
+      RowBox[{"options___", "?", "OptionQ"}]}], "]"}], ":=", "  ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "m", ",", "opts", ",", " ", "stuff", ",", "ids", ",", " ", "r", ",", 
+        " ", "s", ",", " ", "getS", ",", " ", "getRMP", ",", " ", "vis", ",", 
+        RowBox[{"dbg", "=", "False"}], ",", " ", "sbmlrules", ",", " ", 
+        "rateRules", ",", " ", "rateRuleVariables", ",", " ", 
+        "assignmentRules", ",", " ", "assignmentRuleVariables", ",", " ", 
+        "assignmentRulesForVisualization", ",", " ", 
+        "rateRulesForVisualization", ",", " ", 
+        RowBox[{"namerules", "=", 
+         RowBox[{"{", "}"}]}], ",", " ", "byname", ",", " ", "modelnames", 
+        ",", " ", "ignore", ",", " ", "v", ",", " ", "plotlabel"}], "}"}], 
+      ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"dbg", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"\"\<debug\>\"", "/.", 
+          RowBox[{"{", "options", "}"}]}], "/.", 
+         RowBox[{"{", 
+          RowBox[{"\"\<debug\>\"", "\[Rule]", " ", "False"}], "}"}]}]}], ";", 
+       " ", "\[IndentingNewLine]", 
+       RowBox[{"new$visdata", "[", "]"}], ";", " ", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"f", "=", 
+        RowBox[{"stringer", "[", "file", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"fileExists", "[", " ", "f", "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"m", " ", "=", " ", 
+           RowBox[{"Import", "[", 
+            RowBox[{"f", ",", "\"\<XML\>\""}], "]"}]}], ";"}], " ", 
+         "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"f", "=", 
+           RowBox[{"ToFileName", "[", 
+            RowBox[{
+             RowBox[{"Directory", "[", "]"}], ",", " ", "f"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{
+            RowBox[{"\"\<Error: \>\"", "//", "boldRed"}], ",", 
+            RowBox[{"\"\<The file \>\"", "//", "boldBlack"}], ",", 
+            RowBox[{"f", "//", "boldBlue"}], ",", 
+            RowBox[{"\"\< does not exist.\>\"", "//", "boldBlack"}]}], "]"}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"Return", "[", "]"}], ";"}]}], "\[IndentingNewLine]", "]"}],
+        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        StyleBox[" ",
+         Background->RGBColor[1, 1, 0]], 
+        StyleBox[
+         RowBox[{"get", " ", "options"}],
+         Background->RGBColor[1, 1, 0]], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"byname", " ", "=", 
+        RowBox[{
+         RowBox[{"(", " ", 
+          RowBox[{"MathSBML`visualizeByName", "/.", 
+           RowBox[{"{", "options", "}"}]}], ")"}], "/.", 
+         RowBox[{"{", 
+          RowBox[{"MathSBML`visualizeByName", "\[Rule]", " ", "False"}], 
+          "}"}]}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"ignore", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"MathSBML`ignoreSpecies", "/.", 
+           RowBox[{"{", "options", "}"}]}], ")"}], "/.", 
+         RowBox[{"{", 
+          RowBox[{"MathSBML`ignoreSpecies", "\[Rule]", " ", 
+           RowBox[{"{", "}"}]}], "}"}]}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"ignore", " ", "=", " ", 
+        RowBox[{"stringer", "/@", "ignore"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"vis$arrowLength", "=", " ", 
+        RowBox[{
+         RowBox[{"visualizationArrowLength", "/.", 
+          RowBox[{"{", "options", "}"}]}], "/.", 
+         RowBox[{"{", 
+          RowBox[{"visualizationArrowLength", "\[Rule]", " ", "15"}], 
+          "}"}]}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"$VersionNumber", "<", "6"}], ",", " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"vis$boxWidth", "=", 
+           RowBox[{
+            RowBox[{"visualizationBoxWidth", "/.", 
+             RowBox[{"{", "options", "}"}]}], "/.", 
+            RowBox[{"{", 
+             RowBox[{"visualizationBoxWidth", "\[Rule]", " ", ".15"}], 
+             "}"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"vis$boxHeight", "=", 
+           RowBox[{
+            RowBox[{"visualizationBoxHeight", "/.", 
+             RowBox[{"{", "options", "}"}]}], "/.", 
+            RowBox[{"{", 
+             RowBox[{"visualizationBoxHeight", "\[Rule]", " ", ".05"}], 
+             "}"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"vis$radius", "=", 
+           RowBox[{
+            RowBox[{"visualizationRadius", "/.", 
+             RowBox[{"{", "options", "}"}]}], "/.", 
+            RowBox[{"{", 
+             RowBox[{"visualizationRadius", "\[Rule]", " ", "0.025"}], 
+             "}"}]}]}], ";"}], "\[IndentingNewLine]", ",", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"vis$boxWidth", "=", 
+           RowBox[{
+            RowBox[{"visualizationBoxWidth", "/.", 
+             RowBox[{"{", "options", "}"}]}], "/.", 
+            RowBox[{"{", 
+             RowBox[{"visualizationBoxWidth", "\[Rule]", " ", "1"}], 
+             "}"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"vis$boxHeight", "=", 
+           RowBox[{
+            RowBox[{"visualizationBoxHeight", "/.", 
+             RowBox[{"{", "options", "}"}]}], "/.", 
+            RowBox[{"{", 
+             RowBox[{"visualizationBoxHeight", "\[Rule]", " ", ".25"}], 
+             "}"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"vis$radius", "=", 
+           RowBox[{
+            RowBox[{"visualizationRadius", "/.", 
+             RowBox[{"{", "options", "}"}]}], "/.", 
+            RowBox[{"{", 
+             RowBox[{"visualizationRadius", "\[Rule]", " ", "0.1"}], 
+             "}"}]}]}], ";"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]",
+         "]"}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"vis$box", " ", "=", " ", 
+        RowBox[{"0.5", 
+         RowBox[{"{", 
+          RowBox[{"vis$boxWidth", ",", " ", "vis$boxHeight"}], "}"}]}]}], ";",
+        "\[IndentingNewLine]", 
+       RowBox[{"vis$fontSize", "=", 
+        RowBox[{
+         RowBox[{"visualizationFontSize", "/.", 
+          RowBox[{"{", "options", "}"}]}], "/.", 
+         RowBox[{"{", 
+          RowBox[{"visualizationFontSize", "\[Rule]", " ", "12"}], "}"}]}]}], 
+       ";", "\[IndentingNewLine]", 
+       RowBox[{"vis$headerFontSize", "=", 
+        RowBox[{
+         RowBox[{"visualizationHeaderFontSize", "/.", 
+          RowBox[{"{", "options", "}"}]}], "/.", 
+         RowBox[{"{", 
+          RowBox[{"visualizationHeaderFontSize", "\[Rule]", " ", "18"}], 
+          "}"}]}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"vis$fontFamily", "=", 
+        RowBox[{
+         RowBox[{"visualizationFontFamily", "/.", 
+          RowBox[{"{", "options", "}"}]}], "/.", 
+         RowBox[{"{", 
+          RowBox[{
+          "visualizationFontFamily", "\[Rule]", " ", "\"\<Times\>\""}], 
+          "}"}]}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"c", "=", 
+        RowBox[{"Cases", "[", 
+         RowBox[{"m", ",", " ", 
+          RowBox[{"XMLElement", "[", 
+           RowBox[{"\"\<model\>\"", ",", "_", ",", "_"}], "]"}], ",", 
+          "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"ids", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"getSBMLfield", "[", 
+           RowBox[{"\"\<id\>\"", ",", "#"}], "]"}], "&"}], "/@", "c"}]}], ";",
+        "\[IndentingNewLine]", 
+       RowBox[{"modelnames", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"getSBMLfield", "[", 
+           RowBox[{"\"\<name\>\"", ",", "#"}], "]"}], "&"}], "/@", "c"}]}], 
+       ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"namerules", " ", "=", " ", 
+        RowBox[{"Join", "[", 
+         RowBox[{"namerules", ",", " ", 
+          RowBox[{"MapThread", "[", 
+           RowBox[{"Rule", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"ids", ",", " ", "modelnames"}], "}"}]}], "]"}]}], 
+         "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        StyleBox[
+         RowBox[{"get", " ", "the", " ", "species"}],
+         Background->RGBColor[1, 1, 0]], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"getS", "[", 
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\"\<species\>\"", ",", " ", "opt_", ",", " ", "stuff_"}], 
+          "]"}], "]"}], ":=", " ", 
+        RowBox[{"Module", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"id", ",", "name"}], "}"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"id", " ", "=", " ", 
+            RowBox[{
+             RowBox[{"\"\<id\>\"", "/.", "opt"}], "/.", 
+             RowBox[{"{", 
+              RowBox[{"\"\<id\>\"", "\[Rule]", " ", "\"\<error\>\""}], 
+              "}"}]}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"name", "=", 
+            RowBox[{
+             RowBox[{"\"\<name\>\"", "/.", "opt"}], "/.", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<name\>\"", "\[Rule]", " ", "\"\<unnamed species\>\""}], 
+              "}"}]}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"id", "=", 
+            RowBox[{"stringer", "[", "id", "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"namerules", ",", " ", 
+             RowBox[{"id", "\[Rule]", " ", "name"}]}], "]"}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Return", "[", "id", "]"}], ";"}]}], " ", 
+         "\[IndentingNewLine]", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"getS", "[", "___", "]"}], ":=", " ", 
+        "\"\<error-reading-species-id\>\""}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"While", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ListQ", "[", "c", "]"}], " ", "\[And]", " ", 
+          RowBox[{
+           RowBox[{"Length", "[", "c", "]"}], ">", "0"}]}], ",", " ", 
+         RowBox[{"c", "=", 
+          RowBox[{"First", "[", "c", "]"}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"s", "=", 
+        RowBox[{"Cases", "[", 
+         RowBox[{"m", ",", " ", 
+          RowBox[{"XMLElement", "[", 
+           RowBox[{"\"\<listOfSpecies\>\"", ",", "__"}], "]"}], ",", " ", 
+          "Infinity"}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "[", "s", "]"}], ">", "0"}], ",", " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"s", "=", 
+           RowBox[{"Cases", "[", 
+            RowBox[{"s", ",", " ", 
+             RowBox[{"XMLElement", "[", 
+              RowBox[{"\"\<species\>\"", ",", " ", "__"}], "]"}], ",", " ", 
+             "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"s", "=", 
+           RowBox[{"getS", "/@", "s"}]}], ";"}]}], "\[IndentingNewLine]", 
+        "]"}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{"\"\<visualizeSBMLModel: s=\>\"", ",", "s"}], "]"}]}], 
+        "]"}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{
+          "\"\<visualizeSBMLModel: namerules=\>\"", ",", " ", "namerules"}], 
+          "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        StyleBox[
+         RowBox[{"get", " ", "the", " ", "rules"}],
+         Background->RGBColor[1, 1, 0]], " ", "*)"}], "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"assignmentRules", " ", "=", " ", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"assignmentRuleVariables", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"assignmentRulesForVisualization", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"rateRules", " ", "=", " ", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"rateRuleVariables", "=", 
+        RowBox[{"{", "}"}]}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"rateRulesForVisualization", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"r", " ", "=", " ", 
+        RowBox[{"Cases", "[", 
+         RowBox[{"m", ",", " ", 
+          RowBox[{"XMLElement", "[", 
+           RowBox[{"\"\<listOfRules\>\"", ",", " ", "__"}], "]"}], ",", " ", 
+          "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "[", "r", "]"}], ">", "0"}], ",", " ", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"assignmentRules", " ", "=", " ", 
+           RowBox[{"Cases", "[", 
+            RowBox[{"r", ",", " ", 
+             RowBox[{"XMLElement", "[", 
+              RowBox[{"\"\<assignmentRule\>\"", ",", " ", "__"}], "]"}], ",", 
+             " ", "Infinity"}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+          RowBox[{"rateRules", " ", "=", " ", 
+           RowBox[{"Cases", "[", 
+            RowBox[{"r", ",", " ", 
+             RowBox[{"XMLElement", "[", 
+              RowBox[{"\"\<rateRule\>\"", ",", " ", "__"}], "]"}], ",", " ", 
+             "Infinity"}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"Length", "[", "assignmentRules", "]"}], " ", ">", 
+              "0"}], " ", "\[Or]", " ", 
+             RowBox[{
+              RowBox[{"Length", "[", "rateRules", "]"}], ">", "0"}]}], ",", 
+            " ", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{"dbg", ",", " ", 
+               RowBox[{"Print", "[", 
+                RowBox[{
+                 RowBox[{"Length", "[", "assignmentRules", "]"}], ",", " ", 
+                 "\"\< assignment rules\>\""}], "]"}]}], "]"}], ";", " ", 
+             "\[IndentingNewLine]", 
+             RowBox[{"Block", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"v", ",", "vv", ",", " ", "rhsvars"}], "}"}], ",", 
+               "\[IndentingNewLine]", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"rhsvars", "[", "u_", "]"}], ":=", " ", 
+                 RowBox[{"Module", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"m", ",", "v", ",", "vid"}], "}"}], ",", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"vid", "[", 
+                    RowBox[{"\"\<ci\>\"", ",", 
+                    RowBox[{"{", "}"}], ",", 
+                    RowBox[{"{", "sid_", "}"}]}], "]"}], ":=", " ", 
+                    RowBox[{"{", "sid", "}"}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"vid", "[", "sid___", "]"}], ":=", " ", 
+                    RowBox[{"{", "}"}]}], ";", " ", "\[IndentingNewLine]", 
+                    RowBox[{"m", "=", 
+                    RowBox[{"Cases", "[", 
+                    RowBox[{"u", ",", " ", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\"\<math\>\"", ",", "__"}], "]"}], ",", " ", 
+                    "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"v", "=", " ", 
+                    RowBox[{"Cases", "[", 
+                    RowBox[{"m", ",", 
+                    RowBox[{"XMLElement", "[", 
+                    RowBox[{"\"\<ci\>\"", ",", "__"}], "]"}], ",", " ", 
+                    "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"v", " ", "=", " ", 
+                    RowBox[{"v", "/.", 
+                    RowBox[{"{", 
+                    RowBox[{"XMLElement", "\[Rule]", " ", "vid"}], "}"}]}]}], 
+                    ";", "\[IndentingNewLine]", 
+                    RowBox[{"v", " ", "=", " ", 
+                    RowBox[{"Flatten", "[", "v", "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"Return", "[", "v", "]"}], ";"}]}], 
+                  "\[IndentingNewLine]", "]"}]}], ";", "\[IndentingNewLine]", 
+                "\[IndentingNewLine]", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"Length", "[", "assignmentRules", "]"}], ">", 
+                   "0"}], ",", " ", "\[IndentingNewLine]", 
+                  RowBox[{"(*", " ", 
+                   StyleBox[
+                    RowBox[{
+                    "put", " ", "assignment", " ", "rules", " ", "into", " ", 
+                    "a", " ", "form", " ", "that", " ", "can", " ", "be", " ",
+                     "used", " ", "to", " ", "traverse", " ", "kinetic", " ", 
+                    "laws", " ", "of", " ", "reactions", " ", "for", " ", 
+                    "hidden", " ", "modifiers"}],
+                    Background->RGBColor[1, 1, 0]], 
+                   StyleBox[" ",
+                    Background->RGBColor[1, 1, 0]], "*)"}], 
+                  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"v", " ", "=", " ", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"getSBMLfield", "[", 
+                    RowBox[{"\"\<variable\>\"", ",", "#"}], "]"}], "&"}], "/@",
+                     "assignmentRules"}]}], ";", "\[IndentingNewLine]", 
+                   RowBox[{"assignmentRuleVariables", "=", "v"}], ";", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"vv", "=", 
+                    RowBox[{"rhsvars", "/@", "assignmentRules"}]}], ";", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"vv", " ", "=", " ", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Intersection", "[", 
+                    RowBox[{"#", ",", " ", "s"}], "]"}], "&"}], "/@", 
+                    "vv"}]}], ";", "\[IndentingNewLine]", 
+                   RowBox[{"assignmentRules", " ", "=", " ", 
+                    RowBox[{"MapThread", "[", 
+                    RowBox[{"Rule", ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"v", ",", " ", "vv"}], "}"}]}], "]"}]}], ";", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"If", "[", 
+                    RowBox[{"dbg", ",", " ", 
+                    RowBox[{"Print", "[", 
+                    RowBox[{"\"\<visualizeSBMLModel: v=\>\"", ",", "v"}], 
+                    "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                   RowBox[{"If", "[", 
+                    RowBox[{"dbg", ",", " ", 
+                    RowBox[{"Print", "[", 
+                    RowBox[{
+                    "\"\<visualizeSBMLModel: vv (species):\>\"", ",", "vv"}], 
+                    "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                   RowBox[{"If", "[", 
+                    RowBox[{"dbg", ",", " ", 
+                    RowBox[{"Print", "[", 
+                    RowBox[{
+                    "\"\<visualizeSBMLModel: assignmentRules (species \
+dependence):\>\"", ",", "assignmentRules"}], "]"}]}], "]"}], ";", " ", 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                   RowBox[{"(*", 
+                    StyleBox[" ",
+                    Background->RGBColor[1, 1, 0]], 
+                    StyleBox[
+                    RowBox[{
+                    RowBox[{
+                    "for", " ", "visualization", " ", "of", " ", "rules"}], 
+                    ",", " ", 
+                    RowBox[{
+                    "select", " ", "only", " ", "pieces", " ", "that", " ", 
+                    "affect", " ", "species"}]}],
+                    Background->RGBColor[1, 1, 0]], " ", "*)"}], 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                   RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", "prepRuleForVisualization", "}"}], ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"prepRuleForVisualization", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"variable_", ",", " ", 
+                    RowBox[{"{", "input___", "}"}]}], "}"}], "]"}], ":=", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Rule", "[", 
+                    RowBox[{"#", ",", "variable"}], "]"}], "&"}], "/@", 
+                    RowBox[{"{", "input", "}"}]}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"assignmentRulesForVisualization", " ", "=", " ", 
+                    RowBox[{"prepRuleForVisualization", "/@", 
+                    RowBox[{"(", 
+                    RowBox[{"assignmentRules", "/.", 
+                    RowBox[{"{", 
+                    RowBox[{"Rule", "\[Rule]", " ", "List"}], "}"}]}], 
+                    ")"}]}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"assignmentRulesForVisualization", "=", 
+                    RowBox[{
+                    "Flatten", "[", "assignmentRulesForVisualization", 
+                    "]"}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"assignmentRulesForVisualization", "=", " ", 
+                    RowBox[{"Select", "[", 
+                    RowBox[{
+                    "assignmentRulesForVisualization", ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"And", "[", 
+                    RowBox[{
+                    RowBox[{"MemberQ", "[", 
+                    RowBox[{"s", ",", " ", 
+                    RowBox[{"First", "[", "#", "]"}]}], "]"}], ",", 
+                    RowBox[{"MemberQ", "[", 
+                    RowBox[{"s", ",", " ", 
+                    RowBox[{"Last", "[", "#", "]"}]}], "]"}]}], "]"}], 
+                    "&"}]}], " ", "\[IndentingNewLine]", "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"If", "[", 
+                    RowBox[{"dbg", ",", 
+                    RowBox[{"Print", "[", 
+                    RowBox[{
+                    "\"\<visualizeSBMLModel: assignmentRulesForVisualization:\
+\>\"", ",", "assignmentRulesForVisualization"}], " ", "]"}]}], "]"}], ";"}]}],
+                     "\[IndentingNewLine]", "]"}], ";"}]}], " ", 
+                 RowBox[{"(*", " ", 
+                  RowBox[{"end", " ", "Block"}], " ", "*)"}], 
+                 "\[IndentingNewLine]", "]"}], ";", " ", 
+                RowBox[{"(*", " ", 
+                 RowBox[{
+                  StyleBox["end",
+                   Background->RGBColor[1, 1, 0]], 
+                  StyleBox[" ",
+                   Background->RGBColor[1, 1, 0]], 
+                  RowBox[{
+                   StyleBox["If",
+                    Background->RGBColor[1, 1, 0]], 
+                   StyleBox["[",
+                    Background->RGBColor[1, 1, 0]], 
+                   StyleBox[
+                    RowBox[{
+                    RowBox[{"Length", "[", "assignmentRules", "]"}], ">", 
+                    "0"}],
+                    Background->RGBColor[1, 1, 0]], " "}]}], "*)"}], 
+                "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                "\[IndentingNewLine]", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"Length", "[", "rateRules", "]"}], ">", "0"}], ",",
+                   " ", "\[IndentingNewLine]", 
+                  RowBox[{"(*", " ", 
+                   StyleBox[
+                    RowBox[{
+                    "put", " ", "rateRules", " ", "into", " ", "a", " ", 
+                    "form", " ", "that", " ", "can", " ", "be", " ", "used", 
+                    " ", "to", " ", "traverse", " ", "kinetic", " ", "laws", 
+                    " ", "of", " ", "reactions", " ", "for", " ", "hidden", 
+                    " ", "modifiers"}],
+                    Background->RGBColor[1, 1, 0]], 
+                   StyleBox[" ",
+                    Background->RGBColor[1, 1, 0]], "*)"}], 
+                  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"v", " ", "=", " ", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"getSBMLfield", "[", 
+                    RowBox[{"\"\<variable\>\"", ",", "#"}], "]"}], "&"}], "/@",
+                     "rateRules"}]}], ";", "\[IndentingNewLine]", 
+                   RowBox[{"rateRuleVariables", "=", "v"}], ";", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"vv", "=", 
+                    RowBox[{"rhsvars", "/@", "rateRules"}]}], ";", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"vv", " ", "=", " ", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Intersection", "[", 
+                    RowBox[{"#", ",", " ", "s"}], "]"}], "&"}], "/@", 
+                    "vv"}]}], ";", "\[IndentingNewLine]", 
+                   RowBox[{"rateRules", " ", "=", " ", 
+                    RowBox[{"MapThread", "[", 
+                    RowBox[{"Rule", ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"v", ",", " ", "vv"}], "}"}]}], "]"}]}], ";", 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                   RowBox[{"If", "[", 
+                    RowBox[{"dbg", ",", " ", 
+                    RowBox[{"Print", "[", 
+                    RowBox[{"\"\<visualizeSBMLModel: rate v=\>\"", ",", "v"}],
+                     "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                   RowBox[{"If", "[", 
+                    RowBox[{"dbg", ",", " ", 
+                    RowBox[{"Print", "[", 
+                    RowBox[{
+                    "\"\<visualizeSBMLModel: rate vv (species):\>\"", ",", 
+                    "vv"}], "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+                   RowBox[{"If", "[", 
+                    RowBox[{"dbg", ",", " ", 
+                    RowBox[{"Print", "[", 
+                    RowBox[{
+                    "\"\<visualizeSBMLModel: rateRules (species \
+dependence):\>\"", ",", "rateRules"}], "]"}]}], "]"}], ";", " ", 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                   RowBox[{"(*", 
+                    StyleBox[" ",
+                    Background->RGBColor[1, 1, 0]], 
+                    StyleBox[
+                    RowBox[{
+                    RowBox[{
+                    "for", " ", "visualization", " ", "of", " ", "rules"}], 
+                    ",", " ", 
+                    RowBox[{
+                    "select", " ", "only", " ", "pieces", " ", "that", " ", 
+                    "affect", " ", "species"}]}],
+                    Background->RGBColor[1, 1, 0]], " ", "*)"}], 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                   RowBox[{"Block", "[", 
+                    RowBox[{
+                    RowBox[{"{", "prepRuleForVisualization", "}"}], ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"prepRuleForVisualization", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"variable_", ",", " ", 
+                    RowBox[{"{", "input___", "}"}]}], "}"}], "]"}], ":=", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Rule", "[", 
+                    RowBox[{"#", ",", "variable"}], "]"}], "&"}], "/@", 
+                    RowBox[{"{", "input", "}"}]}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"rateRulesForVisualization", " ", "=", " ", 
+                    RowBox[{"prepRuleForVisualization", "/@", 
+                    RowBox[{"(", 
+                    RowBox[{"rateRules", "/.", 
+                    RowBox[{"{", 
+                    RowBox[{"Rule", "\[Rule]", " ", "List"}], "}"}]}], 
+                    ")"}]}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"rateRulesForVisualization", "=", 
+                    RowBox[{
+                    "Flatten", "[", "rateRulesForVisualization", "]"}]}], ";",
+                     "\[IndentingNewLine]", 
+                    RowBox[{"rateRulesForVisualization", "=", " ", 
+                    RowBox[{"Select", "[", 
+                    RowBox[{
+                    "rateRulesForVisualization", ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"And", "[", 
+                    RowBox[{
+                    RowBox[{"MemberQ", "[", 
+                    RowBox[{"s", ",", " ", 
+                    RowBox[{"First", "[", "#", "]"}]}], "]"}], ",", 
+                    RowBox[{"MemberQ", "[", 
+                    RowBox[{"s", ",", " ", 
+                    RowBox[{"Last", "[", "#", "]"}]}], "]"}]}], "]"}], 
+                    "&"}]}], " ", "\[IndentingNewLine]", "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"If", "[", 
+                    RowBox[{"dbg", ",", 
+                    RowBox[{"Print", "[", 
+                    RowBox[{
+                    "\"\<visualizeSBMLModel:rateRulesForVisualization:\>\"", 
+                    ",", "rateRulesForVisualization"}], " ", "]"}]}], "]"}], 
+                    ";"}]}], "\[IndentingNewLine]", "]"}], ";"}]}], " ", 
+                 RowBox[{"(*", " ", 
+                  RowBox[{"end", " ", "Block"}], " ", "*)"}], 
+                 "\[IndentingNewLine]", "]"}], ";"}]}], " ", 
+              RowBox[{"(*", " ", 
+               RowBox[{
+                StyleBox["end",
+                 Background->RGBColor[1, 1, 0]], 
+                StyleBox[" ",
+                 Background->RGBColor[1, 1, 0]], 
+                RowBox[{
+                 StyleBox["If",
+                  Background->RGBColor[1, 1, 0]], 
+                 StyleBox["[",
+                  Background->RGBColor[1, 1, 0]], 
+                 StyleBox[
+                  RowBox[{
+                   RowBox[{"Length", "[", 
+                    RowBox[{"rateRule", "s"}], "]"}], ">", "0"}],
+                  Background->RGBColor[1, 1, 0]], " "}]}], "*)"}], 
+              "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], ";"}]}], 
+           " ", 
+           RowBox[{"(*", " ", 
+            RowBox[{"end", " ", "Block"}], " ", "*)"}], "\[IndentingNewLine]",
+            "]"}], ";"}]}], " ", 
+        RowBox[{"(*", " ", 
+         RowBox[{"end", " ", "if", " ", "there", " ", "are", " ", "rules"}], 
+         " ", "*)"}], "\[IndentingNewLine]", " ", 
+        RowBox[{"(*", " ", 
+         StyleBox[
+          RowBox[{"else", " ", "no", " ", "rules"}],
+          Background->RGBColor[1, 1, 0]], " ", "*)"}], " ", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{"no", " ", "else", " ", "clause", " ", "right", " ", "now"}],
+          " ", "*)"}], "\[IndentingNewLine]", "]"}], ";", 
+       "\[IndentingNewLine]", " ", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        StyleBox[
+         RowBox[{"get", " ", "the", " ", "reactions"}],
+         Background->RGBColor[1, 1, 0]], " ", "*)"}], "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"getRMP", "[", 
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\"\<reaction\>\"", ",", "opt_", ",", " ", "stuff_"}], 
+          "]"}], "]"}], ":=", " ", "\[IndentingNewLine]", 
+        RowBox[{"Module", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+           "r", ",", " ", "m", ",", "rm", ",", " ", "p", ",", "rmp", ",", 
+            "  ", "reaction", ",", " ", "getR", ",", " ", "getM", ",", " ", 
+            "getP", ",", " ", "id", ",", " ", "rule", ",", " ", 
+            RowBox[{"dbg", "=", "False"}], ",", " ", "kl", ",", "klarv", ",", 
+            "klrrv", ",", " ", "vid", ",", "name"}], "}"}], ",", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"vid", "[", 
+             RowBox[{"\"\<ci\>\"", ",", 
+              RowBox[{"{", "}"}], ",", 
+              RowBox[{"{", "sid_", "}"}]}], "]"}], ":=", " ", 
+            RowBox[{"{", "sid", "}"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"vid", "[", "sid___", "]"}], ":=", " ", 
+            RowBox[{"{", "}"}]}], ";", " ", "\[IndentingNewLine]", 
+           "\[IndentingNewLine]", 
+           RowBox[{"reaction", "=", 
+            RowBox[{"XMLElement", "[", 
+             RowBox[{"\"\<reaction\>\"", ",", "opt", ",", " ", "stuff"}], 
+             "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"id", "=", 
+            RowBox[{
+             RowBox[{"\"\<id\>\"", "/.", "opt"}], "/.", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<id\>\"", "\[Rule]", " ", "\"\<unknown-reaction-id\>\""}], 
+              "}"}]}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"id", "=", 
+            RowBox[{"\"\<$\>\"", "<>", "id"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"name", " ", "=", " ", 
+            RowBox[{
+             RowBox[{"\"\<name\>\"", "/.", "opt"}], "/.", 
+             RowBox[{"{", 
+              RowBox[{
+              "\"\<name\>\"", "\[Rule]", " ", "\"\<unnamed reaction\>\""}], 
+              "}"}]}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"namerules", ",", " ", 
+             RowBox[{"id", "\[Rule]", "  ", "name"}]}], "]"}], ";", 
+           "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{"dbg", ",", " ", 
+             RowBox[{"Print", "[", 
+              RowBox[{"\"\<**** getRMP: id: \>\"", ",", " ", "id"}], "]"}]}], 
+            "]"}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"rule", "[", 
+             RowBox[{"a_", ",", " ", "b_"}], "]"}], ":=", " ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Rule", "[", 
+               RowBox[{"a", ",", "id"}], "]"}], ",", " ", 
+              RowBox[{"Rule", "[", 
+               RowBox[{"id", ",", " ", "b"}], "]"}]}], "}"}]}], ";", 
+           "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"r", "=", 
+            RowBox[{"Cases", "[", 
+             RowBox[{"reaction", ",", " ", 
+              RowBox[{"XMLElement", "[", 
+               RowBox[{"\"\<listOfReactants\>\"", ",", "___"}], "]"}], ",", 
+              " ", "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"r", "=", 
+            RowBox[{"Cases", "[", 
+             RowBox[{"r", ",", " ", 
+              RowBox[{"XMLElement", "[", 
+               RowBox[{"\"\<speciesReference\>\"", ",", "___"}], "]"}], ",", 
+              " ", "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"r", "=", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"getSBMLfield", "[", 
+               RowBox[{"\"\<species\>\"", ",", "#"}], "]"}], "&"}], "/@", 
+             "r"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"m", "=", 
+            RowBox[{"Cases", "[", 
+             RowBox[{"reaction", ",", " ", 
+              RowBox[{"XMLElement", "[", 
+               RowBox[{"\"\<listOfModifiers\>\"", ",", "___"}], "]"}], ",", 
+              " ", "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"m", "=", 
+            RowBox[{"Cases", "[", 
+             RowBox[{"m", ",", " ", 
+              RowBox[{"XMLElement", "[", 
+               RowBox[{"\"\<modifierSpeciesReference\>\"", ",", "___"}], 
+               "]"}], ",", " ", "Infinity"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"m", "=", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"getSBMLfield", "[", 
+               RowBox[{"\"\<species\>\"", ",", "#"}], "]"}], "&"}], "/@", 
+             "m"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"p", "=", 
+            RowBox[{"Cases", "[", 
+             RowBox[{"reaction", ",", " ", 
+              RowBox[{"XMLElement", "[", 
+               RowBox[{"\"\<listOfProducts\>\"", ",", "___"}], "]"}], ",", 
+              " ", "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"p", "=", 
+            RowBox[{"Cases", "[", 
+             RowBox[{"p", ",", " ", 
+              RowBox[{"XMLElement", "[", 
+               RowBox[{"\"\<speciesReference\>\"", ",", "___"}], "]"}], " ", 
+              ",", " ", "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"p", "=", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"getSBMLfield", "[", 
+               RowBox[{"\"\<species\>\"", ",", "#"}], "]"}], "&"}], "/@", 
+             "p"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"kl", " ", "=", " ", 
+            RowBox[{"Cases", "[", 
+             RowBox[{"reaction", ",", " ", 
+              RowBox[{"XMLElement", "[", 
+               RowBox[{"\"\<math\>\"", ",", "___"}], "]"}], ",", " ", 
+              "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"kl", " ", "=", " ", 
+            RowBox[{"Cases", "[", 
+             RowBox[{"kl", ",", " ", 
+              RowBox[{"XMLElement", "[", 
+               RowBox[{"\"\<ci\>\"", ",", " ", "___"}], "]"}], ",", " ", 
+              "Infinity"}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+           RowBox[{"kl", " ", "=", " ", 
+            RowBox[{"kl", "/.", 
+             RowBox[{"{", 
+              RowBox[{"XMLElement", "\[Rule]", " ", "vid"}], "}"}]}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"kl", " ", "=", " ", 
+            RowBox[{"Flatten", "[", "kl", "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{"dbg", ",", " ", 
+             RowBox[{"Print", "[", 
+              RowBox[{"\"\<getRMP: kl:\>\"", ",", " ", "kl"}], "]"}]}], "]"}],
+            ";", " ", "\[IndentingNewLine]", 
+           RowBox[{"klarv", " ", "=", " ", 
+            RowBox[{"Intersection", "[", 
+             RowBox[{"kl", ",", " ", "assignmentRuleVariables"}], "]"}]}], 
+           ";", "\[IndentingNewLine]", 
+           RowBox[{"klrrv", " ", "=", " ", 
+            RowBox[{"Intersection", "[", 
+             RowBox[{"kl", ",", " ", "rateRuleVariables"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{"dbg", ",", " ", 
+             RowBox[{"Print", "[", 
+              RowBox[{"\"\<getRMP: klarv:\>\"", ",", " ", "klarv"}], "]"}]}], 
+            "]"}], ";", "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{"dbg", ",", " ", 
+             RowBox[{"Print", "[", 
+              RowBox[{"\"\<getRMP: klrrv:\>\"", ",", " ", "klrrv"}], "]"}]}], 
+            "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"klarv", " ", "=", " ", 
+            RowBox[{"Join", "[", 
+             RowBox[{"klarv", ",", " ", "klrrv"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{"dbg", ",", " ", 
+             RowBox[{"Print", "[", 
+              RowBox[{"\"\<getRMP: klarv:\>\"", ",", " ", "klarv"}], "]"}]}], 
+            "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"klarv", " ", "=", " ", 
+            RowBox[{"klarv", "//.", 
+             RowBox[{"Join", "[", 
+              RowBox[{"assignmentRules", ",", " ", "rateRules"}], "]"}]}]}], 
+           ";", "\[IndentingNewLine]", 
+           RowBox[{"klarv", " ", "=", " ", 
+            RowBox[{"Flatten", "[", "klarv", "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{"dbg", ",", " ", 
+             RowBox[{"Print", "[", 
+              RowBox[{
+              "\"\<getRMP: klarv (hidden species):\>\"", ",", " ", "klarv"}], 
+              "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+           "\[IndentingNewLine]", 
+           RowBox[{"rm", "=", 
+            RowBox[{"Join", "[", 
+             RowBox[{"r", ",", "m", ",", " ", "klarv"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{"dbg", ",", " ", 
+             RowBox[{"Print", "[", 
+              RowBox[{"\"\<getRMP: r: \>\"", ",", " ", "r"}], "]"}]}], "]"}], 
+           ";", " ", "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{"dbg", ",", " ", 
+             RowBox[{"Print", "[", 
+              RowBox[{"\"\<getRMP: m: \>\"", ",", " ", "m"}], "]"}]}], "]"}], 
+           ";", " ", "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{"dbg", ",", " ", 
+             RowBox[{"Print", "[", 
+              RowBox[{"\"\<getRMP: p: \>\"", ",", " ", "p"}], "]"}]}], "]"}], 
+           ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{"dbg", ",", " ", 
+             RowBox[{"Print", "[", 
+              RowBox[{"\"\<getRMP: rm: \>\"", ",", " ", "rm"}], "]"}]}], 
+            "]"}], ";", " ", "\[IndentingNewLine]", 
+           RowBox[{"(*", " ", 
+            RowBox[{
+             RowBox[{"rmp", "=", " ", 
+              RowBox[{"Outer", "[", 
+               RowBox[{"Rule", ",", " ", "rm", ",", " ", "p"}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"rmp", "=", 
+              RowBox[{"rmp", "/.", 
+               RowBox[{"{", 
+                RowBox[{"Rule", "\[Rule]", " ", "rule"}], "}"}]}]}], ";", " ",
+              "\[IndentingNewLine]", 
+             RowBox[{"rmp", "=", 
+              RowBox[{"Flatten", "[", "rmp", "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{"dbg", ",", " ", 
+               RowBox[{"Print", "[", 
+                RowBox[{"\"\<getRMP: rmp: \>\"", ",", " ", "rmp"}], "]"}]}], 
+              "]"}], ";"}], " ", "\[IndentingNewLine]", "*)"}], 
+           "\[IndentingNewLine]", 
+           RowBox[{"Block", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"ri", ",", " ", "ro"}], "}"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"ri", " ", "=", " ", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Rule", "[", 
+                  RowBox[{"#", ",", " ", "id"}], "]"}], "&"}], "/@", "rm"}]}],
+               ";", "\[IndentingNewLine]", 
+              RowBox[{"rm", " ", "=", " ", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Rule", "[", 
+                  RowBox[{"id", ",", " ", "#"}], "]"}], "&"}], "/@", "p"}]}], 
+              ";", "\[IndentingNewLine]", 
+              RowBox[{"rmp", " ", "=", " ", 
+               RowBox[{
+                RowBox[{"Join", "[", 
+                 RowBox[{"ri", ",", " ", "rm"}], "]"}], "//", "Flatten"}]}], 
+              ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{"dbg", ",", " ", 
+             RowBox[{"Print", "[", 
+              RowBox[{"\"\<getRMP: rmp: \>\"", ",", " ", "rmp"}], "]"}]}], 
+            "]"}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Return", "[", "rmp", "]"}], ";"}]}], 
+         "\[IndentingNewLine]", "]"}]}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"getRMP", "[", "___", "]"}], ":=", 
+        "\"\<error-reading-reaction\>\""}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"r", "=", 
+        RowBox[{"Cases", "[", 
+         RowBox[{"m", ",", " ", 
+          RowBox[{"XMLElement", "[", 
+           RowBox[{"\"\<listOfReactions\>\"", ",", " ", "__"}], "]"}], ",", 
+          " ", "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "[", "r", "]"}], ">", "0"}], ",", " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"r", "=", 
+           RowBox[{"Cases", "[", 
+            RowBox[{"r", ",", " ", 
+             RowBox[{"XMLElement", "[", 
+              RowBox[{"\"\<reaction\>\"", ",", "___"}], "]"}], ",", " ", 
+             "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"r", "=", 
+           RowBox[{"getRMP", "/@", "r"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{"dbg", ",", " ", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Print", "[", 
+               RowBox[{
+               "\"\<visualizeSBMLModel: next reaction=\>\"", ",", "#"}], 
+               "]"}], "&"}], "/@", "r"}]}], "]"}], ";"}]}], " ", 
+        "\[IndentingNewLine]", "]"}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"r", "=", 
+        RowBox[{"Join", "[", 
+         RowBox[{
+         "r", ",", " ", "assignmentRulesForVisualization", ",", " ", 
+          "rateRulesForVisualization"}], "]"}]}], ";", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{"r", "=", 
+        RowBox[{"Flatten", "[", "r", "]"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "[", "r", "]"}], "<", "1"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Print", "[", 
+           RowBox[{
+            RowBox[{"\"\<Warning: \>\"", "//", "boldRed"}], ",", " ", 
+            RowBox[{
+            "\"\<This model can not be visualized becauese it does not \
+contain any reactions or rules that define species in terms of other species.\
+\>\"", "//", "boldBlack"}]}], "]"}], ";", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"$VersionNumber", "<", "6"}], ",", " ", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Return", "[", 
+             RowBox[{"Show", "[", 
+              RowBox[{
+               RowBox[{"Graphics", "[", 
+                RowBox[{"Text", "[", 
+                 RowBox[{
+                 "\"\<*************\\nModel cannot \\nbe \
+visualized\\n*************\>\"", ",", " ", 
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "0"}], "}"}]}], "]"}], "]"}], ",", " ", 
+               RowBox[{"Frame", "\[Rule]", " ", "True"}], ",", " ", 
+               RowBox[{"FrameTicks", "\[Rule]", " ", "None"}], ",", " ", 
+               RowBox[{"Background", "\[Rule]", " ", "Yellow"}], ",", " ", 
+               RowBox[{"TextStyle", "\[Rule]", " ", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"FontSize", "\[Rule]", " ", "22"}], ",", " ", 
+                  RowBox[{"FontFamily", "\[Rule]", " ", "Arial"}]}], "}"}]}], 
+               ",", " ", "\[IndentingNewLine]", 
+               RowBox[{"FrameLabel", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{"None", ",", "None", ",", "  ", 
+                  RowBox[{"MyStyleForm", "[", 
+                   RowBox[{
+                    RowBox[{"ids", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+                    RowBox[{"FontFamily", "\[Rule]", " ", "vis$fontFamily"}], 
+                    ",", " ", 
+                    RowBox[{
+                    "FontSize", "\[Rule]", " ", "vis$headerFontSize"}]}], 
+                   "]"}], ",", "None"}], "}"}]}]}], "]"}], "]"}], " ", ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Return", "[", 
+             RowBox[{"Show", "[", 
+              RowBox[{
+               RowBox[{"Graphics", "[", 
+                RowBox[{"Text", "[", 
+                 RowBox[{
+                 "\"\<*************\\nModel cannot \\nbe \
+visualized\\n*************\>\"", ",", " ", 
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "0"}], "}"}]}], "]"}], "]"}], ",", " ", 
+               RowBox[{"Frame", "\[Rule]", " ", "True"}], ",", " ", 
+               RowBox[{"FrameTicks", "\[Rule]", " ", "None"}], ",", " ", 
+               RowBox[{"Background", "\[Rule]", " ", "Yellow"}], ",", " ", 
+               RowBox[{"LabelStyle", "\[Rule]", " ", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"FontSize", "\[Rule]", " ", "22"}], ",", " ", 
+                  RowBox[{"FontFamily", "\[Rule]", " ", "Arial"}]}], "}"}]}], 
+               ",", " ", "\[IndentingNewLine]", 
+               RowBox[{"FrameLabel", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{"None", ",", "None", ",", "  ", 
+                  RowBox[{"MyStyleForm", "[", 
+                   RowBox[{
+                    RowBox[{"ids", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+                    RowBox[{"FontFamily", "\[Rule]", " ", "vis$fontFamily"}], 
+                    ",", " ", 
+                    RowBox[{
+                    "FontSize", "\[Rule]", " ", "vis$headerFontSize"}]}], 
+                   "]"}], ",", "None"}], "}"}]}]}], "]"}], "]"}]}], 
+           "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], 
+       ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        StyleBox[" ",
+         Background->RGBColor[1, 1, 0]], 
+        StyleBox[
+         RowBox[{
+         "filter", " ", "out", " ", "species", " ", "listed", " ", "in", " ", 
+          "ignoreSpecies"}],
+         Background->RGBColor[1, 1, 0]], 
+        StyleBox[" ",
+         Background->RGBColor[1, 1, 0]], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"Block", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"keep", ",", "reactions"}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"reactions", " ", "=", " ", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"List", "@@", "#"}], "&"}], "/@", "r"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"keep", "[", 
+            RowBox[{"{", 
+             RowBox[{"a_", ",", " ", "b_"}], "}"}], "]"}], ":=", " ", 
+           RowBox[{
+            RowBox[{"Not", "[", 
+             RowBox[{"MemberQ", "[", 
+              RowBox[{"ignore", ",", " ", "a"}], "]"}], " ", "]"}], "\[And]", 
+            " ", 
+            RowBox[{"Not", "[", 
+             RowBox[{"MemberQ", "[", 
+              RowBox[{"ignore", ",", " ", "b"}], "]"}], "]"}]}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"reactions", " ", "=", " ", 
+           RowBox[{"Select", "[", 
+            RowBox[{"reactions", ",", " ", "keep"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"reactions", " ", "=", " ", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Rule", "@@", "#"}], "&"}], "/@", "reactions"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"r", "=", " ", "reactions"}], ";"}]}], 
+        "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"byname", ",", " ", 
+         RowBox[{"r", " ", "=", 
+          RowBox[{"(", " ", 
+           RowBox[{"r", "/.", "namerules"}], ")"}]}]}], "]"}], ";", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{"\"\<visualizeSBMLModel: r=\>\"", ",", "r"}], "]"}]}], 
+        "]"}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        StyleBox["visualize",
+         Background->RGBColor[1, 1, 0]], " ", "*)"}], "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"vis", "[", "m_", "]"}], ":=", 
+        RowBox[{"Module", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+           "v", ",", "xy", ",", " ", "esf", ",", " ", "vsf", ",", " ", 
+            "title", ",", "opt"}], "}"}], ",", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"title", "  ", "=", " ", 
+            RowBox[{"ids", "[", 
+             RowBox[{"[", "1", "]"}], "]"}]}], ";", " ", 
+           "\[IndentingNewLine]", 
+           RowBox[{"If", "[", 
+            RowBox[{"byname", ",", " ", 
+             RowBox[{"title", "  ", "=", " ", 
+              RowBox[{"title", "/.", "namerules"}]}]}], "]"}], ";", " ", 
+           "\[IndentingNewLine]", 
+           RowBox[{"v", "=", 
+            RowBox[{"VertexList", "[", "m", "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"xy", "=", 
+            RowBox[{"GraphCoordinates", "[", "m", "]"}]}], ";", 
+           "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"esf", "[", 
+             RowBox[{"i_", ",", "j_"}], "]"}], ":=", "\[IndentingNewLine]", 
+            RowBox[{"Module", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"v", ",", " ", "w", ",", " ", "arw"}], "}"}], ",", 
+              "\[IndentingNewLine]", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"v", "[", 
+                 RowBox[{"p_", ",", " ", "q_", ",", " ", "f_"}], "]"}], ":=", 
+                " ", 
+                RowBox[{
+                 RowBox[{"xy", "[", 
+                  RowBox[{"[", "p", "]"}], "]"}], "+", " ", 
+                 RowBox[{"f", "*", 
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"xy", "[", 
+                    RowBox[{"[", "q", "]"}], "]"}], "-", 
+                    RowBox[{"xy", "[", 
+                    RowBox[{"[", "p", "]"}], "]"}]}], ")"}]}]}]}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"arw", "[", 
+                 RowBox[{"p_", ",", " ", "q_", ",", " ", "f_"}], "]"}], ":=", 
+                " ", 
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{"$VersionNumber", "<", "6"}], ",", " ", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"Arrow", "[", 
+                   RowBox[{
+                    RowBox[{"xy", "[", 
+                    RowBox[{"[", "p", "]"}], "]"}], ",", " ", 
+                    RowBox[{"v", "[", 
+                    RowBox[{"p", ",", " ", "q", ",", " ", "f"}], "]"}], ",", 
+                    " ", 
+                    RowBox[{"HeadScaling", "\[Rule]", " ", "Absolute"}], ",", 
+                    " ", 
+                    RowBox[{"HeadLength", "\[Rule]", " ", "15"}]}], "]"}], 
+                  ",", " ", "\[IndentingNewLine]", 
+                  RowBox[{"Arrow", "[", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"xy", "[", 
+                    RowBox[{"[", "p", "]"}], "]"}], ",", " ", 
+                    RowBox[{"v", "[", 
+                    RowBox[{"p", ",", " ", "q", ",", " ", "f"}], "]"}]}], 
+                    "}"}], "]"}]}], "\[IndentingNewLine]", "]"}]}], ";", " ", 
+               "\[IndentingNewLine]", "\[IndentingNewLine]", 
+               RowBox[{"save$visdata", "[", 
+                RowBox[{"\"\<arrow\>\"", ",", " ", 
+                 RowBox[{"v", "[", 
+                  RowBox[{"i", ",", "j", ",", " ", "0"}], "]"}], ",", " ", 
+                 RowBox[{"v", "[", 
+                  RowBox[{"i", ",", "j", ",", " ", "1"}], "]"}]}], "]"}], ";",
+                "\[IndentingNewLine]", "\[IndentingNewLine]", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"$VersionNumber", "<", "6"}], ",", " ", 
+                 RowBox[{
+                 "Return", "[", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                  RowBox[{"{", 
+                   RowBox[{"Blue", ",", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", "j"}], "}"}], "]"}], ",", 
+                    RowBox[{"arw", "[", 
+                    RowBox[{"i", ",", " ", "j", ",", " ", ".7"}], "]"}]}], 
+                   "}"}], "]"}]}], "]"}], ";", " ", "\[IndentingNewLine]", 
+               "\[IndentingNewLine]", 
+               RowBox[{"Return", "[", 
+                RowBox[{"{", 
+                 RowBox[{"Blue", ",", 
+                  RowBox[{"Line", "[", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"xy", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", 
+                    RowBox[{"xy", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}]}], "}"}], "]"}], ",", 
+                  RowBox[{"arw", "[", 
+                   RowBox[{"i", ",", " ", "j", ",", " ", ".7"}], "]"}]}], 
+                 "}"}], "]"}], ";"}]}], " ", "\[IndentingNewLine]", "]"}]}], 
+           ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"vsf", "[", "i_", "]"}], ":=", 
+            RowBox[{"Module", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"r", ",", " ", "vdata"}], "}"}], ",", 
+              "\[IndentingNewLine]", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"vdata", "[", "p_", "]"}], ":=", 
+                RowBox[{"Module", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                   "data", ",", "rawdata", ",", "d", ",", " ", "center", ",", 
+                    " ", "r", ",", "ISAreaction", ",", "s", ",", " ", "oval", 
+                    ",", " ", "ovaldisk", ",", "rx"}], "}"}], ",", 
+                  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"data", "=", " ", 
+                    RowBox[{"v", "[", 
+                    RowBox[{"[", "p", "]"}], "]"}]}], ";", 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"ISAreaction", "=", "False"}], ";", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"StringPosition", "[", 
+                    RowBox[{"data", ",", "\"\<$\>\""}], "]"}], "\[Equal]", 
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1"}], "}"}], "}"}]}], ",", " ", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"data", " ", "=", " ", 
+                    RowBox[{"StringDrop", "[", 
+                    RowBox[{"data", ",", "1"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"ISAreaction", "=", "True"}], ";"}]}], 
+                    "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"rawdata", " ", "=", " ", "data"}], ";", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"data", " ", "=", " ", 
+                    RowBox[{"MyStyleForm", "[", 
+                    RowBox[{"data", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", " ", "vis$fontFamily"}], 
+                    ",", " ", 
+                    RowBox[{"FontSize", "\[Rule]", " ", "vis$fontSize"}]}], 
+                    "]"}]}], ";", "\[IndentingNewLine]", 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                   RowBox[{"d", "=", 
+                    RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+                   RowBox[{"center", " ", "=", " ", 
+                    RowBox[{"xy", "[", 
+                    RowBox[{"[", "p", "]"}], "]"}]}], ";", 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                   RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"$VersionNumber", "<", "6"}], ",", " ", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"data", " ", "=", 
+                    RowBox[{"Text", "[", 
+                    RowBox[{"data", ",", " ", "i"}], "]"}]}], ",", " ", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"data", "=", 
+                    RowBox[{"Text", "[", 
+                    RowBox[{"data", ",", " ", "center"}], "]"}]}]}], 
+                    "\[IndentingNewLine]", "]"}], ";", " ", 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"If", "[", 
+                    RowBox[{"ISAreaction", ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"r", "=", 
+                    RowBox[{"Rectangle", "[", 
+                    RowBox[{
+                    RowBox[{"center", "-", "vis$box"}], ",", " ", 
+                    RowBox[{"center", "+", "vis$box"}]}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"s", "=", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"center", "+", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"vis$boxWidth", "/", "2"}], ",", " ", 
+                    RowBox[{"vis$boxHeight", "/", "2"}]}], "}"}]}], ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"center", "+", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"vis$boxWidth", "/", "2"}], ",", " ", 
+                    RowBox[{
+                    RowBox[{"-", "vis$boxHeight"}], "/", "2"}]}], "}"}]}], 
+                    ",", "\[IndentingNewLine]", 
+                    RowBox[{"center", "+", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "vis$boxWidth"}], "/", "2"}], ",", " ", 
+                    RowBox[{
+                    RowBox[{"-", "vis$boxHeight"}], "/", "2"}]}], "}"}]}], 
+                    ",", "\[IndentingNewLine]", 
+                    RowBox[{"center", "+", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "vis$boxWidth"}], "/", "2"}], ",", " ", 
+                    RowBox[{"vis$boxHeight", "/", "2"}]}], "}"}]}], ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"center", "+", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"vis$boxWidth", "/", "2"}], ",", " ", 
+                    RowBox[{"vis$boxHeight", "/", "2"}]}], "}"}]}]}], 
+                    "\[IndentingNewLine]", "}"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"d", "=", 
+                    RowBox[{"Join", "[", 
+                    RowBox[{"d", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "White", ",", "  ", "r", ",", " ", "Black", ",", " ", 
+                    "s"}], "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"save$visdata", "[", 
+                    RowBox[{
+                    "\"\<reaction\>\"", ",", " ", "rawdata", ",", " ", 
+                    "center"}], "]"}], ";"}], "\[IndentingNewLine]", ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"rx", "=", 
+                    RowBox[{"StringLength", "[", 
+                    RowBox[{"v", "[", 
+                    RowBox[{"[", "p", "]"}], "]"}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"oval", " ", "=", " ", 
+                    RowBox[{"Circle", "[", 
+                    RowBox[{"center", ",", " ", 
+                    RowBox[{"vis$radius", "*", 
+                    RowBox[{"{", 
+                    RowBox[{"rx", ",", " ", "1"}], "}"}]}]}], "]"}]}], ";", 
+                    " ", "\[IndentingNewLine]", 
+                    RowBox[{"ovaldisk", " ", "=", " ", 
+                    RowBox[{"Disk", "[", 
+                    RowBox[{"center", ",", " ", 
+                    RowBox[{"vis$radius", "*", 
+                    RowBox[{"{", 
+                    RowBox[{"rx", ",", " ", "1"}], "}"}]}]}], "]"}]}], ";", 
+                    " ", "\[IndentingNewLine]", 
+                    RowBox[{"d", " ", "=", " ", 
+                    RowBox[{"Join", "[", 
+                    RowBox[{"d", ",", " ", 
+                    RowBox[{"{", " ", 
+                    RowBox[{
+                    "White", ",", " ", "ovaldisk", ",", "Red", ",", " ", 
+                    "oval", ",", " ", "Black"}], "}"}]}], "]"}]}], ";", 
+                    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                    RowBox[{"save$visdata", "[", 
+                    RowBox[{
+                    "\"\<species\>\"", ",", " ", "rawdata", ",", " ", 
+                    "center"}], "]"}], ";"}]}], "\[IndentingNewLine]", 
+                    "\[IndentingNewLine]", "]"}], ";", " ", 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                   RowBox[{"d", "=", 
+                    RowBox[{"Append", "[", 
+                    RowBox[{"d", ",", " ", "data"}], "]"}]}], ";", 
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"Return", "[", "d", "]"}], ";"}]}], 
+                 "\[IndentingNewLine]", "]"}]}], ";", " ", 
+               "\[IndentingNewLine]", "\[IndentingNewLine]", 
+               "\[IndentingNewLine]", 
+               RowBox[{"r", "=", " ", 
+                RowBox[{"vdata", "[", "i", "]"}]}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{"Return", "[", "r", "]"}], ";"}]}], 
+             "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}]}], ";", 
+           "\[IndentingNewLine]", " ", "\[IndentingNewLine]", 
+           RowBox[{"With", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"opt", "=", 
+               RowBox[{"MyFilterOptions", "[", 
+                RowBox[{"GraphPlot", ",", " ", "options"}], "]"}]}], "}"}], 
+             ",", " ", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"If", "[", 
+               RowBox[{"dbg", ",", " ", 
+                RowBox[{"Print", "[", 
+                 RowBox[{
+                 "\"\<visualizeSBMLModel: about to call GraphPlot\\nm=\>\"", 
+                  ",", "m", ",", "\"\<\\n{opt}=\>\"", ",", " ", 
+                  RowBox[{"{", "opt", "}"}], ",", " ", "\"\<\\nesf=\>\"", ",",
+                   " ", "esf", ",", " ", "\"\<\\nvsf=\>\"", ",", " ", "vsf", 
+                  ",", " ", "\"\<\\nxy=\>\"", ",", " ", "xy"}], "]"}]}], 
+               "]"}], ";", " ", "\[IndentingNewLine]", 
+              RowBox[{"plotlabel", "=", " ", 
+               RowBox[{"MyStyleForm", "[", 
+                RowBox[{"title", ",", " ", 
+                 RowBox[{"FontFamily", "\[Rule]", " ", "vis$fontFamily"}], 
+                 ",", " ", 
+                 RowBox[{"FontSize", "\[Rule]", " ", "vis$headerFontSize"}]}],
+                 "]"}]}], ";", " ", "\[IndentingNewLine]", 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"$VersionNumber", "<", "6"}], ",", " ", 
+                "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"v", "=", 
+                  RowBox[{"GraphPlot", "[", 
+                   RowBox[{
+                   "m", ",", "opt", ",", " ", "\[IndentingNewLine]", " ", 
+                    RowBox[{"EdgeStyleFunction", "\[Rule]", " ", "esf"}], ",",
+                     "\[IndentingNewLine]", 
+                    RowBox[{"VertexStyleFunction", "\[Rule]", "vsf"}], ",", 
+                    " ", 
+                    RowBox[{"VertexCoordinates", "\[Rule]", " ", "xy"}], ",", 
+                    " ", 
+                    RowBox[{"PlotLabel", "\[Rule]", " ", "plotlabel"}]}], " ",
+                    "]"}]}], ";"}], " ", "\[IndentingNewLine]", ",", " ", 
+                "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"erf", "[", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"pt1_", ",", " ", "pt2_"}], "}"}], ",", " ", 
+                    "u___"}], "]"}], ":=", " ", 
+                  RowBox[{"Module", "[", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", " ", "j", ",", " ", "w"}], "}"}], ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"i", "=", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Position", "[", 
+                    RowBox[{"xy", ",", " ", "pt1"}], "]"}], "//", "Flatten"}],
+                     "//", "First"}]}], ";", " ", "\[IndentingNewLine]", 
+                    RowBox[{"j", "=", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Position", "[", 
+                    RowBox[{"xy", ",", " ", "pt2"}], "]"}], "//", "Flatten"}],
+                     "//", "First"}]}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"w", "=", 
+                    RowBox[{"esf", "[", 
+                    RowBox[{"i", ",", "j"}], "]"}]}], ";", " ", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"w", "=", 
+                    RowBox[{"Prepend", "[", 
+                    RowBox[{"w", ",", " ", 
+                    RowBox[{"Arrowheads", "[", "Medium", "]"}]}], "]"}]}], 
+                    ";", " ", "\[IndentingNewLine]", 
+                    RowBox[{"If", "[", 
+                    RowBox[{"dbg", ",", " ", 
+                    RowBox[{"Print", "[", 
+                    RowBox[{"\"\<{i,j}=\>\"", ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", "j"}], "}"}], ",", " ", "\"\< erf=\>\"",
+                     ",", " ", "w", ",", " ", 
+                    RowBox[{"Graphics", "[", "w", "]"}]}], "]"}]}], "]"}], 
+                    ";", " ", "\[IndentingNewLine]", 
+                    RowBox[{"Return", "[", "w", "]"}], ";"}]}], " ", 
+                   "\[IndentingNewLine]", "]"}]}], ";", " ", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"erferr", "=", "True"}], ";", " ", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"erf", "[", "u___", "]"}], ":=", " ", 
+                  RowBox[{"Module", "[", 
+                   RowBox[{
+                    RowBox[{"{", "}"}], ",", " ", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{"erferr", ",", " ", 
+                    RowBox[{"Print", "[", 
+                    RowBox[{
+                    RowBox[{"\"\<Warning: \>\"", "//", "boldRed"}], ",", 
+                    RowBox[{
+                    "\"\<visualizeSBMLModel: \>\"", "//", "boldBlue"}], ",", 
+                    "  ", 
+                    RowBox[{
+                    "\"\< unexpected input to EdgeRenderingFunction: \>\"", "//",
+                     "boldBlack"}], ",", " ", 
+                    RowBox[{"u", "//", "boldBlue"}], ",", " ", 
+                    RowBox[{
+                    "\"\<\\nThis error occurs because of undocumented \
+improvements in Mathematica 6.0 that have erroneously superceded \
+EdgeStyleFunction with EdgeRenderingFunction without backward compatibility \
+or change documentation. IN most cases this error will not affect the output \
+of visualizeSBMLModel, and it is not clear why Mathematica generates this \
+function call. There is currently no workaround for this bug, escept to run \
+MathSBML in Mathematica 5.2. This message will be suppressed for the \
+remainder of this calculation. \>\"", "//", "boldBlack"}]}], "]"}]}], "]"}], 
+                    ";", " ", "\[IndentingNewLine]", 
+                    RowBox[{"erferr", "=", "False"}], ";", " ", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{"{", "}"}], "]"}], ";"}]}], "]"}]}], ";", "  ", 
+                 "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"vrf", "[", 
+                   RowBox[{"pos_", ",", " ", "u___"}], "]"}], ":=", " ", 
+                  RowBox[{"Module", "[", 
+                   RowBox[{
+                    RowBox[{"{", "i", "}"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"i", "=", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Position", "[", 
+                    RowBox[{"xy", ",", " ", "pos"}], "]"}], "//", "Flatten"}],
+                     "//", "First"}]}], ";", " ", "\[IndentingNewLine]", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{"vsf", "[", "i", "]"}], "]"}], ";"}]}], " ", 
+                   "\[IndentingNewLine]", "]"}]}], ";", " ", 
+                 "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                 RowBox[{"v", "=", 
+                  RowBox[{"GraphPlot", "[", 
+                   RowBox[{"m", ",", " ", "opt", ",", 
+                    RowBox[{"VertexCoordinateRules", "\[Rule]", " ", "xy"}], 
+                    " ", ",", " ", 
+                    RowBox[{"PlotLabel", "\[Rule]", " ", "plotlabel"}], ",", 
+                    " ", "\[IndentingNewLine]", " ", 
+                    RowBox[{"EdgeRenderingFunction", "\[Rule]", 
+                    RowBox[{"(", " ", 
+                    RowBox[{
+                    RowBox[{"erf", "[", "#", "]"}], "&"}], ")"}]}], ",", " ", 
+                    "\[IndentingNewLine]", " ", 
+                    RowBox[{
+                    "VertexRenderingFunction", "\[Rule]", " ", "vrf"}]}], 
+                   "  ", "]"}]}], ";"}]}], " ", "\[IndentingNewLine]", 
+               "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+              RowBox[{"Return", "[", "v", "]"}]}]}], "\[IndentingNewLine]", 
+            "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], ";", " ", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", 
+        RowBox[{"vis", "[", "r", "]"}], "]"}], ";"}]}], "\[IndentingNewLine]",
+      "]"}]}], ";"}], " "}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.388261958386488*^9, 3.38826202512103*^9}, {
+   3.3882620634808073`*^9, 3.388262123698215*^9}, 3.388262159514439*^9, 
+   3.3882621970700903`*^9, 3.388262230970347*^9, {3.388263228875607*^9, 
+   3.388263229424592*^9}, {3.395598734758026*^9, 3.395598735528446*^9}, {
+   3.395598826354261*^9, 3.395598838135131*^9}, {3.395598889893914*^9, 
+   3.395598968236356*^9}, {3.395599190844962*^9, 3.395599215904504*^9}, {
+   3.395599251579739*^9, 3.395599345234538*^9}, {3.3955993895535*^9, 
+   3.395599598667645*^9}, {3.3955998066866903`*^9, 3.395599814254188*^9}, {
+   3.3955999615971746`*^9, 3.395599988960237*^9}, {3.395600344083371*^9, 
+   3.395600419831902*^9}, {3.395600450805435*^9, 3.395600571196806*^9}, 
+   3.39560065398983*^9, 3.3956007342993717`*^9, {3.395600768149905*^9, 
+   3.395600870856868*^9}, {3.395600960629004*^9, 3.395600975529913*^9}, {
+   3.395601020983325*^9, 3.395601050756116*^9}, {3.395601084522682*^9, 
+   3.3956010941857567`*^9}, {3.3956011678980513`*^9, 3.39560119477227*^9}, {
+   3.395601266582715*^9, 3.395601429586022*^9}, {3.395601485671277*^9, 
+   3.3956015042106743`*^9}, 3.395601600348424*^9, {3.395601641605878*^9, 
+   3.3956016473935432`*^9}, {3.395601713918894*^9, 3.3956017765678263`*^9}, {
+   3.395601825534711*^9, 3.39560192105173*^9}, {3.395602017150556*^9, 
+   3.395602052144644*^9}, {3.39560215675595*^9, 3.395602184531768*^9}, {
+   3.3956024797395287`*^9, 3.395602522509762*^9}, {3.39568251891014*^9, 
+   3.395682532934319*^9}, 3.395682603786584*^9, {3.39568290477276*^9, 
+   3.395682945258309*^9}, {3.395683020446897*^9, 3.395683024724086*^9}, {
+   3.395683256722764*^9, 3.395683269165167*^9}, {3.395683323252915*^9, 
+   3.395683358391303*^9}, {3.3956834385198193`*^9, 3.39568346144302*^9}, {
+   3.395683633911276*^9, 3.3956836651535873`*^9}, {3.395683708137755*^9, 
+   3.3956838156705112`*^9}, {3.395683913248827*^9, 3.395684008237949*^9}, {
+   3.395684054856133*^9, 3.395684079079055*^9}, {3.395684109452577*^9, 
+   3.395684153205697*^9}, {3.395684208407131*^9, 3.395684246986414*^9}, {
+   3.395684282398501*^9, 3.395684306474773*^9}, {3.395685346874971*^9, 
+   3.3956854153667097`*^9}}]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Exit", "Section",
+ CellChangeTimes->{{3.5049745938970394`*^9, 3.5049745946170807`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"LTPrint", "[", "\"\<Visualization loaded.\>\"", "]"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.5049745972382307`*^9, 3.504974602583536*^9}, {
+  3.5064523456520576`*^9, 3.506452345850745*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+AutoGeneratedPackage->Automatic,
+WindowSize->{701, 858},
+WindowMargins->{{46, Automatic}, {21, Automatic}},
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PastelColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 112, 1, 70, "Title"],
+Cell[694, 25, 338, 10, 85, "Text"],
+Cell[CellGroupData[{
+Cell[1057, 39, 154, 2, 78, "Section"],
+Cell[1214, 43, 2108, 39, 389, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3359, 87, 102, 1, 78, "Section"],
+Cell[CellGroupData[{
+Cell[3486, 92, 40, 0, 39, "Subsection"],
+Cell[3529, 94, 78601, 1666, 70, "Input",
+ InitializationCell->True]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[82179, 1766, 93, 1, 78, "Section"],
+Cell[82275, 1769, 234, 4, 40, "Input",
+ InitializationCell->True]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

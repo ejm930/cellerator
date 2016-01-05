@@ -1,0 +1,139 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      3380,        129]
+NotebookOptionsPosition[      2951,        109]
+NotebookOutlinePosition[      3290,        124]
+CellTagsIndexPosition[      3247,        121]
+WindowFrame->Generic*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"y", "'"}], "[", "x", "]"}], "==", 
+      FractionBox[
+       SqrtBox[
+        RowBox[{
+         SuperscriptBox["a", "2"], "-", 
+         SuperscriptBox["x", "2"]}]], "x"]}], ",", 
+     RowBox[{
+      RowBox[{"y", "[", "a", "]"}], "\[Equal]", "0"}]}], "}"}], ",", " ", 
+   RowBox[{"y", "[", "x", "]"}], ",", "x"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4546104788655148`*^9, 3.4546106001413116`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"y", "[", "x", "]"}], "\[Rule]", 
+    RowBox[{
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox["a", "2"], "-", 
+       SuperscriptBox["x", "2"]}]], "+", 
+     RowBox[{"a", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["a", "2"]}], "]"}]}], "-", 
+     RowBox[{"a", " ", 
+      RowBox[{"Log", "[", 
+       SuperscriptBox["a", "4"], "]"}]}], "+", 
+     RowBox[{"a", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{
+        SuperscriptBox["a", "3"], " ", "x"}], "]"}]}], "-", 
+     RowBox[{"a", " ", 
+      RowBox[{"Log", "[", 
+       RowBox[{"2", " ", "a", " ", 
+        RowBox[{"(", 
+         RowBox[{"a", "+", 
+          SqrtBox[
+           RowBox[{
+            SuperscriptBox["a", "2"], "-", 
+            SuperscriptBox["x", "2"]}]]}], ")"}]}], "]"}]}]}]}], "}"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.454610591609233*^9, 3.4546106005196323`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[Integral]", 
+  RowBox[{
+   FractionBox[
+    SqrtBox[
+     RowBox[{
+      RowBox[{"a", "^", "2"}], "-", 
+      RowBox[{"x", "^", "2"}]}]], "x"], 
+   RowBox[{"\[DifferentialD]", "x"}]}]}]], "Input",
+ CellChangeTimes->{{3.4546106152054987`*^9, 3.4546106298784437`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  SqrtBox[
+   RowBox[{
+    SuperscriptBox["a", "2"], "-", 
+    SuperscriptBox["x", "2"]}]], "+", 
+  RowBox[{"a", " ", 
+   RowBox[{"Log", "[", 
+    RowBox[{
+     SuperscriptBox["a", "3"], " ", "x"}], "]"}]}], "-", 
+  RowBox[{"a", " ", 
+   RowBox[{"Log", "[", 
+    RowBox[{"2", " ", "a", " ", 
+     RowBox[{"(", 
+      RowBox[{"a", "+", 
+       SqrtBox[
+        RowBox[{
+         SuperscriptBox["a", "2"], "-", 
+         SuperscriptBox["x", "2"]}]]}], ")"}]}], "]"}]}]}]], "Output",
+ CellChangeTimes->{3.454610631415031*^9}]
+}, Open  ]]
+},
+WindowSize->{640, 750},
+WindowMargins->{{408, Automatic}, {Automatic, 142}},
+FrontEndVersion->"7.0 for Linux x86 (64-bit) (February 25, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[568, 22, 525, 16, 66, "Input"],
+Cell[1096, 40, 961, 31, 85, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2094, 76, 292, 9, 66, "Input"],
+Cell[2389, 87, 546, 19, 49, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

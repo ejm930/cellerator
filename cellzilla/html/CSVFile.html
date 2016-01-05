@@ -1,0 +1,140 @@
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <meta name="generator" content="Bluefish 2.2.2">
+  <meta name="generator" content="Bluefish 2.2.2">
+  <meta name="generator" content="Bluefish 2.2.2">
+  <meta name="generator" content="Bluefish 2.2.2">
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>CSVFile</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info/" border="0"><img src="logo.svg" alt=
+        "The xCellerator Project" width="150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style="font-size:x-large;font-weight:bold;">
+            CSVFile<br>
+            CSVToTissue</td>
+
+            <td align="right"><a class="button" href="./index.html">Cellzilla2D
+            Home</a></td>
+          </tr>
+        </table>
+        <hr color="#FF7636">
+
+        <p class="header">Description</p>
+
+        <p>Read/Write <a href="Tissue.html" class="function">Tissue</a> (or
+        <a href="FlatTissue.html" class="function">FlatTissue</a>) data
+        structure as a CSV (comma separated values) File.</p>
+
+        <p><span class="function">Needs["Cellzilla2D`"];</span></p>
+
+        <p class="header">Return Value</p>
+
+        <p><span class="function">CSVFile[T, filename]</span> writes the tissue
+        object <span class="function">T</span> to the specified file.</p>
+
+        <p><span class="function">CSVFile[T, filename, True]</span> writes the
+        tissue object <span class="function">T</span> to the specified file in
+        flattened format, without explicit reference to the edges.</p>
+
+        <p><span class="function">CSVToTissue[filename]</span> reads the
+        specified CSV file and returns a <span class="function">Tissue</span>
+        object. The file may be in either normal or flat tissue form; if the
+        file contains a <span class="function">FlatTissue</span>, the data is
+        converted into a <span class="function">Tissue</span> object first.</p>
+
+        <p>The format is as follows:</p>
+        <pre style="font-weight:bold;">
+        n,dimensions
+        n,vertices
+        n,edges
+        n,faces
+        x,y
+        x,y
+        ...
+        i,j
+        i,j
+        ...
+        p,q,r,..
+        p,q,r,..
+        ...
+</pre>
+
+        <p>where the strings <span class="function">dimensions</span>, 
+        <span class="function">vertices</span>,
+        <span class="function">edges</span> and 
+        <span class="function">faces</span> are
+        required; <span class="function">n</span> is an integer; 
+        <span class="function">x,y</span> (or 
+        <span class="function">x,y,z</span>) are the coordinates of the
+        ith vertex; 
+        <span class="function">i,j</span> are the vertex indices of the pth edge; and 
+        <span class="function">p,q,r,...</span>
+        are the edge indices of the kth cell.</p>
+
+        <p>If the file is saved in flat form, the format is</p>
+        <pre style="font-weight:bold;">
+        n,dimensions
+        n,vertices
+        n,faces
+        x,y
+        x,y
+        ...
+        s,t,u,..
+        s,t,u,...
+        ...
+</pre>
+
+        <p>where </span>s,t,u,...</span> are the vertex indices of the kth cell, and
+        everything else is as defined for the first case.</p>
+
+        <p class="header">Options</p>
+
+        <p class="header">Example</p><!--
+        <p>[ <a href="examples/FlatTissue-example.nb.zip">Download
+        Example as Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name=
+        "display" src="./examples/FlatTissue-example.htm" id=
+        "display" style="background-color:white;"><a href="">View
+        as html.</a></iframe></p>
+-->
+
+        <p class="header">Implementation Notes</p>
+
+        <p class="header">See Also</p>
+
+        <p><a href="CSVFile.html" class="function">CSVFile</a>, <a href=
+        "CSVFile.html" class="function">CSVToTissue</a></p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2012 Nov 22]</span>
+    </div>
+  </center>
+</body>
+</html>

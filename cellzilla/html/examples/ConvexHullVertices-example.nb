@@ -1,0 +1,373 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     13806,        364]
+NotebookOptionsPosition[     12588,        319]
+NotebookOutlinePosition[     13046,        337]
+CellTagsIndexPosition[     13003,        334]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["ConvexHullVertices example", "Section",
+ CellChangeTimes->{{3.454616493069165*^9, 3.4546164962937117`*^9}, {
+   3.454617165097115*^9, 3.45461716610536*^9}, {3.4546175566843147`*^9, 
+   3.454617556998733*^9}, 3.454617821271494*^9, {3.4546182823933973`*^9, 
+   3.454618284403924*^9}, 3.4546185355642757`*^9, {3.4546188466058817`*^9, 
+   3.454618850495126*^9}, {3.454622798430842*^9, 3.4546228006815033`*^9}, {
+   3.4546972998510923`*^9, 3.454697302063283*^9}, {3.4548769614758177`*^9, 
+   3.45487696487158*^9}, {3.454877016601164*^9, 3.4548770230067463`*^9}, {
+   3.454877754510212*^9, 3.454877759342251*^9}, 3.5614536230647078`*^9}],
+
+Cell["\<\
+Example Cellzilla2D notebook.
+
+GPL License applies. 
+See http://xlr8r.info and http://cellzilla.info for further details.\
+\>", "Text",
+ CellChangeTimes->{{3.454616499378996*^9, 3.4546165376658583`*^9}, 
+   3.454617821271595*^9, 3.561453576054717*^9, 3.5614536230647993`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"<<", "Cellzilla2D.m"}]], "Input",
+ CellChangeTimes->{{3.4546177024873037`*^9, 3.4546177066717863`*^9}, {
+   3.4546177419301577`*^9, 3.454617750289276*^9}, 3.454617821271983*^9, 
+   3.5614536230649137`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"Cellzilla2D\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\" (2.3.5 (6-Nov-2012)) loaded Fri 9 Nov 2012 04:39:40\\nusing \
+\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"xCellerator \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"0.90 and \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"XSSA \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"1204002\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12]}],
+  SequenceForm[
+   Style["Cellzilla2D", FontFamily -> "Ubuntu,Arial", FontSize -> 12, 
+    FontWeight -> "Bold"], 
+   Style[" (2.3.5 (6-Nov-2012)) loaded Fri 9 Nov 2012 04:39:40\nusing ", 
+    FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["xCellerator ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", 
+    FontWeight -> "Bold"], 
+   Style["0.90 and ", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["XSSA ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> 
+    "Bold"], 
+   Style["1204002", FontSize -> 12, FontFamily -> "Ubuntu,Arial"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.454878128524849*^9, 3.561453580537977*^9, 
+  3.5614536230657454`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<ComputationalGeometry`\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.454877798886723*^9, 3.454877816397725*^9}, 
+   3.5614536230658903`*^9}],
+
+Cell[TextData[StyleBox["Generate  random vertices to use as Voronoi Centers",
+ FontSize->18]], "Text",
+ CellChangeTimes->{{3.454618984348707*^9, 3.4546189942028637`*^9}, 
+   3.4548765902091303`*^9, {3.45487716360544*^9, 3.4548771653598423`*^9}, 
+   3.5614536230659523`*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"r", ":=", 
+    RowBox[{"RandomReal", "[", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "100"}], "}"}], "]"}]}], ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vertices", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"r", ",", "r"}], "}"}], ",", " ", 
+     RowBox[{"{", "100", "}"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.454618859613057*^9, 3.45461889531172*^9}, {
+   3.454622868765654*^9, 3.454622869245116*^9}, 3.4546230400451736`*^9, {
+   3.454623073073744*^9, 3.454623073872278*^9}, {3.454623568321748*^9, 
+   3.4546235689800043`*^9}, 3.454877821843604*^9, 3.561453623066163*^9}],
+
+Cell[TextData[StyleBox["The built in ConvexHull function gives the convex \
+hull in a storage-efficient format.",
+ FontSize->18]], "Text",
+ CellChangeTimes->{{3.454877941402535*^9, 3.4548779589395733`*^9}, 
+   3.561453623066221*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"v", "=", 
+  RowBox[{
+  "ComputationalGeometry`ConvexHull", "[", "vertices", "]"}]}]], "Input",
+ CellChangeTimes->{{3.454877965601844*^9, 3.454877976169818*^9}, {
+   3.454878035037397*^9, 3.454878036469664*^9}, 3.56145362306635*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "52", ",", "79", ",", "8", ",", "45", ",", "28", ",", "22", ",", "72", ",", 
+   "76", ",", "62", ",", "13", ",", "18"}], "}"}]], "Output",
+ CellChangeTimes->{3.454877976952886*^9, 3.454878036816083*^9, 
+  3.454878128714735*^9, 3.5614535883753567`*^9, 3.561453623066491*^9}]
+}, Open  ]],
+
+Cell["get the vertices by indexing int vertices", "Text",
+ CellChangeTimes->{{3.454878052669846*^9, 3.454878060854806*^9}, 
+   3.561453623066564*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"vertices", "[", 
+  RowBox[{"[", "v", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.454878037619989*^9, 3.454878039312605*^9}, 
+   3.5614536230666933`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"99.21229184125079`", ",", "0.8153904859463381`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"97.95200695804476`", ",", "85.08571588939469`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"94.76319078669218`", ",", "97.26957650921167`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"52.67633051054926`", ",", "98.26156410039397`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"9.399295204455768`", ",", "98.39216547849833`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3.6185004555247673`", ",", "79.25650181270441`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.7286659786340408`", ",", "67.46364942695683`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.7217859769425417`", ",", "46.13922629179643`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"15.007934460879468`", ",", "4.395326772575885`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"20.72954879359787`", ",", "3.5081935876450956`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"74.99278067576745`", ",", "0.13752766900981328`"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.454878039595201*^9, 3.454878128721725*^9, {3.5614535999772663`*^9, 
+   3.561453623066988*^9}}]
+}, Open  ]],
+
+Cell[TextData[StyleBox["Use ConvexHullVertices to calculate the vertex \
+coordinates directly for plotting. It combines the last two steps together \
+into a single step.",
+ FontSize->18]], "Text",
+ CellChangeTimes->{{3.454877985114629*^9, 3.454878001237879*^9}, {
+   3.45487806452746*^9, 3.454878071569066*^9}, 3.56145362306706*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ch", "=", 
+  RowBox[{"ConvexHullVertices", "[", "vertices", "]"}]}]], "Input",
+ CellChangeTimes->{{3.454877834319663*^9, 3.454877845452581*^9}, 
+   3.5614536230671873`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"99.21229184125079`", ",", "0.8153904859463381`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"97.95200695804476`", ",", "85.08571588939469`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"94.76319078669218`", ",", "97.26957650921167`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"52.67633051054926`", ",", "98.26156410039397`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"9.399295204455768`", ",", "98.39216547849833`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3.6185004555247673`", ",", "79.25650181270441`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.7286659786340408`", ",", "67.46364942695683`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.7217859769425417`", ",", "46.13922629179643`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"15.007934460879468`", ",", "4.395326772575885`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"20.72954879359787`", ",", "3.5081935876450956`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"74.99278067576745`", ",", "0.13752766900981328`"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.4548778411519737`*^9, 3.454877845961952*^9}, 
+   3.454878128727955*^9, {3.56145360312085*^9, 3.5614536230674753`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"ListPlot", "[", 
+    RowBox[{"vertices", ",", " ", 
+     RowBox[{"PlotStyle", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{"PointSize", "[", ".02", "]"}], "}"}]}]}], "]"}], ",", " ", 
+   RowBox[{"Boundary", "[", 
+    RowBox[{"ch", ",", 
+     RowBox[{"{", 
+      RowBox[{"Thick", ",", " ", "Orange"}], "}"}]}], "]"}], ",", " ", 
+   RowBox[{"AspectRatio", "\[Rule]", " ", "1"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.4548778467228603`*^9, 3.4548779157787447`*^9}, 
+   3.56145362306772*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, 
+    {Hue[0.67, 0.6, 0.6], PointSize[0.02], PointBox[CompressedData["
+1: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
+gLmA
+      "]]}, {}}, 
+   {RGBColor[1, 0.5, 0], Thickness[Large], 
+    LineBox[{{99.21229184125079, 0.8153904859463381}, {97.95200695804476, 
+     85.08571588939469}, {94.76319078669218, 97.26957650921167}, {
+     52.67633051054926, 98.26156410039397}, {9.399295204455768, 
+     98.39216547849833}, {3.6185004555247673`, 79.25650181270441}, {
+     0.7286659786340408, 67.46364942695683}, {0.7217859769425417, 
+     46.13922629179643}, {15.007934460879468`, 4.395326772575885}, {
+     20.72954879359787, 3.5081935876450956`}, {74.99278067576745, 
+     0.13752766900981328`}, {99.21229184125079, 0.8153904859463381}}]}},
+  AspectRatio->1,
+  Axes->True,
+  AxesOrigin->{0, 0},
+  PlotRange->{{0., 99.21229184125079}, {0., 98.39216547849833}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{
+    Scaled[0.02], 
+    Scaled[0.02]}]], "Output",
+ CellChangeTimes->{{3.454877870706047*^9, 3.454877916261318*^9}, 
+   3.454878128830584*^9, {3.561453606883902*^9, 3.56145362307036*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{849, 787},
+WindowMargins->{{Automatic, -1396}, {87, Automatic}},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 637, 8, 74, "Section"],
+Cell[1207, 32, 285, 7, 87, "Text"],
+Cell[CellGroupData[{
+Cell[1517, 43, 229, 4, 40, "Input"],
+Cell[1749, 49, 1628, 44, 43, "Print"]
+}, Open  ]],
+Cell[3392, 96, 181, 3, 40, "Input"],
+Cell[3576, 101, 273, 4, 37, "Text"],
+Cell[3852, 107, 690, 18, 60, "Input"],
+Cell[4545, 127, 232, 4, 37, "Text"],
+Cell[CellGroupData[{
+Cell[4802, 135, 255, 5, 40, "Input"],
+Cell[5060, 142, 315, 6, 40, "Output"]
+}, Open  ]],
+Cell[5390, 151, 149, 2, 30, "Text"],
+Cell[CellGroupData[{
+Cell[5564, 157, 178, 4, 40, "Input"],
+Cell[5745, 163, 1206, 28, 79, "Output"]
+}, Open  ]],
+Cell[6966, 194, 332, 5, 63, "Text"],
+Cell[CellGroupData[{
+Cell[7323, 203, 196, 4, 40, "Input"],
+Cell[7522, 209, 1228, 27, 79, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8787, 241, 557, 14, 60, "Input"],
+Cell[9347, 257, 3213, 58, 377, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

@@ -1,0 +1,126 @@
+
+<html>
+<body>
+<pre>
+================================================================================
+xCellerator installation instructions
+================================================================================
+revised 25 Feb 2011
+
+(0) Mathematica must be installed on your machine. If you do not have Mathematica
+	you will not be able to use xCellerator. Mathematica is commercial software
+	that is avaiable from <a href="http://www.mathematica.com">Wolfram Research</a>.
+	
+	These instructions assume you are using Mathematica Version 7 or 8
+	
+	xCellerator may downloaded from <a href="http://www.sf.net/projects/xlr8r/">Sourceforge</a>.
+	
+ 
+================================================================================
+Installation Method 1: Use Installer Script (All Operating Systems)
+================================================================================
+
+(1) Download xCellerator-x.xx-dd-mmm-yyyy-hhmm.zip from sourceforge
+(2) Unpack the zip file
+(3) You should see a new folder by the same name as the zip file but without the zip file type.
+(4) Inside this folder look for a Mathematica notebook "installer.nb"
+(5) Open installer.nb in Mathematica
+(6) From the menu bar in Mathematica, select "Evaluation" then "Notebook" to evaluate the entire 
+notebook. You will see a series of menus that you can answer then the installation will proceed
+on its own after you tell it where to find the folder xCellerator-x.xx-dd-mmm-yyyy-hhmm 
+(7) If there are any errors you can correct them with the manual installation procedure. 
+
+
+
+================================================================================
+Installation Method 2: Manual installation (All operating systems)
+================================================================================
+
+(1) Open Mathematica
+
+(2) Type 
+
+      ToFileName[$UserBaseDirectory, "Applications"]
+      
+    and note the name of the directory identified. Typical locations are: 
+
+	On Mac OSX:
+	   ~/Library/Mathematica/Applications/
+
+	On Linux: 
+	   ~/.Mathematica/Applications/
+
+	On Windows Vista (it will be a hidden folder in your home folder) :
+	   Application_Data\Mathematica\Applications\
+	   
+	On Windows 7 (also a hidden folder)
+	   AppData\Roaming\Mathematica\Applications\
+	
+    For more details on system-specific folders see the <a href="http://reference.wolfram.com/mathematica/guide/Mathematica.html">Mathematica Documentation</a>
+
+		
+(3) Copy the file "xlr8r.m" into the same Applications directory. 
+
+
+(4) From within Mathematica type
+
+	ToFileName[{$UserBaseDirectory, "SystemFiles", "FrontEnd", "Palettes"}]
+
+	On Mac OSX this should be: 
+	    ~/Library/Mathematica/SystemFiles/FrontEnd/Palettes/ 
+	
+	On Linux this should be:
+	   ~/.Mathematica/SystemFiles/FrontEnd/Palettes/ 
+
+	On Windows Vista this should be (also a hidden folder in your home folder): 	
+	   Application_Data\Mathematica\SystemFiles\FrontEnd\Palettes\
+	   
+	On Windows 7 (also a hidden folder)
+	   AppData\Roaming\Mathematica\SystemFiles\FrontEnd\Palettes\	   
+		
+(5) Copy the file xCelleratorPalette.nb into the directory identified in step (5).
+
+(6) Install any desired plugins by copying the .m files from the plugins folder 
+    in the distribution to the Applications folder identified in step (2) above.
+    Please note that the copies of the plugins included in this distribution
+    may not be the latest versions and only represent a minimal installation
+    of these files. 
+
+
+(7) You may have to quit and restart mathematica for the palette to become
+	visible.  To use xCellerator, you should  evaluate the line
+
+	&lt;&lt;xlr8r.m
+	
+	in your notebook before you evaluate any xCellerator commands. 
+
+(8) See the users guide at 
+
+	<a href="http://www.xlr8r.info/usersguide/">http://www.xlr8r.info/usersguide/</a>
+	
+    for further information. 
+	
+    [ A local copy of the html  user's guide is also included in the doc directory of the distribution. ]
+	
+================================================================================
+
+xCellerator is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+xCellerator is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+
+
+
+</pre>
+</body>
+</html>

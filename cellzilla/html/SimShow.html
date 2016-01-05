@@ -1,0 +1,173 @@
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <meta name="generator" content="Bluefish 1.0.7">
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>SimShow</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info" border="0"><img src="logo.svg" alt=
+        "The xCellerator Project" width="150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style="font-size:x-large;font-weight:bold;">
+            SimShow<br>
+            SimShowAt<br>
+            SimShowFinal</td>
+
+            <td align="right"><a class="button" href="./index.html">Cellzilla2D
+            Home</a></td>
+          </tr>
+        </table>
+        <hr color="#FF7636">
+
+        <p class="header">Description</p>
+
+        <p>Return graphics images visulizing the results of a simulation, at a
+        specific time, with the concentration of one particular species
+        illustrated as a function of position. The concentration is represented
+        by a range of colors, one color per cell.</p>
+
+        <p><span class="function">Needs["Cellzilla2D`"];</span></p>
+
+        <p class="header">Return Value</p>
+
+        <p class="mheader">Internal Solutions</p>
+
+        <p><span class="function">SimShow[solution, variable, time, template,
+        {ColorMin, ColorMax}, {ValMin, ValMax}, options]</span> returns a
+        visualizaton at the specified time.</p>
+
+        <p><span class="function">SimShow[solution, variable, time, template,
+        {ColorMin, ColorMax}, {ValMin, ValMax}, options]</span> returns a
+        visualizaton at the specified time.</p>
+
+        <p><span class="function">SimShowAt[solution, variable, time, template,
+        {ColorMin, ColorMax}, threshold, options]</span> - instead of
+        interpolating between the two colors, choose the colors based on
+        whether variable is greater or less than the threshold value.</p>
+
+        <p><span class="function">SimShowAt[solution, variable, time, template,
+        {ColorMin, ColorMax}, options]</span> - plots a legend and autoscales
+        the range.</p>
+
+        <p><span class="function">SimShowFinal[solution, variable, template,
+        {ColorMin, ColorMax}, options]</span> - returns a visualization at the
+        end time of the simulation. The legend is plotted and the range is
+        autoscalled.</p>
+
+        <p><span class="function">SimShowFinal[solution, variable, template,
+        {ColorMin, ColorMax}, threshold, options]</span> - returns a
+        visualization at the end time of the simulation. Uses thresholding
+        instead of interpolation. No legend.</p>
+
+        <p><span class="function">solution</span> - is the output of <a class=
+        "function" href="RunSim.html">RunSim</a></p>
+
+        <p><span class="function">variable</span> - is any variable in the
+        solution, e.g., if X is used, then the output will use the color of
+        X[1][t] for cell 1, X[2][t] for cell 2, ...</p>
+
+        <p><span class="function">template</span> - is the template used to
+        generate the reaction newtork with <a class="function" href=
+        "CelleratorNetwork.html">CelleratorNetwork</a>.</p>
+
+        <p><span class="function">{ColorMin, ColorMax}</span> - Any two RGB
+        colors; the color of of cell i is calculated from the value of X[i][t]
+        using linear interpolation between ValMin and ValMax. Values less than
+        the minimum or more than the maximum or plotted at ColorMin or
+        ColorMax. These colors can either be color names such as <a href=
+        "http://reference.wolfram.com/mathematica/ref/Pink.html?q=Pink&amp;lang=en"
+        class="function">Pink</a> or RGB color specifications using <a href=
+        "http://reference.wolfram.com/mathematica/ref/RGBColor.html?q=RGBColor&amp;lang=en"
+        class="function">RGBColor</a>. A list of named colors can be found
+        <a href=
+        "http://reference.wolfram.com/mathematica/guide/Colors.html">here</a>.</p>
+
+        <p class="mheader">External Solutions</p>
+
+        <p><span class="function">SimShow[options]</span></p>
+
+        <p><span class="function">SimShow[variable, options]</span></p>
+
+        <p>These two versions will prompt the user to select a solution file,
+        which must have a filename <span class=
+        "function">SolutionXXXX.nb</span> (e.g., the output of <a class=
+        "function" href="grow.html">grow</a>); and will look for a file with
+        the name <span class="function">DTissueXXXX.nb</span> for the
+        tissue.</p>
+
+        <p class="header">Options</p>
+
+        <p>In either mode, any option for <a class="function" href=
+        "ShowTissue.html">ShowTissue</a> may be used.</p>
+
+        <p class="mheader">External Solutions</p>
+
+        <p><span class="function">"variable"-&gt;variableName</span> (in the
+        first form.)</p>
+
+        <p><span class="function">"Time"-&gt;time</span> - if not specified,
+        will auto-select the end of the solution interval.</p>
+
+        <p><span class="function">"Colors"-&gt;{ColorMin, Colormax}</span> -
+        two color names should be given; if omitted, default values will be
+        used.</p>
+
+        <p><span class="function">"Values"-&gt;{min, max}</span> - values of
+        the variable that correspond to the colors rgbmin and rgbmax. If not
+        specified, the max and min values of the variable in the solution wil
+        lbe used.</p>
+
+        <p><span class="function">"Legend"-&gt;True</span> - True/False to
+        display/suppress a legend.</p>
+
+        <p><span class="function">"Tissue"-&gt;filename</span> will override
+        the default file name.</p>
+
+        <p><span class="function">"Solution"-&gt;filename</span> will override
+        the file selection menu.</p>
+
+        <p class="header">Example</p>
+
+        <p>[ <a href="examples/SimShow-example.nb.zip">Download Example as
+        Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name="display"
+        src="./examples/SimShow-example.htm" id="display" style=
+        "background-color:white;"><a href="">View as html.</a></iframe></p>
+
+        <p class="header">Implementation Notes</p>
+
+        <p class="header">See Also</p>
+
+        <p><a href="SimAnimate.html">SimAnimate</a></p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2012 Nov 11]</span>
+    </div>
+  </center>
+</body>
+</html>

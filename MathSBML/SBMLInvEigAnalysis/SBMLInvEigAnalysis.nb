@@ -1,0 +1,1448 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     40520,       1176]*)
+(*NotebookOutlinePosition[     41359,       1204]*)
+(*  CellTagsIndexPosition[     41315,       1200]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Inverse Eigenvalue Analysis for SBML Models", "Title",
+  TextAlignment->Center],
+
+Cell["by James Lu", "Subsubtitle",
+  TextAlignment->Center],
+
+Cell[CellGroupData[{
+
+Cell["Reference", "Section"],
+
+Cell[CellGroupData[{
+
+Cell["Title", "Subsubsection"],
+
+Cell[TextData[StyleBox["SBMLInvEigAnalysis package",
+  FontSlant->"Italic"]], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Author", "Subsubsection"],
+
+Cell["James Lu (jameslu@alum.mit.edu)", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Summary", "Subsubsection"],
+
+Cell["\<\
+This package probes the possibility of biological models (in SBML \
+format) to exhibit bistability or oscillations and inferring influential \
+parameters resulting in different qualitative dynamical behaviors. \
+\>", \
+"Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Copyright", "Subsubsection"],
+
+Cell[TextData[{
+  "\[Copyright] Copyright 2006, ",
+  StyleBox["James Lu",
+    FontSlant->"Italic"],
+  "\n\nPermission is granted to distribute this file for any purpose except \
+for inclusion in commercial software or program collections. This copyright \
+notice must remain intact.."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notebook Version", "Subsubsection"],
+
+Cell["1.0", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " Version"
+}], "Subsubsection"],
+
+Cell["5.2", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Keywords", "Subsubsection"],
+
+Cell["\<\
+Qualitative dynamical behaviors, inverse eigenvalue analysis, SBML \
+Models \
+\>", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Warnings", "Subsubsection"],
+
+Cell[TextData[StyleBox["",
+  FontSlant->"Italic"]], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Limitation", "Subsubsection"],
+
+Cell[TextData[StyleBox["",
+  FontSlant->"Italic"]], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Discussion", "Subsubsection"],
+
+Cell[TextData[StyleBox["",
+  FontSlant->"Italic"]], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Requirements", "Subsubsection"],
+
+Cell[TextData[StyleBox["MathSBML`, OptimizationToolbox",
+  FontFamily->"Courier",
+  FontWeight->"Bold",
+  FontSlant->"Italic"]], "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Setup", "Section"],
+
+Cell["\<\
+This section contains commands needed to load the corresponding \
+package. It may be omitted for notebooks that are used only to generate an \
+auto-save package.\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Development", "Subsubsection",
+  Background->GrayLevel[0.499992]],
+
+Cell["\<\
+The path on your system may be different from the path used for the \
+final package. For convenience, you can put the development path here. Delete \
+this subsection before distributing this notebook.\
+\>", "Text"],
+
+Cell[TextData[{
+  "SetDirectory[\"",
+  StyleBox["development directory",
+    FontSlant->"Italic"],
+  "\"]"
+}], "Input",
+  Background->GrayLevel[0.499992]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Search Path", "Subsubsection"],
+
+Cell["\<\
+Make sure that the directory containing the packages is either the \
+current directory\
+\>", "Text"],
+
+Cell[TextData[{
+  "SetDirectory[\"",
+  StyleBox["full path name",
+    FontSlant->"Italic"],
+  "\"]"
+}], "Input"],
+
+Cell["or is on the search path", "Text"],
+
+Cell[TextData[{
+  "AppendTo[$Path, \"",
+  StyleBox["full path name",
+    FontSlant->"Italic"],
+  "\"]"
+}], "Input"],
+
+Cell["\<\
+Note: the two input cells above have been made un-evaluatable \
+because you first have to enter the correct path name for your system before \
+you can evaluate one of them (make the one you chose evaluatable to do so).\
+\
+\>", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Read in the Package", "Subsubsection"],
+
+Cell[TextData[{
+  "The code is contained in the package ",
+  StyleBox["Template",
+    FontFamily->"Courier",
+    FontWeight->"Bold",
+    FontSlant->"Italic"],
+  StyleBox[".m",
+    FontFamily->"Courier",
+    FontWeight->"Bold"],
+  ", which is simply read in here."
+}], "Text"],
+
+Cell[TextData[{
+  "Needs[\"",
+  StyleBox["Template",
+    FontSlant->"Italic"],
+  "`\"]"
+}], "Input"],
+
+Cell["Standard packages needed for the examples:", "Text"],
+
+Cell["Needs[\"Graphics`Animation`\"]", "Input"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Interface", "Section",
+  InitializationCell->True],
+
+Cell["\<\
+This part declares the publicly visible functions, options, and \
+values.\
+\>", "Text",
+  InitializationCell->True],
+
+Cell[CellGroupData[{
+
+Cell["Set up the package context, including public imports", "Subsection",
+  InitializationCell->True],
+
+Cell["\<\
+ BeginPackage[\"SBMLInvEigAnalysis`\",\"MathSBML`\", \
+\"OptimizationToolbox`ConstrainedNLP`\", \
+\"OptimizationToolbox`GraphicalSolution`\",\"OptimizationToolbox`\
+OptimalityConditions`\", \"OptimizationToolbox`CommonFunctions`\"] 
+  
+  Options[FindBistability]={
+    (* Time of integration in finding initial steady-state solution*)
+    Global`tEnd\[Rule]100, 
+    (* Parameters not allowed to vary in the inverse algorithm *)
+    Global`FixedParam\[Rule]{},  
+    (* Positivity lower bound for parameters *)
+    Global`ParamLowBnd\[Rule]0.00001, Global`NMax\[Rule]50,  
+    Global`DisplayLevel\[Rule]2,  
+    (* Stop when either eigenvalue is close enough to zero, or mis-match term \
+becomes small*)
+    Global`EigTolerance\[Rule] 10^(-3), 
+    Global`AbsMisMatchTolerance\[Rule] 10^(-6),  
+    Global`DoPlots->True,
+    
+    (* Regularization term specification *)
+    Global`RegularizationStructure->{Global`mu->0.01, Global`p->0.1, \
+Global`epsi->(0.05)^2, 
+    Global`RegularizationTerm->Automatic},
+    
+    (* RSQP options *)
+    PrintLevel\[Rule]0,
+    MaxIterations\[Rule]50, SolveQPUsing\[Rule]ActiveSet,
+    ConvergenceTolerance\[Rule]0.001,QPConstraintFactor\[Rule]0.95,
+    MaxQPIteraions\[Rule]50, StepLengthUsing\[Rule] GoldenSectionSearch, 
+    LineSearchGamma\[Rule]0.5, LineSearchDelta\[Rule] 0.1, 
+    MaxLineSearchIterations\[Rule]30,ResetQPHessian\[Rule] 5 
+    }
+    
+    Options[FindOscillations]={
+    (* Time of integration in finding initial steady-state solution*)
+    Global`tEnd\[Rule]100, 
+    (* Parameters not allowed to vary in the inverse algorithm *)
+    Global`FixedParam\[Rule]{},  
+    (* Positivity lower bound for parameters *)
+    Global`ParamLowBnd\[Rule]0.00001, Global`NMax\[Rule]50,  
+    Global`DisplayLevel\[Rule]2,  
+    (* Stop when either eigenvalue is close enough to zero, or mis-match term \
+becomes small*)
+    Global`EigTolerance\[Rule] 10^(-3), 
+    Global`AbsMisMatchTolerance\[Rule] 10^(-6),  
+    Global`DoPlots->True,
+    
+    (* Regularization term specification *)
+    Global`RegularizationStructure->{Global`mu->0.01, Global`p->0.1, \
+Global`epsi->(0.05)^2, 
+    Global`RegularizationTerm->Automatic},
+    
+    (* RSQP options *)
+    PrintLevel\[Rule]0,
+    MaxIterations\[Rule]50, SolveQPUsing\[Rule]ActiveSet,
+    ConvergenceTolerance\[Rule]0.001,QPConstraintFactor\[Rule]0.95,
+    MaxQPIteraions\[Rule]50, StepLengthUsing\[Rule] GoldenSectionSearch, 
+    LineSearchGamma\[Rule]0.5, LineSearchDelta\[Rule] 0.1, 
+    MaxLineSearchIterations\[Rule]30,ResetQPHessian\[Rule] 5 
+    }
+\
+\>", "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Usage messages for the exported functions and the context \
+itself\
+\>", "Subsection",
+  InitializationCell->True],
+
+Cell["\<\
+SBMLInvEigAnalysis::usage = \"SBMLInvEigAnalysis.m is a package \
+that can be used to identify sparse parameter sets, whose variation from the \
+nominal values can lead to different qualitative dynamics, such as exhibiting \
+bistability or oscillations. The method is based on performing inverse \
+eigenvalue analyses, placing minimal eigenvalues of the ODE system either \
+close to the origin or lie imaginary axis. From the identified parameter \
+solution, subsequent (forward) bifurcation analyses can verify the dynamical \
+behaviors in an a posteriori manner.\"\
+\>", "Input",
+  InitializationCell->True],
+
+Cell["\<\
+FindBistability::usage = \"FindBistability: find parameter sets \
+that bring the system close to bistability.\"
+FindOscillations::usage = \"FindOscillations: find parameter sets that bring \
+the system close to oscillations.\"\
+\>", "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Error messages for the exported objects", "Subsection",
+  InitializationCell->True],
+
+Cell["\<\
+FindBistability::badpenalty = \"Error: regularization term: `1` \
+contains terms not in the parameter list of ODE model.\"
+FindBistability::badconstraint = \"Please write inequality constraints in the \
+form g(x) \[LessEqual] 0.\"
+
+FindOscillations::badpenalty = \"Error: regularization term: `1` contains \
+terms not in the parameter list of ODE model.\"
+FindOscillations::badconstraint = \"Please write inequality constraints in \
+the form g(x) \[LessEqual] 0.\"\
+\>", "Input",
+  InitializationCell->True]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Implementation", "Section",
+  InitializationCell->True],
+
+Cell["\<\
+This part contains the actual definitions and any auxiliary \
+functions that should not be visible outside.\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Begin the private context (implementation part)", "Subsection",
+  InitializationCell->True],
+
+Cell["Begin[\"`Private`\"]", "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Read in any hidden imports", "Subsection",
+  InitializationCell->True],
+
+Cell["\<\
+ Needs[\"Utilities`FilterOptions`\"]
+  \
+\>", "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Unprotect any system functions for which definitions will be made\
+\
+\>", "Subsection",
+  InitializationCell->True],
+
+Cell["", "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Definition of auxiliary functions and local (static) \
+variables\
+\>", "Subsection",
+  InitializationCell->True],
+
+Cell[BoxData[{
+    \(\(boldBlue[x_] := \ 
+        StyleForm[x, \ FontColor \[Rule] \ RGBColor[0, \ 0, \ 1], \ 
+          FontWeight \[Rule] "\<Bold\>", \ 
+          FontSize \[Rule] \ 10];\)\ \), "\n", 
+    \(\(boldGray[x_] := \ 
+        StyleForm[x, \ FontColor \[Rule] \ GrayLevel[0.5], \ 
+          FontWeight \[Rule] \ "\<Bold\>"];\)\ \), "\[IndentingNewLine]", 
+    \(\(boldRed[x_] := \ 
+        StyleForm[x, \ FontColor \[Rule] \ RGBColor[1, \ 0, \ 0], \ 
+          FontWeight \[Rule] "\<Bold\>", \ 
+          FontSize \[Rule] \ 10];\)\ \), "\[IndentingNewLine]", 
+    \(\(boldOrange[x_] := \ 
+        StyleForm[x, \ FontColor \[Rule] \ RGBColor[0.6, \ 0.3, \ 0.1], \ 
+          FontWeight \[Rule] "\<Bold\>", \ 
+          FontSize \[Rule] \ 10];\)\ \), "\[IndentingNewLine]", 
+    \(\)}], "Input",
+  InitializationCell->True],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["staticvar", "Input"]], "Subsubsection",
+  InitializationCell->True],
+
+Cell["", "Input",
+  InitializationCell->True]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Definition of the exported functions", "Subsection",
+  InitializationCell->True],
+
+Cell[CellGroupData[{
+
+Cell["FindBistability", "Subsubsection",
+  InitializationCell->True],
+
+Cell["\<\
+FindBistability[m_, Constraints_, opts___?OptionQ]:=Module[{
+ tEND, FixedParam, ParamLowBnd , NMax, DisplayLevel, n, ODES, ODESOrig, \
+ODEVariables, \t\t ModelVariables,StateVariables,StateVariablesInit, \
+ConstantsReplaceList, RegularizationStructure},
+    
+    tEnd        \t\t\t\t=Global`tEnd         \t\t     \
+/.{opts}/.Options[FindBistability];
+    FixedParam  \t\t\t\t=Global`FixedParam   \t\t     \
+/.{opts}/.Options[FindBistability];
+    ParamLowBnd \t\t\t\t=Global`ParamLowBnd  \t\t     \
+/.{opts}/.Options[FindBistability];
+    NMax        \t\t\t\t=Global`NMax        \t\t     \
+/.{opts}/.Options[FindBistability];
+    DisplayLevel                =Global`DisplayLevel             \
+/.{opts}/.Options[FindBistability];
+    EigTolerance                =Global`EigTolerance             \
+/.{opts}/.Options[FindBistability];
+    AbsMisMatchTolerance        =Global`AbsMisMatchTolerance     \
+/.{opts}/.Options[FindBistability];        
+    RegularizationStructure     =Global`RegularizationStructure  \
+/.{opts}/.Options[FindBistability];
+    DoPlots                     =Global`DoPlots                  \
+/.{opts}/.Options[FindBistability];
+               
+    ODESOrig=Global`SBMLODES/.m/.FixedParam;  
+    ODEVariables=Variables[Map[#[[2]]&, ODESOrig]];
+  
+\tn=SBMLNDSolve[m, tEnd, FilterOptions[SBMLNDSolve, opts, \
+Sequence@@Options[FindBistability]]];\t
+\tIf[DoPlots==True, SBMLPlot[n, PlotRange->All, ImageSize\[Rule] {600, \
+600}]];
+\t
+\tConstantsReplaceList=Global`SBMLConstants/.m;
+    ParamVariablesAll=Map[#[[1]]&,ConstantsReplaceList];
+    
+    (* Retain only parameters that appear in ODE, with FixedParam replaced *) \
+ 
+    ParamVariables=Intersection[ParamVariablesAll, ODEVariables];
+    ParamVariablesInit=ParamVariables/.ConstantsReplaceList;
+    
+    (* Replace positive lower bounds via transformation by squaring \
+parameters *)
+    (* Symbolic replacement rule: p_i-> ParamLowBnd + p_i^2 *)
+    ParamTransformRule=Map[(#\[Rule](ParamLowBnd+(#)^2))&, ParamVariables];
+    (* Replace the initial parameter values contained in ParamVariablesInit \
+*)
+    ParamTransformReplaceRule=Map[(#[[1]]\[Rule]Sqrt[Max[#[[2]]-ParamLowBnd,0]\
+])&, Transpose[{ParamVariables, ParamVariablesInit}]];
+    TransformedParamVariablesInit=Map[#[[2]]&, ParamTransformReplaceRule]; 
+    Table[ If[ \
+(Head[Constraints[[i]]]===Greater)||(Head[Constraints[[i]]]===GreaterEqual), 
+        Message[FindBistability::badconstraint]; Abort[]], \
+{i,1,Length[Constraints]}];
+    
+    (* Apply transformation on constraints *)
+    TransformedConstraints=Map[(Apply[Head[#], {#[[1]]/.ParamTransformRule, \
+Sqrt[Max[#[[2]]-ParamLowBnd,0]]}])&, Constraints];
+    
+    (* Apply transformation on ODEs *)
+    ODES=ODESOrig/.ParamTransformRule;
+    ODEVectorField=Map[#[[2]]&, ODES];
+       
+    ModelVariables=Global`SBMLModelVariables/.m;
+    (* StateVariables:remove model variables that do not enter ODE *)
+    StateVariables=Intersection[ModelVariables,ODEVariables];  
+    StateVariablesInit=StateVariables//.Flatten[{Global`t\[Rule]tEnd, n}];
+    
+    Print[\"StateVariables:   \"//boldBlue,StateVariables//boldGray];
+    Print[\"      InitCond:   \"//boldBlue,StateVariablesInit//boldGray];
+    Print[\"ParamVariables:   \"//boldBlue,ParamVariables//boldGray];
+    Print[\"       InitVal:   \"//boldBlue,ParamVariablesInit//boldGray];
+    Print[\"Parameters fixed: \"//boldBlue,FixedParam//boldGray];
+    
+    (* Computes analytical expression of vector field derivative df/dx *)
+    JAC=Outer[D, ODEVectorField, StateVariables];
+    
+    AllVariables     = Join[StateVariables, ParamVariables];
+    AllVariablesInit = Join[StateVariablesInit, \
+TransformedParamVariablesInit];
+    (* Initialization of iterates *)
+    Sol=Map[(#[[1]]\[Rule]#[[2]])&, Transpose[{AllVariables, \
+AllVariablesInit}]];
+    
+    (* Initialization of function and eigenvalue lists *)
+\tFuncValList={};
+\tMinEigList={};
+\tSolList={Sol};
+\t
+\t(* if Global`RegularizationTerm == Automatic *)
+\tPosRegTerm=
+    Map[#[[1]]&,
+      Position[Table[  
+          ToString[RegularizationStructure[[i,1]]]==\"RegularizationTerm\",{i,\
+1,Length[RegularizationStructure]}], True]];
+
+\tIf[ RegularizationStructure[[ PosRegTerm[[1]],2 ]]\[Equal]Automatic, Print[\
+\"Using default regularization...\"//boldOrange];
+\t\tStandardLpRegTerm = Table[{ParamVariables[[i]], ParamVariablesInit[[i]], \
+ParamVariablesInit[[i]]}, 
+\t\t\t{i,1,Length[ParamVariables]}];
+ \t\t   RegularizationStructure=ReplacePart[RegularizationStructure, \
+Global`RegularizationTerm->StandardLpRegTerm,PosRegTerm]];
+\t
+\t
+\tIf[ DisplayLevel>2, Print[\"Regularization:   \"//boldBlue, \
+RegularizationStructure//boldGray]];
+\t
+\tRegList=Global`RegularizationTerm/.RegularizationStructure;
+\t
+\t(* Check regularization terms *)
+\tNumerQRegList = Map[ NumberQ[#]&, Flatten[RegList]/.ConstantsReplaceList] ;
+\tTable[ If[ NumerQRegList[[i]] == False, 
+       \t\tMessage[FindBistability::badpenalty, i]; Abort[] \
+],{i,1,Length[NumerQRegList]}];
+    
+    
+    fPenalty=(Plus@@Map[Global`mu*((((#[[1]]-#[[2]])/#[[3]])^2+Global`epsi)^(\
+Global`p/2)-
+    Global`epsi^(Global`p/2))&,RegList])/.RegularizationStructure;
+    
+    If[ DisplayLevel>0, Print[\"Penalty term: \"//boldBlue, \
+DisplayForm[fPenalty]//boldGray]];
+\t
+\t(* Now do transformation for penalty term *)
+    fPenalty=fPenalty/.ParamTransformRule;
+    
+    (* Check penalty parameters *)
+    If[ NumerQ[fPenalty/.ConstantsReplaceList]!=True, 
+    fPenalty=0.0; Print[\"Note: using no penalty term; possibly no \
+\"//boldRed, \"mu, p, or epsi \"//boldBlue, 
+    \"specified in RegularizationStructure\"//boldRed] ];
+       
+    g=Flatten[ Join[Map[(#==0)&, ODEVectorField], TransformedConstraints] ];
+    If[ DisplayLevel>2, Print[\"Transformed Constraints: \"//boldBlue, \
+g//boldGray]]; 
+          
+    MatrixMatch = Table[MMR[i,j] + I MMI[i,j], {i,1,Length[JAC]}, \
+{j,1,Length[JAC]}];   
+    SymErrorMatrix=MatrixMatch-JAC;   
+    fMismatchSym=ComplexExpand[Re[Tr[SymErrorMatrix.ConjugateTranspose[\
+SymErrorMatrix]]]] ;   
+    (* Using StandardConstraints from OptimizationToolbox *)   
+    {IneqConstraints,EqConstraints} = StandardConstraints[g]; 
+    SymDerivative=Flatten[{ Outer[D,{fMismatchSym+fPenalty},    \
+AllVariables],  
+    \t\t\t\t\t\tOuter[D, IneqConstraints,            AllVariables],  
+    \t\t\t\t\t\tOuter[D, EqConstraints,              AllVariables]}, 1];\t\t\t\
+\t\t\t 
+              
+              
+    For[indexN=1, indexN\[LessEqual]NMax, indexN++,
+  
+    \tJACNum=JAC/.Sol;
+    \t{matU, matT}= SchurDecomposition[JACNum, RealBlockForm\[Rule] \
+False]//Chop;
+     \tmatTDiag = Table[matT[[i,i]], {i,1,Length[matT]}];
+\t    {MinDist}=Ordering[Abs[matTDiag], 1, Less];
+    \tMinEigVal= matT[[MinDist,MinDist]];
+    \t(* Save list of minimum eigenvalues in MinEigList *)
+   \t \tAppendTo[MinEigList, MinEigVal];
+    
+    \t(* now do projection *)
+     \tmatT[[MinDist, MinDist]] =  0.0;
+    \tProjJACNum=matU.(matT.ConjugateTranspose[matU]);
+    \t    \t
+    \tProjJACNumReplaceList=
+    \tFlatten[Join[{MapThread[(ComplexExpand[Re[#]]\[Rule] Re[#2])&, \
+{Flatten[MatrixMatch], Flatten[ProjJACNum]} ], 
+    \t  \t          MapThread[(ComplexExpand[Im[#]]\[Rule] Im[#2])&, \
+{Flatten[MatrixMatch], Flatten[ProjJACNum]} ]}]];
+    \t   
+    \tfMismatch = fMismatchSym/.ProjJACNumReplaceList;
+    \t       \t
+    \tIf[ DisplayLevel>0, 
+        \tPrint[\"#\"//boldBlue,  PaddedForm[indexN,4]//boldGray, \" \
+Frob.Err.Norm: \"//boldBlue,      
+        \tScientificForm[PaddedForm[ fMismatch/.Sol //Chop, 7],6]//boldGray, 
+        \t\" Penalty term: \"//boldBlue, \
+ScientificForm[PaddedForm[fPenalty/.Sol, 7],6]//boldGray,
+        \t\" Min Eig: \"//boldBlue, ScientificForm[PaddedForm[MinEigVal, 7], \
+6, SignPadding->True]//boldGray] ];       
+        \t  \t
+   \t    f=fMismatch+fPenalty; 
+   \t   
+   \t    (* Call refined SQP optimization solver available from \
+OptimizationToolbox`ConstrainedNLP`*)
+        {{FuncVal,Sol,status},history}=RSQP[f, g, AllVariables, \
+(AllVariables/.Sol), Gradient->(SymDerivative/.ProjJACNumReplaceList),
+        FilterOptions[RSQP, opts, Sequence@@Options[FindBistability]]  ];
+       
+        AppendTo[FuncValList, FuncVal];
+         
+        EigCloseToZeroCondition=(Abs[MinEigVal]<EigTolerance);
+        AbsConvergenceCondition=(Abs[fMismatch/.Sol]<AbsMisMatchTolerance);
+        If[EigCloseToZeroCondition, Print[\"EigCloseToZeroCondition == \
+True\"//boldRed], \"Num Iter = \"//boldRed, indexN//boldGray];
+        If[AbsConvergenceCondition, Print[\"AbsConvergenceCondition == \
+True\"//boldRed], \"Num Iter = \"//boldRed, indexN//boldGray];
+        
+        If[(indexN==NMax)||EigCloseToZeroCondition||AbsConvergenceCondition,  \
+Break[]];
+               
+        AppendTo[SolList, Sol];
+        
+    ];   
+
+     SolutionCriterion = \
+Global`SolutionCriterion/.{opts}/.Options[FindBistability];
+     Which[ SolutionCriterion==\"BasedOnEigenvalues\",  \
+{OptimSolnLocation}=Ordering[Abs[MinEigList] , 1, Less];
+            Print[\"Using criterion:  \"//boldOrange, \
+SolutionCriterion//boldGray], 
+            SolutionCriterion==\"BasedOnObjective\"  ,  \
+{OptimSolnLocation}=Ordering[Abs[FuncValList], 1, Less];
+            Print[\"Using criterion:  \"//boldOrange, \
+SolutionCriterion//boldGray],
+                                               True,   OptimSolnLocation = \
+Length[SolList];
+            Print[\"Using last iterate...\"//boldOrange]                    
+            ];
+       
+     Print[\"Optim solution found in iter = \"//boldOrange, \
+OptimSolnLocation//boldGray]; 
+     ComputedSol       =     SolList[[OptimSolnLocation]];
+     (* ReturnSol is obtained from ComputedSol by applying the transformation \
+for positivity *)
+     ReturnSol \t\t   =     \
+Table[ComputedSol[[i,1]]->(ParamLowBnd+ComputedSol[[i,2]]^2), \
+{i,1,Length[ComputedSol]}];
+     
+     If[DisplayLevel>1, Print[\"Found solution: \"//boldOrange];
+        \tTable[Print[AllVariables[[i]]//boldGray, \"->\"//boldOrange, \
+(AllVariables[[i]]/.ReturnSol)//boldGray], 
+        \t{i,1,Length[AllVariables]} ]
+       ];
+     
+     ReturnFuncVal   = FuncValList[[OptimSolnLocation]];
+     ReturnEigVal    =  MinEigList[[OptimSolnLocation]];
+     
+     ParamDiscrepancyList=Map[ Abs[(#[[1]]-#[[2]])/#[[3]]]&, \
+RegList]/.ReturnSol;
+     If[DisplayLevel>2, Print[\"ParamDiscrepancyList: \"//boldOrange, \
+ParamDiscrepancyList//boldGray]];
+     
+     ParamSelectCriterion=2*Sqrt[Global`epsi]/.RegularizationStructure;
+     If[DisplayLevel>1, Print[\"ParamSelectCriterion: \"//boldOrange, \
+ParamSelectCriterion//boldGray]];
+     
+     SelectParamList=Pick[RegList, Map[(#>ParamSelectCriterion)&, \
+ParamDiscrepancyList ]];
+     If[DisplayLevel>1, Print[\"SelectParamList: \"//boldOrange, \
+SelectParamList//boldGray]];
+     
+     If[SelectParamList=={}, IdenParam={},
+     \tIdenParam=Map[({#[[1]], #[[2]]}\[Rule]({#[[1]], #[[2]]}/.ReturnSol))&, \
+SelectParamList]
+     ];
+     
+     If[DisplayLevel>1, Print[\"Iden Param: \"//boldOrange, \
+IdenParam//boldGray]];
+     
+     If[DoPlots==True,
+     \tListPlot[FuncValList, PlotRange\[Rule] All, AxesOrigin\[Rule] {0,0},
+  \t\tPlotStyle\[Rule]{AbsolutePointSize[4], Hue[0.9]}, Frame\[Rule] True, 
+  \t\tImageSize\[Rule] {600, 600}, FrameLabel\[Rule] { \"Lift-and-Project \
+Iteration\", 
+      \t\"Objective J\"}];
+      \t
+       \tEigList= Transpose[ {Re[MinEigList], Im[MinEigList]} ]; 
+      \tEigValPlot=ListPlot[EigList, PlotRange\[Rule]All, \
+AxesOrigin\[Rule]{0,0}, PlotStyle\[Rule]{AbsolutePointSize[4], Hue[0.7]}, 
+      \tFrame\[Rule] True, DisplayFunction\[Rule] Identity];
+
+      \tInitEigPlot=ListPlot[ {{Re[MinEigList[[1]]], Im[MinEigList[[1]]]}},
+      \tPlotRange\[Rule] All, AxesOrigin\[Rule] {0,0},
+      \tPlotStyle\[Rule] {AbsolutePointSize[8],Hue[0.7]}, Frame\[Rule] True, 
+      \tDisplayFunction\[Rule] Identity];
+
+\t\tShow[EigValPlot, InitEigPlot, DisplayFunction\[Rule] $DisplayFunction, 
+    \tFrameLabel\[Rule] { \"Re[\[Lambda]]\", \"Im[\[Lambda]]\"}, ImageSize\
+\[Rule] {600, 600}, PlotRange\[Rule] All, 
+    \tPlotLabel->\"Convergence history of smallest eigenvalue\"];
+    \t];
+     
+\t   {IdenParam, ReturnEigVal, ReturnFuncVal, ReturnSol, status} 
+    ];\
+\>", "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["FindOscillations", "Subsubsection",
+  InitializationCell->True],
+
+Cell["\<\
+FindOscillations[m_, Constraints_, ImLambda_, \
+opts___?OptionQ]:=Module[{
+ tEND, FixedParam, ParamLowBnd , NMax, DisplayLevel, EigTolerance, \
+AbsMisMatchTolerance, RegularizationStructure, DoPlots, n, \
+ConstantsReplaceList, ODES, ODESOrig, \
+ODEVariables,ParamVariablesAll,ParamVariables,ParamVariablesInit,\
+ParamTransformRule, ParamTransformReplaceRule, TransformedParamVariablesInit, \
+TransformedConstraints},
+    
+    tEnd        \t\t\t\t=Global`tEnd         \t\t     \
+/.{opts}/.Options[FindOscillations];
+    FixedParam  \t\t\t\t=Global`FixedParam   \t\t     \
+/.{opts}/.Options[FindOscillations];
+    ParamLowBnd \t\t\t\t=Global`ParamLowBnd  \t\t     \
+/.{opts}/.Options[FindOscillations];
+    NMax        \t\t\t\t=Global`NMax        \t\t     \
+/.{opts}/.Options[FindOscillations];
+    DisplayLevel                =Global`DisplayLevel             \
+/.{opts}/.Options[FindOscillations];
+    EigTolerance                =Global`EigTolerance             \
+/.{opts}/.Options[FindOscillations];
+    AbsMisMatchTolerance        =Global`AbsMisMatchTolerance     \
+/.{opts}/.Options[FindOscillations];        
+    RegularizationStructure     =Global`RegularizationStructure  \
+/.{opts}/.Options[FindOscillations];
+    DoPlots                     =Global`DoPlots                  \
+/.{opts}/.Options[FindOscillations];
+               
+    ODESOrig=Global`SBMLODES/.m/.FixedParam;  
+    ODEVariables=Variables[Map[#[[2]]&, ODESOrig]];
+  
+\tn=SBMLNDSolve[m, tEnd, FilterOptions[SBMLNDSolve, opts, \
+Sequence@@Options[FindOscillations]]];\t
+\tIf[DoPlots==True, SBMLPlot[n, PlotRange->All, ImageSize\[Rule] {600, \
+600}]];
+\t
+\tConstantsReplaceList=Global`SBMLConstants/.m;
+    ParamVariablesAll=Map[#[[1]]&,ConstantsReplaceList];
+    
+    (* Retain only parameters that appear in ODE, with FixedParam replaced *) \
+ 
+    ParamVariables=Intersection[ParamVariablesAll, ODEVariables];
+    ParamVariablesInit=ParamVariables/.ConstantsReplaceList;
+    
+    (* Replace positive lower bounds via transformation by squaring \
+parameters *)
+    (* Symbolic replacement rule: p_i-> ParamLowBnd + p_i^2 *)
+    ParamTransformRule=Map[(#\[Rule](ParamLowBnd+(#)^2))&, ParamVariables];
+    (* Replace the initial parameter values contained in ParamVariablesInit \
+*)
+    ParamTransformReplaceRule=Map[(#[[1]]\[Rule]Sqrt[Max[#[[2]]-ParamLowBnd,0]\
+])&, Transpose[{ParamVariables, ParamVariablesInit}]];
+    TransformedParamVariablesInit=Map[#[[2]]&, ParamTransformReplaceRule]; 
+    
+    Table[ If[ \
+(Head[Constraints[[i]]]===Greater)||(Head[Constraints[[i]]]===GreaterEqual), 
+        Message[FindOscillations::badconstraint]; Abort[]], \
+{i,1,Length[Constraints]}];
+    
+    (* Apply transformation on constraints *)
+    TransformedConstraints=Map[(Apply[Head[#], {#[[1]]/.ParamTransformRule, \
+Sqrt[Max[#[[2]]-ParamLowBnd,0]]}])&, Constraints];
+    
+    (* Apply transformation on ODEs *)
+    ODES=ODESOrig/.ParamTransformRule;
+    ODEVectorField=Map[#[[2]]&, ODES];
+       
+    ModelVariables=Global`SBMLModelVariables/.m;
+    (* StateVariables:remove model variables that do not enter ODE *)
+    StateVariables=Intersection[ModelVariables,ODEVariables];  
+    StateVariablesInit=StateVariables//.Flatten[{Global`t\[Rule]tEnd, n}];
+    
+    Print[\"StateVariables:   \"//boldBlue,StateVariables//boldGray];
+    Print[\"      InitCond:   \"//boldBlue,StateVariablesInit//boldGray];
+    Print[\"ParamVariables:   \"//boldBlue,ParamVariables//boldGray];
+    Print[\"       InitVal:   \"//boldBlue,ParamVariablesInit//boldGray];
+    Print[\"Parameters fixed: \"//boldBlue,FixedParam//boldGray];
+    
+    (* Computes analytical expression of vector field derivative df/dx *)
+    JAC=Outer[D, ODEVectorField, StateVariables];
+    
+    AllVariables     = Join[StateVariables, ParamVariables];
+    AllVariablesInit = Join[StateVariablesInit, \
+TransformedParamVariablesInit];
+    (* Initialization of iterates *)
+    Sol=Map[(#[[1]]\[Rule]#[[2]])&, Transpose[{AllVariables, \
+AllVariablesInit}]];
+    
+    (* Initialization of function and eigenvalue lists *)
+\tFuncValList={};
+\tMinEigList={};
+\tSolList={Sol};
+\t
+\t(* if Global`RegularizationTerm == Automatic *)
+\tPosRegTerm=
+    Map[#[[1]]&,
+      Position[Table[  
+          ToString[RegularizationStructure[[i,1]]]==\"RegularizationTerm\",{i,\
+1,Length[RegularizationStructure]}], True]];
+
+\tIf[ RegularizationStructure[[ PosRegTerm[[1]],2 ]]\[Equal]Automatic, Print[\
+\"Using default regularization...\"//boldOrange];
+\t\tStandardLpRegTerm = Table[{ParamVariables[[i]], ParamVariablesInit[[i]], \
+ParamVariablesInit[[i]]}, \t
+\t\t{i,1,Length[ParamVariables]}];
+ \t\t   RegularizationStructure=ReplacePart[RegularizationStructure, \
+Global`RegularizationTerm->StandardLpRegTerm,PosRegTerm]];\t
+\t
+\tIf[ DisplayLevel>2, Print[\"Regularization:   \"//boldBlue, \
+RegularizationStructure//boldGray]];\t
+\tRegList=Global`RegularizationTerm/.RegularizationStructure;
+\t
+\t(* Check regularization terms *)
+\tNumerQRegList = Map[ NumberQ[#]&, Flatten[RegList]/.ConstantsReplaceList] ;
+\tTable[ If[ NumerQRegList[[i]] == False, 
+       \t\tMessage[FindOscillations::badpenalty, i]; Abort[] \
+],{i,1,Length[NumerQRegList]}];
+        
+    fPenalty=(Plus@@Map[Global`mu*((((#[[1]]-#[[2]])/#[[3]])^2+Global`epsi)^(\
+Global`p/2)-
+    Global`epsi^(Global`p/2))&,RegList])/.RegularizationStructure;
+    
+    If[ DisplayLevel>0, Print[\"Penalty term: \"//boldBlue, \
+DisplayForm[fPenalty]//boldGray]];
+\t
+\t(* Now do transformation for penalty term *)
+    fPenalty=fPenalty/.ParamTransformRule;
+    
+    (* Check penalty parameters *)
+    If[ NumerQ[fPenalty/.ConstantsReplaceList]!=True, 
+    fPenalty=0.0; Print[\"Note: using no penalty term; possibly no \
+\"//boldRed, \"mu, p, or epsi \"//boldBlue, 
+    \"specified in RegularizationStructure\"//boldRed] ];
+           
+    g=Flatten[ Join[Map[(#==0)&, ODEVectorField], TransformedConstraints] ];
+    If[ DisplayLevel>2, Print[\"Transformed Constraints: \"//boldBlue, \
+g//boldGray]]; 
+              
+    MatrixMatch = Table[MMR[i,j] + I MMI[i,j], {i,1,Length[JAC]}, \
+{j,1,Length[JAC]}];       
+    SymErrorMatrix=MatrixMatch-JAC;   
+    fMismatchSym=ComplexExpand[Re[Tr[SymErrorMatrix.ConjugateTranspose[\
+SymErrorMatrix]]]] ;   
+       
+    {IneqConstraints,EqConstraints} = StandardConstraints[g];     
+    SymDerivative=Flatten[{ Outer[D,{fMismatchSym+fPenalty},     \
+AllVariables],  
+    \t\t\t\t\t\tOuter[D, IneqConstraints,            AllVariables],  
+    \t\t\t\t\t\tOuter[D, EqConstraints,              AllVariables]}, 1];\t\t\t\
+\t\t\t 
+
+              
+    For[indexN=1, indexN\[LessEqual]NMax, indexN++,
+    
+    \tJACNum=JAC/.Sol;
+    \t{matU, matT}= SchurDecomposition[JACNum, RealBlockForm\[Rule] \
+False]//Chop;
+     \tmatTDiag = Table[matT[[i,i]], {i,1,Length[matT]}];
+     \t     \t
+     \tEigProjList1 = 0+I*Max[Im[matTDiag],  Abs[ImLambda]]; 
+     \tEigProjList2 = 0+I*Min[Im[matTDiag], -Abs[ImLambda]]; 
+     \t
+\t \t(* MinDist1 and MinDist2 would be distinct if closest eigenvalues are \
+conjugate pairs *)
+\t \t{MinDist1}=Ordering[Abs[matTDiag-EigProjList1], 1, Less];
+\t \t{MinDist2}=Ordering[Abs[matTDiag-EigProjList2], 1, Less];
+\t \t(* If they are the same, pick closest to EigProjList1 (or EigProjList2 \
+would work the same) *)
+\t \tIf[MinDist1==MinDist2,  {MinDist1, \
+MinDist2}=Ordering[Abs[matTDiag-EigProjList1], 2, Less]];
+\t 
+    \tMinEigVal= {matT[[MinDist1,MinDist1]], matT[[MinDist2,MinDist2]]};
+    \t
+    \t(* Save list of minimum eigenvalues in MinEigList *)
+   \t \tAppendTo[MinEigList, MinEigVal];
+    
+    \t(* now do projections to EigProjList1 and EigProjList2 *)
+     \tmatT[[MinDist1, MinDist1]] =  EigProjList1;
+     \tmatT[[MinDist2, MinDist2]] =  EigProjList2;
+     \t
+    \tProjJACNum=matU.(matT.ConjugateTranspose[matU]);      \t    \t
+    \tProjJACNumReplaceList=
+    \tFlatten[Join[{MapThread[(ComplexExpand[Re[#]]\[Rule] Re[#2])&, \
+{Flatten[MatrixMatch], Flatten[ProjJACNum]} ], 
+    \t  \t          MapThread[(ComplexExpand[Im[#]]\[Rule] Im[#2])&, \
+{Flatten[MatrixMatch], Flatten[ProjJACNum]} ]}]];
+    \t    
+    \tfMismatch = fMismatchSym/.ProjJACNumReplaceList;
+    \t       \t
+    \tIf[ DisplayLevel>0, 
+        \tPrint[\"#\"//boldBlue,  PaddedForm[indexN,2]//boldGray, \" \
+Frob.Err.Norm:\"//boldBlue,      
+        \tScientificForm[PaddedForm[ fMismatch/.Sol //Chop, 3],2]//boldGray, 
+        \t\" Penalty:\"//boldBlue, ScientificForm[PaddedForm[fPenalty/.Sol, \
+3], 2]//boldGray,
+        \t\" Min Eig:\"//boldBlue, ScientificForm[PaddedForm[MinEigVal, 3], \
+2, SignPadding->True]//boldGray, \"->\", 
+        \tPaddedForm[{EigProjList1, EigProjList2}, 1]//boldGray] ];       
+        \t  \t
+   \t    f=fMismatch+fPenalty; 
+   \t   
+   \t    (* Call refined SQP optimization solver available from \
+OptimizationToolbox`ConstrainedNLP`*)
+        {{FuncVal,Sol,status},history}=RSQP[f, g, AllVariables, \
+(AllVariables/.Sol), 
+        Gradient->(SymDerivative/.ProjJACNumReplaceList),
+        FilterOptions[RSQP, opts, Sequence@@Options[FindOscillations]]  ];
+       
+        AppendTo[FuncValList, FuncVal];
+         
+        EigCloseToZeroCondition=(Abs[MinEigVal[[1]]]<EigTolerance)&&(Abs[\
+MinEigVal[[2]]]<EigTolerance);
+        AbsConvergenceCondition=(Abs[fMismatch/.Sol]<AbsMisMatchTolerance);
+        If[EigCloseToZeroCondition, Print[\"EigCloseToZeroCondition == \
+True\"//boldRed], \"Num Iter = \"//boldRed, indexN//boldGray];
+        If[AbsConvergenceCondition, Print[\"AbsConvergenceCondition == \
+True\"//boldRed], \"Num Iter = \"//boldRed, indexN//boldGray];
+        
+        If[(indexN==NMax)||EigCloseToZeroCondition||AbsConvergenceCondition,  \
+Break[]];
+               
+        AppendTo[SolList, Sol];
+        
+    ];   
+     
+     SolutionCriterion = \
+Global`SolutionCriterion/.{opts}/.Options[FindOscillations];
+     Which[ SolutionCriterion==\"BasedOnEigenvalues\",  \
+{OptimSolnLocation}=Ordering[Abs[MinEigList] , 1, Less];
+            Print[\"Using criterion:  \"//boldOrange, \
+SolutionCriterion//boldGray], 
+            SolutionCriterion==\"BasedOnObjective\"  ,  \
+{OptimSolnLocation}=Ordering[Abs[FuncValList], 1, Less];
+            Print[\"Using criterion:  \"//boldOrange, \
+SolutionCriterion//boldGray],
+                                               True,   OptimSolnLocation = \
+Length[SolList];
+            Print[\"Using last iterate...\"//boldOrange]                    
+            ];       
+    
+     Print[\"Optim solution found in iter = \"//boldOrange, \
+OptimSolnLocation//boldGray]; 
+     
+     ComputedSol       =     SolList[[OptimSolnLocation]];
+     (* ReturnSol is obtained from ComputedSol by applying the transformation \
+for positivity *)
+     ReturnSol \t\t   =     \
+Table[ComputedSol[[i,1]]->(ParamLowBnd+ComputedSol[[i,2]]^2), \
+{i,1,Length[ComputedSol]}];
+     
+     If[DisplayLevel>1, Print[\"Found solution: \"//boldOrange];
+        \tTable[Print[AllVariables[[i]]//boldGray, \"->\"//boldOrange, \
+(AllVariables[[i]]/.ReturnSol)//boldGray], 
+        \t{i,1,Length[AllVariables]} ]
+       ];
+     
+     ReturnFuncVal   = FuncValList[[OptimSolnLocation]];
+     ReturnEigVal    =  MinEigList[[OptimSolnLocation]];
+     
+     ParamDiscrepancyList=Map[ Abs[(#[[1]]-#[[2]])/#[[3]]]&, \
+RegList]/.ReturnSol;
+     If[DisplayLevel>2, Print[\"ParamDiscrepancyList: \"//boldOrange, \
+ParamDiscrepancyList//boldGray]];
+     
+     ParamSelectCriterion=2*Sqrt[Global`epsi]/.RegularizationStructure;
+     If[DisplayLevel>1, Print[\"ParamSelectCriterion: \"//boldOrange, \
+ParamSelectCriterion//boldGray]];
+     
+     SelectParamList=Pick[RegList, Map[(#>ParamSelectCriterion)&, \
+ParamDiscrepancyList ]];
+     If[DisplayLevel>1, Print[\"SelectParamList: \"//boldOrange, \
+SelectParamList//boldGray]];
+     
+     If[SelectParamList=={}, IdenParam={},
+     \tIdenParam=Map[({#[[1]], #[[2]]}\[Rule]({#[[1]], #[[2]]}/.ReturnSol))&, \
+SelectParamList]
+     ];
+     
+     If[DisplayLevel>1, Print[\"Iden Param: \"//boldOrange, \
+IdenParam//boldGray]];
+     
+     If[DoPlots==True,
+     \tListPlot[FuncValList, PlotRange\[Rule] All, AxesOrigin\[Rule] {0,0},
+  \t\tPlotStyle\[Rule]{AbsolutePointSize[4], Hue[0.9]}, Frame\[Rule] True, 
+  \t\tImageSize\[Rule] {600, 600}, FrameLabel\[Rule] { \"Lift-and-Project \
+Iteration\", 
+      \t\"Objective J\"}];
+      \t
+       \tEigList1= Transpose[ {Re[Transpose[MinEigList][[1]] ], \
+Im[Transpose[MinEigList][[1]]]} ];
+       \tEigList2= Transpose[ {Re[Transpose[MinEigList][[2]] ], \
+Im[Transpose[MinEigList][[2]]]} ];
+       \t 
+      \tEigValPlot1=ListPlot[EigList1, PlotRange\[Rule]All, \
+AxesOrigin\[Rule]{0,0}, PlotStyle\[Rule]{AbsolutePointSize[4], Hue[0.7]}, 
+      \tFrame\[Rule] True, DisplayFunction\[Rule] Identity];
+
+        EigValPlot2=ListPlot[EigList2, PlotRange\[Rule]All, \
+AxesOrigin\[Rule]{0,0}, PlotStyle\[Rule]{AbsolutePointSize[4], Hue[0.4]}, 
+      \tFrame\[Rule] True, DisplayFunction\[Rule] Identity];
+
+      \tInitEigPlot1=ListPlot[ {{Re[MinEigList[[1,1]]], \
+Im[MinEigList[[1,1]]]}},
+      \tPlotRange\[Rule] All, AxesOrigin\[Rule] {0,0},
+      \tPlotStyle\[Rule] {AbsolutePointSize[8],Hue[0.7]}, Frame\[Rule] True, 
+      \tDisplayFunction\[Rule] Identity];
+
+      \tInitEigPlot2=ListPlot[ {{Re[MinEigList[[1,2]]], \
+Im[MinEigList[[1,2]]]}},
+      \tPlotRange\[Rule] All, AxesOrigin\[Rule] {0,0},
+      \tPlotStyle\[Rule] {AbsolutePointSize[8],Hue[0.4]}, Frame\[Rule] True, 
+      \tDisplayFunction\[Rule] Identity];  
+
+\t\tShow[EigValPlot1, EigValPlot2, InitEigPlot1, InitEigPlot2, \
+DisplayFunction\[Rule] $DisplayFunction, 
+    \tFrameLabel\[Rule] { \"Re[\[Lambda]]\", \"Im[\[Lambda]]\"}, ImageSize\
+\[Rule] {600, 600}, PlotRange\[Rule] All, 
+    \tPlotLabel->\"Convergence history of smallest eigenvalue pair\"];
+    \t];
+
+     
+\t   {IdenParam, ReturnEigVal, ReturnFuncVal, ReturnSol, status} 
+    ];\
+\>", "Input",
+  InitializationCell->True]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Definitions for system functions", "Subsection",
+  InitializationCell->True],
+
+Cell["", "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Restore protection of system symbols", "Subsection",
+  InitializationCell->True],
+
+Cell["Protect[  ] ", "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["End the private context", "Subsection",
+  InitializationCell->True],
+
+Cell["End[ ]", "Input",
+  InitializationCell->True]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Epilog", "Section",
+  InitializationCell->True],
+
+Cell["This section protects exported symbols and ends the package.", "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Protect exported symbol", "Subsection",
+  InitializationCell->True],
+
+Cell["Protect[FindBistability, FindOscillations] ", "Input",
+  InitializationCell->True],
+
+Cell["Alternative: protect all exported symbols", "Text",
+  InitializationCell->True],
+
+Cell["Protect[Evaluate[$Context <> \"*\"]]", "Input",
+  Evaluatable->False,
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["End the package context", "Subsection",
+  InitializationCell->True],
+
+Cell["EndPackage[ ]", "Input",
+  InitializationCell->True]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Examples, Tests", "Section"],
+
+Cell[TextData[StyleBox["Examples, tests for the use of the package can go \
+here.",
+  FontSlant->"Italic"]], "Text"]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for X",
+ScreenRectangle->{{0, 1280}, {0, 1024}},
+AutoGeneratedPackage->Automatic,
+CellGrouping->Automatic,
+WindowSize->{1083, 943},
+WindowMargins->{{Automatic, 14}, {Automatic, 0}},
+PrivateNotebookOptions->{"ColorPalette"->{RGBColor, 128}},
+ShowCellLabel->True,
+RenderingOptions->{"ObjectDithering"->True,
+"RasterDithering"->False}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 85, 1, 98, "Title"],
+Cell[1864, 56, 59, 1, 33, "Subsubtitle"],
+
+Cell[CellGroupData[{
+Cell[1948, 61, 28, 0, 74, "Section"],
+
+Cell[CellGroupData[{
+Cell[2001, 65, 30, 0, 28, "Subsubsection"],
+Cell[2034, 67, 85, 1, 32, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2156, 73, 31, 0, 28, "Subsubsection"],
+Cell[2190, 75, 47, 0, 32, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2274, 80, 32, 0, 28, "Subsubsection"],
+Cell[2309, 82, 236, 5, 50, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2582, 92, 34, 0, 28, "Subsubsection"],
+Cell[2619, 94, 296, 7, 68, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2952, 106, 41, 0, 28, "Subsubsection"],
+Cell[2996, 108, 19, 0, 32, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3052, 113, 101, 4, 28, "Subsubsection"],
+Cell[3156, 119, 19, 0, 32, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3212, 124, 33, 0, 28, "Subsubsection"],
+Cell[3248, 126, 100, 3, 32, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3385, 134, 33, 0, 28, "Subsubsection"],
+Cell[3421, 136, 59, 1, 32, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3517, 142, 35, 0, 28, "Subsubsection"],
+Cell[3555, 144, 59, 1, 32, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3651, 150, 35, 0, 28, "Subsubsection"],
+Cell[3689, 152, 59, 1, 32, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3785, 158, 37, 0, 28, "Subsubsection"],
+Cell[3825, 160, 136, 3, 31, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[4010, 169, 24, 0, 44, "Section"],
+Cell[4037, 171, 185, 4, 32, "Text"],
+
+Cell[CellGroupData[{
+Cell[4247, 179, 71, 1, 44, "Subsubsection"],
+Cell[4321, 182, 224, 4, 50, "Text"],
+Cell[4548, 188, 154, 6, 44, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4739, 199, 36, 0, 28, "Subsubsection"],
+Cell[4778, 201, 110, 3, 32, "Text"],
+Cell[4891, 206, 112, 5, 28, "Input"],
+Cell[5006, 213, 40, 0, 32, "Text"],
+Cell[5049, 215, 115, 5, 28, "Input"],
+Cell[5167, 222, 244, 5, 50, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5448, 232, 44, 0, 28, "Subsubsection"],
+Cell[5495, 234, 275, 10, 32, "Text"],
+Cell[5773, 246, 100, 5, 28, "Input"],
+Cell[5876, 253, 58, 0, 32, "Text"],
+Cell[5937, 255, 47, 0, 27, "Input"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[6033, 261, 56, 1, 44, "Section",
+  InitializationCell->True],
+Cell[6092, 264, 125, 4, 32, "Text",
+  InitializationCell->True],
+
+Cell[CellGroupData[{
+Cell[6242, 272, 102, 1, 38, "Subsection",
+  InitializationCell->True],
+Cell[6347, 275, 2601, 63, 837, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[8985, 343, 124, 4, 38, "Subsection",
+  InitializationCell->True],
+Cell[9112, 349, 619, 10, 87, "Input",
+  InitializationCell->True],
+Cell[9734, 361, 279, 6, 42, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10050, 372, 89, 1, 38, "Subsection",
+  InitializationCell->True],
+Cell[10142, 375, 517, 11, 87, "Input",
+  InitializationCell->True]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10708, 392, 61, 1, 74, "Section",
+  InitializationCell->True],
+Cell[10772, 395, 131, 3, 32, "Text"],
+
+Cell[CellGroupData[{
+Cell[10928, 402, 97, 1, 38, "Subsection",
+  InitializationCell->True],
+Cell[11028, 405, 65, 1, 27, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[11130, 411, 76, 1, 38, "Subsection",
+  InitializationCell->True],
+Cell[11209, 414, 92, 4, 42, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[11338, 423, 125, 4, 38, "Subsection",
+  InitializationCell->True],
+Cell[11466, 429, 45, 1, 27, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[11548, 435, 122, 4, 38, "Subsection",
+  InitializationCell->True],
+Cell[11673, 441, 832, 17, 91, "Input",
+  InitializationCell->True],
+
+Cell[CellGroupData[{
+Cell[12530, 462, 91, 1, 27, "Subsubsection",
+  InitializationCell->True],
+Cell[12624, 465, 45, 1, 27, "Input",
+  InitializationCell->True]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[12718, 472, 86, 1, 38, "Subsection",
+  InitializationCell->True],
+
+Cell[CellGroupData[{
+Cell[12829, 477, 68, 1, 28, "Subsubsection",
+  InitializationCell->True],
+Cell[12900, 480, 12218, 288, 3297, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[25155, 773, 69, 1, 28, "Subsubsection",
+  InitializationCell->True],
+Cell[25227, 776, 13802, 325, 3657, "Input",
+  InitializationCell->True]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[39078, 1107, 82, 1, 38, "Subsection",
+  InitializationCell->True],
+Cell[39163, 1110, 45, 1, 27, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[39245, 1116, 86, 1, 38, "Subsection",
+  InitializationCell->True],
+Cell[39334, 1119, 57, 1, 27, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[39428, 1125, 73, 1, 38, "Subsection",
+  InitializationCell->True],
+Cell[39504, 1128, 51, 1, 27, "Input",
+  InitializationCell->True]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[39604, 1135, 53, 1, 74, "Section",
+  InitializationCell->True],
+Cell[39660, 1138, 76, 0, 32, "Text"],
+
+Cell[CellGroupData[{
+Cell[39761, 1142, 73, 1, 38, "Subsection",
+  InitializationCell->True],
+Cell[39837, 1145, 88, 1, 27, "Input",
+  InitializationCell->True],
+Cell[39928, 1148, 85, 1, 32, "Text",
+  InitializationCell->True],
+Cell[40016, 1151, 103, 2, 27, "Input",
+  Evaluatable->False,
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[40156, 1158, 73, 1, 38, "Subsection",
+  InitializationCell->True],
+Cell[40232, 1161, 58, 1, 27, "Input",
+  InitializationCell->True]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[40339, 1168, 34, 0, 74, "Section"],
+Cell[40376, 1170, 116, 2, 32, "Text"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

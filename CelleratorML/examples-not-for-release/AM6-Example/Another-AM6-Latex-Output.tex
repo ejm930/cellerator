@@ -1,0 +1,44 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\begin{document}
+\begin{center}CelleratorModel
+\\\today
+\end{center}\begin{description}
+\item[]Model:\\
+$\{\text{AuxIAAmod}\rightarrow \emptyset ,\text{r2}\}$\\
+$\{\text{AuxIAAmRNA}\rightarrow \emptyset ,\text{r1}\}$\\
+$\{\text{AuxIAAmRNA}\rightarrow \{\text{AuxIAAmRNA},\text{AuxIAAProtein}\},\text{r4}\}$\\
+$\{\text{AuxIAAProtein}\rightarrow \emptyset ,\text{r3}\}$\\
+$\{\text{AuxinSCFTIR1AuxIAA}\rightarrow \{\text{AuxinSCFTIR1},\text{AuxIAAmod}\},\text{r5}\}$\\
+$\{\text{Auxin}\rightleftarrows \emptyset ,\text{r10},\text{r11}\}$\\
+$\{\text{SCFTIR1}\rightleftarrows \emptyset ,\text{r12},\text{r13}\}$\\
+$\{\{\text{AuxIAAProtein},\text{AuxinSCFTIR1}\}\rightleftarrows \text{AuxinSCFTIR1AuxIAA},\text{r6},\text{r7}\}$\\
+$\{\{\text{Auxin},\text{SCFTIR1}\}\rightleftarrows \text{AuxinSCFTIR1},\text{r8},\text{r9}\}$\\
+\item[]Initial Conditions:\\
+$\text{AuxIAAProtein}\to 0.01$\\
+$\text{AuxIAAmRNA}\to 0$\\
+$\text{AuxinSCFTIR1}\to 0.01$\\
+$\text{AuxinSCFTIR1AuxIAA}\to 0$\\
+$\text{Auxin}\to 0.1$\\
+$\text{SCFTIR1}\to 0.3$\\
+$\text{AuxIAAmod}\to 0$\\
+\item[]Parameters:\\
+$\text{r1}\to 1.$\\
+$\text{r2}\to 0.1$\\
+$\text{r3}\to 0.1$\\
+$\text{r4}\to 1.$\\
+$\text{r5}\to 0.5$\\
+$\text{r6}\to 1.$\\
+$\text{r7}\to 1.$\\
+$\text{r8}\to 0.01$\\
+$\text{r9}\to 1.$\\
+$\text{r10}\to 1.$\\
+$\text{r11}\to 1.$\\
+$\text{r12}\to 1.$\\
+$\text{r13}\to 1.$\\
+
+\end{description}
+\end{document}

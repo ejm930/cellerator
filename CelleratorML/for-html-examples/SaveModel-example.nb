@@ -1,0 +1,219 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      8724,        210]
+NotebookOptionsPosition[      8057,        182]
+NotebookOutlinePosition[      8443,        199]
+CellTagsIndexPosition[      8400,        196]
+WindowFrame->Generic*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["SaveModel Example File", "Section",
+ CellChangeTimes->{{3.454446521645286*^9, 3.4544465228076077`*^9}, {
+   3.4544482916243134`*^9, 3.4544483006317053`*^9}, 3.454511444347208*^9, {
+   3.454523445133017*^9, 3.4545234469742002`*^9}, {3.454523769899035*^9, 
+   3.4545237714245358`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"<<", "CelleratorML.m"}]], "Input",
+ CellChangeTimes->{{3.45444548689896*^9, 3.454445527883609*^9}}],
+
+Cell["\<\
+Define a Cellerator Model and save it to the xml file ring.xml\
+\>", "Text",
+ CellChangeTimes->{{3.4544483467142057`*^9, 3.454448380999442*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"MyReactions", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       UnderoverscriptBox[
+        RowBox[{"X", "\[DoubleLongLeftRightArrow]", "XP"}], "ZP", "Z"], ",", 
+       RowBox[{"MM", "[", 
+        RowBox[{"K", ",", "v", ",", "K", ",", "v"}], "]"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       UnderoverscriptBox[
+        RowBox[{"Y", "\[DoubleLongLeftRightArrow]", "YP"}], "XP", "X"], ",", 
+       RowBox[{"MM", "[", 
+        RowBox[{"K", ",", "v", ",", "K", ",", "v"}], "]"}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       UnderoverscriptBox[
+        RowBox[{"Z", "\[DoubleLongLeftRightArrow]", "ZP"}], "YP", "Y"], ",", 
+       RowBox[{"MM", "[", 
+        RowBox[{"K", ",", "v", ",", "K", ",", "v"}], "]"}]}], "}"}]}], 
+    "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MyIC", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"X", "\[Rule]", " ", "1"}], ",", " ", 
+     RowBox[{"Y", "\[Rule]", " ", "2"}], ",", " ", 
+     RowBox[{"Z", "\[Rule]", " ", "3"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MyParameters", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"v", "\[Rule]", " ", "1"}], ",", " ", 
+     RowBox[{"K", "\[Rule]", " ", ".5"}]}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.454445597825631*^9, 3.4544456300932217`*^9}, {
+  3.454448400073749*^9, 3.454448404695442*^9}, {3.4545234629522142`*^9, 
+  3.454523471767909*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SaveModel", "[", " ", 
+  RowBox[{"\"\<MyModel.xml\>\"", ",", " ", "MyReactions", ",", " ", 
+   RowBox[{"\"\<InitialConditions\>\"", "\[Rule]", " ", "MyIC"}], ",", " ", 
+   RowBox[{"\"\<Parameters\>\"", "\[Rule]", " ", "MyParameters"}], ",", " ", 
+   RowBox[{"\"\<Name\>\"", "\[Rule]", " ", "\"\<Ring-Oscillator\>\""}], ",", 
+   " ", 
+   RowBox[{"\"\<Creator\>\"", "\[Rule]", " ", "\"\<John Q. Public\>\""}], ",",
+    " ", 
+   RowBox[{
+   "\"\<email\>\"", "\[Rule]", " ", "\"\<John.Q.Public@Caltech.edu\>\""}], 
+   ",", " ", 
+   RowBox[{
+   "\"\<WebPage\>\"", "\[Rule]", " ", 
+    "\"\<http://xlr8r.info/john_q_public/index.html\>\""}]}], "]"}]], "Input",\
+
+ CellChangeTimes->{{3.4544483848598413`*^9, 3.454448433687396*^9}, {
+  3.4545132736886377`*^9, 3.454513274936269*^9}, {3.454523478079309*^9, 
+  3.454523649957026*^9}, {3.454523729799199*^9, 3.4545237308337927`*^9}, {
+  3.4545263105025187`*^9, 3.4545263435291758`*^9}}],
+
+Cell[BoxData["\<\"MyModel.xml\"\>"], "Output",
+ CellChangeTimes->{{3.454448415697753*^9, 3.454448434598772*^9}, {
+   3.454513212368752*^9, 3.4545132262576933`*^9}, {3.4545132756699257`*^9, 
+   3.454513284985347*^9}, {3.454523639672949*^9, 3.4545236504667673`*^9}, 
+   3.454523731554685*^9, 3.45452631584237*^9, 3.454526366058404*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"xml", "=", 
+  RowBox[{"SaveModel", "[", " ", 
+   RowBox[{"MyReactions", ",", " ", 
+    RowBox[{"\"\<InitialConditions\>\"", "\[Rule]", " ", "MyIC"}], ",", " ", 
+    RowBox[{"\"\<Parameters\>\"", "\[Rule]", " ", "MyParameters"}], ",", " ", 
+    
+    RowBox[{"\"\<Name\>\"", "\[Rule]", " ", "\"\<Ring-Oscillator\>\""}], ",", 
+    " ", 
+    RowBox[{"\"\<Creator\>\"", "\[Rule]", " ", "\"\<John Q. Public\>\""}], 
+    ",", " ", 
+    RowBox[{
+    "\"\<email\>\"", "\[Rule]", " ", "\"\<John.Q.Public@Caltech.edu\>\""}], 
+    ",", " ", 
+    RowBox[{
+    "\"\<WebPage\>\"", "\[Rule]", " ", 
+     "\"\<http://xlr8r.info/john_q_public/index.html\>\""}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.4545264075162563`*^9, 3.4545264326336107`*^9}}],
+
+Cell[BoxData["\<\"<?xml version='1.0' encoding='ASCII'?>\\n<!-- Generated 20 \
+June 2009 at 15:40 GMT-06:60 -->\\n<!-- Generated by CelleratorML 1.0.5 (19 \
+June 2009) -->\\n<!-- Generated using Mathematica Version 7.0 for Linux x86 \
+(64-bit) (February 18, 2009) (Release 1)-->\\n<CelleratorML Version='1.0'>\\n \
+<ModelAnnotation>\\n  <CreationTime>2009-06-20T15:40:33</CreationTime>\\n  \
+<MathematicaVersion>7.0 for Linux x86 (64-bit) (February 18, \
+2009)</MathematicaVersion>\\n  \
+<MathematicaVersionNumber>7.</MathematicaVersionNumber>\\n  \
+<MathematicaReleaseNumber>1</MathematicaReleaseNumber>\\n  \
+<OperatingSystem>Linux x86 (64-bit)</OperatingSystem>\\n  \
+<CharacterEncoding>ISO8859-1</CharacterEncoding>\\n  <Creator>John Q. \
+Public</Creator>\\n  <Email>John.Q.Public@Caltech.edu</Email>\\n  \
+<WebPage>http://xlr8r.info/john_q_public/index.html</WebPage>\\n  \
+<SoftwareTool>CelleratorML 1.0.5 (19 June 2009)</SoftwareTool>\\n  \
+<Description>\\n   <html>This is a CelleratorML (XML) file.</html>\\n  \
+</Description>\\n </ModelAnnotation>\\n <CelleratorModel \
+Name='Ring-Oscillator'>\\n  <ListOfCelleratorReactions>\\n   \
+<CelleratorReaction>\\n    <math \
+xmlns='http://www.w3.org/1998/Math/MathML'>\\n     <list>\\n      <apply>\\n  \
+     <ci>Underoverscript</ci>\\n       <apply>\\n        \
+<ci>DoubleLongLeftRightArrow</ci>\\n        <ci>X</ci>\\n        \
+<ci>XP</ci>\\n       </apply>\\n       <ci>ZP</ci>\\n       <ci>Z</ci>\\n     \
+ </apply>\\n      <apply>\\n       <ci>MM</ci>\\n       <ci>K</ci>\\n       \
+<ci>v</ci>\\n       <ci>K</ci>\\n       <ci>v</ci>\\n      </apply>\\n     \
+</list>\\n    </math>\\n   </CelleratorReaction>\\n   <CelleratorReaction>\\n \
+   <math xmlns='http://www.w3.org/1998/Math/MathML'>\\n     <list>\\n      \
+<apply>\\n       <ci>Underoverscript</ci>\\n       <apply>\\n        \
+<ci>DoubleLongLeftRightArrow</ci>\\n        <ci>Y</ci>\\n        \
+<ci>YP</ci>\\n       </apply>\\n       <ci>XP</ci>\\n       <ci>X</ci>\\n     \
+ </apply>\\n      <apply>\\n       <ci>MM</ci>\\n       <ci>K</ci>\\n       \
+<ci>v</ci>\\n       <ci>K</ci>\\n       <ci>v</ci>\\n      </apply>\\n     \
+</list>\\n    </math>\\n   </CelleratorReaction>\\n   <CelleratorReaction>\\n \
+   <math xmlns='http://www.w3.org/1998/Math/MathML'>\\n     <list>\\n      \
+<apply>\\n       <ci>Underoverscript</ci>\\n       <apply>\\n        \
+<ci>DoubleLongLeftRightArrow</ci>\\n        <ci>Z</ci>\\n        \
+<ci>ZP</ci>\\n       </apply>\\n       <ci>YP</ci>\\n       <ci>Y</ci>\\n     \
+ </apply>\\n      <apply>\\n       <ci>MM</ci>\\n       <ci>K</ci>\\n       \
+<ci>v</ci>\\n       <ci>K</ci>\\n       <ci>v</ci>\\n      </apply>\\n     \
+</list>\\n    </math>\\n   </CelleratorReaction>\\n  \
+</ListOfCelleratorReactions>\\n  <ListOfCelleratorParameters>\\n   <Parameter \
+Identifier='v'\\n       Value='1' />\\n   <Parameter Identifier='K'\\n       \
+Value='0.5' />\\n  </ListOfCelleratorParameters>\\n  <ListOfCelleratorIC>\\n  \
+ <InitialValue Identifier='X'\\n       Value='1' />\\n   <InitialValue \
+Identifier='Y'\\n       Value='2' />\\n   <InitialValue Identifier='Z'\\n     \
+  Value='3' />\\n  </ListOfCelleratorIC>\\n \
+</CelleratorModel>\\n</CelleratorML>\"\>"], "Output",
+ CellChangeTimes->{3.4545264331070967`*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{594, 595},
+WindowMargins->{{Automatic, 637}, {Automatic, 95}},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+FrontEndVersion->"7.0 for Linux x86 (64-bit) (February 25, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[568, 22, 289, 4, 73, "Section"],
+Cell[860, 28, 123, 2, 32, "Input"],
+Cell[986, 32, 154, 3, 31, "Text"],
+Cell[1143, 37, 1505, 41, 154, "Input"],
+Cell[CellGroupData[{
+Cell[2673, 82, 949, 19, 143, "Input"],
+Cell[3625, 103, 333, 4, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3995, 112, 762, 18, 165, "Input"],
+Cell[4760, 132, 3269, 46, 2272, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

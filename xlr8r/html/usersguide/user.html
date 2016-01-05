@@ -1,0 +1,159 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>xCellerator</title>
+</head>
+
+<body>
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src=
+        "logo.svg" alt="The xCellerator Project" width="150"></a>
+      </div>
+
+      <div class="text"><br>
+
+      <table border="0" width="100%">
+        <tr>
+          <td style="font-size:x-large;font-weight:bold;">
+          <span style=
+          "font-family:Verdana;font-size:smaller;font-weight:normal;">
+          User-defined arrows</span></td>
+
+          <td align="right"><a class="button" href=
+          "index.html">Reference Home</a></td>
+        </tr>
+      </table>
+      <hr color="#FF7636">
+
+      <p>Two types of reactions can be defined "on the fly:"
+      regulatory and stoichiometric. They have the following
+      differences:</p>
+
+      <ol>
+        <li>Rate laws from stoichiometric reactions combine
+        additively; rate laws from regulatory reactions combined
+        vectorally.</li>
+
+        <li>Rate laws for stoichiometric reactions affect all
+        species in the reaction; rate laws for regulatory reactions
+        only affect the species on the right side of the
+        arrow.</li>
+      </ol>
+
+      <p><span style=
+      "text-decoration:underline;font-size:large;font-weight:bold;color:blue;">
+      User Defined Regulatory Reactions</span></p>
+
+      <p>In a regulatory reaction, the concentrations of the
+      reactants (the species on the left side of the arrow) do not
+      change, only those of the products (the species on the right
+      hand side of the arrow).</p>
+
+      <p>The canonical form for a user-defined regulatory reaction
+      is</p>
+
+      <center>
+        <img src="user/equation1.png">
+      </center>
+
+      <p>where</p>
+
+      <blockquote>
+        <span style=
+        "font-family:times;font-style:italic;color:purple;">mytype</span>
+        is any uninstantiated identifier chosen by the user, giving
+        the name of the arrow, in analogy with pre-defined names
+        such as <span class="blackfunction">GRN, Hill, NHCA,</span>
+        etc.
+      </blockquote>
+
+      <blockquote>
+        <span class="blackfunction">r, T, n, h</span> are scalar
+        identifiers or numbers.
+      </blockquote>
+
+      <blockquote>
+        <span class="blackfunction">f</span> is any function of one
+        variable that defines the rate law (as described below).
+      </blockquote>
+
+      <blockquote>
+        Note that <span style=
+        "font-family:times;font-style:italic;color:purple;">mytype</span>
+        and <span class="blackfunction">f</span> are redundant but
+        <u>both are required</u>. Any specified <span style=
+        "font-family:times;font-style:italic;color:purple;">mytype</span>
+        may only be used with a single <span class=
+        "blackfunction">f</span> and vice-versa (see below).
+      </blockquote>
+
+      <p>and which is interpreted as</p>
+
+      <center>
+        <img src="user/equation2.png">
+      </center>
+
+      <p><u>Examples</u></p>
+
+      <p>The first example shows how a predefined function can be
+      used; in this case, the function is the sqrt function, but it
+      can be replaced with any defined function (including
+      functions previously defined by the user):</p>
+
+      <center>
+        <img src="user/equation3.png">
+      </center>
+
+      <p>The next example illustrates the use of pure functions to
+      define a regulatory function <span style=
+      "font-family:times;"><i>f</i>(<i>x</i>)=1+Tanh(<i>x</i>)</span>
+      (the hyperbolic tangent):</p>
+
+      <center>
+        <img src="user/equation4.png">
+      </center>
+
+      <p><span style=
+      "text-decoration:underline;font-size:large;font-weight:bold;color:blue;">
+      User Defined Stoichiometric Reactions</span></p>
+
+      <p>In a stoichiometric reaction, the concentrations of all
+      reactants as well as all products change, according to their
+      stoichiometry. The general form is illustrated by the
+      following example:</p>
+
+      <center>
+        <img src="user/equation5.png">
+      </center>
+
+      <p>where <span class="blackfunction">somef[...]</span> is
+      some expression that depends on the species in the model.
+      Reaction kinetics for each species are given by the product
+      of that species stoichiometry and the rate law given in the
+      arrow. For example:</p>
+
+      <center>
+        <img src="user/equation6.png">
+      </center>
+
+     
+		<p>&nbsp;</p>
+     
+
+      <div class="logo">
+        <a href=
+        "http://sourceforge.net/projects/xlr8r/files/"><img src=
+        "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+        width="125" height="37" border="0" alt=
+        "SourceForge.net Logo"></a>
+      </div>
+    </div><br>
+    <span style="font-size:xx-small;">[07-21-2012]</span>
+  </center>
+</body>
+</html>

@@ -1,0 +1,2751 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     92787,       2742]
+NotebookOptionsPosition[     88618,       2597]
+NotebookOutlinePosition[     89128,       2615]
+CellTagsIndexPosition[     89085,       2612]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ OverscriptBox[
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["S", "1"], ",", 
+     SubscriptBox["S", "2"], ",", "..."}], "}"}], "\[RightArrowLeftArrow]", 
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["P", "1"], ",", 
+     SubscriptBox["P", "2"], ",", "..."}], "}"}]}], 
+  RowBox[{"{", 
+   RowBox[{
+    SubscriptBox["X", "1"], ",", 
+    SubscriptBox["X", "2"], ",", "..."}], "}"}]]], "Input",
+ CellChangeTimes->{{3.555462020940667*^9, 3.5554621340455627`*^9}},
+ EmphasizeSyntaxErrors->True,
+ Background->None],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"pattern", "[", 
+    RowBox[{"x_", ",", "y___"}], "]"}], ":=", "x"}], ";"}]], "Input",
+ CellChangeTimes->{{3.555462169984181*^9, 3.555462172270762*^9}, 
+   3.555465118016767*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"templates", "=", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S_", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P_", "}"}]}], "En_"], ",", 
+       RowBox[{"UniUni", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S_", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P_", "}"}]}], "En_"], ",", 
+       RowBox[{"UniUni", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{"inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S_", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P_", "}"}]}], "En_"], ",", 
+       RowBox[{"UniUni", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{"inh_", ",", "kfi_", ",", "kri_", ",", "residualRate_"}], 
+        "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S_", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P_", "}"}]}], "En_"], ",", 
+       RowBox[{"UniUni", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"UCI", "[", 
+        RowBox[{"inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S_", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P_", "}"}]}], "En_"], ",", 
+       RowBox[{"UniUni", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P1_", "}"}]}], "En_"], ",", 
+       RowBox[{"BiUni", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P1_", "}"}]}], "En_"], ",", 
+       RowBox[{"OrderedBiUni", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S1_", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"UniBi", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P1_", "}"}]}], "En_"], ",", 
+       RowBox[{"BiUni", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S1_", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"UniBi", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S1_", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"UniBi", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{"Inhn_", ",", "kfin_", ",", "krin_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P1_", "}"}]}], "En_"], ",", 
+       RowBox[{"BiUni", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{"Inhn_", ",", "kfin_", ",", "krin_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"BiBi", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"OrderedBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"OrderedBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"OrderedBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}], ",", 
+       RowBox[{"CI1", "[", 
+        RowBox[{"Inh1_", ",", "kfi1_", ",", "kri1_"}], "]"}], ",", 
+       RowBox[{"CI2", "[", 
+        RowBox[{"Inh2_", ",", "kfi2_", ",", "kri2_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"RandomBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"RandomBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"RandomBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}], ",", 
+       RowBox[{"CI1", "[", 
+        RowBox[{"Inh1_", ",", "kfi1_", ",", "kri1_"}], "]"}], ",", 
+       RowBox[{"CI2", "[", 
+        RowBox[{"Inh2_", ",", "kfi2_", ",", "kri2_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"RandomBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"RandomBiBi", "[", 
+        RowBox[{"kf1_", ",", "kr1_", ",", "kf2_", ",", "kr2_", ",", "k_"}], 
+        "]"}], ",", 
+       RowBox[{"NCI1", "[", 
+        RowBox[{"Inh1_", ",", "kfi1_", ",", "kri1_"}], "]"}], ",", 
+       RowBox[{"NCI2", "[", 
+        RowBox[{"Inh2_", ",", "kfi2_", ",", "kri2_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"BiBi", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", "S__", "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", "P__", "}"}]}], "En_"], ",", 
+       RowBox[{"MulS", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_", ",", "P3_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"BiTer", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_", ",", "S3_"}], "}"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"TerBi", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_", ",", "S3_"}], "}"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_", ",", "P3_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"TerTer", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_", ",", "S3_"}], "}"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_", ",", "P3_"}], "}"}]}], "En_"], ",", 
+       RowBox[{"TerTer", "[", 
+        RowBox[{"kf_", ",", "kr_", ",", "k_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_"}]], ",", 
+       RowBox[{"PingPong", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+         "k2_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_"}]], ",", 
+       RowBox[{"PingPong", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+         "k2_"}], "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_"}]], ",", 
+       RowBox[{"PingPong", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+         "k2_"}], "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_", ",", "residualRate_"}], 
+        "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_"}]], ",", 
+       RowBox[{"PingPong", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+         "k2_"}], "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{
+        "Inh_", ",", "kfi1_", ",", "kri1_", ",", "kfi2_", ",", "kri2_", ",", 
+         "residualRate_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_"}]], ",", 
+       RowBox[{"PingPong", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+         "k2_"}], "]"}], ",", 
+       RowBox[{"NCI2", "[", 
+        RowBox[{"Inh_", ",", "kfi_", ",", "kri_", ",", "residualRate_"}], 
+        "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_"}]], ",", 
+       RowBox[{"PingPong", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+         "k2_"}], "]"}], ",", 
+       RowBox[{"CI", "[", 
+        RowBox[{"Inh1_", ",", "kfi1_", ",", "kri1_"}], "]"}], ",", 
+       RowBox[{"NCI", "[", 
+        RowBox[{"Inh2_", ",", "kfi2_", ",", "kri2_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_", ",", "S3_"}], "}"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_", ",", "P3_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_", ",", "Eny_"}]], ",", 
+       RowBox[{"PingPongTerTerF", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", "k2_",
+          ",", "kf3_", ",", "kr3_", ",", "k3_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_", ",", "S3_"}], "}"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_", ",", "P3_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_", ",", "Eny_"}]], ",", 
+       RowBox[{"PingPongTerTerR", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", "k2_",
+          ",", "kf3_", ",", "kr3_", ",", "k3_"}], "]"}]}], "]"}], ",", 
+     RowBox[{"Enz", "[", 
+      RowBox[{
+       OverscriptBox[
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"S1_", ",", "S2_"}], "}"}], "\[RightArrowLeftArrow]", 
+         RowBox[{"{", 
+          RowBox[{"P1_", ",", "P2_"}], "}"}]}], 
+        RowBox[{"En_", ",", "Enx_"}]], ",", 
+       RowBox[{"PingPong", "[", 
+        RowBox[{
+        "kf1_", ",", "kr1_", ",", "k1_", ",", "kf2_", ",", "kr2_", ",", 
+         "k2_"}], "]"}], ",", 
+       RowBox[{"NCmI", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"Inh1_", ",", "kfiInh1_", ",", "kriInh1_"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"Inh2_", ",", "kfiInh2_", ",", "kriInh2_"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"Inh3_", ",", "kfiInh3_", ",", "kriInh3_"}], "}"}]}], 
+        "]"}]}], "]"}]}], "}"}], "/.", 
+   RowBox[{"{", 
+    RowBox[{"Pattern", "\[Rule]", " ", "pattern"}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.555461831022842*^9, 3.555461840548231*^9}, {
+  3.555465127121916*^9, 3.555465133395032*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"inh", ",", "kfi", ",", "kri", ",", "residualRate"}], "]"}]}], 
+    "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"UCI", "[", 
+      RowBox[{"inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P1", "}"}]}], "En"], ",", 
+     RowBox[{"BiUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P1", "}"}]}], "En"], ",", 
+     RowBox[{"OrderedBiUni", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}]}], 
+    "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S1", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"UniBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P1", "}"}]}], "En"], ",", 
+     RowBox[{"BiUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S1", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"UniBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S1", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"UniBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inhn", ",", "kfin", ",", "krin"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P1", "}"}]}], "En"], ",", 
+     RowBox[{"BiUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inhn", ",", "kfin", ",", "krin"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"BiBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"OrderedBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}]}], 
+    "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"OrderedBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"OrderedBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"CI1", "[", 
+      RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+     RowBox[{"CI2", "[", 
+      RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}]}], 
+    "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"CI1", "[", 
+      RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+     RowBox[{"CI2", "[", 
+      RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"NCI1", "[", 
+      RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+     RowBox[{"NCI2", "[", 
+      RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"BiBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"MulS", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], "En"], ",", 
+     RowBox[{"BiTer", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"TerBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], "En"], ",", 
+     RowBox[{"TerTer", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], "En"], ",", 
+     RowBox[{"TerTer", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri", ",", "residualRate"}], "]"}]}], 
+    "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{
+      "Inh", ",", "kfi1", ",", "kri1", ",", "kfi2", ",", "kri2", ",", 
+       "residualRate"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}], ",", 
+     RowBox[{"NCI2", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri", ",", "residualRate"}], "]"}]}], 
+    "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx", ",", "Eny"}]], ",", 
+     RowBox[{"PingPongTerTerF", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2", ",", 
+       "kf3", ",", "kr3", ",", "k3"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx", ",", "Eny"}]], ",", 
+     RowBox[{"PingPongTerTerR", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2", ",", 
+       "kf3", ",", "kr3", ",", "k3"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}], ",", 
+     RowBox[{"NCmI", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"Inh1", ",", "kfiInh1", ",", "kriInh1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Inh2", ",", "kfiInh2", ",", "kriInh2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Inh3", ",", "kfiInh3", ",", "kriInh3"}], "}"}]}], "]"}]}], 
+    "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.555465134731496*^9, 3.555466573387165*^9, 
+  3.555466624088798*^9, 3.555466665300927*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"kw", "=", 
+  RowBox[{"Head", "/@", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"#", "[", 
+       RowBox[{"[", "2", "]"}], "]"}], "&"}], "/@", "templates"}], 
+    ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.555464613794388*^9, 3.555464668297215*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "UniUni", ",", "UniUni", ",", "UniUni", ",", "UniUni", ",", "UniUni", ",", 
+   "BiUni", ",", "OrderedBiUni", ",", "UniBi", ",", "BiUni", ",", "UniBi", 
+   ",", "UniBi", ",", "BiUni", ",", "BiBi", ",", "OrderedBiBi", ",", 
+   "OrderedBiBi", ",", "OrderedBiBi", ",", "RandomBiBi", ",", "RandomBiBi", 
+   ",", "RandomBiBi", ",", "RandomBiBi", ",", "RandomBiBi", ",", "BiBi", ",", 
+   "MulS", ",", "BiTer", ",", "TerBi", ",", "TerTer", ",", "TerTer", ",", 
+   "PingPong", ",", "PingPong", ",", "PingPong", ",", "PingPong", ",", 
+   "PingPong", ",", "PingPong", ",", "PingPongTerTerF", ",", 
+   "PingPongTerTerR", ",", "PingPong"}], "}"}]], "Output",
+ CellChangeTimes->{{3.555464620000615*^9, 3.555464668939485*^9}, 
+   3.5554648207549553`*^9, 3.555464869071703*^9, 3.5554649423213263`*^9, 
+   3.555465139616823*^9, 3.555466573474861*^9, 3.555466624170532*^9, 
+   3.555466665368182*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"keywords", " ", "=", 
+  RowBox[{"Union", "[", "kw", "]"}]}]], "Input",
+ CellChangeTimes->{{3.555464669668345*^9, 3.555464675166251*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "BiBi", ",", "BiTer", ",", "BiUni", ",", "MulS", ",", "OrderedBiBi", ",", 
+   "OrderedBiUni", ",", "PingPong", ",", "PingPongTerTerF", ",", 
+   "PingPongTerTerR", ",", "RandomBiBi", ",", "TerBi", ",", "TerTer", ",", 
+   "UniBi", ",", "UniUni"}], "}"}]], "Output",
+ CellChangeTimes->{3.55546467552521*^9, 3.555464820852055*^9, 
+  3.555464869109665*^9, 3.555464942357874*^9, 3.5554651417691603`*^9, 
+  3.555466573568253*^9, 3.5554666242403383`*^9, 3.555466665439583*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "key_", "]"}], ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"picks", ",", "reactions"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"picks", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"ToString", "[", "#", "]"}], "\[Equal]", 
+          RowBox[{"ToString", "[", "key", "]"}]}], ")"}], "&"}], "/@", 
+       "kw"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"reactions", " ", "=", " ", 
+      RowBox[{"Pick", "[", 
+       RowBox[{"templates", ",", "picks"}], "]"}]}]}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.555464687368298*^9, 3.5554647573483553`*^9}, {
+  3.5554651439955997`*^9, 3.555465145129559*^9}, {3.555466589017565*^9, 
+  3.555466592609919*^9}, {3.555466660937787*^9, 3.555466662224433*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "BiBi", "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.555464718792123*^9, 3.555464720741461*^9}, 
+   3.555465321823146*^9, 3.555466609822674*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"BiBi", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"BiBi", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+        RowBox[{"CI", "[", 
+         RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.55546661705951*^9, 3.555466624343418*^9}, 
+   3.555466665555703*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "BiTer", "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.5554651586911*^9, 3.5554651653715754`*^9}, 
+   3.555465325007374*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], "En"], ",", 
+        RowBox[{"BiTer", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.555465165873069*^9, 3.555465325719822*^9, 
+  3.555466573946528*^9, 3.555466624423182*^9, 3.555466665632835*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "BiUni", "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.5554651667326813`*^9, 3.5554651698109903`*^9}, 
+   3.5554653283752327`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", "P1", "}"}]}], "En"], ",", 
+        RowBox[{"BiUni", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", "P1", "}"}]}], "En"], ",", 
+        RowBox[{"BiUni", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+        RowBox[{"CI", "[", 
+         RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", "P1", "}"}]}], "En"], ",", 
+        RowBox[{"BiUni", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+        RowBox[{"CI", "[", 
+         RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}], ",", 
+        RowBox[{"NCI", "[", 
+         RowBox[{"Inhn", ",", "kfin", ",", "krin"}], "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.555465170155855*^9, 3.555465329028664*^9, 
+  3.555466574035108*^9, 3.555466624467245*^9, 3.555466665705696*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "MulS", "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.555465170772575*^9, 3.555465175443491*^9}, 
+   3.555465331295515*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", "P", "}"}]}], "En"], ",", 
+        RowBox[{"MulS", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.555465175751598*^9, 3.555465331857472*^9, 
+  3.555466574184757*^9, 3.555466624558352*^9, 3.555466665801011*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "UniUni", "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.555465178120846*^9, 3.555465183379286*^9}, 
+   3.5554653349675217`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", "P", "}"}]}], "En"], ",", 
+        RowBox[{"UniUni", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+        RowBox[{"CI", "[", 
+         RowBox[{"inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", "P", "}"}]}], "En"], ",", 
+        RowBox[{"UniUni", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+        RowBox[{"NCI", "[", 
+         RowBox[{"inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", "P", "}"}]}], "En"], ",", 
+        RowBox[{"UniUni", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+        RowBox[{"NCI", "[", 
+         RowBox[{"inh", ",", "kfi", ",", "kri", ",", "residualRate"}], 
+         "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", "P", "}"}]}], "En"], ",", 
+        RowBox[{"UniUni", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+        RowBox[{"UCI", "[", 
+         RowBox[{"inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", "P", "}"}]}], "En"], ",", 
+        RowBox[{"UniUni", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.5554651837569532`*^9, 3.555465335485528*^9, 
+  3.5554665742725697`*^9, 3.555466624651726*^9, 3.5554666658852882`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "OrderedBiBi", "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.555465186033738*^9, 3.555465201427279*^9}, {
+  3.555465306362267*^9, 3.555465307645351*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"OrderedBiBi", "[", 
+         RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], 
+         "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"OrderedBiBi", "[", 
+         RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}],
+         ",", 
+        RowBox[{"CI", "[", 
+         RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"OrderedBiBi", "[", 
+         RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}],
+         ",", 
+        RowBox[{"CI1", "[", 
+         RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+        RowBox[{"CI2", "[", 
+         RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.555465192068671*^9, 3.5554652017956038`*^9}, 
+   3.555465308092739*^9, 3.555466574483131*^9, 3.555466624754415*^9, 
+   3.555466665967754*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "OrderedBiUni", "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.555465204098386*^9, 3.55546521129042*^9}, 
+   3.55546533812702*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", "P1", "}"}]}], "En"], ",", 
+        RowBox[{"OrderedBiUni", "[", 
+         RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], 
+         "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.555465212891966*^9, 3.555465338619864*^9, 
+  3.55546657457613*^9, 3.555466624852257*^9, 3.555466666053789*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "PingPong", "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.555465214142033*^9, 3.555465219946231*^9}, 
+   3.555465341223153*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], 
+         RowBox[{"En", ",", "Enx"}]], ",", 
+        RowBox[{"PingPong", "[", 
+         RowBox[{
+         "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+         "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], 
+         RowBox[{"En", ",", "Enx"}]], ",", 
+        RowBox[{"PingPong", "[", 
+         RowBox[{
+         "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+         "]"}], ",", 
+        RowBox[{"NCI", "[", 
+         RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], 
+         RowBox[{"En", ",", "Enx"}]], ",", 
+        RowBox[{"PingPong", "[", 
+         RowBox[{
+         "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+         "]"}], ",", 
+        RowBox[{"NCI", "[", 
+         RowBox[{"Inh", ",", "kfi", ",", "kri", ",", "residualRate"}], 
+         "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], 
+         RowBox[{"En", ",", "Enx"}]], ",", 
+        RowBox[{"PingPong", "[", 
+         RowBox[{
+         "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+         "]"}], ",", 
+        RowBox[{"NCI", "[", 
+         RowBox[{
+         "Inh", ",", "kfi1", ",", "kri1", ",", "kfi2", ",", "kri2", ",", 
+          "residualRate"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], 
+         RowBox[{"En", ",", "Enx"}]], ",", 
+        RowBox[{"PingPong", "[", 
+         RowBox[{
+         "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+         "]"}], ",", 
+        RowBox[{"NCI2", "[", 
+         RowBox[{"Inh", ",", "kfi", ",", "kri", ",", "residualRate"}], 
+         "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], 
+         RowBox[{"En", ",", "Enx"}]], ",", 
+        RowBox[{"PingPong", "[", 
+         RowBox[{
+         "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+         "]"}], ",", 
+        RowBox[{"CI", "[", 
+         RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+        RowBox[{"NCI", "[", 
+         RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], 
+         RowBox[{"En", ",", "Enx"}]], ",", 
+        RowBox[{"PingPong", "[", 
+         RowBox[{
+         "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+         "]"}], ",", 
+        RowBox[{"NCmI", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Inh1", ",", "kfiInh1", ",", "kriInh1"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"Inh2", ",", "kfiInh2", ",", "kriInh2"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"Inh3", ",", "kfiInh3", ",", "kriInh3"}], "}"}]}], "]"}]}],
+        "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.555465220258057*^9, 3.5554653418795643`*^9, 
+  3.5554665746651897`*^9, 3.555466624959758*^9, 3.555466666155426*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "PingPongTerTerF", "]"}], "//", "TableForm"}]], "Input",\
+
+ CellChangeTimes->{{3.555465224716357*^9, 3.555465236522094*^9}, 
+   3.555465345247849*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], 
+         RowBox[{"En", ",", "Enx", ",", "Eny"}]], ",", 
+        RowBox[{"PingPongTerTerF", "[", 
+         RowBox[{
+         "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2", ",",
+           "kf3", ",", "kr3", ",", "k3"}], "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.555465237043233*^9, 3.555465345873336*^9, 
+  3.555466574836012*^9, 3.5554666250595703`*^9, 3.555466666260507*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "PingPongTerTerR", "]"}], "//", "TableForm"}]], "Input",\
+
+ CellChangeTimes->{{3.55546523831199*^9, 3.555465248034247*^9}, 
+   3.5554653481496058`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], 
+         RowBox[{"En", ",", "Enx", ",", "Eny"}]], ",", 
+        RowBox[{"PingPongTerTerR", "[", 
+         RowBox[{
+         "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2", ",",
+           "kf3", ",", "kr3", ",", "k3"}], "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.55546524284789*^9, 3.555465248447155*^9}, 
+   3.555465348719018*^9, 3.5554665749725847`*^9, 3.55546662524818*^9, 
+   3.555466666413664*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "RandomBiBi", "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.555465249127821*^9, 3.555465260131485*^9}, 
+   3.5554653517908897`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"RandomBiBi", "[", 
+         RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], 
+         "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"RandomBiBi", "[", 
+         RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}],
+         ",", 
+        RowBox[{"CI", "[", 
+         RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"RandomBiBi", "[", 
+         RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}],
+         ",", 
+        RowBox[{"CI1", "[", 
+         RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+        RowBox[{"CI2", "[", 
+         RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"RandomBiBi", "[", 
+         RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}],
+         ",", 
+        RowBox[{"NCI", "[", 
+         RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"RandomBiBi", "[", 
+         RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}],
+         ",", 
+        RowBox[{"NCI1", "[", 
+         RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+        RowBox[{"NCI2", "[", 
+         RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.5554652605369167`*^9, 3.555465352387701*^9, 
+  3.555466575076779*^9, 3.5554666253124323`*^9, 3.555466666507182*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "TerBi", "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.555465261190673*^9, 3.5554652675385113`*^9}, 
+   3.555465355462729*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"TerBi", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.555465267835794*^9, 3.555465356055565*^9, 
+  3.555466575174177*^9, 3.55546662541193*^9, 3.555466666602806*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "TerTer", "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.555465269963437*^9, 3.5554652788589287`*^9}, 
+   3.555465358055087*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], "En"], ",", 
+        RowBox[{"TerTer", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], 
+          "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], "En"], ",", 
+        RowBox[{"TerTer", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+        RowBox[{"CI", "[", 
+         RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.555465279283194*^9, 3.555465358647835*^9, 
+  3.5554665752267*^9, 3.55546662550452*^9, 3.55546666665199*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pick", "[", "UniBi", "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.555465280252653*^9, 3.555465282330881*^9}, 
+   3.555465361022922*^9}],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", "S1", "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"UniBi", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", "S1", "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"UniBi", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+        RowBox[{"CI", "[", 
+         RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]},
+     {
+      RowBox[{"Enz", "[", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+          RowBox[{"{", "S1", "}"}], "\[RightArrowLeftArrow]", 
+          RowBox[{"{", 
+           RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+        RowBox[{"UniBi", "[", 
+         RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+        RowBox[{"CI", "[", 
+         RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}], ",", 
+        RowBox[{"NCI", "[", 
+         RowBox[{"Inhn", ",", "kfin", ",", "krin"}], "]"}]}], "]"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.5554652827545567`*^9, 3.5554653616505337`*^9, 
+  3.555466575336603*^9, 3.555466625594112*^9, 3.555466666739683*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["NonTabular", "Section",
+ CellChangeTimes->{{3.55546539664682*^9, 3.555465398094573*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "BiBi", "]"}]], "Input",
+ CellChangeTimes->{{3.555464718792123*^9, 3.555464720741461*^9}, 
+   3.555465321823146*^9, 3.5554654190277147`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"BiBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"BiBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.555464721190798*^9, 3.5554647597438717`*^9}, 
+   3.5554648209567623`*^9, 3.555464869224298*^9, 3.55546494247606*^9, 
+   3.555465147841432*^9, 3.555465322544248*^9, 3.55546542300701*^9, 
+   3.555466575527355*^9, 3.555466625767096*^9, 3.5554666668186913`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "BiTer", "]"}]], "Input",
+ CellChangeTimes->{{3.5554651586911*^9, 3.5554651653715754`*^9}, 
+   3.555465325007374*^9, 3.555465419061102*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"Enz", "[", 
+   RowBox[{
+    OverscriptBox[
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+      RowBox[{"{", 
+       RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], "En"], ",", 
+    RowBox[{"BiTer", "[", 
+     RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], "}"}]], "Output",
+ CellChangeTimes->{3.555465165873069*^9, 3.555465325719822*^9, 
+  3.5554654231284637`*^9, 3.555466575659046*^9, 3.555466625856306*^9, 
+  3.555466666905298*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "BiUni", "]"}]], "Input",
+ CellChangeTimes->{{3.5554651667326813`*^9, 3.5554651698109903`*^9}, 
+   3.5554653283752327`*^9, 3.555465419094233*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P1", "}"}]}], "En"], ",", 
+     RowBox[{"BiUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P1", "}"}]}], "En"], ",", 
+     RowBox[{"BiUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P1", "}"}]}], "En"], ",", 
+     RowBox[{"BiUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inhn", ",", "kfin", ",", "krin"}], "]"}]}], "]"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.555465170155855*^9, 3.555465329028664*^9, 
+  3.555465423210121*^9, 3.555466575750286*^9, 3.555466625952937*^9, 
+  3.5554666669879*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "MulS", "]"}]], "Input",
+ CellChangeTimes->{{3.555465170772575*^9, 3.555465175443491*^9}, 
+   3.555465331295515*^9, 3.555465419130554*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"Enz", "[", 
+   RowBox[{
+    OverscriptBox[
+     RowBox[{
+      RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+      RowBox[{"{", "P", "}"}]}], "En"], ",", 
+    RowBox[{"MulS", "[", 
+     RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], "}"}]], "Output",
+ CellChangeTimes->{3.555465175751598*^9, 3.555465331857472*^9, 
+  3.555465423295294*^9, 3.555466575835506*^9, 3.5554666260535707`*^9, 
+  3.5554666670753193`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "UniUni", "]"}]], "Input",
+ CellChangeTimes->{{3.555465178120846*^9, 3.555465183379286*^9}, 
+   3.5554653349675217`*^9, 3.555465419150016*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"inh", ",", "kfi", ",", "kri", ",", "residualRate"}], "]"}]}], 
+    "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"UCI", "[", 
+      RowBox[{"inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", "P", "}"}]}], "En"], ",", 
+     RowBox[{"UniUni", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}]}], "}"}]], "Output",\
+
+ CellChangeTimes->{3.5554651837569532`*^9, 3.555465335485528*^9, 
+  3.555465423381415*^9, 3.555466575920673*^9, 3.555466626170249*^9, 
+  3.555466667155838*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "OrderedBiBi", "]"}]], "Input",
+ CellChangeTimes->{{3.555465186033738*^9, 3.555465201427279*^9}, {
+   3.555465306362267*^9, 3.555465307645351*^9}, 3.555465419161647*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"OrderedBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}]}], 
+    "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"OrderedBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"OrderedBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"CI1", "[", 
+      RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+     RowBox[{"CI2", "[", 
+      RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.555465192068671*^9, 3.5554652017956038`*^9}, 
+   3.555465308092739*^9, 3.555465423462412*^9, 3.555466576021409*^9, 
+   3.555466626275503*^9, 3.555466667241152*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "OrderedBiUni", "]"}]], "Input",
+ CellChangeTimes->{{3.555465204098386*^9, 3.55546521129042*^9}, 
+   3.55546533812702*^9, 3.555465419175858*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"Enz", "[", 
+   RowBox[{
+    OverscriptBox[
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+      RowBox[{"{", "P1", "}"}]}], "En"], ",", 
+    RowBox[{"OrderedBiUni", "[", 
+     RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}]}], 
+   "]"}], "}"}]], "Output",
+ CellChangeTimes->{3.555465212891966*^9, 3.555465338619864*^9, 
+  3.555465423647297*^9, 3.55546657610734*^9, 3.555466626341854*^9, 
+  3.5554666673507423`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "PingPong", "]"}]], "Input",
+ CellChangeTimes->{{3.555465214142033*^9, 3.555465219946231*^9}, 
+   3.555465341223153*^9, 3.555465419183127*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri", ",", "residualRate"}], "]"}]}], 
+    "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{
+      "Inh", ",", "kfi1", ",", "kri1", ",", "kfi2", ",", "kri2", ",", 
+       "residualRate"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}], ",", 
+     RowBox[{"NCI2", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri", ",", "residualRate"}], "]"}]}], 
+    "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], 
+      RowBox[{"En", ",", "Enx"}]], ",", 
+     RowBox[{"PingPong", "[", 
+      RowBox[{
+      "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2"}], 
+      "]"}], ",", 
+     RowBox[{"NCmI", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"Inh1", ",", "kfiInh1", ",", "kriInh1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Inh2", ",", "kfiInh2", ",", "kriInh2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Inh3", ",", "kfiInh3", ",", "kriInh3"}], "}"}]}], "]"}]}], 
+    "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.555465220258057*^9, 3.5554653418795643`*^9, 
+  3.555465423731988*^9, 3.555466576284689*^9, 3.5554666264405327`*^9, 
+  3.555466667536434*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "PingPongTerTerF", "]"}]], "Input",
+ CellChangeTimes->{{3.555465224716357*^9, 3.555465236522094*^9}, 
+   3.555465345247849*^9, 3.555465419194931*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"Enz", "[", 
+   RowBox[{
+    OverscriptBox[
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+      
+      RowBox[{"{", 
+       RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], 
+     RowBox[{"En", ",", "Enx", ",", "Eny"}]], ",", 
+    RowBox[{"PingPongTerTerF", "[", 
+     RowBox[{
+     "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2", ",", 
+      "kf3", ",", "kr3", ",", "k3"}], "]"}]}], "]"}], "}"}]], "Output",
+ CellChangeTimes->{3.555465237043233*^9, 3.555465345873336*^9, 
+  3.555465423849172*^9, 3.555466576378174*^9, 3.555466626576353*^9, 
+  3.5554666675934258`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "PingPongTerTerR", "]"}]], "Input",
+ CellChangeTimes->{{3.55546523831199*^9, 3.555465248034247*^9}, 
+   3.5554653481496058`*^9, 3.5554654192090197`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"Enz", "[", 
+   RowBox[{
+    OverscriptBox[
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+      
+      RowBox[{"{", 
+       RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], 
+     RowBox[{"En", ",", "Enx", ",", "Eny"}]], ",", 
+    RowBox[{"PingPongTerTerR", "[", 
+     RowBox[{
+     "kf1", ",", "kr1", ",", "k1", ",", "kf2", ",", "kr2", ",", "k2", ",", 
+      "kf3", ",", "kr3", ",", "k3"}], "]"}]}], "]"}], "}"}]], "Output",
+ CellChangeTimes->{{3.55546524284789*^9, 3.555465248447155*^9}, 
+   3.555465348719018*^9, 3.555465423945229*^9, 3.555466576483094*^9, 
+   3.555466626675542*^9, 3.555466667692346*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "RandomBiBi", "]"}]], "Input",
+ CellChangeTimes->{{3.555465249127821*^9, 3.555465260131485*^9}, 
+   3.5554653517908897`*^9, 3.5554654192174587`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}]}], 
+    "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"CI1", "[", 
+      RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+     RowBox[{"CI2", "[", 
+      RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"RandomBiBi", "[", 
+      RowBox[{"kf1", ",", "kr1", ",", "kf2", ",", "kr2", ",", "k"}], "]"}], 
+     ",", 
+     RowBox[{"NCI1", "[", 
+      RowBox[{"Inh1", ",", "kfi1", ",", "kri1"}], "]"}], ",", 
+     RowBox[{"NCI2", "[", 
+      RowBox[{"Inh2", ",", "kfi2", ",", "kri2"}], "]"}]}], "]"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.5554652605369167`*^9, 3.555465352387701*^9, 
+  3.555465424066454*^9, 3.555466576565715*^9, 3.5554666267749662`*^9, 
+  3.5554666677872543`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "TerBi", "]"}]], "Input",
+ CellChangeTimes->{{3.555465261190673*^9, 3.5554652675385113`*^9}, 
+   3.555465355462729*^9, 3.5554654192313833`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"Enz", "[", 
+   RowBox[{
+    OverscriptBox[
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+      
+      RowBox[{"{", 
+       RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+    RowBox[{"TerBi", "[", 
+     RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], "}"}]], "Output",
+ CellChangeTimes->{3.555465267835794*^9, 3.555465356055565*^9, 
+  3.5554654242065783`*^9, 3.55546657665239*^9, 3.555466626863647*^9, 
+  3.555466667894463*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "TerTer", "]"}]], "Input",
+ CellChangeTimes->{{3.555465269963437*^9, 3.5554652788589287`*^9}, 
+   3.555465358055087*^9, 3.555465419245016*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], "En"], ",", 
+     RowBox[{"TerTer", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"S1", ",", "S2", ",", "S3"}], "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2", ",", "P3"}], "}"}]}], "En"], ",", 
+     RowBox[{"TerTer", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.555465279283194*^9, 3.555465358647835*^9, 
+  3.555465424316959*^9, 3.555466576711389*^9, 3.555466626977078*^9, 
+  3.555466668006096*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"pick", "[", "UniBi", "]"}]], "Input",
+ CellChangeTimes->{{3.555465280252653*^9, 3.555465282330881*^9}, 
+   3.555465361022922*^9, 3.555465419260306*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S1", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"UniBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S1", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"UniBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}]}], "]"}], ",", 
+   RowBox[{"Enz", "[", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{
+       RowBox[{"{", "S1", "}"}], "\[RightArrowLeftArrow]", 
+       RowBox[{"{", 
+        RowBox[{"P1", ",", "P2"}], "}"}]}], "En"], ",", 
+     RowBox[{"UniBi", "[", 
+      RowBox[{"kf", ",", "kr", ",", "k"}], "]"}], ",", 
+     RowBox[{"CI", "[", 
+      RowBox[{"Inh", ",", "kfi", ",", "kri"}], "]"}], ",", 
+     RowBox[{"NCI", "[", 
+      RowBox[{"Inhn", ",", "kfin", ",", "krin"}], "]"}]}], "]"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.5554652827545567`*^9, 3.5554653616505337`*^9, 
+  3.555465424443124*^9, 3.5554665768084784`*^9, 3.55546662709371*^9, 
+  3.555466668091299*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1053, 867},
+WindowMargins->{{264, Automatic}, {Automatic, 41}},
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.25, 1.25 Inherited],
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 539, 17, 55, "Input"],
+Cell[1099, 39, 224, 6, 49, "Input"],
+Cell[CellGroupData[{
+Cell[1348, 49, 17243, 458, 2091, "Input"],
+Cell[18594, 509, 15704, 449, 1422, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34335, 963, 287, 9, 49, "Input"],
+Cell[34625, 974, 923, 15, 119, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35585, 994, 160, 3, 49, "Input"],
+Cell[35748, 999, 510, 9, 73, "Output"]
+}, Open  ]],
+Cell[36273, 1011, 884, 22, 119, "Input"],
+Cell[CellGroupData[{
+Cell[37182, 1037, 206, 4, 49, "Input"],
+Cell[37391, 1043, 1444, 42, 115, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38872, 1090, 185, 4, 49, "Input"],
+Cell[39060, 1096, 1043, 29, 80, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[40140, 1130, 191, 4, 49, "Input"],
+Cell[40334, 1136, 1940, 54, 150, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[42311, 1195, 184, 4, 49, "Input"],
+Cell[42498, 1201, 963, 27, 80, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43498, 1233, 188, 4, 49, "Input"],
+Cell[43689, 1239, 2561, 72, 220, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46287, 1316, 214, 4, 49, "Input"],
+Cell[46504, 1322, 2198, 61, 150, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[48739, 1388, 190, 4, 49, "Input"],
+Cell[48932, 1394, 1041, 29, 80, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[50010, 1428, 188, 4, 49, "Input"],
+Cell[50201, 1434, 4926, 141, 290, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[55164, 1580, 197, 5, 49, "Input"],
+Cell[55364, 1587, 1215, 33, 81, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[56616, 1625, 198, 5, 49, "Input"],
+Cell[56817, 1632, 1242, 34, 81, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[58096, 1671, 192, 4, 49, "Input"],
+Cell[58291, 1677, 3262, 90, 220, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[61590, 1772, 187, 4, 49, "Input"],
+Cell[61780, 1778, 1053, 30, 80, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[62870, 1813, 188, 4, 49, "Input"],
+Cell[63061, 1819, 1552, 44, 115, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[64650, 1868, 185, 4, 49, "Input"],
+Cell[64838, 1874, 1944, 54, 150, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[66819, 1933, 94, 1, 91, "Section"],
+Cell[CellGroupData[{
+Cell[66938, 1938, 176, 3, 49, "Input"],
+Cell[67117, 1943, 1085, 29, 101, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[68239, 1977, 175, 3, 49, "Input"],
+Cell[68417, 1982, 534, 14, 63, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[68988, 2001, 181, 3, 49, "Input"],
+Cell[69172, 2006, 1380, 39, 138, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[70589, 2050, 174, 3, 49, "Input"],
+Cell[70766, 2055, 464, 12, 63, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[71267, 2072, 178, 3, 49, "Input"],
+Cell[71448, 2077, 1944, 55, 175, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[73429, 2137, 205, 3, 49, "Input"],
+Cell[73637, 2142, 1617, 45, 173, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[75291, 2192, 180, 3, 49, "Input"],
+Cell[75474, 2197, 530, 14, 63, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[76041, 2216, 178, 3, 49, "Input"],
+Cell[76222, 2221, 4104, 121, 387, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[80363, 2347, 185, 3, 49, "Input"],
+Cell[80551, 2352, 688, 18, 100, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[81276, 2375, 188, 3, 49, "Input"],
+Cell[81467, 2380, 711, 18, 100, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[82215, 2403, 184, 3, 49, "Input"],
+Cell[82402, 2408, 2598, 73, 280, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[85037, 2486, 179, 3, 49, "Input"],
+Cell[85219, 2491, 540, 15, 63, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[85796, 2511, 178, 3, 49, "Input"],
+Cell[85977, 2516, 1011, 28, 101, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[87025, 2549, 175, 3, 49, "Input"],
+Cell[87203, 2554, 1387, 39, 138, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

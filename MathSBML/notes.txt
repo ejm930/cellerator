@@ -1,0 +1,43 @@
+The MathSBML package for Mathematica provides facilities for reading 
+models expressed in SBML Level 1 (version 1 or 2) and SBML Level 2 
+(version 1, 2, or 3),  converting them to systems of ordinary differential 
+equations, and solving and plotting the results in Mathematica.
+
+Some features of MathSBML include:
+
+- SBMLRead: function that reads an SBML file and translates
+   it into a Mathematica data structure consisting of
+   differential equations, initial conditions, variables, function
+   definitions, event definitions, unit definitions and associations,
+   and replacement rules
+
+- SBMLNDSolve: function that solves the system of
+   differential equations produced by SBMLRead using
+   Mathematica's NDSolve. SBML NDSolve fully supports 
+   models with events.
+
+- SBMLPlot: function that generates a plot of the resulting
+   solutions. Support of all Mathematica "Plot" options.
+   
+- SBMLWrite: read an SBML file and write a translation. The only 
+   output formats currently supported are FORTRAN, HTML, and XPP.
+
+- SBMLCopy: copy an SBML file, reformatting the text using 
+   Mathematica's XML/indentation capability to make the file more
+   human-readable.
+
+- An SBML Model Builder that allows one to construct
+   SBML models manually from Mathematica data
+   structures, read or save SBML files, and load them into
+   the simulator. The model builder supports SBML Level 2 
+   Versions 1, 2 and 3.
+
+- Documentation in the form of a README file, extensive HTML 
+  reference guide, and function documentation within Mathematica itself.
+
+MathSBML requires Mathematica 4.2 or above for full XML
+compatibility. It will not work properly with earlier
+versions of Mathematica. 
+
+Support of differential-algebraic equations requires Mathematica 5.0 or 
+higher. 

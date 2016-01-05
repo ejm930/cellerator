@@ -1,0 +1,240 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      7124,        231]
+NotebookOptionsPosition[      6155,        194]
+NotebookOutlinePosition[      6710,        214]
+CellTagsIndexPosition[      6667,        211]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["<<xlr8r.m;", "Input",
+ CellChangeTimes->{{3.5554403614362164`*^9, 3.5554403723062687`*^9}, {
+   3.555440437201744*^9, 3.555440439032627*^9}, 3.555440610255636*^9, 
+   3.555440643960022*^9, 3.5554406763619337`*^9, 3.555441119098737*^9}],
+
+Cell[BoxData[
+ StyleBox["\<\"xCellerator 0.88 (21-July-2012) loaded 31 August 2012 at 15:27 \
+GMT-06:60 using Mathematica 8.0 for Linux x86 (64-bit) (October 10, 2011) \
+(Version 8., Release 4) (MathSBML 1203-002)\\nGNU General Public License \
+(GPL) Terms Apply. \"\>",
+  StripOnInput->False,
+  FontFamily->"Ubuntu,Arial"]], "Print",
+ CellChangeTimes->{3.555440374920106*^9, 3.555440612158967*^9, 
+  3.5554406763625183`*^9, 3.555440843721949*^9, 3.5554411190993347`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"model", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"ES", "\[ShortRightArrow]", 
+       RowBox[{"Enz", "+", "S1"}]}], ",", 
+      RowBox[{"Flux", "[", 
+       RowBox[{"0", ",", "v1", ",", "1", ",", "1", ",", "0"}], "]"}]}], "}"}],
+     ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"S1", "\[ShortRightArrow]", "S2"}], ",", 
+      RowBox[{"Flux", "[", 
+       RowBox[{
+        RowBox[{"-", "\[Infinity]"}], ",", "v2", ",", "\[Infinity]", ",", "1",
+         ",", "0"}], "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Enz", "+", "S2"}], "\[ShortRightArrow]", "ES"}], ",", 
+      RowBox[{"Flux", "[", 
+       RowBox[{
+        RowBox[{"-", "\[Infinity]"}], ",", "v3", ",", "\[Infinity]", ",", "1",
+         ",", "1"}], "]"}]}], "}"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.555440451247864*^9, 3.555440464490546*^9}, 
+   3.555440676362852*^9, 3.5554411190996933`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"ES", "\[ShortRightArrow]", 
+      RowBox[{"Enz", "+", "S1"}]}], ",", 
+     RowBox[{"Flux", "[", 
+      RowBox[{"0", ",", "v1", ",", "1", ",", "1", ",", "0"}], "]"}]}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"S1", "\[ShortRightArrow]", "S2"}], ",", 
+     RowBox[{"Flux", "[", 
+      RowBox[{
+       RowBox[{"-", "\[Infinity]"}], ",", "v2", ",", "\[Infinity]", ",", "1", 
+       ",", "0"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Enz", "+", "S2"}], "\[ShortRightArrow]", "ES"}], ",", 
+     RowBox[{"Flux", "[", 
+      RowBox[{
+       RowBox[{"-", "\[Infinity]"}], ",", "v3", ",", "\[Infinity]", ",", "1", 
+       ",", "1"}], "]"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.555440453962309*^9, 3.555440465324071*^9}, 
+   3.5554406763629932`*^9, 3.5554408438608723`*^9, 3.555441119099841*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"interpret", "[", "model", "]"}]], "Input",
+ CellChangeTimes->{{3.555440467428274*^9, 3.55544046975449*^9}, 
+   3.555440676363099*^9, 3.555441119099945*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["Enz", "\[Prime]",
+        MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+      RowBox[{"v1", "-", "v3"}]}], ",", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["ES", "\[Prime]",
+        MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+      RowBox[{
+       RowBox[{"-", "v1"}], "+", "v3"}]}], ",", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["S1", "\[Prime]",
+        MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+      RowBox[{"v1", "-", "v2"}]}], ",", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["S2", "\[Prime]",
+        MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+      RowBox[{"v2", "-", "v3"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"Enz", ",", "ES", ",", "S1", ",", "S2"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.5554404701396227`*^9, 3.555440676363346*^9, 
+  3.555440843899362*^9, 3.555441119100132*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"StoichiometryMatrix", "[", "model", "]"}], "//", 
+  "TableForm"}]], "Input",
+ CellChangeTimes->{{3.555440479604294*^9, 3.555440505279501*^9}, 
+   3.555440676363452*^9, 3.555441119100238*^9}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"1", "0", 
+     RowBox[{"-", "1"}]},
+    {
+     RowBox[{"-", "1"}], "0", "1"},
+    {"1", 
+     RowBox[{"-", "1"}], "0"},
+    {"0", "1", 
+     RowBox[{"-", "1"}]}
+   },
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}, "RowsIndexed" -> {}}],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.555440501687756*^9, 3.555440505680398*^9}, 
+   3.555440676363639*^9, 3.555440843948042*^9, 3.555441119100425*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"OptimizeFluxModel", "[", "model", "]"}]], "Input",
+ CellChangeTimes->{{3.55544080567107*^9, 3.5554408126212807`*^9}, 
+   3.555441119100513*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1.0000000000000004`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"v1", "\[Rule]", "1.`"}], ",", 
+     RowBox[{"v2", "\[Rule]", "1.0000000000000004`"}], ",", 
+     RowBox[{"v3", "\[Rule]", "1.0000000000000004`"}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.555440813897748*^9, 3.5554408442694597`*^9, 
+  3.555441119100601*^9}]
+}, Open  ]]
+},
+WindowSize->{740, 867},
+WindowMargins->{{150, Automatic}, {Automatic, 52}},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.5, 1.5 Inherited],
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 241, 3, 58, "Input"],
+Cell[823, 27, 471, 8, 146, "Print"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1331, 40, 970, 27, 113, "Input"],
+Cell[2304, 69, 945, 26, 113, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3286, 100, 179, 3, 58, "Input"],
+Cell[3468, 105, 1012, 30, 113, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4517, 140, 225, 5, 58, "Input"],
+Cell[4745, 147, 806, 24, 120, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5588, 176, 167, 3, 58, "Input"],
+Cell[5758, 181, 381, 10, 58, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

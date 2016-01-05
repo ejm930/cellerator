@@ -1,0 +1,195 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>xCellerator</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src=
+        "logo.svg" alt="The xCellerator Project" width="150"></a>
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="blackfunction" style=
+            "font-size:x-large;font-weight:bold;">run</td>
+
+            <td align="right"><a class="button" href=
+            "index.html">Reference Home</a></td>
+          </tr>
+        </table>
+        <hr color="#FF7636">
+
+        <p>Runs a simulation.</p>
+        <hr color="#FF7636">
+
+        <p><span class="blackfunction">run[sys, {t, tstart, tend},
+        options]</span><br>
+        <span class="blackfunction">run[sys, {tstart, tend},
+        options]</span><br>
+        <span class="blackfunction">run[sys, options]</span></p>
+
+        <p><span class="blackfunction">sys</span> is the output of
+        <a href="interpret.html" class=
+        "blackfunction">interpret</a>.</p>
+
+        <p><span class="blackfunction">vars</span> is a list of
+        variables in <span class="blackfunction">sim</span>. If
+        omitted all variables will be plotted. <span class=
+        "blackfunction">vars</span> can only be omitted if the time
+        span is also omitted.</p>
+
+        <p><span class="blackfunction">t</span> is the name of the
+        time variable (default is <span class=
+        "blackfunction">Global`t</span>).</p>
+
+        <p><span class="blackfunction">tstart</span> and
+        <span class="blackfunction">tend</span> give the timespan
+        of the simulation.</p>
+
+        <p>The return value is a list of <a class="blackfunction"
+        href=
+        "http://documents.wolfram.com/v5/Built-inFunctions/NumericalComputation/Integration/InterpolatingFunction.html">
+        InterpolatingFunctions</a>'s.</p>
+
+        <p>Options include:</p>
+
+        <blockquote>
+          <span class=
+          "blackfunction">"IC"&#8594;{}</span> - Gives
+          a list of initial conditions. Variables for which initial
+          conditions are omitted are given default initial
+          conditions of zero at tstart. Each initial condition may
+          be specified as either <span class=
+          "blackfunction">variable[tzero]==value</span> or
+          <span class="blackfunction">variable&#8594;value</span>.
+          Any combination of these two forms may be used.
+        </blockquote>
+        <blockquote>
+          <span class=
+          "blackfunction">initialConditions&#8594;{}</span> - deprecated
+          version of 
+          <span class="blackfunction">"IC"</span>.
+        </blockquote>
+        <blockquote>
+          <span class="blackfunction">"plot"&#8594;False</span> - If
+          <span class="blackfunction">True</span> plots the results
+          of the variables listed in <span class=
+          "blackfunction">"plotVariables"</span> and/or <span class=
+          "blackfunction">"gridPlotVariables"</span>. See <a class=
+          "blackfunction" href="runPlot.html">runPlot</a> or
+          <a class="blackfunction" href=
+          "gridPlot.html">gridPlot</a>. Plotting options can not be
+          sent to Plot via run; this must be done by invoking
+          <a class="blackfunction" href="runPlot.html">runPlot</a>
+          or <a class="blackfunction" href=
+          "gridPlot.html">gridPlot</a> after <span class=
+          "blackfunction">run</span>.
+        </blockquote>
+
+        <blockquote>
+          <span class="blackfunction">"plotVariables"&#8594;{}</span>
+          - gives a list of variables to be plotted on a single
+          plot. See <a class="blackfunction" href=
+          "runPlot.html">runPlot</a>.
+        </blockquote>
+
+        <blockquote>
+          <span class=
+          "blackfunction">"gridPlotVariables"&#8594;{}</span> - gives
+          a list of variables to be plotted in a grid, one variable
+          per plot. See <a class="blackfunction" href=
+          "gridPlot.html">gridPlot</a>.
+        </blockquote>
+
+        <blockquote>
+          <span class="blackfunction">"Parameters"&#8594;{}</span> - list
+          of rules defining parameter values. Unassigned parameters
+          will be set equal to 1.
+        </blockquote>
+        <blockquote>
+          <span class=
+          "blackfunction">rates&#8594;{}</span> - deprecated
+          version of 
+          <span class="blackfunction">"Parameters"</span>.
+        </blockquote>
+
+        <blockquote>
+          <span class="blackfunction">"TimeSpan"&#8594;100</span> -
+          duration of run in units of the time variable (t).
+        </blockquote>
+
+        <blockquote>
+          <span class=
+          "blackfunction">timeSpan&#8594;{}</span> - deprecated
+          version of 
+          <span class="blackfunction">"TimeSpan"</span>.
+        </blockquote>
+
+
+        <blockquote>
+          <span class=
+          "blackfunction">timeVariable&#8594;Global`t</span>
+        </blockquote>
+
+        <blockquote>
+          <span class=
+          "blackfunction">"BoundaryConditions"&#8594;{v1[t]&#8594;f1[t],
+          v2[t]&#8594;f2[t],..}</span> - replace each reference to
+          a species <span class="blackfunction">v1</span> with an
+          explicit formula that depends on time, given by
+          <span class="blackfunction">f1[t]</span>, etc. Any
+          references to the variables <span class=
+          "blackfunction">v1,v2,...</span> in the list of reactions
+          is treated as a frozen variable and is not used to
+          produce and ode term. <a href=
+          "examples/bc-example/bc-example.html">For an example,
+          click here</a>
+        </blockquote>
+
+        <blockquote>
+          Any options for <a href=
+          "http://documents.wolfram.com/mathematica/functions/NDSolve"
+          class="blackfunction">NDSolve</a> may also be used.
+        </blockquote>
+
+        <p><span class="header">Example</span> (<a class="nblink"
+        href="run/run.nb">Download as Mathematica Notebook</a>)</p>
+
+        <p style="text-align:center;"><iframe src="run/run.htm"
+        style="width:6in;height:6in;background:white;">Your browser does not support
+        frames - download notebook instead.</iframe></p>
+
+        <p><span class="header">Implementation Notes</span></p>
+
+        <p><span class="blackfunction">run</span> is a wrapper for
+        <a href=
+        "http://documents.wolfram.com/mathematica/functions/NDSolve"
+        class="blackfunction">NDSolve</a>.</p><br>
+
+        <div class="logo">
+          <a href=
+          "http://sourceforge.net/projects/xlr8r/files/"><img src=
+          "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+          width="125" height="37" border="0" alt=
+          "SourceForge.net Logo"></a>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[This page was last revised
+      on: 2 Nov 2012]</span>
+    </div>
+  </center>
+</body>
+</html>

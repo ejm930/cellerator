@@ -1,0 +1,190 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      5742,        181]
+NotebookOptionsPosition[      4935,        149]
+NotebookOutlinePosition[      5394,        167]
+CellTagsIndexPosition[      5351,        164]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Boundary-example.nb", "Section",
+ CellChangeTimes->{{3.454616493069165*^9, 3.4546164962937117`*^9}, {
+   3.454617165097115*^9, 3.45461716610536*^9}, {3.4546175566843147`*^9, 
+   3.454617556998733*^9}, 3.454617821271494*^9, {3.4546182823933973`*^9, 
+   3.454618284403924*^9}, 3.4546185355642757`*^9, 3.561417061363509*^9}],
+
+Cell["\<\
+Example Cellzilla2D notebook.
+
+GPL License applies. 
+See http://xlr8r.info and http://cellzilla.info for further details.\
+\>", "Text",
+ CellChangeTimes->{{3.454616499378996*^9, 3.4546165376658583`*^9}, 
+   3.454617821271595*^9, 3.561417024985938*^9, 3.5614170613635607`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"<<", "Cellzilla2D.m"}]], "Input",
+ CellChangeTimes->{{3.4546177024873037`*^9, 3.4546177066717863`*^9}, {
+   3.4546177419301577`*^9, 3.454617750289276*^9}, 3.454617821271983*^9, 
+   3.561417061363625*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"Cellzilla2D\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\" (2.3.5 (6-Nov-2012)) loaded Thu 8 Nov 2012 18:30:27\\nusing \
+\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"xCellerator \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"0.90 and \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"XSSA \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"1204002\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12]}],
+  SequenceForm[
+   Style["Cellzilla2D", FontFamily -> "Ubuntu,Arial", FontSize -> 12, 
+    FontWeight -> "Bold"], 
+   Style[" (2.3.5 (6-Nov-2012)) loaded Thu 8 Nov 2012 18:30:27\nusing ", 
+    FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["xCellerator ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", 
+    FontWeight -> "Bold"], 
+   Style["0.90 and ", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["XSSA ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> 
+    "Bold"], 
+   Style["1204002", FontSize -> 12, FontFamily -> "Ubuntu,Arial"]],
+  Editable->False]], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.454617751705755*^9, 3.4546178212738256`*^9, 
+  3.454618288050762*^9, 3.561417027721307*^9, 3.56141706136404*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"poly", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"5", ",", "1"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", " ", "3"}], "}"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.4546175903487387`*^9, 3.45461761900526*^9}, {
+   3.4546176823308563`*^9, 3.454617685202752*^9}, {3.454617770164138*^9, 
+   3.4546177703109303`*^9}, 3.454617821275194*^9, 3.561417061364133*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Boundary", "[", "poly", "]"}]], "Input",
+ CellChangeTimes->{{3.454618297772723*^9, 3.454618303582514*^9}, 
+   3.561417061364189*^9}],
+
+Cell[BoxData[
+ GraphicsBox[LineBox[{{0, 0}, {1, 0}, {5, 1}, {1, 3}, {0, 0}}]]], "Output",
+ CellChangeTimes->{
+  3.454618303885236*^9, {3.561417036049202*^9, 3.561417061364359*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"Boundary", "[", 
+    RowBox[{"poly", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"Blue", ",", " ", "Dashed", ",", " ", "Thick"}], "}"}]}], "]"}],
+    ",", " ", 
+   RowBox[{"Frame", "\[Rule]", " ", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.4546183239733353`*^9, 3.4546183320262833`*^9}, {
+   3.454618508776528*^9, 3.454618522954988*^9}, 3.5614170613644857`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {RGBColor[0, 0, 1], Thickness[Large], Dashing[{Small, Small}], 
+   LineBox[{{0, 0}, {1, 0}, {5, 1}, {1, 3}, {0, 0}}]},
+  Frame->True]], "Output",
+ CellChangeTimes->{
+  3.45461833242551*^9, {3.454618509737014*^9, 3.454618523353804*^9}, {
+   3.561417038708169*^9, 3.561417061366394*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{640, 750},
+WindowMargins->{{Automatic, -1128}, {131, Automatic}},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 327, 4, 74, "Section"],
+Cell[897, 28, 285, 7, 87, "Text"],
+Cell[CellGroupData[{
+Cell[1207, 39, 227, 4, 40, "Input"],
+Cell[1437, 45, 1721, 46, 43, "Print"]
+}, Open  ]],
+Cell[3173, 94, 586, 15, 40, "Input"],
+Cell[CellGroupData[{
+Cell[3784, 113, 156, 3, 40, "Input"],
+Cell[3943, 118, 180, 3, 247, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4160, 126, 429, 10, 60, "Input"],
+Cell[4592, 138, 315, 7, 249, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

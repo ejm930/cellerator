@@ -1,0 +1,151 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>xCellerator</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src=
+        "logo.svg" alt="The xCellerator Project" width="150"></a>
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="blackfunction" style=
+            "font-size:x-large;font-weight:bold;">SBML2xlr8r</td>
+
+            <td align="right"><a class="button" href=
+            "index.html">Reference Home</a></td>
+          </tr>
+        </table>
+        <hr color="purple">
+
+        <p><span class="blackfunction">SBML2xlr8r[filename,
+        options]</span> reads an SBML file into an xlr8r model.</p>
+        <hr color="purple">
+        <span style="font-size:x-small">Requires xlr8r 0.25,
+        MathSBML 2.5.25, and Mathematica 5.1</span>
+
+        <p><span class="blackfunction">filename</span> is the name
+        of the SBML file.</p>
+
+        <p><span class="blackfunction">options</span> are any valid
+        options for <a href=
+        "http://sbml.org/software/mathsbml/mathsbml-sbmlread.html"
+        class="blackfunction">MathSBML`SBMLRead</a>.</p>
+
+        <p>The return value has the form</p>
+        <pre class="blackfunction">
+     {xCelleratorNetwork&#8594;{reaction<sub>1</sub>, reaction<sub>2</sub>...},
+         xCelleratorIC&#8594;{x<sub>1</sub>&#8594;val<sub>1</sub>, x<sub>2</sub>&#8594;val<sub>2</sub>,...}, 
+         xCelleratorRates&#8594;{r<sub>1</sub>&#8594;v<sub>1</sub>, r<sub>2</sub>&#8594;v<sub>2</sub>,...}}
+</pre>
+
+        <p>where <span class=
+        "blackfunction">reaction<sub>1</sub>,...</span> are
+        standard cellerator arrow forms; <span class=
+        "blackfunction">x<sub>i</sub></span> are cellerator
+        variables defined in the reactions; <span class=
+        "blackfunction">val<sub>i</sub></span> is the initial value
+        for cellerator variable <span class=
+        "blackfunction">x<sub>i</sub></span>; <span class=
+        "blackfunction">r<sub>i</sub>&#8594;v<sub>i</sub></span> is
+        a Mathematica rule that should be applied to the
+        system.</p><span class="header">Example</span>
+        <pre class="blackfunction">
+        &lt;&lt;xlr8r.m
+        &lt;&lt;mathsbml.m
+        &lt;&lt;SBML2xlr8r.m
+        ...
+        m=SML2xlr8r[filename];
+        net=xCelleratorNetwork/.m;
+        ic=xCelleratorRates/.m;
+        r=xCelleratorRates/.m;
+        i=interpret[net]/.r;
+        sim=run[i, initialConditions&#8594;ic, rates&#8594;r];
+        runPlot[sim]
+</pre><span class="header">Implementation Notes</span>
+
+        <ul>
+          <li>
+            <p>A more stable way to input SBML is to use <a href=
+            "http://pyxlr8r.com">py[xlr8r]</a> to convert the SBML
+            file to a <span class="blackfunction">pyxlr8r</span>
+            flat file and then the <span class=
+            "blackfunction">pyxlr8r convert</span> function to
+            generate a mathematica notebook containing the model.
+            <span class="blackfunction">Pyxlr8r</span> supports
+            more features of SBML and is libsbml-based.</p>
+          </li>
+
+          <li>
+            <p>Events, Functions, and Algebraic Rules in the SBML
+            Model are ignored because these concepts do not exist
+            in xCellerator at the present time, although they may
+            be added in the future.</p>
+          </li>
+
+          <li>
+            <p>Reactions are converted to xCellerator mass-action
+            reactions or xCellerator user reactions.</p>
+          </li>
+
+          <li>In general the model is immediately xCellerator
+          compatible:
+            <pre class="blackfunction">
+        m=SBML2xlr8r[filename];
+        n=interpret[ xCelleratorNetwork/.m ];           
+        r=run[n//. (xCelleratorRates/.m), 
+              initialConditions&#8594;(xCelleratorIC/.m)];
+</pre>
+
+            <p>However, if algebraic rules, events, or functions
+            are defined in the model the run command will either
+            cause an error (because of undefined variables or
+            missing information) or will produce results that the
+            modeller did not intend.</p>
+          </li>
+
+          <li>
+            <p>Only SBML Level 2 is supported. Level 1 models
+            should first be converted to level 2 using the
+            online-converter at sbml.org</p>
+          </li>
+
+          <li>
+            <p>The followng SBML constructs have no meaning in
+            xCellerator and will be ignored: units,
+            compartmentType, speciesType, constraints and
+            initialAssignments.</p>
+          </li>
+        </ul><span class="header">See Also:</span>
+
+        <ul>
+          <li><a href="convertToSBML.html" class=
+          "blackfunction">convertToSBML</a></li>
+        </ul>
+
+        <div class="logo">
+          <a href=
+          "http://sourceforge.net/projects/xlr8r/files/"><img src=
+          "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+          width="125" height="37" border="0" alt=
+          "SourceForge.net Logo"></a>
+        </div>
+      </div><br>
+      <span style="font-size:xx-small;">[rev. 18 July 2012]</span>
+    </div>
+  </center>
+</body>
+</html>

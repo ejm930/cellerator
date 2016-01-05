@@ -1,0 +1,182 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      5725,        173]
+NotebookOptionsPosition[      5139,        147]
+NotebookOutlinePosition[      5525,        164]
+CellTagsIndexPosition[      5482,        161]
+WindowFrame->Generic*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["ListICToCellzillaIC Example File", "Section",
+ CellChangeTimes->{{3.454446521645286*^9, 3.4544465228076077`*^9}, {
+   3.4544482916243134`*^9, 3.4544483006317053`*^9}, {3.4544491350120707`*^9, 
+   3.4544491375776052`*^9}, 3.454523158495882*^9}],
+
+Cell[BoxData[
+ RowBox[{"Get", "[", "\"\<CelleratorML.m\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.454449275157736*^9, 3.454449311426306*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"r", ":=", 
+    RowBox[{"RandomReal", "[", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "10"}], "}"}], "]"}]}], ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{"myic", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"X", "\[Rule]", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"r", ",", " ", 
+       RowBox[{"{", "7", "}"}]}], "]"}]}], ",", " ", 
+    RowBox[{"Y", "\[Rule]", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"r", ",", 
+       RowBox[{"{", "7", "}"}]}], "]"}]}], ",", " ", 
+    RowBox[{"Z", "\[Rule]", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"r", ",", 
+       RowBox[{"{", "7", "}"}]}], "]"}]}]}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.45444932578187*^9, 3.454449398509803*^9}, {
+  3.454523169630426*^9, 3.454523212687372*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"X", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "1.4392221978833781`", ",", "1.56902678083798`", ",", 
+      "4.879990298701646`", ",", "6.883469789987423`", ",", 
+      "9.954849218021586`", ",", "8.106114194975913`", ",", 
+      "1.7329366280076908`"}], "}"}]}], ",", 
+   RowBox[{"Y", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "7.419065582568042`", ",", "0.4336614540181394`", ",", 
+      "8.59734278278587`", ",", "6.930207266820997`", ",", 
+      "5.2745921012870305`", ",", "4.4521441871664145`", ",", 
+      "2.269345087618561`"}], "}"}]}], ",", 
+   RowBox[{"Z", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "6.302624689361554`", ",", "9.52148077168188`", ",", 
+      "9.297729225553297`", ",", "4.88236896363826`", ",", 
+      "9.709856313589555`", ",", "3.1922513742380136`", ",", 
+      "5.845352562615423`"}], "}"}]}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.4544493892849703`*^9, 3.4544493989871063`*^9}, {
+  3.4545232074535923`*^9, 3.454523213079171*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListICToCellzillaIC", "[", "myic", "]"}]], "Input",
+ CellChangeTimes->{{3.454449254111959*^9, 3.454449258944145*^9}, {
+  3.454523160794121*^9, 3.454523162880973*^9}, {3.454523221556472*^9, 
+  3.454523221800284*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"X", "[", "1", "]"}], "\[Rule]", "1.4392221978833781`"}], ",", 
+   RowBox[{
+    RowBox[{"X", "[", "2", "]"}], "\[Rule]", "1.56902678083798`"}], ",", 
+   RowBox[{
+    RowBox[{"X", "[", "3", "]"}], "\[Rule]", "4.879990298701646`"}], ",", 
+   RowBox[{
+    RowBox[{"X", "[", "4", "]"}], "\[Rule]", "6.883469789987423`"}], ",", 
+   RowBox[{
+    RowBox[{"X", "[", "5", "]"}], "\[Rule]", "9.954849218021586`"}], ",", 
+   RowBox[{
+    RowBox[{"X", "[", "6", "]"}], "\[Rule]", "8.106114194975913`"}], ",", 
+   RowBox[{
+    RowBox[{"X", "[", "7", "]"}], "\[Rule]", "1.7329366280076908`"}], ",", 
+   RowBox[{
+    RowBox[{"Y", "[", "1", "]"}], "\[Rule]", "7.419065582568042`"}], ",", 
+   RowBox[{
+    RowBox[{"Y", "[", "2", "]"}], "\[Rule]", "0.4336614540181394`"}], ",", 
+   RowBox[{
+    RowBox[{"Y", "[", "3", "]"}], "\[Rule]", "8.59734278278587`"}], ",", 
+   RowBox[{
+    RowBox[{"Y", "[", "4", "]"}], "\[Rule]", "6.930207266820997`"}], ",", 
+   RowBox[{
+    RowBox[{"Y", "[", "5", "]"}], "\[Rule]", "5.2745921012870305`"}], ",", 
+   RowBox[{
+    RowBox[{"Y", "[", "6", "]"}], "\[Rule]", "4.4521441871664145`"}], ",", 
+   RowBox[{
+    RowBox[{"Y", "[", "7", "]"}], "\[Rule]", "2.269345087618561`"}], ",", 
+   RowBox[{
+    RowBox[{"Z", "[", "1", "]"}], "\[Rule]", "6.302624689361554`"}], ",", 
+   RowBox[{
+    RowBox[{"Z", "[", "2", "]"}], "\[Rule]", "9.52148077168188`"}], ",", 
+   RowBox[{
+    RowBox[{"Z", "[", "3", "]"}], "\[Rule]", "9.297729225553297`"}], ",", 
+   RowBox[{
+    RowBox[{"Z", "[", "4", "]"}], "\[Rule]", "4.88236896363826`"}], ",", 
+   RowBox[{
+    RowBox[{"Z", "[", "5", "]"}], "\[Rule]", "9.709856313589555`"}], ",", 
+   RowBox[{
+    RowBox[{"Z", "[", "6", "]"}], "\[Rule]", "3.1922513742380136`"}], ",", 
+   RowBox[{
+    RowBox[{"Z", "[", "7", "]"}], "\[Rule]", "5.845352562615423`"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.454449259460322*^9, 3.454449403254078*^9, {3.454523215980666*^9, 
+   3.454523222396327*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{692, 544},
+WindowMargins->{{341, Automatic}, {Automatic, 98}},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+FrontEndVersion->"7.0 for Linux x86 (64-bit) (February 25, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[568, 22, 249, 3, 73, "Section"],
+Cell[820, 27, 143, 2, 32, "Input"],
+Cell[CellGroupData[{
+Cell[988, 33, 802, 24, 55, "Input"],
+Cell[1793, 59, 1037, 25, 72, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2867, 89, 239, 4, 32, "Input"],
+Cell[3109, 95, 2002, 48, 132, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

@@ -1,0 +1,216 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      6274,        207]
+NotebookOptionsPosition[      5654,        182]
+NotebookOutlinePosition[      6090,        199]
+CellTagsIndexPosition[      6047,        196]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Bind", "Section",
+ CellChangeTimes->{{3.551483445054229*^9, 3.55148344542973*^9}}],
+
+Cell[TextData[StyleBox["A + X \[RightArrowLeftArrow] Bind[A, X] \
+\[RightArrowLeftArrow] B + X",
+ FontFamily->"Courier"]], "Text",
+ CellChangeTimes->{{3.55148346210496*^9, 3.551483502441407*^9}}],
+
+Cell[TextData[StyleBox["A\[UnderBracket]B",
+ FontFamily->"Courier"]], "Text",
+ CellChangeTimes->{
+  3.5514835367484083`*^9, {3.551483850532444*^9, 3.551483873589167*^9}, 
+   3.5514841034104137`*^9}],
+
+Cell[TextData[StyleBox["p\[UnderBracket]q[1, 2, 3]",
+ FontFamily->"Courier"]], "Text",
+ CellChangeTimes->{{3.5514841052721767`*^9, 3.5514841293539667`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["GMWC"], "Section",
+ CellChangeTimes->{{3.551517352058281*^9, 3.55151736150653*^9}}],
+
+Cell["", "Text"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   StyleBox[
+    UnderoverscriptBox[
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        SubscriptBox["S", "1"], ",", 
+        SubscriptBox["S", "2"], ",", "..."}], "}"}], 
+      "\[DoubleLongRightArrow]", 
+      RowBox[{"{", 
+       RowBox[{
+        SubscriptBox["P", "1"], ",", 
+        SubscriptBox["P", "2"], ",", "..."}], "}"}]}], 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         SubscriptBox["A", "1"], ",", 
+         SubscriptBox["A", "2"], ",", "..."}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         SubscriptBox["\[ScriptCapitalI]", "1"], ",", 
+         SubscriptBox["\[ScriptCapitalI]", "2"], ",", "..."}], "}"}]}], "}"}],
+      "\[ScriptCapitalE]"],
+    FontWeight->"Bold",
+    FontColor->RGBColor[0.500008, 0, 0.500008]], 
+   StyleBox[",",
+    FontWeight->"Bold",
+    FontColor->RGBColor[0.500008, 0, 0.500008]], 
+   StyleBox[" ",
+    FontWeight->"Bold",
+    FontColor->RGBColor[0.500008, 0, 0.500008]], 
+   RowBox[{
+    StyleBox[
+     RowBox[{"G", "MWC"}],
+     FontWeight->"Bold",
+     FontColor->RGBColor[0.500008, 0, 0.500008]], 
+    StyleBox["[",
+     FontWeight->"Bold",
+     FontColor->RGBColor[0.500008, 0, 0.500008]], 
+    RowBox[{
+     StyleBox[
+      SubscriptBox["k", "cat"],
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]], 
+     StyleBox[",",
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]], 
+     StyleBox["n",
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]], 
+     StyleBox[",",
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]], 
+     StyleBox["c",
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]], 
+     StyleBox[",",
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]], 
+     StyleBox["L",
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]], 
+     StyleBox[",",
+      FontWeight->"Bold",
+      FontColor->RGBColor[0.500008, 0, 0.500008]], 
+     RowBox[{
+      StyleBox["{",
+       FontWeight->"Bold",
+       FontColor->RGBColor[0.500008, 0, 0.500008]], 
+      RowBox[{
+       StyleBox[
+        SubscriptBox[
+         StyleBox["K",
+          FontWeight->"Bold",
+          FontColor->RGBColor[0.500008, 0, 0.500008]], "S1"],
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+       StyleBox[",",
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+       SubscriptBox[
+        StyleBox["K",
+         FontWeight->"Bold",
+         FontColor->RGBColor[0.500008, 0, 0.500008]], "S2"], ",", "...", ",", 
+       " ", 
+       StyleBox[
+        SubscriptBox["K", "A1"],
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+       StyleBox[",",
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+       SubscriptBox[
+        StyleBox["K",
+         FontWeight->"Bold",
+         FontColor->RGBColor[0.500008, 0, 0.500008]], "A2"], 
+       StyleBox[",",
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+       StyleBox["...",
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+       StyleBox[",",
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+       StyleBox[
+        SubscriptBox["K", "\[ScriptCapitalI]1"],
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+       StyleBox[",",
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+       StyleBox[
+        SubscriptBox["K", "\[ScriptCapitalI]2"],
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+       StyleBox[",",
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]], 
+       StyleBox["...",
+        FontWeight->"Bold",
+        FontColor->RGBColor[0.500008, 0, 0.500008]]}], 
+      StyleBox["}",
+       FontWeight->"Bold",
+       FontColor->RGBColor[0.500008, 0, 0.500008]]}]}], 
+    StyleBox["]",
+     FontWeight->"Bold",
+     FontColor->RGBColor[0.500008, 0, 0.500008]]}]}], "}"}]], "Text",
+ CellChangeTimes->{{3.5515175161383142`*^9, 3.5515175252390013`*^9}}]
+}, Open  ]]
+},
+WindowSize->{740, 867},
+WindowMargins->{{Automatic, -1737}, {Automatic, 72}},
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 2., 2. Inherited],
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 88, 1, 147, "Section"],
+Cell[670, 25, 195, 3, 57, "Text"],
+Cell[868, 30, 198, 4, 57, "Text"],
+Cell[1069, 36, 156, 2, 57, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1262, 43, 97, 1, 140, "Section"],
+Cell[1362, 46, 16, 0, 57, "Text"],
+Cell[1381, 48, 4257, 131, 188, "Text"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

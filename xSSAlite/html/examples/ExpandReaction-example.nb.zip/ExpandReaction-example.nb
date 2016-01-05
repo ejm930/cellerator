@@ -1,0 +1,174 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      4616,        165]
+NotebookOptionsPosition[      3963,        136]
+NotebookOutlinePosition[      4349,        153]
+CellTagsIndexPosition[      4306,        150]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["ExpandReaction-example.nb", "Section",
+ CellChangeTimes->{{3.456328136900538*^9, 3.456328170540635*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"<<", "xSSA.m"}]], "Input",
+ CellChangeTimes->{{3.445956834233841*^9, 3.445956845328793*^9}, {
+   3.445957953424643*^9, 3.445957954440522*^9}, 3.456328027022938*^9, {
+   3.4563281304246483`*^9, 3.4563281324219313`*^9}}],
+
+Cell[BoxData["\<\"xSSAlite 1.2.01 (1-March-2011) loaded \
+Tue-8-Mar-2011-10:43:36 using Mathematica 8.0 for Linux x86 (64-bit) \
+(November 7, 2010)(8.0.0)\"\>"], "Print",
+ CellChangeTimes->{3.445956845899542*^9, 3.445957829732813*^9, 
+  3.44595795537265*^9, 3.4563281769544897`*^9, 3.508598616393366*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ExpandReaction", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"A", "\[Rule]", " ", "B"}], ",", " ", "k"}], "}"}], "]"}], 
+  " "}]], "Input",
+ CellChangeTimes->{{3.445957565527662*^9, 3.445957573557955*^9}, 
+   3.445957661962964*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"A", "\[Rule]", "B"}], ",", "k"}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.445957574101219*^9, 3.445957829960202*^9, 
+  3.445957958581641*^9, 3.4563281770518436`*^9, 3.508598618777264*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ExpandReaction", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     OverscriptBox[
+      RowBox[{"S", "\[Equilibrium]", "P"}], "X"], ",", 
+     TagBox[
+      SubscriptBox["k", "1"],
+      DisplayForm], ",", 
+     TagBox[
+      SubscriptBox["k", "2"],
+      DisplayForm], ",", 
+     TagBox[
+      SubscriptBox["k", "3"],
+      DisplayForm], ",", 
+     TagBox[
+      SubscriptBox["k", "4"],
+      DisplayForm], ",", 
+     TagBox[
+      SubscriptBox["k", "5"],
+      DisplayForm], ",", 
+     TagBox[
+      SubscriptBox["k", "6"],
+      DisplayForm]}], "}"}], "]"}], " "}]], "Input",
+ CellChangeTimes->{{3.445956854960714*^9, 3.445956855947318*^9}, {
+   3.445957480743916*^9, 3.445957559337989*^9}, 3.445957663726826*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"S", "+", "X"}], "\[Rule]", 
+      RowBox[{"S", "\[Diamond]", "X"}]}], ",", 
+     SubscriptBox["k", "1"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"S", "\[Diamond]", "X"}], "\[Rule]", 
+      RowBox[{"S", "+", "X"}]}], ",", 
+     SubscriptBox["k", "2"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"S", "\[Diamond]", "X"}], "\[Rule]", 
+      RowBox[{"P", "\[Diamond]", "X"}]}], ",", 
+     SubscriptBox["k", "3"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"P", "\[Diamond]", "X"}], "\[Rule]", 
+      RowBox[{"S", "\[Diamond]", "X"}]}], ",", 
+     SubscriptBox["k", "4"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"P", "\[Diamond]", "X"}], "\[Rule]", 
+      RowBox[{"P", "+", "X"}]}], ",", 
+     SubscriptBox["k", "5"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"P", "+", "X"}], "\[Rule]", 
+      RowBox[{"P", "\[Diamond]", "X"}]}], ",", 
+     SubscriptBox["k", "6"]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.445957509035435*^9, 3.445957514825326*^9}, 
+   3.44595756015703*^9, 3.445957829973406*^9, 3.445957960414823*^9, 
+   3.456328177095475*^9, 3.508598623294039*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{568, 515},
+WindowMargins->{{151, Automatic}, {Automatic, 313}},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 110, 1, 72, "Section"],
+Cell[CellGroupData[{
+Cell[702, 27, 242, 4, 30, "Input"],
+Cell[947, 33, 304, 4, 62, "Print"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1288, 42, 271, 8, 30, "Input"],
+Cell[1562, 52, 263, 6, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1862, 63, 742, 26, 43, "Input"],
+Cell[2607, 91, 1328, 41, 50, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

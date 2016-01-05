@@ -1,0 +1,124 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>xCellerator</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src="logo.svg" alt="The xCellerator Project" width="150"></a>
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="blackfunction" style="font-size:x-large;font-weight:bold;">gridPlot</td>
+
+            <td align="right"><a class="button" href="index.html">Reference Home</a></td>
+          </tr>
+        </table>
+        <hr color="#FF7636">
+
+        <p><span class="blackfunction">gridPlot[sys, vars, {tstart, tend}, options]</span><br>
+        <span class="blackfunction">gridPlot[sys, vars, options]</span><br>
+        <span class="blackfunction">gridPlot[sys, options]</span></p>
+
+        <p>Plots a list of variables on a grid.</p>
+
+        <p><span class="blackfunction">sys</span> is the output of <a href="run.html" class=
+        "blackfunction">run</a>.</p>
+
+        <p><span class="blackfunction">vars</span> is either a variable, a list of variables in <span class=
+        "blackfunction">sys</span> or the symbol <span class="blackfunction">All</span>.</p>
+
+        <p><span class="blackfunction">tstart</span> and <span class="blackfunction">tend</span> give the timespan of
+        each plot.</p>
+
+        <p>Options include:</p>
+
+        <table border="0">
+          <tr>
+            <th></th>
+          </tr>
+
+          <tr style="font-weight:bold">
+            <td style="width:1.5in">Option</td>
+
+            <td style="width:2.0in">Default Value</td>
+
+            <td>Description</td>
+          </tr>
+
+          <tr>
+            <td class="blackfunction">"Columns"</td>
+
+            <td class="blackfunction">3</td>
+
+            <td>Number of columns in grid</td>
+          </tr>
+
+          <tr>
+            <td class="blackfunction">"Width"</td>
+
+            <td class="blackfunction">300</td>
+
+            <td>Width in pixels of each plot in grid</td>
+          </tr>
+
+          <tr>
+            <td class="blackfunction">"Aspect"</td>
+
+            <td class="blackfunction">1.0/GoldenRatio</td>
+
+            <td>Aspect ratio of each plot</td>
+          </tr>
+
+          <tr>
+            <td class="blackfunction" style="vertical-align:text-top">"Options"</td>
+
+            <td class="blackfunction" style="vertical-align:text-top">{PlotRange-&gt;All}</td>
+
+            <td style="vertical-align:text-top">List of options for Plot to be applied to each plot in the grid.</td>
+          </tr>
+
+          <tr>
+            <td class="blackfunction" style="vertical-align:text-top">"styles"</td>
+
+            <td class="blackfunction" style="vertical-align:text-top">{}</td>
+
+            <td style="vertical-align:text-top">List of styles to be added to each plot, such as Thick or Dotted. There
+            should be one list element for each plot. If more then one style is desired for any individual plot, then
+            the Directive command should be used to encapsulate the collection.</td>
+          </tr>
+        </table>
+
+        <div style="text-align: center">
+          <p><iframe src="gridPlot/gridPlot.htm" style="height:6.0in;width:6.5in;background:white"></iframe></p>
+        </div>
+
+        <h3>Implementation Notes</h3>
+
+        <p><span class="blackfunction">gridPlot</span> uses <a class="blackfunction" href="runPlot.html">runPlot</a>
+        which is a wrapper for <a href="http://sbml.org/software/mathsbml//mathsbml-sbmlplot.html" class=
+        "blackfunction">MathSBML`SBMLPlot</a>.</p><br>
+
+        <div class="logo" align="center">
+          <a href="http://sourceforge.net/projects/xlr8r/files/"><img src=
+          "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4" width="125" height="37" border="0" alt=
+          "SourceForge.net Logo"></a>
+        </div>
+      </div><br>
+      <span style="font-size:xx-small;">[rev: 2 Nov 2012]</span>
+    </div>
+  </center>
+</body>
+</html>

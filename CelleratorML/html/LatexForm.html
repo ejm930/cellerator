@@ -1,0 +1,142 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 1.0.7">
+  <meta name="generator" content="Bluefish 1.0.7">
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>LatexForm</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.sf.net" border="0"><img src=
+        "logo.jpg" alt="The xCellerator Project" width=
+        "150"></a><br>
+        xlr8r:CelleratorML
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style=
+            "font-size:x-large;font-weight:bold;">
+            LatexForm</td>
+
+            <td align="right"><a class="button" href=
+            "./index.html">CelleratorML Home</a></td>
+          </tr>
+        </table>
+        <hr color="purple">
+
+        <p>Translates a CelleratorML file to LaTeX.</p>
+        <hr color="purple">
+
+        <p><span class="function">Needs["CelleratorML`"];<br>
+        Needs["xlr8r`"];</span></p>
+        <hr color="purple">
+
+        <p class="header">Return Value</p>
+
+        <p><span class="function">LatexForm[inputfile,
+        outputfile]</span></p>
+
+        <p>returns the name of the file generate</p>
+        <p>If the specified file already exists, a new (unique) file name is generated.</p>
+        
+ 
+
+
+
+        <p class="header">Options</p>
+
+
+
+        <p class="header">Example</p>
+
+        <p>[ <a href="examples/LatexForm-example.nb.zip">Download Example 
+        as Zipped Mathematica Notebook</a> ]</p>
+        
+        <p>[ Download the <a href="examples/ring.tex">ring.tex</a> file ]</p>
+        
+
+        <p>[ Download the <a href="examples/ring.pdf">pdftex</a> output ]</p>
+
+
+<iframe  frameborder="1" width="100%" height="320" name="display" 
+src="./examples/LatexForm-example.htm" id="display" style="background-color:white;">
+<a href=""./examples/LatexForm-example.htm">View as html.</a>
+</iframe>        
+
+
+        
+        <p>Here is the contents of a typical output file: </p>
+        
+        <table border="1" style="background-color:white;"><tr><td>
+        <pre>
+\documentclass[12pt,letterpaper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\begin{document}
+\begin{center}CelleratorModel
+\\\today
+\end{center}
+\begin{description}
+\item[]Model:\\
+$\left\{\underset{\text{ZP}}{\overset{Z}{X\Longleftrightarrow \text{XP}}},
+\text{MM}(K,v,K,v)\right\}$\\
+$\left\{\underset{\text{XP}}{\overset{X}{Y\Longleftrightarrow \text{YP}}},
+\text{MM}(K,v,K,v)\right\}$\\
+$\left\{\underset{\text{YP}}{\overset{Y}{Z\Longleftrightarrow \text{ZP}}},
+\text{MM}(K,v,K,v)\right\}$\\
+\item[]Initial Conditions:\\
+$X\to 1$\\
+$Y\to 2$\\
+$Z\to 3$\\
+\item[]Parameters:\\
+$v\to 1$\\
+$K\to 0.5$\\
+\end{description}
+\end{document}
+</pre>
+</td></tr></table>
+
+
+<p>The typical latexed output will look like this: </p>
+
+<p><a href="./examples/ring.png"><img src="./examples/ring.png" width="600"></a></p>
+
+
+        <p class="header">Implementation Notes</p>
+
+<p>Uses <a href="http://reference.wolfram.com/mathematica/ref/TeXForm.html?q=TeXForm&lang=en">TeXForm</a></p>
+
+        <p class="header">See Also</p>
+
+     
+
+        <br>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt=
+            "SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2009-06-20T12:26:22-0700 
+      ]</span>
+    </div>
+  </center>
+</body>
+</html>

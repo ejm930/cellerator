@@ -1,0 +1,92 @@
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <meta name="generator" content="Bluefish 1.0.7">
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+  <title>RegularStar</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info/" border="0"><img src="logo.svg" alt=
+        "The xCellerator Project" width="150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style="font-size:x-large;font-weight:bold;">
+            RegularStar</td>
+
+            <td align="right"><a class="button" href="./index.html">Cellzilla2D
+            Home</a></td>
+          </tr>
+        </table>
+        <hr color="#ff7636">
+
+        <p class="header">Description</p>
+
+        <p>Generates the vertices of a regular or non-regular Star.</p>
+
+        <p><span class="function">Needs["Cellzilla2D`"];</span></p>
+
+        <p class="header">Return Value</p>
+
+        <p><span class="function">RegularStar[n, &#961;]</span> returns the
+        vertices of a regular n-pointed star inscribed in the unit circle, with
+        one vertex at (0,1) and the ratio &#961; equal to the ratio of the
+        outer radius to the inner. If &#961;=0 then a regular 2n-gon is
+        generated.</p>
+
+        <p><span class="function">RegularStar[n, &#961;, &#952;]</span> rotates
+        the first vertex by &#952; radians.</p>
+
+        <p><span class="function">RegularStar[n, &#961;, &#952;, a]</span>
+        stretches in the vertical direction by a factor of a.</p>
+
+        <p><span class="function">RegularStar[n, &#961;, &#952;, a, r]</span>
+        adds a random number between -r and r to each vertex coordinate.</p>
+
+        <p><span class="function">RegularStar[n, &#961;, &#952;, a, r,
+        &#966;]</span> rotates the whole thing by &#966;. Using r=-1 suppresses
+        any randomization.</p>
+
+        <p class="header">Options</p>
+
+        <p class="header">Example</p>
+
+        <p>[ <a href="examples/RegularStar-example.nb.zip">Download Example as
+        Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name="display"
+        src="./examples/RegularStar-example.htm" id="display" style=
+        "background-color:white;"><a href="">View as html.</a></iframe></p>
+
+        <p class="header">Implementation Notes</p>
+
+        <p class="header">See Also</p>
+
+        <p><a href="RegularPolygon.html">RegularPolygon</a></p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2012 Nov 10]</span>
+    </div>
+  </center>
+</body>
+</html>

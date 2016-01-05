@@ -1,0 +1,306 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     10217,        297]
+NotebookOptionsPosition[      9111,        255]
+NotebookOutlinePosition[      9569,        273]
+CellTagsIndexPosition[      9526,        270]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["DropPerpendicular-example.nb", "Section",
+ CellChangeTimes->{{3.454616493069165*^9, 3.4546164962937117`*^9}, {
+   3.454617165097115*^9, 3.45461716610536*^9}, {3.4546175566843147`*^9, 
+   3.454617556998733*^9}, 3.454617821271494*^9, {3.4546182823933973`*^9, 
+   3.454618284403924*^9}, 3.4546185355642757`*^9, {3.4546188466058817`*^9, 
+   3.454618850495126*^9}, {3.454622798430842*^9, 3.4546228006815033`*^9}, {
+   3.4546972998510923`*^9, 3.454697302063283*^9}, {3.4548769614758177`*^9, 
+   3.45487696487158*^9}, {3.454877016601164*^9, 3.4548770230067463`*^9}, {
+   3.4549464679022923`*^9, 3.454946472766996*^9}, {3.454952051881212*^9, 
+   3.4549520564947844`*^9}, {3.4549528105725307`*^9, 3.454952827618351*^9}, {
+   3.454960934879204*^9, 3.454960955000971*^9}, 3.561462347377486*^9}],
+
+Cell["\<\
+Example Cellzilla2D notebook.
+
+GPL License applies. 
+See http://xlr8r.info and http://cellzilla.info for further details.\
+\>", "Text",
+ CellChangeTimes->{{3.454616499378996*^9, 3.4546165376658583`*^9}, 
+   3.454617821271595*^9, {3.561462319283502*^9, 3.561462347377596*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"<<", "Cellzilla2D.m"}]], "Input",
+ CellChangeTimes->{{3.4546177024873037`*^9, 3.4546177066717863`*^9}, {
+   3.4546177419301577`*^9, 3.454617750289276*^9}, 3.454617821271983*^9, 
+   3.561462347377742*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"Cellzilla2D\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\" (2.3.6 (9-Nov-2012)) loaded Fri 9 Nov 2012 07:05:21\\nusing \
+\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"xCellerator \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"0.90 and \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"XSSA \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"1204002\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12]}],
+  SequenceForm[
+   Style["Cellzilla2D", FontFamily -> "Ubuntu,Arial", FontSize -> 12, 
+    FontWeight -> "Bold"], 
+   Style[" (2.3.6 (9-Nov-2012)) loaded Fri 9 Nov 2012 07:05:21\nusing ", 
+    FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["xCellerator ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", 
+    FontWeight -> "Bold"], 
+   Style["0.90 and ", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["XSSA ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> 
+    "Bold"], 
+   Style["1204002", FontSize -> 12, FontFamily -> "Ubuntu,Arial"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.454946483733527*^9, 3.454952105523391*^9, 3.454960534144863*^9, 
+   3.454960926572427*^9, 3.454961112212707*^9, {3.561462322018762*^9, 
+   3.561462347378626*^9}}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"APoint", "=", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "1"}], "}"}]}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ALineSegment", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"2", ",", "4"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"3", ",", " ", 
+        RowBox[{"-", "1"}]}], "}"}]}], "}"}]}], ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"AnotherPoint", "=", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", 
+     RowBox[{"-", "1.7"}]}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.4549605647675533`*^9, 3.4549605823171263`*^9}, {
+   3.454960882734474*^9, 3.4549608838274717`*^9}, 3.561462347378879*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"intersectionPoint", "=", 
+  RowBox[{"DropPerpendicular", "[", 
+   RowBox[{"APoint", ",", "ALineSegment"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.454960533664716*^9, 3.454960555619812*^9}, {
+   3.454960587553838*^9, 3.4549606017543497`*^9}, 3.561462347379037*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   FractionBox["33", "13"], ",", 
+   FractionBox["17", "13"]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.454960556305263*^9, 3.454960602326528*^9, 3.454960926671151*^9, 
+   3.4549611123733997`*^9, {3.561462325215785*^9, 3.561462347379231*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"Graphics", "[", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{"Blue", ",", " ", 
+      RowBox[{"PointSize", "[", ".05", "]"}], ",", " ", 
+      RowBox[{"Point", "[", "APoint", "]"}], ",", " ", "\[IndentingNewLine]", 
+      "Brown", ",", "Thick", ",", "\[IndentingNewLine]", 
+      RowBox[{"Line", "[", "ALineSegment", "]"}], ",", "\[IndentingNewLine]", 
+      "Blue", ",", "\[IndentingNewLine]", 
+      RowBox[{"Point", "[", "intersectionPoint", "]"}], ",", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Darker", "[", "Purple", "]"}], ",", " ", "Dashed", ",", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Line", "[", 
+       RowBox[{"{", 
+        RowBox[{"APoint", ",", " ", "intersectionPoint"}], "}"}], "]"}], ",", 
+      "\[IndentingNewLine]", "Red", ",", " ", 
+      RowBox[{"Point", "[", "AnotherPoint", "]"}]}], "}"}], "]"}], ",", " ", 
+   RowBox[{"Frame", "\[Rule]", " ", "True"}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "2"}], ",", "5"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "2"}], ",", " ", "5"}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"AspectRatio", "\[Rule]", " ", "1"}], ",", " ", 
+   RowBox[{"Axes", "\[Rule]", " ", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.45496060498875*^9, 3.454960795081243*^9}, {
+   3.454960900180705*^9, 3.4549609047693996`*^9}, 3.561462347379672*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {RGBColor[0, 0, 1], PointSize[0.05], PointBox[{1, 1}], 
+   {RGBColor[0.6, 0.4, 0.2], Thickness[Large], LineBox[{{2, 4}, {3, -1}}], 
+    {RGBColor[0, 0, 1], PointBox[{2.5384615384615383`, 1.3076923076923077`}]}, 
+    {RGBColor[0.33333333333333337`, 0, 0.33333333333333337`], 
+     Dashing[{Small, Small}], 
+     LineBox[{{1, 1}, {2.5384615384615383`, 1.3076923076923077`}}], 
+     {RGBColor[1, 0, 0], PointBox[{2, -1.7}]}}}},
+  AspectRatio->1,
+  Axes->True,
+  Frame->True,
+  PlotRange->{{-2, 5}, {-2, 5}}]], "Output",
+ CellChangeTimes->{{3.454960638901634*^9, 3.45496079549295*^9}, {
+   3.4549609055041313`*^9, 3.4549609267165127`*^9}, 3.454961112425055*^9, {
+   3.561462329673998*^9, 3.561462347384922*^9}}]
+}, Open  ]],
+
+Cell[TextData[StyleBox["Returns $Failed if the perprendicular from the point \
+to the line segment does not intersect the line segment.",
+ FontSize->16]], "Text",
+ CellChangeTimes->{{3.454961196700199*^9, 3.454961219598565*^9}, 
+   3.561462347385005*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"DropPerpendicular", "[", 
+   RowBox[{"AnotherPoint", ",", " ", "ALineSegment"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.454960833136509*^9, 3.4549608793353863`*^9}, 
+   3.561462347385157*^9}],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{
+  3.4549608683112297`*^9, 3.4549609267939787`*^9, 3.4549611125116568`*^9, {
+   3.561462333540018*^9, 3.561462347385273*^9}}]
+}, Open  ]],
+
+Cell[TextData[Cell[BoxData[
+ FormBox[
+  RowBox[{
+   RowBox[{
+   "With", " ", "the", " ", "3", "rd", " ", "argument", " ", "set", " ", "to",
+     " ", "True"}], ",", " ", 
+   RowBox[{
+   "it", " ", "will", " ", "find", " ", "as", " ", "close", " ", "a", " ", 
+    "perpendicular", " ", "as", " ", "possible"}], ",", " ", 
+   RowBox[{
+   "by", " ", "sliding", " ", "the", " ", "result", " ", "to", " ", "the", 
+    " ", "nearest", " ", 
+    RowBox[{"endpoint", "."}]}]}], TraditionalForm]]]], "Text",
+ CellChangeTimes->{{3.454961135653171*^9, 3.45496116846245*^9}, {
+  3.561462347385475*^9, 3.561462347386345*^9}},
+ FontSize->16],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DropPerpendicular", "[", 
+  RowBox[{"AnotherPoint", ",", " ", "ALineSegment", ",", " ", "True"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.454961113997796*^9, 3.454961125605834*^9}, 
+   3.561462347386496*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"3", ",", 
+   RowBox[{"-", "1"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.454961126053884*^9, {3.561462335755249*^9, 3.561462347386629*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{849, 787},
+WindowMargins->{{Automatic, -1488}, {50, Automatic}},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 789, 10, 74, "Section"],
+Cell[1359, 34, 285, 7, 87, "Text"],
+Cell[CellGroupData[{
+Cell[1669, 45, 227, 4, 40, "Input"],
+Cell[1899, 51, 1724, 46, 43, "Print"]
+}, Open  ]],
+Cell[3638, 100, 735, 23, 79, "Input"],
+Cell[CellGroupData[{
+Cell[4398, 127, 289, 5, 40, "Input"],
+Cell[4690, 134, 284, 7, 57, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5011, 146, 1519, 33, 212, "Input"],
+Cell[6533, 181, 737, 15, 381, "Output"]
+}, Open  ]],
+Cell[7285, 199, 254, 4, 59, "Text"],
+Cell[CellGroupData[{
+Cell[7564, 207, 251, 5, 60, "Input"],
+Cell[7818, 214, 179, 3, 40, "Output"]
+}, Open  ]],
+Cell[8012, 220, 627, 15, 63, "Text"],
+Cell[CellGroupData[{
+Cell[8664, 239, 233, 5, 40, "Input"],
+Cell[8900, 246, 183, 5, 40, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

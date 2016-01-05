@@ -1,0 +1,616 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     24428,        607]
+NotebookOptionsPosition[     22650,        544]
+NotebookOutlinePosition[     23010,        560]
+CellTagsIndexPosition[     22967,        557]
+WindowFrame->Generic*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["CellzillaModelToXML Example File", "Section",
+ CellChangeTimes->{{3.454446521645286*^9, 3.4544465228076077`*^9}, {
+   3.4544482916243134`*^9, 3.4544483006317053`*^9}, 3.454511444347208*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"<<", "Cellzilla2D.m"}]], "Input",
+ CellChangeTimes->{{3.4544451515753508`*^9, 3.454445157702146*^9}}],
+
+Cell[BoxData[
+ StyleBox["\<\"Cellzilla2D (0.15-\[Alpha] (19-Jun-09)) loaded Sat 20 Jun 2009 \
+11:30:49 using xlr8r 0.74 (13 May 2009)\"\>",
+  StripOnInput->False,
+  FontWeight->Bold]], "Print",
+ CellChangeTimes->{3.454445158016563*^9, 3.4544452477528677`*^9, 
+  3.454511449994424*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"<<", "xlr8r.m"}]], "Input",
+ CellChangeTimes->{{3.454445216221637*^9, 3.454445217327381*^9}}],
+
+Cell[BoxData[
+ RowBox[{"<<", "CelleratorML.m"}]], "Input",
+ CellChangeTimes->{{3.45444548689896*^9, 3.454445527883609*^9}}],
+
+Cell["\<\
+Generate a Cellzilla Model from Random Centers and convert the centers to a \
+Tissue object\
+\>", "Text",
+ CellChangeTimes->{{3.4544483085550947`*^9, 3.454448339833282*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"n", "=", "10"}], ";"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"r", ":=", " ", 
+    RowBox[{"RandomReal", "[", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", " ", "10"}], "}"}], "]"}]}], ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"centers", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"r", ",", "r"}], "}"}], ",", " ", 
+     RowBox[{"{", "n", "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"w", "=", 
+   RowBox[{"BoundedCellVoronoi", "[", "centers", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ShowTissue", "[", "w", "]"}]}], "Input",
+ CellChangeTimes->{{3.454445253671564*^9, 3.454445254152391*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{
+    {RGBColor[0.88, 1, 0.88], 
+     PolygonBox[{{1.1740819870251278`, 7.353400911945133}, {1.901357124245162,
+       5.307482371792289}, {5.17999643676181, 4.196815887529193}, {
+      6.362140348156712, 4.264683156417512}, {6.478732186697889, 
+      5.235296826829023}, {6.322291841829699, 6.522469067704916}, {
+      1.3496131230149049`, 7.503036224935427}}]}, 
+    {GrayLevel[0], Thickness[Tiny], 
+     LineBox[{{1.1740819870251278`, 7.353400911945133}, {1.901357124245162, 
+      5.307482371792289}, {5.17999643676181, 4.196815887529193}, {
+      6.362140348156712, 4.264683156417512}, {6.478732186697889, 
+      5.235296826829023}, {6.322291841829699, 6.522469067704916}, {
+      1.3496131230149049`, 7.503036224935427}, {1.1740819870251278`, 
+      7.353400911945133}}]}, {}}, {
+    {RGBColor[0.88, 1, 0.88], 
+     PolygonBox[{{1.3496131230149049`, 7.503036224935427}, {
+      2.5637951673941624`, 9.335647674311918}, {3.9577608747949244`, 
+      9.694598500170894}, {6.466851959146094, 8.134815960933985}, {
+      6.322291841829699, 6.522469067704916}}]}, 
+    {GrayLevel[0], Thickness[Tiny], 
+     LineBox[{{1.3496131230149049`, 7.503036224935427}, {2.5637951673941624`, 
+      9.335647674311918}, {3.9577608747949244`, 9.694598500170894}, {
+      6.466851959146094, 8.134815960933985}, {6.322291841829699, 
+      6.522469067704916}, {1.3496131230149049`, 7.503036224935427}}]}, {}}, {
+    {RGBColor[0.88, 1, 0.88], 
+     PolygonBox[{{2.037361204867418, 2.4407196243266376`}, {2.08600712872534, 
+      0.005041674769234333}, {3.3260834930954175`, -0.46055768424049764`}, {
+      3.1875162321525887`, 2.7595407578625117`}}]}, 
+    {GrayLevel[0], Thickness[Tiny], 
+     LineBox[{{2.037361204867418, 2.4407196243266376`}, {2.08600712872534, 
+      0.005041674769234333}, {3.3260834930954175`, -0.46055768424049764`}, {
+      3.1875162321525887`, 2.7595407578625117`}, {2.037361204867418, 
+      2.4407196243266376`}}]}, {}}, {
+    {RGBColor[0.88, 1, 0.88], 
+     PolygonBox[{{0.4064076739065283, 3.39662836887274}, {2.037361204867418, 
+      2.4407196243266376`}, {3.1875162321525887`, 2.7595407578625117`}, {
+      5.17999643676181, 4.196815887529193}, {1.901357124245162, 
+      5.307482371792289}}]}, 
+    {GrayLevel[0], Thickness[Tiny], 
+     LineBox[{{0.4064076739065283, 3.39662836887274}, {2.037361204867418, 
+      2.4407196243266376`}, {3.1875162321525887`, 2.7595407578625117`}, {
+      5.17999643676181, 4.196815887529193}, {1.901357124245162, 
+      5.307482371792289}, {0.4064076739065283, 3.39662836887274}}]}, {}}, {
+    {RGBColor[0.88, 1, 0.88], 
+     PolygonBox[{{-0.43533180153684775`, 
+      3.114186587753248}, {-0.34758906322459193`, 0.6514152139257507}, {
+      0.45147933768316195`, -0.13114746156106943`}, {2.08600712872534, 
+      0.005041674769234333}, {2.037361204867418, 2.4407196243266376`}, {
+      0.4064076739065283, 3.39662836887274}}]}, 
+    {GrayLevel[0], Thickness[Tiny], 
+     LineBox[{{-0.43533180153684775`, 
+      3.114186587753248}, {-0.34758906322459193`, 0.6514152139257507}, {
+      0.45147933768316195`, -0.13114746156106943`}, {2.08600712872534, 
+      0.005041674769234333}, {2.037361204867418, 2.4407196243266376`}, {
+      0.4064076739065283, 3.39662836887274}, {-0.43533180153684775`, 
+      3.114186587753248}}]}, {}}, {
+    {RGBColor[0.88, 1, 0.88], 
+     PolygonBox[{{6.466851959146094, 8.134815960933985}, {6.726329016468916, 
+      8.388011362282292}, {9.808277326575674, 9.052468658375199}, {
+      10.674774758327873`, 8.406414741930488}, {10.898635996663954`, 
+      6.994857938890583}, {6.478732186697889, 5.235296826829023}, {
+      6.322291841829699, 6.522469067704916}}]}, 
+    {GrayLevel[0], Thickness[Tiny], 
+     LineBox[{{6.466851959146094, 8.134815960933985}, {6.726329016468916, 
+      8.388011362282292}, {9.808277326575674, 9.052468658375199}, {
+      10.674774758327873`, 8.406414741930488}, {10.898635996663954`, 
+      6.994857938890583}, {6.478732186697889, 5.235296826829023}, {
+      6.322291841829699, 6.522469067704916}, {6.466851959146094, 
+      8.134815960933985}}]}, {}}, {
+    {RGBColor[0.88, 1, 0.88], 
+     PolygonBox[{{-1.5956308517094806`, 6.222157536672504}, {
+      0.6759174729846416, 7.423577422404198}, {1.1740819870251278`, 
+      7.353400911945133}, {1.901357124245162, 5.307482371792289}, {
+      0.4064076739065283, 3.39662836887274}, {-0.43533180153684775`, 
+      3.114186587753248}, {-0.6879251630069041, 
+      3.253000521721421}, {-1.798585178045799, 5.623371096114057}}]}, 
+    {GrayLevel[0], Thickness[Tiny], 
+     LineBox[{{-1.5956308517094806`, 6.222157536672504}, {0.6759174729846416, 
+      7.423577422404198}, {1.1740819870251278`, 7.353400911945133}, {
+      1.901357124245162, 5.307482371792289}, {0.4064076739065283, 
+      3.39662836887274}, {-0.43533180153684775`, 
+      3.114186587753248}, {-0.6879251630069041, 
+      3.253000521721421}, {-1.798585178045799, 
+      5.623371096114057}, {-1.5956308517094806`, 
+      6.222157536672504}}]}, {}}, {
+    {RGBColor[0.88, 1, 0.88], 
+     PolygonBox[{{3.981239527346942, -0.4175382614661555}, {
+      6.174347804183825, -1.7670219042327742`}, {
+      6.9699890651372005`, -1.4878533296863328`}, {8.163848956427739, 
+      0.9894155139005322}, {7.7882887367328095`, 3.031725938968941}, {
+      6.67005662975193, 3.7853514260356196`}}]}, 
+    {GrayLevel[0], Thickness[Tiny], 
+     LineBox[{{3.981239527346942, -0.4175382614661555}, {
+      6.174347804183825, -1.7670219042327742`}, {
+      6.9699890651372005`, -1.4878533296863328`}, {8.163848956427739, 
+      0.9894155139005322}, {7.7882887367328095`, 3.031725938968941}, {
+      6.67005662975193, 3.7853514260356196`}, {
+      3.981239527346942, -0.4175382614661555}}]}, {}}, {
+    {RGBColor[0.88, 1, 0.88], 
+     PolygonBox[{{3.1875162321525887`, 2.7595407578625117`}, {
+      5.17999643676181, 4.196815887529193}, {6.362140348156712, 
+      4.264683156417512}, {6.67005662975193, 3.7853514260356196`}, {
+      3.981239527346942, -0.4175382614661555}, {
+      3.4266720079213493`, -0.5204624689114253}, {
+      3.3260834930954175`, -0.46055768424049764`}}]}, 
+    {GrayLevel[0], Thickness[Tiny], 
+     LineBox[{{3.1875162321525887`, 2.7595407578625117`}, {5.17999643676181, 
+      4.196815887529193}, {6.362140348156712, 4.264683156417512}, {
+      6.67005662975193, 3.7853514260356196`}, {
+      3.981239527346942, -0.4175382614661555}, {
+      3.4266720079213493`, -0.5204624689114253}, {
+      3.3260834930954175`, -0.46055768424049764`}, {3.1875162321525887`, 
+      2.7595407578625117`}}]}, {}}, {
+    {RGBColor[0.88, 1, 0.88], 
+     PolygonBox[{{6.362140348156712, 4.264683156417512}, {6.478732186697889, 
+      5.235296826829023}, {10.898635996663954`, 6.994857938890583}, {
+      11.695669046244415`, 5.949485631568685}, {11.594123190125943`, 
+      5.004780926013949}, {9.44095907912139, 3.240748768867037}, {
+      7.7882887367328095`, 3.031725938968941}, {6.67005662975193, 
+      3.7853514260356196`}}]}, 
+    {GrayLevel[0], Thickness[Tiny], 
+     LineBox[{{6.362140348156712, 4.264683156417512}, {6.478732186697889, 
+      5.235296826829023}, {10.898635996663954`, 6.994857938890583}, {
+      11.695669046244415`, 5.949485631568685}, {11.594123190125943`, 
+      5.004780926013949}, {9.44095907912139, 3.240748768867037}, {
+      7.7882887367328095`, 3.031725938968941}, {6.67005662975193, 
+      3.7853514260356196`}, {6.362140348156712, 
+      4.264683156417512}}]}, {}}, {}, {}, {}}]], "Output",
+ CellChangeTimes->{
+  3.454445164416698*^9, {3.4544452504013166`*^9, 3.454445259094533*^9}, {
+   3.454511454703948*^9, 3.4545114571252213`*^9}}]
+}, Open  ]],
+
+Cell["\<\
+Define a Cellerator Model and save it to the xml file ring.xml\
+\>", "Text",
+ CellChangeTimes->{{3.4544483467142057`*^9, 3.454448380999442*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"reactions", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       UnderoverscriptBox[
+        RowBox[{"X", "\[DoubleLongLeftRightArrow]", "XP"}], "ZP", "Z"], ",", 
+       RowBox[{"MM", "[", 
+        RowBox[{"K", ",", "v", ",", "K", ",", "v"}], "]"}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       UnderoverscriptBox[
+        RowBox[{"Y", "\[DoubleLongLeftRightArrow]", "YP"}], "XP", "X"], ",", 
+       RowBox[{"MM", "[", 
+        RowBox[{"K", ",", "v", ",", "K", ",", "v"}], "]"}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       UnderoverscriptBox[
+        RowBox[{"Z", "\[DoubleLongLeftRightArrow]", "ZP"}], "YP", "Y"], ",", 
+       RowBox[{"MM", "[", 
+        RowBox[{"K", ",", "v", ",", "K", ",", "v"}], "]"}]}], "}"}]}], 
+    "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"cic", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"X", "\[Rule]", " ", "1"}], ",", " ", 
+     RowBox[{"Y", "\[Rule]", " ", "2"}], ",", " ", 
+     RowBox[{"Z", "\[Rule]", " ", "3"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"cparms", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"v", "\[Rule]", " ", "1"}], ",", " ", 
+     RowBox[{"K", "\[Rule]", " ", ".5"}]}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.454445597825631*^9, 3.4544456300932217`*^9}, {
+  3.454448400073749*^9, 3.454448404695442*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SaveModel", "[", 
+  RowBox[{"\"\<ring.xml\>\"", " ", ",", " ", "reactions", ",", " ", 
+   RowBox[{"\"\<InitialConditions\>\"", "\[Rule]", " ", "cic"}], ",", " ", 
+   RowBox[{"\"\<Parmaters\>\"", "\[Rule]", " ", "cparms"}]}], "]"}]], "Input",\
+
+ CellChangeTimes->{{3.4544483848598413`*^9, 3.454448433687396*^9}}],
+
+Cell[BoxData["\<\"ring.xml\"\>"], "Output",
+ CellChangeTimes->{{3.454448415697753*^9, 3.454448434598772*^9}}]
+}, Open  ]],
+
+Cell["Define the Cellzilla Network on this template", "Text",
+ CellChangeTimes->{{3.454448441840604*^9, 3.454448452325274*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"bignet", "=", 
+   RowBox[{"CelleratorNetwork", "[", 
+    RowBox[{"reactions", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"X", ",", " ", "DX"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"Y", ",", " ", "DY"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"Z", ",", " ", "DZ"}], "}"}]}], "}"}], ",", " ", "w"}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.4544451915606318`*^9, 3.4544452034206676`*^9}, {
+  3.454445274105761*^9, 3.454445322500527*^9}, {3.454448456086843*^9, 
+  3.4544484564544907`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"10", "\[InvisibleSpace]", "\<\" Cells.\"\>"}],
+  SequenceForm[10, " Cells."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.454448457223621*^9, 3.454511467548472*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+  "6", "\[InvisibleSpace]", "\<\" internal reactions in each cell.\"\>"}],
+  SequenceForm[6, " internal reactions in each cell."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.454448457223621*^9, 3.454511467603971*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"60", "\[InvisibleSpace]", "\<\" intracellular reactions.\"\>"}],
+  SequenceForm[60, " intracellular reactions."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.454448457223621*^9, 3.454511467610433*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"108", "\[InvisibleSpace]", "\<\" diffusion reactions.\"\>"}],
+  SequenceForm[108, " diffusion reactions."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.454448457223621*^9, 3.454511467616117*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"168", "\[InvisibleSpace]", "\<\" total reactions.\"\>"}],
+  SequenceForm[168, " total reactions."],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.454448457223621*^9, 3.454511467621752*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell["Define Random Initial Conditions", "Text",
+ CellChangeTimes->{{3.454448464692751*^9, 3.454448470286106*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"myic", "=", 
+   RowBox[{"ListICToCellzillaIC", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"X", "\[Rule]", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"RandomReal", "[", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "3"}], "}"}], "]"}], ",", " ", 
+         RowBox[{"{", "n", "}"}]}], "]"}]}], ",", " ", 
+      RowBox[{"Y", "\[Rule]", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"RandomReal", "[", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "3"}], "}"}], "]"}], ",", " ", 
+         RowBox[{"{", "n", "}"}]}], "]"}]}], ",", " ", 
+      RowBox[{"Z", "\[Rule]", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"RandomReal", "[", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "3"}], "}"}], "]"}], ",", " ", 
+         RowBox[{"{", "n", "}"}]}], "]"}]}], ",", " ", 
+      RowBox[{"XP", "\[Rule]", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{"0", ",", " ", 
+         RowBox[{"{", "n", "}"}]}], "]"}]}], ",", " ", 
+      RowBox[{"YP", "\[Rule]", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{"0", ",", " ", 
+         RowBox[{"{", "n", "}"}]}], "]"}]}], ",", " ", 
+      RowBox[{"ZP", "\[Rule]", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{"0", ",", " ", 
+         RowBox[{"{", "n", "}"}]}], "]"}]}]}], "}"}], "]"}]}], ";"}]], "Input",\
+
+ CellChangeTimes->{{3.4544453809661922`*^9, 3.454445428113968*^9}, {
+  3.454445896454359*^9, 3.45444593460957*^9}}],
+
+Cell["Generate the Symbolic XML using CellzillaModelToSXML", "Text",
+ CellChangeTimes->{{3.454448480080708*^9, 3.454448488555437*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"xml", "=", 
+   RowBox[{"CellzillaModelToXML", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"\"\<Models\>\"", "\[Rule]", " ", 
+      RowBox[{"{", "\"\<ring.xml\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<Tissue\>\"", "\[Rule]", " ", "w"}], ",", " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<Parameters\>\"", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"DX", "\[Rule]", " ", "9"}], ",", " ", 
+        RowBox[{"DY", "\[Rule]", " ", "10"}], ",", " ", 
+        RowBox[{"DZ", "\[Rule]", " ", "11"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<InitialConditions\>\"", "\[Rule]", " ", "myic"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<DiffusingSpecies\>\"", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"X", ",", "DX"}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"Y", ",", "DY"}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"Z", ",", "DZ"}], "}"}]}], "}"}]}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.454445447175042*^9, 3.454445480108976*^9}, {
+  3.454445535656085*^9, 3.45444557576659*^9}, {3.454445635871969*^9, 
+  3.454445752273559*^9}, {3.454445946440318*^9, 3.454445974546729*^9}, {
+  3.454446028189435*^9, 3.4544460293354073`*^9}, {3.454511473979857*^9, 
+  3.454511476396596*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Model name: \"\>", 
+   "\[InvisibleSpace]", "\<\"CellzillaModel\"\>"}],
+  SequenceForm["Model name: ", "CellzillaModel"],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.454445672826469*^9, {3.454445716324922*^9, 3.4544457528910217`*^9}, {
+   3.45444593813951*^9, 3.454445975165682*^9}, 3.4544461447112713`*^9, 
+   3.454511476929308*^9}],
+
+Cell[BoxData["\<\"Model file name(s) or URL(s): \"\>"], "Print",
+ CellChangeTimes->{
+  3.454445672826469*^9, {3.454445716324922*^9, 3.4544457528910217`*^9}, {
+   3.45444593813951*^9, 3.454445975165682*^9}, 3.4544461447112713`*^9, 
+   3.454511476968938*^9}],
+
+Cell[BoxData["\<\"\\tring.xml\"\>"], "Print",
+ CellChangeTimes->{
+  3.454445672826469*^9, {3.454445716324922*^9, 3.4544457528910217`*^9}, {
+   3.45444593813951*^9, 3.454445975165682*^9}, 3.4544461447112713`*^9, 
+   3.454511476973899*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"3", "\[InvisibleSpace]", "\<\" Diffusing Species\"\>"}],
+  SequenceForm[3, " Diffusing Species"],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.454445672826469*^9, {3.454445716324922*^9, 3.4544457528910217`*^9}, {
+   3.45444593813951*^9, 3.454445975165682*^9}, 3.4544461447112713`*^9, 
+   3.454511476977613*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"3", "\[InvisibleSpace]", "\<\" Parameters\"\>"}],
+  SequenceForm[3, " Parameters"],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.454445672826469*^9, {3.454445716324922*^9, 3.4544457528910217`*^9}, {
+   3.45444593813951*^9, 3.454445975165682*^9}, 3.4544461447112713`*^9, 
+   3.4545114769813337`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"60", "\[InvisibleSpace]", "\<\" Initial Conditions\"\>"}],
+  SequenceForm[60, " Initial Conditions"],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.454445672826469*^9, {3.454445716324922*^9, 3.4544457528910217`*^9}, {
+   3.45444593813951*^9, 3.454445975165682*^9}, 3.4544461447112713`*^9, 
+   3.45451147698518*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"2\"\>", "\[InvisibleSpace]", "\<\"-D tissue: \"\>", 
+   "\[InvisibleSpace]", "36", "\[InvisibleSpace]", "\<\" vertices; \"\>", 
+   "\[InvisibleSpace]", "45", "\[InvisibleSpace]", "\<\" edges; \"\>", 
+   "\[InvisibleSpace]", "10", "\[InvisibleSpace]", "\<\" cells.\"\>"}],
+  SequenceForm[
+  "2", "-D tissue: ", 36, " vertices; ", 45, " edges; ", 10, " cells."],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.454445672826469*^9, {3.454445716324922*^9, 3.4544457528910217`*^9}, {
+   3.45444593813951*^9, 3.454445975165682*^9}, 3.4544461447112713`*^9, 
+   3.4545114770570793`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Short", "[", 
+  RowBox[{"xml", ",", "25"}], "]"}]], "Input",
+ CellChangeTimes->{{3.4544459756041327`*^9, 3.4544459910864887`*^9}, 
+   3.454511480164238*^9, {3.454511516985961*^9, 3.454511561803483*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"\<\"<CellzillaModel Name='CellzillaModel'>\\n \
+<ListOfCelleratorModels>\\n  <CelleratorModel>ring.xml</CelleratorModel>\\n \
+</ListOfCelleratorModels>\\n <ListOfDiffusingSpecies>\\n  <DiffusingSpecies \
+Identifier='X'\\n      Rate='DX' />\\n  <DiffusingSpecies Identifier='Y'\\n   \
+   Rate='DY' />\\n  <DiffusingSpecies Identifier='Z'\\n      Rate='DZ' />\\n \
+</ListOfDiffusingSpecies>\\n <ListOfCellzillaParameters>\\n  <Parameter \
+Identifier='DX'\\n      Value='9' />\\n  <Parameter Identifier='DY'\\n      \
+Value='10' />\\n  <Parameter Identifier='DZ'\\n      Value='11' />\\n \
+</ListOfCellzillaParameters>\\n <ListOfCellzillaIC>\\n  <CellzillaIC \
+Identifier='X'>\\n   <math xmlns='http://www.w3.org/1998/Math/MathML'>\\n    \
+<list>\\n     <cn type='real'>1.3243887320625731</cn>\\n     <cn \
+type='real'>2.9603247094077956</cn>\\n     <cn \
+type='real'>2.8719791513463697</cn>\\n     <cn \
+type='real'>2.6632907043966236</cn>\\n     <cn \
+type='real'>2.48138346163938</cn>\\n     <cn \
+type='real'>2.5366649682430698</cn>\\n     <cn t\"\>", 
+   "\[Ellipsis]", "\<\"ger'>6</cn>\\n      <cn type='integer'>8</cn>\\n      \
+<cn type='integer'>13</cn>\\n      <cn type='integer'>11</cn>\\n     \
+</list>\\n     <list>\\n      <cn type='integer'>26</cn>\\n      <cn \
+type='integer'>29</cn>\\n      <cn type='integer'>38</cn>\\n      <cn \
+type='integer'>39</cn>\\n      <cn type='integer'>36</cn>\\n      <cn \
+type='integer'>27</cn>\\n     </list>\\n     <list>\\n      <cn \
+type='integer'>22</cn>\\n      <cn type='integer'>21</cn>\\n      <cn \
+type='integer'>23</cn>\\n      <cn type='integer'>24</cn>\\n      <cn \
+type='integer'>27</cn>\\n      <cn type='integer'>33</cn>\\n      <cn \
+type='integer'>28</cn>\\n     </list>\\n     <list>\\n      <cn \
+type='integer'>32</cn>\\n      <cn type='integer'>33</cn>\\n      <cn \
+type='integer'>36</cn>\\n      <cn type='integer'>40</cn>\\n      <cn \
+type='integer'>41</cn>\\n      <cn type='integer'>45</cn>\\n      <cn \
+type='integer'>44</cn>\\n      <cn type='integer'>35</cn>\\n     </list>\\n   \
+ </list>\\n   </math>\\n  </Cells>\\n </Tissue>\\n</CellzillaModel>\"\>"}],
+  Short[#, 25]& ]], "Output",
+ CellChangeTimes->{
+  3.454446049165552*^9, 3.454446150515934*^9, 3.454511480643971*^9, {
+   3.4545115192338943`*^9, 3.454511562319429*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{955, 1067},
+WindowMargins->{{461, Automatic}, {44, Automatic}},
+ShowSelection->True,
+FrontEndVersion->"7.0 for Linux x86 (64-bit) (February 25, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[568, 22, 195, 2, 73, "Section"],
+Cell[CellGroupData[{
+Cell[788, 28, 125, 2, 32, "Input"],
+Cell[916, 32, 284, 6, 25, "Print"]
+}, Open  ]],
+Cell[1215, 41, 117, 2, 32, "Input"],
+Cell[1335, 45, 123, 2, 32, "Input"],
+Cell[1461, 49, 183, 4, 31, "Text"],
+Cell[CellGroupData[{
+Cell[1669, 57, 752, 23, 121, "Input"],
+Cell[2424, 82, 7601, 131, 323, "Output"]
+}, Open  ]],
+Cell[10040, 216, 154, 3, 31, "Text"],
+Cell[10197, 221, 1445, 40, 121, "Input"],
+Cell[CellGroupData[{
+Cell[11667, 265, 335, 6, 32, "Input"],
+Cell[12005, 273, 109, 1, 31, "Output"]
+}, Open  ]],
+Cell[12129, 277, 127, 1, 31, "Text"],
+Cell[CellGroupData[{
+Cell[12281, 282, 607, 16, 32, "Input"],
+Cell[CellGroupData[{
+Cell[12913, 302, 216, 5, 24, "Print"],
+Cell[13132, 309, 269, 6, 24, "Print"],
+Cell[13404, 317, 252, 5, 24, "Print"],
+Cell[13659, 324, 246, 5, 24, "Print"],
+Cell[13908, 331, 238, 5, 24, "Print"]
+}, Open  ]]
+}, Open  ]],
+Cell[14173, 340, 114, 1, 31, "Text"],
+Cell[14290, 343, 1509, 41, 55, "Input"],
+Cell[15802, 386, 134, 1, 31, "Text"],
+Cell[CellGroupData[{
+Cell[15961, 391, 1396, 32, 143, "Input"],
+Cell[CellGroupData[{
+Cell[17382, 427, 392, 9, 24, "Print"],
+Cell[17777, 438, 256, 4, 24, "Print"],
+Cell[18036, 444, 237, 4, 24, "Print"],
+Cell[18276, 450, 364, 8, 24, "Print"],
+Cell[18643, 460, 352, 8, 24, "Print"],
+Cell[18998, 470, 367, 8, 24, "Print"],
+Cell[19368, 480, 633, 12, 24, "Print"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20050, 498, 226, 4, 32, "Input"],
+Cell[20279, 504, 2343, 36, 1367, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
