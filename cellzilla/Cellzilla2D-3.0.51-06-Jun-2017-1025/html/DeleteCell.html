@@ -1,0 +1,79 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>DeleteCell</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info/" border="0"><img src="logo.svg" alt="The xCellerator Project" width="150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style="font-size:x-large;font-weight:bold;">DeleteCell</td>
+
+            <td align="right"><a class="button" href="./index.html">Cellzilla2D Home</a></td>
+          </tr>
+        </table>
+        <hr color="#FF7636">
+
+        <p class="header">Description</p>
+
+        <p>Removes a cell from a <a href="DTissue.html" class="function">DTissue</a> object. No vertices or edges are
+        removed from the tissue.</p>
+
+        <p><span class="function">Needs["Cellzilla2D`"];</span></p>
+
+        <p class="header">Return Value</p>
+
+        <p><span class="function">RemoveCell[DTissue, i]</span> - returns a DTissue with cell i removed.</p>
+
+        <p>To find out which vertices and edges are actually used by the DTissue see <a href="EdgesUsed.html" class=
+        "function">EdgesUsed</a> and <a href="EdgesUsed.html" class="function">VerticesUsed</a>. To find out the
+        numbers of the cells actually used in a DTissue <span class="function">T</span> use</p>
+        <pre class="function">
+First/@TissueCells[T]
+</pre>
+
+        <p class="header">Options</p>
+
+        <p class="header">Example</p>
+
+        <p>[ <a href="examples/DeleteCell-Example.nb.zip">Download Example as Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="600" name="display" src="./examples/DeleteCell-Example.htm" id=
+        "display" style="background-color:white;"><a href="">View as html.</a></iframe></p>
+
+        <p class="header">Implementation Notes</p>
+
+        <p class="header">See Also</p>
+
+        <p><a href="EdgesUsed.html" class="function">EdgesUsed</a>, <a href="EdgesUsed.html" class=
+        "function">VerticesUsed</a></p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4" width="125" height="37" border="0" alt=
+            "SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2012-11-09]</span>
+    </div>
+  </center>
+</body>
+</html>

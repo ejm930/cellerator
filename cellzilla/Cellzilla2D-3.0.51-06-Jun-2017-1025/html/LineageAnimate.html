@@ -1,0 +1,104 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.3" >
+  <meta name="generator" content="Bluefish 2.2.3" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>LineageAnimate</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info/" border="0"><img src="logo.svg" alt=
+        "The xCellerator Project" width="150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style="font-size:x-large;font-weight:bold;">
+            LineageAnimate<br>
+            LineageShow</td>
+
+            <td align="right"><a class="button" href="./index.html">Cellzilla2D
+            Home</a></td>
+          </tr>
+        </table>
+        <hr color="purple">
+
+        <p class="header">Description</p>
+
+        <p><span class="boldfunc">LineageShow</span> displays a tissue,
+        coloring each clonal lineage a separate color.</p>
+
+        <p><span class="boldfunc">LineageAnimate</span> displays the lineage of
+        a growth simulation (output of <a href="grow.html" class=
+        "boldfunc">grow</a>).</p>
+
+        <p><span class="function">Needs["Cellzilla2D`"];</span></p>
+
+        <p class="header">Return Value</p>
+
+        <p><span class="function">LineageShow[tissue, Lineage]</span> returns a
+        Graphics object. The colors are assigned randomly.</p>
+
+        <p><span class="function">LineageShow[DTissue, Solution, Time,
+        Lineage]</span> interpolates into the specified solution using the
+        specified tissue object.</p>
+
+        <p><span class="function">LineageAnimate[options]]</span> displays a
+        pop-up menu to select a folder for an external simulation (similar to
+        <a class="boldfunc" href="SimAnimate.html">SimAnimate</a>).</p>
+
+        <p><span class="function">LineageAnimate[f, options]]</span> looks for
+        the output of <a href="grow.html" class="boldfunc">grow</a> in the
+        directory <span class="boldfunc">f</span>.</p>
+
+        <p class="header">Options</p>
+
+        <p>Same as <a class="boldfunc" href="ShowTissue.html">ShowTissue</a>
+        for <span class="boldfunc">LineageShow</span></p>
+
+        <p>Same as <a class="boldfunc" href="SimAnimate.html">SimAnimate</a>
+        for <span class="boldfunc">LineageAnimate</span></p>
+
+        <p>In addition, <span class="boldfunc">"InputFolder"-&gt;f</span> may
+        be used to specify the input folder, in lieu of a separate first string
+        argument for <span class="boldfunc">LineageAnimate</span>.</p>
+
+        <p>In addition <span class="boldfunc">"Colors"-&gt;{Color1,
+        Color2,...}</span>, a list of colors for the ancenstral lineages may be
+        specified.</p>
+
+        <p class="header">Example</p>
+        
+        <p>See the example given for <a href="grow.html#example" class="boldfunc">grow</a></p>
+
+        <p class="header">Implementation Notes</p>
+
+        <p class="header">See Also</p>
+
+        <p><a class="function" href="ShowTissue.html">ShowTissue</a>, <a href=
+        "SimAnimate.html" class="function">SimAnimate</a></p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[9 April 2013]</span>
+    </div>
+  </center>
+</body>
+</html>

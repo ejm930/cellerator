@@ -1,0 +1,1002 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     42320,        993]
+NotebookOptionsPosition[     41124,        947]
+NotebookOutlinePosition[     41564,        964]
+CellTagsIndexPosition[     41521,        961]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["MathSBML-Simuation.nb", "Title",
+ CellChangeTimes->{{3.5062187009764075`*^9, 3.5062187056876163`*^9}}],
+
+Cell[TextData[{
+ "Simulation and Analysis extensions for MathSBML\n2.24.2011 Initial build \
+extracted for version 2.9.0 for ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " v8 compatibility"
+}], "Text",
+ CellChangeTimes->{{3.504974760644577*^9, 3.504974795585575*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["File Description", "Section",
+ CellChangeTimes->{{3.395408039119268*^9, 3.395408049088715*^9}, {
+  3.5062180912805367`*^9, 3.5062181026997566`*^9}}],
+
+Cell[TextData[{
+ StyleBox[" ",
+  FontSize->16],
+ StyleBox["Filename:\tMathSBML-Simulation.nb\n Description:\tMathSBML is an \
+SBML reader for ",
+  FontSize->12],
+ StyleBox["Mathematica \n \t\t",
+  FontSize->12,
+  FontSlant->"Italic"],
+ StyleBox["This is part of the MathSBML Package\n Organization: \tCaltech \
+Biological Network Modeling Center\n License:\tLGPL \n \n ",
+  FontSize->12],
+ "    This file is part of MathSBML.\n \n    MathSBML is free software: you \
+can redistribute it and/or modify\n    it under the terms of the GNU Lesser \
+General Public License as published by\n    the Free Software Foundation, \
+either version 3 of the License, or\n    (at your option) any later version.\n\
+\n    This program is distributed in the hope that it will be useful,\n    \
+but WITHOUT ANY WARRANTY; without even the implied warranty of\n    \
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU \
+General Public License for more details.\n\n    You should have received a \
+copy of the GNU Lesser General Public License\n    along with this program.  \
+If not, see <http://www.gnu.org/licenses/>."
+}], "Text",
+ CellChangeTimes->{{3.388248302205469*^9, 3.388248304035112*^9}, 
+   3.388264681197356*^9, {3.3882668683761797`*^9, 3.388266875242931*^9}, 
+   3.388353386077384*^9, {3.388363325911048*^9, 3.3883633263870773`*^9}, 
+   3.3883996477410192`*^9, {3.388761163736053*^9, 3.38876116441009*^9}, {
+   3.389125922604425*^9, 3.389125923136166*^9}, {3.390045172241888*^9, 
+   3.39004517571679*^9}, {3.39019850450497*^9, 3.3901985115655603`*^9}, {
+   3.392748682342765*^9, 3.392748683344193*^9}, {3.3954080212118177`*^9, 
+   3.395408027048024*^9}, {3.395690507776781*^9, 3.3956905087487507`*^9}, {
+   3.3973955266739798`*^9, 3.397395527497595*^9}, {3.401465824219963*^9, 
+   3.401465836954739*^9}, 3.506217737019514*^9, {3.5062177764407835`*^9, 
+   3.506217778375187*^9}, 3.506217826938072*^9, {3.5062180797833166`*^9, 
+   3.506218242226402*^9}, {3.506218688511986*^9, 3.5062186930359936`*^9}, {
+   3.537137254311182*^9, 3.537137261318383*^9}},
+ FontSize->10,
+ Background->None]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["simulation and analysis extensions", "Section"],
+
+Cell[CellGroupData[{
+
+Cell["variableToParameter", "Subsubsection"],
+
+Cell["\<\
+added v. 2.6.0.4 10/25/06
+variableToParameter[model, variable] replaces every occurance of a specified \
+variable in a model with a constant, namely X[t] becomes X, etc.
+\
+\>", "Text"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"variableToParameter", "[", 
+     RowBox[{
+      RowBox[{"filename_", "?", "StringQ"}], ",", " ", "var_", ",", " ", 
+      RowBox[{"options___", "?", "OptionQ"}]}], "]"}], ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"model", ",", "m"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"model", "=", 
+        RowBox[{"SBMLRead", "[", 
+         RowBox[{"filename", ",", " ", "options"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"m", "=", 
+        RowBox[{"variableToParameter", "[", 
+         RowBox[{"model", ",", " ", "var"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "m", "]"}], ";"}]}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"variableToParameter", "[", 
+     RowBox[{"model_", ",", " ", "var_"}], "]"}], ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "c", ",", " ", "nc", ",", " ", "uc", ",", " ", "nuc", ",", " ", "id", 
+        ",", " ", "m", ",", " ", "opts", ",", " ", "odes", ",", " ", 
+        "nxprime", ",", " ", 
+        RowBox[{"dbg", "=", "False"}], ",", " ", "ic", ",", " ", "ics", ",", 
+        "icvars", ",", " ", "icvals", ",", " ", "constants", ",", " ", 
+        "modelvals", ",", " ", "parameters", ",", " ", "assrule", ",", 
+        "assignmentrules", ",", " ", "algrules", ",", "algrule", ",", "event",
+         ",", " ", "events", ",", " ", "trigger", ",", " ", "delay", ",", 
+        "eventid", ",", " ", "eventAssignment", ",", " ", "evnew", ",", " ", 
+        "newevent", ",", " ", "modelvariables", ",", " ", "modelvars", ",", 
+        " ", "species", ",", " ", "speciescomps"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"id", "  ", "=", " ", 
+        RowBox[{
+         RowBox[{"Global`SBMLModelid", "/.", "model"}], "/.", 
+         RowBox[{"{", 
+          RowBox[{"Global`SBMLModelid", "\[Rule]", " ", "\"\<\>\""}], 
+          "}"}]}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", " ", "[", 
+        RowBox[{
+         RowBox[{"id", "==", "\"\<\>\""}], ",", " ", 
+         RowBox[{
+          RowBox[{"Print", "[", 
+           RowBox[{
+            RowBox[{"\"\<Error: \>\"", "//", "boldRed"}], ",", " ", 
+            RowBox[{
+            "\"\<This does not appear to be a valid SBML model. The model \
+should be the output of SBMLRead.\>\"", "//", "boldBlue"}]}], "]"}], ";", " ", 
+          RowBox[{"Return", "[", "$Failed", "]"}]}]}], "]"}], ";", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{"c", " ", "=", " ", 
+        RowBox[{"Cases", "[", 
+         RowBox[{"model", ",", " ", 
+          RowBox[{"var", "[", "_", "]"}], ",", " ", "\[Infinity]"}], "]"}]}], 
+       ";", "\[IndentingNewLine]", 
+       RowBox[{"nc", " ", "=", " ", 
+        RowBox[{"Length", "[", "c", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"uc", " ", "=", " ", 
+        RowBox[{"Union", "[", "c", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"nuc", " ", "=", " ", 
+        RowBox[{"Length", "[", "uc", "]"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"opts", "=", 
+        RowBox[{"First", "/@", "model"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Print", "[", 
+           RowBox[{
+            RowBox[{"\"\<variableToParameter: \>\"", "//", "boldBlue"}], ",", 
+            " ", "\"\<Model: \>\"", ",", "id", ",", 
+            "\"\< - the variable \>\"", ",", " ", "var", ",", " ", 
+            "\"\< occurs \>\"", ",", " ", "nc", ",", " ", "\"\< times, \>\"", 
+            ",", "nuc", ",", " ", "\"\< times uniquely.\>\""}], "]"}], ";", 
+          " ", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{
+            RowBox[{"\"\<variableToParameter: \>\"", "//", "boldBlue"}], ",", 
+            " ", "\"\< options: \>\"", ",", " ", "opts"}], "]"}], ";"}]}], 
+        " ", "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"modelvariables", " ", "=", " ", 
+        RowBox[{"Global`SBMLModelVariables", "/.", "model"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"!", 
+          RowBox[{"MemberQ", "[", 
+           RowBox[{"modelvariables", ",", " ", 
+            RowBox[{"var", "[", "Global`t", "]"}]}], "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Print", "[", 
+           RowBox[{
+            RowBox[{"\"\<Error:\>\"", "//", "boldRed"}], ",", " ", 
+            RowBox[{
+            "\"\< variableToParameter: requested variable \>\"", "//", 
+             "boldBlack"}], ",", " ", 
+            RowBox[{"var", "//", "boldBlue"}], ",", " ", 
+            RowBox[{
+            "\"\< is not speicified as a variable in the model. \>\"", "//", 
+             "boldBlack"}]}], "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], 
+       ";", "\[IndentingNewLine]", 
+       RowBox[{"modelvars", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"Complement", "[", 
+          RowBox[{"modelvariables", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"var", "[", "Global`t", "]"}], ",", " ", "var"}], 
+            "}"}]}], "]"}], " ", "//", " ", "Sort"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"odes", " ", "=", " ", 
+        RowBox[{"Global`SBMLODES", "/.", "model"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"nxprime", " ", "=", " ", 
+        RowBox[{"Position", "[", 
+         RowBox[{"odes", ",", " ", 
+          RowBox[{
+           RowBox[{"var", "'"}], "[", "Global`t", "]"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{
+           RowBox[{"\"\<variableToParameter: \>\"", "//", "boldBlue"}], ",", 
+           " ", "\"\< odes: \>\"", ",", " ", "odes"}], "]"}]}], "]"}], ";", 
+       " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "[", "nxprime", "]"}], ">", "0"}], ",", " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          StyleBox[
+           RowBox[{"remove", " ", "ode", " ", "if", " ", "necessary"}],
+           Background->RGBColor[1, 1, 0]], " ", "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          StyleBox[
+           RowBox[{
+           "the", " ", "following", " ", "will", " ", "only", " ", "work", 
+            " ", "if", " ", "there", " ", "is", " ", "precisely", " ", "one", 
+            " ", "reference", " ", "to", " ", 
+            RowBox[{
+             RowBox[{"x", "'"}], "[", "t", "]"}]}],
+           Background->RGBColor[1, 1, 0]], " ", "*)"}], "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"nxprime", " ", "=", " ", 
+           RowBox[{"nxprime", "[", 
+            RowBox[{"[", 
+             RowBox[{"1", ",", " ", "1"}], "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"odes", " ", "=", " ", 
+           RowBox[{"Delete", "[", 
+            RowBox[{"odes", ",", " ", "nxprime"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"odes", " ", "=", "  ", 
+           RowBox[{"odes", "/.", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"var", "[", "Global`t", "]"}], "\[Rule]", " ", "var"}], 
+             "}"}]}]}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", " ", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{
+           RowBox[{"\"\<variableToParameter: \>\"", "//", "boldBlue"}], ",", 
+           " ", "\"\< odes: \>\"", ",", " ", "odes"}], "]"}]}], "]"}], ";", 
+       " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        StyleBox[
+         RowBox[{"Remove", " ", "initial", " ", "condition"}],
+         Background->RGBColor[1, 1, 0]], "  ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"ics", " ", "=", 
+        RowBox[{
+         RowBox[{"(", " ", 
+          RowBox[{
+           RowBox[{"Global`SBMLIC", "/.", "model"}], "/.", 
+           RowBox[{"{", 
+            RowBox[{"Global`SBMLIC", "\[Rule]", " ", 
+             RowBox[{"{", "}"}]}], "}"}]}], ")"}], "/.", 
+         RowBox[{"{", 
+          RowBox[{"Equal", "\[Rule]", " ", "Rule"}], "}"}]}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ic", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"var", "[", "0", "]"}], "/.", "ics"}]}], ";", "  ", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"icvars", " ", "=", " ", 
+        RowBox[{"First", "/@", "ics"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"icvars", " ", "=", 
+        RowBox[{"Complement", "[", 
+         RowBox[{"icvars", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"var", "[", "0", "]"}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"icvals", " ", "=", " ", 
+        RowBox[{"icvars", "/.", "ics"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"ics", " ", "=", " ", 
+        RowBox[{"MapThread", "[", 
+         RowBox[{"Equal", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"icvars", ",", " ", "icvals"}], "}"}]}], "]"}]}], ";", " ",
+        "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{
+           RowBox[{"\"\<variableToParameter: \>\"", "//", "boldBlue"}], ",", 
+           " ", "\"\< ics: \>\"", ",", " ", "ics"}], "]"}]}], "]"}], ";", " ",
+        "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        StyleBox[
+         RowBox[{
+         "Add", " ", "to", " ", "lists", " ", "of", " ", "constants", " ", 
+          "and", " ", "parameters"}],
+         Background->RGBColor[1, 1, 0]], 
+        StyleBox[" ",
+         Background->RGBColor[1, 1, 0]], "*)"}], "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"constants", " ", "=", " ", 
+        RowBox[{"Global`SBMLConstants", "/.", "model"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"constants", " ", "=", " ", 
+        RowBox[{"Append", "[", 
+         RowBox[{"constants", ",", " ", 
+          RowBox[{"var", "\[Rule]", " ", "ic"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"parameters", " ", "=", " ", 
+        RowBox[{"Global`SBMLParameters", "/.", "model"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"parameters", " ", "=", " ", 
+        RowBox[{"Append", "[", 
+         RowBox[{"parameters", ",", " ", "var"}], "]"}]}], ";", " ", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{
+           RowBox[{"\"\<variableToParameter: \>\"", "//", "boldBlue"}], ",", 
+           " ", "\"\< parameters: \>\"", ",", " ", "parameters"}], "]"}]}], 
+        "]"}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{
+           RowBox[{"\"\<variableToParameter: \>\"", "//", "boldBlue"}], ",", 
+           " ", "\"\< constants: \>\"", ",", " ", "constants"}], "]"}]}], 
+        "]"}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        StyleBox[
+         RowBox[{
+         "check", " ", "to", " ", "see", " ", "if", " ", "it", " ", "is", " ",
+           "in", " ", "an", " ", "assignment", " ", "rule"}],
+         Background->RGBColor[1, 1, 0]], 
+        StyleBox[" ",
+         Background->RGBColor[1, 1, 0]], "*)"}], "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"assignmentrules", "=", 
+        RowBox[{"Global`SBMLAssignmentRules", "/.", "model"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"algrules", " ", "=", " ", 
+        RowBox[{"Global`SBMLAlgebraicRules", "/.", "model"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"assrule", " ", "=", " ", 
+        RowBox[{"Cases", "[", 
+         RowBox[{"assignmentrules", ",", " ", 
+          RowBox[{"Equal", "[", 
+           RowBox[{
+            RowBox[{"var", "[", "Global`t", "]"}], ",", " ", "___"}], "]"}], 
+          ",", " ", "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "[", "assrule", "]"}], ">", "0"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"While", "[", 
+           RowBox[{
+            RowBox[{"ListQ", "[", "assrule", "]"}], ",", " ", 
+            RowBox[{"assrule", "=", 
+             RowBox[{"First", "[", "assrule", "]"}]}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"algrule", " ", "=", 
+           RowBox[{"Equal", "[", 
+            RowBox[{"0", ",", " ", 
+             RowBox[{
+              RowBox[{"Last", "[", "assrule", "]"}], "-", "var"}]}], "]"}]}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{
+            RowBox[{"\"\<Warning: \>\"", "//", "boldRed"}], ",", " ", 
+            RowBox[{"\"\<variableToParameter: \>\"", "//", "boldBlue"}], ",", 
+            RowBox[{"\"\< The variable \>\"", "//", "boldBlack"}], ",", " ", 
+            RowBox[{"var", "//", "boldBlue"}], ",", 
+            RowBox[{
+            "\"\< was found in an assignment rule \>\"", "//", "boldBlack"}], 
+            ",", " ", 
+            RowBox[{"assrule", "//", "boldBlue"}], ",", 
+            RowBox[{
+            "\"\<\\nThis will be replaced by the following algebraic rule, \
+which could make the system over-determined and non-simulatable: \>\"", "//", 
+             "boldBlack"}], ",", " ", 
+            RowBox[{"algrule", "//", "boldBlue"}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"AppendTo", "[", 
+           RowBox[{"algrules", ",", " ", "algrule"}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"assignmentrules", " ", "=", " ", 
+           RowBox[{"Complement", "[", 
+            RowBox[{"assignmentrules", ",", " ", 
+             RowBox[{"{", "assrule", "}"}]}], "]"}]}], ";"}]}], 
+        "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        StyleBox[
+         RowBox[{
+         "events", " ", "are", " ", "stored", " ", "as", " ", "text", " ", 
+          "rather", " ", "then", " ", "expressions", " ", "so", " ", "it", 
+          " ", "becomes", " ", "more", " ", "complicated"}],
+         Background->RGBColor[1, 1, 0]], 
+        StyleBox[" ",
+         Background->RGBColor[1, 1, 0]], "*)"}], "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"evnew", " ", "=", " ", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"events", " ", "=", " ", 
+        RowBox[{"Global`SBMLEvents", "/.", "model"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "[", "events", "]"}], ">", "0"}], ",", " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"If", "[", 
+           RowBox[{"dbg", ",", " ", 
+            RowBox[{
+             RowBox[{"Print", "[", 
+              RowBox[{
+               RowBox[{"\"\<variableToParameter: \>\"", "//", "boldBlue"}], 
+               ",", " ", "\"\<events; \>\"", ",", " ", "events"}], "]"}], 
+             ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"While", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Length", "[", "events", "]"}], ">", "0"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"event", "=", 
+              RowBox[{"First", "[", "events", "]"}]}], ";", " ", 
+             "\[IndentingNewLine]", 
+             RowBox[{"events", "=", 
+              RowBox[{"Rest", "[", "events", "]"}]}], ";", 
+             "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"eventid", "=", " ", 
+              RowBox[{"First", "[", "event", "]"}]}], ";", " ", 
+             "\[IndentingNewLine]", 
+             RowBox[{"event", "=", 
+              RowBox[{"Last", "[", "event", "]"}]}], ";", 
+             "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"trigger", " ", "=", " ", 
+              RowBox[{"\"\<trigger\>\"", "/.", "event"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"trigger", " ", "=", " ", 
+              RowBox[{
+               RowBox[{"ToExpression", "[", "trigger", "]"}], "/.", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"var", "[", "Global`t", "]"}], "\[Rule]", " ", 
+                 "var"}], "}"}]}]}], ";", "\[IndentingNewLine]", 
+             "\[IndentingNewLine]", 
+             RowBox[{"delay", " ", "=", " ", 
+              RowBox[{"\"\<delay\>\"", "/.", "event"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"delay", " ", "=", " ", 
+              RowBox[{
+               RowBox[{"ToExpression", "[", "delay", "]"}], "/.", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"var", "[", "Global`t", "]"}], "\[Rule]", " ", 
+                 "var"}], "}"}]}]}], ";", "\[IndentingNewLine]", 
+             "\[IndentingNewLine]", 
+             RowBox[{"eventAssignment", "=", 
+              RowBox[{"\"\<events\>\"", "/.", "event"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"eventAssignment", " ", "=", " ", 
+              RowBox[{"ToExpression", "/@", "eventAssignment"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"eventAssignment", " ", "=", " ", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"#", "/.", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"var", "[", "Global`t", "]"}], "\[Rule]", " ", 
+                    "var"}], "}"}]}], ")"}], "&"}], "/@", 
+               "eventAssignment"}]}], ";", "\[IndentingNewLine]", 
+             "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{"dbg", ",", " ", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"Print", "[", 
+                 RowBox[{
+                  RowBox[{"\"\<variableToParameter:\>\"", "//", "boldBlue"}], 
+                  ",", "\[IndentingNewLine]", "\"\<event: id: \>\"", ",", " ",
+                   "eventid", ",", " ", "\"\< trigger: \>\"", ",", " ", 
+                  "trigger", ",", " ", "\"\< delay: \>\"", ",", " ", "delay", 
+                  ",", " ", "\"\< assignment: \>\"", ",", " ", 
+                  "eventAssignment"}], "]"}], ";"}]}], "\[IndentingNewLine]", 
+              "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"(*", 
+              RowBox[{
+              "determine", " ", "if", " ", "var", " ", "is", " ", "reset", 
+               " ", "by", " ", "eventAssignment"}], " ", "*)"}], 
+             "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"eventAssignment", " ", "=", " ", 
+              RowBox[{"eventAssignment", "/.", 
+               RowBox[{"{", 
+                RowBox[{"Rule", "\[Rule]", " ", "List"}], "}"}]}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"c", " ", "=", " ", 
+              RowBox[{"Cases", "[", 
+               RowBox[{"eventAssignment", ",", 
+                RowBox[{"{", 
+                 RowBox[{"var", ",", " ", "_"}], "}"}], ",", " ", 
+                "Infinity"}], "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"eventAssignment", " ", "=", " ", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Rule", "@@", "#"}], "&"}], "/@", 
+               "eventAssignment"}]}], ";", "\[IndentingNewLine]", 
+             "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Length", "[", "c", "]"}], ">", "0"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"c", " ", "=", " ", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"Rule", "@@", "#"}], "&"}], "/@", "c"}]}], ";", 
+                "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"Print", "[", 
+                   RowBox[{
+                    RowBox[{"\"\<Warning:\>\"", "//", "boldRed"}], ",", " ", 
+                    RowBox[{
+                    "\"\< variableToParameter: \>\"", "//", "boldBlack"}], 
+                    ",", " ", 
+                    RowBox[{
+                    "\"\< requested variable \>\"", "//", "boldBlack"}], ",", 
+                    " ", 
+                    RowBox[{"var", "//", "boldBlue"}], ",", 
+                    RowBox[{
+                    "\"\< is reset by the event assignment \>\"", "//", 
+                    "boldBlack"}], ",", 
+                    RowBox[{"#", "//", "boldBlue"}], " ", ",", 
+                    RowBox[{"\"\< in event \>\"", "//", "boldBlack"}], ",", 
+                    " ", 
+                    RowBox[{"eventid", "//", "boldBlue"}], ",", " ", 
+                    RowBox[{
+                    "\"\< Removing this eventAssignment could change the \
+intent of the model.\>\"", "//", "boldBlack"}]}], "]"}], "&"}], "/@", "c"}], 
+                ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                RowBox[{"eventAssignment", " ", "=", " ", 
+                 RowBox[{"Complement", "[", 
+                  RowBox[{"eventAssignment", ",", " ", "c"}], "]"}]}], ";", 
+                " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                RowBox[{"If", "[", 
+                 RowBox[{"dbg", ",", " ", 
+                  RowBox[{
+                   RowBox[{"Print", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "\"\<variableToParameter: \>\"", "//", "boldBlue"}], ",", 
+                    " ", "\"\< revised eventAssignments: \>\"", ",", " ", 
+                    "eventAssignment"}], "]"}], ";"}]}], 
+                 "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]",
+               "\[IndentingNewLine]", "]"}], ";", " ", 
+             RowBox[{"(*", 
+              RowBox[{
+               RowBox[{"End", " ", "if", " ", 
+                RowBox[{"length", "[", "c", "]"}]}], " ", ">", " ", "0"}], 
+              " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"(*", " ", 
+              RowBox[{"save", " ", "the", " ", "modified", " ", "event"}], 
+              " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"newevent", " ", "=", " ", 
+              RowBox[{"eventid", "\[Rule]", " ", 
+               RowBox[{"{", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"\"\<trigger\>\"", "\[Rule]", " ", 
+                  RowBox[{"stringer", "[", "trigger", "]"}]}], ",", " ", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"\"\<delay\>\"", "\[Rule]", " ", 
+                  RowBox[{"stringer", "[", "delay", "]"}]}], ",", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"\"\<events\>\"", "\[Rule]", " ", 
+                  RowBox[{"(", 
+                   RowBox[{"stringer", "/@", "eventAssignment"}], ")"}]}]}], 
+                "\[IndentingNewLine]", "}"}]}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"AppendTo", "[", 
+              RowBox[{"evnew", ",", " ", "newevent"}], "]"}], ";"}]}], 
+           "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], ";", " ", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+            RowBox[{"end", " ", "while", " ", "length", " ", "events"}], " ", 
+            ">", " ", "0"}], " ", "*)"}], "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{"dbg", ",", " ", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"Print", "[", 
+              RowBox[{
+               RowBox[{"\"\<variableToParameter:\>\"", "//", "boldBlue"}], 
+               ",", " ", "\"\< modified events: \>\"", ",", " ", "evnew"}], 
+              "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";"}]}], " ", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], ";", " ", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"end", " ", "if", " ", "length", " ", "events"}], " ", ">", 
+         " ", "0"}], " ", "*)"}], " ", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        StyleBox[" ",
+         Background->RGBColor[1, 1, 0]], 
+        StyleBox[
+         RowBox[{
+         "if", " ", "X", " ", "is", " ", "a", " ", "species", " ", "remove", 
+          " ", "it", " ", "from", " ", "list", " ", "of", " ", "species"}],
+         Background->RGBColor[1, 1, 0]], " ", "*)"}], "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"species", " ", "=", " ", 
+        RowBox[{"Global`SBMLSpecies", "/.", "model"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"speciescomp", " ", "=", " ", 
+        RowBox[{
+        "Global`SBMLSpeciesCompartmentAssociations", "/.", "model"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"speciescomp", "=", 
+        RowBox[{"speciescomp", "/.", 
+         RowBox[{"{", 
+          RowBox[{"Rule", "\[Rule]", " ", "List"}], "}"}]}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"species", " ", "=", " ", 
+        RowBox[{"Complement", "[", 
+         RowBox[{"species", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"var", "[", "Global`t", "]"}], ",", " ", "var"}], "}"}]}],
+          "]"}]}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"speciescomp", " ", "=", " ", 
+        RowBox[{"Select", "[", 
+         RowBox[{"speciescomp", ",", " ", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"stringer", "[", 
+             RowBox[{"First", "[", "#", "]"}], "]"}], "\[NotEqual]", " ", 
+            RowBox[{"stringer", "[", "var", "]"}]}], "&"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"speciescomp", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Rule", "@@", "#"}], "&"}], "/@", "speciescomp"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        StyleBox[
+         RowBox[{"replace", " ", 
+          RowBox[{"X", "[", "t", "]"}], " ", "with", " ", "X", " ", 
+          "throughout", " ", "the", " ", "model"}],
+         Background->RGBColor[1, 1, 0]], " ", "*)"}], "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"modelvals", " ", "=", 
+        RowBox[{
+         RowBox[{"opts", "/.", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Global`SBMLODES", "\[Rule]", " ", "odes"}], ",", " ", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Global`SBMLAlgebraicRules", "\[Rule]", " ", "algrules"}],
+             ",", " ", "\[IndentingNewLine]", 
+            RowBox[{
+            "Global`SBMLAssignmentRules", "\[Rule]", " ", "assignmentrules"}],
+             ",", "\[IndentingNewLine]", 
+            RowBox[{"Global`SBMLConstants", "\[Rule]", " ", "constants"}], 
+            ",", " ", "\[IndentingNewLine]", 
+            RowBox[{"Global`SBMLEvents", "\[Rule]", " ", "evnew"}], ",", 
+            RowBox[{"Global`SBMLParameters", "\[Rule]", " ", "parameters"}], 
+            ",", " ", 
+            RowBox[{"Global`SBMLIC", "\[Rule]", " ", "ics"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+            "Global`SBMLModelVariables", "\[Rule]", " ", "modelvars"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Global`SBMLSpecies", " ", "\[Rule]", " ", "species"}], 
+            ",", "\[IndentingNewLine]", 
+            RowBox[{
+            "Global`SBMLSpeciesCompartmentAssociations", "\[Rule]", " ", 
+             "speciescomp"}]}], "\[IndentingNewLine]", "}"}]}], "/.", 
+         "model"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"m", " ", "=", " ", 
+        RowBox[{"MapThread", "[", 
+         RowBox[{"Rule", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"opts", ",", " ", "modelvals"}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"m", " ", "=", " ", 
+        RowBox[{"m", "/.", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"var", "[", "Global`t", "]"}], "\[Rule]", " ", "var"}], 
+          "}"}]}]}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"m", " ", "=", " ", 
+        RowBox[{"Sort", "[", "m", "]"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "m", "]"}], ";"}]}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"variableToParameter", "[", "x___", "]"}], ":=", " ", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"\"\<Error: \>\"", "//", "boldRed"}], ",", " ", 
+     RowBox[{
+     "\"\<variableToParameter: invalid argument list\\nValid syntax is \
+either:\\n\\tvariableToParameter[filename, variable, options] or \
+\\n\\tvariableToParameter[model,variable]\\nwhere model is the output of \
+SBMLRead.\>\"", "//", "boldBlack"}]}], "]"}]}], ";"}]}], "Input",
+ InitializationCell->True]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["parametricScan", "Subsubsection"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"parametricScan", "[", 
+    RowBox[{
+     RowBox[{"filename_", "?", "StringQ"}], ",", "  ", "X_", ",", " ", 
+     "XMIN_", ",", " ", "XMAX_", ",", " ", "DX_", ",", "Y_", ",", "  ", 
+     "time_", ",", "\[IndentingNewLine]", 
+     RowBox[{"opt___", "?", "OptionQ"}]}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "model", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"model", " ", "=", " ", 
+       RowBox[{"SBMLRead", "[", 
+        RowBox[{"filename", ",", 
+         RowBox[{"evaluateParameters", "\[Rule]", " ", "False"}], ",", "  ", 
+         "opt"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", 
+       RowBox[{"parametricScan", "[", 
+        RowBox[{
+        "model", ",", " ", "X", ",", " ", "XMIN", ",", " ", "XMAX", ",", " ", 
+         "DX", ",", "Y", ",", "  ", "time"}], "]"}], "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"parametricScan", "[", 
+    RowBox[{
+    "model_", ",", " ", "X_", ",", " ", "XMIN_", ",", " ", "XMAX_", ",", " ", 
+     "DX_", ",", "Y_", ",", "  ", "time_"}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "x", ",", " ", "results", ",", "num", ",", " ", "m", ",", " ", 
+       "value"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"results", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"x", "=", "XMIN"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"x", "\[LessEqual]", " ", "XMAX"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"x", "=", 
+         RowBox[{"x", "+", "DX"}]}], ",", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"m", "=", 
+          RowBox[{"resetParameter", "[", 
+           RowBox[{"model", ",", " ", "X", ",", " ", "x"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"num", " ", "=", " ", 
+          RowBox[{"SBMLNDSolve", "[", 
+           RowBox[{"m", ",", " ", "time"}], "]"}]}], ";", " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{"num", " ", "=", " ", 
+          RowBox[{"Flatten", "[", "num", "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"value", " ", "=", " ", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Y", "[", "Global`t", "]"}], "/.", "num"}], "/.", 
+           RowBox[{"{", 
+            RowBox[{"Global`t", "\[Rule]", " ", "time"}], "}"}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"results", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", " ", "value"}], "}"}]}], "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "results", "]"}], ";"}]}], "\[IndentingNewLine]",
+     "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"parametricScan", "[", "x___", "]"}], ":=", " ", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+      RowBox[{"\"\<Error: \>\"", "//", "boldRed"}], ",", " ", 
+      RowBox[{
+      "\"\<parametricScan: incorrect arguments: correct formats are \>\"", "//",
+        "boldBlack"}], ",", 
+      RowBox[{
+      "\"\<\\n\\tparametricScan[filname, p, pmin, pmax, deltap, V, time] \
+or\\n\\tparametricScan[model, p, pmin, pmax, deltap, V, time]\\n\>\"", "//", 
+       "boldBlack"}]}], "]"}]}], ";"}], " "}]}], "Input",
+ InitializationCell->True]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["icScan", "Subsection"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"icScan", "[", 
+    RowBox[{
+     RowBox[{"filename_", "?", "StringQ"}], ",", "  ", "X_", ",", " ", 
+     "XMIN_", ",", " ", "XMAX_", ",", " ", "DX_", ",", "Y_", ",", "  ", 
+     "time_", ",", "\[IndentingNewLine]", 
+     RowBox[{"opt___", "?", "OptionQ"}]}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "model", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"model", " ", "=", " ", 
+       RowBox[{"SBMLRead", "[", 
+        RowBox[{"filename", ",", 
+         RowBox[{"evaluateParameters", "\[Rule]", " ", "False"}], ",", "  ", 
+         "opt"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", 
+       RowBox[{"icScan", "[", 
+        RowBox[{
+        "model", ",", " ", "X", ",", " ", "XMIN", ",", " ", "XMAX", ",", " ", 
+         "DX", ",", "Y", ",", "  ", "time"}], "]"}], "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"icScan", "[", 
+    RowBox[{
+    "model_", ",", " ", "X_", ",", " ", "XMIN_", ",", " ", "XMAX_", ",", " ", 
+     "DX_", ",", "Y_", ",", "  ", "time_"}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "x", ",", " ", "results", ",", "num", ",", " ", "m", ",", " ", 
+       "value"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"results", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"x", "=", "XMIN"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"x", "\[LessEqual]", " ", "XMAX"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"x", "=", 
+         RowBox[{"x", "+", "DX"}]}], ",", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"m", "=", 
+          RowBox[{"resetIC", "[", 
+           RowBox[{"model", ",", " ", "X", ",", " ", "x"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"num", " ", "=", " ", 
+          RowBox[{"SBMLNDSolve", "[", 
+           RowBox[{"m", ",", " ", "time"}], "]"}]}], ";", " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{"num", " ", "=", " ", 
+          RowBox[{"Flatten", "[", "num", "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"value", " ", "=", " ", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Y", "[", "Global`t", "]"}], "/.", "num"}], "/.", 
+           RowBox[{"{", 
+            RowBox[{"Global`t", "\[Rule]", " ", "time"}], "}"}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"results", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", " ", "value"}], "}"}]}], "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "results", "]"}], ";"}]}], "\[IndentingNewLine]",
+     "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"icScan", "[", "x___", "]"}], ":=", " ", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+      RowBox[{"\"\<Error: \>\"", "//", "boldRed"}], ",", " ", 
+      RowBox[{
+      "\"\<icScan: incorrect arguments: correct formats are \>\"", "//", 
+       "boldBlack"}], ",", 
+      RowBox[{
+      "\"\<\\n\\ticScan[filname, p, pmin, pmax, deltap, V, time] \
+or\\n\\ticScan[model, p, pmin, pmax, deltap, V, time]\\n\>\"", "//", 
+       "boldBlack"}]}], "]"}]}], ";"}], " "}]}], "Input",
+ InitializationCell->True]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Exit", "Section",
+ CellChangeTimes->{{3.504974727006653*^9, 3.504974733846044*^9}}],
+
+Cell[BoxData[
+ RowBox[{"LTPrint", "[", "\"\<Simulation and Analysis Extensions loaded\>\"", 
+  "]"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.50497473552314*^9, 3.5049747485868874`*^9}, {
+  3.506452380648032*^9, 3.506452380930376*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+AutoGeneratedPackage->Automatic,
+WindowSize->{701, 858},
+WindowMargins->{{75, Automatic}, {-5, Automatic}},
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PastelColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 108, 1, 70, "Title"],
+Cell[690, 25, 275, 7, 50, "Text"],
+Cell[CellGroupData[{
+Cell[990, 36, 154, 2, 78, "Section"],
+Cell[1147, 40, 2098, 37, 372, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3282, 82, 53, 0, 78, "Section"],
+Cell[CellGroupData[{
+Cell[3360, 86, 44, 0, 30, "Subsubsection"],
+Cell[3407, 88, 194, 5, 70, "Text"],
+Cell[3604, 95, 29883, 648, 70, "Input",
+ InitializationCell->True]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[33524, 748, 39, 0, 24, "Subsubsection"],
+Cell[33566, 750, 3565, 86, 70, "Input",
+ InitializationCell->True]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[37168, 841, 28, 0, 31, "Subsection"],
+Cell[37199, 843, 3502, 86, 70, "Input",
+ InitializationCell->True]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[40750, 935, 89, 1, 78, "Section"],
+Cell[40842, 938, 254, 5, 40, "Input",
+ InitializationCell->True]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

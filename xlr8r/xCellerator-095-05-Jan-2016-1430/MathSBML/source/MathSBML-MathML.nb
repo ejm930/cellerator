@@ -1,0 +1,776 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     31042,        767]
+NotebookOptionsPosition[     29580,        713]
+NotebookOutlinePosition[     30020,        730]
+CellTagsIndexPosition[     29977,        727]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+MathSBML-MathML.nb
+\
+\>", "Title",
+ CellChangeTimes->{{3.506218449472766*^9, 3.506218452920372*^9}}],
+
+Cell[TextData[{
+ StyleBox["Special MathML Support for MathSBML, for ",
+  FontSize->24],
+ StyleBox["Mathematica",
+  FontSize->24,
+  FontSlant->"Italic"],
+ StyleBox[" Version 8\n\n",
+  FontSize->24],
+ "2.24.201l - initial build extracted from MathSBML 2.9.0 (BES)"
+}], "Text",
+ CellChangeTimes->{{3.5049743670300636`*^9, 3.504974396010721*^9}, {
+  3.50621846330999*^9, 3.506218471578005*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["File Description", "Section",
+ CellChangeTimes->{{3.395408039119268*^9, 3.395408049088715*^9}, {
+  3.5062180912805367`*^9, 3.5062181026997566`*^9}}],
+
+Cell[TextData[{
+ StyleBox[" ",
+  FontSize->16],
+ StyleBox["Filename:\tMathSBML-MathML.nb\n Description:\tMathSBML is an SBML \
+reader for ",
+  FontSize->12],
+ StyleBox["Mathematica \n \t\t",
+  FontSize->12,
+  FontSlant->"Italic"],
+ StyleBox["This is part of the MathSBML Package\n Organization: \tCaltech \
+Biological Network Modeling Center\n License:\tLGPL \n \n",
+  FontSize->12],
+ "    This file is part of MathSBML.\n \n    MathSBML is free software: you \
+can redistribute it and/or modify\n    it under the terms of the GNU Lesser \
+General Public License as published by\n    the Free Software Foundation, \
+either version 3 of the License, or\n    (at your option) any later version.\n\
+\n    This program is distributed in the hope that it will be useful,\n    \
+but WITHOUT ANY WARRANTY; without even the implied warranty of\n    \
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU \
+General Public License for more details.\n\n    You should have received a \
+copy of the GNU Lesser General Public License\n    along with this program.  \
+If not, see <http://www.gnu.org/licenses/>."
+}], "Text",
+ CellChangeTimes->{{3.388248302205469*^9, 3.388248304035112*^9}, 
+   3.388264681197356*^9, {3.3882668683761797`*^9, 3.388266875242931*^9}, 
+   3.388353386077384*^9, {3.388363325911048*^9, 3.3883633263870773`*^9}, 
+   3.3883996477410192`*^9, {3.388761163736053*^9, 3.38876116441009*^9}, {
+   3.389125922604425*^9, 3.389125923136166*^9}, {3.390045172241888*^9, 
+   3.39004517571679*^9}, {3.39019850450497*^9, 3.3901985115655603`*^9}, {
+   3.392748682342765*^9, 3.392748683344193*^9}, {3.3954080212118177`*^9, 
+   3.395408027048024*^9}, {3.395690507776781*^9, 3.3956905087487507`*^9}, {
+   3.3973955266739798`*^9, 3.397395527497595*^9}, {3.401465824219963*^9, 
+   3.401465836954739*^9}, 3.506217737019514*^9, {3.5062177764407835`*^9, 
+   3.506217778375187*^9}, 3.506217826938072*^9, {3.5062180797833166`*^9, 
+   3.506218242226402*^9}, {3.5062184407679505`*^9, 3.506218443950356*^9}, {
+   3.53713716983778*^9, 3.537137174952932*^9}},
+ FontSize->10,
+ Background->None]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Special MathML support", "Section"],
+
+Cell[CellGroupData[{
+
+Cell["piecewise ... piece ... otherwise", "Subsubsection"],
+
+Cell[TextData[{
+ "For ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " \[LessEqual]5.0. This changed in 5.1 with the new ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " Piecewise function.\npiecewise should replace every occurance of \
+XML`MathML`Symbols`Piecewise after an import of a MathML string into ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ "; this is because ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " translates every occurance of piecewise, piece and otherwise into \
+XML`MathML`Symbols`Piecewise, XML`MathML`Symbols`Piece, and \
+XML`MathML`Symbols`Otherwise, which functions are not otherwise instantiated. \
+\n\nnew in 2.3.19\nrevised 2.4.8: If is If[test, value, else-value]; Piece is \
+Piece[value, test]"
+}], "Text"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"piecewise", "[", 
+    RowBox[{
+     RowBox[{"XML`MathML`Symbols`Piece", "[", " ", 
+      RowBox[{"ifclause_", ",", "test_"}], "]"}], ",", " ", 
+     RowBox[{"XML`MathML`Symbols`Otherwise", "[", "elseclause_", "]"}]}], 
+    "]"}], ":=", " ", 
+   RowBox[{"System`If", "[", 
+    RowBox[{"test", ",", " ", "ifclause", ",", " ", "elseclause"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"piecewise", "[", 
+    RowBox[{"XML`MathML`Symbols`Piece", "[", 
+     RowBox[{"ifclause_", ",", " ", "test_"}], "]"}], "]"}], ":=", " ", 
+   RowBox[{"System`If", "[", 
+    RowBox[{"test", ",", " ", "ifclause"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"piecewise", "[", 
+    RowBox[{
+     RowBox[{"XML`MathML`Symbols`Piece", "[", 
+      RowBox[{"ifclause_", ",", " ", "test_"}], "]"}], ",", "otherpieces__", 
+     ",", "  ", 
+     RowBox[{"XML`MathML`Symbols`Otherwise", "[", "elseclause_", "]"}]}], 
+    "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"therest", ",", "f", ",", "returnvalue"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"therest", " ", "=", " ", 
+       RowBox[{"piecewise", "[", 
+        RowBox[{"otherpieces", ",", "  ", 
+         RowBox[{"XML`MathML`Symbols`Otherwise", "[", "elseclause", "]"}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"returnvalue", "=", 
+       RowBox[{"f", "[", 
+        RowBox[{"test", ",", "ifclause", ",", "therest"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", 
+       RowBox[{"returnvalue", "/.", 
+        RowBox[{"{", 
+         RowBox[{"f", "\[Rule]", " ", "System`If"}], "}"}]}], "]"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",
+ InitializationCell->True]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["if2Piecewise, piecewiseIf", "Subsubsection"],
+
+Cell["new in 2.3.19", "Text"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"piecewiseIf", "[", "x___", "]"}], ":=", " ", 
+     RowBox[{"if2piecewise", "[", 
+      RowBox[{"If", "[", "x", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"if2piecewise", "[", 
+      RowBox[{"If", "[", 
+       RowBox[{"a_", ",", "b_"}], "]"}], "]"}], ":=", " ", 
+     RowBox[{"XML`MathML`Symbols`Piecewise", "[", 
+      RowBox[{"XML`MathML`Symbols`Piece", "[", 
+       RowBox[{"a", ",", "b"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"if2piecewise", "[", 
+      RowBox[{"If", "[", 
+       RowBox[{"a_", ",", "b_", ",", " ", 
+        RowBox[{"If", "[", "c__", "]"}]}], "]"}], "]"}], ":=", " ", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "d", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"d", "=", 
+         RowBox[{"if2piecewise", "[", 
+          RowBox[{"If", "[", "c", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"XML`MathML`Symbols`Piecewise", "[", 
+          RowBox[{"XML`MathML`Symbols`Piece", "[", 
+           RowBox[{"a", ",", "b", ",", "d"}], "]"}], "]"}], "//", 
+         "Return"}]}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"if2piecewise", "[", 
+      RowBox[{"If", "[", 
+       RowBox[{"a_", ",", "b_", ",", "c_"}], "]"}], "]"}], ":=", " ", 
+     RowBox[{"XML`MathML`Symbols`Piecewise", "[", 
+      RowBox[{
+       RowBox[{"XML`MathML`Symbols`Piece", "[", 
+        RowBox[{"a", ",", "b"}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"XML`MathML`Symbols`Otherwise", "[", "c", "]"}]}], "]"}]}], 
+    ";"}]}]}]], "Input",
+ InitializationCell->True]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["SymbolicSBMLMathMLToExpression", "Subsubsection"],
+
+Cell["\<\
+this is for importing a cysmbol
+
+this is a wrapper for XML`MathML`SymbolicMathMLToExpression that processes \
+the special csymbol \"time\"
+If other csymbols are added then they should also be processed here. 
+It is based on the assumption that the the MathSBML model will use global`t \
+as the time variable. 
+This could run into trouble if (1) a model has a variable named t in it that \
+does not represent time; and (2) at the same time, the model is read using \
+Context->None. If the model is not read with Context->None then a variable t \
+should not cause a problem.
+
+v 2.5.8 correct definitionURL to include \"/sbml/\" before /symbols
+v 2.5.24 revised to allow encoding & definitionURL in any order; put URL as \
+csymbolTimeURL so its only typed in once\
+\>", "Text"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SymbolicSBMLMathMLToExpression", "[", "q_", "]"}], ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"XML", ",", "r", ",", "\[IndentingNewLine]", 
+      RowBox[{"dbg", "=", "False"}]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{"dbg", ",", 
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<SymbolicSBMLMathMLToExpression: q:\>\"", ",", "q"}], 
+        "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"XML", "[", 
+       RowBox[{"\"\<csymbol\>\"", ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<encoding\>\"", "\[Rule]", "\"\<text\>\""}], ",", 
+          RowBox[{"\"\<definitionURL\>\"", "\[Rule]", "csymbolTimeURL"}]}], 
+         "}"}], ",", 
+        RowBox[{"{", "x_", "}"}]}], "]"}], ":=", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{"dbg", ",", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<csymbol: \>\"", ",", "x"}], "]"}]}], "]"}], ";", 
+        RowBox[{"XMLElement", "[", 
+         RowBox[{"\"\<ci\>\"", ",", 
+          RowBox[{"{", "}"}], ",", 
+          RowBox[{"{", "\"\<Global`t\>\"", "}"}]}], "]"}]}], ")"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"XML", "[", 
+       RowBox[{"\"\<csymbol\>\"", ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<definitionURL\>\"", "\[Rule]", "csymbolTimeURL"}], ",",
+           " ", 
+          RowBox[{"\"\<encoding\>\"", "\[Rule]", "\"\<text\>\""}]}], "}"}], 
+        ",", 
+        RowBox[{"{", "x_", "}"}]}], "]"}], ":=", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{"dbg", ",", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<csymbol: \>\"", ",", "x"}], "]"}]}], "]"}], ";", 
+        RowBox[{"XMLElement", "[", 
+         RowBox[{"\"\<ci\>\"", ",", 
+          RowBox[{"{", "}"}], ",", 
+          RowBox[{"{", "\"\<Global`t\>\"", "}"}]}], "]"}]}], ")"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"XML", "[", "x___", "]"}], ":=", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"If", " ", "[", 
+         RowBox[{"dbg", ",", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<XML:x:\>\"", ",", "x"}], "]"}]}], "]"}], ";", 
+        RowBox[{"XMLElement", "[", "x", "]"}]}], ")"}]}], ";", " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{"r", "=", 
+      RowBox[{"(", 
+       RowBox[{"q", "/.", 
+        RowBox[{"{", 
+         RowBox[{"XMLElement", "\[Rule]", " ", "XML"}], "}"}]}], ")"}]}], ";",
+      "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{"dbg", ",", 
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<SymbolicSBMLMathMLToExpression: r(1):\>\"", ",", "r"}], 
+        "]"}]}], "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"checkNames", "[", "r", "]"}], ";", " ", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"r", " ", "=", " ", 
+      RowBox[{"XML`MathML`SymbolicMathMLToExpression", "[", "r", "]"}]}], ";",
+      "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{"dbg", ",", 
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<SymbolicSBMLMathMLToExpression: r(2):\>\"", ",", "r"}], 
+        "]"}]}], "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+      "bug", " ", "fix", " ", "for", " ", "Mathematica", " ", "Version", " ", 
+       "6.0", " ", "xml", " ", "bug"}], " ", "*)"}], "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"r", "=", 
+      RowBox[{"ToExpression", "[", 
+       RowBox[{"StringReplace", "[", 
+        RowBox[{
+         RowBox[{"stringer", "[", "r", "]"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"\"\<$of$t$\>\"", "\[Rule]", " ", "\"\<[t]\>\""}], "}"}]}], 
+        "]"}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", "r", "]"}], ";"}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.388762642210948*^9, 3.38876264288675*^9}, {
+   3.388777140415853*^9, 3.3887771634740267`*^9}, {3.388777202431862*^9, 
+   3.388777247785966*^9}, 3.388777340744755*^9, 3.388777479373456*^9, 
+   3.388777992943218*^9, {3.388778264294703*^9, 3.388778266762107*^9}, {
+   3.3887783707052383`*^9, 3.3887783716935997`*^9}, {3.396032120215857*^9, 
+   3.39603213893297*^9}, {3.396097054655551*^9, 3.396097055145727*^9}, {
+   3.396101160293195*^9, 3.396101160704668*^9}, {3.396985284333552*^9, 
+   3.396985285241288*^9}, {3.39698547719112*^9, 3.3969854836323137`*^9}, {
+   3.396988630763165*^9, 3.3969886315344687`*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["checkNames", "Subsubsection",
+ CellChangeTimes->{{3.3970858051263027`*^9, 3.397085806392757*^9}}],
+
+Cell["added in 2.666", "Text",
+ CellChangeTimes->{{3.3970858196620693`*^9, 3.3970858219369707`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"checkNames", "[", "xml_", "]"}], ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "ci", ",", "ciG", ",", "  ", "varname", ",", " ", "varvals", ",", " ", 
+        "contexts", ",", "globalnames", ",", " ", "globalvals", ",", " ", 
+        "mathnames", ",", "mathvals", ",", "  ", 
+        RowBox[{"dbg", "=", "False"}], ",", " ", "globaldup", ",", " ", 
+        "mathdup"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"varname", "[", 
+         RowBox[{"\"\<ci\>\"", ",", " ", "_", ",", " ", 
+          RowBox[{"{", "x_", "}"}]}], "]"}], ":=", " ", "x"}], ";", "  ", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"varname", "[", "x___", "]"}], ":=", " ", "$Failed"}], ";", 
+       " ", "\[IndentingNewLine]", 
+       RowBox[{"ci", " ", "=", " ", 
+        RowBox[{"Cases", "[", 
+         RowBox[{"xml", ",", " ", 
+          RowBox[{"XMLElement", "[", 
+           RowBox[{"\"\<ci\>\"", ",", " ", "___"}], "]"}], ",", " ", 
+          "Infinity"}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"ci", " ", "=", " ", 
+        RowBox[{"ci", "/.", 
+         RowBox[{"{", 
+          RowBox[{"XMLElement", "\[Rule]", " ", "varname"}], "}"}]}]}], ";", 
+       " ", "\[IndentingNewLine]", 
+       RowBox[{"ci", " ", "=", " ", 
+        RowBox[{"Union", "[", "ci", "]"}]}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{"\"\<checkNames: ci(1):\>\"", " ", ",", " ", "ci"}], 
+          "]"}]}], "]"}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"ci", " ", "=", " ", 
+        RowBox[{"decontextify", "/@", "ci"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{"\"\<checkNames: ci(2):\>\"", " ", ",", " ", "ci"}], 
+          "]"}]}], "]"}], ";", " ", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"globalnames", "=", 
+        RowBox[{"Names", "[", "\"\<Global`*\>\"", "]"}]}], ";", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{"globalnames", " ", "=", " ", 
+        RowBox[{"Intersection", "[", 
+         RowBox[{"ci", ",", " ", "globalnames"}], "]"}]}], ";", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{"globalvals", "  ", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ToString", "[", " ", 
+           RowBox[{"ToExpression", "[", "#", "]"}], "]"}], "&"}], "/@", 
+         "globalnames"}]}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"globaldup", "=", 
+        RowBox[{"MapThread", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"#1", " ", "\[NotEqual]", " ", "#2"}], "&"}], " ", ",", 
+          RowBox[{"{", 
+           RowBox[{"globalnames", ",", " ", "globalvals"}], "}"}]}], " ", 
+         "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"globaldup", " ", "=", " ", 
+        RowBox[{"Pick", "[", 
+         RowBox[{"globalnames", ",", " ", "globaldup"}], "]"}]}], ";", " ", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"mathnames", " ", "=", " ", 
+        RowBox[{"Names", "[", "\"\<MathSBML`*\>\"", "]"}]}], ";", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{"mathnames", "=", 
+        RowBox[{"Intersection", "[", 
+         RowBox[{"ci", ",", " ", "mathnames"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"mathvals", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ToString", "[", 
+           RowBox[{"ToExpression", "[", "#", "]"}], "]"}], "&"}], "/@", 
+         "mathnames"}]}], ";", "  ", "\[IndentingNewLine]", 
+       RowBox[{"mathdup", "=", 
+        RowBox[{"MapThread", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"#1", " ", "\[NotEqual]", " ", "#2"}], "&"}], " ", ",", 
+          RowBox[{"{", 
+           RowBox[{"mathnames", ",", " ", "mathvals"}], "}"}]}], " ", "]"}]}],
+        ";", "\[IndentingNewLine]", 
+       RowBox[{"mathdup", " ", "=", " ", 
+        RowBox[{"Pick", "[", 
+         RowBox[{"mathnames", ",", " ", "mathdup"}], "]"}]}], ";", " ", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", "\[IndentingNewLine]", 
+          RowBox[{
+          "\"\<checknames: globalnames: \>\"", ",", " ", "globalnames", ",", 
+           " ", "\[IndentingNewLine]", "\"\<\\nchecknames: globalvals: \>\"", 
+           ",", " ", 
+           RowBox[{"Short", "[", "globalvals", "]"}], ",", " ", 
+           "\[IndentingNewLine]", "\"\<\\nchecknames: globaldup: \>\"", ",", 
+           " ", "globaldup", ",", " ", "\[IndentingNewLine]", 
+           "\"\<\\nchecknames: mathnames: \>\"", ",", " ", "mathnames", ",", 
+           "\[IndentingNewLine]", "\"\<\\nchecknames: mathvals: \>\"", ",", 
+           " ", 
+           RowBox[{"Short", "[", "mathvals", "]"}], ",", " ", 
+           "\[IndentingNewLine]", "\"\<\\nchecknames: mathdup: \>\"", ",", 
+           " ", "mathdup"}], "\[IndentingNewLine]", "]"}]}], "]"}], ";", " ", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Print", "[", 
+          RowBox[{
+           RowBox[{"\"\<Warning: \>\"", "//", "boldRed"}], ",", " ", 
+           RowBox[{"\"\<possible conflict of \>\"", "//", "boldBlack"}], ",", 
+           " ", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"\"\<Global`\>\"", "<>", "#"}], ")"}], "//", 
+            "boldBlue"}], ",", " ", 
+           RowBox[{"\"\< with \>\"", "//", "boldBlack"}], ",", " ", 
+           RowBox[{
+            RowBox[{"identifyID", "[", "#", "]"}], "//", "boldBlue"}], ",", 
+           " ", "\"\< \>\"", ",", " ", 
+           RowBox[{"#", "//", "boldBlue"}], ",", " ", 
+           RowBox[{"\"\<\\nAttempting recovery via \>\"", "//", "boldBlack"}],
+            ",", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"\"\<Clear[\>\"", "<>", "#", "<>", "\"\<]\>\""}], ")"}], 
+            "//", "boldBlue"}], ",", "  ", 
+           RowBox[{
+           "\"\<  (may produce unexpected results) ...\>\"", "//", 
+            "boldBlack"}]}], " ", "]"}], "&"}], "/@", "globaldup"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToExpression", " ", "[", 
+          RowBox[{"Clear", "[", "#", "]"}], "]"}], "&"}], "/@", "globaldup"}],
+        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Print", "[", 
+          RowBox[{
+           RowBox[{"\"\<Warning: \>\"", "//", "boldRed"}], ",", " ", 
+           RowBox[{"\"\<possible conflict of \>\"", "//", "boldBlack"}], ",", 
+           " ", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"\"\<MathSBML`\>\"", "<>", "#"}], ")"}], "//", 
+            "boldBlue"}], ",", " ", 
+           RowBox[{"\"\< with \>\"", "//", "boldBlack"}], ",", " ", 
+           RowBox[{
+            RowBox[{"identifyID", "[", "#", "]"}], "//", "boldBlue"}], ",", 
+           " ", "\"\< \>\"", ",", " ", 
+           RowBox[{"#", "//", "boldBlue"}], ",", " ", 
+           RowBox[{"\"\<\\nAttempting recovery via \>\"", "//", "boldBlack"}],
+            ",", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"\"\<Clear[\>\"", "<>", "#", "<>", "\"\<]\>\""}], ")"}], 
+            "//", "boldBlue"}], ",", "  ", 
+           RowBox[{
+           "\"\< (may produce unexpected results) ...\>\"", "//", 
+            "boldBlack"}]}], " ", "]"}], "&"}], "/@", "mathdup"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToExpression", "[", 
+          RowBox[{"Clear", "[", "#", "]"}], "]"}], "&"}], "/@", "mathdup"}], 
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "]"}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ciG", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"contextify", "[", 
+           RowBox[{"#", ",", " ", "\"\<Global\>\""}], "]"}], "&"}], "/@", 
+         "ci"}]}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{"\"\<checkNames: ciG:\>\"", " ", ",", " ", "ciG"}], "]"}]}],
+         "]"}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"varvals", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ToString", "[", 
+           RowBox[{"ToExpression", "[", "#", "]"}], "]"}], "&"}], "/@", 
+         "ciG"}]}], ";", " ", "\[IndentingNewLine]", 
+       RowBox[{"varvals", " ", "=", " ", 
+        RowBox[{"Not", "/@", 
+         RowBox[{"MapThread", "[", 
+          RowBox[{"Equal", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"varvals", ",", " ", "ci"}], "}"}]}], "]"}]}]}], ";", " ",
+        "\[IndentingNewLine]", 
+       RowBox[{"varvals", " ", "=", " ", 
+        RowBox[{"Pick", "[", 
+         RowBox[{"ci", ",", " ", "varvals"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"contexts", " ", "=", 
+        RowBox[{"ToString", "/@", 
+         RowBox[{"(", " ", 
+          RowBox[{"Context", "/@", "varvals"}], ")"}]}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{
+          "\"\<checkNames: varvals:\>\"", " ", ",", " ", "varvals", ",", " ", 
+           "\"\<\\ncheckNames: contexts: \>\"", ",", " ", "contexts"}], 
+          "]"}]}], "]"}], ";", " ", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "turn", " ", "off", " ", "checking", " ", "of", " ", "variables", " ",
+          "like", " ", "modelContext`B$of$t$"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"varvals", "=", 
+        RowBox[{"Select", "[", 
+         RowBox[{"varvals", ",", " ", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"ToString", "[", 
+               RowBox[{"Context", "[", "#", "]"}], "]"}], "\[Equal]", 
+              "\"\<Global`\>\""}], " ", "\[Or]", "  ", 
+             RowBox[{
+              RowBox[{"ToString", "[", 
+               RowBox[{"Context", "[", "#", "]"}], "]"}], "\[Equal]", 
+              "\"\<MathSBML`\>\""}]}], ")"}], "&"}]}], "]"}]}], ";", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{"contexts", " ", "=", " ", 
+        RowBox[{"ToString", "/@", 
+         RowBox[{"(", " ", 
+          RowBox[{"Context", "/@", "varvals"}], ")"}]}]}], ";", " ", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"dbg", ",", " ", 
+         RowBox[{"Print", "[", 
+          RowBox[{"\"\<checkNames: varvals:\>\"", " ", ",", " ", "varvals"}], 
+          "]"}]}], "]"}], ";", " ", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"MapThread", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Print", "[", 
+           RowBox[{
+            RowBox[{"\"\<Warning: \>\"", "//", "boldRed"}], ",", 
+            RowBox[{
+             RowBox[{"identifyID", "[", "#1", "]"}], "//", "boldBlue"}], ",", 
+            " ", "\"\< \>\"", ",", " ", 
+            RowBox[{"#1", "//", "boldBlue"}], ",", " ", 
+            RowBox[{"\"\< conflicts with \>\"", "//", "boldBlack"}], ",", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"#2", "<>", "#1"}], ")"}], "//", "boldBlue"}], ",", " ", 
+            RowBox[{
+            "\"\<which may cause unexpected results. Use \>\"", "//", 
+             "boldBlack"}], ",", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+              "\"\<Clear[\>\"", "<>", " ", "#2", "<>", "#1", "<>", 
+               "\"\<]\>\""}], ")"}], "//", "boldBlue"}], ",", " ", 
+            RowBox[{
+            "\"\< to avoid unexpected conflicts with this variable. The \
+previous\\nAttempting auto-recovery ... this may also cause unexpected \
+results. The following previous value will be cleared:\\n \>\"", "//", 
+             "boldBlack"}], ",", " ", 
+            RowBox[{
+             RowBox[{"Short", "[", 
+              RowBox[{"ToExpression", "[", 
+               RowBox[{"#2", "<>", "#1"}], "]"}], "]"}], "//", "boldBlue"}]}],
+            " ", "]"}], "&"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"varvals", ",", " ", "contexts"}], "}"}]}], "]"}], ";"}]}], 
+     " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToExpression", "[", 
+          RowBox[{"Clear", "[", "#", "]"}], "]"}], "&"}], "/@", "varvals"}], 
+       ";"}], " ", "*)"}], "\[IndentingNewLine]", "]"}]}], ";"}], 
+  " "}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.396985486497655*^9, 3.396985502525238*^9}, {
+   3.396985544113915*^9, 3.396985682381139*^9}, {3.396985714296752*^9, 
+   3.396985717045796*^9}, {3.396985781053802*^9, 3.396985815642912*^9}, {
+   3.396985994806114*^9, 3.396985998457131*^9}, {3.396986046039125*^9, 
+   3.396986067099978*^9}, {3.396986138851089*^9, 3.396986185304579*^9}, {
+   3.3969862697768784`*^9, 3.396986278259531*^9}, {3.39698633697847*^9, 
+   3.396986420125388*^9}, 3.39698645713614*^9, {3.396986526323053*^9, 
+   3.3969865291324577`*^9}, {3.3969865645573673`*^9, 3.396986771080591*^9}, {
+   3.3969868038288307`*^9, 3.3969868472976418`*^9}, {3.396986975324758*^9, 
+   3.39698700454634*^9}, {3.396987542717313*^9, 3.3969876318608723`*^9}, {
+   3.396987739824771*^9, 3.3969877603760138`*^9}, {3.396987820542198*^9, 
+   3.3969878437644787`*^9}, {3.396988469660982*^9, 3.396988492016265*^9}, {
+   3.3969885271616783`*^9, 3.396988562492833*^9}, {3.396988593643115*^9, 
+   3.396988665121229*^9}, {3.396994139725663*^9, 3.396994236236453*^9}, {
+   3.3969943250602083`*^9, 3.396994325578608*^9}, {3.39699553544631*^9, 
+   3.396995536090087*^9}, {3.397047051768324*^9, 3.397047126125134*^9}, {
+   3.397048495031988*^9, 3.397048511227192*^9}, {3.397048606154991*^9, 
+   3.397048802180814*^9}, {3.397049447930554*^9, 3.397049448669487*^9}, {
+   3.3970495172543507`*^9, 3.397049518371554*^9}, 3.3970495901950274`*^9, {
+   3.39704963318076*^9, 3.397049703802375*^9}, {3.397049744688932*^9, 
+   3.3970497451004543`*^9}, {3.3970498322918043`*^9, 3.397049833284544*^9}, {
+   3.397052159360731*^9, 3.397052160122861*^9}, {3.397052224976243*^9, 
+   3.3970522575610867`*^9}, {3.39705251281364*^9, 3.39705251555488*^9}, {
+   3.397052757738822*^9, 3.3970527644000483`*^9}, {3.39705280142583*^9, 
+   3.397052806562842*^9}, 3.3970528475700693`*^9, {3.3970529040079823`*^9, 
+   3.397052919436462*^9}, {3.397052977504423*^9, 3.397052995607114*^9}, {
+   3.397053115680107*^9, 3.3970531390194283`*^9}, {3.397053169121811*^9, 
+   3.397053224578806*^9}, {3.397053341232657*^9, 3.3970534976084146`*^9}, {
+   3.397053541641178*^9, 3.3970536966181383`*^9}, {3.397053746288911*^9, 
+   3.39705376935633*^9}, {3.397053830008957*^9, 3.397054147438014*^9}, 
+   3.397054181333647*^9}]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Exit", "Section",
+ CellChangeTimes->{{3.504974410365542*^9, 3.504974411984635*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LTPrint", "[", "\"\<Loaded Special MathML Support\>\"", "]"}], 
+  ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.5049744147447925`*^9, 3.5049744303946877`*^9}, {
+  3.506452365252861*^9, 3.506452365430482*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+AutoGeneratedPackage->Automatic,
+WindowSize->{701, 858},
+WindowMargins->{{17, Automatic}, {Automatic, -8}},
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PastelColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 110, 4, 121, "Title"],
+Cell[692, 28, 390, 11, 135, "Text"],
+Cell[CellGroupData[{
+Cell[1107, 43, 154, 2, 78, "Section"],
+Cell[1264, 47, 2092, 37, 370, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3393, 89, 41, 0, 78, "Section"],
+Cell[CellGroupData[{
+Cell[3459, 93, 58, 0, 30, "Subsubsection"],
+Cell[3520, 95, 766, 19, 70, "Text"],
+Cell[4289, 116, 1844, 49, 70, "Input",
+ InitializationCell->True]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[6170, 170, 50, 0, 24, "Subsubsection"],
+Cell[6223, 172, 29, 0, 70, "Text"],
+Cell[6255, 174, 1794, 46, 70, "Input",
+ InitializationCell->True]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[8086, 225, 55, 0, 24, "Subsubsection"],
+Cell[8144, 227, 784, 16, 70, "Text"],
+Cell[8931, 245, 4769, 111, 70, "Input",
+ InitializationCell->True]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[13737, 361, 103, 1, 24, "Subsubsection"],
+Cell[13843, 364, 100, 1, 70, "Text"],
+Cell[13946, 367, 15202, 327, 70, "Input",
+ InitializationCell->True]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29197, 700, 89, 1, 78, "Section"],
+Cell[29289, 703, 263, 6, 40, "Input",
+ InitializationCell->True]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

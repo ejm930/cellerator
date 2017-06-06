@@ -1,0 +1,3879 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[    168258,       3870]
+NotebookOptionsPosition[    165208,       3764]
+NotebookOutlinePosition[    165740,       3783]
+CellTagsIndexPosition[    165697,       3780]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Build-xSSA-lite-Palette", "Subtitle",
+ CellChangeTimes->{{3.443202054136792*^9, 3.443202057648724*^9}, {
+  3.5085203811953363`*^9, 3.50852038381758*^9}}],
+
+Cell["\<\
+Creates the xSSA-lite palette.
+
+To build the palette,  run Evaluation >> Evaluate Notebook from the menu bar.
+
+B.E.Shapiro 7 Mar 2011 from Build-xSSA-Palette
+Last revised 15 Oct 2012 for Launchpad File Release
+GPL License Applies\
+\>", "Text",
+ CellChangeTimes->{{3.443202014503148*^9, 3.443202082735738*^9}, {
+   3.444484370857093*^9, 3.444484376202932*^9}, {3.508520387322071*^9, 
+   3.508520387905497*^9}, {3.508522807724626*^9, 3.508522827147819*^9}, 
+   3.559304979744771*^9, {3.559305023847685*^9, 3.559305026911982*^9}, {
+   3.5593058268661137`*^9, 3.55930583887401*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["define some functions that are used to build the help boxes", \
+"Subsubsection",
+ CellChangeTimes->{{3.443202000618495*^9, 3.443202008741234*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"hint", "[", "hint_", "]"}], ":=", 
+  RowBox[{"DisplayForm", "[", " ", 
+   RowBox[{"TagBox", "[", 
+    RowBox[{
+     RowBox[{"FrameBox", "[", "hint", "]"}], ",", " ", 
+     "\"\<Placeholder\>\""}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.443194369127111*^9, 3.443194396570023*^9}, {
+  3.443195593911488*^9, 3.443195594667749*^9}, {3.443199822562184*^9, 
+  3.443199851053967*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"mytooltip", "[", 
+    RowBox[{"xpression_", ",", " ", "tip_"}], "]"}], ":=", " ", 
+   RowBox[{"Tooltip", "[", 
+    RowBox[{"xpression", ",", " ", 
+     RowBox[{"Style", "[", 
+      RowBox[{
+       RowBox[{"TraditionalForm", "[", "tip", "]"}], ",", " ", 
+       RowBox[{"FontFamily", "\[Rule]", " ", "Times"}]}], "]"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.443197160559396*^9, 3.443197215434938*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["define mass-action buttons and palette", "Subsubsection",
+ CellChangeTimes->{{3.443201486731297*^9, 3.44320149368334*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"mabutton1", "=", 
+  RowBox[{"PasteButton", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mytooltip", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Placeholder]", "\[ShortRightArrow]", "\[Placeholder]"}], 
+       "}"}], ",", 
+      "\"\<A\[ShortRightArrow]B means A \!\(\*OverscriptBox[\(\
+\[ShortRightArrow]\), \(k\)]\) B\>\""}], "]"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"hint", "[", "\"\<Source\>\"", "]"}], "\[ShortRightArrow]", 
+       RowBox[{"hint", "[", "\"\<Product\>\"", "]"}]}], ",", 
+      RowBox[{"hint", "[", "\"\<rate constant\>\"", "]"}]}], " ", "}"}], ",", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"Appearance", "\[Rule]", " ", "\"\<DialogBox\>\""}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input"],
+
+Cell[BoxData[
+ ButtonBox[
+  TagBox[
+   TooltipBox[
+    RowBox[{"{", 
+     RowBox[{"\[Placeholder]", "\[ShortRightArrow]", "\[Placeholder]"}], "}"}],
+    StyleBox[
+     TagBox[
+      FormBox[
+      "\"A\[ShortRightArrow]B means A \\!\\(\\*OverscriptBox[\\(\
+\[ShortRightArrow]\\), \\(k\\)]\\) B\"", TraditionalForm], TraditionalForm, 
+      Editable -> True], FontFamily -> Times, StripOnInput -> False]],
+   Annotation[#, 
+    Style[
+     TraditionalForm[
+     "A\[ShortRightArrow]B means A \
+\!\(\*OverscriptBox[\(\[ShortRightArrow]\), \(k\)]\) B"], FontFamily -> 
+     Times], "Tooltip"]& ],
+  Appearance->"DialogBox",
+  BaseStyle->"Paste",
+  ButtonData->RowBox[{"{", 
+     RowBox[{
+       RowBox[{
+         TagBox[
+          TagBox[
+           FrameBox["Source"], "Placeholder"], DisplayForm], 
+         "\[ShortRightArrow]", 
+         TagBox[
+          TagBox[
+           FrameBox["Product"], "Placeholder"], DisplayForm]}], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["rate constant"], "Placeholder"], DisplayForm]}], 
+     "}"}]]], "Output",
+ CellChangeTimes->{
+  3.443278837142886*^9, 3.443454885297942*^9, 3.443888331548333*^9, 
+   3.444160558031894*^9, 3.444162781866266*^9, 3.444482312484144*^9, 
+   3.444482511139993*^9, 3.444482914920405*^9, 3.444483263612506*^9, {
+   3.444483708193297*^9, 3.444483727986188*^9}, 3.4461465250274*^9, 
+   3.508520425790641*^9, 3.5085227014831247`*^9, 3.559305070776533*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"mabutton2", "=", 
+  RowBox[{"PasteButton", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mytooltip", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       OverscriptBox[
+        RowBox[{"\[Placeholder]", "\[ShortRightArrow]", "\[Placeholder]"}], 
+        "\[Placeholder]"], "}"}], ",", 
+      "\"\<\!\(\*OverscriptBox[\(A \[ShortRightArrow] B\), \(X\)]\) means A+X \
+\!\(\*OverscriptBox[\(\[ShortRightArrow]\), \(k\)]\) B+X\>\""}], "]"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Overscript", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Placeholder", "[", "\"\<Substrate\>\"", "]"}], "\[Rule]", 
+         " ", 
+         RowBox[{"Placeholder", "[", "\"\<Product\>\"", "]"}]}], ",", " ", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Placeholder", "[", "\"\<modifier\>\"", "]"}]}], "]"}], ",", 
+      RowBox[{"hint", "[", "\"\<rate constant\>\"", "]"}]}], " ", "}"}], ",", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"Appearance", "\[Rule]", " ", "\"\<DialogBox\>\""}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{3.443206132306297*^9}],
+
+Cell[BoxData[
+ ButtonBox[
+  TagBox[
+   TooltipBox[
+    RowBox[{"{", 
+     OverscriptBox[
+      RowBox[{"\[Placeholder]", "\[ShortRightArrow]", "\[Placeholder]"}], 
+      "\[Placeholder]"], "}"}],
+    StyleBox[
+     TagBox[
+      FormBox[
+      "\"\\!\\(\\*OverscriptBox[\\(A \[ShortRightArrow] B\\), \\(X\\)]\\) \
+means A+X \\!\\(\\*OverscriptBox[\\(\[ShortRightArrow]\\), \\(k\\)]\\) B+X\"",
+        TraditionalForm], TraditionalForm, Editable -> True], FontFamily -> 
+     Times, StripOnInput -> False]],
+   Annotation[#, 
+    Style[
+     TraditionalForm[
+     "\!\(\*OverscriptBox[\(A \[ShortRightArrow] B\), \(X\)]\) means A+X \!\(\
+\*OverscriptBox[\(\[ShortRightArrow]\), \(k\)]\) B+X"], FontFamily -> Times], 
+    "Tooltip"]& ],
+  Appearance->"DialogBox",
+  BaseStyle->"Paste",
+  ButtonData->RowBox[{"{", 
+     RowBox[{
+       OverscriptBox[
+        RowBox[{
+          TagBox[
+           FrameBox["\"Substrate\""], "Placeholder"], "\[Rule]", 
+          TagBox[
+           FrameBox["\"Product\""], "Placeholder"]}], 
+        TagBox[
+         FrameBox["\"modifier\""], "Placeholder"]], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["rate constant"], "Placeholder"], DisplayForm]}], 
+     "}"}]]], "Output",
+ CellChangeTimes->{
+  3.443278837154919*^9, 3.443454885312453*^9, 3.443888331561552*^9, 
+   3.444160558044687*^9, 3.44416278187844*^9, 3.444482312495501*^9, 
+   3.444482511321882*^9, 3.444482915014126*^9, 3.444483263699776*^9, {
+   3.4444837082814*^9, 3.444483727993953*^9}, 3.446146525076337*^9, 
+   3.508520427717939*^9, 3.508522701513687*^9, 3.55930507080987*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"mabutton3", "=", 
+  RowBox[{"PasteButton", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mytooltip", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+        "\[Placeholder]", "\[RightArrowLeftArrow]", "\[Placeholder]"}], ",", 
+        "\[Placeholder]"}], "}"}], ",", 
+      "\"\<A\[RightArrowLeftArrow]B means A \!\(\*UnderoverscriptBox[\(\
+\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \(r\)], SubscriptBox[\(k\), \(f\
+\)]]\) B\>\""}], "]"}], "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"hint", "[", "\"\<Species1\>\"", "]"}], 
+       "\[RightArrowLeftArrow]", 
+       RowBox[{"hint", "[", "\"\<Species\>\"", "]"}]}], ",", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(forward\)]\)\>\"", "]"}], 
+      " ", ",", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(reverse\)]\)\>\"", 
+       "]"}]}], "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"Appearance", "\[Rule]", " ", "\"\<DialogBox\>\""}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input"],
+
+Cell[BoxData[
+ ButtonBox[
+  TagBox[
+   TooltipBox[
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\[Placeholder]", "\[RightArrowLeftArrow]", "\[Placeholder]"}], 
+      ",", "\[Placeholder]"}], "}"}],
+    StyleBox[
+     TagBox[
+      FormBox[
+      "\"A\[RightArrowLeftArrow]B means A \\!\\(\\*UnderoverscriptBox[\\(\
+\[RightArrowLeftArrow]\\), SubscriptBox[\\(k\\), \\(r\\)], \
+SubscriptBox[\\(k\\), \\(f\\)]]\\) B\"", TraditionalForm], TraditionalForm, 
+      Editable -> True], FontFamily -> Times, StripOnInput -> False]],
+   Annotation[#, 
+    Style[
+     TraditionalForm[
+     "A\[RightArrowLeftArrow]B means A \!\(\*UnderoverscriptBox[\(\
+\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \(r\)], SubscriptBox[\(k\), \(f\
+\)]]\) B"], FontFamily -> Times], "Tooltip"]& ],
+  Appearance->"DialogBox",
+  BaseStyle->"Paste",
+  ButtonData->RowBox[{"{", 
+     RowBox[{
+       RowBox[{
+         TagBox[
+          TagBox[
+           FrameBox["Species1"], "Placeholder"], DisplayForm], 
+         "\[RightArrowLeftArrow]", 
+         TagBox[
+          TagBox[
+           FrameBox["Species"], "Placeholder"], DisplayForm]}], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(forward\)]\)"], "Placeholder"],
+         DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(reverse\)]\)"], "Placeholder"],
+         DisplayForm]}], "}"}]]], "Output",
+ CellChangeTimes->{
+  3.443278837225418*^9, 3.443454885325963*^9, 3.443888331576556*^9, 
+   3.444160558110166*^9, 3.444162781961223*^9, 3.444482312508701*^9, 
+   3.44448251141913*^9, 3.444482915024849*^9, 3.444483263709535*^9, {
+   3.444483708289452*^9, 3.444483728003736*^9}, 3.44614652514509*^9, 
+   3.508520430165228*^9, 3.5085227015433397`*^9, 3.559305070927946*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"mabutton4", "=", 
+  RowBox[{"PasteButton", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mytooltip", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{
+         "\[Placeholder]", "\[RightArrowLeftArrow]", "\[Placeholder]"}], 
+         "\[Placeholder]"], ",", "\[Placeholder]"}], "}"}], ",", 
+      "\"\<\!\(\*OverscriptBox[\(A \[RightArrowLeftArrow] B\), \(\
+\[ScriptCapitalE]\)]\) means A+\[ScriptCapitalE] \!\(\*UnderoverscriptBox[\(\
+\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \(2\)], SubscriptBox[\(k\), \(1\
+\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B+\[ScriptCapitalE]\>\""}], "]"}], 
+    "\[IndentingNewLine]", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Overscript", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Placeholder", "[", "\"\<Substrate\>\"", "]"}], 
+         "\[RightArrowLeftArrow]", 
+         RowBox[{"Placeholder", "[", "\"\<Product\>\"", "]"}]}], 
+        "\[IndentingNewLine]", ",", " ", 
+        RowBox[{"Placeholder", "[", "\"\<Enzyme\>\"", "]"}]}], 
+       "\[IndentingNewLine]", "]"}], ",", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(1\)]\)\>\"", "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(2\)]\)\>\"", "]"}], ",", 
+      " ", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(3\)]\)\>\"", "]"}], ",", 
+      " ", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(4\)]\)\>\"", "]"}]}], 
+     "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"Appearance", "\[Rule]", " ", "\"\<DialogBox\>\""}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.44320003506462*^9, 3.443200037430441*^9}, 
+   3.443201001074485*^9, {3.443201033891508*^9, 3.44320104313198*^9}, 
+   3.443206349627216*^9}],
+
+Cell[BoxData[
+ ButtonBox[
+  TagBox[
+   TooltipBox[
+    RowBox[{"{", 
+     RowBox[{
+      OverscriptBox[
+       RowBox[{"\[Placeholder]", "\[RightArrowLeftArrow]", "\[Placeholder]"}],
+        "\[Placeholder]"], ",", "\[Placeholder]"}], "}"}],
+    StyleBox[
+     TagBox[
+      FormBox[
+      "\"\\!\\(\\*OverscriptBox[\\(A \[RightArrowLeftArrow] B\\), \\(\
+\[ScriptCapitalE]\\)]\\) means A+\[ScriptCapitalE] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(2\\)], SubscriptBox[\\(k\\), \\(1\\)]]\\) A\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(4\\)], SubscriptBox[\\(k\\), \\(3\\)]]\\) B+\
+\[ScriptCapitalE]\"", TraditionalForm], TraditionalForm, Editable -> True], 
+     FontFamily -> Times, StripOnInput -> False]],
+   Annotation[#, 
+    Style[
+     TraditionalForm[
+     "\!\(\*OverscriptBox[\(A \[RightArrowLeftArrow] B\), \(\[ScriptCapitalE]\
+\)]\) means A+\[ScriptCapitalE] \!\(\*UnderoverscriptBox[\(\
+\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \(2\)], SubscriptBox[\(k\), \(1\
+\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B+\[ScriptCapitalE]"], FontFamily -> 
+     Times], "Tooltip"]& ],
+  Appearance->"DialogBox",
+  BaseStyle->"Paste",
+  ButtonData->RowBox[{"{", 
+     RowBox[{
+       OverscriptBox[
+        RowBox[{
+          TagBox[
+           FrameBox["\"Substrate\""], "Placeholder"], 
+          "\[RightArrowLeftArrow]", 
+          TagBox[
+           FrameBox["\"Product\""], "Placeholder"]}], 
+        TagBox[
+         FrameBox["\"Enzyme\""], "Placeholder"]], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(1\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(2\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(3\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(4\)]\)"], "Placeholder"], 
+        DisplayForm]}], "}"}]]], "Output",
+ CellChangeTimes->{
+  3.443278837240526*^9, 3.44345488534011*^9, 3.443888331592437*^9, 
+   3.4441605581262*^9, 3.444162782063163*^9, 3.444482312522812*^9, 
+   3.444482511427102*^9, 3.444482915032788*^9, 3.44448326371753*^9, {
+   3.44448370829788*^9, 3.44448372801376*^9}, 3.446146525195836*^9, 
+   3.508520433150231*^9, 3.508522701575433*^9, 3.5593050709702663`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"mabutton5", "=", 
+  RowBox[{"PasteButton", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mytooltip", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        UnderoverscriptBox[
+         RowBox[{
+         "\[Placeholder]", "\[RightArrowLeftArrow]", "\[Placeholder]"}], 
+         "\[Placeholder]", "\[Placeholder]"], ",", "\[Placeholder]"}], "}"}], 
+      ",", "\"\<\!\(\*UnderoverscriptBox[\(A \[RightArrowLeftArrow] B\), \(\
+\[ScriptCapitalF]\), \(\[ScriptCapitalE]\)]\) means A+\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(2\)], SubscriptBox[\(k\), \(1\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B+\[ScriptCapitalE] and B+\
+\[ScriptCapitalF] \!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), \
+SubscriptBox[\(k\), \(6\)], SubscriptBox[\(k\), \(5\)]]\) B\[ScriptCapitalF] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(8\)], SubscriptBox[\(k\), \(7\)]]\) B+\[ScriptCapitalF]\>\""}], "]"}], 
+    "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      UnderoverscriptBox[
+       RowBox[{
+        RowBox[{"hint", "[", "\"\<Substrate\>\"", "]"}], 
+        "\[RightArrowLeftArrow]", 
+        RowBox[{"hint", "[", "\"\<Product\>\"", "]"}]}], 
+       RowBox[{"hint", "[", "\"\<Reverse Enzyme\>\"", "]"}], 
+       RowBox[{"hint", "[", "\"\<Forward Enzyme\>\"", "]"}]], ",", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(1\)]\)\>\"", "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(2\)]\)\>\"", "]"}], ",", 
+      " ", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(3\)]\)\>\"", "]"}], ",", 
+      " ", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(4\)]\)\>\"", "]"}], ",", 
+      " ", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(5\)]\)\>\"", "]"}], ",", 
+      " ", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(6\)]\)\>\"", "]"}], ",", 
+      " ", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(7\)]\)\>\"", "]"}], ",", 
+      " ", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(8\)]\)\>\"", "]"}]}], 
+     "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"Appearance", "\[Rule]", " ", "\"\<DialogBox\>\""}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input"],
+
+Cell[BoxData[
+ ButtonBox[
+  TagBox[
+   TooltipBox[
+    RowBox[{"{", 
+     RowBox[{
+      UnderoverscriptBox[
+       RowBox[{"\[Placeholder]", "\[RightArrowLeftArrow]", "\[Placeholder]"}],
+        "\[Placeholder]", "\[Placeholder]"], ",", "\[Placeholder]"}], "}"}],
+    StyleBox[
+     TagBox[
+      FormBox[
+      "\"\\!\\(\\*UnderoverscriptBox[\\(A \[RightArrowLeftArrow] B\\), \\(\
+\[ScriptCapitalF]\\), \\(\[ScriptCapitalE]\\)]\\) means A+\[ScriptCapitalE] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(2\\)], SubscriptBox[\\(k\\), \\(1\\)]]\\) A\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(4\\)], SubscriptBox[\\(k\\), \\(3\\)]]\\) B+\
+\[ScriptCapitalE] and B+\[ScriptCapitalF] \\!\\(\\*UnderoverscriptBox[\\(\
+\[RightArrowLeftArrow]\\), SubscriptBox[\\(k\\), \\(6\\)], \
+SubscriptBox[\\(k\\), \\(5\\)]]\\) B\[ScriptCapitalF] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(8\\)], SubscriptBox[\\(k\\), \\(7\\)]]\\) B+\
+\[ScriptCapitalF]\"", TraditionalForm], TraditionalForm, Editable -> True], 
+     FontFamily -> Times, StripOnInput -> False]],
+   Annotation[#, 
+    Style[
+     TraditionalForm[
+     "\!\(\*UnderoverscriptBox[\(A \[RightArrowLeftArrow] B\), \(\
+\[ScriptCapitalF]\), \(\[ScriptCapitalE]\)]\) means A+\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(2\)], SubscriptBox[\(k\), \(1\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B+\[ScriptCapitalE] and B+\
+\[ScriptCapitalF] \!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), \
+SubscriptBox[\(k\), \(6\)], SubscriptBox[\(k\), \(5\)]]\) B\[ScriptCapitalF] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(8\)], SubscriptBox[\(k\), \(7\)]]\) B+\[ScriptCapitalF]"], FontFamily -> 
+     Times], "Tooltip"]& ],
+  Appearance->"DialogBox",
+  BaseStyle->"Paste",
+  ButtonData->RowBox[{"{", 
+     RowBox[{
+       UnderoverscriptBox[
+        RowBox[{
+          TagBox[
+           TagBox[
+            FrameBox["Substrate"], "Placeholder"], DisplayForm], 
+          "\[RightArrowLeftArrow]", 
+          TagBox[
+           TagBox[
+            FrameBox["Product"], "Placeholder"], DisplayForm]}], 
+        TagBox[
+         TagBox[
+          FrameBox["Reverse Enzyme"], "Placeholder"], DisplayForm], 
+        TagBox[
+         TagBox[
+          FrameBox["Forward Enzyme"], "Placeholder"], DisplayForm]], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(1\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(2\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(3\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(4\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(5\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(6\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(7\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(8\)]\)"], "Placeholder"], 
+        DisplayForm]}], "}"}]]], "Output",
+ CellChangeTimes->{
+  3.443278837259719*^9, 3.443454885411954*^9, 3.443888331612985*^9, 
+   3.444160558167843*^9, 3.444162782162884*^9, 3.444482312562882*^9, 
+   3.444482511435953*^9, 3.444482915041204*^9, 3.44448326372743*^9, {
+   3.444483708306977*^9, 3.44448372802441*^9}, 3.446146525238486*^9, 
+   3.508520435788447*^9, 3.5085227016115828`*^9, 3.55930507101653*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"mabutton6", "=", 
+  RowBox[{"PasteButton", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mytooltip", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        OverscriptBox[
+         RowBox[{"\[Placeholder]", "\[Equilibrium]", "\[Placeholder]"}], 
+         "\[Placeholder]"], ",", "\[Placeholder]"}], "}"}], ",", 
+      "\"\<\!\(\*OverscriptBox[\(A \[Equilibrium] B\), \(\[ScriptCapitalE]\)]\
+\) means A+\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(2\)], SubscriptBox[\(k\), \(1\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(6\)], SubscriptBox[\(k\), \(5\)]]\) B+\[ScriptCapitalE]\>\""}], "]"}], 
+    "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Overscript", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Placeholder", "[", "\"\<Substrate\>\"", "]"}], 
+         "\[Equilibrium]", 
+         RowBox[{"Placeholder", "[", "\"\<Product\>\"", "]"}]}], ",", " ", 
+        RowBox[{"Placeholder", "[", "\"\<Enzyme\>\"", "]"}]}], "]"}], ",", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(1\)]\)\>\"", "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(2\)]\)\>\"", "]"}], ",", 
+      " ", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(3\)]\)\>\"", "]"}], ",", 
+      " ", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(4\)]\)\>\"", "]"}], ",", 
+      " ", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(5\)]\)\>\"", "]"}], ",", 
+      " ", 
+      RowBox[{
+      "hint", "[", "\"\<\!\(\*SubscriptBox[\(k\), \(6\)]\)\>\"", "]"}]}], 
+     "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"Appearance", "\[Rule]", " ", "\"\<DialogBox\>\""}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.443200466087594*^9, 3.44320048606553*^9}, {
+  3.443201891647242*^9, 3.443201905285108*^9}, {3.443206424044503*^9, 
+  3.443206485740419*^9}}],
+
+Cell[BoxData[
+ ButtonBox[
+  TagBox[
+   TooltipBox[
+    RowBox[{"{", 
+     RowBox[{
+      OverscriptBox[
+       RowBox[{"\[Placeholder]", "\[Equilibrium]", "\[Placeholder]"}], 
+       "\[Placeholder]"], ",", "\[Placeholder]"}], "}"}],
+    StyleBox[
+     TagBox[
+      FormBox[
+      "\"\\!\\(\\*OverscriptBox[\\(A \[Equilibrium] B\\), \
+\\(\[ScriptCapitalE]\\)]\\) means A+\[ScriptCapitalE] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(2\\)], SubscriptBox[\\(k\\), \\(1\\)]]\\) A\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(4\\)], SubscriptBox[\\(k\\), \\(3\\)]]\\) B\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(6\\)], SubscriptBox[\\(k\\), \\(5\\)]]\\) B+\
+\[ScriptCapitalE]\"", TraditionalForm], TraditionalForm, Editable -> True], 
+     FontFamily -> Times, StripOnInput -> False]],
+   Annotation[#, 
+    Style[
+     TraditionalForm[
+     "\!\(\*OverscriptBox[\(A \[Equilibrium] B\), \(\[ScriptCapitalE]\)]\) \
+means A+\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(2\)], SubscriptBox[\(k\), \(1\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(6\)], SubscriptBox[\(k\), \(5\)]]\) B+\[ScriptCapitalE]"], FontFamily -> 
+     Times], "Tooltip"]& ],
+  Appearance->"DialogBox",
+  BaseStyle->"Paste",
+  ButtonData->RowBox[{"{", 
+     RowBox[{
+       OverscriptBox[
+        RowBox[{
+          TagBox[
+           FrameBox["\"Substrate\""], "Placeholder"], "\[Equilibrium]", 
+          TagBox[
+           FrameBox["\"Product\""], "Placeholder"]}], 
+        TagBox[
+         FrameBox["\"Enzyme\""], "Placeholder"]], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(1\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(2\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(3\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(4\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(5\)]\)"], "Placeholder"], 
+        DisplayForm], ",", 
+       TagBox[
+        TagBox[
+         FrameBox["\!\(\*SubscriptBox[\(k\), \(6\)]\)"], "Placeholder"], 
+        DisplayForm]}], "}"}]]], "Output",
+ CellChangeTimes->{
+  3.443278837275479*^9, 3.443454885427389*^9, 3.443888331696443*^9, 
+   3.444160558184851*^9, 3.444162782252993*^9, 3.444482312617207*^9, 
+   3.444482511444163*^9, 3.444482915049201*^9, 3.444483263735191*^9, {
+   3.444483708504447*^9, 3.444483728067781*^9}, 3.446146525287948*^9, 
+   3.5085204390407343`*^9, 3.508522701654932*^9, 3.559305071065166*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"massaction", "=", 
+  RowBox[{"Grid", "[", 
+   RowBox[{
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "mabutton1", ",", "  ", "\[IndentingNewLine]", "mabutton2", ",", 
+        "\[IndentingNewLine]", "mabutton3"}], "}"}], "\[IndentingNewLine]", 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+       "mabutton4", ",", "  ", "\[IndentingNewLine]", "mabutton5", ",", 
+        "\[IndentingNewLine]", "mabutton6"}], "}"}]}], "\[IndentingNewLine]", 
+     "}"}], ",", " ", 
+    RowBox[{"Frame", "\[Rule]", " ", "False"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.442801433213385*^9, 3.442801471320082*^9}, {
+  3.442801545302612*^9, 3.442801573760189*^9}, {3.4428016250705*^9, 
+  3.442801697361064*^9}, {3.442801731010543*^9, 3.442801746869868*^9}, {
+  3.442801976572411*^9, 3.442802006751594*^9}, {3.442802412369036*^9, 
+  3.442802412814499*^9}, {3.442851500960129*^9, 3.442851547496426*^9}, {
+  3.442851587093388*^9, 3.442851724239135*^9}, {3.442851867679988*^9, 
+  3.44285190337806*^9}, {3.442859463558849*^9, 3.442859475673386*^9}, {
+  3.443200495432547*^9, 3.443200497297485*^9}, {3.443200848983268*^9, 
+  3.443200850412235*^9}, {3.443201008618726*^9, 3.443201010065037*^9}, {
+  3.443201070829331*^9, 3.443201096879623*^9}, {3.443201252697923*^9, 
+  3.443201254309767*^9}, {3.443201410280667*^9, 3.443201411936435*^9}, {
+  3.443201503083205*^9, 3.443201531094623*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     ButtonBox[
+      TagBox[
+       TooltipBox[
+        RowBox[{"{", 
+         RowBox[{"\[Placeholder]", "\[ShortRightArrow]", "\[Placeholder]"}], 
+         "}"}],
+        StyleBox[
+         TagBox[
+          FormBox[
+          "\"A\[ShortRightArrow]B means A \\!\\(\\*OverscriptBox[\\(\
+\[ShortRightArrow]\\), \\(k\\)]\\) B\"", TraditionalForm], TraditionalForm, 
+          Editable -> True], FontFamily -> Times, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         TraditionalForm[
+         "A\[ShortRightArrow]B means A \!\(\*OverscriptBox[\(\
+\[ShortRightArrow]\), \(k\)]\) B"], FontFamily -> Times], "Tooltip"]& ],
+      Appearance->"DialogBox",
+      BaseStyle->"Paste",
+      ButtonData->RowBox[{"{", 
+         RowBox[{
+           RowBox[{
+             TagBox[
+              TagBox[
+               FrameBox["Source"], "Placeholder"], DisplayForm], 
+             "\[ShortRightArrow]", 
+             TagBox[
+              TagBox[
+               FrameBox["Product"], "Placeholder"], DisplayForm]}], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["rate constant"], "Placeholder"], DisplayForm]}], 
+         "}"}]], 
+     ButtonBox[
+      TagBox[
+       TooltipBox[
+        RowBox[{"{", 
+         OverscriptBox[
+          RowBox[{"\[Placeholder]", "\[ShortRightArrow]", "\[Placeholder]"}], 
+          "\[Placeholder]"], "}"}],
+        StyleBox[
+         TagBox[
+          FormBox[
+          "\"\\!\\(\\*OverscriptBox[\\(A \[ShortRightArrow] B\\), \\(X\\)]\\) \
+means A+X \\!\\(\\*OverscriptBox[\\(\[ShortRightArrow]\\), \\(k\\)]\\) B+X\"",
+            TraditionalForm], TraditionalForm, Editable -> True], FontFamily -> 
+         Times, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         TraditionalForm[
+         "\!\(\*OverscriptBox[\(A \[ShortRightArrow] B\), \(X\)]\) means A+X \
+\!\(\*OverscriptBox[\(\[ShortRightArrow]\), \(k\)]\) B+X"], FontFamily -> 
+         Times], "Tooltip"]& ],
+      Appearance->"DialogBox",
+      BaseStyle->"Paste",
+      ButtonData->RowBox[{"{", 
+         RowBox[{
+           OverscriptBox[
+            RowBox[{
+              TagBox[
+               FrameBox["\"Substrate\""], "Placeholder"], "\[Rule]", 
+              TagBox[
+               FrameBox["\"Product\""], "Placeholder"]}], 
+            TagBox[
+             FrameBox["\"modifier\""], "Placeholder"]], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["rate constant"], "Placeholder"], DisplayForm]}], 
+         "}"}]], 
+     ButtonBox[
+      TagBox[
+       TooltipBox[
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+          "\[Placeholder]", "\[RightArrowLeftArrow]", "\[Placeholder]"}], ",",
+           "\[Placeholder]"}], "}"}],
+        StyleBox[
+         TagBox[
+          FormBox[
+          "\"A\[RightArrowLeftArrow]B means A \\!\\(\\*UnderoverscriptBox[\\(\
+\[RightArrowLeftArrow]\\), SubscriptBox[\\(k\\), \\(r\\)], \
+SubscriptBox[\\(k\\), \\(f\\)]]\\) B\"", TraditionalForm], TraditionalForm, 
+          Editable -> True], FontFamily -> Times, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         TraditionalForm[
+         "A\[RightArrowLeftArrow]B means A \!\(\*UnderoverscriptBox[\(\
+\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \(r\)], SubscriptBox[\(k\), \(f\
+\)]]\) B"], FontFamily -> Times], "Tooltip"]& ],
+      Appearance->"DialogBox",
+      BaseStyle->"Paste",
+      ButtonData->RowBox[{"{", 
+         RowBox[{
+           RowBox[{
+             TagBox[
+              TagBox[
+               FrameBox["Species1"], "Placeholder"], DisplayForm], 
+             "\[RightArrowLeftArrow]", 
+             TagBox[
+              TagBox[
+               FrameBox["Species"], "Placeholder"], DisplayForm]}], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(forward\)]\)"], 
+             "Placeholder"], DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(reverse\)]\)"], 
+             "Placeholder"], DisplayForm]}], "}"}]]},
+    {
+     ButtonBox[
+      TagBox[
+       TooltipBox[
+        RowBox[{"{", 
+         RowBox[{
+          OverscriptBox[
+           RowBox[{
+           "\[Placeholder]", "\[RightArrowLeftArrow]", "\[Placeholder]"}], 
+           "\[Placeholder]"], ",", "\[Placeholder]"}], "}"}],
+        StyleBox[
+         TagBox[
+          FormBox[
+          "\"\\!\\(\\*OverscriptBox[\\(A \[RightArrowLeftArrow] B\\), \\(\
+\[ScriptCapitalE]\\)]\\) means A+\[ScriptCapitalE] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(2\\)], SubscriptBox[\\(k\\), \\(1\\)]]\\) A\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(4\\)], SubscriptBox[\\(k\\), \\(3\\)]]\\) B+\
+\[ScriptCapitalE]\"", TraditionalForm], TraditionalForm, Editable -> True], 
+         FontFamily -> Times, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         TraditionalForm[
+         "\!\(\*OverscriptBox[\(A \[RightArrowLeftArrow] B\), \(\
+\[ScriptCapitalE]\)]\) means A+\[ScriptCapitalE] \!\(\*UnderoverscriptBox[\(\
+\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \(2\)], SubscriptBox[\(k\), \(1\
+\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B+\[ScriptCapitalE]"], FontFamily -> 
+         Times], "Tooltip"]& ],
+      Appearance->"DialogBox",
+      BaseStyle->"Paste",
+      ButtonData->RowBox[{"{", 
+         RowBox[{
+           OverscriptBox[
+            RowBox[{
+              TagBox[
+               FrameBox["\"Substrate\""], "Placeholder"], 
+              "\[RightArrowLeftArrow]", 
+              TagBox[
+               FrameBox["\"Product\""], "Placeholder"]}], 
+            TagBox[
+             FrameBox["\"Enzyme\""], "Placeholder"]], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(1\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(2\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(3\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(4\)]\)"], "Placeholder"], 
+            DisplayForm]}], "}"}]], 
+     ButtonBox[
+      TagBox[
+       TooltipBox[
+        RowBox[{"{", 
+         RowBox[{
+          UnderoverscriptBox[
+           RowBox[{
+           "\[Placeholder]", "\[RightArrowLeftArrow]", "\[Placeholder]"}], 
+           "\[Placeholder]", "\[Placeholder]"], ",", "\[Placeholder]"}], "}"}],
+        StyleBox[
+         TagBox[
+          FormBox[
+          "\"\\!\\(\\*UnderoverscriptBox[\\(A \[RightArrowLeftArrow] B\\), \
+\\(\[ScriptCapitalF]\\), \\(\[ScriptCapitalE]\\)]\\) means \
+A+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(2\\)], SubscriptBox[\\(k\\), \\(1\\)]]\\) A\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(4\\)], SubscriptBox[\\(k\\), \\(3\\)]]\\) B+\
+\[ScriptCapitalE] and B+\[ScriptCapitalF] \\!\\(\\*UnderoverscriptBox[\\(\
+\[RightArrowLeftArrow]\\), SubscriptBox[\\(k\\), \\(6\\)], \
+SubscriptBox[\\(k\\), \\(5\\)]]\\) B\[ScriptCapitalF] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(8\\)], SubscriptBox[\\(k\\), \\(7\\)]]\\) B+\
+\[ScriptCapitalF]\"", TraditionalForm], TraditionalForm, Editable -> True], 
+         FontFamily -> Times, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         TraditionalForm[
+         "\!\(\*UnderoverscriptBox[\(A \[RightArrowLeftArrow] B\), \(\
+\[ScriptCapitalF]\), \(\[ScriptCapitalE]\)]\) means A+\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(2\)], SubscriptBox[\(k\), \(1\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B+\[ScriptCapitalE] and B+\
+\[ScriptCapitalF] \!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), \
+SubscriptBox[\(k\), \(6\)], SubscriptBox[\(k\), \(5\)]]\) B\[ScriptCapitalF] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(8\)], SubscriptBox[\(k\), \(7\)]]\) B+\[ScriptCapitalF]"], FontFamily -> 
+         Times], "Tooltip"]& ],
+      Appearance->"DialogBox",
+      BaseStyle->"Paste",
+      ButtonData->RowBox[{"{", 
+         RowBox[{
+           UnderoverscriptBox[
+            RowBox[{
+              TagBox[
+               TagBox[
+                FrameBox["Substrate"], "Placeholder"], DisplayForm], 
+              "\[RightArrowLeftArrow]", 
+              TagBox[
+               TagBox[
+                FrameBox["Product"], "Placeholder"], DisplayForm]}], 
+            TagBox[
+             TagBox[
+              FrameBox["Reverse Enzyme"], "Placeholder"], DisplayForm], 
+            TagBox[
+             TagBox[
+              FrameBox["Forward Enzyme"], "Placeholder"], DisplayForm]], ",", 
+           
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(1\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(2\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(3\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(4\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(5\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(6\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(7\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(8\)]\)"], "Placeholder"], 
+            DisplayForm]}], "}"}]], 
+     ButtonBox[
+      TagBox[
+       TooltipBox[
+        RowBox[{"{", 
+         RowBox[{
+          OverscriptBox[
+           RowBox[{"\[Placeholder]", "\[Equilibrium]", "\[Placeholder]"}], 
+           "\[Placeholder]"], ",", "\[Placeholder]"}], "}"}],
+        StyleBox[
+         TagBox[
+          FormBox[
+          "\"\\!\\(\\*OverscriptBox[\\(A \[Equilibrium] B\\), \\(\
+\[ScriptCapitalE]\\)]\\) means A+\[ScriptCapitalE] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(2\\)], SubscriptBox[\\(k\\), \\(1\\)]]\\) A\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(4\\)], SubscriptBox[\\(k\\), \\(3\\)]]\\) B\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(6\\)], SubscriptBox[\\(k\\), \\(5\\)]]\\) B+\
+\[ScriptCapitalE]\"", TraditionalForm], TraditionalForm, Editable -> True], 
+         FontFamily -> Times, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         TraditionalForm[
+         "\!\(\*OverscriptBox[\(A \[Equilibrium] B\), \
+\(\[ScriptCapitalE]\)]\) means A+\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(2\)], SubscriptBox[\(k\), \(1\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(6\)], SubscriptBox[\(k\), \(5\)]]\) B+\[ScriptCapitalE]"], FontFamily -> 
+         Times], "Tooltip"]& ],
+      Appearance->"DialogBox",
+      BaseStyle->"Paste",
+      ButtonData->RowBox[{"{", 
+         RowBox[{
+           OverscriptBox[
+            RowBox[{
+              TagBox[
+               FrameBox["\"Substrate\""], "Placeholder"], "\[Equilibrium]", 
+              TagBox[
+               FrameBox["\"Product\""], "Placeholder"]}], 
+            TagBox[
+             FrameBox["\"Enzyme\""], "Placeholder"]], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(1\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(2\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(3\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(4\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(5\)]\)"], "Placeholder"], 
+            DisplayForm], ",", 
+           TagBox[
+            TagBox[
+             FrameBox["\!\(\*SubscriptBox[\(k\), \(6\)]\)"], "Placeholder"], 
+            DisplayForm]}], "}"}]]}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> False, "Rows" -> False},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{{3.442801447889906*^9, 3.442801465334587*^9}, {
+   3.442801554759061*^9, 3.442801574551624*^9}, {3.44280162771903*^9, 
+   3.442801635681714*^9}, 3.442801700001227*^9, 3.442801750566477*^9, {
+   3.44280197913494*^9, 3.442802007483279*^9}, 3.442802413119255*^9, 
+   3.442849905690758*^9, 3.44285077748552*^9, {3.442851514027265*^9, 
+   3.442851548246759*^9}, {3.442851596950328*^9, 3.442851620997495*^9}, {
+   3.442851663177536*^9, 3.44285172462629*^9}, 3.442851904003453*^9, 
+   3.442852288873775*^9, 3.442859487529698*^9, 3.442864391995785*^9, 
+   3.442864561542057*^9, 3.443200040516829*^9, 3.443200497930206*^9, 
+   3.443200851330955*^9, 3.443201010564009*^9, 3.443201053610212*^9, {
+   3.443201085349601*^9, 3.443201097610637*^9}, 3.44320125488325*^9, 
+   3.443201412502768*^9, {3.443201506148128*^9, 3.443201531727532*^9}, 
+   3.44320192288978*^9, 3.443204233023935*^9, 3.443206507026235*^9, 
+   3.443278837297122*^9, 3.44345488549231*^9, 3.443888331800085*^9, 
+   3.44416055820684*^9, 3.444162782337009*^9, 3.44448231263992*^9, 
+   3.444482511541972*^9, 3.444482915146584*^9, 3.444483263825177*^9, {
+   3.444483708608636*^9, 3.444483728082937*^9}, 3.446146525354197*^9, 
+   3.508520442961153*^9, 3.508522701699088*^9, 3.559305071115986*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"massactiongrid", "=", 
+  RowBox[{"Grid", "[", 
+   RowBox[{
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<Mass Action Reactions\>\"", ",", 
+         RowBox[{"FontSize", "\[Rule]", " ", "18"}], ",", " ", 
+         RowBox[{"FontSlant", "\[Rule]", " ", "Italic"}], ",", "  ", 
+         RowBox[{"FontFamily", "\[Rule]", " ", "\"\<Arial\>\""}], ",", " ", 
+         RowBox[{"FontColor", "\[Rule]", " ", 
+          RowBox[{"Darker", "[", "Blue", "]"}]}], ",", 
+         RowBox[{"FontWeight", "\[Rule]", " ", "Bold"}]}], "]"}], "}"}], ",", 
+      " ", "\[IndentingNewLine]", 
+      RowBox[{"{", "massaction", "}"}]}], "\[IndentingNewLine]", "}"}], ",", 
+    " ", 
+    RowBox[{"Frame", "\[Rule]", " ", "False"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.442801325476566*^9, 3.442801351837898*^9}, {
+   3.442801388896052*^9, 3.442801426894943*^9}, {3.442801774931263*^9, 
+   3.442801776354763*^9}, {3.442801809296377*^9, 3.442801809710245*^9}, {
+   3.44280184622604*^9, 3.442801848897421*^9}, {3.442802396062826*^9, 
+   3.442802401113173*^9}, {3.442846469469888*^9, 3.442846474035951*^9}, {
+   3.442850782892391*^9, 3.442850784096547*^9}, {3.442851757664229*^9, 
+   3.442851852586553*^9}, {3.442851922573012*^9, 3.442851923306993*^9}, {
+   3.442852321828762*^9, 3.442852324555672*^9}, {3.442852420631779*^9, 
+   3.442852421556796*^9}, 3.443201556214578*^9, 3.44416074555151*^9, {
+   3.5085207946625433`*^9, 3.508520800372991*^9}, {3.559305240785157*^9, 
+   3.559305246105124*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     StyleBox["\<\"Mass Action Reactions\"\>",
+      StripOnInput->False,
+      FontFamily->"Arial",
+      FontSize->18,
+      FontWeight->Bold,
+      FontSlant->Italic,
+      FontColor->RGBColor[0, 0, 
+        Rational[2, 3]]]},
+    {
+     TagBox[GridBox[{
+        {
+         ButtonBox[
+          TagBox[
+           TooltipBox[
+            RowBox[{"{", 
+             RowBox[{
+             "\[Placeholder]", "\[ShortRightArrow]", "\[Placeholder]"}], "}"}],
+            StyleBox[
+             TagBox[
+              FormBox[
+              "\"A\[ShortRightArrow]B means A \\!\\(\\*OverscriptBox[\\(\
+\[ShortRightArrow]\\), \\(k\\)]\\) B\"", TraditionalForm], TraditionalForm, 
+              Editable -> True], FontFamily -> Times, StripOnInput -> False]],
+           
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+             "A\[ShortRightArrow]B means A \!\(\*OverscriptBox[\(\
+\[ShortRightArrow]\), \(k\)]\) B"], FontFamily -> Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          ButtonData->RowBox[{"{", 
+             RowBox[{
+               RowBox[{
+                 TagBox[
+                  TagBox[
+                   FrameBox["Source"], "Placeholder"], DisplayForm], 
+                 "\[ShortRightArrow]", 
+                 TagBox[
+                  TagBox[
+                   FrameBox["Product"], "Placeholder"], DisplayForm]}], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["rate constant"], "Placeholder"], DisplayForm]}], 
+             "}"}]], 
+         ButtonBox[
+          TagBox[
+           TooltipBox[
+            RowBox[{"{", 
+             OverscriptBox[
+              RowBox[{
+              "\[Placeholder]", "\[ShortRightArrow]", "\[Placeholder]"}], 
+              "\[Placeholder]"], "}"}],
+            StyleBox[
+             TagBox[
+              FormBox[
+              "\"\\!\\(\\*OverscriptBox[\\(A \[ShortRightArrow] B\\), \
+\\(X\\)]\\) means A+X \\!\\(\\*OverscriptBox[\\(\[ShortRightArrow]\\), \
+\\(k\\)]\\) B+X\"", TraditionalForm], TraditionalForm, Editable -> True], 
+             FontFamily -> Times, StripOnInput -> False]],
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+             "\!\(\*OverscriptBox[\(A \[ShortRightArrow] B\), \(X\)]\) means \
+A+X \!\(\*OverscriptBox[\(\[ShortRightArrow]\), \(k\)]\) B+X"], FontFamily -> 
+             Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          ButtonData->RowBox[{"{", 
+             RowBox[{
+               OverscriptBox[
+                RowBox[{
+                  TagBox[
+                   FrameBox["\"Substrate\""], "Placeholder"], "\[Rule]", 
+                  TagBox[
+                   FrameBox["\"Product\""], "Placeholder"]}], 
+                TagBox[
+                 FrameBox["\"modifier\""], "Placeholder"]], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["rate constant"], "Placeholder"], DisplayForm]}], 
+             "}"}]], 
+         ButtonBox[
+          TagBox[
+           TooltipBox[
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+              "\[Placeholder]", "\[RightArrowLeftArrow]", "\[Placeholder]"}], 
+              ",", "\[Placeholder]"}], "}"}],
+            StyleBox[
+             TagBox[
+              FormBox[
+              "\"A\[RightArrowLeftArrow]B means A \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(r\\)], SubscriptBox[\\(k\\), \\(f\\)]]\\) B\"", 
+               TraditionalForm], TraditionalForm, Editable -> True], 
+             FontFamily -> Times, StripOnInput -> False]],
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+             "A\[RightArrowLeftArrow]B means A \!\(\*UnderoverscriptBox[\(\
+\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \(r\)], SubscriptBox[\(k\), \(f\
+\)]]\) B"], FontFamily -> Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          ButtonData->RowBox[{"{", 
+             RowBox[{
+               RowBox[{
+                 TagBox[
+                  TagBox[
+                   FrameBox["Species1"], "Placeholder"], DisplayForm], 
+                 "\[RightArrowLeftArrow]", 
+                 TagBox[
+                  TagBox[
+                   FrameBox["Species"], "Placeholder"], DisplayForm]}], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(forward\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(reverse\)]\)"], 
+                 "Placeholder"], DisplayForm]}], "}"}]]},
+        {
+         ButtonBox[
+          TagBox[
+           TooltipBox[
+            RowBox[{"{", 
+             RowBox[{
+              OverscriptBox[
+               RowBox[{
+               "\[Placeholder]", "\[RightArrowLeftArrow]", "\[Placeholder]"}],
+                "\[Placeholder]"], ",", "\[Placeholder]"}], "}"}],
+            StyleBox[
+             TagBox[
+              FormBox[
+              "\"\\!\\(\\*OverscriptBox[\\(A \[RightArrowLeftArrow] B\\), \\(\
+\[ScriptCapitalE]\\)]\\) means A+\[ScriptCapitalE] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(2\\)], SubscriptBox[\\(k\\), \\(1\\)]]\\) A\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(4\\)], SubscriptBox[\\(k\\), \\(3\\)]]\\) B+\
+\[ScriptCapitalE]\"", TraditionalForm], TraditionalForm, Editable -> True], 
+             FontFamily -> Times, StripOnInput -> False]],
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+             "\!\(\*OverscriptBox[\(A \[RightArrowLeftArrow] B\), \(\
+\[ScriptCapitalE]\)]\) means A+\[ScriptCapitalE] \!\(\*UnderoverscriptBox[\(\
+\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \(2\)], SubscriptBox[\(k\), \(1\
+\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B+\[ScriptCapitalE]"], FontFamily -> 
+             Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          ButtonData->RowBox[{"{", 
+             RowBox[{
+               OverscriptBox[
+                RowBox[{
+                  TagBox[
+                   FrameBox["\"Substrate\""], "Placeholder"], 
+                  "\[RightArrowLeftArrow]", 
+                  TagBox[
+                   FrameBox["\"Product\""], "Placeholder"]}], 
+                TagBox[
+                 FrameBox["\"Enzyme\""], "Placeholder"]], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(1\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(2\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(3\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(4\)]\)"], 
+                 "Placeholder"], DisplayForm]}], "}"}]], 
+         ButtonBox[
+          TagBox[
+           TooltipBox[
+            RowBox[{"{", 
+             RowBox[{
+              UnderoverscriptBox[
+               RowBox[{
+               "\[Placeholder]", "\[RightArrowLeftArrow]", "\[Placeholder]"}],
+                "\[Placeholder]", "\[Placeholder]"], ",", "\[Placeholder]"}], 
+             "}"}],
+            StyleBox[
+             TagBox[
+              FormBox[
+              "\"\\!\\(\\*UnderoverscriptBox[\\(A \[RightArrowLeftArrow] \
+B\\), \\(\[ScriptCapitalF]\\), \\(\[ScriptCapitalE]\\)]\\) means A+\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(2\\)], SubscriptBox[\\(k\\), \\(1\\)]]\\) A\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(4\\)], SubscriptBox[\\(k\\), \\(3\\)]]\\) B+\
+\[ScriptCapitalE] and B+\[ScriptCapitalF] \\!\\(\\*UnderoverscriptBox[\\(\
+\[RightArrowLeftArrow]\\), SubscriptBox[\\(k\\), \\(6\\)], \
+SubscriptBox[\\(k\\), \\(5\\)]]\\) B\[ScriptCapitalF] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(8\\)], SubscriptBox[\\(k\\), \\(7\\)]]\\) B+\
+\[ScriptCapitalF]\"", TraditionalForm], TraditionalForm, Editable -> True], 
+             FontFamily -> Times, StripOnInput -> False]],
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+             "\!\(\*UnderoverscriptBox[\(A \[RightArrowLeftArrow] B\), \(\
+\[ScriptCapitalF]\), \(\[ScriptCapitalE]\)]\) means A+\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(2\)], SubscriptBox[\(k\), \(1\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B+\[ScriptCapitalE] and B+\
+\[ScriptCapitalF] \!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), \
+SubscriptBox[\(k\), \(6\)], SubscriptBox[\(k\), \(5\)]]\) B\[ScriptCapitalF] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(8\)], SubscriptBox[\(k\), \(7\)]]\) B+\[ScriptCapitalF]"], FontFamily -> 
+             Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          ButtonData->RowBox[{"{", 
+             RowBox[{
+               UnderoverscriptBox[
+                RowBox[{
+                  TagBox[
+                   TagBox[
+                    FrameBox["Substrate"], "Placeholder"], DisplayForm], 
+                  "\[RightArrowLeftArrow]", 
+                  TagBox[
+                   TagBox[
+                    FrameBox["Product"], "Placeholder"], DisplayForm]}], 
+                TagBox[
+                 TagBox[
+                  FrameBox["Reverse Enzyme"], "Placeholder"], DisplayForm], 
+                TagBox[
+                 TagBox[
+                  FrameBox["Forward Enzyme"], "Placeholder"], DisplayForm]], 
+               ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(1\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(2\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(3\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(4\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(5\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(6\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(7\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(8\)]\)"], 
+                 "Placeholder"], DisplayForm]}], "}"}]], 
+         ButtonBox[
+          TagBox[
+           TooltipBox[
+            RowBox[{"{", 
+             RowBox[{
+              OverscriptBox[
+               RowBox[{"\[Placeholder]", "\[Equilibrium]", "\[Placeholder]"}],
+                "\[Placeholder]"], ",", "\[Placeholder]"}], "}"}],
+            StyleBox[
+             TagBox[
+              FormBox[
+              "\"\\!\\(\\*OverscriptBox[\\(A \[Equilibrium] B\\), \\(\
+\[ScriptCapitalE]\\)]\\) means A+\[ScriptCapitalE] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(2\\)], SubscriptBox[\\(k\\), \\(1\\)]]\\) A\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(4\\)], SubscriptBox[\\(k\\), \\(3\\)]]\\) B\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(6\\)], SubscriptBox[\\(k\\), \\(5\\)]]\\) B+\
+\[ScriptCapitalE]\"", TraditionalForm], TraditionalForm, Editable -> True], 
+             FontFamily -> Times, StripOnInput -> False]],
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+             "\!\(\*OverscriptBox[\(A \[Equilibrium] B\), \(\[ScriptCapitalE]\
+\)]\) means A+\[ScriptCapitalE] \!\(\*UnderoverscriptBox[\(\
+\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \(2\)], SubscriptBox[\(k\), \(1\
+\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(6\)], SubscriptBox[\(k\), \(5\)]]\) B+\[ScriptCapitalE]"], FontFamily -> 
+             Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          ButtonData->RowBox[{"{", 
+             RowBox[{
+               OverscriptBox[
+                RowBox[{
+                  TagBox[
+                   FrameBox["\"Substrate\""], "Placeholder"], 
+                  "\[Equilibrium]", 
+                  TagBox[
+                   FrameBox["\"Product\""], "Placeholder"]}], 
+                TagBox[
+                 FrameBox["\"Enzyme\""], "Placeholder"]], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(1\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(2\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(3\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(4\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(5\)]\)"], 
+                 "Placeholder"], DisplayForm], ",", 
+               TagBox[
+                TagBox[
+                 FrameBox["\!\(\*SubscriptBox[\(k\), \(6\)]\)"], 
+                 "Placeholder"], DisplayForm]}], "}"}]]}
+       },
+       AutoDelete->False,
+       GridBoxFrame->{"Columns" -> False, "Rows" -> False},
+       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+      "Grid"]}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> False, "Rows" -> False},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{{3.442801337547597*^9, 3.442801345043805*^9}, {
+   3.442801389800891*^9, 3.44280140707575*^9}, 3.442801777022199*^9, 
+   3.442801810204161*^9, 3.442801849231389*^9, {3.442802397430244*^9, 
+   3.44280241512937*^9}, 3.442846470456701*^9, 3.442849908174969*^9, 
+   3.442850784551674*^9, 3.442851568030653*^9, 3.442851728218985*^9, 
+   3.442851766392408*^9, {3.442851809162667*^9, 3.442851853176772*^9}, {
+   3.442851909469158*^9, 3.442851923639478*^9}, 3.442852325026761*^9, 
+   3.44285242292468*^9, 3.442859487597389*^9, 3.442864394062474*^9, 
+   3.442864561730978*^9, 3.443200047839675*^9, {3.443201541291504*^9, 
+   3.443201557103249*^9}, {3.443201916296527*^9, 3.443201926176721*^9}, 
+   3.443204233095732*^9, 3.443206509183017*^9, 3.443278837320061*^9, 
+   3.443454885571452*^9, 3.44388833188187*^9, 3.444160558229643*^9, 
+   3.444160746946287*^9, 3.444162782421747*^9, 3.444482312662763*^9, 
+   3.444482511641888*^9, 3.444482915243637*^9, 3.444483263917864*^9, {
+   3.444483708701176*^9, 3.444483728099638*^9}, 3.446146525429527*^9, 
+   3.508520446047474*^9, 3.508520800949026*^9, 3.5085227017411127`*^9, 
+   3.559305071171494*^9, 3.559305246489728*^9}]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Create a simulation button", "Subsubsection",
+ CellChangeTimes->{{3.443889059974775*^9, 3.443889064902528*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"runbutton", "=", 
+  RowBox[{"PasteButton", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mytooltip", "[", "\[IndentingNewLine]", 
+     RowBox[{
+     "\"\<SSA[\[Placeholder],\[Placeholder],\[Placeholder]...]\>\"", ",", 
+      "\[IndentingNewLine]", 
+      "\"\<SSA[reactions, \!\(\*SubscriptBox[\(t\), \(max\)]\), IC, \
+Parameters, MaxSteps]\>\""}], "]"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"Defer", "[", 
+     RowBox[{"SSA", "[", 
+      RowBox[{
+       RowBox[{"Placeholder", "[", "\"\<Reaction List\>\"", "]"}], ",", " ", 
+       RowBox[{
+       "Placeholder", "[", "\"\<\!\(\*SubscriptBox[\(t\), \(max\)]\)\>\"", 
+        "]"}], ",", " ", 
+       RowBox[{"Placeholder", "[", "\"\<IC Rules\>\"", "]"}], ",", " ", 
+       RowBox[{"Placeholder", "[", "\"\<Parameter Rules\>\"", "]"}], ",", " ", 
+       RowBox[{
+       "Placeholder", "[", "\"\<\!\(\*SubscriptBox[\(N\), \(max\)]\)\>\"", 
+        "]"}]}], "]"}], "]"}], ",", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Appearance", "\[Rule]", " ", "\"\<DialogBox\>\""}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.44388909420607*^9, 3.443889188076742*^9}, {
+  3.443889241444194*^9, 3.443889311281489*^9}, {3.443889359779603*^9, 
+  3.443889607170939*^9}, {3.443890008131371*^9, 3.443890008575961*^9}}],
+
+Cell[BoxData[
+ ButtonBox[
+  TagBox[
+   TooltipBox["\<\"SSA[\[Placeholder],\[Placeholder],\[Placeholder]...]\"\>",
+    StyleBox[
+     TagBox[
+      FormBox[
+      "\"SSA[reactions, \\!\\(\\*SubscriptBox[\\(t\\), \\(max\\)]\\), IC, \
+Parameters, MaxSteps]\"", TraditionalForm], TraditionalForm, Editable -> 
+      True], FontFamily -> Times, StripOnInput -> False]],
+   Annotation[#, 
+    Style[
+     TraditionalForm[
+     "SSA[reactions, \!\(\*SubscriptBox[\(t\), \(max\)]\), IC, Parameters, \
+MaxSteps]"], FontFamily -> Times], "Tooltip"]& ],
+  Appearance->"DialogBox",
+  BaseStyle->"Paste",
+  ButtonData->RowBox[{"SSA", "[", 
+     RowBox[{
+       TagBox[
+        FrameBox["\"Reaction List\""], "Placeholder"], ",", 
+       TagBox[
+        FrameBox["\"\\!\\(\\*SubscriptBox[\\(t\\), \\(max\\)]\\)\""], 
+        "Placeholder"], ",", 
+       TagBox[
+        FrameBox["\"IC Rules\""], "Placeholder"], ",", 
+       TagBox[
+        FrameBox["\"Parameter Rules\""], "Placeholder"], ",", 
+       TagBox[
+        FrameBox["\"\\!\\(\\*SubscriptBox[\\(N\\), \\(max\\)]\\)\""], 
+        "Placeholder"]}], "]"}]]], "Output",
+ CellChangeTimes->{{3.443889577894117*^9, 3.443889607950842*^9}, 
+   3.443890009633292*^9, 3.444160559074443*^9, 3.444162783825665*^9, 
+   3.444482313386836*^9, 3.444482513438325*^9, 3.44448291635042*^9, 
+   3.444483265421878*^9, {3.444483710051902*^9, 3.444483728407021*^9}, 
+   3.44614652596946*^9, 3.5085204886968937`*^9, 3.508522701789545*^9, 
+   3.559305071229413*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"plotbutton", "=", 
+  RowBox[{"PasteButton", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mytooltip", "[", "\[IndentingNewLine]", 
+     RowBox[{
+     "\"\<SSAPlot[\[Placeholder],\[Placeholder],...]\>\"", ",", 
+      "\[IndentingNewLine]", 
+      "\"\<SSAPlot[simulation, Any Plot Options]\>\""}], "]"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Defer", "[", 
+     RowBox[{"SSAPlot", "[", 
+      RowBox[{"Placeholder", "[", "]"}], "]"}], "]"}], ",", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"Appearance", "\[Rule]", " ", "\"\<DialogBox\>\""}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.44388965373291*^9, 3.443889718733902*^9}, {
+  3.443889979214958*^9, 3.443890016551427*^9}}],
+
+Cell[BoxData[
+ ButtonBox[
+  TagBox[
+   TooltipBox["\<\"SSAPlot[\[Placeholder],\[Placeholder],...]\"\>",
+    StyleBox[
+     TagBox[
+      FormBox["\"SSAPlot[simulation, Any Plot Options]\"", TraditionalForm], 
+      TraditionalForm, Editable -> True], FontFamily -> Times, StripOnInput -> 
+     False]],
+   Annotation[#, 
+    Style[
+     TraditionalForm["SSAPlot[simulation, Any Plot Options]"], FontFamily -> 
+     Times], "Tooltip"]& ],
+  Appearance->"DialogBox",
+  BaseStyle->"Paste",
+  ButtonData->RowBox[{"SSAPlot", "[", "\[Placeholder]", "]"}]]], "Output",
+ CellChangeTimes->{
+  3.443889720498165*^9, {3.443889984269789*^9, 3.443890017969604*^9}, 
+   3.444160559161631*^9, 3.4441627841862*^9, 3.444482313432359*^9, 
+   3.444482513598038*^9, 3.444482916366586*^9, 3.444483265437248*^9, {
+   3.44448371006643*^9, 3.444483728413756*^9}, 3.446146525982112*^9, 
+   3.5085204947075977`*^9, 3.508522701833304*^9, 3.55930507127897*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"butt", "[", 
+    RowBox[{"x_", ",", " ", "y_"}], "]"}], ":=", " ", 
+   RowBox[{"PasteButton", "[", 
+    RowBox[{
+     RowBox[{"mytooltip", "[", 
+      RowBox[{"x", ",", " ", "y"}], "]"}], ",", " ", "y", ",", " ", 
+     RowBox[{"Appearance", "\[Rule]", " ", "\"\<DialogBox\>\""}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.443891081301227*^9, 3.443891114090823*^9}, {
+  3.443891158324394*^9, 3.44389116845194*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"dbut1", "=", 
+  RowBox[{"PasteButton", "[", 
+   RowBox[{
+    RowBox[{"mytooltip", "[", 
+     RowBox[{
+     "\"\<\[SelectionPlaceholder]\[Diamond]\[Placeholder]\>\"", ",", " ", 
+      "\"\<Diamond[A,B] represents the compound of A and B\>\""}], "]"}], ",",
+     " ", 
+    RowBox[{"Diamond", "[", 
+     RowBox[{
+      RowBox[{"sel", "[", "]"}], ",", " ", 
+      RowBox[{"place", "[", "]"}]}], "]"}], ",", " ", 
+    RowBox[{"Appearance", "\[Rule]", " ", "\"\<DialogBox\>\""}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.444483890862988*^9, 3.444484017594536*^9}, {
+  3.444484079550863*^9, 3.44448414901642*^9}}],
+
+Cell[BoxData[
+ ButtonBox[
+  TagBox[
+   TooltipBox["\<\"\[SelectionPlaceholder]\[Diamond]\[Placeholder]\"\>",
+    StyleBox[
+     TagBox[
+      FormBox[
+      "\"Diamond[A,B] represents the compound of A and B\"", TraditionalForm],
+       TraditionalForm, Editable -> True], FontFamily -> Times, StripOnInput -> 
+     False]],
+   Annotation[#, 
+    Style[
+     TraditionalForm["Diamond[A,B] represents the compound of A and B"], 
+     FontFamily -> Times], "Tooltip"]& ],
+  Appearance->"DialogBox",
+  BaseStyle->"Paste",
+  ButtonData->RowBox[{
+     RowBox[{"sel", "[", "]"}], "\[Diamond]", 
+     RowBox[{"place", "[", "]"}]}]]], "Output",
+ CellChangeTimes->{{3.444483988989401*^9, 3.44448401855242*^9}, {
+   3.444484103781392*^9, 3.444484109051935*^9}, 3.444484151252967*^9, 
+   3.446146526099784*^9, 3.508520531318713*^9, 3.508522701885085*^9, 
+   3.5593050713354597`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"place", "[", "]"}], ":=", " ", 
+    RowBox[{"Placeholder", "[", "]"}]}], ";"}], "  "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"sel", "[", "]"}], ":=", " ", "\[SelectionPlaceholder]"}], ";"}], 
+  " ", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"osbut", "=", 
+    RowBox[{"Overscript", "[", 
+     RowBox[{
+      RowBox[{"sel", "[", "]"}], ",", " ", 
+      RowBox[{"place", "[", "]"}]}], "]"}]}], ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"osusbut", "=", 
+    RowBox[{"Underoverscript", "[", 
+     RowBox[{
+      RowBox[{"sel", "[", "]"}], ",", " ", 
+      RowBox[{"place", "[", "]"}], ",", " ", 
+      RowBox[{"place", "[", "]"}]}], "]"}]}], ";"}], " ", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"arrowbuttons", "=", 
+  RowBox[{"Grid", "[", 
+   RowBox[{"{", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"butt", "[", 
+       RowBox[{
+       "\"\<\[SelectionPlaceholder]\[Rule]\[Placeholder]\>\"", ",", " ", 
+        RowBox[{"Defer", "[", 
+         RowBox[{"\[SelectionPlaceholder]", "\[Rule]", 
+          RowBox[{"Placeholder", "[", "]"}]}], "]"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"butt", "[", 
+       RowBox[{
+       "\"\<\[SelectionPlaceholder]\[RightArrowLeftArrow]\[Placeholder]\>\"", 
+        ",", " ", 
+        RowBox[{"Defer", "[", 
+         RowBox[{"\[SelectionPlaceholder]", "\[RightArrowLeftArrow]", 
+          RowBox[{"Placeholder", "[", "]"}]}], "]"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"butt", "[", 
+       RowBox[{
+       "\"\<\[SelectionPlaceholder]\[Equilibrium]\[Placeholder]\>\"", ",", 
+        " ", 
+        RowBox[{"Defer", "[", 
+         RowBox[{"\[SelectionPlaceholder]", "\[Equilibrium]", 
+          RowBox[{"Placeholder", "[", "]"}]}], "]"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"butt", "[", 
+         RowBox[{
+         "\"\<\[SelectionPlaceholder]\[DoubleLongRightArrow]\[Placeholder]\>\"\
+", ",", " ", 
+          RowBox[{"Defer", "[", 
+           RowBox[{"\[SelectionPlaceholder]", "\[DoubleLongRightArrow]", 
+            RowBox[{"Placeholder", "[", "]"}]}], "]"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"butt", "[", 
+         RowBox[{
+         "\"\<\[SelectionPlaceholder]\[RightTeeArrow]\[Placeholder]\>\"", ",",
+           " ", 
+          RowBox[{"Defer", "[", 
+           RowBox[{"\[SelectionPlaceholder]", "\[RightTeeArrow]", 
+            RowBox[{"Placeholder", "[", "]"}]}], "]"}]}], "]"}], ","}], " ", 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"butt", "[", 
+       RowBox[{
+       "\"\<\!\(\*OverscriptBox[\(\[SelectionPlaceholder]\), \(\[Placeholder]\
+\)]\)\>\"", ",", " ", 
+        StyleBox["osbut",
+         ShowSpecialCharacters->False,
+         ShowStringCharacters->True,
+         NumberMarks->True]}], 
+       StyleBox["]",
+        ShowSpecialCharacters->False,
+        ShowStringCharacters->True,
+        NumberMarks->True]}], 
+      StyleBox[",",
+       ShowSpecialCharacters->False,
+       ShowStringCharacters->True,
+       NumberMarks->True], 
+      RowBox[{
+       StyleBox["butt",
+        ShowSpecialCharacters->False,
+        ShowStringCharacters->True,
+        NumberMarks->True], 
+       StyleBox["[",
+        ShowSpecialCharacters->False,
+        ShowStringCharacters->True,
+        NumberMarks->True], 
+       RowBox[{
+       "\"\<\!\(\*UnderoverscriptBox[\(\[SelectionPlaceholder]\), \(\
+\[Placeholder]\), \(\[Placeholder]\)]\)\>\"", ",", " ", "osusbut"}], 
+       StyleBox["]",
+        ShowSpecialCharacters->False,
+        ShowStringCharacters->True,
+        NumberMarks->True]}], 
+      StyleBox[",",
+       ShowSpecialCharacters->False,
+       ShowStringCharacters->True,
+       NumberMarks->True], 
+      StyleBox[" ",
+       ShowSpecialCharacters->False,
+       ShowStringCharacters->True,
+       NumberMarks->True], 
+      StyleBox["dbut1",
+       ShowSpecialCharacters->False,
+       ShowStringCharacters->True,
+       NumberMarks->True]}], 
+     StyleBox["}",
+      ShowSpecialCharacters->False,
+      ShowStringCharacters->True,
+      NumberMarks->True]}], 
+    StyleBox["}",
+     ShowSpecialCharacters->False,
+     ShowStringCharacters->True,
+     NumberMarks->True]}], 
+   StyleBox["]",
+    ShowSpecialCharacters->False,
+    ShowStringCharacters->True,
+    NumberMarks->True]}]}]}], "Input",
+ CellChangeTimes->{{3.443890100204606*^9, 3.44389014183518*^9}, {
+  3.443890171975921*^9, 3.443890176173742*^9}, {3.443890228755263*^9, 
+  3.443890247323982*^9}, {3.443890312149451*^9, 3.443890370837205*^9}, {
+  3.443890415550759*^9, 3.443890570526183*^9}, {3.443890623156343*^9, 
+  3.443890839794283*^9}, {3.443891061098067*^9, 3.443891079770494*^9}, {
+  3.443891125397611*^9, 3.443891140688962*^9}, {3.443891173353479*^9, 
+  3.443891201146287*^9}, {3.443891234344854*^9, 3.443891234654395*^9}, {
+  3.444482621234248*^9, 3.444482646119905*^9}, {3.444482685159466*^9, 
+  3.444482706230168*^9}, {3.444482741914758*^9, 3.444482899736961*^9}, {
+  3.444482994627799*^9, 3.444483250982718*^9}, {3.444483360055863*^9, 
+  3.444483379926125*^9}, {3.444483433409452*^9, 3.44448368018198*^9}, {
+  3.508520506158271*^9, 3.508520509857821*^9}, {3.508520587338613*^9, 
+  3.5085205892404222`*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     ButtonBox[
+      TagBox[
+       TooltipBox["\<\"\[SelectionPlaceholder]\[Rule]\[Placeholder]\"\>",
+        StyleBox[
+         TagBox[
+          FormBox[
+           RowBox[{"\[SelectionPlaceholder]", "\[Rule]", "\[Placeholder]"}], 
+           TraditionalForm], TraditionalForm, Editable -> True], FontFamily -> 
+         Times, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         TraditionalForm[
+          Defer[$CellContext`\[SelectionPlaceholder] -> Placeholder[]]], 
+         FontFamily -> Times], "Tooltip"]& ],
+      Appearance->"DialogBox",
+      BaseStyle->"Paste",
+      ButtonData->
+       RowBox[{"\[SelectionPlaceholder]", "\[Rule]", "\[Placeholder]"}]], 
+     ButtonBox[
+      TagBox[
+       TooltipBox["\<\"\[SelectionPlaceholder]\[RightArrowLeftArrow]\
+\[Placeholder]\"\>",
+        StyleBox[
+         TagBox[
+          FormBox[
+           
+           RowBox[{"\[SelectionPlaceholder]", "\[RightArrowLeftArrow]", 
+             "\[Placeholder]"}], TraditionalForm], TraditionalForm, Editable -> 
+          True], FontFamily -> Times, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         TraditionalForm[
+          Defer[
+           RightArrowLeftArrow[$CellContext`\[SelectionPlaceholder], 
+            Placeholder[]]]], FontFamily -> Times], "Tooltip"]& ],
+      Appearance->"DialogBox",
+      BaseStyle->"Paste",
+      ButtonData->
+       RowBox[{"\[SelectionPlaceholder]", "\[RightArrowLeftArrow]", 
+         "\[Placeholder]"}]], 
+     ButtonBox[
+      TagBox[
+       TooltipBox["\<\"\[SelectionPlaceholder]\[Equilibrium]\[Placeholder]\"\>\
+",
+        StyleBox[
+         TagBox[
+          FormBox[
+           
+           RowBox[{"\[SelectionPlaceholder]", "\[Equilibrium]", 
+             "\[Placeholder]"}], TraditionalForm], TraditionalForm, Editable -> 
+          True], FontFamily -> Times, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         TraditionalForm[
+          Defer[
+           Equilibrium[$CellContext`\[SelectionPlaceholder], 
+            Placeholder[]]]], FontFamily -> Times], "Tooltip"]& ],
+      Appearance->"DialogBox",
+      BaseStyle->"Paste",
+      ButtonData->
+       RowBox[{"\[SelectionPlaceholder]", "\[Equilibrium]", 
+         "\[Placeholder]"}]], 
+     ButtonBox[
+      TagBox[
+       TooltipBox["\<\"\\!\\(\\*OverscriptBox[\\(\[SelectionPlaceholder]\\), \
+\\(\[Placeholder]\\)]\\)\"\>",
+        StyleBox[
+         TagBox[
+          FormBox[
+           OverscriptBox["\[SelectionPlaceholder]", "\[Placeholder]"], 
+           TraditionalForm], TraditionalForm, Editable -> True], FontFamily -> 
+         Times, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         TraditionalForm[
+          Overscript[$CellContext`\[SelectionPlaceholder], 
+           Placeholder[]]], FontFamily -> Times], "Tooltip"]& ],
+      Appearance->"DialogBox",
+      BaseStyle->"Paste",
+      ButtonData->OverscriptBox["\[SelectionPlaceholder]", "\[Placeholder]"]], 
+     ButtonBox[
+      TagBox[
+       TooltipBox["\<\"\\!\\(\\*UnderoverscriptBox[\\(\[SelectionPlaceholder]\
+\\), \\(\[Placeholder]\\), \\(\[Placeholder]\\)]\\)\"\>",
+        StyleBox[
+         TagBox[
+          FormBox[
+           UnderoverscriptBox[
+           "\[SelectionPlaceholder]", "\[Placeholder]", "\[Placeholder]"], 
+           TraditionalForm], TraditionalForm, Editable -> True], FontFamily -> 
+         Times, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         TraditionalForm[
+          Underoverscript[$CellContext`\[SelectionPlaceholder], 
+           Placeholder[], 
+           Placeholder[]]], FontFamily -> Times], "Tooltip"]& ],
+      Appearance->"DialogBox",
+      BaseStyle->"Paste",
+      ButtonData->UnderoverscriptBox[
+       "\[SelectionPlaceholder]", "\[Placeholder]", "\[Placeholder]"]], 
+     ButtonBox[
+      TagBox[
+       TooltipBox["\<\"\[SelectionPlaceholder]\[Diamond]\[Placeholder]\"\>",
+        StyleBox[
+         TagBox[
+          FormBox[
+          "\"Diamond[A,B] represents the compound of A and B\"", 
+           TraditionalForm], TraditionalForm, Editable -> True], FontFamily -> 
+         Times, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         TraditionalForm["Diamond[A,B] represents the compound of A and B"], 
+         FontFamily -> Times], "Tooltip"]& ],
+      Appearance->"DialogBox",
+      BaseStyle->"Paste",
+      ButtonData->
+       RowBox[{"\[SelectionPlaceholder]", "\[Diamond]", "\[Placeholder]"}]]}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{{3.508520577515236*^9, 3.508520590090363*^9}, 
+   3.5085227019353113`*^9, 3.559305071395914*^9}]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Title", "Subsubsection",
+ CellChangeTimes->{{3.5593054442205*^9, 3.559305444804708*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"i", "=", 
+  RowBox[{"Import", "[", 
+   RowBox[{"ToFileName", "[", 
+    RowBox[{
+     RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<logo.eps\>\""}], 
+    "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.5593054565736237`*^9, 3.559305456574233*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[
+  {Thickness[0.0058823529411764705`], 
+   {RGBColor[1., 0., 0.], Thickness[0.018823529411764708`], Opacity[1.], 
+    CapForm["Butt"], JoinForm[{"Miter", 4.}], 
+    JoinedCurveBox[{{{0, 2, 0}}}, {{{153.371, 14.645}, {0.33199999999999996`, 
+     14.645}}},
+     CurveClosed->{0}], 
+    JoinedCurveBox[{{{1, 4, 3}}}, {{{0.301, 14.817}, {20.383, 
+     14.883000000000001`}, {29.152, 21.543}, {29.152, 21.543}}},
+     CurveClosed->{0}], 
+    JoinedCurveBox[{{{0, 2, 0}}}, {{{0.59, 9.18}, {153.629, 9.18}}},
+     CurveClosed->{0}], 
+    JoinedCurveBox[{{{1, 4, 3}}}, {{{153.66, 9.008}, {133.578, 8.942}, {
+     124.809, 2.282}, {124.809, 2.282}}},
+     CurveClosed->{0}]}, 
+   {FaceForm[{RGBColor[1., 0.46274499999999996`, 0.21176500000000004`], 
+    Opacity[1.]}], 
+    FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+     0}}}, {{{164.15200000000002`, 9.446}, {164.15200000000002`, 46.946}, {
+     32.652, 46.946}, {32.652, 48.946}, {166.15200000000002`, 48.946}, {
+     166.15200000000002`, 9.446}}}], 
+    FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {1, 3, 3}}}, {{{43.12500000000001, 
+     52.790000000000006`}, {30.016000000000002`, 47.969}, {43.12500000000001, 
+     43.149}, {41.031, 45.993}, {41.043, 49.88699999999999}, {
+     43.12500000000001, 52.790000000000006`}}}], 
+    FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {1, 3, 3}}}, {{{160.324, 19.911}, {
+     165.14499999999998`, 6.801}, {169.965, 19.911}, {167.117, 
+     17.817000000000004`}, {163.22299999999998`, 17.829}, {160.324, 
+     19.911}}}]}, 
+   {Thickness[0.018823529411764708`], 
+    FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {
+      1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {0, 1, 
+      0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 
+      3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+      1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+      3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {
+      1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+      3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+      1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+      3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}}, {{1, 4, 3}, {1, 3, 
+      3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+      1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+      3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {
+      1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+      3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+      1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+      3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}}, {{0, 2, 
+      0}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {
+      1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}}, {{1, 4, 3}, {1, 
+      3, 3}, {1, 3, 3}, {1, 3, 3}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+      3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+      1, 3, 3}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 0}}, {{1,
+       4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+      3}, {1, 3, 3}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {0, 1, 
+      0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {1, 3, 3}, {
+      1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 
+      3}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+      3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+      3}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+      3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+      1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+      3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+      1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 
+      3}}}, {CompressedData["
+1:eJxTTMoPSmViYGBQAGIQfXqh67bPZ50d1A051shE2Tr0Ts8TanZwcThZtm++
+VL6dw0Wl2z/rVrlA5KvsHSpfqhly8Lg6TJFgCeOzdXCYDKJzXR3WuT+sEtnn
+4CCtf1eF7aCrw6dLvkkCFo4O/Lqb5r5nd3OI2+XJw7Ta0WFvCVDHMnc4H2yf
+gTvEvv8ODk8vAC1c5wYxJ9DBwQykUMnNwRREO9lD9E9zhfAf2TrsAfHZXB0W
+SAE1tNlAxItcIO7Rs3Zw6c55/vukC0TfNUuIuYquDo+Xzj6iUGABcWeFq8PE
+tzX2pv/MHBiBYcJwAeqfPlOIO6XdHICBk2ItbwIxL9LNQRLobd1NRpDwOOMC
+5x/+qhHTv8jFYTdQm/ZyY4dToPDNhYbnehMIX9fFgev64gLbU6YQ/ltnB5A1
+2s/NHCIst5woW+fs8BHkrh/mDiDnMBQ4Q91n4VABsm+NA9y+bFAAPLGF88Hh
+fdwJEh5u1hD/7XCAhzc4vmOd4HwADfXEfg==
+      "], CompressedData["
+1:eJxdVmtsFFUUrhuyEIRGoDaw1AcNqSDWhl1m2+2+zs6M7M5zeSQESEtMU9D4
+KARNhaKNgNhqrUSXh4kYqmIs2BBtCAEj/kCECpEU1KJCaZTQRglRJFi1FJ07
+32E2cZNm+s2995zvfOdxZ0bd6kUrfQUFBS3On3i6P9KpI1DRP3NwHrUU/3B6
+OJfH595fEx8/pFOfeA7PI6XtqaGRiEEPzB3XVRKQ6NS7jxy83m5QV8ny+mhS
+ol3H7v947fe83iSRKvZPM2m8MHRSorEbtyttNSbVbj16Y1ZJmKQVn2oT3jTp
+u3W/lM1tDcP+YZP2p39qKiqspKeHRvZe+9mkz57NTR2zo5L+OGvV3fWXSfKj
+l3tLo1UefuPq80npVh7DXoTOlJ7/u/lXE/z+jdAdIt5eE37rqkmf4JvTctAk
+B/nmnKiGP4dPWKyXRumI8LvKpKljlhSWr43S2yK+Kj5/NIr9PpME9N0ZA8/j
+BvjbMejRalBI/HIxes+Ra1Q1qEbEfyFG6x2a427q0OfBOOWEoyOMn4jTSaHv
+Czpd+kB4ZhzXOV7Goxr8Gwm6Wzg+puH8vgTrq3G+kjTY6wiygtdfTSK+sIY8
+jyXgYo0WtO9smLyY8H44Q181fr47sJuosLz7nd+GMlQm7P2Txy9fWXjo3pUp
+Dy8R/wyk4O9WhqY75eRfKINvuUZC9uLDMuqnVsP6DAX892iw36SAv0+nLcL+
+lwrz17F/kornGZ3jV5H/pQb4P6PSssiBnsaLBnTepaK+1pskytv/iYr6nG15
+2LWzIY/d/PVYeP+RCj6TbdZD5Xq24S+nknhs7mC8WUV8/bx/NdufngWfGpVe
+F9sWZME7o3K+szgfUskv7Hdlcf4+lS6L+E9naZuok4kq8jWYRd2MKqxvlvWS
+WX+bBNxyRaYioe8Bm/tLAT/Lxvlyhfvdgn1LoaVCvwbGtQrmwyXTw24cr+Wx
+cNdcbZKj3sbtixVy58vvBvKUUlD/ewzURwXnu97A/im3+Rvgc1Xm+tOpPjqQ
+bT8hQ79TjHfKyN9enf3L3G86968MXdfp4Hkh5WHXTlseu3orKfrixqyarZt0
+7gdef4vxOYIe+3W6Jt53Evx+rUPPZoI+13XU9zLC/AlwfCECX82gzuNG5SuT
+CPW0yeB5m+T5Z3C9JTGf/uR50pAEnyqejw8nabYYJK08D88nUA99PM9aEsjv
+PRZNE+kNJhDHYxbm4UAc+EOLUuL8hjjXqwU+/jjyU2R788utp8Tt+olx/9qY
+e41Rrl8b8+liNd8PNj0pNszMY3f+6BEP4z6oQv+sscl2ujhSVMnzyWb+Yegy
+YqEfshL03WcxP76/FIvnYwj56ef74PEQ5nWdyfdZkPUyeF4Gvfw855ivqA0i
+P9068wiC78Q8Rr9rHnbrNq5Bv/lB7pcM8Kog90sGerwURD0lMtQn+HXy+s00
+4j0bRH4Ppfn+Yn8vprHvoRD4LUpjvi/n+ErTnP8Q+q+A7XWHeD7Px/4feb0j
+zfdhGHy/YXuBMOIqy9C3gl+PBLwjw/UoIe9+DfpPkfj7QfO+H/7/ffEf3Rte
+nw==
+      "], CompressedData["
+1:eJxdVgtsFFUUrQ1Zm1ZrsU3F2ojFgkY+pbPslnZ/d2cGqzaw895DoqRVrNRU
+i4UAQSikRhErP42u0hDRUommAdJYTIz4IdpoC8QYBGyjRRuCgqYi8UcDBnHe
+nLu7iZNsJmfeffedd+5vyxqXy6bsrKysDvfnvYu//WrcErS7pOL78rNz6JPV
+yUkTWjN4VfPL5zd0ChrasyKSOz6HbnE/+z4TdEdlzv7SkgA1fHjvddljgvaX
+Ll4aigVosK5qc7xAYr0tAPtKSbnDroOjAbylpIaX+v++szRIb817/88ryyR9
+s/aXaZUvBGH/jKTe2tNtRflV5MHXJH2see2ooiz97JZkLvnp2JTQ3DR2WcYC
+/2Yw/FWT66W3dqcEv6vVpD/nbJMUeMgl3liD709L0teYPlhDs/V5T0oK6vUp
+IXJPGbm0SNKkCYvyZ64M4X7E+/tD4DdVkobZeWHY+5j/gjANaPufBfn1kwyT
+PqZjQFC9vv+pMNlbl537p1tAl7si9LW7vf1Zxk9E6GHt91FBZ95+/fPb3mXs
+xgv3ZXy7wPl1Udr46dHueT7evzcKfX91OF4xGhMf3LrphIP1LTE6q/keckjD
+3GsJuNchZ3tn642KEP8uh46sOdRV0kV0VT+dDk3T/i5n8PPacVM8jV21Drwx
+Gsd5exzEVZjg+ZFDWobigyb4n+D1Mgv8L7L/Nou6Nf9yQZu0oy8s+FMC9hNt
+KtJCb0vd30b8jwnwX2XTVDd7rEJJ63Tcd9nY94gknd6+PsYHM9g97eTa0xns
+xS9Hwf8+G3rOUKyHzfmscF7SpgWNBQ9Ur2a80cb9kmy/nP33KfCpZ/svFf1x
+fH5jwT1sf4b3+23K0/4v8/7JNu6ft5Be1Ql5vY18K15ISY2vWKyvYr1M1l/h
+PWZC33bF9WWhfusU9s+0EO+bFPzPt6DfiARusNAfdmSwpfP38Qz26i0uyStb
+ZeGepRI6xy3k/0WB/KjgeA8J2Bem+AvwOW9y/glaGhpNbB80od9mxp0m/K4T
+fL6JeDULrl8T+bBEgMepeBp752zNYE9vK076uFiT4Hrg9RWMhwl6rBf0u45X
+D6Fetwjo2U7Q502B/H6QoEcf389P4HtEUI8mOpGQ3z+m+m0M69dwP9kXQ3+a
+zP2kNQY+xHhWjLw0a+Z+OBJF/b7I/awjinx6T9LNOrxGFHoOcz8cjQCPS4rr
+/eu5nxQq8PFFEJ9ZKt2/vDyyUvkThr1S6M9rQtyvFPrTDzXIrxZFLdqgPIO9
+urmvOo0xD+ZSQtdDvUJdFFXhPlHF/IOIfxnXQyIAfS9J5sfzayA1D/yIzys8
+D5r96Nf3S55nBvzn83zaa6Tj85TrvqLBQL1vEPAbNMB3egZ7PP9y0tg7r9+B
+fncbXC+MHzO4Xhzo8ZyBfLIcGtL8egzMgzIH9z1uIL5ZDs8vg3a5U2Dl4QTy
+eYYf9jsT6O+L/ciblgTH3083uGV2oTYBfwf8yJ/ZbP+dn3QZXjiX4HkYBN/8
+1LwIor8EHTqp+R0OQK9Wh/MxgPV3HOhfGMD+35z0/4f//7/4D6eJNu8=
+      
+      "], CompressedData["
+1:eJxTTMoPSmViYGCQBWIQvbdksgSLWqjDAin9uyppFg5gflyIgyRLGJ/uJiOH
+drGb5743B8P5mRPf1tjLhjiYxu3y5GEyd7iodPtn3aYQB3VDjjUyv6wg6p1D
+IfxZdg4ZIPVXQx2mSAANkHV0WOi67fPflDCHgN7peUKXnRziQcZ8DnM4WbZv
+vlS+C8T+beFwvnN3zvPfJ8Mh6hc7O4iuc39YdSfcIWsPUOEVJ4j6d1B5ZieH
+NTJRKdb/wx2WH/M27zR0dGAAAYEIB5ByljAHCF8hAuL+R3YOIG3NBhEO1xcX
+2HKJ2zocB2pzdIhweLx09hEFA2uHZxeAHvSLcABZK6Jn6dB84NRC1zgY3xxi
+f16EQzbYAlMIvy4CHl4w/8D4XjxM2u3rwh12A72tvdzYAeRMxxXhDpOAwWQ6
+zwQSHovDIe6dZupgcFeFrXFuOMQ9E8wcikEBOj0c4o8GcwdpYLSxTQyHxx8A
+wRmu7A==
+      "], {{93.96900000000001, 26.883}, {93.801, 
+      28.610000000000003`}, {93.60199999999999, 30.329}, {93.37499999999999, 
+      32.04}, {93.15599999999999, 33.747}, {92.895, 35.508}, {
+      92.59400000000001, 37.321}, {91.85199999999999, 36.227000000000004`}, {
+      90.926, 34.821}, {89.812, 33.102000000000004`}, {88.70700000000001, 
+      31.391000000000002`}, {87.44500000000001, 29.321}, {86.031, 
+      26.883}}, CompressedData["
+1:eJxTTMoPSmViYGBQAmIQ/R8E1KMcFkjp31Vhs3J4WCWyzl0xymGdO5DVZ+lw
+Sen2zzqpKIdPl3yTBCQsHdrFbp77LgxVv8zCIXPi2xp73igHYzCwcHDuznn+
+mxMqf8wczgcpM41D8AN7p+cJLTZzWOi67fNfkSiHk2X75kvxmznE7vLkYdKO
+cjCLAzIWmToAZa9UOEY5+CUJRFiamDq8Dtwh15od5fB46ewjCh9MHKRBzl4Z
+5bC3ZLIEyzUTCF0X5cB1fXGBbZYRhO8GVV9g5AAyvV0syuHflYqXahONHBhA
+4EMkxL/njCD+Pwnl8xlD3Lsy0sEU5J4kYwcXEH9iJMT8U1B+ZaSDJEsYn66R
+icMxb/NOx4xIh8qXaoYca0wcFoH8FxPpoA7kyViZQvQFRTqAvXncFCLvE+kQ
+AAqPZDM4H2K/OZwPsp6p29yhOAMYkv4weQtI+IVEOuwB+XOaBURddKTDJFB4
+y1k6XATFXxJU/2pLhwqQu3IiIfFhZwUJn7woSDg2ukLMM4mGuOewqwMAtLPg
+JA==
+      "], {{111.96900000000001`, 18.696}, {109., 18.696}, {113., 
+      35.336}, {115.96900000000001`, 35.336}}, CompressedData["
+1:eJxTTMoPSmViYGCQBGIQHbfLk4fpdowDmNZ2dngTuEOudTeC/7BKZJ37whiH
+de5Alp2zQ8VLNUOOnhiHttdAhanODmtkolKsy2Mg+rqdHRa5bvv8NyfGQVr/
+rgrbQQS/FaSe1QXOnyLBEsYX6+JwSen2z7qqGIeVx7zNOxe6OOwtmSzBMi3G
+IaB3ep7QZReI/RtjHEDGNbK6OjCAwIUYh5Nl++ZLybs6uHTnPP/9EcEHqxeM
+hfNB1rZqx0L8w+0KcZdjLMT8xy4OTy8AHRAW61AJ8tceF4h5ibEQ+1oRfLB5
+9gg+OBzeOEPMD451mDUTCFY6Q8wzi3W4vrjAlqvc2YEbxJCKdcjeA/SYCzR8
+fyPCFz38AXYHpkY=
+      "], CompressedData["
+1:eJxTTMoPSmViYGBQB2IQ/R8Elsc5THxbY29qZ+Tg0p3z/Lcjgv/0gtLtn99i
+HT5d8k0SmAHlH4t14Lq+uMDWyxjCnxbrsEYmKsX6v7HDMxC/LtZhlycPkza7
+KZxvGgcUSTKD88Hq7c0deqfnCTV3xELsi7NwqHypZsgxB8rfZwkxvyzOYbIE
+SxjfX2eHvSVAll28w8myffOl7F0g/HdxDiDjmVY7OjCAgE4CnA82XwLKz3aA
+uj8OzgfrD4tzUDfkWCNTZQnhu8H4FlD7oPxZ5qj8W2Zw/m6Qf9XNHJxB4ecZ
+57BASv+uyjJTSHgmxkHtMXW4BPJ+FVSezdThdeAOudbF0PC+Z+KwyHXb5793
+EPyFID5LPJxfAQofnXiHa8Dg5/puAjE/MB4SH1qmEP9WxEPCN94UYu+0eIfH
+S2cfUZhgCnHfSqh5+0wdpEHO2BkPUWdm7OCXJBBhuSTeIQBkELOxw8MqkXXu
+jfEO69yBrHNGkPANiHfYAzbXyMEL6O12uXiHmP5DXzVijBxAwdD+DJF+0NMX
+ADgVAfc=
+      "], CompressedData["
+1:eJxTTMoPSmViYGBQBWIQvch12+e/KxIc1rk/rBLJs3YotOW6vvhCgsPHS75J
+AhXWDrd/1mXt+ZLgUPlSzZCjx9pB/64KW6NoogNQVYHtKmsHdUOONTJmUP4p
+a4eLSkAdQYkOE9/W2Jv+s3a4BOJnJToskALqdLOByDclOjxeOvuIwgQbB7D9
+UxId/JIEIiy/2Di4dOc8/70w0UGCJYxPt8jWQZWtcarz+kSHk2X75ku9t3XY
+WzJZgmVbooMxCEy2g/PB9sXZw/lg//TZQ9y/JdGBAQQO2EPs35TosAek7ps9
+xB0bEh1AzucSd4CoWwNVb+AAMW8ZVN7dweG4t3mn44JEhxMg98RD+TMSHczi
+dnnyFEHV9yU6SIMDCmpeC5Q/0cGhKAPo0vJEB14m7XaxmQ4OvdPzhJoz0PgB
+CD44PCwTHbJBDm5xgISXSqIDyDqmaKj9AokOK44BGYYODt80YvoP/U1wuAZy
+73d7BwOQM94mQMPT3qH1deAOubsJDhWg+Hxj5+CY8PSC0vkEhyegcAiwg7jv
+cILDJFB4zrN1sNwC9Ol2aPp4ZwOxd30CJPyNofGHlH4AeiDxkQ==
+      "], CompressedData["
+1:eJxdVG1Ik1EUXjKkrGxkP0wqStJGIeG2d3PT6XlNk5JErUTyo3sXQWmY1TCp
+kKQPqMi0pX2oZWlfJvaBWsiSIWEZIaZgkRhJlFQWpiRoBb1358zRXhiXZ+fe
+5zzn3OfcFba96Tv9VCpVtvITa8KZPSO/53CoC1k7tHK9DsL8SyvXjbAZvKvi
++5G4bgbNScOHFhXoQCW+BwzE31KHDlpeFHVcq6J4oB6UU/6lpQxk9qk39LAe
+zl4sWHiskPj8DXBAEG5n8PFm9bPl5Qa4pIRd6QwWqzMCI3QS9IUOTpVsZBDw
+pr7Q+lWC1wLHM8h32h3BDUbEsRTPM83gVZGzm5ZYov7H7WZQ2F9eT2SQ275h
+nt+aaNS/hfSWxSCPjfSMWUHIdRUR/+o4rKeCwYVgReBSwH1NDJ4qctS3AMrE
+gVcMUkWhQTLmHye8Q4Z3UyV5zmAOeUJ/i4znEzjyDcnYH7sPLvfBdzjq7ZEx
+n5ODu50PZRgU/L0cTn5Le7KsUsb7Gqb9BTLq/MHBIfisMrSK+5rmMKpsPzFX
+xn6obai3HwD9QNgB8DzZdErWEN4MsF8kCLLhOY0Xi/LUVXE+OBaCRP/n2yD7
+XOcvrdOK/LNs2N8AK66THO9rWwz2/zP5sSsa+fqpnpRo7IeLY10DFjzXyOFn
+3yabptgy0z933GhBHx7kqGfSDPusSsZsDpIwRKcZbiS2TfwFyn/FjP0L45Bi
+02Sa7YSV+YgXPFm0f5T8k0J8vQz7AWaY1CqVtjI8bzDjfdV4/GQGixiYagZZ
+oh9/onAeFDwu9L/1YpwvL04ThdV7MfrXZ3+JF7v1qKJQfy3lP21C/XU0HyGE
+GyjeaMRzir/d45JkxD62MRD2iRiX0A8uBjlCfw3NZw/pz5Sw/x9o3sMlnG9l
+HrD/BvRfAEe97w2YT+vFbj0GL8b556hnxID8qXRf0xTP5dCt0IYskEBR+ag2
+n8NA8ZfwSK2E/MWe902CQnFfxznNJ8UVv7jXoxL68zKH8yL/VYo3kJ4OCd+R
+e+SHQcL3Pf6SIEfgx57506P/73LQ4wdbhT4H4Qkd1mun/c30nmZwGLvdlWza
+rUN+vfd99n2v/wGnBU/H
+      "]}]}},
+  AspectRatio->Automatic,
+  ImageSize->{170., 53.},
+  PlotRange->{{0., 170.}, {0., 53.}}]], "Output",
+ CellChangeTimes->{3.559305623538026*^9, 3.55930570525736*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Title", "=", 
+  RowBox[{"Grid", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"Framed", "[", 
+       RowBox[{"i", ",", 
+        RowBox[{"RoundingRadius", "\[Rule]", "5"}]}], "]"}], "}"}], "}"}], 
+    ",", 
+    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.5593056216868896`*^9, 3.5593056216873627`*^9}, {
+  3.559305859353829*^9, 3.559305859642338*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     FrameBox[
+      GraphicsBox[
+       {Thickness[0.0058823529411764705`], 
+        {RGBColor[1., 0., 0.], Thickness[0.018823529411764708`], Opacity[1.], 
+         CapForm["Butt"], JoinForm[{"Miter", 4.}], 
+         JoinedCurveBox[{{{0, 2, 0}}}, {{{153.371, 14.645}, {
+          0.33199999999999996`, 14.645}}},
+          CurveClosed->{0}], 
+         JoinedCurveBox[{{{1, 4, 3}}}, {{{0.301, 14.817}, {20.383, 
+          14.883000000000001`}, {29.152, 21.543}, {29.152, 21.543}}},
+          CurveClosed->{0}], 
+         JoinedCurveBox[{{{0, 2, 0}}}, {{{0.59, 9.18}, {153.629, 9.18}}},
+          CurveClosed->{0}], 
+         JoinedCurveBox[{{{1, 4, 3}}}, {{{153.66, 9.008}, {133.578, 8.942}, {
+          124.809, 2.282}, {124.809, 2.282}}},
+          CurveClosed->{0}]}, 
+        {FaceForm[{RGBColor[1., 0.46274499999999996`, 0.21176500000000004`], 
+         Opacity[1.]}], 
+         FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+          0}}}, {{{164.15200000000002`, 9.446}, {164.15200000000002`, 
+          46.946}, {32.652, 46.946}, {32.652, 48.946}, {166.15200000000002`, 
+          48.946}, {166.15200000000002`, 9.446}}}], 
+         FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {1, 3, 3}}}, {{{
+          43.12500000000001, 52.790000000000006`}, {30.016000000000002`, 
+          47.969}, {43.12500000000001, 43.149}, {41.031, 45.993}, {41.043, 
+          49.88699999999999}, {43.12500000000001, 52.790000000000006`}}}], 
+         FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {1, 3, 3}}}, {{{160.324, 
+          19.911}, {165.14499999999998`, 6.801}, {169.965, 19.911}, {167.117, 
+          17.817000000000004`}, {163.22299999999998`, 17.829}, {160.324, 
+          19.911}}}]}, 
+        {Thickness[0.018823529411764708`], 
+         FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {0, 1, 
+           0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}}, {{1, 4, 3}, {1, 3,
+            3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 
+           0}, {1, 3, 3}, {1, 3, 3}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3,
+            3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 
+           3}}, {{0, 2, 0}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3,
+            3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 
+           3}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}}, {{1, 4, 3}, {1, 
+           3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {1, 
+           3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {0, 1, 0}}, {{0,
+            2, 0}, {0, 1, 0}, {0, 1, 0}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {
+           1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}}, {{1, 4, 
+           3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 
+           0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}}, {{1, 4,
+            3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}}, {{1, 4,
+            3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+           3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 
+           3}}}, {CompressedData["
+1:eJxTTMoPSmViYGBQAGIQfXqh67bPZ50d1A051shE2Tr0Ts8TanZwcThZtm++
+VL6dw0Wl2z/rVrlA5KvsHSpfqhly8Lg6TJFgCeOzdXCYDKJzXR3WuT+sEtnn
+4CCtf1eF7aCrw6dLvkkCFo4O/Lqb5r5nd3OI2+XJw7Ta0WFvCVDHMnc4H2yf
+gTvEvv8ODk8vAC1c5wYxJ9DBwQykUMnNwRREO9lD9E9zhfAf2TrsAfHZXB0W
+SAE1tNlAxItcIO7Rs3Zw6c55/vukC0TfNUuIuYquDo+Xzj6iUGABcWeFq8PE
+tzX2pv/MHBiBYcJwAeqfPlOIO6XdHICBk2ItbwIxL9LNQRLobd1NRpDwOOMC
+5x/+qhHTv8jFYTdQm/ZyY4dToPDNhYbnehMIX9fFgev64gLbU6YQ/ltnB5A1
+2s/NHCIst5woW+fs8BHkrh/mDiDnMBQ4Q91n4VABsm+NA9y+bFAAPLGF88Hh
+fdwJEh5u1hD/7XCAhzc4vmOd4HwADfXEfg==
+           "], CompressedData["
+1:eJxdVmtsFFUUrhuyEIRGoDaw1AcNqSDWhl1m2+2+zs6M7M5zeSQESEtMU9D4
+KARNhaKNgNhqrUSXh4kYqmIs2BBtCAEj/kCECpEU1KJCaZTQRglRJFi1FJ07
+32E2cZNm+s2995zvfOdxZ0bd6kUrfQUFBS3On3i6P9KpI1DRP3NwHrUU/3B6
+OJfH595fEx8/pFOfeA7PI6XtqaGRiEEPzB3XVRKQ6NS7jxy83m5QV8ny+mhS
+ol3H7v947fe83iSRKvZPM2m8MHRSorEbtyttNSbVbj16Y1ZJmKQVn2oT3jTp
+u3W/lM1tDcP+YZP2p39qKiqspKeHRvZe+9mkz57NTR2zo5L+OGvV3fWXSfKj
+l3tLo1UefuPq80npVh7DXoTOlJ7/u/lXE/z+jdAdIt5eE37rqkmf4JvTctAk
+B/nmnKiGP4dPWKyXRumI8LvKpKljlhSWr43S2yK+Kj5/NIr9PpME9N0ZA8/j
+BvjbMejRalBI/HIxes+Ra1Q1qEbEfyFG6x2a427q0OfBOOWEoyOMn4jTSaHv
+Czpd+kB4ZhzXOV7Goxr8Gwm6Wzg+puH8vgTrq3G+kjTY6wiygtdfTSK+sIY8
+jyXgYo0WtO9smLyY8H44Q181fr47sJuosLz7nd+GMlQm7P2Txy9fWXjo3pUp
+Dy8R/wyk4O9WhqY75eRfKINvuUZC9uLDMuqnVsP6DAX892iw36SAv0+nLcL+
+lwrz17F/kornGZ3jV5H/pQb4P6PSssiBnsaLBnTepaK+1pskytv/iYr6nG15
+2LWzIY/d/PVYeP+RCj6TbdZD5Xq24S+nknhs7mC8WUV8/bx/NdufngWfGpVe
+F9sWZME7o3K+szgfUskv7Hdlcf4+lS6L+E9naZuok4kq8jWYRd2MKqxvlvWS
+WX+bBNxyRaYioe8Bm/tLAT/Lxvlyhfvdgn1LoaVCvwbGtQrmwyXTw24cr+Wx
+cNdcbZKj3sbtixVy58vvBvKUUlD/ewzURwXnu97A/im3+Rvgc1Xm+tOpPjqQ
+bT8hQ79TjHfKyN9enf3L3G86968MXdfp4Hkh5WHXTlseu3orKfrixqyarZt0
+7gdef4vxOYIe+3W6Jt53Evx+rUPPZoI+13XU9zLC/AlwfCECX82gzuNG5SuT
+CPW0yeB5m+T5Z3C9JTGf/uR50pAEnyqejw8nabYYJK08D88nUA99PM9aEsjv
+PRZNE+kNJhDHYxbm4UAc+EOLUuL8hjjXqwU+/jjyU2R788utp8Tt+olx/9qY
+e41Rrl8b8+liNd8PNj0pNszMY3f+6BEP4z6oQv+sscl2ujhSVMnzyWb+Yegy
+YqEfshL03WcxP76/FIvnYwj56ef74PEQ5nWdyfdZkPUyeF4Gvfw855ivqA0i
+P9068wiC78Q8Rr9rHnbrNq5Bv/lB7pcM8Kog90sGerwURD0lMtQn+HXy+s00
+4j0bRH4Ppfn+Yn8vprHvoRD4LUpjvi/n+ErTnP8Q+q+A7XWHeD7Px/4feb0j
+zfdhGHy/YXuBMOIqy9C3gl+PBLwjw/UoIe9+DfpPkfj7QfO+H/7/ffEf3Rte
+nw==
+           "], CompressedData["
+1:eJxdVgtsFFUUrQ1Zm1ZrsU3F2ojFgkY+pbPslnZ/d2cGqzaw895DoqRVrNRU
+i4UAQSikRhErP42u0hDRUommAdJYTIz4IdpoC8QYBGyjRRuCgqYi8UcDBnHe
+nLu7iZNsJmfeffedd+5vyxqXy6bsrKysDvfnvYu//WrcErS7pOL78rNz6JPV
+yUkTWjN4VfPL5zd0ChrasyKSOz6HbnE/+z4TdEdlzv7SkgA1fHjvddljgvaX
+Ll4aigVosK5qc7xAYr0tAPtKSbnDroOjAbylpIaX+v++szRIb817/88ryyR9
+s/aXaZUvBGH/jKTe2tNtRflV5MHXJH2see2ooiz97JZkLvnp2JTQ3DR2WcYC
+/2Yw/FWT66W3dqcEv6vVpD/nbJMUeMgl3liD709L0teYPlhDs/V5T0oK6vUp
+IXJPGbm0SNKkCYvyZ64M4X7E+/tD4DdVkobZeWHY+5j/gjANaPufBfn1kwyT
+PqZjQFC9vv+pMNlbl537p1tAl7si9LW7vf1Zxk9E6GHt91FBZ95+/fPb3mXs
+xgv3ZXy7wPl1Udr46dHueT7evzcKfX91OF4xGhMf3LrphIP1LTE6q/keckjD
+3GsJuNchZ3tn642KEP8uh46sOdRV0kV0VT+dDk3T/i5n8PPacVM8jV21Drwx
+Gsd5exzEVZjg+ZFDWobigyb4n+D1Mgv8L7L/Nou6Nf9yQZu0oy8s+FMC9hNt
+KtJCb0vd30b8jwnwX2XTVDd7rEJJ63Tcd9nY94gknd6+PsYHM9g97eTa0xns
+xS9Hwf8+G3rOUKyHzfmscF7SpgWNBQ9Ur2a80cb9kmy/nP33KfCpZ/svFf1x
+fH5jwT1sf4b3+23K0/4v8/7JNu6ft5Be1Ql5vY18K15ISY2vWKyvYr1M1l/h
+PWZC33bF9WWhfusU9s+0EO+bFPzPt6DfiARusNAfdmSwpfP38Qz26i0uyStb
+ZeGepRI6xy3k/0WB/KjgeA8J2Bem+AvwOW9y/glaGhpNbB80od9mxp0m/K4T
+fL6JeDULrl8T+bBEgMepeBp752zNYE9vK076uFiT4Hrg9RWMhwl6rBf0u45X
+D6Fetwjo2U7Q502B/H6QoEcf389P4HtEUI8mOpGQ3z+m+m0M69dwP9kXQ3+a
+zP2kNQY+xHhWjLw0a+Z+OBJF/b7I/awjinx6T9LNOrxGFHoOcz8cjQCPS4rr
+/eu5nxQq8PFFEJ9ZKt2/vDyyUvkThr1S6M9rQtyvFPrTDzXIrxZFLdqgPIO9
+urmvOo0xD+ZSQtdDvUJdFFXhPlHF/IOIfxnXQyIAfS9J5sfzayA1D/yIzys8
+D5r96Nf3S55nBvzn83zaa6Tj85TrvqLBQL1vEPAbNMB3egZ7PP9y0tg7r9+B
+fncbXC+MHzO4Xhzo8ZyBfLIcGtL8egzMgzIH9z1uIL5ZDs8vg3a5U2Dl4QTy
+eYYf9jsT6O+L/ciblgTH3083uGV2oTYBfwf8yJ/ZbP+dn3QZXjiX4HkYBN/8
+1LwIor8EHTqp+R0OQK9Wh/MxgPV3HOhfGMD+35z0/4f//7/4D6eJNu8=
+           
+           "], CompressedData["
+1:eJxTTMoPSmViYGCQBWIQvbdksgSLWqjDAin9uyppFg5gflyIgyRLGJ/uJiOH
+drGb5743B8P5mRPf1tjLhjiYxu3y5GEyd7iodPtn3aYQB3VDjjUyv6wg6p1D
+IfxZdg4ZIPVXQx2mSAANkHV0WOi67fPflDCHgN7peUKXnRziQcZ8DnM4WbZv
+vlS+C8T+beFwvnN3zvPfJ8Mh6hc7O4iuc39YdSfcIWsPUOEVJ4j6d1B5ZieH
+NTJRKdb/wx2WH/M27zR0dGAAAYEIB5ByljAHCF8hAuL+R3YOIG3NBhEO1xcX
+2HKJ2zocB2pzdIhweLx09hEFA2uHZxeAHvSLcABZK6Jn6dB84NRC1zgY3xxi
+f16EQzbYAlMIvy4CHl4w/8D4XjxM2u3rwh12A72tvdzYAeRMxxXhDpOAwWQ6
+zwQSHovDIe6dZupgcFeFrXFuOMQ9E8wcikEBOj0c4o8GcwdpYLSxTQyHxx8A
+wRmu7A==
+           "], {{93.96900000000001, 26.883}, {93.801, 
+           28.610000000000003`}, {93.60199999999999, 30.329}, {
+           93.37499999999999, 32.04}, {93.15599999999999, 33.747}, {92.895, 
+           35.508}, {92.59400000000001, 37.321}, {91.85199999999999, 
+           36.227000000000004`}, {90.926, 34.821}, {89.812, 
+           33.102000000000004`}, {88.70700000000001, 31.391000000000002`}, {
+           87.44500000000001, 29.321}, {86.031, 26.883}}, CompressedData["
+1:eJxTTMoPSmViYGBQAmIQ/R8E1KMcFkjp31Vhs3J4WCWyzl0xymGdO5DVZ+lw
+Sen2zzqpKIdPl3yTBCQsHdrFbp77LgxVv8zCIXPi2xp73igHYzCwcHDuznn+
+mxMqf8wczgcpM41D8AN7p+cJLTZzWOi67fNfkSiHk2X75kvxmznE7vLkYdKO
+cjCLAzIWmToAZa9UOEY5+CUJRFiamDq8Dtwh15od5fB46ewjCh9MHKRBzl4Z
+5bC3ZLIEyzUTCF0X5cB1fXGBbZYRhO8GVV9g5AAyvV0syuHflYqXahONHBhA
+4EMkxL/njCD+Pwnl8xlD3Lsy0sEU5J4kYwcXEH9iJMT8U1B+ZaSDJEsYn66R
+icMxb/NOx4xIh8qXaoYca0wcFoH8FxPpoA7kyViZQvQFRTqAvXncFCLvE+kQ
+AAqPZDM4H2K/OZwPsp6p29yhOAMYkv4weQtI+IVEOuwB+XOaBURddKTDJFB4
+y1k6XATFXxJU/2pLhwqQu3IiIfFhZwUJn7woSDg2ukLMM4mGuOewqwMAtLPg
+JA==
+           "], {{111.96900000000001`, 18.696}, {109., 18.696}, {113., 
+           35.336}, {115.96900000000001`, 35.336}}, CompressedData["
+1:eJxTTMoPSmViYGCQBGIQHbfLk4fpdowDmNZ2dngTuEOudTeC/7BKZJ37whiH
+de5Alp2zQ8VLNUOOnhiHttdAhanODmtkolKsy2Mg+rqdHRa5bvv8NyfGQVr/
+rgrbQQS/FaSe1QXOnyLBEsYX6+JwSen2z7qqGIeVx7zNOxe6OOwtmSzBMi3G
+IaB3ep7QZReI/RtjHEDGNbK6OjCAwIUYh5Nl++ZLybs6uHTnPP/9EcEHqxeM
+hfNB1rZqx0L8w+0KcZdjLMT8xy4OTy8AHRAW61AJ8tceF4h5ibEQ+1oRfLB5
+9gg+OBzeOEPMD451mDUTCFY6Q8wzi3W4vrjAlqvc2YEbxJCKdcjeA/SYCzR8
+fyPCFz38AXYHpkY=
+           "], CompressedData["
+1:eJxTTMoPSmViYGBQB2IQ/R8Elsc5THxbY29qZ+Tg0p3z/Lcjgv/0gtLtn99i
+HT5d8k0SmAHlH4t14Lq+uMDWyxjCnxbrsEYmKsX6v7HDMxC/LtZhlycPkza7
+KZxvGgcUSTKD88Hq7c0deqfnCTV3xELsi7NwqHypZsgxB8rfZwkxvyzOYbIE
+SxjfX2eHvSVAll28w8myffOl7F0g/HdxDiDjmVY7OjCAgE4CnA82XwLKz3aA
+uj8OzgfrD4tzUDfkWCNTZQnhu8H4FlD7oPxZ5qj8W2Zw/m6Qf9XNHJxB4ecZ
+57BASv+uyjJTSHgmxkHtMXW4BPJ+FVSezdThdeAOudbF0PC+Z+KwyHXb5793
+EPyFID5LPJxfAQofnXiHa8Dg5/puAjE/MB4SH1qmEP9WxEPCN94UYu+0eIfH
+S2cfUZhgCnHfSqh5+0wdpEHO2BkPUWdm7OCXJBBhuSTeIQBkELOxw8MqkXXu
+jfEO69yBrHNGkPANiHfYAzbXyMEL6O12uXiHmP5DXzVijBxAwdD+DJF+0NMX
+ADgVAfc=
+           "], CompressedData["
+1:eJxTTMoPSmViYGBQBWIQvch12+e/KxIc1rk/rBLJs3YotOW6vvhCgsPHS75J
+AhXWDrd/1mXt+ZLgUPlSzZCjx9pB/64KW6NoogNQVYHtKmsHdUOONTJmUP4p
+a4eLSkAdQYkOE9/W2Jv+s3a4BOJnJToskALqdLOByDclOjxeOvuIwgQbB7D9
+UxId/JIEIiy/2Di4dOc8/70w0UGCJYxPt8jWQZWtcarz+kSHk2X75ku9t3XY
+WzJZgmVbooMxCEy2g/PB9sXZw/lg//TZQ9y/JdGBAQQO2EPs35TosAek7ps9
+xB0bEh1AzucSd4CoWwNVb+AAMW8ZVN7dweG4t3mn44JEhxMg98RD+TMSHczi
+dnnyFEHV9yU6SIMDCmpeC5Q/0cGhKAPo0vJEB14m7XaxmQ4OvdPzhJoz0PgB
+CD44PCwTHbJBDm5xgISXSqIDyDqmaKj9AokOK44BGYYODt80YvoP/U1wuAZy
+73d7BwOQM94mQMPT3qH1deAOubsJDhWg+Hxj5+CY8PSC0vkEhyegcAiwg7jv
+cILDJFB4zrN1sNwC9Ol2aPp4ZwOxd30CJPyNofGHlH4AeiDxkQ==
+           
+           "], CompressedData["
+1:eJxdVG1Ik1EUXjKkrGxkP0wqStJGIeG2d3PT6XlNk5JErUTyo3sXQWmY1TCp
+kKQPqMi0pX2oZWlfJvaBWsiSIWEZIaZgkRhJlFQWpiRoBb1358zRXhiXZ+fe
+5zzn3OfcFba96Tv9VCpVtvITa8KZPSO/53CoC1k7tHK9DsL8SyvXjbAZvKvi
++5G4bgbNScOHFhXoQCW+BwzE31KHDlpeFHVcq6J4oB6UU/6lpQxk9qk39LAe
+zl4sWHiskPj8DXBAEG5n8PFm9bPl5Qa4pIRd6QwWqzMCI3QS9IUOTpVsZBDw
+pr7Q+lWC1wLHM8h32h3BDUbEsRTPM83gVZGzm5ZYov7H7WZQ2F9eT2SQ275h
+nt+aaNS/hfSWxSCPjfSMWUHIdRUR/+o4rKeCwYVgReBSwH1NDJ4qctS3AMrE
+gVcMUkWhQTLmHye8Q4Z3UyV5zmAOeUJ/i4znEzjyDcnYH7sPLvfBdzjq7ZEx
+n5ODu50PZRgU/L0cTn5Le7KsUsb7Gqb9BTLq/MHBIfisMrSK+5rmMKpsPzFX
+xn6obai3HwD9QNgB8DzZdErWEN4MsF8kCLLhOY0Xi/LUVXE+OBaCRP/n2yD7
+XOcvrdOK/LNs2N8AK66THO9rWwz2/zP5sSsa+fqpnpRo7IeLY10DFjzXyOFn
+3yabptgy0z933GhBHx7kqGfSDPusSsZsDpIwRKcZbiS2TfwFyn/FjP0L45Bi
+02Sa7YSV+YgXPFm0f5T8k0J8vQz7AWaY1CqVtjI8bzDjfdV4/GQGixiYagZZ
+oh9/onAeFDwu9L/1YpwvL04ThdV7MfrXZ3+JF7v1qKJQfy3lP21C/XU0HyGE
+GyjeaMRzir/d45JkxD62MRD2iRiX0A8uBjlCfw3NZw/pz5Sw/x9o3sMlnG9l
+HrD/BvRfAEe97w2YT+vFbj0GL8b556hnxID8qXRf0xTP5dCt0IYskEBR+ag2
+n8NA8ZfwSK2E/MWe902CQnFfxznNJ8UVv7jXoxL68zKH8yL/VYo3kJ4OCd+R
+e+SHQcL3Pf6SIEfgx57506P/73LQ4wdbhT4H4Qkd1mun/c30nmZwGLvdlWza
+rUN+vfd99n2v/wGnBU/H
+           "]}]}},
+       AspectRatio->Automatic,
+       ImageSize->{170., 53.},
+       PlotRange->{{0., 170.}, {0., 53.}}],
+      RoundingRadius->5,
+      StripOnInput->False]}
+   },
+   AutoDelete->False,
+   GridBoxBackground->{"Columns" -> {{
+        GrayLevel[1]}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{3.559305625725915*^9, 3.559305707100656*^9, 
+  3.559305860082815*^9}]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["dostuff grid", "Subsubsection",
+ CellChangeTimes->{{3.5593058497698812`*^9, 3.559305851369567*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"dostuffgrid", "=", 
+  RowBox[{"Grid", "[", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<xSSAlite\>\"", ",", " ", 
+         RowBox[{"FontSize", "\[Rule]", " ", "24"}], ",", "  ", 
+         RowBox[{"FontFamily", "\[Rule]", " ", "\"\<Arial\>\""}], ",", " ", 
+         RowBox[{"FontSlant", "\[Rule]", " ", "Italic"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"FontColor", "\[Rule]", " ", 
+          RowBox[{"Darker", "[", "Blue", "]"}]}], ",", " ", 
+         RowBox[{"FontWeight", "\[Rule]", " ", "Bold"}]}], "]"}], "}"}], 
+      ","}], " ", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{"Grid", "[", 
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{"runbutton", ",", " ", "plotbutton"}], "}"}], "}"}], "]"}], 
+      "}"}], ",", " ", "\[IndentingNewLine]", 
+     RowBox[{
+     "{", "\[IndentingNewLine]", "arrowbuttons", "\[IndentingNewLine]", 
+      "}"}]}], "}"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.443889739853398*^9, 3.443889770315715*^9}, {
+  3.443889812772015*^9, 3.443889879607908*^9}, {3.443890889475416*^9, 
+  3.443890900115977*^9}, {3.443890963395766*^9, 3.443891012409805*^9}, {
+  3.444160852581822*^9, 3.444160897365504*^9}, {3.444484277430489*^9, 
+  3.444484281226465*^9}, {3.508520605700334*^9, 3.50852060637216*^9}, {
+  3.5085207030647507`*^9, 3.508520771310659*^9}, {3.5593052649419127`*^9, 
+  3.559305269160758*^9}, {3.5593057212072697`*^9, 3.559305725958531*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TagBox[GridBox[{
+        {
+         ButtonBox[
+          TagBox[
+           
+           TooltipBox["\<\"SSA[\[Placeholder],\[Placeholder],\[Placeholder]...\
+]\"\>",
+            StyleBox[
+             TagBox[
+              FormBox[
+              "\"SSA[reactions, \\!\\(\\*SubscriptBox[\\(t\\), \\(max\\)]\\), \
+IC, Parameters, MaxSteps]\"", TraditionalForm], TraditionalForm, Editable -> 
+              True], FontFamily -> Times, StripOnInput -> False]],
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+             "SSA[reactions, \!\(\*SubscriptBox[\(t\), \(max\)]\), IC, \
+Parameters, MaxSteps]"], FontFamily -> Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          ButtonData->RowBox[{"SSA", "[", 
+             RowBox[{
+               TagBox[
+                FrameBox["\"Reaction List\""], "Placeholder"], ",", 
+               TagBox[
+                FrameBox["\"\\!\\(\\*SubscriptBox[\\(t\\), \\(max\\)]\\)\""], 
+                "Placeholder"], ",", 
+               TagBox[
+                FrameBox["\"IC Rules\""], "Placeholder"], ",", 
+               TagBox[
+                FrameBox["\"Parameter Rules\""], "Placeholder"], ",", 
+               TagBox[
+                FrameBox["\"\\!\\(\\*SubscriptBox[\\(N\\), \\(max\\)]\\)\""], 
+                "Placeholder"]}], "]"}]], 
+         ButtonBox[
+          TagBox[
+           TooltipBox["\<\"SSAPlot[\[Placeholder],\[Placeholder],...]\"\>",
+            StyleBox[
+             TagBox[
+              FormBox[
+              "\"SSAPlot[simulation, Any Plot Options]\"", TraditionalForm], 
+              TraditionalForm, Editable -> True], FontFamily -> Times, 
+             StripOnInput -> False]],
+           Annotation[#, 
+            Style[
+             TraditionalForm["SSAPlot[simulation, Any Plot Options]"], 
+             FontFamily -> Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          ButtonData->RowBox[{"SSAPlot", "[", "\[Placeholder]", "]"}]]}
+       },
+       AutoDelete->False,
+       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+      "Grid"]},
+    {
+     TagBox[GridBox[{
+        {
+         ButtonBox[
+          TagBox[
+           TooltipBox["\<\"\[SelectionPlaceholder]\[Rule]\[Placeholder]\"\>",
+            StyleBox[
+             TagBox[
+              FormBox[
+               
+               RowBox[{
+                "\[SelectionPlaceholder]", "\[Rule]", "\[Placeholder]"}], 
+               TraditionalForm], TraditionalForm, Editable -> True], 
+             FontFamily -> Times, StripOnInput -> False]],
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+              Defer[$CellContext`\[SelectionPlaceholder] -> Placeholder[]]], 
+             FontFamily -> Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          
+          ButtonData->
+           RowBox[{"\[SelectionPlaceholder]", "\[Rule]", "\[Placeholder]"}]], 
+         
+         ButtonBox[
+          TagBox[
+           
+           TooltipBox["\<\"\[SelectionPlaceholder]\[RightArrowLeftArrow]\
+\[Placeholder]\"\>",
+            StyleBox[
+             TagBox[
+              FormBox[
+               
+               RowBox[{
+                "\[SelectionPlaceholder]", "\[RightArrowLeftArrow]", 
+                 "\[Placeholder]"}], TraditionalForm], TraditionalForm, 
+              Editable -> True], FontFamily -> Times, StripOnInput -> False]],
+           
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+              Defer[
+               RightArrowLeftArrow[$CellContext`\[SelectionPlaceholder], 
+                Placeholder[]]]], FontFamily -> Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          
+          ButtonData->
+           RowBox[{"\[SelectionPlaceholder]", "\[RightArrowLeftArrow]", 
+             "\[Placeholder]"}]], 
+         ButtonBox[
+          TagBox[
+           
+           TooltipBox["\<\"\[SelectionPlaceholder]\[Equilibrium]\[Placeholder]\
+\"\>",
+            StyleBox[
+             TagBox[
+              FormBox[
+               RowBox[{
+                "\[SelectionPlaceholder]", "\[Equilibrium]", 
+                 "\[Placeholder]"}], TraditionalForm], TraditionalForm, 
+              Editable -> True], FontFamily -> Times, StripOnInput -> False]],
+           
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+              Defer[
+               Equilibrium[$CellContext`\[SelectionPlaceholder], 
+                Placeholder[]]]], FontFamily -> Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          
+          ButtonData->
+           RowBox[{"\[SelectionPlaceholder]", "\[Equilibrium]", 
+             "\[Placeholder]"}]], 
+         ButtonBox[
+          TagBox[
+           
+           TooltipBox["\<\"\\!\\(\\*OverscriptBox[\\(\[SelectionPlaceholder]\\\
+), \\(\[Placeholder]\\)]\\)\"\>",
+            StyleBox[
+             TagBox[
+              FormBox[
+               OverscriptBox["\[SelectionPlaceholder]", "\[Placeholder]"], 
+               TraditionalForm], TraditionalForm, Editable -> True], 
+             FontFamily -> Times, StripOnInput -> False]],
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+              Overscript[$CellContext`\[SelectionPlaceholder], 
+               Placeholder[]]], FontFamily -> Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          
+          ButtonData->OverscriptBox[
+           "\[SelectionPlaceholder]", "\[Placeholder]"]], 
+         ButtonBox[
+          TagBox[
+           
+           TooltipBox["\<\"\\!\\(\\*UnderoverscriptBox[\\(\
+\[SelectionPlaceholder]\\), \\(\[Placeholder]\\), \
+\\(\[Placeholder]\\)]\\)\"\>",
+            StyleBox[
+             TagBox[
+              FormBox[
+               UnderoverscriptBox[
+               "\[SelectionPlaceholder]", "\[Placeholder]", "\[Placeholder]"],
+                TraditionalForm], TraditionalForm, Editable -> True], 
+             FontFamily -> Times, StripOnInput -> False]],
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+              Underoverscript[$CellContext`\[SelectionPlaceholder], 
+               Placeholder[], 
+               Placeholder[]]], FontFamily -> Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          
+          ButtonData->UnderoverscriptBox[
+           "\[SelectionPlaceholder]", "\[Placeholder]", "\[Placeholder]"]], 
+         ButtonBox[
+          TagBox[
+           
+           TooltipBox["\<\"\[SelectionPlaceholder]\[Diamond]\[Placeholder]\"\>\
+",
+            StyleBox[
+             TagBox[
+              FormBox[
+              "\"Diamond[A,B] represents the compound of A and B\"", 
+               TraditionalForm], TraditionalForm, Editable -> True], 
+             FontFamily -> Times, StripOnInput -> False]],
+           Annotation[#, 
+            Style[
+             TraditionalForm[
+             "Diamond[A,B] represents the compound of A and B"], FontFamily -> 
+             Times], "Tooltip"]& ],
+          Appearance->"DialogBox",
+          BaseStyle->"Paste",
+          
+          ButtonData->
+           RowBox[{"\[SelectionPlaceholder]", "\[Diamond]", 
+             "\[Placeholder]"}]]}
+       },
+       AutoDelete->False,
+       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+      "Grid"]}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{{3.443889745116516*^9, 3.44388977083594*^9}, {
+   3.443889819398873*^9, 3.443889880165023*^9}, 3.443890021519657*^9, {
+   3.443890892867117*^9, 3.443890901037087*^9}, {3.443890973713019*^9, 
+   3.443891012967573*^9}, 3.443891237655215*^9, 3.444160559354874*^9, {
+   3.444160864187916*^9, 3.444160897765524*^9}, 3.44416278437412*^9, 
+   3.4444823135256*^9, 3.444482513637955*^9, 3.444482916602652*^9, 
+   3.444483266270906*^9, {3.44448371063461*^9, 3.444483728538718*^9}, 
+   3.444484281730462*^9, 3.446146526152677*^9, 3.508520533098332*^9, 
+   3.508520606972446*^9, {3.508520713821908*^9, 3.508520771933867*^9}, 
+   3.508522701985223*^9, 3.559305071448007*^9, 3.559305270106114*^9, 
+   3.559305727161737*^9}]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Create the final palette", "Subsubsection",
+ CellChangeTimes->{{3.443201945333389*^9, 3.443201948364449*^9}, {
+  3.443201978371129*^9, 3.443201978898308*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"g", "=", 
+  RowBox[{"Grid", "[", 
+   RowBox[{
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", "Title", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<Stochastic Simulation\>\"", ",", " ", 
+         RowBox[{"FontSize", "\[Rule]", " ", "18"}], ",", "  ", 
+         RowBox[{"FontFamily", "\[Rule]", " ", "\"\<Arial\>\""}], ",", " ", 
+         RowBox[{"FontSlant", "\[Rule]", " ", "Italic"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"FontColor", "\[Rule]", " ", 
+          RowBox[{"Darker", "[", "Blue", "]"}]}], ",", " ", 
+         RowBox[{"FontWeight", "\[Rule]", " ", "Bold"}]}], "]"}], "}"}], ",", 
+      " ", "\[IndentingNewLine]", 
+      RowBox[{"{", "dostuffgrid", "}"}], ",", "  ", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"{", "massactiongrid", "}"}], ",", " ", "\[IndentingNewLine]", 
+      " ", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Style", "[", 
+          RowBox[{
+          "\"\<\!\(\*SuperscriptBox[\(\[InvisiblePrefixScriptBase]\), \
+\(*\)]\)Indicates functions not implemented stochastically.\>\"", ",", " ", 
+           RowBox[{"FontFamily", "\[Rule]", " ", "\"\<Times\>\""}], ",", " ", 
+           
+           RowBox[{"FontSize", "\[Rule]", " ", "11"}], ",", " ", 
+           RowBox[{"FontSlant", "\[Rule]", " ", "Italic"}], ",", " ", 
+           RowBox[{"FontColor", "\[Rule]", " ", "Gray"}]}], "]"}], "}"}], 
+        ","}], "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<Mouse over any button for the equivalent\>\"", ",", " ", 
+         RowBox[{"FontFamily", "\[Rule]", " ", "Times"}], ",", " ", 
+         RowBox[{"FontSlant", "\[Rule]", " ", "Italic"}], ",", " ", 
+         RowBox[{"FontSize", "\[Rule]", " ", "10"}]}], "]"}], "}"}], ",", " ",
+       "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<mass action kinetics.\>\"", ",", " ", 
+         RowBox[{"FontFamily", "\[Rule]", " ", "Times"}], ",", " ", 
+         RowBox[{"FontSlant", "\[Rule]", " ", "Italic"}], ",", " ", 
+         RowBox[{"FontSize", "\[Rule]", " ", "10"}]}], "]"}], "}"}], ",", " ",
+       "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<xSSAlite is part of the Cellerator System.\>\"", ",", " ", 
+         RowBox[{"FontFamily", "\[Rule]", " ", "Times"}], ",", " ", 
+         RowBox[{"FontSlant", "\[Rule]", " ", "Italic"}], ",", " ", 
+         RowBox[{"FontSize", "\[Rule]", " ", "10"}]}], "]"}], "}"}], ",", " ",
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"Hyperlink", "[", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<\[Copyright]2012 GPL Applies\>\"", ",", " ", 
+           RowBox[{"FontFamily", "\[Rule]", " ", "\"\<Times\>\""}], ",", " ", 
+           
+           RowBox[{"FontSize", "\[Rule]", " ", "10"}], ",", " ", 
+           RowBox[{"FontColor", "\[Rule]", " ", 
+            RowBox[{"Darker", "[", "Blue", "]"}]}], ",", " ", 
+           RowBox[{"FontSlant", "\[Rule]", " ", "Italic"}]}], "]"}], ",", 
+         " ", "\"\<http://www.gnu.org/licenses/gpl.html\>\""}], "]"}], 
+       "}"}]}], " ", "\[IndentingNewLine]", "\[IndentingNewLine]", "}"}], ",",
+     " ", 
+    RowBox[{"Frame", "\[Rule]", " ", "True"}], ",", " ", 
+    RowBox[{"Background", "\[Rule]", " ", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"1", ",", ".667", ",", ".514", ",", "1"}], "]"}]}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.442793699193623*^9, 3.442793743473479*^9}, {
+   3.442793781975851*^9, 3.442793830032043*^9}, {3.442793901693814*^9, 
+   3.442793934812179*^9}, {3.442799193698203*^9, 3.44279947991605*^9}, {
+   3.44279951344284*^9, 3.442799519251007*^9}, {3.442799568023504*^9, 
+   3.442799568775586*^9}, {3.442799643649483*^9, 3.442799809691967*^9}, 
+   3.44279986176809*^9, {3.44279995256259*^9, 3.442800011552876*^9}, {
+   3.442800043900519*^9, 3.442800057957437*^9}, {3.442800093750232*^9, 
+   3.442800098434453*^9}, {3.442800212823188*^9, 3.442800484232388*^9}, {
+   3.442800594894054*^9, 3.44280066066949*^9}, {3.442800943694228*^9, 
+   3.442800974076402*^9}, {3.442801814749311*^9, 3.442801833016569*^9}, {
+   3.442801864982328*^9, 3.442801873491724*^9}, {3.442802063563687*^9, 
+   3.442802088322378*^9}, {3.442846432203619*^9, 3.442846455980865*^9}, {
+   3.442849885837868*^9, 3.442849913756956*^9}, {3.44284999427016*^9, 
+   3.442850017063091*^9}, {3.442852027401687*^9, 3.44285202863128*^9}, {
+   3.442852096369816*^9, 3.442852103921643*^9}, {3.442852349313712*^9, 
+   3.442852353235239*^9}, {3.442864402450657*^9, 3.442864477213006*^9}, {
+   3.443201570781354*^9, 3.443201675375098*^9}, {3.443201787545416*^9, 
+   3.443201801215201*^9}, {3.443201849390436*^9, 3.44320185616747*^9}, {
+   3.443203554565787*^9, 3.443203574008299*^9}, {3.443206718270855*^9, 
+   3.443206720115484*^9}, {3.443278859964284*^9, 3.443278865113539*^9}, {
+   3.443279668307607*^9, 3.443279698576187*^9}, {3.443279855281964*^9, 
+   3.443279976120786*^9}, {3.443280156210566*^9, 3.443280197355866*^9}, {
+   3.443281706341935*^9, 3.443281712499887*^9}, {3.443889884976141*^9, 
+   3.443889889253861*^9}, {3.443889957520749*^9, 3.443889959450334*^9}, {
+   3.44416057179418*^9, 3.444160587708327*^9}, {3.444160651690759*^9, 
+   3.444160655600637*^9}, {3.444160884788962*^9, 3.444160887653794*^9}, {
+   3.444160981676378*^9, 3.444161032004864*^9}, {3.444161127785536*^9, 
+   3.444161143770697*^9}, {3.446146555498578*^9, 3.446146556453192*^9}, 
+   3.508520629553954*^9, 3.508520685329336*^9, {3.508520827654792*^9, 
+   3.508520898108674*^9}, {3.5085209586481113`*^9, 3.508520986500038*^9}, {
+   3.50852101724203*^9, 3.508521054211851*^9}, {3.559305001958109*^9, 
+   3.55930500661802*^9}, {3.559305061676937*^9, 3.559305079331193*^9}, {
+   3.559305166951723*^9, 3.559305200400578*^9}, {3.55930529492177*^9, 
+   3.5593052954651012`*^9}, {3.55930573079469*^9, 3.559305732914486*^9}, {
+   3.559305776321756*^9, 3.559305819613329*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TagBox[GridBox[{
+        {
+         FrameBox[
+          GraphicsBox[
+           {Thickness[0.0058823529411764705`], 
+            {RGBColor[1., 0., 0.], Thickness[0.018823529411764708`], Opacity[
+             1.], CapForm["Butt"], JoinForm[{"Miter", 4.}], 
+             JoinedCurveBox[{{{0, 2, 0}}}, {{{153.371, 14.645}, {
+              0.33199999999999996`, 14.645}}},
+              CurveClosed->{0}], 
+             JoinedCurveBox[{{{1, 4, 3}}}, {{{0.301, 14.817}, {20.383, 
+              14.883000000000001`}, {29.152, 21.543}, {29.152, 21.543}}},
+              CurveClosed->{0}], 
+             JoinedCurveBox[{{{0, 2, 0}}}, {{{0.59, 9.18}, {153.629, 9.18}}},
+              CurveClosed->{0}], 
+             JoinedCurveBox[{{{1, 4, 3}}}, {{{153.66, 9.008}, {133.578, 
+              8.942}, {124.809, 2.282}, {124.809, 2.282}}},
+              CurveClosed->{0}]}, 
+            {FaceForm[{RGBColor[
+             1., 0.46274499999999996`, 0.21176500000000004`], Opacity[1.]}], 
+             FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 
+              1, 0}}}, {{{164.15200000000002`, 9.446}, {164.15200000000002`, 
+              46.946}, {32.652, 46.946}, {32.652, 48.946}, {
+              166.15200000000002`, 48.946}, {166.15200000000002`, 9.446}}}], 
+             FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {1, 3, 3}}}, {{{
+              43.12500000000001, 52.790000000000006`}, {30.016000000000002`, 
+              47.969}, {43.12500000000001, 43.149}, {41.031, 45.993}, {41.043,
+               49.88699999999999}, {43.12500000000001, 
+              52.790000000000006`}}}], 
+             FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}, {1, 3, 3}}}, {{{160.324, 
+              19.911}, {165.14499999999998`, 6.801}, {169.965, 19.911}, {
+              167.117, 17.817000000000004`}, {163.22299999999998`, 17.829}, {
+              160.324, 19.911}}}]}, 
+            {Thickness[0.018823529411764708`], 
+             FilledCurveBox[{{{1, 4, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 
+               3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {
+               0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}}, {{1, 4, 
+               3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 
+               3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+               1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+               3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {1, 
+               3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+               1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+               3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 
+               3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 
+               3}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+               1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+               3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 
+               3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {
+               1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+               3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 
+               3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+               1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {1, 3, 
+               3}, {1, 3, 3}}, {{0, 2, 0}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {
+               0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 
+               0}, {1, 3, 3}, {1, 3, 3}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {
+               1, 3, 3}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 
+               0}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 
+               3, 3}, {0, 1, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1, 0}, {0, 1, 
+               0}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+               1, 3, 3}, {1, 3, 3}, {1, 3, 3}}, {{1, 4, 3}, {1, 3, 3}, {1, 3, 
+               3}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 1, 0}, {0, 
+               1, 0}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+               1, 3, 3}, {0, 1, 0}, {1, 3, 3}, {1, 3, 3}}, {{1, 4, 3}, {1, 3, 
+               3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 
+               3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}}, {{1, 4, 
+               3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 
+               3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {
+               1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 
+               3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 
+               3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {1, 3, 3}, {0, 1, 0}, {
+               1, 3, 3}, {1, 3, 3}}}, {CompressedData["
+1:eJxTTMoPSmViYGBQAGIQfXqh67bPZ50d1A051shE2Tr0Ts8TanZwcThZtm++
+VL6dw0Wl2z/rVrlA5KvsHSpfqhly8Lg6TJFgCeOzdXCYDKJzXR3WuT+sEtnn
+4CCtf1eF7aCrw6dLvkkCFo4O/Lqb5r5nd3OI2+XJw7Ta0WFvCVDHMnc4H2yf
+gTvEvv8ODk8vAC1c5wYxJ9DBwQykUMnNwRREO9lD9E9zhfAf2TrsAfHZXB0W
+SAE1tNlAxItcIO7Rs3Zw6c55/vukC0TfNUuIuYquDo+Xzj6iUGABcWeFq8PE
+tzX2pv/MHBiBYcJwAeqfPlOIO6XdHICBk2ItbwIxL9LNQRLobd1NRpDwOOMC
+5x/+qhHTv8jFYTdQm/ZyY4dToPDNhYbnehMIX9fFgev64gLbU6YQ/ltnB5A1
+2s/NHCIst5woW+fs8BHkrh/mDiDnMBQ4Q91n4VABsm+NA9y+bFAAPLGF88Hh
+fdwJEh5u1hD/7XCAhzc4vmOd4HwADfXEfg==
+               "], CompressedData["
+1:eJxdVmtsFFUUrhuyEIRGoDaw1AcNqSDWhl1m2+2+zs6M7M5zeSQESEtMU9D4
+KARNhaKNgNhqrUSXh4kYqmIs2BBtCAEj/kCECpEU1KJCaZTQRglRJFi1FJ07
+32E2cZNm+s2995zvfOdxZ0bd6kUrfQUFBS3On3i6P9KpI1DRP3NwHrUU/3B6
+OJfH595fEx8/pFOfeA7PI6XtqaGRiEEPzB3XVRKQ6NS7jxy83m5QV8ny+mhS
+ol3H7v947fe83iSRKvZPM2m8MHRSorEbtyttNSbVbj16Y1ZJmKQVn2oT3jTp
+u3W/lM1tDcP+YZP2p39qKiqspKeHRvZe+9mkz57NTR2zo5L+OGvV3fWXSfKj
+l3tLo1UefuPq80npVh7DXoTOlJ7/u/lXE/z+jdAdIt5eE37rqkmf4JvTctAk
+B/nmnKiGP4dPWKyXRumI8LvKpKljlhSWr43S2yK+Kj5/NIr9PpME9N0ZA8/j
+BvjbMejRalBI/HIxes+Ra1Q1qEbEfyFG6x2a427q0OfBOOWEoyOMn4jTSaHv
+Czpd+kB4ZhzXOV7Goxr8Gwm6Wzg+puH8vgTrq3G+kjTY6wiygtdfTSK+sIY8
+jyXgYo0WtO9smLyY8H44Q181fr47sJuosLz7nd+GMlQm7P2Txy9fWXjo3pUp
+Dy8R/wyk4O9WhqY75eRfKINvuUZC9uLDMuqnVsP6DAX892iw36SAv0+nLcL+
+lwrz17F/kornGZ3jV5H/pQb4P6PSssiBnsaLBnTepaK+1pskytv/iYr6nG15
+2LWzIY/d/PVYeP+RCj6TbdZD5Xq24S+nknhs7mC8WUV8/bx/NdufngWfGpVe
+F9sWZME7o3K+szgfUskv7Hdlcf4+lS6L+E9naZuok4kq8jWYRd2MKqxvlvWS
+WX+bBNxyRaYioe8Bm/tLAT/Lxvlyhfvdgn1LoaVCvwbGtQrmwyXTw24cr+Wx
+cNdcbZKj3sbtixVy58vvBvKUUlD/ewzURwXnu97A/im3+Rvgc1Xm+tOpPjqQ
+bT8hQ79TjHfKyN9enf3L3G86968MXdfp4Hkh5WHXTlseu3orKfrixqyarZt0
+7gdef4vxOYIe+3W6Jt53Evx+rUPPZoI+13XU9zLC/AlwfCECX82gzuNG5SuT
+CPW0yeB5m+T5Z3C9JTGf/uR50pAEnyqejw8nabYYJK08D88nUA99PM9aEsjv
+PRZNE+kNJhDHYxbm4UAc+EOLUuL8hjjXqwU+/jjyU2R788utp8Tt+olx/9qY
+e41Rrl8b8+liNd8PNj0pNszMY3f+6BEP4z6oQv+sscl2ujhSVMnzyWb+Yegy
+YqEfshL03WcxP76/FIvnYwj56ef74PEQ5nWdyfdZkPUyeF4Gvfw855ivqA0i
+P9068wiC78Q8Rr9rHnbrNq5Bv/lB7pcM8Kog90sGerwURD0lMtQn+HXy+s00
+4j0bRH4Ppfn+Yn8vprHvoRD4LUpjvi/n+ErTnP8Q+q+A7XWHeD7Px/4feb0j
+zfdhGHy/YXuBMOIqy9C3gl+PBLwjw/UoIe9+DfpPkfj7QfO+H/7/ffEf3Rte
+nw==
+               "], CompressedData["
+1:eJxdVgtsFFUUrQ1Zm1ZrsU3F2ojFgkY+pbPslnZ/d2cGqzaw895DoqRVrNRU
+i4UAQSikRhErP42u0hDRUommAdJYTIz4IdpoC8QYBGyjRRuCgqYi8UcDBnHe
+nLu7iZNsJmfeffedd+5vyxqXy6bsrKysDvfnvYu//WrcErS7pOL78rNz6JPV
+yUkTWjN4VfPL5zd0ChrasyKSOz6HbnE/+z4TdEdlzv7SkgA1fHjvddljgvaX
+Ll4aigVosK5qc7xAYr0tAPtKSbnDroOjAbylpIaX+v++szRIb817/88ryyR9
+s/aXaZUvBGH/jKTe2tNtRflV5MHXJH2see2ooiz97JZkLvnp2JTQ3DR2WcYC
+/2Yw/FWT66W3dqcEv6vVpD/nbJMUeMgl3liD709L0teYPlhDs/V5T0oK6vUp
+IXJPGbm0SNKkCYvyZ64M4X7E+/tD4DdVkobZeWHY+5j/gjANaPufBfn1kwyT
+PqZjQFC9vv+pMNlbl537p1tAl7si9LW7vf1Zxk9E6GHt91FBZ95+/fPb3mXs
+xgv3ZXy7wPl1Udr46dHueT7evzcKfX91OF4xGhMf3LrphIP1LTE6q/keckjD
+3GsJuNchZ3tn642KEP8uh46sOdRV0kV0VT+dDk3T/i5n8PPacVM8jV21Drwx
+Gsd5exzEVZjg+ZFDWobigyb4n+D1Mgv8L7L/Nou6Nf9yQZu0oy8s+FMC9hNt
+KtJCb0vd30b8jwnwX2XTVDd7rEJJ63Tcd9nY94gknd6+PsYHM9g97eTa0xns
+xS9Hwf8+G3rOUKyHzfmscF7SpgWNBQ9Ur2a80cb9kmy/nP33KfCpZ/svFf1x
+fH5jwT1sf4b3+23K0/4v8/7JNu6ft5Be1Ql5vY18K15ISY2vWKyvYr1M1l/h
+PWZC33bF9WWhfusU9s+0EO+bFPzPt6DfiARusNAfdmSwpfP38Qz26i0uyStb
+ZeGepRI6xy3k/0WB/KjgeA8J2Bem+AvwOW9y/glaGhpNbB80od9mxp0m/K4T
+fL6JeDULrl8T+bBEgMepeBp752zNYE9vK076uFiT4Hrg9RWMhwl6rBf0u45X
+D6Fetwjo2U7Q502B/H6QoEcf389P4HtEUI8mOpGQ3z+m+m0M69dwP9kXQ3+a
+zP2kNQY+xHhWjLw0a+Z+OBJF/b7I/awjinx6T9LNOrxGFHoOcz8cjQCPS4rr
+/eu5nxQq8PFFEJ9ZKt2/vDyyUvkThr1S6M9rQtyvFPrTDzXIrxZFLdqgPIO9
+urmvOo0xD+ZSQtdDvUJdFFXhPlHF/IOIfxnXQyIAfS9J5sfzayA1D/yIzys8
+D5r96Nf3S55nBvzn83zaa6Tj85TrvqLBQL1vEPAbNMB3egZ7PP9y0tg7r9+B
+fncbXC+MHzO4Xhzo8ZyBfLIcGtL8egzMgzIH9z1uIL5ZDs8vg3a5U2Dl4QTy
+eYYf9jsT6O+L/ciblgTH3083uGV2oTYBfwf8yJ/ZbP+dn3QZXjiX4HkYBN/8
+1LwIor8EHTqp+R0OQK9Wh/MxgPV3HOhfGMD+35z0/4f//7/4D6eJNu8=
+               
+               "], CompressedData["
+1:eJxTTMoPSmViYGCQBWIQvbdksgSLWqjDAin9uyppFg5gflyIgyRLGJ/uJiOH
+drGb5743B8P5mRPf1tjLhjiYxu3y5GEyd7iodPtn3aYQB3VDjjUyv6wg6p1D
+IfxZdg4ZIPVXQx2mSAANkHV0WOi67fPflDCHgN7peUKXnRziQcZ8DnM4WbZv
+vlS+C8T+beFwvnN3zvPfJ8Mh6hc7O4iuc39YdSfcIWsPUOEVJ4j6d1B5ZieH
+NTJRKdb/wx2WH/M27zR0dGAAAYEIB5ByljAHCF8hAuL+R3YOIG3NBhEO1xcX
+2HKJ2zocB2pzdIhweLx09hEFA2uHZxeAHvSLcABZK6Jn6dB84NRC1zgY3xxi
+f16EQzbYAlMIvy4CHl4w/8D4XjxM2u3rwh12A72tvdzYAeRMxxXhDpOAwWQ6
+zwQSHovDIe6dZupgcFeFrXFuOMQ9E8wcikEBOj0c4o8GcwdpYLSxTQyHxx8A
+wRmu7A==
+               "], {{93.96900000000001, 26.883}, {93.801, 
+               28.610000000000003`}, {93.60199999999999, 30.329}, {
+               93.37499999999999, 32.04}, {93.15599999999999, 33.747}, {
+               92.895, 35.508}, {92.59400000000001, 37.321}, {
+               91.85199999999999, 36.227000000000004`}, {90.926, 34.821}, {
+               89.812, 33.102000000000004`}, {88.70700000000001, 
+               31.391000000000002`}, {87.44500000000001, 29.321}, {86.031, 
+               26.883}}, CompressedData["
+1:eJxTTMoPSmViYGBQAmIQ/R8E1KMcFkjp31Vhs3J4WCWyzl0xymGdO5DVZ+lw
+Sen2zzqpKIdPl3yTBCQsHdrFbp77LgxVv8zCIXPi2xp73igHYzCwcHDuznn+
+mxMqf8wczgcpM41D8AN7p+cJLTZzWOi67fNfkSiHk2X75kvxmznE7vLkYdKO
+cjCLAzIWmToAZa9UOEY5+CUJRFiamDq8Dtwh15od5fB46ewjCh9MHKRBzl4Z
+5bC3ZLIEyzUTCF0X5cB1fXGBbZYRhO8GVV9g5AAyvV0syuHflYqXahONHBhA
+4EMkxL/njCD+Pwnl8xlD3Lsy0sEU5J4kYwcXEH9iJMT8U1B+ZaSDJEsYn66R
+icMxb/NOx4xIh8qXaoYca0wcFoH8FxPpoA7kyViZQvQFRTqAvXncFCLvE+kQ
+AAqPZDM4H2K/OZwPsp6p29yhOAMYkv4weQtI+IVEOuwB+XOaBURddKTDJFB4
+y1k6XATFXxJU/2pLhwqQu3IiIfFhZwUJn7woSDg2ukLMM4mGuOewqwMAtLPg
+JA==
+               "], {{111.96900000000001`, 18.696}, {109., 18.696}, {113.,
+                35.336}, {115.96900000000001`, 35.336}}, CompressedData["
+1:eJxTTMoPSmViYGCQBGIQHbfLk4fpdowDmNZ2dngTuEOudTeC/7BKZJ37whiH
+de5Alp2zQ8VLNUOOnhiHttdAhanODmtkolKsy2Mg+rqdHRa5bvv8NyfGQVr/
+rgrbQQS/FaSe1QXOnyLBEsYX6+JwSen2z7qqGIeVx7zNOxe6OOwtmSzBMi3G
+IaB3ep7QZReI/RtjHEDGNbK6OjCAwIUYh5Nl++ZLybs6uHTnPP/9EcEHqxeM
+hfNB1rZqx0L8w+0KcZdjLMT8xy4OTy8AHRAW61AJ8tceF4h5ibEQ+1oRfLB5
+9gg+OBzeOEPMD451mDUTCFY6Q8wzi3W4vrjAlqvc2YEbxJCKdcjeA/SYCzR8
+fyPCFz38AXYHpkY=
+               "], CompressedData["
+1:eJxTTMoPSmViYGBQB2IQ/R8Elsc5THxbY29qZ+Tg0p3z/Lcjgv/0gtLtn99i
+HT5d8k0SmAHlH4t14Lq+uMDWyxjCnxbrsEYmKsX6v7HDMxC/LtZhlycPkza7
+KZxvGgcUSTKD88Hq7c0deqfnCTV3xELsi7NwqHypZsgxB8rfZwkxvyzOYbIE
+SxjfX2eHvSVAll28w8myffOl7F0g/HdxDiDjmVY7OjCAgE4CnA82XwLKz3aA
+uj8OzgfrD4tzUDfkWCNTZQnhu8H4FlD7oPxZ5qj8W2Zw/m6Qf9XNHJxB4ecZ
+57BASv+uyjJTSHgmxkHtMXW4BPJ+FVSezdThdeAOudbF0PC+Z+KwyHXb5793
+EPyFID5LPJxfAQofnXiHa8Dg5/puAjE/MB4SH1qmEP9WxEPCN94UYu+0eIfH
+S2cfUZhgCnHfSqh5+0wdpEHO2BkPUWdm7OCXJBBhuSTeIQBkELOxw8MqkXXu
+jfEO69yBrHNGkPANiHfYAzbXyMEL6O12uXiHmP5DXzVijBxAwdD+DJF+0NMX
+ADgVAfc=
+               "], CompressedData["
+1:eJxTTMoPSmViYGBQBWIQvch12+e/KxIc1rk/rBLJs3YotOW6vvhCgsPHS75J
+AhXWDrd/1mXt+ZLgUPlSzZCjx9pB/64KW6NoogNQVYHtKmsHdUOONTJmUP4p
+a4eLSkAdQYkOE9/W2Jv+s3a4BOJnJToskALqdLOByDclOjxeOvuIwgQbB7D9
+UxId/JIEIiy/2Di4dOc8/70w0UGCJYxPt8jWQZWtcarz+kSHk2X75ku9t3XY
+WzJZgmVbooMxCEy2g/PB9sXZw/lg//TZQ9y/JdGBAQQO2EPs35TosAek7ps9
+xB0bEh1AzucSd4CoWwNVb+AAMW8ZVN7dweG4t3mn44JEhxMg98RD+TMSHczi
+dnnyFEHV9yU6SIMDCmpeC5Q/0cGhKAPo0vJEB14m7XaxmQ4OvdPzhJoz0PgB
+CD44PCwTHbJBDm5xgISXSqIDyDqmaKj9AokOK44BGYYODt80YvoP/U1wuAZy
+73d7BwOQM94mQMPT3qH1deAOubsJDhWg+Hxj5+CY8PSC0vkEhyegcAiwg7jv
+cILDJFB4zrN1sNwC9Ol2aPp4ZwOxd30CJPyNofGHlH4AeiDxkQ==
+               
+               "], CompressedData["
+1:eJxdVG1Ik1EUXjKkrGxkP0wqStJGIeG2d3PT6XlNk5JErUTyo3sXQWmY1TCp
+kKQPqMi0pX2oZWlfJvaBWsiSIWEZIaZgkRhJlFQWpiRoBb1358zRXhiXZ+fe
+5zzn3OfcFba96Tv9VCpVtvITa8KZPSO/53CoC1k7tHK9DsL8SyvXjbAZvKvi
++5G4bgbNScOHFhXoQCW+BwzE31KHDlpeFHVcq6J4oB6UU/6lpQxk9qk39LAe
+zl4sWHiskPj8DXBAEG5n8PFm9bPl5Qa4pIRd6QwWqzMCI3QS9IUOTpVsZBDw
+pr7Q+lWC1wLHM8h32h3BDUbEsRTPM83gVZGzm5ZYov7H7WZQ2F9eT2SQ275h
+nt+aaNS/hfSWxSCPjfSMWUHIdRUR/+o4rKeCwYVgReBSwH1NDJ4qctS3AMrE
+gVcMUkWhQTLmHye8Q4Z3UyV5zmAOeUJ/i4znEzjyDcnYH7sPLvfBdzjq7ZEx
+n5ODu50PZRgU/L0cTn5Le7KsUsb7Gqb9BTLq/MHBIfisMrSK+5rmMKpsPzFX
+xn6obai3HwD9QNgB8DzZdErWEN4MsF8kCLLhOY0Xi/LUVXE+OBaCRP/n2yD7
+XOcvrdOK/LNs2N8AK66THO9rWwz2/zP5sSsa+fqpnpRo7IeLY10DFjzXyOFn
+3yabptgy0z933GhBHx7kqGfSDPusSsZsDpIwRKcZbiS2TfwFyn/FjP0L45Bi
+02Sa7YSV+YgXPFm0f5T8k0J8vQz7AWaY1CqVtjI8bzDjfdV4/GQGixiYagZZ
+oh9/onAeFDwu9L/1YpwvL04ThdV7MfrXZ3+JF7v1qKJQfy3lP21C/XU0HyGE
+GyjeaMRzir/d45JkxD62MRD2iRiX0A8uBjlCfw3NZw/pz5Sw/x9o3sMlnG9l
+HrD/BvRfAEe97w2YT+vFbj0GL8b556hnxID8qXRf0xTP5dCt0IYskEBR+ag2
+n8NA8ZfwSK2E/MWe902CQnFfxznNJ8UVv7jXoxL68zKH8yL/VYo3kJ4OCd+R
+e+SHQcL3Pf6SIEfgx57506P/73LQ4wdbhT4H4Qkd1mun/c30nmZwGLvdlWza
+rUN+vfd99n2v/wGnBU/H
+               "]}]}},
+           AspectRatio->Automatic,
+           ImageSize->{170., 53.},
+           PlotRange->{{0., 170.}, {0., 53.}}],
+          RoundingRadius->5,
+          StripOnInput->False]}
+       },
+       AutoDelete->False,
+       GridBoxBackground->{"Columns" -> {{
+            GrayLevel[1]}}},
+       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+      "Grid"]},
+    {
+     StyleBox["\<\"Stochastic Simulation\"\>",
+      StripOnInput->False,
+      FontFamily->"Arial",
+      FontSize->18,
+      FontWeight->Bold,
+      FontSlant->Italic,
+      FontColor->RGBColor[0, 0, 
+        Rational[2, 3]]]},
+    {
+     TagBox[GridBox[{
+        {
+         TagBox[GridBox[{
+            {
+             ButtonBox[
+              TagBox[
+               
+               TooltipBox["\<\"SSA[\[Placeholder],\[Placeholder],\
+\[Placeholder]...]\"\>",
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                  "\"SSA[reactions, \\!\\(\\*SubscriptBox[\\(t\\), \\(max\\)]\
+\\), IC, Parameters, MaxSteps]\"", TraditionalForm], TraditionalForm, 
+                  Editable -> True], FontFamily -> Times, StripOnInput -> 
+                 False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                 "SSA[reactions, \!\(\*SubscriptBox[\(t\), \(max\)]\), IC, \
+Parameters, MaxSteps]"], FontFamily -> Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              ButtonData->RowBox[{"SSA", "[", 
+                 RowBox[{
+                   TagBox[
+                    FrameBox["\"Reaction List\""], "Placeholder"], ",", 
+                   TagBox[
+                    FrameBox[
+                    "\"\\!\\(\\*SubscriptBox[\\(t\\), \\(max\\)]\\)\""], 
+                    "Placeholder"], ",", 
+                   TagBox[
+                    FrameBox["\"IC Rules\""], "Placeholder"], ",", 
+                   TagBox[
+                    FrameBox["\"Parameter Rules\""], "Placeholder"], ",", 
+                   TagBox[
+                    FrameBox[
+                    "\"\\!\\(\\*SubscriptBox[\\(N\\), \\(max\\)]\\)\""], 
+                    "Placeholder"]}], "]"}]], 
+             ButtonBox[
+              TagBox[
+               TooltipBox["\<\"SSAPlot[\[Placeholder],\[Placeholder],...]\"\>",
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                  "\"SSAPlot[simulation, Any Plot Options]\"", 
+                   TraditionalForm], TraditionalForm, Editable -> True], 
+                 FontFamily -> Times, StripOnInput -> False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm["SSAPlot[simulation, Any Plot Options]"], 
+                 FontFamily -> Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              ButtonData->RowBox[{"SSAPlot", "[", "\[Placeholder]", "]"}]]}
+           },
+           AutoDelete->False,
+           
+           GridBoxItemSize->{
+            "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+          "Grid"]},
+        {
+         TagBox[GridBox[{
+            {
+             ButtonBox[
+              TagBox[
+               
+               TooltipBox["\<\"\[SelectionPlaceholder]\[Rule]\[Placeholder]\"\
+\>",
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                   
+                   RowBox[{
+                    "\[SelectionPlaceholder]", "\[Rule]", "\[Placeholder]"}], 
+                   TraditionalForm], TraditionalForm, Editable -> True], 
+                 FontFamily -> Times, StripOnInput -> False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                  
+                  Defer[$CellContext`\[SelectionPlaceholder] -> 
+                   Placeholder[]]], FontFamily -> Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              
+              ButtonData->
+               RowBox[{
+                "\[SelectionPlaceholder]", "\[Rule]", "\[Placeholder]"}]], 
+             ButtonBox[
+              TagBox[
+               
+               TooltipBox["\<\"\[SelectionPlaceholder]\[RightArrowLeftArrow]\
+\[Placeholder]\"\>",
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                   
+                   RowBox[{
+                    "\[SelectionPlaceholder]", "\[RightArrowLeftArrow]", 
+                    "\[Placeholder]"}], TraditionalForm], TraditionalForm, 
+                  Editable -> True], FontFamily -> Times, StripOnInput -> 
+                 False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                  Defer[
+                   RightArrowLeftArrow[$CellContext`\[SelectionPlaceholder], 
+                    Placeholder[]]]], FontFamily -> Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              
+              ButtonData->
+               RowBox[{
+                "\[SelectionPlaceholder]", "\[RightArrowLeftArrow]", 
+                 "\[Placeholder]"}]], 
+             ButtonBox[
+              TagBox[
+               
+               TooltipBox["\<\"\[SelectionPlaceholder]\[Equilibrium]\
+\[Placeholder]\"\>",
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                   
+                   RowBox[{
+                    "\[SelectionPlaceholder]", "\[Equilibrium]", 
+                    "\[Placeholder]"}], TraditionalForm], TraditionalForm, 
+                  Editable -> True], FontFamily -> Times, StripOnInput -> 
+                 False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                  Defer[
+                   Equilibrium[$CellContext`\[SelectionPlaceholder], 
+                    Placeholder[]]]], FontFamily -> Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              
+              ButtonData->
+               RowBox[{
+                "\[SelectionPlaceholder]", "\[Equilibrium]", 
+                 "\[Placeholder]"}]], 
+             ButtonBox[
+              TagBox[
+               
+               TooltipBox["\<\"\\!\\(\\*OverscriptBox[\\(\
+\[SelectionPlaceholder]\\), \\(\[Placeholder]\\)]\\)\"\>",
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                   OverscriptBox["\[SelectionPlaceholder]", "\[Placeholder]"],
+                    TraditionalForm], TraditionalForm, Editable -> True], 
+                 FontFamily -> Times, StripOnInput -> False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                  Overscript[$CellContext`\[SelectionPlaceholder], 
+                   Placeholder[]]], FontFamily -> Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              
+              ButtonData->OverscriptBox[
+               "\[SelectionPlaceholder]", "\[Placeholder]"]], 
+             ButtonBox[
+              TagBox[
+               
+               TooltipBox["\<\"\\!\\(\\*UnderoverscriptBox[\\(\
+\[SelectionPlaceholder]\\), \\(\[Placeholder]\\), \
+\\(\[Placeholder]\\)]\\)\"\>",
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                   UnderoverscriptBox[
+                   "\[SelectionPlaceholder]", "\[Placeholder]", 
+                    "\[Placeholder]"], TraditionalForm], TraditionalForm, 
+                  Editable -> True], FontFamily -> Times, StripOnInput -> 
+                 False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                  Underoverscript[$CellContext`\[SelectionPlaceholder], 
+                   Placeholder[], 
+                   Placeholder[]]], FontFamily -> Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              
+              ButtonData->UnderoverscriptBox[
+               "\[SelectionPlaceholder]", "\[Placeholder]", 
+                "\[Placeholder]"]], 
+             ButtonBox[
+              TagBox[
+               
+               TooltipBox["\<\"\[SelectionPlaceholder]\[Diamond]\[Placeholder]\
+\"\>",
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                  "\"Diamond[A,B] represents the compound of A and B\"", 
+                   TraditionalForm], TraditionalForm, Editable -> True], 
+                 FontFamily -> Times, StripOnInput -> False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                 "Diamond[A,B] represents the compound of A and B"], 
+                 FontFamily -> Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              
+              ButtonData->
+               RowBox[{
+                "\[SelectionPlaceholder]", "\[Diamond]", "\[Placeholder]"}]]}
+           },
+           AutoDelete->False,
+           
+           GridBoxItemSize->{
+            "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+          "Grid"]}
+       },
+       AutoDelete->False,
+       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+      "Grid"]},
+    {
+     TagBox[GridBox[{
+        {
+         StyleBox["\<\"Mass Action Reactions\"\>",
+          StripOnInput->False,
+          FontFamily->"Arial",
+          FontSize->18,
+          FontWeight->Bold,
+          FontSlant->Italic,
+          FontColor->RGBColor[0, 0, 
+            Rational[2, 3]]]},
+        {
+         TagBox[GridBox[{
+            {
+             ButtonBox[
+              TagBox[
+               TooltipBox[
+                RowBox[{"{", 
+                 RowBox[{
+                 "\[Placeholder]", "\[ShortRightArrow]", "\[Placeholder]"}], 
+                 "}"}],
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                  "\"A\[ShortRightArrow]B means A \\!\\(\\*OverscriptBox[\\(\
+\[ShortRightArrow]\\), \\(k\\)]\\) B\"", TraditionalForm], TraditionalForm, 
+                  Editable -> True], FontFamily -> Times, StripOnInput -> 
+                 False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                 "A\[ShortRightArrow]B means A \!\(\*OverscriptBox[\(\
+\[ShortRightArrow]\), \(k\)]\) B"], FontFamily -> Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              ButtonData->RowBox[{"{", 
+                 RowBox[{
+                   RowBox[{
+                    TagBox[
+                    TagBox[
+                    FrameBox["Source"], "Placeholder"], DisplayForm], 
+                    "\[ShortRightArrow]", 
+                    TagBox[
+                    TagBox[
+                    FrameBox["Product"], "Placeholder"], DisplayForm]}], ",", 
+                   
+                   TagBox[
+                    TagBox[
+                    FrameBox["rate constant"], "Placeholder"], DisplayForm]}],
+                  "}"}]], 
+             ButtonBox[
+              TagBox[
+               TooltipBox[
+                RowBox[{"{", 
+                 OverscriptBox[
+                  RowBox[{
+                  "\[Placeholder]", "\[ShortRightArrow]", "\[Placeholder]"}], 
+                  "\[Placeholder]"], "}"}],
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                  "\"\\!\\(\\*OverscriptBox[\\(A \[ShortRightArrow] B\\), \
+\\(X\\)]\\) means A+X \\!\\(\\*OverscriptBox[\\(\[ShortRightArrow]\\), \
+\\(k\\)]\\) B+X\"", TraditionalForm], TraditionalForm, Editable -> True], 
+                 FontFamily -> Times, StripOnInput -> False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                 "\!\(\*OverscriptBox[\(A \[ShortRightArrow] B\), \(X\)]\) \
+means A+X \!\(\*OverscriptBox[\(\[ShortRightArrow]\), \(k\)]\) B+X"], 
+                 FontFamily -> Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              ButtonData->RowBox[{"{", 
+                 RowBox[{
+                   OverscriptBox[
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"Substrate\""], "Placeholder"], "\[Rule]", 
+                    TagBox[
+                    FrameBox["\"Product\""], "Placeholder"]}], 
+                    TagBox[
+                    FrameBox["\"modifier\""], "Placeholder"]], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["rate constant"], "Placeholder"], DisplayForm]}],
+                  "}"}]], 
+             ButtonBox[
+              TagBox[
+               TooltipBox[
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{
+                  "\[Placeholder]", "\[RightArrowLeftArrow]", 
+                   "\[Placeholder]"}], ",", "\[Placeholder]"}], "}"}],
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                  "\"A\[RightArrowLeftArrow]B means A \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(r\\)], SubscriptBox[\\(k\\), \\(f\\)]]\\) B\"", 
+                   TraditionalForm], TraditionalForm, Editable -> True], 
+                 FontFamily -> Times, StripOnInput -> False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                 "A\[RightArrowLeftArrow]B means A \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(r\)], SubscriptBox[\(k\), \(f\)]]\) B"], FontFamily -> Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              ButtonData->RowBox[{"{", 
+                 RowBox[{
+                   RowBox[{
+                    TagBox[
+                    TagBox[
+                    FrameBox["Species1"], "Placeholder"], DisplayForm], 
+                    "\[RightArrowLeftArrow]", 
+                    TagBox[
+                    TagBox[
+                    FrameBox["Species"], "Placeholder"], DisplayForm]}], ",", 
+                   
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(forward\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(reverse\)]\)"], 
+                    "Placeholder"], DisplayForm]}], "}"}]]},
+            {
+             ButtonBox[
+              TagBox[
+               TooltipBox[
+                RowBox[{"{", 
+                 RowBox[{
+                  OverscriptBox[
+                   RowBox[{
+                   "\[Placeholder]", "\[RightArrowLeftArrow]", 
+                    "\[Placeholder]"}], "\[Placeholder]"], ",", 
+                  "\[Placeholder]"}], "}"}],
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                  "\"\\!\\(\\*OverscriptBox[\\(A \[RightArrowLeftArrow] B\\), \
+\\(\[ScriptCapitalE]\\)]\\) means A+\[ScriptCapitalE] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(2\\)], SubscriptBox[\\(k\\), \\(1\\)]]\\) A\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(4\\)], SubscriptBox[\\(k\\), \\(3\\)]]\\) B+\
+\[ScriptCapitalE]\"", TraditionalForm], TraditionalForm, Editable -> True], 
+                 FontFamily -> Times, StripOnInput -> False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                 "\!\(\*OverscriptBox[\(A \[RightArrowLeftArrow] B\), \(\
+\[ScriptCapitalE]\)]\) means A+\[ScriptCapitalE] \!\(\*UnderoverscriptBox[\(\
+\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \(2\)], SubscriptBox[\(k\), \(1\
+\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B+\[ScriptCapitalE]"], FontFamily -> 
+                 Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              ButtonData->RowBox[{"{", 
+                 RowBox[{
+                   OverscriptBox[
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"Substrate\""], "Placeholder"], 
+                    "\[RightArrowLeftArrow]", 
+                    TagBox[
+                    FrameBox["\"Product\""], "Placeholder"]}], 
+                    TagBox[
+                    FrameBox["\"Enzyme\""], "Placeholder"]], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(1\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(2\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(3\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(4\)]\)"], 
+                    "Placeholder"], DisplayForm]}], "}"}]], 
+             ButtonBox[
+              TagBox[
+               TooltipBox[
+                RowBox[{"{", 
+                 RowBox[{
+                  UnderoverscriptBox[
+                   RowBox[{
+                   "\[Placeholder]", "\[RightArrowLeftArrow]", 
+                    "\[Placeholder]"}], "\[Placeholder]", "\[Placeholder]"], 
+                  ",", "\[Placeholder]"}], "}"}],
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                  "\"\\!\\(\\*UnderoverscriptBox[\\(A \[RightArrowLeftArrow] \
+B\\), \\(\[ScriptCapitalF]\\), \\(\[ScriptCapitalE]\\)]\\) means A+\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(2\\)], SubscriptBox[\\(k\\), \\(1\\)]]\\) A\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(4\\)], SubscriptBox[\\(k\\), \\(3\\)]]\\) B+\
+\[ScriptCapitalE] and B+\[ScriptCapitalF] \\!\\(\\*UnderoverscriptBox[\\(\
+\[RightArrowLeftArrow]\\), SubscriptBox[\\(k\\), \\(6\\)], \
+SubscriptBox[\\(k\\), \\(5\\)]]\\) B\[ScriptCapitalF] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(8\\)], SubscriptBox[\\(k\\), \\(7\\)]]\\) B+\
+\[ScriptCapitalF]\"", TraditionalForm], TraditionalForm, Editable -> True], 
+                 FontFamily -> Times, StripOnInput -> False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                 "\!\(\*UnderoverscriptBox[\(A \[RightArrowLeftArrow] B\), \(\
+\[ScriptCapitalF]\), \(\[ScriptCapitalE]\)]\) means A+\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(2\)], SubscriptBox[\(k\), \(1\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B+\[ScriptCapitalE] and B+\
+\[ScriptCapitalF] \!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), \
+SubscriptBox[\(k\), \(6\)], SubscriptBox[\(k\), \(5\)]]\) B\[ScriptCapitalF] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(8\)], SubscriptBox[\(k\), \(7\)]]\) B+\[ScriptCapitalF]"], FontFamily -> 
+                 Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              ButtonData->RowBox[{"{", 
+                 RowBox[{
+                   UnderoverscriptBox[
+                    RowBox[{
+                    TagBox[
+                    TagBox[
+                    FrameBox["Substrate"], "Placeholder"], DisplayForm], 
+                    "\[RightArrowLeftArrow]", 
+                    TagBox[
+                    TagBox[
+                    FrameBox["Product"], "Placeholder"], DisplayForm]}], 
+                    TagBox[
+                    TagBox[
+                    FrameBox["Reverse Enzyme"], "Placeholder"], DisplayForm], 
+                    
+                    TagBox[
+                    TagBox[
+                    FrameBox["Forward Enzyme"], "Placeholder"], DisplayForm]],
+                    ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(1\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(2\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(3\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(4\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(5\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(6\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(7\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(8\)]\)"], 
+                    "Placeholder"], DisplayForm]}], "}"}]], 
+             ButtonBox[
+              TagBox[
+               TooltipBox[
+                RowBox[{"{", 
+                 RowBox[{
+                  OverscriptBox[
+                   RowBox[{
+                   "\[Placeholder]", "\[Equilibrium]", "\[Placeholder]"}], 
+                   "\[Placeholder]"], ",", "\[Placeholder]"}], "}"}],
+                StyleBox[
+                 TagBox[
+                  FormBox[
+                  "\"\\!\\(\\*OverscriptBox[\\(A \[Equilibrium] B\\), \\(\
+\[ScriptCapitalE]\\)]\\) means A+\[ScriptCapitalE] \
+\\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(2\\)], SubscriptBox[\\(k\\), \\(1\\)]]\\) A\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(4\\)], SubscriptBox[\\(k\\), \\(3\\)]]\\) B\
+\[ScriptCapitalE] \\!\\(\\*UnderoverscriptBox[\\(\[RightArrowLeftArrow]\\), \
+SubscriptBox[\\(k\\), \\(6\\)], SubscriptBox[\\(k\\), \\(5\\)]]\\) B+\
+\[ScriptCapitalE]\"", TraditionalForm], TraditionalForm, Editable -> True], 
+                 FontFamily -> Times, StripOnInput -> False]],
+               Annotation[#, 
+                Style[
+                 TraditionalForm[
+                 "\!\(\*OverscriptBox[\(A \[Equilibrium] B\), \(\
+\[ScriptCapitalE]\)]\) means A+\[ScriptCapitalE] \!\(\*UnderoverscriptBox[\(\
+\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \(2\)], SubscriptBox[\(k\), \(1\
+\)]]\) A\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(4\)], SubscriptBox[\(k\), \(3\)]]\) B\[ScriptCapitalE] \
+\!\(\*UnderoverscriptBox[\(\[RightArrowLeftArrow]\), SubscriptBox[\(k\), \
+\(6\)], SubscriptBox[\(k\), \(5\)]]\) B+\[ScriptCapitalE]"], FontFamily -> 
+                 Times], "Tooltip"]& ],
+              Appearance->"DialogBox",
+              BaseStyle->"Paste",
+              ButtonData->RowBox[{"{", 
+                 RowBox[{
+                   OverscriptBox[
+                    RowBox[{
+                    TagBox[
+                    FrameBox["\"Substrate\""], "Placeholder"], 
+                    "\[Equilibrium]", 
+                    TagBox[
+                    FrameBox["\"Product\""], "Placeholder"]}], 
+                    TagBox[
+                    FrameBox["\"Enzyme\""], "Placeholder"]], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(1\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(2\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(3\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(4\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(5\)]\)"], 
+                    "Placeholder"], DisplayForm], ",", 
+                   TagBox[
+                    TagBox[
+                    FrameBox["\!\(\*SubscriptBox[\(k\), \(6\)]\)"], 
+                    "Placeholder"], DisplayForm]}], "}"}]]}
+           },
+           AutoDelete->False,
+           GridBoxFrame->{"Columns" -> False, "Rows" -> False},
+           
+           GridBoxItemSize->{
+            "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+          "Grid"]}
+       },
+       AutoDelete->False,
+       GridBoxFrame->{"Columns" -> False, "Rows" -> False},
+       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+      "Grid"]},
+    {
+     StyleBox["\<\"Mouse over any button for the equivalent\"\>",
+      StripOnInput->False,
+      FontFamily->Times,
+      FontSize->10,
+      FontSlant->Italic]},
+    {
+     StyleBox["\<\"mass action kinetics.\"\>",
+      StripOnInput->False,
+      FontFamily->Times,
+      FontSize->10,
+      FontSlant->Italic]},
+    {
+     StyleBox["\<\"xSSAlite is part of the Cellerator System.\"\>",
+      StripOnInput->False,
+      FontFamily->Times,
+      FontSize->10,
+      FontSlant->Italic]},
+    {
+     TagBox[
+      ButtonBox[
+       PaneSelectorBox[{False->
+        StyleBox["\<\"\[Copyright]2012 GPL Applies\"\>",
+         StripOnInput->False,
+         FontFamily->"Times",
+         FontSize->10,
+         FontSlant->Italic,
+         FontColor->RGBColor[0, 0, 
+           Rational[2, 3]]], True->
+        StyleBox[
+         StyleBox["\<\"\[Copyright]2012 GPL Applies\"\>",
+          StripOnInput->False,
+          FontFamily->"Times",
+          FontSize->10,
+          FontSlant->Italic,
+          FontColor->RGBColor[0, 0, 
+            Rational[2, 3]]], "HyperlinkActive"]}, Dynamic[
+         CurrentValue["MouseOver"]],
+        BaseStyle->{"Hyperlink"},
+        BaselinePosition->Baseline,
+        FrameMargins->0,
+        ImageSize->Automatic],
+       BaseStyle->"Hyperlink",
+       ButtonData->{
+         URL["http://www.gnu.org/licenses/gpl.html"], None},
+       ButtonNote->"http://www.gnu.org/licenses/gpl.html"],
+      Annotation[#, "http://www.gnu.org/licenses/gpl.html", "Hyperlink"]& ]}
+   },
+   AutoDelete->False,
+   GridBoxBackground->{"Columns" -> {{
+        RGBColor[1, 0.667, 0.514, 1]}}},
+   GridBoxFrame->{"ColumnsIndexed" -> {{{1, -1}, {1, -1}} -> True}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{
+  3.443281781486703*^9, 3.443281899501266*^9, 3.443454886269641*^9, 
+   3.443454932991104*^9, 3.44388833403823*^9, 3.443888382402694*^9, 
+   3.44388857658347*^9, 3.443889889580947*^9, 3.4438899601457*^9, 
+   3.443890037891425*^9, 3.4438909167246*^9, {3.443891003766546*^9, 
+   3.443891016624006*^9}, 3.443891243995974*^9, 3.444160559471536*^9, 
+   3.444160590737608*^9, 3.444160656947294*^9, {3.444160874172942*^9, 
+   3.444160902069768*^9}, {3.44416099248432*^9, 3.444161032478069*^9}, {
+   3.444161135941913*^9, 3.444161144660812*^9}, 3.444161483168195*^9, 
+   3.444162784516174*^9, 3.444482313640796*^9, 3.444482513758603*^9, 
+   3.444482916869436*^9, 3.444483266401982*^9, {3.444483710745799*^9, 
+   3.444483728626194*^9}, 3.444484316968614*^9, 3.446146526270891*^9, 
+   3.446146560018704*^9, 3.5085206306656733`*^9, {3.508520755165778*^9, 
+   3.5085207748615913`*^9}, {3.508520809227543*^9, 3.508520901788623*^9}, {
+   3.508520960591403*^9, 3.5085209870424833`*^9}, {3.508521045357665*^9, 
+   3.508521055674923*^9}, 3.5085227020596533`*^9, {3.55930507150905*^9, 
+   3.5593050826652803`*^9}, {3.559305167928487*^9, 3.5593052009107637`*^9}, {
+   3.5593052819741917`*^9, 3.5593052974071074`*^9}, 3.5593057334012747`*^9, {
+   3.5593057837116737`*^9, 3.559305820048094*^9}, 3.5593058662360497`*^9}]
+}, Closed]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CreatePalette", "[", 
+   RowBox[{"g", ",", " ", 
+    RowBox[{"WindowMargins", "\[Rule]", " ", "Automatic"}], ",", " ", 
+    RowBox[{"WindowTitle", "\[Rule]", " ", "\"\<xSSA Palette\>\""}], ",", " ", 
+    RowBox[{"WindowElements", "\[Rule]", 
+     RowBox[{"{", "\"\<MagnificationPopUp\>\"", "}"}]}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"WindowFrame", "\[Rule]", " ", "\"\<Palette\>\""}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"WindowElements", "\[Rule]", " ", 
+     RowBox[{"{", "\"\<VerticalScrollBar\>\"", "}"}]}], "*)"}], 
+   "\[IndentingNewLine]", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.442802093815052*^9, 3.44280209689806*^9}, {
+  3.442802128236406*^9, 3.442802150932422*^9}, {3.442846689768128*^9, 
+  3.442846704005504*^9}, {3.442850398202751*^9, 3.442850399689109*^9}, {
+  3.442850573229582*^9, 3.442850573616825*^9}, {3.442850610211827*^9, 
+  3.442850632983786*^9}, {3.442850665646096*^9, 3.442850667548029*^9}, {
+  3.442850711893329*^9, 3.442850718368143*^9}, {3.442850808381976*^9, 
+  3.442850844774637*^9}, {3.442852374239254*^9, 3.442852385970937*^9}, {
+  3.442852454792092*^9, 3.442852492245962*^9}, {3.443206534265607*^9, 
+  3.443206535290396*^9}, {3.5593053154559307`*^9, 3.559305332680385*^9}}]
+}, Closed]]
+}, Open  ]]
+},
+WindowSize->{1123, 766},
+WindowMargins->{{Automatic, -1675}, {Automatic, 54}},
+ShowSelection->True,
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.25, 1.25 Inherited],
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PastelColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 159, 2, 30, "Subtitle"],
+Cell[729, 26, 588, 13, 180, "Text"],
+Cell[CellGroupData[{
+Cell[1342, 43, 152, 2, 35, "Subsubsection"],
+Cell[1497, 47, 421, 10, 49, "Input"],
+Cell[1921, 59, 487, 12, 96, "Input"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[2445, 76, 128, 1, 26, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[2598, 81, 837, 19, 208, "Input"],
+Cell[3438, 102, 1429, 39, 66, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4904, 146, 1159, 27, 232, "Input"],
+Cell[6066, 175, 1586, 42, 77, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7689, 222, 1137, 27, 244, "Input"],
+Cell[8829, 251, 1783, 46, 66, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10649, 302, 2055, 47, 361, "Input"],
+Cell[12707, 351, 2590, 64, 78, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15334, 420, 2545, 57, 316, "Input"],
+Cell[17882, 479, 4025, 95, 83, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21944, 579, 2229, 51, 269, "Input"],
+Cell[24176, 632, 3101, 75, 79, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27314, 712, 1466, 28, 234, "Input"],
+Cell[28783, 742, 14780, 355, 133, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43600, 1102, 1575, 29, 142, "Input"],
+Cell[45178, 1133, 16333, 375, 159, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[61560, 1514, 117, 1, 26, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[61702, 1519, 1335, 27, 234, "Input"],
+Cell[63040, 1548, 1486, 36, 66, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[64563, 1589, 765, 17, 211, "Input"],
+Cell[65331, 1608, 932, 21, 66, "Output"]
+}, Open  ]],
+Cell[66278, 1632, 471, 12, 49, "Input"],
+Cell[CellGroupData[{
+Cell[66774, 1648, 636, 16, 73, "Input"],
+Cell[67413, 1666, 871, 22, 66, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[68321, 1693, 5398, 142, 355, "Input"],
+Cell[73722, 1837, 4743, 126, 81, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[78514, 1969, 94, 1, 26, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[78633, 1974, 275, 7, 49, "Input"],
+Cell[78911, 1983, 12520, 212, 97, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[91468, 2200, 440, 12, 49, "Input"],
+Cell[91911, 2214, 13273, 227, 111, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[105233, 2447, 105, 1, 26, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[105363, 2452, 1590, 33, 211, "Input"],
+Cell[106956, 2487, 8399, 218, 121, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[115404, 2711, 164, 2, 26, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[115593, 2717, 6232, 112, 579, "Input"],
+Cell[121828, 2831, 42048, 903, 459, "Output"]
+}, Closed]],
+Cell[163891, 3737, 1289, 23, 137, "Input"]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

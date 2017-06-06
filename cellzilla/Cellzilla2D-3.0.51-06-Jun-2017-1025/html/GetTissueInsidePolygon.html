@@ -1,0 +1,91 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.3" >
+  <meta name="generator" content="Bluefish 2.2.3" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>GetTissueInsidePolygon</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info" border="0"><img src="logo.svg" alt=
+        "The xCellerator Project" width="150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style="font-size:x-large;font-weight:bold;">
+            GetTissueInsidePolygon<br>
+            GetTissueAboveLine<br>
+            GetTissueBelowLine</td>
+
+            <td align="right"><a class="button" href="./index.html">Cellzilla2D
+            Home</a></td>
+          </tr>
+        </table>
+        <hr color="#FF7636">
+
+        <p class="header">Description</p>
+        
+        <p><span class="boldfunc">GetTissueAboveLine[Tissue, point1, point2]</span>
+        returns a new tissue object by extracting only those points whose 
+        centers lies above the (non-vertical) line joining the two (distinct)
+        points. If the line is vertical or the points are non-distinct 
+        and error will occur.</p>
+
+         <p><span class="boldfunc">GetTissueBelowLine[Tissue, point1, point2]</span>
+        returns a new tissue object by extracting only those points whose
+        centers lies below the (non-vertical) line joining the two (distinct)
+        points. If the line is vertical or the points are non-distinct 
+        and error will occur.</p> 
+        
+         <p><span class="boldfunc">GetTissueInsidePolygon[Tissue, {point1, point2,...}]</span>
+        returns a new tissue object by extracting only those points whose
+        centers lies inside the polygon defined by the points. 
+        
+        </p> 
+
+        <p class="header">Options</p>
+
+  
+        <p class="header">Example</p>
+
+        <p>[ <a href="examples/GetTissueInsidePolygon-example.nb.zip">Download Example as
+        Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name="display"
+        src="./examples/GetTissueInsidePolygon-example.htm" id="display" style=
+        "background-color:white;"><a href="">View as html.</a></iframe></p>
+
+        <p class="header">Implementation Notes</p>
+
+        <p class="header">See Also</p>
+
+        <p><a href="CellsInsidePolygon.html">CellsAboveLine</a>,
+        <a href="CellsInsidePolygon.html">CellsBelowLine</a>,
+        <a href="CellsInsidePolygon.html">CellsInsidePolygon</a>
+        </p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2012 Nov 11]</span>
+    </div>
+  </center>
+</body>
+</html>

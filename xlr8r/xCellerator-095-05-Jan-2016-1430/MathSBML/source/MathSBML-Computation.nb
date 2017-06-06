@@ -1,0 +1,319 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     11603,        310]
+NotebookOptionsPosition[     10695,        274]
+NotebookOutlinePosition[     11136,        291]
+CellTagsIndexPosition[     11093,        288]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+MathSBML-Computation.nb
+\
+\>", "Title",
+ CellChangeTimes->{{3.506218248575613*^9, 3.50621825266282*^9}}],
+
+Cell[TextData[{
+ StyleBox["Computation function package for MathSBML for ",
+  FontSize->18],
+ StyleBox["Mathematica",
+  FontSize->18,
+  FontSlant->"Italic"],
+ StyleBox[" Version 8",
+  FontSize->18],
+ "\n2.24.201ll - initial build extracted from MathSBML 2.9.0 (BES)\n2.1.2012 \
+- It doesn\[CloseCurlyQuote]t work - fix the fact that AppendRows was removed"
+}], "Text",
+ CellChangeTimes->{{3.5049742193416157`*^9, 3.5049742573427896`*^9}, {
+  3.506218279978468*^9, 3.50621828102367*^9}, {3.537132924110197*^9, 
+  3.53713295001956*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["File Description", "Section",
+ CellChangeTimes->{{3.395408039119268*^9, 3.395408049088715*^9}, {
+  3.5062180912805367`*^9, 3.5062181026997566`*^9}}],
+
+Cell[TextData[{
+ StyleBox[" ",
+  FontSize->16],
+ StyleBox["Filename:\tMathSBML-Computation.nb\n Description:\tMathSBML is an \
+SBML reader for ",
+  FontSize->12],
+ StyleBox["Mathematica \n \t\t",
+  FontSize->12,
+  FontSlant->"Italic"],
+ StyleBox["This is part of the MathSBML Package\n Organization: \tCaltech \
+Biological Network Modeling Center\n\[LineSeparator]",
+  FontSize->12],
+ "    This file is part of MathSBML.\n \n    MathSBML is free software: you \
+can redistribute it and/or modify\n    it under the terms of the GNU Lesser \
+General Public License as published by\n    the Free Software Foundation, \
+either version 3 of the License, or\n    (at your option) any later version.\n\
+\n    This program is distributed in the hope that it will be useful,\n    \
+but WITHOUT ANY WARRANTY; without even the implied warranty of\n    \
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU \
+General Public License for more details.\n\n    You should have received a \
+copy of the GNU Lesser General Public License\n    along with this program.  \
+If not, see <http://www.gnu.org/licenses/>.",
+ StyleBox["\n\n ",
+  FontSize->12]
+}], "Text",
+ CellChangeTimes->{{3.388248302205469*^9, 3.388248304035112*^9}, 
+   3.388264681197356*^9, {3.3882668683761797`*^9, 3.388266875242931*^9}, 
+   3.388353386077384*^9, {3.388363325911048*^9, 3.3883633263870773`*^9}, 
+   3.3883996477410192`*^9, {3.388761163736053*^9, 3.38876116441009*^9}, {
+   3.389125922604425*^9, 3.389125923136166*^9}, {3.390045172241888*^9, 
+   3.39004517571679*^9}, {3.39019850450497*^9, 3.3901985115655603`*^9}, {
+   3.392748682342765*^9, 3.392748683344193*^9}, {3.3954080212118177`*^9, 
+   3.395408027048024*^9}, {3.395690507776781*^9, 3.3956905087487507`*^9}, {
+   3.3973955266739798`*^9, 3.397395527497595*^9}, {3.401465824219963*^9, 
+   3.401465836954739*^9}, 3.506217737019514*^9, {3.5062177764407835`*^9, 
+   3.506217778375187*^9}, 3.506217826938072*^9, {3.5062180797833166`*^9, 
+   3.506218242226402*^9}, {3.537136826807663*^9, 3.5371368505476027`*^9}, 
+   3.537137093014146*^9},
+ FontSize->10,
+ Background->None]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Computational Functions", "Section"],
+
+Cell[CellGroupData[{
+
+Cell["Conservation Matrix", "Subsection"],
+
+Cell["\<\
+Joanna Murakami  - Jan 11, 2006
+BES - 1 Fed 2012 - Append Rows has gone away but now there is NullSpace!
+
+Input: s is a stoichiometry matrix\
+\>", "Text",
+ CellChangeTimes->{{3.537132794070572*^9, 3.537132816747164*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"conservationMatrix", "[", "s_", "]"}], ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "echelon", ",", "x", ",", "y", ",", "location", ",", "i", ",", " ", 
+        "prel0", ",", "l0", ",", " ", "l0t", ",", "\[Gamma]", ",", " ", "A", 
+        ",", " ", "B"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"<<", "LinearAlgebra`MatrixManipulation`"}], " ", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Loading", " ", "MatrixManipulation"}], " ", "*)"}], " ", 
+       "*)"}], " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"!", 
+          RowBox[{"MatrixQ", "[", "s", "]"}]}], ",", " ", 
+         RowBox[{
+          RowBox[{
+          "Print", "[", 
+           "\"\<Error: conservationMatrix: input is not a matrix.\>\"", "]"}],
+           ";", " ", 
+          RowBox[{"Return", "[", "s", "]"}], ";"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"\[Gamma]", " ", "=", " ", 
+        RowBox[{"Transpose", "[", 
+         RowBox[{"NullSpace", "[", 
+          RowBox[{"Transpose", "[", "s", "]"}], "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "\[Gamma]", "]"}], ";", " ", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"MatrixRank", "[", "s", "]"}], "<", 
+          RowBox[{"Length", "[", "s", "]"}]}], ",", " ", 
+         StyleBox[
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "If", " ", "there", " ", "exist", " ", "linearly", " ", 
+            "dependent", " ", "rows"}], " ", "*)"}],
+          FontColor->RGBColor[0.345098, 0.541176, 0.752941]], 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"echelon", "=", 
+           RowBox[{"RowReduce", "[", 
+            RowBox[{"Transpose", "[", "s", "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"x", "=", 
+           RowBox[{"MatrixRank", "[", 
+            RowBox[{"Transpose", "[", "s", "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"y", "=", 
+           RowBox[{"Length", "[", 
+            RowBox[{"Transpose", "[", "s", "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"prel0", "=", 
+           RowBox[{"Drop", "[", 
+            RowBox[{"echelon", ",", " ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"x", "+", "1"}], ",", "y"}], "}"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"location", "=", "0"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"For", "[", 
+           RowBox[{
+            RowBox[{"i", "=", "1"}], ",", " ", 
+            RowBox[{"i", "\[LessEqual]", 
+             RowBox[{"Length", "[", "prel0", "]"}]}], ",", 
+            RowBox[{"i", "++"}], ",", " ", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"prel0", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"i", ",", "i"}], "]"}], "]"}], "\[Equal]", "1"}], 
+               ",", " ", 
+               RowBox[{
+                RowBox[{"location", "++"}], ";"}]}], "]"}], ";"}]}], "]"}], 
+          ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"l0t", "=", 
+           RowBox[{"Drop", "[", 
+            RowBox[{"prel0", ",", " ", "None", ",", " ", "location"}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"l0", "=", 
+           RowBox[{"Transpose", "[", "l0t", "]"}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"A", " ", "=", " ", 
+           RowBox[{"-", "l0"}]}], ";", " ", "\[IndentingNewLine]", 
+          RowBox[{"B", " ", "=", " ", 
+           RowBox[{"IdentityMatrix", "[", 
+            RowBox[{"Length", "[", "l0", "]"}], "]"}]}], ";", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<A=\>\"", ",", " ", "A"}], "]"}], ";", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<B=\>\"", ",", " ", "B"}], "]"}], ";", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"AppendRows", "[", 
+            RowBox[{"A", ",", "B"}], "]"}], "]"}], ";", " ", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"\[Gamma]", "=", 
+           RowBox[{"AppendRows", "[", 
+            RowBox[{
+             RowBox[{"-", "l0"}], ",", " ", 
+             RowBox[{"IdentityMatrix", "[", 
+              RowBox[{"Length", "[", "l0", "]"}], "]"}]}], "]"}]}], ";"}], 
+         ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"\[Gamma]", "=", 
+           RowBox[{"IdentityMatrix", "[", 
+            RowBox[{"Length", "[", "s", "]"}], "]"}]}], ";"}]}], 
+        StyleBox[
+         RowBox[{"(*", " ", 
+          RowBox[{"Else", " ", "case"}], " ", "*)"}],
+         FontColor->RGBColor[0.345098, 0.541176, 0.752941]], 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], ";", 
+       StyleBox[
+        RowBox[{"(*", " ", 
+         RowBox[{"End", " ", "if"}], " ", "*)"}],
+        FontColor->RGBColor[0.345098, 0.541176, 0.752941]], 
+       StyleBox["\[IndentingNewLine]",
+        FontColor->RGBColor[0.270588, 0.584314, 0.168627]], 
+       RowBox[{"Return", "[", "\[Gamma]", "]"}], ";"}]}], " ", 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{"Returning", " ", "conservation", " ", "matrix"}], " ", "*)"}],
+      FontColor->RGBColor[0.345098, 0.541176, 0.752941]], 
+     StyleBox["\[IndentingNewLine]",
+      FontColor->RGBColor[0.270588, 0.584314, 0.168627]], 
+     StyleBox["]",
+      FontColor->GrayLevel[0]]}]}], 
+   StyleBox[";",
+    FontColor->GrayLevel[0]]}], 
+  StyleBox["\[IndentingNewLine]",
+   FontColor->GrayLevel[0]], 
+  StyleBox["\[IndentingNewLine]",
+   FontColor->GrayLevel[0]]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.537131696287633*^9, 3.537131732275401*^9}, {
+  3.5371321901898527`*^9, 3.537132198111693*^9}, {3.537132829612475*^9, 
+  3.537132842355151*^9}, {3.537132890936801*^9, 3.537132904922632*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Exit", "Section",
+ CellChangeTimes->{{3.504974192927105*^9, 3.5049741934891376`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"LTPrint", "[", "\"\<Loaded Computation.\>\"", "]"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.5049742026596622`*^9, 3.504974208903019*^9}, {
+  3.5064523251532516`*^9, 3.506452325629011*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+AutoGeneratedPackage->Automatic,
+WindowSize->{701, 858},
+WindowMargins->{{174, Automatic}, {-5, Automatic}},
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PastelColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 114, 4, 121, "Title"],
+Cell[696, 28, 534, 13, 102, "Text"],
+Cell[CellGroupData[{
+Cell[1255, 45, 154, 2, 78, "Section"],
+Cell[1412, 49, 2105, 39, 389, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3554, 93, 42, 0, 78, "Section"],
+Cell[CellGroupData[{
+Cell[3621, 97, 41, 0, 39, "Subsection"],
+Cell[3665, 99, 230, 6, 87, "Text"],
+Cell[3898, 107, 6394, 150, 858, "Input",
+ InitializationCell->True]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10341, 263, 91, 1, 78, "Section"],
+Cell[10435, 266, 232, 4, 40, "Input",
+ InitializationCell->True]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

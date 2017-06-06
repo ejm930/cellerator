@@ -1,0 +1,1159 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     35499,       1150]
+NotebookOptionsPosition[     32494,       1052]
+NotebookOutlinePosition[     32935,       1069]
+CellTagsIndexPosition[     32892,       1066]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+MathSBML-Predefined.nb
+\
+\>", "Title",
+ CellChangeTimes->{{3.5062183921894655`*^9, 3.5062183979770756`*^9}}],
+
+Cell[TextData[{
+ StyleBox["SBML Level 1 Predefined Functions Package for MathSBML\n\n",
+  FontSize->24],
+ "2.24.11 - initial Build for ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " v.8 extracted from MathSBML 2.9.0 (BES)"
+}], "Text",
+ CellChangeTimes->{{3.50497344593038*^9, 3.5049734715798464`*^9}, {
+  3.5049736785116825`*^9, 3.5049736873091855`*^9}, {3.5049738968291693`*^9, 
+  3.504973901147416*^9}, {3.5062184098642964`*^9, 3.5062184129063015`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["File Description", "Section",
+ CellChangeTimes->{{3.395408039119268*^9, 3.395408049088715*^9}, {
+  3.5062180912805367`*^9, 3.5062181026997566`*^9}}],
+
+Cell[TextData[{
+ StyleBox[" ",
+  FontSize->16],
+ StyleBox["Filename:\tMathSBML-Predefined.nb\n Description:\tMathSBML is an \
+SBML reader for ",
+  FontSize->12],
+ StyleBox["Mathematica \n \t\t",
+  FontSize->12,
+  FontSlant->"Italic"],
+ StyleBox["This is part of the MathSBML Package\n Organization: \tCaltech \
+Biological Network Modeling Center\n License:\tLGPL \n \n",
+  FontSize->12],
+ "    This file is part of MathSBML.\n \n    MathSBML is free software: you \
+can redistribute it and/or modify\n    it under the terms of the GNU Lesser \
+General Public License as published by\n    the Free Software Foundation, \
+either version 3 of the License, or\n    (at your option) any later version.\n\
+\n    This program is distributed in the hope that it will be useful,\n    \
+but WITHOUT ANY WARRANTY; without even the implied warranty of\n    \
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU \
+General Public License for more details.\n\n    You should have received a \
+copy of the GNU Lesser General Public License\n    along with this program.  \
+If not, see <http://www.gnu.org/licenses/>."
+}], "Text",
+ CellChangeTimes->{{3.388248302205469*^9, 3.388248304035112*^9}, 
+   3.388264681197356*^9, {3.3882668683761797`*^9, 3.388266875242931*^9}, 
+   3.388353386077384*^9, {3.388363325911048*^9, 3.3883633263870773`*^9}, 
+   3.3883996477410192`*^9, {3.388761163736053*^9, 3.38876116441009*^9}, {
+   3.389125922604425*^9, 3.389125923136166*^9}, {3.390045172241888*^9, 
+   3.39004517571679*^9}, {3.39019850450497*^9, 3.3901985115655603`*^9}, {
+   3.392748682342765*^9, 3.392748683344193*^9}, {3.3954080212118177`*^9, 
+   3.395408027048024*^9}, {3.395690507776781*^9, 3.3956905087487507`*^9}, {
+   3.3973955266739798`*^9, 3.397395527497595*^9}, {3.401465824219963*^9, 
+   3.401465836954739*^9}, 3.506217737019514*^9, {3.5062177764407835`*^9, 
+   3.506217778375187*^9}, 3.506217826938072*^9, {3.5062180797833166`*^9, 
+   3.506218242226402*^9}, {3.506218385107053*^9, 3.5062183872910566`*^9}, {
+   3.537136951030513*^9, 3.537136985026713*^9}, 3.537137041217712*^9},
+ FontSize->10,
+ Background->None]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Level 1 Predefined functions", "Section"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{"$$LoadBug", ",", " ", 
+    RowBox[{"Print", "[", "\"\<Loading:predefined functions\>\"", "]"}]}], 
+   "]"}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"mass", "[", "x___", "]"}], ":=", " ", 
+   RowBox[{"Apply", "[", 
+    RowBox[{"Times", ",", 
+     RowBox[{"{", "x", "}"}]}], "]"}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"uui", "[", 
+    RowBox[{"S_", ",", " ", "Vm_", ",", " ", "Km_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"Vm", "*", "S"}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"Km", "+", "S"}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"uur", "[", 
+   RowBox[{
+   "S_", ",", " ", "P_", ",", " ", "Vf_", ",", " ", "Vr_", ",", " ", "Kms_", 
+    ",", " ", "Kmp_"}], "]"}], ":=", " ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Vf", 
+      RowBox[{"(", 
+       RowBox[{"S", "/", "Kms"}], ")"}]}], "-", 
+     RowBox[{"Vr", 
+      RowBox[{"(", 
+       RowBox[{"P", "/", "Kmp"}], ")"}]}]}], ")"}], "/", 
+   RowBox[{"(", 
+    RowBox[{"1", "+", 
+     RowBox[{"S", "/", "Kms"}], "+", 
+     RowBox[{"P", "/", "Kmp"}]}], ")"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"uuhr", "[", 
+   RowBox[{
+   "S_", ",", "P_", ",", "Vf_", ",", "Km1_", ",", "Km2_", ",", "Keq_"}], 
+   "]"}], ":=", " ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"Vf", "/", "Km1"}], ")"}], 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"S", "-", 
+      RowBox[{"P", "/", "Keq"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"S", "/", "Km1"}], "+", 
+      RowBox[{"P", "/", "Km2"}]}], ")"}]}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"isouur", "[", 
+   RowBox[{
+   "S_", ",", " ", "P_", ",", " ", "Vf_", ",", " ", "Kms_", ",", " ", "Kmp_", 
+    ",", " ", "Kii_", ",", " ", "Keq_"}], "]"}], ":=", " ", 
+  RowBox[{"Vf", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"S", "-", 
+      RowBox[{"P", "/", "Keq"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"S", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"P", "/", "Kii"}]}], ")"}]}], "+", 
+      RowBox[{"Kms", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"P", "/", "Kmp"}]}], ")"}]}]}], ")"}]}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"hilli", "[", 
+   RowBox[{"S_", ",", " ", "V_", ",", " ", "K_", ",", "h_"}], "]"}], ":=", 
+  " ", 
+  RowBox[{"V", "*", 
+   RowBox[{
+    RowBox[{"S", "^", "h"}], "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"K", "^", "h"}], "+", 
+      RowBox[{"S", "^", "h"}]}], ")"}]}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"hillr", "[", 
+    RowBox[{
+    "S_", ",", " ", "P_", ",", " ", "Vf_", ",", " ", "Shalf_", ",", " ", 
+     "Phalf_", ",", " ", "h_", ",", " ", "Keq_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"Vf", "*", 
+        RowBox[{"S", "/", "Shalf"}]}], ")"}], 
+      RowBox[{"(", 
+       RowBox[{"1", "-", 
+        RowBox[{"P", "/", 
+         RowBox[{"(", 
+          RowBox[{"S", "*", "Keq"}], ")"}]}]}], ")"}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"S", "/", "Shalf"}], "+", 
+         RowBox[{"P", "/", "Phalf"}]}], ")"}], "^", 
+       RowBox[{"(", 
+        RowBox[{"h", "-", "1"}], ")"}]}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"S", "/", "Shalf"}], "+", 
+         RowBox[{"P", "/", "Phalf"}]}], ")"}], "^", "h"}]}], ")"}]}]}], 
+  ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"hillmr", "[", 
+    RowBox[{
+    "S_", ",", "P_", ",", " ", "M_", ",", " ", "S05_", ",", " ", "P05_", ",", 
+     " ", "M05_", ",", "Vf_", ",", " ", "Keq_", ",", " ", "h_", ",", " ", 
+     "\[Alpha]_"}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"K1", ",", " ", "K2", ",", "v"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"K1", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"S", "/", "S05"}], ")"}], "+", 
+          RowBox[{"(", 
+           RowBox[{"P", "/", "P05"}], ")"}]}], ")"}], "^", "h"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"K2", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"M", "/", "M05"}], ")"}], "^", "h"}]}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"\[Alpha]", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"M", "/", "M05"}], ")"}], "^", "h"}]}]}], ")"}]}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"v", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Vf", "*", 
+          RowBox[{"S", "/", "S05"}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"1", "-", 
+          RowBox[{"P", "/", 
+           RowBox[{"(", 
+            RowBox[{"S", " ", "*", "Keq"}], ")"}]}]}], ")"}], 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"S", "/", "S05"}], "+", 
+            RowBox[{"P", "/", "P05"}]}], ")"}], "^", 
+          RowBox[{"(", 
+           RowBox[{"h", "-", "1"}], ")"}]}], "/", 
+         RowBox[{"(", 
+          RowBox[{"K1", "+", "K2"}], ")"}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "v", "]"}], ";"}]}], "]"}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"hillmmr", "[", 
+   RowBox[{
+   "S_", ",", " ", "P_", ",", " ", "M_", ",", "S05_", ",", " ", "P05_", ",", 
+    " ", "M05_", ",", " ", "Ma_", ",", " ", "Ma05_", ",", " ", "Mb_", ",", 
+    " ", "Mb05_", ",", " ", "Vf_", ",", " ", "Keq_", ",", " ", "h_", ",", " ",
+     "a_", ",", " ", "b_", ",", " ", "\[Alpha]1_", ",", " ", "\[Alpha]2_", 
+    ",", " ", "\[Alpha]12_"}], "]"}], ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"K1", ",", " ", "K2", ",", " ", "v"}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"K1", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"S", "/", "S05"}], " ", "+", " ", 
+         RowBox[{"P", "/", "P05"}]}], ")"}], "^", "h"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"K2", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"Ma", "/", "Ma05"}], ")"}], "^", "h"}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"Mb", "/", "Mb05"}], ")"}], "^", "h"}]}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"\[Alpha]1", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"Ma", "/", "Ma05"}], ")"}], "^", "h"}]}], " ", "+", " ", 
+         RowBox[{"\[Alpha]2", " ", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"Mb", "/", "Mb05"}], ")"}], "^", "h"}]}], " ", "+", " ", 
+         RowBox[{"\[Alpha]1", "*", "\[Alpha]2", "*", "\[Alpha]12", " ", "*", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"Ma", "/", "Ma05"}], ")"}], "^", "h"}], " ", "*", " ", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"Mb", "/", "Mb05"}], ")"}], "^", "h"}]}]}], ")"}]}]}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"v", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"Vf", " ", "*", " ", 
+         RowBox[{"S", "/", "S05"}]}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"P", "/", 
+          RowBox[{"(", 
+           RowBox[{"S", "*", "Keq"}], ")"}]}]}], ")"}], "*", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"S", "/", "S05"}], " ", "+", " ", 
+           RowBox[{"P", "/", "P05"}]}], ")"}], "^", 
+         RowBox[{"(", 
+          RowBox[{"h", "-", "1"}], ")"}]}], "/", 
+        RowBox[{"(", 
+         RowBox[{"K1", "+", "K2"}], ")"}]}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", "v", "]"}], ";"}]}], " ", "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"usii", "[", 
+    RowBox[{"S_", ",", " ", "V_", ",", " ", "Km_", ",", " ", "Ki_"}], "]"}], ":=",
+    " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"V", "*", 
+      RowBox[{"S", "/", "Km"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"S", "/", "Km"}], "+", 
+      RowBox[{
+       RowBox[{"S", "^", "2"}], "/", "Ki"}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"usir", "[", 
+    RowBox[{
+    "S_", ",", " ", "P_", ",", " ", "Vf_", ",", " ", "Vr_", ",", " ", "Kms_", 
+     ",", " ", "Kmp_", ",", " ", "Ki_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Vf", "*", 
+       RowBox[{"S", "/", "Kms"}]}], "  ", "+", " ", 
+      RowBox[{"Vr", "*", 
+       RowBox[{"P", "/", "Kmp"}]}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"S", "/", "Kms"}], " ", "+", " ", 
+      RowBox[{"P", "/", "Kmp"}], " ", "+", " ", 
+      RowBox[{
+       RowBox[{"S", "^", "2"}], "/", "Ki"}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"uai", "[", 
+    RowBox[{"S_", ",", " ", "V_", ",", " ", "Ksa_", ",", " ", "Ksc_"}], "]"}],
+    ":=", 
+   RowBox[{"V", "*", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"S", "/", "Ksa"}], ")"}], "^", "2"}], "/", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"S", "/", "Ksc"}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"S", "/", "Ksa"}], ")"}], "^", "2"}], "+", 
+       RowBox[{"S", "/", "Ksa"}]}], ")"}]}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ucii", "[", 
+    RowBox[{"S_", ",", "Inh_", ",", " ", "V_", ",", "Km_", ",", " ", "Ki_"}], 
+    "]"}], ":=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"V", "*", 
+      RowBox[{"S", "/", "Km"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"S", "/", "Km"}], "+", 
+      RowBox[{"Inh", "/", "Ki"}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ucir", "[", 
+    RowBox[{
+    "S_", ",", "P_", ",", " ", "Inh_", ",", " ", "Vf_", ",", " ", "Vr_", ",", 
+     " ", "Kms_", ",", " ", "Kmp_", ",", " ", "Ki_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"Vf", "*", 
+        RowBox[{"S", "/", "Kms"}]}], ")"}], "-", 
+      RowBox[{"(", 
+       RowBox[{"Vr", "*", 
+        RowBox[{"P", "/", "Kmp"}]}], ")"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"S", "/", "Kms"}], "+", 
+      RowBox[{"P", "/", "Kmp"}], "+", 
+      RowBox[{"Inh", "/", "Ki"}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"unii", "[", 
+    RowBox[{
+    "S_", ",", " ", "Inh_", ",", " ", "V_", ",", " ", "Km_", ",", " ", 
+     "Ki_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"V", "*", 
+      RowBox[{"S", "/", "Km"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"Inh", "/", "Ki"}], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"S", "/", "Km"}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"Inh", "/", "Ki"}]}], ")"}]}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"unir", "[", 
+    RowBox[{
+    "S_", ",", " ", "P_", ",", " ", "Inh_", ",", " ", "Vf_", ",", " ", "Vr_", 
+     ",", " ", "Kms_", ",", " ", "Kmp_", ",", " ", "Ki_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"Vf", "*", 
+        RowBox[{"S", "/", "Kms"}]}], ")"}], "-", 
+      RowBox[{"(", 
+       RowBox[{"Vr", "*", 
+        RowBox[{"P", "/", "Kmp"}]}], ")"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"Inh", "/", "Ki"}], " ", "+", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"S", "/", "Kms"}], "+", 
+         RowBox[{"P", "/", "Kmp"}]}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"Inh", "/", "Ki"}]}], ")"}]}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"uuci", "[", 
+    RowBox[{
+    "S_", ",", " ", "Inh_", ",", " ", "V_", ",", " ", "Km_", ",", " ", 
+     "Ki_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"V", "*", 
+      RowBox[{"S", "/", "Km"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"S", "/", "Km"}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"Inh", "/", "Ki"}]}], ")"}]}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"uucr", "[", 
+    RowBox[{
+    "S_", ",", " ", "P_", ",", " ", "Inh_", ",", " ", "Vf_", ",", " ", "Vr_", 
+     ",", " ", "Kms_", ",", " ", "Kmp_", ",", " ", "Ki_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"(", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"Vf", "*", 
+        RowBox[{"S", "/", "Kms"}]}], ")"}], "-", 
+      RowBox[{"(", 
+       RowBox[{"Vr", "*", 
+        RowBox[{"P", "/", "Kmp"}]}], ")"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"S", "/", "Kms"}], "+", 
+         RowBox[{"P", "/", "Kmp"}]}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"Inh", "/", "Ki"}]}], ")"}]}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"umi", "[", 
+    RowBox[{
+    "S_", ",", " ", "Inh_", ",", " ", "V_", ",", " ", "Km_", ",", " ", "Kis_",
+      ",", " ", "Kic_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"V", "*", 
+      RowBox[{"S", "/", "Km"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"Inh", "/", "Kis"}], " ", "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"S", "/", "Km"}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"Inh", "/", "Kic"}]}], ")"}]}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"umr", "[", 
+    RowBox[{
+    "S_", ",", " ", "P_", ",", " ", "Inh_", ",", " ", "Vf_", ",", " ", "Vr_", 
+     ",", " ", "Kms_", ",", " ", "Kmp_", ",", " ", "Kis_", ",", " ", "Kic_"}],
+     "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Vf", "*", 
+       RowBox[{"S", "/", "Kms"}]}], " ", "-", " ", 
+      RowBox[{"Vr", "*", 
+       RowBox[{"P", "/", "Kmp"}]}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"Inh", "/", "Kis"}], " ", "+", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"S", "/", "Kms"}], "+", 
+         RowBox[{"P", "/", "Kmp"}]}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"Inh", "/", "Kic"}]}], ")"}]}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"uaii", "[", 
+    RowBox[{
+    "S_", ",", " ", "Ac_", ",", " ", "V_", ",", " ", "Km_", ",", " ", "Ka_"}],
+     "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"V", "*", 
+      RowBox[{"S", "/", "Km"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"S", "/", "Km"}], " ", "+", " ", 
+      RowBox[{"Ka", "/", "Ac"}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"uar", "[", 
+    RowBox[{
+    "S_", ",", " ", "P_", ",", " ", "Ac_", ",", " ", "Vf_", ",", " ", "Vr_", 
+     ",", " ", "Kms_", ",", " ", "Kmp_", ",", " ", "Ka_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Vf", "*", 
+       RowBox[{"S", "/", "Kms"}]}], " ", "-", " ", 
+      RowBox[{"Vr", "*", 
+       RowBox[{"P", "/", "Kmp"}]}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"S", "/", "Kms"}], "+", 
+      RowBox[{"P", "/", "Kmp"}], "+", 
+      RowBox[{"Ka", "/", "Ac"}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ucti", "[", 
+    RowBox[{
+    "S_", ",", " ", "Ac_", ",", " ", "V_", ",", " ", "Km_", ",", " ", "Ka_"}],
+     "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"V", "*", 
+      RowBox[{"S", "/", "Km"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"Ka", "/", "Ac"}], " ", "+", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"S", "/", "Km"}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"Ka", "/", "Ac"}]}], ")"}]}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"uctr", "[", 
+    RowBox[{
+    "S_", ",", " ", "P_", ",", " ", "Ac_", ",", " ", "Vf_", ",", " ", "Vr_", 
+     ",", " ", "Kms_", ",", " ", "Kmp_", ",", " ", "Ka_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Vf", "*", 
+       RowBox[{"S", "/", "Kms"}]}], " ", "-", " ", 
+      RowBox[{"Vr", "*", 
+       RowBox[{"P", "/", "Kmp"}]}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"Ka", "/", "Ac"}], " ", "+", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"S", "/", "Kms"}], " ", "+", " ", 
+         RowBox[{"P", "/", "Kmp"}]}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"Ka", "/", "Ac"}]}], ")"}]}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"umai", "[", 
+   RowBox[{
+   "S_", ",", " ", "Ac_", ",", " ", "V_", ",", " ", "Km_", ",", " ", "Kas_", 
+    ",", " ", "Kac_"}], "]"}], ":=", " ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"V", "*", 
+     RowBox[{"S", "/", "Km"}]}], ")"}], "/", 
+   RowBox[{"(", 
+    RowBox[{"1", "+", 
+     RowBox[{"Kas", "/", "Ac"}], " ", "+", 
+     RowBox[{
+      RowBox[{"(", " ", 
+       RowBox[{"S", "/", "Km"}], " ", ")"}], 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"Kac", "/", "Ac"}]}], ")"}]}]}], ")"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"umar", "[", 
+    RowBox[{
+    "S_", ",", " ", "P_", ",", " ", "Ac_", ",", " ", "Vf_", ",", " ", "Vr_", 
+     ",", " ", "Kms_", ",", " ", "Kmp_", ",", " ", "Kas_", ",", " ", "Kac_"}],
+     "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Vf", "*", 
+       RowBox[{"S", "/", "Kms"}]}], " ", "-", " ", 
+      RowBox[{"Vr", "*", 
+       RowBox[{"P", "/", "Kmp"}]}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"(", 
+       RowBox[{"Kas", "/", "Ac"}], ")"}], " ", "+", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"S", "/", "Kms"}], "+", 
+         RowBox[{"P", "/", "Kmp"}]}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"Kac", "/", "Ac"}]}], ")"}]}]}], ")"}]}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"uhmi", "[", 
+    RowBox[{
+    "S_", ",", " ", "M_", ",", " ", "V_", ",", " ", "Km_", ",", " ", "Kd_", 
+     ",", " ", "a_", ",", " ", "b_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"V", "*", 
+        RowBox[{"S", "/", "Km"}]}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"b", "*", 
+         RowBox[{"M", "/", 
+          RowBox[{"(", 
+           RowBox[{"a", "*", "Kd"}], ")"}]}]}]}], ")"}]}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"M", "/", "Kd"}], " ", "+", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"S", "/", "Km"}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"M", "/", 
+          RowBox[{"(", 
+           RowBox[{"a", "*", "Kd"}], ")"}]}]}], ")"}]}]}], ")"}]}]}], 
+  ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"uhmr", "[", 
+    RowBox[{
+    "S_", ",", " ", "P_", ",", " ", "M_", ",", " ", "Vf_", ",", " ", "Vr_", 
+     ",", " ", "Kms_", ",", " ", "Kmp_", ",", " ", "Kd_", ",", " ", "a_", ",",
+      " ", "b_"}], "]"}], "  ", ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Vf", "*", 
+       RowBox[{"S", "/", "Kms"}]}], " ", "-", " ", 
+      RowBox[{"Vr", "*", 
+       RowBox[{"P", "/", "Kmp"}]}]}], ")"}], "*", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"b", "*", 
+        RowBox[{"M", "/", 
+         RowBox[{"(", 
+          RowBox[{"a", "*", "Kd"}], ")"}]}]}]}], ")"}], "/", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"M", "/", "Kd"}], " ", "+", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"S", "/", "Kms"}], "+", 
+          RowBox[{"P", "/", "Kmp"}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"M", "/", 
+           RowBox[{"(", 
+            RowBox[{"a", "*", "Kd"}], ")"}]}]}], ")"}]}]}], ")"}]}]}]}], 
+  ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ualii", "[", 
+   RowBox[{
+   "S_", ",", " ", "Inh_", ",", " ", "V_", ",", " ", "Ks_", ",", " ", "Kii_", 
+    ",", " ", "n_", ",", " ", "L_"}], "]"}], ":=", " ", 
+  RowBox[{"V", " ", "*", 
+   RowBox[{"(", 
+    RowBox[{"S", "/", "Ks"}], ")"}], "*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"S", "/", "Ks"}]}], ")"}], "^", 
+     RowBox[{"(", 
+      RowBox[{"n", "-", "1"}], ")"}]}], " ", "/", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"L", "*", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"Inh", "/", "Kii"}]}], ")"}], "^", "n"}]}], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"S", "/", "Ks"}]}], ")"}], "^", "n"}]}], 
+     ")"}]}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ordubr", "[", 
+   RowBox[{
+   "A_", ",", " ", "P_", ",", " ", "Q_", ",", " ", "Vf_", ",", " ", "Vr_", 
+    ",", " ", "Kma_", ",", " ", "Kmq_", ",", " ", "Kmp_", ",", " ", "Kip_", 
+    ",", " ", "Keq_"}], "]"}], ":=", " ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"Vf", "*", 
+     RowBox[{"(", 
+      RowBox[{"A", "-", 
+       RowBox[{"P", "*", 
+        RowBox[{"Q", "/", "Keq"}]}]}], ")"}]}], ")"}], "/", 
+   RowBox[{"(", 
+    RowBox[{"Kma", " ", "+", " ", 
+     RowBox[{"A", "*", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"P", "/", "Kip"}]}], ")"}]}], " ", "+", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"Vf", "/", 
+        RowBox[{"(", 
+         RowBox[{"Vr", "*", "Keq"}], ")"}]}], ")"}], 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Kmq", "*", "P"}], "+", 
+        RowBox[{"Kmp", "*", "Q"}], "+", 
+        RowBox[{"P", "*", "Q"}]}], ")"}]}]}], ")"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ordbur", "[", 
+   RowBox[{
+   "A_", ",", " ", "B_", ",", " ", "P_", ",", " ", "Vf_", ",", " ", "Vr_", 
+    ",", " ", "Kma_", ",", " ", "Kmb_", ",", " ", "Kmp_", ",", " ", "Kia_", 
+    ",", " ", "Keq_"}], "]"}], ":=", " ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"Vf", " ", "*", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"A", "*", "B"}], " ", "-", " ", 
+       RowBox[{"P", "/", "Keq"}]}], ")"}]}], ")"}], "/", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"A", "*", "B"}], " ", "+", " ", 
+     RowBox[{"Kma", "*", "B"}], " ", "+", " ", 
+     RowBox[{"Kmb", "*", "A"}], " ", "+", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"Vf", " ", "/", " ", 
+        RowBox[{"(", 
+         RowBox[{"Vr", "*", "Keq"}], ")"}]}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{"Kmp", " ", "+", " ", 
+        RowBox[{"P", " ", "*", " ", 
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           RowBox[{"A", "/", "Kia"}]}], ")"}]}]}], ")"}]}]}], 
+    ")"}]}]}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ordbbr", "[", 
+    RowBox[{
+    "A_", ",", " ", "B_", ",", " ", "P_", ",", " ", "Q_", ",", " ", "Vf_", 
+     ",", " ", "Vr_", ",", " ", "Kma_", ",", "Kmb_", ",", "  ", "Kmp_", ",", 
+     "Kmq_", ",", "  ", "Kia_", ",", " ", "Kib_", ",", " ", "Kip_", ",", " ", 
+     "Keq_"}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"v", ",", "K1", ",", " ", "K2"}], "}"}], ",", " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"K2", " ", "=", " ", 
+       RowBox[{"Kmp", " ", "*", " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"Kma", "*", 
+           RowBox[{"B", "/", 
+            RowBox[{"(", 
+             RowBox[{"Kia", "*", "Kmb"}], ")"}]}]}], " ", "+", 
+          RowBox[{"P", "*", 
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             RowBox[{"B", "/", "Kib"}]}], ")"}]}]}], ")"}]}]}], ";", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"K1", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Vf", "/", 
+          RowBox[{"(", 
+           RowBox[{"Vr", "*", "Keq"}], ")"}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Kmq", "*", "P", "*", 
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             RowBox[{"A", "/", "Kia"}]}], ")"}]}], "+", 
+          RowBox[{"Q", "*", "K2"}]}], ")"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"v", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Vf", "*", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"A", "*", "B"}], " ", "-", " ", 
+            RowBox[{"P", "*", 
+             RowBox[{"Q", " ", "/", "Keq"}]}]}], " ", ")"}]}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"A", "*", "B", "*", 
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             RowBox[{"P", "/", "Kip"}]}], ")"}]}], "+", 
+          RowBox[{"Kmb", "*", 
+           RowBox[{"(", 
+            RowBox[{"A", "+", "Kia"}], ")"}]}], "+", 
+          RowBox[{"Kma", "*", "B"}], "+", "K1"}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "v", "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ppbr", "[", 
+    RowBox[{
+    "A_", ",", " ", "B_", ",", " ", "P_", ",", " ", "Q_", ",", " ", "Vf_", 
+     ",", " ", "Vr_", ",", " ", "Kma_", ",", " ", "Kmb_", ",", " ", "Kmp_", 
+     ",", " ", "Kmq_", ",", " ", "Kia_", ",", " ", "Kiq_", ",", " ", "Keq_"}],
+     "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"K1", ",", " ", "v"}], "}"}], ",", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"K1", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Vf", " ", "/", 
+          RowBox[{"(", 
+           RowBox[{"Vr", "*", "Keq"}], ")"}]}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Kmq", "*", "P", " ", 
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             RowBox[{"A", "/", "Kia"}]}], ")"}]}], "+", " ", 
+          RowBox[{"Q", 
+           RowBox[{"(", 
+            RowBox[{"Kmp", "+", "P"}], ")"}]}]}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"v", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Vf", "*", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"A", "*", "B"}], "-", 
+            RowBox[{"P", "*", 
+             RowBox[{"Q", "/", "Keq"}]}]}], ")"}]}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"A", "*", "B"}], "+", 
+          RowBox[{"Kmb", "*", "A"}], " ", "+", " ", 
+          RowBox[{"Kma", "*", "B", "*", 
+           RowBox[{"(", 
+            RowBox[{"1", "+", 
+             RowBox[{"Q", "/", "Kiq"}]}], ")"}]}], " ", "+", "K1"}], 
+         ")"}]}]}], ";", " ", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "v", "]"}], ";"}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Exit", "Section",
+ CellChangeTimes->{{3.5049738382968216`*^9, 3.5049738468323097`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+   "LTPrint", "[", "\"\<Loaded Level 1 Pre-defined functions.\>\"", "]"}], 
+   ";"}], " "}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.504973862763221*^9, 3.5049738741498723`*^9}, 
+   3.504979486794897*^9, {3.5064522797771053`*^9, 3.506452282048628*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+AutoGeneratedPackage->Automatic,
+WindowSize->{701, 858},
+WindowMargins->{{117, Automatic}, {Automatic, -8}},
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PastelColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 118, 4, 121, "Title"],
+Cell[700, 28, 463, 10, 136, "Text"],
+Cell[CellGroupData[{
+Cell[1188, 42, 154, 2, 78, "Section"],
+Cell[1345, 46, 2119, 37, 370, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3501, 88, 47, 0, 78, "Section"],
+Cell[3551, 90, 210, 6, 40, "Input",
+ InitializationCell->True],
+Cell[3764, 98, 223, 7, 40, "Input",
+ InitializationCell->True],
+Cell[3990, 107, 309, 10, 40, "Input",
+ InitializationCell->True],
+Cell[4302, 119, 567, 19, 60, "Input",
+ InitializationCell->True],
+Cell[4872, 140, 491, 17, 60, "Input",
+ InitializationCell->True],
+Cell[5366, 159, 642, 21, 60, "Input",
+ InitializationCell->True],
+Cell[6011, 182, 352, 12, 40, "Input",
+ InitializationCell->True],
+Cell[6366, 196, 993, 33, 79, "Input",
+ InitializationCell->True],
+Cell[7362, 231, 1925, 58, 155, "Input",
+ InitializationCell->True],
+Cell[9290, 291, 2647, 72, 231, "Input",
+ InitializationCell->True],
+Cell[11940, 365, 450, 15, 40, "Input",
+ InitializationCell->True],
+Cell[12393, 382, 669, 20, 60, "Input",
+ InitializationCell->True],
+Cell[13065, 404, 552, 18, 60, "Input",
+ InitializationCell->True],
+Cell[13620, 424, 428, 14, 40, "Input",
+ InitializationCell->True],
+Cell[14051, 440, 683, 21, 60, "Input",
+ InitializationCell->True],
+Cell[14737, 463, 591, 20, 60, "Input",
+ InitializationCell->True],
+Cell[15331, 485, 863, 27, 79, "Input",
+ InitializationCell->True],
+Cell[16197, 514, 551, 19, 60, "Input",
+ InitializationCell->True],
+Cell[16751, 535, 813, 26, 60, "Input",
+ InitializationCell->True],
+Cell[17567, 563, 616, 20, 60, "Input",
+ InitializationCell->True],
+Cell[18186, 585, 840, 26, 79, "Input",
+ InitializationCell->True],
+Cell[19029, 613, 456, 15, 40, "Input",
+ InitializationCell->True],
+Cell[19488, 630, 637, 19, 60, "Input",
+ InitializationCell->True],
+Cell[20128, 651, 597, 20, 60, "Input",
+ InitializationCell->True],
+Cell[20728, 673, 822, 25, 79, "Input",
+ InitializationCell->True],
+Cell[21553, 700, 589, 19, 60, "Input",
+ InitializationCell->True],
+Cell[22145, 721, 866, 27, 79, "Input",
+ InitializationCell->True],
+Cell[23014, 750, 928, 31, 79, "Input",
+ InitializationCell->True],
+Cell[23945, 783, 1129, 36, 79, "Input",
+ InitializationCell->True],
+Cell[25077, 821, 847, 28, 79, "Input",
+ InitializationCell->True],
+Cell[25927, 851, 973, 30, 79, "Input",
+ InitializationCell->True],
+Cell[26903, 883, 1050, 31, 98, "Input",
+ InitializationCell->True],
+Cell[27956, 916, 2253, 63, 174, "Input",
+ InitializationCell->True],
+Cell[30212, 981, 1803, 51, 174, "Input",
+ InitializationCell->True]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32052, 1037, 93, 1, 76, "Section"],
+Cell[32148, 1040, 318, 8, 40, "Input",
+ InitializationCell->True]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

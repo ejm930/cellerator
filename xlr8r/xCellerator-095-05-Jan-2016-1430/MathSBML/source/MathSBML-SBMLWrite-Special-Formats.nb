@@ -1,0 +1,3252 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[    139340,       3243]
+NotebookOptionsPosition[    137672,       3182]
+NotebookOutlinePosition[    138112,       3199]
+CellTagsIndexPosition[    138069,       3196]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+MathSBML-SBMLWrite-Special-Formats.nb\
+\>", "Title",
+ CellChangeTimes->{{3.5062186620543394`*^9, 3.5062186730367584`*^9}}],
+
+Cell[TextData[{
+ "SBMLWrite Special Output file format Functions Package for MathSBML\n\
+2.24.11 - initial Build for ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " v.8 extracted from MathSBML 2.9.0"
+}], "Text",
+ CellChangeTimes->{{3.50497344593038*^9, 3.5049734715798464`*^9}, {
+  3.5049736785116825`*^9, 3.5049736873091855`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["File Description", "Section",
+ CellChangeTimes->{{3.395408039119268*^9, 3.395408049088715*^9}, {
+  3.5062180912805367`*^9, 3.5062181026997566`*^9}}],
+
+Cell[TextData[{
+ StyleBox[" ",
+  FontSize->16],
+ StyleBox["Filename:\tMathSBML-Special-Write-Formats.nb\n Description:\t\
+MathSBML is an SBML reader for ",
+  FontSize->12],
+ StyleBox["Mathematica \n \t\t",
+  FontSize->12,
+  FontSlant->"Italic"],
+ StyleBox["This is part of the MathSBML Package\n Organization: \tCaltech \
+Biological Network Modeling Center\n License:\tLGPL \n \n",
+  FontSize->12],
+ "    This file is part of MathSBML.\n \n    MathSBML is free software: you \
+can redistribute it and/or modify\n    it under the terms of the GNU Lesser \
+General Public License as published by\n    the Free Software Foundation, \
+either version 3 of the License, or\n    (at your option) any later version.\n\
+\n    This program is distributed in the hope that it will be useful,\n    \
+but WITHOUT ANY WARRANTY; without even the implied warranty of\n    \
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU \
+General Public License for more details.\n\n    You should have received a \
+copy of the GNU Lesser General Public License\n    along with this program.  \
+If not, see <http://www.gnu.org/licenses/>.",
+ StyleBox["\n ",
+  FontSize->12]
+}], "Text",
+ CellChangeTimes->{{3.388248302205469*^9, 3.388248304035112*^9}, 
+   3.388264681197356*^9, {3.3882668683761797`*^9, 3.388266875242931*^9}, 
+   3.388353386077384*^9, {3.388363325911048*^9, 3.3883633263870773`*^9}, 
+   3.3883996477410192`*^9, {3.388761163736053*^9, 3.38876116441009*^9}, {
+   3.389125922604425*^9, 3.389125923136166*^9}, {3.390045172241888*^9, 
+   3.39004517571679*^9}, {3.39019850450497*^9, 3.3901985115655603`*^9}, {
+   3.392748682342765*^9, 3.392748683344193*^9}, {3.3954080212118177`*^9, 
+   3.395408027048024*^9}, {3.395690507776781*^9, 3.3956905087487507`*^9}, {
+   3.3973955266739798`*^9, 3.397395527497595*^9}, {3.401465824219963*^9, 
+   3.401465836954739*^9}, 3.506217737019514*^9, {3.5062177764407835`*^9, 
+   3.506217778375187*^9}, 3.506217826938072*^9, {3.5062180797833166`*^9, 
+   3.506218242226402*^9}, {3.506218649340317*^9, 3.50621865676593*^9}, 
+   3.53713724103189*^9},
+ FontSize->10,
+ Background->None]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Special SBMLWrite output file formats", "Section"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{"$$LoadBug", ",", " ", 
+    RowBox[{
+    "Print", "[", "\"\<Loading:SBMLWrite output file formats\>\"", "]"}]}], 
+   "]"}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[CellGroupData[{
+
+Cell["htmlPrint, htmlTable, htmlHeader", "Subsection"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"htmlPrint", "[", 
+    RowBox[{"model_", ",", " ", 
+     RowBox[{"opt___", "?", "OptionQ"}]}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "html", ",", "pagetitle", ",", " ", "headerOnly", ",", " ", "prtable", 
+       ",", " ", "t", ",", " ", "v", ",", "name", ",", " ", "citation", ",", 
+       "notes", ",", " ", "vd", ",", " ", "vdheader", ",", "ss", ",", "id", 
+       ",", "inlinestylesheet", ",", " ", "writenotes", ",", " ", 
+       RowBox[{"dbg", "=", "False"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"inlinestylesheet", "=", 
+       RowBox[{
+       "\"\<\\n<style type=\\\"text/css\\\">\\n<!--\\n\>\"", "<>", 
+        "\"\<body{\\nfont-family:verdana,arial,helvetica,sans-serif;\\nfont-\
+size:small;\\nbackground-color:#c0c0c0;\\n}\\n\\n\>\"", "<>", 
+        "\"\<td.sbml-tag-title{\\ntext-align:center;\\nbackground-color:white;\
+\\nfont-size:medium;\\nfont-variant:small-caps;\\nfont-weight:bold;\\nfont-\
+style:normal;\\ncolor:black;\\n}\\n\\n\>\"", "<>", 
+        "\"\<td.sbml-model-notes{\\ncolor:purple;\\nfont-size:small;\\\
+nbackground-color:#c0c0c0;\\nborder:thin solid \
+black;\\npadding:3;\\n}\\n\\n\>\"", "<>", 
+        "\"\<td.sbml-column-data{\\ntext-align:left;\\nfont-size:small;\\\
+nbackground-color:white;\\ncolor:black;\\npadding-left:3;\\npadding-right:3;\\\
+nvertical-align:top;\\nborder:thin solid black;}\\n\\n\>\"", "<>", 
+        "\"\<td.sbml-column-head{\\nfont-size:small;\\nfont-weight:bold;\\\
+nfont-variant:small-caps;\\nfont-style:normal;\\ncolor:purple;\\nbackground-\
+color:#c0c0c0;\\ntext-align:left;\\nvertical-align:top;\\nborder-top:thin \
+solid black;\\nborder-bottom:thin solid \
+black;\\npadding-left:5;\\npadding-right:5;\\n}\\n\\n\\n\>\"", "<>", 
+        "\"\<table.sbml-table{\\nmargin:0 \
+auto;\\nbackground-color:white;\\nborder:thin solid \
+black;\\nborder-collapse:collapse;\\n}\\n\\n\>\"", "<>", 
+        "\"\<p.file-information{\\nfont-size:large;\\nfont-variant:small-caps;\
+\\ncolor:purple;\\ntext-align:center;\\nfont-style:normal;\\nfont-weight:bold;\
+\\n\\n}\\n\\n\\n\>\"", "<>", 
+        "\"\<span.file-information-label{\\ncolor:black;\\nfont-style:normal;\
+\\nfont-weight:bold;\\n}\\n\\n\>\"", "<>", 
+        "\"\<div{\\nbackground-color:#c0c0c0;\\n}\\n.main{\\nbackground-color:\
+#c0c0c0;\\n}\\n-->\\n</style>\>\""}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ss", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Global`stylesheet", "/.", 
+           RowBox[{"{", "opt", "}"}]}], "/.", 
+          RowBox[{"{", 
+           RowBox[{"Global`stylesheet", "\[Rule]", " ", "\"\<inline\>\""}], 
+           "}"}]}], ")"}], "//", "stringer"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"headerOnly", "[", 
+        RowBox[{"{", 
+         RowBox[{"x_", ",", " ", "y_", ",", " ", "z_"}], "}"}], "]"}], ":=", 
+       " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Length", "[", "y", "]"}], "<", "1"}], ")"}], " ", "\[And]",
+         " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Length", "[", "z", "]"}], "<", "1"}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"prtable", "[", 
+        RowBox[{"{", 
+         RowBox[{"x_", ",", " ", "y_", ",", " ", "z_"}], "}"}], "]"}], ":=", 
+       " ", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"headerOnly", "[", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y", ",", "z"}], "}"}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"htmlHeader", "[", "x", "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"htmlTable", "[", 
+          RowBox[{"z", ",", 
+           RowBox[{"columnHeaders", "\[Rule]", " ", "y"}], ",", " ", 
+           RowBox[{"title", "\[Rule]", " ", "x"}]}], "]"}]}], 
+        "\[IndentingNewLine]", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"prtable", "[", "x_", "]"}], ":=", " ", 
+       RowBox[{"prtable", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"x", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+          RowBox[{"x", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], ",", " ", 
+          RowBox[{"x", "[", 
+           RowBox[{"[", "3", "]"}], "]"}]}], "}"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"vdheader", " ", "=", " ", 
+       RowBox[{"Take", "[", 
+        RowBox[{"SBML$VerboseData", ",", "2"}], "]"}]}], ";", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "first", " ", "two", " ", "lines", " ", "have", " ", "model", " ", 
+        "file", " ", "name", " ", "and", " ", "model", " ", "name"}], " ", 
+       "*)"}], " ", "\[IndentingNewLine]", 
+      RowBox[{"vd", " ", "=", " ", 
+       RowBox[{"Drop", "[", 
+        RowBox[{"SBML$VerboseData", ",", " ", "2"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{"dbg", ",", " ", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<htmlPrint: vdheader: \>\"", ",", " ", "vdheader"}], 
+         "]"}]}], "]"}], ";", " ", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{"dbg", ",", " ", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<htmlPrint: vd: \>\"", ",", " ", "vd"}], "]"}]}], "]"}], 
+      ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+      "html", "=", 
+       "\"\<<!doctype html public \\\"-//w3c//dtd html 4.0 Transitional//en\\\
+\">\\n<html>\\n<head>\\n\>\""}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"html", "=", 
+       RowBox[{
+       "html", "<>", 
+        "\"\<<meta http-equiv=\\\"Content-Type\\\" content=\\\"text/html; \
+charset=iso-8859-1\\\">\\n\>\""}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"t", "=", 
+       RowBox[{"ToString", "[", 
+        RowBox[{"MathSBML`Private`now", "[", "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"v", "=", 
+       RowBox[{"ToString", "[", "$MathSBML$Version", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"name", " ", "=", "  ", 
+       RowBox[{
+        RowBox[{"Global`SBMLModelName", "/.", "model"}], "/.", 
+        RowBox[{"{", 
+         RowBox[{"Global`SBMLModelName", "\[Rule]", " ", "\"\<\>\""}], 
+         "}"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"id", "=", " ", 
+       RowBox[{
+        RowBox[{"Global`SBMLModelid", "/.", "model"}], "/.", 
+        RowBox[{"{", 
+         RowBox[{"Global`SBMLModelid", "\[Rule]", " ", "\"\<\>\""}], 
+         "}"}]}]}], ";", " ", "\[IndentingNewLine]", 
+      RowBox[{"id", " ", "=", " ", 
+       RowBox[{"StringReplace", "[", 
+        RowBox[{"id", ",", 
+         RowBox[{"{", 
+          RowBox[{"\"\<\[UnderBracket]\>\"", "\[Rule]", " ", "\"\<_\>\""}], 
+          "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"StringLength", "[", "name", "]"}], "\[Equal]", "0"}], ",", 
+          RowBox[{"name", " ", "=", " ", "\"\<Unnamed Model\>\""}]}], "]"}], 
+        ";"}], " ", "*)"}], " ", "\[IndentingNewLine]", 
+      RowBox[{"name", " ", "=", " ", 
+       RowBox[{"StringReplace", "[", 
+        RowBox[{"name", ",", 
+         RowBox[{"{", 
+          RowBox[{"\"\<\[UnderBracket]\>\"", "\[Rule]", " ", "\"\<_\>\""}], 
+          "}"}]}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{
+       "html", " ", "\[IndentingNewLine]", "<>", 
+        "\"\<<!-- SBML Model Name: \>\"", "<>", "name", "<>", "\"\<\\n\>\"", 
+        "\[IndentingNewLine]", "<>", "\"\<     Generated by MathSBML \>\"", "<>",
+         "v", "<>", "\"\<\\n\>\"", 
+        StyleBox["\[IndentingNewLine]",
+         FontWeight->"Plain"], "<>", "\"\<     Creation Time: \>\"", "<>", 
+        "t", "<>", "\"\<\\n\>\"", "\[IndentingNewLine]", "<>", 
+        "\"\<     Mathematica Version: \>\"", "<>", "$Version", "<>", 
+        "\"\<\\n\>\"", "\[IndentingNewLine]", "<>", 
+        "\"\<     User:          \>\"", "<>", "$UserName", "<>", 
+        "\"\<\\n\>\"", "\[IndentingNewLine]", "<>", 
+        "\"\<     Machine:       \>\"", "<>", "$MachineName", "<>", 
+        "\"\<\\n\>\"", "\[IndentingNewLine]", "<>", 
+        "\"\<     Processor:     \>\"", "<>", "$ProcessorType", "<>", 
+        "\"\<\\n\>\"", "\[IndentingNewLine]", "<>", 
+        "\"\<     Machine type:  \>\"", "<>", "$MachineType", "<>", 
+        "\"\<\\n\>\"", "\[IndentingNewLine]", "<>", 
+        "\"\<     Oper. System:  \>\"", "<>", "$OperatingSystem", 
+        "\[IndentingNewLine]", "<>", "\"\<\\n-->\\n\>\""}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"citation", " ", "=", " ", 
+       RowBox[{
+       "\"\<Generated at \>\"", "<>", "t", "<>", "\"\< by \>\"", "<>", 
+        "$UserName", "<>", "\"\< on \>\"", "<>", "$MachineName", "<>", 
+        "\"\< using MathSBML \>\"", "<>", "v", "<>", 
+        "\"\< [Mathematica Version \>\"", "<>", "$Version", "<>", "\"\<]\>\"",
+         "\[IndentingNewLine]", "<>", "\"\< Processor/Type/OS=\>\"", "<>", 
+        "$ProcessorType", "<>", "\"\</\>\"", "<>", "$MachineType", "<>", 
+        "\"\</\>\"", "<>", "$OperatingSystem"}]}], " ", ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"determine", " ", "model", " ", "notes"}], " ", "*)"}], " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"writenotes", "=", 
+       RowBox[{
+        RowBox[{"Global`notes", "/.", 
+         RowBox[{"{", "opt", "}"}]}], "/.", 
+        RowBox[{"{", 
+         RowBox[{"Global`notes", "\[Rule]", " ", "False"}], "}"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+       "writenotes", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"ToString", "[", 
+             RowBox[{"Head", "[", "$SBML$Notes", "]"}], "]"}], "==", 
+            "\"\<XMLElement\>\""}], ",", " ", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"notes", " ", "=", " ", 
+             RowBox[{"ExportXMLString", "[", "$SBML$Notes", "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"(*", " ", 
+             RowBox[{"the", " ", "following", " ", "requires", " ", "5.1"}], 
+             " ", "*)"}], "\[IndentingNewLine]", 
+            RowBox[{"(*", " ", 
+             RowBox[{
+              RowBox[{"notes", "=", 
+               RowBox[{"StringReplace", "[", 
+                RowBox[{"notes", ",", 
+                 RowBox[{
+                  RowBox[{"\"\<<body\>\"", "~~", 
+                   RowBox[{
+                    RowBox[{"Except", "[", "\"\<>\>\"", "]"}], ".."}], "~~", 
+                   "\"\<>\>\""}], "\[Rule]", "\"\<\>\""}]}], "]"}]}], ";"}], 
+             "\[IndentingNewLine]", "*)"}], " ", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"$VersionNumber", ">", "5"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"notes", "=", 
+                RowBox[{"StringReplace", "[", 
+                 RowBox[{"notes", ",", 
+                  RowBox[{
+                   TagBox[
+                    StyleBox[
+                    RowBox[{"StringExpression", "[", 
+                    RowBox[{"\"\<<body\>\"", ",", 
+                    RowBox[{"Repeated", "[", 
+                    RowBox[{"Except", "[", "\"\<>\>\"", "]"}], "]"}], ",", 
+                    "\"\<>\>\""}], "]"}],
+                    ShowSpecialCharacters->False,
+                    ShowStringCharacters->True,
+                    NumberMarks->True],
+                    FullForm], "\[Rule]", "\"\<\>\""}]}], "]"}]}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{"notes", " ", "=", " ", 
+                RowBox[{"StringReplace", "[", 
+                 RowBox[{"notes", ",", " ", 
+                  RowBox[{"\"\<</body>\>\"", "\[Rule]", " ", "\"\<\>\""}]}], 
+                 "]"}]}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"notes", " ", "=", 
+             RowBox[{
+             "\"\<\\n<table class=\\\"sbml-table\\\" width='75%'>\>\"", "<>", 
+              "\"\<\\n\\t<tr>\\n\\t\\t<td class=\\\"sbml-tag-title\\\">\\n\\t\
+\\tModel Notes Contained in the XML\\n\\t\\t</td>\\n\\t</tr>\\n\>\"", "<>", 
+              "\[IndentingNewLine]", 
+              "\"\<\\t<tr>\\n\\t\\t<td \
+class=\\\"sbml-model-notes\\\">\\n\>\"", "<>", "notes", "<>", 
+              "\"\<\\n\\t\\t</td>\\n\\t</tr>\\n</table>\\n\\n\>\""}]}], ";"}],
+            ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"StringQ", "[", "$SBML$Notes", "]"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"notes", "=", "$SBML$Notes"}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{"(*", " ", 
+                RowBox[{
+                 RowBox[{"notes", "=", 
+                  RowBox[{"StringReplace", "[", 
+                   RowBox[{"notes", ",", 
+                    RowBox[{
+                    RowBox[{"\"\<<body\>\"", "~~", 
+                    RowBox[{
+                    RowBox[{"Except", "[", "\"\<>\>\"", "]"}], ".."}], "~~", 
+                    "\"\<>\>\""}], "\[Rule]", "\"\<\>\""}]}], "]"}]}], ";"}], 
+                "\[IndentingNewLine]", "*)"}], " ", "\[IndentingNewLine]", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"$VersionNumber", ">", "5"}], ",", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"notes", "=", 
+                   RowBox[{"StringReplace", "[", 
+                    RowBox[{"notes", ",", 
+                    RowBox[{
+                    TagBox[
+                    StyleBox[
+                    RowBox[{"StringExpression", "[", 
+                    RowBox[{"\"\<<body\>\"", ",", 
+                    RowBox[{"Repeated", "[", 
+                    RowBox[{"Except", "[", "\"\<>\>\"", "]"}], "]"}], ",", 
+                    "\"\<>\>\""}], "]"}],
+                    ShowSpecialCharacters->False,
+                    ShowStringCharacters->True,
+                    NumberMarks->True],
+                    FullForm], "\[Rule]", "\"\<\>\""}]}], "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"notes", " ", "=", " ", 
+                   RowBox[{"StringReplace", "[", 
+                    RowBox[{"notes", ",", " ", 
+                    RowBox[{"\"\<</body>\>\"", "\[Rule]", " ", "\"\<\>\""}]}],
+                     "]"}]}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", " ",
+                "\[IndentingNewLine]", 
+               RowBox[{"notes", " ", "=", 
+                RowBox[{
+                "\"\<\\n<table class=\\\"sbml-table\\\" width='75%'>\>\"", 
+                 "<>", "\"\<\\n\\t<tr>\\n\\t\\t<td class=\\\"sbml-tag-title\\\
+\">\\n\\t\\tModel Notes\\n\\t\\t</td>\\n\\t</tr>\\n\>\"", "<>", 
+                 "\[IndentingNewLine]", 
+                 "\"\<\\t<tr>\\n\\t\\t<td \
+class=\\\"sbml-model-notes\\\">\\n\>\"", "<>", "notes", "<>", 
+                 "\"\<\\n\\t\\t</td>\\n\\t</tr>\\n</table>\\n\>\""}]}], ";"}],
+               "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+              RowBox[{"notes", "=", "\"\<\>\""}]}], "\[IndentingNewLine]", 
+             "]"}], ";"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          "]"}], ";"}], "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"notes", "=", "\"\<\>\""}], ";"}]}], "\[IndentingNewLine]", 
+       "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "generate", " ", "the", " ", "body", " ", "of", " ", "the", " ", "web",
+         " ", "page"}], " ", "*)"}], " ", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"pagetitle", " ", "=", "name"}], ";", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{
+       "html", "<>", "\"\<<title>\>\"", "<>", "pagetitle", "<>", 
+        "\"\<</title>\\n\>\""}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Switch", "[", 
+       RowBox[{
+        RowBox[{"ToUpperCase", "[", "ss", "]"}], ",", "\[IndentingNewLine]", 
+        "\"\<INLINE\>\"", ",", " ", 
+        RowBox[{"ss", "=", "inlinestylesheet"}], ",", "\[IndentingNewLine]", 
+        "\"\<NONE\>\"", ",", " ", 
+        RowBox[{"ss", "=", "\"\<\>\""}], ",", "\[IndentingNewLine]", "_", ",",
+         " ", 
+        RowBox[{"ss", "=", 
+         RowBox[{
+         "\"\<<link rel=\\\"stylesheet\\\" href=\\\"\>\"", "<>", "ss", "<>", 
+          "\"\<\\\" type=\\\"text/css\\\">\\n\>\""}]}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", "ss"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", "\"\<</head>\\n<body>\\n\>\""}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", "\"\<<div class=\\\"main\\\">\>\""}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{
+       "html", "<>", 
+        "\"\<\\n<p class=\\\"file-information\\\"><span \
+class=\\\"file-information-label\\\">File name:</span> \>\"", "<>", 
+        RowBox[{"stringer", "[", "$SBML$Inputfile", "]"}], "<>", 
+        "\"\<<br>\>\""}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{
+       "html", "<>", 
+        "\"\<\\n<span class=\\\"file-information-label\\\">SBML Level</span> \
+\>\"", "<>", 
+        RowBox[{"stringer", "[", "$SBML$Level", "]"}], "<>", 
+        "\"\< <span class=\\\"file-information-label\\\">Version </span>\>\"",
+         "<>", 
+        RowBox[{"stringer", "[", "$SBML$Version", "]"}], "<>", 
+        "\"\<<br>\>\""}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringLength", "[", "name", "]"}], ">", "0"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"html", " ", "=", " ", 
+          RowBox[{
+          "html", "<>", 
+           "\"\<\\n<span class=\\\"file-information-label\\\">Model \
+name:</span> \>\"", "<>", 
+           RowBox[{"stringer", "[", "name", "]"}], "<>", "\"\<<br>\>\""}]}], 
+         ";"}]}], "\[IndentingNewLine]", "]"}], ";", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{
+       "html", "<>", 
+        "\"\<\\n<span class=\\\"file-information-label\\\">Model id:</span> \
+\>\"", "<>", 
+        RowBox[{"stringer", "[", "id", "]"}], "<>", "\"\<</p>\>\""}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", " ", "<>", "notes"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", 
+        RowBox[{"Map", "[", 
+         RowBox[{"prtable", ",", " ", "vd"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{
+       "html", "<>", 
+        "\"\<<br/><br/>\\n<hr>\\n<div \
+style=\\\"font-style:italic;text-align:left; font-size:8pt;\\\">\>\"", "<>", 
+        "citation"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", "\"\<</td></tr></table>\\n\>\""}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", "\"\<</div>\>\""}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", "\"\<\\n</div>\>\""}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", "\"\<</body>\\n</html>\>\""}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{"dbg", ",", " ", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<htmlprint: html: \>\"", ",", " ", "html"}], "]"}]}], 
+       "]"}], ";", " ", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "html", "]"}], ";"}]}], "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.389722320673977*^9, 3.3897223245701437`*^9}, {
+  3.397849594006267*^9, 3.397849607079249*^9}, {3.3978497470583773`*^9, 
+  3.397849775127833*^9}, {3.397850346177002*^9, 3.397850347017815*^9}, {
+  3.397850815243846*^9, 3.397850816015602*^9}, {3.397850848398144*^9, 
+  3.397850869440197*^9}, {3.3978509553146963`*^9, 3.397850956227777*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"htmlHeader", "[", "str_", "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"r", ",", "s"}], "}"}], ",", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+      "r", " ", "=", "\[IndentingNewLine]", 
+       "\"\<<br/>\\n<table border=1 \
+cellpadding=\\\"5\\\">\\n\\t<tr>\\n\\t\\t<td style=\\\"font-weight: bold; \
+font-size:medium; color:black; \
+background-color:#A0FFA0;text-align:center;\\\">\\n\\t\\t\\t<div \
+style=\\\"font-size:larger;\\\">\\n\>\""}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"s", " ", "=", " ", 
+       RowBox[{"StringReplace", "[", 
+        RowBox[{"str", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"\"\<\\n\>\"", "\[Rule]", " ", "\"\<<br/>\>\""}], ",", 
+           RowBox[{"\"\<\[UnderBracket]\>\"", "\[Rule]", " ", "\"\<_\>\""}]}],
+           " ", "}"}]}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+      RowBox[{"r", "=", " ", 
+       RowBox[{
+       "r", "<>", "\"\<\\t\\t\\t\>\"", "<>", "s", "<>", 
+        "\"\<\\n\\t\\t\\t<div>\\n\\t\\t</td>\\n\\t</tr>\\n</table>\\n\>\""}]}]\
+, ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "r", "]"}], ";"}]}], "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ InitializationCell->True],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"htmlTable", "[", 
+    RowBox[{"data_", ",", " ", 
+     RowBox[{"opt___", "?", "OptionQ"}]}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "t", ",", "h", ",", "ncol", ",", "html", ",", " ", "tableRowForm", ",", 
+       "tableData", ",", " ", "blankline", ",", " ", "processValue", ",", " ", 
+       RowBox[{"dbg", "=", "False"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{"dbg", ",", " ", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<htmlTable: data: \>\"", ",", " ", "data"}], "]"}]}], 
+       "]"}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"t", "=", 
+       RowBox[{
+        RowBox[{"title", "/.", 
+         RowBox[{"{", "opt", "}"}]}], "/.", 
+        RowBox[{"{", 
+         RowBox[{"title", "\[Rule]", " ", "\"\<Table Header\>\""}], "}"}]}]}],
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{"dbg", ",", " ", 
+          RowBox[{"Print", "[", 
+           RowBox[{"\"\<htmlTable: data: \>\"", ",", "data"}], "]"}]}], "]"}],
+         ";"}], " ", "*)"}], " ", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"processValue", "[", 
+        RowBox[{
+         RowBox[{"xin_", "?", "StringQ"}], ",", " ", "class_"}], "]"}], ":=", 
+       " ", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", "x", "}"}], ",", "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+           RowBox[{
+           "It", " ", "is", " ", "possible", " ", "that", " ", "xin"}], " ", 
+           "=", " ", 
+           RowBox[{
+           "\"\<symbol=value\>\"", " ", "and", " ", "this", " ", "will", " ", 
+            "evaluate", " ", "to", " ", "a", " ", 
+            RowBox[{
+             RowBox[{"number", "!!"}], "!"}]}]}], " ", "*)"}], 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"x", "=", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"xin", ",", " ", 
+             RowBox[{"{", 
+              RowBox[{"\"\<:=\>\"", "\[Rule]", " ", "\"\<:equal\>\""}], 
+              "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"x", "=", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"x", ",", " ", 
+             RowBox[{"\"\<=\>\"", "\[Rule]", " ", "\"\< equals \>\""}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"x", " ", "=", " ", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"x", ",", " ", 
+             RowBox[{"\"\<:equal\>\"", "\[Rule]", " ", "\"\<:=\>\""}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"isanumber", "[", "x", "]"}], ",", " ", 
+            "\[IndentingNewLine]", 
+            RowBox[{"(*", " ", 
+             RowBox[{
+              RowBox[{"NumberQ", "[", 
+               RowBox[{"ToExpression", "[", "x", "]"}], "]"}], ","}], " ", 
+             "*)"}], "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"x", "=", 
+              RowBox[{"ToExpression", "[", "x", "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"x", "=", 
+              RowBox[{"processValue", "[", 
+               RowBox[{"x", ",", "class"}], "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"x", "=", 
+              RowBox[{"stringer", "[", "x", "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"Return", "[", "x", "]"}], ";"}]}], 
+           "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"x", "=", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"xin", ",", " ", 
+             RowBox[{"{", 
+              RowBox[{"\"\<\\n\>\"", "\[Rule]", " ", "\"\<<br>\>\""}], 
+              "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Return", "[", "x", "]"}], ";"}]}], "\[IndentingNewLine]", 
+        "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"processValue", "[", 
+        RowBox[{
+         RowBox[{"x_", "?", "ListQ"}], ",", " ", "class_"}], "]"}], ":=", " ", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"y", ",", "z"}], "}"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"Length", "[", "x", "]"}], "\[Equal]", "1"}], " ", 
+             "\[And]", " ", 
+             RowBox[{"ListQ", "[", 
+              RowBox[{"First", "[", "x", "]"}], "]"}]}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"y", "=", 
+             RowBox[{"First", "[", "x", "]"}]}], ",", "\[IndentingNewLine]", 
+            RowBox[{"y", "=", "x"}]}], "\[IndentingNewLine]", "]"}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"y", "=", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"processValue", "[", 
+              RowBox[{"#", ",", "class"}], "]"}], "&"}], "/@", "y"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"z", "=", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"stringer", "[", "#", "]"}], "<>", "\"\<; \>\""}], 
+              "&"}], ",", " ", "y"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"z", "=", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"StringJoin", "@@", "z"}], ")"}], "<>", "\"\<,\>\""}]}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"z", "=", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"z", ",", " ", 
+             RowBox[{"\"\<,; \>\"", "\[Rule]", " ", "\"\<,\>\""}]}], "]"}]}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"Return", "[", "z", "]"}], ";"}]}], "\[IndentingNewLine]", 
+        "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"processValue", "[", 
+        RowBox[{"x_", ",", " ", "class_"}], "]"}], ":=", " ", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"y", ",", "sp"}], "}"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"y", "=", 
+           RowBox[{"ToString", "[", 
+            RowBox[{"InputForm", "[", "x", "]"}], "]"}]}], ";", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"sp", " ", "=", " ", 
+           RowBox[{"StringPosition", "[", 
+            RowBox[{"y", ",", "\"\<*^\>\""}], "]"}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"(*", " ", 
+           StyleBox[
+            RowBox[{
+             RowBox[{
+             "this", " ", "will", " ", "work", " ", "only", " ", "if", " ", 
+              "the", " ", "input", " ", "is", " ", "really", " ", "a", " ", 
+              "number", " ", "with", " ", "a", " ", "single", " ", "exponent",
+               " ", "in", " ", "it"}], ";", " ", 
+             RowBox[{
+             "an", " ", "expression", " ", "with", " ", "multiple", " ", 
+              "exponents", " ", "will", " ", "cause", " ", "a", " ", 
+              RowBox[{"failure", "."}]}]}],
+            FontColor->RGBColor[1, 0, 0]], "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Length", "[", "sp", "]"}], "\[Equal]", "1"}], ",", " ", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"y", "=", 
+              RowBox[{
+               RowBox[{"StringReplace", "[", 
+                RowBox[{"y", ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                  "\"\<*^\>\"", "\[Rule]", " ", "\"\<&times;10<sup>\>\""}], 
+                  "}"}]}], "]"}], "<>", "\"\<</sup>\>\""}]}], ";"}]}], 
+           "\[IndentingNewLine]", "]"}], ";", " ", "\[IndentingNewLine]", 
+          RowBox[{"Return", "[", "y", "]"}], ";"}]}], "\[IndentingNewLine]", 
+        "]"}]}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"tableRowForm", "[", 
+        RowBox[{"x_", ",", " ", 
+         RowBox[{"tdclass_:", "\"\<\>\""}]}], "]"}], ":=", " ", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"y", ",", "z", ",", " ", "class"}], "}"}], ",", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"class", "=", 
+           RowBox[{"stringer", "[", "tdclass", "]"}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"class", "\[NotEqual]", " ", "\"\<\>\""}], ",", " ", 
+            "\[IndentingNewLine]", "  ", 
+            RowBox[{
+             RowBox[{"class", "=", " ", 
+              RowBox[{
+              "\"\< class='\>\"", "<>", "class", "<>", "\"\<'\>\""}]}], 
+             ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"y", " ", "=", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"processValue", "[", 
+              RowBox[{"#", ",", " ", "class"}], "]"}], "&"}], "/@", "x"}]}], 
+          ";", "  ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"z", "=", " ", 
+           RowBox[{"\"\<\\t<tr>\\n\>\"", "<>", 
+            RowBox[{"Apply", "[", 
+             RowBox[{"StringJoin", ",", 
+              RowBox[{"Map", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                 "\"\<\\t\\t<td\>\"", "<>", "class", "<>", "\"\<>\>\"", "<>", 
+                  "#", "<>", "\"\<</td>\\n\>\""}], "&"}], ",", " ", "y"}], 
+               "]"}]}], "]"}], "<>", "\"\<\\t</tr>\\n\>\""}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"z", " ", "=", " ", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"z", ",", " ", 
+             RowBox[{"{", " ", 
+              RowBox[{
+               RowBox[{"\"\<[t]\>\"", "\[Rule]", " ", "\"\<\>\""}], ",", 
+               RowBox[{"\"\<==\>\"", "\[Rule]", " ", "\"\<=\>\""}], ",", 
+               RowBox[{"\"\<\\\"\>\"", "\[Rule]", " ", "\"\<\>\""}], ",", " ", 
+               RowBox[{
+               "\"\<\[UnderBracket]\>\"", "\[Rule]", " ", "\"\<_\>\""}], ",", 
+               RowBox[{"\"\<{\>\"", "\[Rule]", " ", "\"\<\>\""}], ",", " ", 
+               RowBox[{"\"\<}\>\"", "\[Rule]", " ", "\"\<\>\""}], ",", " ", 
+               RowBox[{"\"\<,\>\"", "\[Rule]", " ", "\"\<<br/>\>\""}]}], 
+              "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"z", " ", "=", " ", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"z", ",", " ", 
+             RowBox[{"\"\<@COMMA\>\"", "\[Rule]", " ", "\"\<,\>\""}]}], 
+            "]"}]}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Return", "[", "z", "]"}], ";", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{"dbg", ",", " ", 
+            RowBox[{"Print", "[", 
+             RowBox[{"\"\<tableRowForm: z:\>\"", ",", " ", "z"}], "]"}]}], 
+           "]"}], ";"}]}], " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", "data", "]"}], "<", "1"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"html", " ", "=", " ", "\"\<\>\""}], ";", 
+         "\[IndentingNewLine]", " ", 
+         RowBox[{"Return", "[", "html", "]"}]}]}], "\[IndentingNewLine]", 
+       "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"ncol", " ", "=", " ", 
+       RowBox[{"Length", "[", 
+        RowBox[{"data", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"h", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"columnHeaders", "/.", 
+         RowBox[{"{", "opt", "}"}]}], "/.", 
+        RowBox[{"{", 
+         RowBox[{"columnHeaders", "\[Rule]", " ", 
+          RowBox[{"{", "}"}]}], "}"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"h", " ", "=", " ", 
+       RowBox[{"PadRight", "[", 
+        RowBox[{"h", ",", "ncol", ",", "\"\<column header\>\""}], "]"}]}], 
+      ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"style", "=", 
+         RowBox[{
+          RowBox[{"\\\"", "text"}], "-", 
+          RowBox[{"align", ":", "center"}]}]}], ";", 
+        RowBox[{"background", "-", 
+         RowBox[{"color", ":", 
+          RowBox[{"#", "a0ffa0"}]}]}], ";", 
+        RowBox[{"font", "-", 
+         RowBox[{"size", ":", "larger"}]}], ";", "\\\""}], " ", "*)"}], 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"blankline", "=", 
+       RowBox[{"\"\<\\n\\t<tr><td colspan=\\\"\>\"", "<>", 
+        RowBox[{"ToString", "[", "ncol", "]"}], "<>", 
+        "\"\<\\\" class=\\\"sbml-column-head-space\\\"></td></tr>\>\""}]}], 
+      ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"blankline", "=", "\"\<\>\""}], ";", "\n", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{"dbg", ",", " ", 
+        RowBox[{
+        "Print", "[", "\"\<htmlTable: calling tableRowForm:\>\"", "]"}]}], 
+       "]"}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"h", " ", "=", " ", 
+       RowBox[{
+       "\"\<\\t<tr>\\n\\t\\t<td class='sbml-tag-title' colspan=\\\"\>\"", "<>", 
+        RowBox[{"ToString", "[", "ncol", "]"}], "<>", 
+        "\"\<\\\">\\n\\t\\t\>\"", "<>", "t", "<>", 
+        "\"\<\\n\\t\\t</td>\\n\\t</tr>\\n\>\"", "<>", "blankline", "<>", 
+        "\[IndentingNewLine]", 
+        RowBox[{"tableRowForm", "[", 
+         RowBox[{"h", ",", " ", "\"\<sbml-column-head\>\""}], "]"}], "<>", 
+        "blankline"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{"dbg", ",", " ", 
+        RowBox[{"Print", "[", 
+         RowBox[{
+         "\"\<htmlTable: returning from tableRowForm: h:\>\"", ",", " ", 
+          "h"}], "]"}]}], "]"}], ";", " ", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+      "html", " ", "=", " ", 
+       "\"\<<br/><br/>\\n<table class=\\\"sbml-table\\\" >\\n\>\""}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", "\"\<<thead>\\n\>\""}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", "h", "<>", "\"\<</thead>\\n\>\""}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", "\"\<<tbody>\\n\>\""}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"tableData", " ", "=", " ", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"tableRowForm", "[", 
+           RowBox[{"#", ",", " ", "\"\<sbml-column-data\>\""}], "]"}], "&"}], 
+         ",", " ", "data"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{"dbg", ",", " ", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<htmlTable: tableData:\>\"", ",", " ", "tableData"}], 
+         "]"}]}], "]"}], ";", " ", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"tableData", " ", "=", " ", 
+       RowBox[{"Apply", "[", 
+        RowBox[{"StringJoin", ",", "tableData"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", "tableData"}]}], ";", "\[IndentingNewLine]", " ",
+       "\[IndentingNewLine]", 
+      RowBox[{"html", " ", "=", " ", 
+       RowBox[{"html", "<>", "\"\<</tbody>\\n</table>\\n\>\""}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{"dbg", ",", " ", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<htmlTable: html:\>\"", ",", " ", "html"}], "]"}]}], 
+       "]"}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "html", "]"}], ";"}]}], " ", 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.397850144124979*^9, 3.397850155033373*^9}, {
+   3.397850222543826*^9, 3.3978502488824997`*^9}, {3.397850282433281*^9, 
+   3.397850307211863*^9}, 3.397850380772875*^9, {3.3978504341182747`*^9, 
+   3.3978504744367123`*^9}, {3.397850537930565*^9, 3.3978505656718493`*^9}, {
+   3.397850629410117*^9, 3.3978506375953197`*^9}, {3.397850797575954*^9, 
+   3.39785079834929*^9}, {3.3978664370880823`*^9, 3.397866456709097*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["toXPPForm", "Subsection"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"toXPPForm", "[", 
+     RowBox[{"model_", ",", " ", 
+      RowBox[{"file_", "?", "StringQ"}], ",", 
+      RowBox[{"opt___", "?", "OptionQ"}]}], "]"}], ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"m", ",", "f"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"m", " ", "=", " ", 
+        RowBox[{"toXPPForm", "[", 
+         RowBox[{"model", ",", "opt"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Export", "[", 
+        RowBox[{"file", ",", "m", ",", "\"\<text\>\""}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "file", "]"}], ";"}]}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"toXPPForm", "[", 
+   RowBox[{"model_", ",", 
+    RowBox[{"opt___", "?", "OptionQ"}]}], "]"}], ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "odes", ",", " ", "ic", ",", " ", "par", ",", "lhs", ",", " ", "rhs", 
+      ",", "xpp", ",", "name", ",", "t", ",", "v", ",", "fcns", ",", "odelhs",
+       ",", "oderhs"}], "}"}], ",", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"printWarning", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"OptionQ", "[", "model", "]"}]}], ",", 
+       "\"\<toXPPForm: argument does not appear to be a MathSBML \
+model.\>\""}], "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"xpp", " ", "=", " ", "\"\<\>\""}], ";", " ", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "extract", " ", "odes", " ", "from", " ", "the", " ", "MathSBML", " ", 
+        "model"}], " ", "*)"}],
+      FontWeight->"Plain"], 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], 
+     RowBox[{"odes", " ", "=", " ", 
+      RowBox[{"Global`SBMLODES", "/.", "model"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"ic", " ", "=", " ", 
+      RowBox[{"Global`SBMLIC", "/.", "model"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"par", " ", "=", " ", 
+      RowBox[{"Global`SBMLConstants", "/.", "model"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"name", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"Global`SBMLModelName", "/.", "model"}], "/.", 
+       RowBox[{"{", 
+        RowBox[{"Global`SBMLModelName", "\[Rule]", " ", "\"\<\>\""}], 
+        "}"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"fcns", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"Global`SBMLFunctions", "/.", "model"}], "/.", 
+       RowBox[{"{", 
+        RowBox[{"Global`SBMLFunctions", "\[Rule]", " ", 
+         RowBox[{"{", "}"}]}], "}"}]}]}], ";", "  ", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"apply", " ", "functions"}], " ", "*)"}], " ", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"oderhs", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"Map", "[", 
+        RowBox[{"Last", ",", "odes"}], "]"}], "//.", "fcns"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"odelhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{"First", ",", "odes"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"evaluate", " ", "parameters"}], " ", "*)"}], " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"evaluateParameters", "/.", 
+         RowBox[{"{", "opt", "}"}]}], "/.", 
+        RowBox[{"{", 
+         RowBox[{"evaluateParameters", "\[Rule]", " ", "False"}], "}"}]}], 
+       ",", "\[IndentingNewLine]", " ", 
+       RowBox[{
+        RowBox[{"oderhs", " ", "=", " ", 
+         RowBox[{"oderhs", "//.", "par"}]}], ";"}]}], "\[IndentingNewLine]", 
+      "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"odes", " ", "=", " ", 
+      RowBox[{"MapThread", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#1", "\[Equal]", "#2"}], "&"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"odelhs", ",", "oderhs"}], "}"}]}], "]"}]}], ";", " ", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"t", "=", 
+      RowBox[{"ToString", "[", 
+       RowBox[{"MathSBML`Private`now", "[", "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"v", "=", 
+      RowBox[{"ToString", "[", "$MathSBML$Version", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"xpp", "=", "             ", 
+      RowBox[{
+      "\"\<# Model Name:    \>\"", "<>", "name", "<>", "\"\<\\n#\\n\>\""}]}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"xpp", "=", 
+      RowBox[{
+      "xpp", "<>", "\"\<# Creation Time: \>\"", "<>", "t", "<>", 
+       "\"\<\\n\>\""}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"xpp", "=", 
+      RowBox[{
+      "xpp", "<>", "\"\<# User:          \>\"", "<>", "$UserName", "<>", 
+       "\"\<\\n\>\""}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"xpp", "=", 
+      RowBox[{
+      "xpp", "<>", "\"\<# Machine:       \>\"", "<>", "$MachineName", "<>", 
+       "\"\<\\n\>\""}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"xpp", "=", 
+      RowBox[{
+      "xpp", "<>", "\"\<# System:        \>\"", "<>", "$ProcessorType", "<>", 
+       "\"\< \>\"", "<>", "$MachineType", "<>", "\"\< \>\"", "<>", 
+       "$OperatingSystem", "<>", "\"\<\\n\>\""}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"xpp", "=", 
+      RowBox[{
+      "xpp", "<>", "\"\<# Generated by MathSBML \>\"", "<>", "v", "<>", 
+       "\"\<\\n\>\""}]}], ";", 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "convert", " ", "the", " ", "\"\<Derivative[1][variable][t]\>\"", " ", 
+        "to", " ", "\"\<variable'\>\"", " ", "for", " ", "each", " ", 
+        "variable"}], " ", "*)"}],
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], "\[IndentingNewLine]", 
+     RowBox[{"lhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", 
+          RowBox[{"InputForm", "[", 
+           RowBox[{"First", "[", "#", "]"}], "]"}], "]"}], "&"}], ",", " ", 
+        "odes"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"lhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\<Derivative[1][\>\"", "\[Rule]", " ", "\"\<\>\""}], 
+             ",", " ", 
+             RowBox[{"\"\<][t]\>\"", "\[Rule]", " ", "\"\<\>\""}]}], "}"}]}], 
+          "]"}], "&"}], ",", "lhs"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"lhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\< \>\"", "\[Rule]", " ", "\"\<\>\""}], ",", 
+             RowBox[{"\"\<`\>\"", "\[Rule]", " ", "\"\<_\>\""}]}], "}"}]}], 
+          "]"}], "&"}], ",", " ", "lhs"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{
+        "convert", " ", "the", " ", "right", " ", "hand", " ", "side", " ", 
+         "of", " ", "each", " ", "ode", " ", "into", " ", "xpp"}], "-", 
+        RowBox[{"compatible", " ", "string", " ", "form"}]}], " ", "*)"}],
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], 
+     RowBox[{"rhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", 
+          RowBox[{"InputForm", "[", 
+           RowBox[{"Last", "[", "#", "]"}], "]"}], "]"}], "&"}], ",", " ", 
+        "odes"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"rhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"\"\<[t]\>\"", "\[Rule]", " ", "\"\<\>\""}]}], "]"}], 
+         "&"}], ",", " ", "rhs"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"rhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\< \>\"", "\[Rule]", " ", "\"\<\>\""}], ",", 
+             RowBox[{"\"\<`\>\"", "\[Rule]", " ", "\"\<_\>\""}]}], "}"}]}], 
+          "]"}], "&"}], ",", " ", "rhs"}], "]"}]}], ";", 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], "\[IndentingNewLine]", 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"combine", " ", "the", " ", "lhs", " ", "and", " ", 
+          RowBox[{"rhs", "'"}], "s", " ", "of", " ", "the", " ", "odes", " ", 
+          "together", " ", "and", " ", "join", " ", "into", " ", "a", " ", 
+          "single", " ", "file"}], "-", 
+         RowBox[{"writeable", " ", "string"}]}], ",", " ", 
+        RowBox[{
+        "including", " ", "embedded", " ", "newline", " ", "characters"}]}], 
+       " ", "*)"}],
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], "\[IndentingNewLine]", 
+     RowBox[{"odes", " ", "=", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"lhs", ",", "rhs"}], "}"}], "//", "Transpose"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"odes", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"#", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "<>", "\"\<'=\>\"", "<>", 
+          RowBox[{"#", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "<>", "\"\<\\n\>\""}], "&"}], ",", 
+        " ", "odes"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"odes", " ", "=", " ", 
+      RowBox[{"Apply", "[", 
+       RowBox[{"StringJoin", ",", "odes"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"odes", " ", "=", " ", 
+      RowBox[{
+      "\"\<# \\n# Differential Equations\\n# \\n\>\"", "<>", "odes", "<>", 
+       "\"\<# \>\""}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"xpp", " ", "=", " ", 
+      RowBox[{"xpp", "<>", "odes"}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "[", "par", "]"}], ">", "0"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"par", " ", "=", " ", 
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"\"\<par \>\"", "<>", 
+             RowBox[{"ToString", "[", 
+              RowBox[{"First", "[", "#", "]"}], "]"}], "<>", "\"\<=\>\"", "<>", 
+             RowBox[{"ToString", "[", 
+              RowBox[{"Last", "[", "#", "]"}], "]"}], "<>", "\"\<\\n\>\""}], 
+            "&"}], ",", " ", "par"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"par", " ", "=", " ", 
+         RowBox[{"Apply", "[", 
+          RowBox[{"StringJoin", ",", "par"}], "]"}]}], ";", " ", 
+        "\[IndentingNewLine]", 
+        RowBox[{"par", " ", "=", " ", 
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"par", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"\"\<`\>\"", "\[Rule]", " ", "\"\<_\>\""}], "}"}]}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"par", " ", "=", " ", 
+         RowBox[{
+         "\"\<\\n# \\n# Parameters\\n# \\n\>\"", "<>", "par", "<>", 
+          "\"\<# \>\""}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"xpp", " ", "=", " ", 
+         RowBox[{"xpp", "<>", "par"}]}], ";"}]}], "\[IndentingNewLine]", 
+      "]"}], ";", " ", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "[", "ic", "]"}], ">", "0"}], ",", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"Map", "[", 
+          RowBox[{"ToString", ",", "ic"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"StringReplace", "[", 
+             RowBox[{"#", ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"\"\<[0]\>\"", "\[Rule]", " ", "\"\<\>\""}], ",", " ", 
+                RowBox[{"\"\< \>\"", "\[Rule]", " ", "\"\<\>\""}], ",", " ", 
+                RowBox[{"\"\<==\>\"", "\[Rule]", " ", "\"\<=\>\""}]}], 
+               "}"}]}], "]"}], "&"}], ",", " ", "ic"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"\"\<init \>\"", "<>", "#", "<>", "\"\<\\n\>\""}], "&"}], 
+           ",", "ic"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"Apply", "[", 
+          RowBox[{"StringJoin", ",", " ", "ic"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"ic", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"\"\<`\>\"", "\[Rule]", " ", "\"\<_\>\""}], "}"}]}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{
+         "\"\<\\n# \\n# Initial Conditions\\n# \\n\>\"", "<>", "ic", "<>", 
+          "\"\<# \>\""}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"xpp", " ", "=", " ", 
+         RowBox[{"xpp", "<>", "ic"}]}], ";"}]}], "\[IndentingNewLine]", "]"}],
+      ";", "\[IndentingNewLine]", 
+     RowBox[{"xpp", " ", "=", " ", 
+      RowBox[{"xpp", "<>", "\"\<\\ndone\>\""}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", "xpp", "]"}], ";"}]}], "\[IndentingNewLine]", 
+   "]"}]}]}], "Input",
+ InitializationCell->True]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["toBerkeleyMadonnaForm",
+ FontWeight->"Bold"]], "Subsection",
+ FontWeight->"Plain"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"toBerkeleyMadonnaForm", "[", 
+     RowBox[{"model_", ",", " ", 
+      RowBox[{"file_", "?", "StringQ"}], ",", 
+      RowBox[{"opt___", "?", "OptionQ"}]}], "]"}], ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"m", ",", "f"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"m", " ", "=", " ", 
+        RowBox[{"toBerkeleyMadonnaForm", "[", 
+         RowBox[{"model", ",", "opt"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Export", "[", 
+        RowBox[{"file", ",", "m", ",", "\"\<text\>\""}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "file", "]"}], ";"}]}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"toBerkeleyMadonnaForm", "[", 
+   RowBox[{"model_", ",", 
+    RowBox[{"opt___", "?", "OptionQ"}]}], "]"}], ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "odes", ",", " ", "ic", ",", " ", "par", ",", "lhs", ",", " ", "rhs", 
+      ",", "bmdata", ",", "name", ",", "t", ",", "v", ",", "fcns", ",", 
+      "odelhs", ",", "oderhs", ",", " ", "startimevalue", ",", " ", 
+      "stoptimevalue", ",", " ", "dtvalue", ",", "method", ",", 
+      RowBox[{"debug", "=", "False"}], ",", "srules", ",", "srulereplace"}], 
+     "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"printWarning", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"OptionQ", "[", "model", "]"}]}], ",", 
+       "\"\<toBerkeleyMadonnaForm: argument does not appear to be a MathSBML \
+model.\>\""}], "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"srules", "=", " ", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"RegularExpression", "[", "\"\<Abs\\\\[(.*)\\\\]\>\"", "]"}],
+          "\[RuleDelayed]", "  ", "\"\<ABS[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<ArcCos\\\\[(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<ARCCOS[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<ArcCosh\\\\[(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<ARCCOSH[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<ArcSin\\\\[(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<ARCSINH[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<ArcTan\\\\[(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<ARCTAN[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<ArcTanh\\\\[(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<ARCTANH[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"RegularExpression", "[", "\"\<Cos\\\\[(.*)\\\\]\>\"", "]"}],
+          "\[RuleDelayed]", "  ", "\"\<COS[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<Cosh\\\\[(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<COSH[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"RegularExpression", "[", "\"\<Erf\\\\[(.*)\\\\]\>\"", "]"}],
+          "\[RuleDelayed]", "  ", "\"\<ERF[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<Erfc\\\\[(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<ERFC[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<Floor\\\\[(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<INTEGER[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<Log\\\\[10,(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<LOG10[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"RegularExpression", "[", "\"\<Log\\\\[(.*)\\\\]\>\"", "]"}],
+          "\[RuleDelayed]", "  ", "\"\<LOGN[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"RegularExpression", "[", "\"\<Max\\\\[(.*)\\\\]\>\"", "]"}],
+          "\[RuleDelayed]", "  ", "\"\<MAX[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<Mean\\\\[(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<MEAN[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"RegularExpression", "[", "\"\<Sin\\\\[(.*)\\\\]\>\"", "]"}],
+          "\[RuleDelayed]", "  ", "\"\<SIN[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<Sinh\\\\[(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<SINH[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<Sqrt\\\\[(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<SQRT[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"RegularExpression", "[", "\"\<Tan\\\\[(.*)\\\\]\>\"", "]"}],
+          "\[RuleDelayed]", "  ", "\"\<TAN[$1]\>\""}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "RegularExpression", "[", "\"\<Tanh\\\\[(.*)\\\\]\>\"", "]"}], 
+         "\[RuleDelayed]", "  ", "\"\<TANH[$1]\>\""}]}], "}"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"srulereplace", "[", "x_", "]"}], ":=", " ", 
+      RowBox[{"FixedPoint", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", "srules"}], "]"}], "&"}], ",", " ", "x"}], 
+       "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"bmdata", " ", "=", " ", "\"\<\>\""}], ";", " ", 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "extract", " ", "odes", " ", "from", " ", "the", " ", "MathSBML", " ", 
+        "model"}], " ", "*)"}],
+      FontWeight->"Plain"], "\[IndentingNewLine]", 
+     RowBox[{"odes", " ", "=", " ", 
+      RowBox[{"Global`SBMLODES", "/.", "model"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"ic", " ", "=", " ", 
+      RowBox[{"Global`SBMLIC", "/.", "model"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"par", " ", "=", " ", 
+      RowBox[{"Global`SBMLConstants", "/.", "model"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"name", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"Global`SBMLModelName", "/.", "model"}], "/.", 
+       RowBox[{"{", 
+        RowBox[{"Global`SBMLModelName", "\[Rule]", " ", "\"\<\>\""}], 
+        "}"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"fcns", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"Global`SBMLFunctions", "/.", "model"}], "/.", 
+       RowBox[{"{", 
+        RowBox[{"Global`SBMLFunctions", "\[Rule]", " ", 
+         RowBox[{"{", "}"}]}], "}"}]}]}], ";", "  ", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"starttimevalue", " ", "=", 
+      RowBox[{"stringer", "[", " ", 
+       RowBox[{
+        RowBox[{"Global`STARTTIME", "/.", 
+         RowBox[{"{", "opt", "}"}]}], "/.", 
+        RowBox[{"{", 
+         RowBox[{"Global`STARTTIME", "\[Rule]", " ", "0"}], "}"}]}], "]"}]}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"stoptimevalue", " ", "=", " ", 
+      RowBox[{"stringer", "[", 
+       RowBox[{
+        RowBox[{"Global`STOPTIME", "/.", 
+         RowBox[{"{", "opt", "}"}]}], "/.", 
+        RowBox[{"{", 
+         RowBox[{"Global`STOPTIME", "\[Rule]", " ", "10"}], "}"}]}], "]"}]}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"dtvalue", " ", "=", 
+      RowBox[{"stringer", "[", " ", 
+       RowBox[{
+        RowBox[{"Global`DT", "/.", 
+         RowBox[{"{", "opt", "}"}]}], "/.", 
+        RowBox[{"{", 
+         RowBox[{"Global`DT", "\[Rule]", " ", "0.02"}], "}"}]}], "]"}]}], ";",
+      "\[IndentingNewLine]", 
+     RowBox[{"method", " ", "=", " ", 
+      RowBox[{"stringer", "[", 
+       RowBox[{
+        RowBox[{"Global`METHOD", "/.", 
+         RowBox[{"{", "opt", "}"}]}], "/.", 
+        RowBox[{"{", 
+         RowBox[{"Global`METHOD", "\[Rule]", " ", "\"\<RK4\>\""}], "}"}]}], 
+       "]"}]}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"apply", " ", "functions"}], " ", "*)"}], " ", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"oderhs", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"Map", "[", 
+        RowBox[{"Last", ",", "odes"}], "]"}], "//.", "fcns"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"odelhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{"First", ",", "odes"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{"debug", ",", " ", 
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<toBerkeleyMadonnaFormat: oderhs:\>\"", ",", "oderhs"}], 
+        "]"}]}], "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"evaluate", " ", "parameters"}], " ", "*)"}], " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"evaluateParameters", "/.", 
+           RowBox[{"{", "opt", "}"}]}], "/.", 
+          RowBox[{"{", 
+           RowBox[{"evaluateParameters", "\[Rule]", " ", "False"}], "}"}]}], 
+         ",", "\[IndentingNewLine]", " ", 
+         RowBox[{
+          RowBox[{"oderhs", " ", "=", " ", 
+           RowBox[{"oderhs", "//.", "par"}]}], ";"}]}], "\[IndentingNewLine]",
+         "]"}], ";"}], "\[IndentingNewLine]", "*)"}], " ", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"odes", " ", "=", " ", 
+      RowBox[{"MapThread", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#1", "\[Equal]", "#2"}], "&"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"odelhs", ",", "oderhs"}], "}"}]}], "]"}]}], ";", " ", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"t", "=", 
+      RowBox[{"ToString", "[", 
+       RowBox[{"MathSBML`Private`now", "[", "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"v", "=", 
+      RowBox[{"ToString", "[", "$MathSBML$Version", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"bmdata", "=", "             ", 
+      RowBox[{
+      "\"\<{ Model Name:    \>\"", "<>", "name", "<>", "\"\< }\\n\>\""}]}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"bmdata", "=", 
+      RowBox[{
+      "bmdata", "<>", "\"\<{ Creation Time: \>\"", "<>", "t", "<>", 
+       "\"\< }\\n\>\""}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"bmdata", "=", 
+      RowBox[{
+      "bmdata", "<>", "\"\<{ User:          \>\"", "<>", "$UserName", "<>", 
+       "\"\< }\\n\>\""}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"bmdata", "=", 
+      RowBox[{
+      "bmdata", "<>", "\"\<{ Machine:       \>\"", "<>", "$MachineName", 
+       "<>", "\"\< }\\n\>\""}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"bmdata", "=", 
+      RowBox[{
+      "bmdata", "<>", "\"\<{ System:        \>\"", "<>", "$ProcessorType", 
+       "<>", "\"\< \>\"", "<>", "$MachineType", "<>", "\"\< \>\"", "<>", 
+       "$OperatingSystem", "<>", "\"\<    }\\n\>\""}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"bmdata", "=", 
+      RowBox[{
+      "bmdata", "<>", "\"\<{ Generated by MathSBML \>\"", "<>", "v", "<>", 
+       "\"\< }\\n\>\""}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"bmdata", " ", "=", " ", 
+      RowBox[{
+      "bmdata", "<>", "\"\<METHOD \>\"", "<>", "method", "<>", 
+       "\"\<\\nSTARTTIME = \>\"", "<>", "starttimevalue", "<>", 
+       "\"\<\\nSTOPTIME = \>\"", "<>", "stoptimevalue", "<>", 
+       "\"\<\\nDT = \>\"", "<>", "dtvalue", "<>", "\"\<\\n\>\""}]}], ";", 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "convert", " ", "the", " ", "\"\<Derivative[1][variable][t]\>\"", " ", 
+        "to", " ", "\"\<variable'\>\"", " ", "for", " ", "each", " ", 
+        "variable"}], " ", "*)"}],
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], "\[IndentingNewLine]", 
+     RowBox[{"lhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", 
+          RowBox[{"InputForm", "[", 
+           RowBox[{"First", "[", "#", "]"}], "]"}], "]"}], "&"}], ",", " ", 
+        "odes"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"lhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\<Derivative[1][\>\"", "\[Rule]", " ", "\"\<\>\""}], 
+             ",", " ", 
+             RowBox[{"\"\<][t]\>\"", "\[Rule]", " ", "\"\<\>\""}]}], "}"}]}], 
+          "]"}], "&"}], ",", "lhs"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"lhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\< \>\"", "\[Rule]", " ", "\"\<\>\""}], ",", 
+             RowBox[{"\"\<`\>\"", "\[Rule]", " ", "\"\<_\>\""}]}], "}"}]}], 
+          "]"}], "&"}], ",", " ", "lhs"}], "]"}]}], ";", 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], 
+     RowBox[{"lhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"{", 
+            RowBox[{"\"\<$_\>\"", "\[Rule]", " ", "\"\<\>\""}], "}"}]}], 
+          "]"}], "&"}], ",", " ", "lhs"}], "]"}]}], ";", 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{
+        "convert", " ", "the", " ", "right", " ", "hand", " ", "side", " ", 
+         "of", " ", "each", " ", "ode", " ", "into", " ", "bmdata"}], "-", 
+        RowBox[{"compatible", " ", "string", " ", "form"}]}], " ", "*)"}],
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], "\[IndentingNewLine]", 
+     RowBox[{"rhs", "=", 
+      RowBox[{"Last", "/@", "odes"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"rhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", 
+          RowBox[{"InputForm", "[", "#", "]"}], "]"}], "&"}], ",", " ", 
+        "rhs"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"rhs", "=", 
+      RowBox[{"srulereplace", "/@", "rhs"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"rhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"\"\<[t]\>\"", "\[Rule]", " ", "\"\<\>\""}]}], "]"}], 
+         "&"}], ",", " ", "rhs"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"rhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\< \>\"", "\[Rule]", " ", "\"\<\>\""}], ",", 
+             RowBox[{"\"\<`\>\"", "\[Rule]", " ", "\"\<_\>\""}]}], "}"}]}], 
+          "]"}], "&"}], ",", " ", "rhs"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"rhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"{", 
+            RowBox[{"\"\<$_\>\"", "\[Rule]", " ", "\"\<\>\""}], "}"}]}], 
+          "]"}], "&"}], ",", " ", "rhs"}], "]"}]}], ";", 
+     StyleBox["\[IndentingNewLine]",
+      FontWeight->"Plain"], 
+     RowBox[{"rhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"\"\<*^\>\"", "\[Rule]", " ", "\"\<*10^\>\""}], "}"}]}], 
+          "]"}], "&"}], ",", " ", "rhs"}], "]"}]}], ";", " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{"rhs", " ", "=", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"#", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\<[\>\"", "\[Rule]", " ", "\"\<(\>\""}], ",", " ", 
+             RowBox[{"\"\<]\>\"", "\[Rule]", " ", "\"\<)\>\""}]}], "}"}]}], 
+          "]"}], "&"}], ",", " ", "rhs"}], "]"}]}], ";", " ", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     StyleBox[
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"combine", " ", "the", " ", "lhs", " ", "and", " ", 
+          RowBox[{"rhs", "'"}], "s", " ", "of", " ", "the", " ", "odes", " ", 
+          "together", " ", "and", " ", "join", " ", "into", " ", "a", " ", 
+          "single", " ", "file"}], "-", 
+         RowBox[{"writeable", " ", "string"}]}], ",", " ", 
+        RowBox[{
+        "including", " ", "embedded", " ", "newline", " ", "characters"}]}], 
+       " ", "*)"}],
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], "\[IndentingNewLine]", 
+     RowBox[{"odes", " ", "=", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"lhs", ",", "rhs"}], "}"}], "//", "Transpose"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"odes", " ", "=", " ", 
+      RowBox[{"Map", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"\"\<d/dt (\>\"", "<>", 
+          RowBox[{"#", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "<>", "\"\<) = \>\"", "<>", 
+          RowBox[{"#", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "<>", "\"\<\\n\>\""}], "&"}], ",", 
+        " ", "\[IndentingNewLine]", "odes"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"odes", " ", "=", " ", 
+      RowBox[{"Apply", "[", 
+       RowBox[{"StringJoin", ",", "odes"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"odes", " ", "=", " ", 
+      RowBox[{"\"\<{ Differential Equations }\\n\>\"", "<>", "odes"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"bmdata", " ", "=", " ", 
+      RowBox[{"bmdata", "<>", "odes"}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "[", "par", "]"}], ">", "0"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"par", " ", "=", " ", 
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"ToString", "[", 
+              RowBox[{"First", "[", "#", "]"}], "]"}], "<>", "\"\< = \>\"", "<>", 
+             RowBox[{"ToString", "[", 
+              RowBox[{"Last", "[", "#", "]"}], "]"}], "<>", "\"\<\\n\>\""}], 
+            "&"}], ",", " ", "par"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"par", " ", "=", " ", 
+         RowBox[{"Apply", "[", 
+          RowBox[{"StringJoin", ",", "par"}], "]"}]}], ";", " ", 
+        "\[IndentingNewLine]", 
+        RowBox[{"par", " ", "=", " ", 
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"par", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"\"\<`\>\"", "\[Rule]", " ", "\"\<_\>\""}], "}"}]}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"par", "=", 
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"par", ",", 
+           RowBox[{"{", 
+            RowBox[{"\"\<$_\>\"", "\[Rule]", " ", "\"\<\>\""}], "}"}]}], 
+          "]"}]}], ";", " ", "\[IndentingNewLine]", 
+        RowBox[{"par", " ", "=", " ", 
+         RowBox[{"\"\<{ Parameters }\\n\>\"", "<>", "par"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"par", " ", "=", " ", 
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"par", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Indeterminate\>\"", "\[Rule]", " ", "\"\<0\>\""}], 
+            "}"}]}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+        RowBox[{"bmdata", " ", "=", " ", 
+         RowBox[{"bmdata", "<>", "par"}]}], ";"}]}], "\[IndentingNewLine]", 
+      "]"}], ";", " ", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "[", "ic", "]"}], ">", "0"}], ",", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"Map", "[", 
+          RowBox[{"ToString", ",", "ic"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"StringReplace", "[", 
+             RowBox[{"#", ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"\"\<[0]\>\"", "\[Rule]", " ", "\"\<\>\""}], ",", " ", 
+                RowBox[{"\"\< \>\"", "\[Rule]", " ", "\"\<\>\""}], ",", " ", 
+                RowBox[{"\"\<==\>\"", "\[Rule]", " ", "\"\< = \>\""}]}], 
+               "}"}]}], "]"}], "&"}], ",", " ", "ic"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"\"\<init \>\"", "<>", "#", "<>", "\"\<\\n\>\""}], "&"}], 
+           ",", "ic"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"Apply", "[", 
+          RowBox[{"StringJoin", ",", " ", "ic"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"ic", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"\"\<`\>\"", "\[Rule]", " ", "\"\<_\>\""}], "}"}]}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"ic", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"\"\<$_\>\"", "\[Rule]", " ", "\"\<\>\""}], "}"}]}], 
+          "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"\"\<{ Initial Conditions }\\n\>\"", "<>", "ic"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ic", " ", "=", " ", 
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"ic", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Indeterminate\>\"", "\[Rule]", " ", "\"\<0\>\""}], 
+            "}"}]}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+        RowBox[{"bmdata", " ", "=", " ", 
+         RowBox[{"bmdata", "<>", "ic"}]}], ";"}]}], "\[IndentingNewLine]", 
+      "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", "bmdata", "]"}], ";"}]}], "\[IndentingNewLine]", 
+   "]"}]}]}], "Input",
+ InitializationCell->True]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["fortranize", "Subsection"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"fortranize", "[", 
+    RowBox[{"model_", ",", 
+     RowBox[{"opt___", "?", "OptionQ"}]}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "vars", ",", "varules", ",", "odes", ",", "oderhs", ",", "odevars", ",",
+        "orderedVars", ",", " ", "varsWithoutODES", ",", "algRules", ",", 
+       "nodes", ",", " ", "nalg", ",", " ", "nvars", ",", " ", 
+       "var2NumberedVar", ",", " ", "resids", ",", "nresids", ",", " ", 
+       "parameters", ",", " ", "Fortran", ",", "name", ",", "  ", "key", ",", 
+       RowBox[{"dbg", "=", "False"}], ",", "neq", ",", " ", "adda", ",", 
+       "jac", ",", "allfunctions", ",", "allvars", ",", "jacobian", ",", "y", 
+       ",", "s", ",", "p", ",", "i", ",", "j", ",", "tab", " ", ",", " ", 
+       "evts", ",", "nevts", ",", "eventFortran", ",", "eventNames", ",", " ",
+        "eventDelays", ",", "yrule", ",", "FortranEventSubroutine", ",", 
+       "FortranEventActivateFunction", ",", "FortranEventTestFunction", ",", 
+       " ", "activities", ",", " ", "eventControl", ",", "flagNames", ",", 
+       "timeNames", ",", " ", "header", ",", " ", "subroutinesGenerated", ",",
+        " ", "generateIndex", ",", " ", "icvals", ",", " ", "icfor", ",", " ",
+        "srule"}], "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"subroutinesGenerated", " ", "=", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<res (subroutine)\>\"", ",", " ", 
+           "\"\<Calculate Residuals - required by lsodi\>\""}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<addp (subroutine)\>\"", ",", " ", 
+           "\"\<Add A to any matrix - required by lsodi\>\""}], "}"}], ",", 
+         " ", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<jac (subroutine)\>\"", ",", " ", 
+           "\"\<Compute Jacobian - required by lsodi\>\""}], "}"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<init (subroutine)\>\"", ",", " ", 
+           "\"\<Set initial conditions\>\""}], "}"}]}], "}"}]}], ";", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"yrule", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"ToString", "[", 
+         RowBox[{"FortranForm", "[", "y", "]"}], "]"}], "\[Rule]", 
+        "\"\<y\>\""}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"srule", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"ToString", "[", 
+         RowBox[{"FortranForm", "[", "s", "]"}], "]"}], "\[Rule]", " ", 
+        "\"\<s\>\""}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{"dbg", ",", "\"\<fortranize: {yrule, srule}:\>\"", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"yrule", ",", "srule"}], "}"}]}], "]"}], ";", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"name", " ", "=", "  ", 
+       RowBox[{
+        RowBox[{"Global`SBMLModelName", "/.", "model"}], "/.", 
+        RowBox[{"{", 
+         RowBox[{"Global`SBMLModelName", "\[Rule]", " ", "\"\<\>\""}], 
+         "}"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringLength", "[", "name", "]"}], "\[Equal]", "0"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"name", " ", "=", " ", 
+          RowBox[{
+           RowBox[{"Global`SBMLModelid", "/.", "model"}], "/.", 
+           RowBox[{"{", 
+            RowBox[{
+            "Global`SBMLModelid", "\[Rule]", " ", 
+             "\"\<Unnamed SBML Model\>\""}], "}"}]}]}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", " ", "\[IndentingNewLine]", 
+      RowBox[{"name", " ", "=", " ", 
+       RowBox[{"StringReplace", "[", 
+        RowBox[{"name", ",", 
+         RowBox[{"{", 
+          RowBox[{"\"\<\[UnderBracket]\>\"", "\[Rule]", " ", "\"\<_\>\""}], 
+          "}"}]}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Fortran", " ", "=", 
+       RowBox[{
+       "\"\<C\\nC \
+--------------------------------------------------------\\nC\\n\>\"", "<>", 
+        "\"\<      subroutine res(neq,t,y,s,r,ires)\\n\>\"", "<>", 
+        "\"\<      double precision r,s,t,y\\n\>\"", "<>", "\"\<C\\n\>\"", 
+        "<>", "\"\<C This is subroutine res for lsodi\\n\>\"", "<>", 
+        "\"\<C This function computes the residuals r(i)=g(t,y)- \
+A(t,y)(dy/dt)\\n\>\"", "<>", 
+        "\"\<C for the linear-implicit system system \
+(A)*(dy/dt)=g(t,y)\\n\>\"", "<>", 
+        "\"\<C where A is a constant, possibly singular, matrix.\\n\>\"", 
+        "<>", "\"\<C\\n\>\"", "<>", 
+        "\"\<C Here A is diagonal with (restriction imposed by SBML, not \
+lsodi)\\n\>\"", "<>", 
+        "\"\<C       A(i,i)=1, i=1,...,m, where m=# of odes in the SBML Model\
+\\n\>\"", "<>", 
+        "\"\<C       A(i,i)=0, i=m+1,...,m+nrules, where nrules =# of \
+algebraic rules\\n\>\"", "<>", 
+        "\"\<C       A(i,i)=0, i=nrules+1,...,nvars, where nvars is the total \
+number\\n\>\"", "<>", 
+        "\"\<C                 of variables in the system and \
+nvars-nrules-m>0 is the\\n\>\"", "<>", 
+        "\"\<C                 number of variables controlled purely by \
+events\\n\>\""}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Fortran", " ", "=", " ", 
+       RowBox[{
+       "Fortran", "<>", "\"\<C\\nC If the system is purely differential\>\"", 
+        "<>", "\[IndentingNewLine]", 
+        "\"\<\\nC the right-hand side of the system dydt = g(y,t) will \>\"", 
+        "<>", "\[IndentingNewLine]", 
+        "\"\<\\nC be returned if s is zero-filled.\\nC\\n\>\""}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      " ", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{"dbg", ",", "\"\<Fortran:\>\"", ",", "model"}], "]"}], ";", 
+      "  ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "put", " ", "model", " ", "parts", " ", "into", " ", "local", " ", 
+         "variables"}], " ", "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      RowBox[{"vars", " ", "=", " ", 
+       RowBox[{"Global`SBMLModelVariables", "/.", "model"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"nvars", " ", "=", " ", 
+       RowBox[{"Length", "[", "vars", "]"}]}], ";", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"odes", " ", "=", " ", 
+       RowBox[{"Global`SBMLODES", "/.", "model"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"nodes", " ", "=", " ", 
+       RowBox[{"Length", "[", "odes", "]"}]}], ";", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"algRules", " ", "=", " ", 
+       RowBox[{"Global`SBMLAlgebraicRules", "/.", "model"}]}], ";", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"nalg", " ", "=", " ", 
+       RowBox[{"Length", "[", "algRules", "]"}]}], ";", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"parameters", " ", "=", " ", 
+       RowBox[{"Global`SBMLConstants", "/.", "model"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{"create", " ", "rules", " ", "to", " ", "remove", " ", 
+         RowBox[{"the", " ", "[", "t", "]"}], " ", "from", " ", "the", " ", 
+         "variable", " ", "names"}], " ", "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      RowBox[{"varules", " ", "=", " ", 
+       RowBox[{"MapThread", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"#1", "\[Rule]", " ", "#2"}], "&"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"vars", ",", 
+           RowBox[{"(", 
+            RowBox[{"Head", "/@", "vars"}], ")"}]}], "}"}]}], "]"}]}], ";", 
+      " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+         "oderhs", " ", "gives", " ", "the", " ", "rhs", " ", "of", " ", 
+          "the", " ", "odes"}], ",", " ", 
+         RowBox[{
+          RowBox[{"w", "/", "o"}], " ", 
+          RowBox[{"the", " ", "[", "t", "]"}]}], ",", " ", 
+         RowBox[{"and", " ", "evaluate", " ", "any", " ", "parameters"}]}], 
+        " ", "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      RowBox[{"oderhs", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Last", "/@", "odes"}], ")"}], "/.", "varules"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"oderhs", " ", "=", " ", 
+       RowBox[{"(", 
+        RowBox[{"oderhs", "//.", "parameters"}], ")"}]}], ";", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+         "vars", " ", "gives", " ", "the", " ", "variable", " ", "symbols"}], 
+         ",", " ", 
+         RowBox[{
+          RowBox[{"w", "/", "o"}], " ", 
+          RowBox[{"the", " ", "[", "t", "]"}]}], ",", " ", 
+         RowBox[{"that", " ", "are", " ", "in", " ", "the", " ", "model"}]}], 
+        " ", "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      RowBox[{"vars", " ", "=", " ", 
+       RowBox[{"Head", "/@", "vars"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+         "odevars", " ", "gives", " ", "the", " ", "variable", " ", 
+          "symbols"}], ",", " ", 
+         RowBox[{
+          RowBox[{"w", "/", "o"}], " ", 
+          RowBox[{"the", " ", "[", "t", "]"}], " ", "in", " ", "order", " ", 
+          "of", " ", "ode"}], ",", " ", 
+         RowBox[{
+          RowBox[{
+          "of", " ", "the", " ", "variables", " ", "that", " ", "have", " ", 
+           "odes"}], ";", " ", 
+          RowBox[{"the", " ", "ode", " ", "for", " ", 
+           RowBox[{"odevar", "[", "k", "]"}], " ", "is", " ", "in", " ", 
+           RowBox[{"oderhs", "[", "k", "]"}]}]}]}], " ", "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      RowBox[{"odevars", " ", "=", " ", 
+       RowBox[{"ToString", "/@", 
+        RowBox[{"(", 
+         RowBox[{"First", "/@", "odes"}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"odevars", " ", "=", " ", 
+       RowBox[{"ToExpression", "/@", 
+        RowBox[{"Map", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"#", ",", 
+             RowBox[{"{", 
+              RowBox[{"\"\<'[t]\>\"", "\[Rule]", " ", "\"\<\>\""}], "}"}]}], 
+            "]"}], "&"}], ",", " ", "odevars"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "varsWithoutODES", " ", "gives", " ", "the", " ", "variables", " ", 
+         "that", " ", "do", " ", "not", " ", "have", " ", "odes"}], " ", 
+        "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      RowBox[{"varsWithoutODES", " ", "=", " ", 
+       RowBox[{"Complement", "[", 
+        RowBox[{"vars", ",", " ", "odevars"}], "]"}]}], ";", " ", 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"orderedVars", " ", "has", " ", "the", " ", "ode"}], "-", 
+          RowBox[{"based", " ", "vars", " ", "first"}]}], ",", " ", 
+         RowBox[{
+          RowBox[{"followed", " ", "by", " ", "the", " ", "non"}], "-", "ode",
+           "-", 
+          RowBox[{"based", " ", "vars"}]}]}], " ", "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], "\[IndentingNewLine]", 
+      RowBox[{"orderedVars", " ", "=", " ", 
+       RowBox[{"Join", "[", 
+        RowBox[{"odevars", ",", " ", "varsWithoutODES"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"var2NumberedVar", " ", "=", " ", 
+       RowBox[{"MapThread", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"#1", "\[Rule]", " ", 
+           RowBox[{"y", "[", "#2", "]"}]}], "&"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"orderedVars", ",", 
+           RowBox[{"Range", "[", "nvars", "]"}]}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "determine", " ", "initial", " ", "conditions", " ", "for", " ", 
+         "variables"}], " ", "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      RowBox[{"icvals", " ", "=", 
+       RowBox[{"ToString", "/@", " ", 
+        RowBox[{"FortranForm", "/@", 
+         RowBox[{"ToExpression", "/@", 
+          RowBox[{"SBMLIC", "/@", 
+           RowBox[{"ToString", "/@", "orderedVars"}]}]}]}]}]}], ";", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{"define", " ", "variables", " ", "in", " ", "comments"}], 
+        "  ", "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      RowBox[{"key", " ", "=", " ", 
+       RowBox[{"MapThread", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+          "\"\<C y(\>\"", "<>", "#1", "<>", "\"\<) = \>\"", "<>", "#2", "<>", 
+           "\"\<\\n\>\""}], "&"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"ToString", "/@", 
+            RowBox[{"Range", "[", "nvars", "]"}]}], ",", 
+           RowBox[{"ToString", "/@", 
+            RowBox[{"decontextify", "[", "orderedVars", "]"}]}]}], "}"}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"key", " ", "=", " ", 
+       RowBox[{"Apply", "[", 
+        RowBox[{"StringJoin", ",", "key"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Fortran", " ", "=", " ", 
+       RowBox[{
+       "Fortran", "<>", 
+        "\"\<C Representation of Model Variables by the array y\\n\>\""}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"Fortran", " ", "=", " ", 
+       RowBox[{
+       "Fortran", "<>", 
+        "\"\<C ------------------------------------------------\\n\>\""}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"Fortran", " ", "=", " ", 
+       RowBox[{"Fortran", "<>", "key"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Fortran", " ", "=", " ", 
+       RowBox[{"Fortran", "<>", "\"\<C\\n\>\""}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+           "algebraic", " ", "rules", " ", "are", " ", "always", " ", "of", 
+            " ", "the", " ", "form", " ", "0"}], " ", "=", " ", 
+           "expression"}], ";", " ", 
+          RowBox[{"get", " ", "rhs", " ", "without", " ", 
+           RowBox[{"the", " ", "[", "t", "]"}]}]}], ",", " ", 
+         RowBox[{"and", " ", "evaluate", " ", "any", " ", "parameters"}]}], 
+        " ", "*)"}],
+       FontWeight->"Plain"], "\[IndentingNewLine]", 
+      RowBox[{"algRules", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Last", "/@", "algRules"}], ")"}], "/.", "varules"}]}], ";", 
+      " ", "\[IndentingNewLine]", 
+      RowBox[{"algRules", " ", "=", " ", 
+       RowBox[{"(", 
+        RowBox[{"algRules", "//.", "parameters"}], ")"}]}], ";", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{"dbg", ",", "\"\<Fortran: vars:\>\"", ",", "vars"}], "]"}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{"dbg", ",", "\"\<Fortran: odevars:\>\"", ",", "odevars"}], 
+       "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{
+       "dbg", ",", "\"\<Fortran: varsWithoutODES:\>\"", ",", 
+        "varsWithoutODES"}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{
+       "dbg", ",", "\"\<Fortran: orderedVars:\>\"", ",", " ", "orderedVars"}],
+        "]"}], ";", " ", "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{
+       "dbg", ",", "\"\<Fortran: var2NumberedVar:\>\"", ",", " ", 
+        "var2NumberedVar"}], "]"}], ";", " ", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{
+       "dbg", ",", "\"\<Fortran: varrules:\>\"", ",", " ", "varules"}], "]"}],
+       ";", " ", "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{"dbg", ",", "\"\<Fortran: odes:\>\"", ",", "odes"}], "]"}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{"dbg", ",", "\"\<Fortran: oderhs:\>\"", ",", "oderhs"}], "]"}],
+       ";", " ", "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{
+       "dbg", ",", "\"\<Fortran: algRules:\>\"", ",", " ", "algRules"}], 
+       "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{"dbg", ",", 
+        RowBox[{"Print", "[", 
+         RowBox[{
+         "\"\<>>>debug: Fortran: nvars = \>\"", ",", " ", "nvars", ",", 
+          "\"\<; nodes = \>\"", ",", " ", "nodes", ",", "\"\<; nalg = \>\"", 
+          ",", " ", "nalg"}], "]"}]}], "]"}], ";", " ", "\[IndentingNewLine]",
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"oderhs", " ", "=", " ", 
+       RowBox[{"(", 
+        RowBox[{"oderhs", "/.", "var2NumberedVar"}], ")"}]}], ";", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"algRules", " ", "=", " ", 
+       RowBox[{"(", 
+        RowBox[{"algRules", "/.", "var2NumberedVar"}], ")"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"resids", " ", "=", " ", 
+       RowBox[{"Join", "[", 
+        RowBox[{"oderhs", ",", " ", "algRules"}], "]"}]}], ";", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"resids", " ", "=", " ", 
+       RowBox[{"PadRight", "[", 
+        RowBox[{"resids", ",", "nvars"}], "]"}]}], ";", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "additional", " ", "vars", " ", "may", " ", "be", " ", "set", " ", 
+        "by", " ", "events"}], " ", "*)"}], " ", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"allfunctions", " ", "=", " ", "resids"}], " ", ";", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"save", " ", "for", " ", "later"}], " ", "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{"nresids", " ", "=", " ", 
+       RowBox[{"Length", "[", "resids", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"resids", " ", "=", " ", 
+       RowBox[{"resids", "-", 
+        RowBox[{"(", 
+         RowBox[{"s", "/@", 
+          RowBox[{"Range", "[", "nresids", "]"}]}], ")"}]}]}], ";", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{
+       "dbg", ",", "\"\<Fortran: oderhs (numbered):\>\"", ",", "oderhs"}], 
+       "]"}], ";", " ", "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{
+       "dbg", ",", "\"\<Fortran: algRules (numbered):\>\"", ",", " ", 
+        "algRules"}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{
+       "dbg", ",", "\"\<Fortran: residuals:\>\"", ",", " ", "resids"}], "]"}],
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{"convert", " ", "to", " ", "Fortran", " ", "Form"}], " ", 
+        "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      RowBox[{"resids", " ", "=", " ", 
+       RowBox[{"FortranForm", "/@", "resids"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"resids", " ", "=", " ", 
+       RowBox[{"ToString", "/@", "resids"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"resids", " ", "=", " ", 
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"StringReplace", "[", 
+             RowBox[{"#", ",", "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"ToString", "[", 
+                  RowBox[{"FortranForm", "[", "s", "]"}], "]"}], "\[Rule]", 
+                 "\"\<s\>\""}], ",", " ", "\[IndentingNewLine]", "yrule"}], 
+               "}"}]}], "]"}], "&"}], ",", " ", "resids"}], "]"}]}], ";"}], 
+       "\[IndentingNewLine]", "*)"}], " ", "\[IndentingNewLine]", 
+      RowBox[{"resids", " ", "=", " ", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"StringReplace", "[", 
+           RowBox[{"#", ",", "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{"srule", ",", " ", "\[IndentingNewLine]", "yrule"}], 
+             "}"}]}], "]"}], "&"}], ",", " ", "resids"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"turn", " ", "into", " ", "equations", " ", "like", " ", "r", 
+          RowBox[{"(", "n", ")"}]}], " ", "=", " ", 
+         RowBox[{
+          RowBox[{"g", 
+           RowBox[{"(", 
+            RowBox[{"t", ",", "y"}], ")"}]}], "-", 
+          RowBox[{"A", 
+           RowBox[{"(", 
+            RowBox[{"t", ",", "y"}], ")"}], "*", 
+           RowBox[{"(", 
+            RowBox[{"dy", "/", "dt"}], ")"}]}]}]}], "  ", "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], "\[IndentingNewLine]", 
+      RowBox[{"resids", " ", "=", " ", 
+       RowBox[{"MapThread", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"\"\<r(\>\"", "<>", "#2", "<>", "\"\<)=\>\"", "<>", "#1"}], 
+          "&"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"resids", ",", 
+           RowBox[{"ToString", "/@", 
+            RowBox[{"Range", "[", "nresids", "]"}]}]}], "}"}]}], "]"}]}], ";",
+       " ", "\[IndentingNewLine]", 
+      RowBox[{"resids", " ", "=", " ", 
+       RowBox[{"FortranWrap", "/@", "resids"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"resids", " ", "=", " ", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"#", "<>", "\"\<\\n\>\""}], "&"}], ",", "resids"}], "]"}]}],
+       ";", " ", "\[IndentingNewLine]", 
+      RowBox[{"resids", " ", "=", " ", 
+       RowBox[{"Apply", "[", 
+        RowBox[{"StringJoin", ",", "resids"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{
+       "dbg", ",", "\"\<Fortran: residuals:\>\"", ",", " ", "resids"}], "]"}],
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"neq", " ", "=", " ", 
+       RowBox[{"ToString", "[", "nresids", "]"}]}], ";", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Fortran", "=", 
+       RowBox[{"Fortran", "<>", "\"\<      dimension \>\"", "<>", 
+        RowBox[{"list2CommaSeparatedString", "[", 
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "<>", "\"\<(\>\"", "<>", "neq", "<>", "\"\<)\>\""}], 
+            "&"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"\"\<r\>\"", ",", "\"\<s\>\"", ",", "\"\<y\>\""}], 
+            "}"}]}], "]"}], "]"}], "<>", "\"\<\\n\>\""}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Fortran", " ", "=", " ", 
+       RowBox[{"Fortran", "<>", "resids"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Fortran", " ", "=", " ", 
+       RowBox[{"Fortran", "<>", "\"\<      return\\n      end\\nC\\n\>\""}]}],
+       ";", "\[IndentingNewLine]", 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{"end", " ", "of", " ", "res"}], " ", "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{"beginning", " ", "of", " ", "adda"}], " ", "*)"}],
+       FontWeight->"Plain"], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"adda", " ", "=", " ", 
+       RowBox[{
+       "\"\<C\\nC \
+--------------------------------------------------------\\nC\\n\>\"", "<>", 
+        "\"\<      subroutine addp(neq, t, y, ml, mu, p, nrowp)\\n\>\"", "<>",
+         "\[IndentingNewLine]", 
+        "\"\<C\\nC Subroutine addp required by lsodi\\nC\\n\>\"", "<>", 
+        "\[IndentingNewLine]", "\"\<      double precision p, t, y\\n\>\"", "<>",
+         "\[IndentingNewLine]", "\"\<      dimension y(\>\"", "<>", "neq", 
+        "<>", "\"\<), p(nrowp,\>\"", "<>", "neq", "<>", "\"\<)\\n\>\"", "<>", 
+        "\"\<      integer i\\n\>\"", "<>", "\[IndentingNewLine]", 
+        "\"\<      Do i = 1,\>\"", "<>", 
+        RowBox[{"ToString", "[", "nodes", "]"}], "<>", "\"\<\\n\>\"", "<>", 
+        "\[IndentingNewLine]", "\"\<         p(i,i) = p(i,i)+1\\n\>\"", "<>", 
+        "\[IndentingNewLine]", "\"\<      End Do\\n\>\"", "<>", 
+        "\[IndentingNewLine]", "\"\<      return\\n\>\"", "<>", 
+        "\[IndentingNewLine]", "\"\<      end\\n\>\""}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Fortran", " ", "=", " ", 
+       RowBox[{"Fortran", "<>", "adda"}]}], ";", 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      StyleBox["\[IndentingNewLine]",
+       FontWeight->"Plain"], 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{"end", " ", "of", " ", "adda"}], " ", "*)"}],
+       FontWeight->"Plain"], "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{"beginning", " ", "of", " ", "jac"}], " ", "*)"}],
+       FontWeight->"Plain"], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"jac", " ", "=", " ", 
+       RowBox[{
+       "\"\<C\\nC \
+--------------------------------------------------------\\nC\>\"", "<>", 
+        "\"\<\\n      subroutine jac (neq,t,y,s,ml,mu,p,nrowp)\\n\>\"", "<>", 
+        "\[IndentingNewLine]", 
+        "\"\<C\\nC Subroutine jac required by lsodi, computes jacobian\\nC\\n\
+\>\"", "<>", "\[IndentingNewLine]", "\"\<      dimension y(\>\"", "<>", "neq",
+         "<>", "\"\<), s(\>\"", "<>", "neq", "<>", "\"\<),p(nrowp,\>\"", "<>",
+         "neq", "<>", "\"\<)\\n\\n\>\""}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{"calculate", " ", "jacobian", " ", "matrix"}], " ", "*)"}],
+       FontWeight->"Plain"], "\[IndentingNewLine]", 
+      RowBox[{"jacobian", " ", "=", " ", 
+       RowBox[{"Jacob", "[", 
+        RowBox[{"allfunctions", ",", " ", 
+         RowBox[{"y", "/@", 
+          RowBox[{"Range", "[", "nresids", "]"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"jacobian", " ", "=", " ", 
+       RowBox[{"Flatten", "[", "jacobian", "]"}]}], ";", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"tab", "=", 
+       RowBox[{"list2CommaSeparatedString", "/@", 
+        RowBox[{"Partition", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"i", ",", "j"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", "1", ",", "nresids"}], "}"}], ",", " ", 
+             RowBox[{"{", 
+              RowBox[{"j", ",", "1", ",", "nresids"}], "}"}]}], "]"}], "//", 
+           "Flatten"}], ",", "2"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"jacobian", " ", "=", " ", 
+       RowBox[{"MapThread", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"\"\<p(\>\"", "<>", "#1", "<>", "\"\<)=\>\"", "<>", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{
+             RowBox[{"ToString", "[", 
+              RowBox[{"FortranForm", "[", "#2", "]"}], "]"}], ",", 
+             RowBox[{"{", "yrule", "}"}]}], "]"}]}], "&"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"tab", ",", "jacobian"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"jacobian", " ", "=", " ", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"\"\<      \>\"", "<>", "#", "<>", "\"\<\\n\>\""}], "&"}], 
+         ",", "jacobian"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"jacobian", " ", "=", " ", 
+       RowBox[{"Apply", "[", 
+        RowBox[{"StringJoin", ",", "jacobian"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"jac", " ", "=", " ", 
+       RowBox[{"jac", "<>", "jacobian"}]}], ";", " ", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"jac", " ", "=", " ", 
+       RowBox[{"jac", "<>", "\"\<\\n      return\\n      end\\n\>\""}]}], ";",
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Fortran", " ", "=", " ", 
+       RowBox[{"Fortran", "<>", "jac"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Determine", " ", "initial", " ", "conditions"}], " ", "*)"}], 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"icfor", "=", 
+       RowBox[{
+       "\"\<C\\nC \
+--------------------------------------------------------\\nC\\n\>\"", "<>", 
+        "\"\<      Subroutine init(neq,y)\>\"", "<>", 
+        "\"\<\\n      double precision y\\n\>\"", "<>", 
+        "\"\<      dimension y(\>\"", "<>", 
+        RowBox[{"ToString", "[", "nvars", "]"}], "<>", "\"\<)\\n\>\""}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"icfor", " ", "=", " ", 
+       RowBox[{"icfor", "<>", 
+        RowBox[{"Apply", "[", 
+         RowBox[{"StringJoin", ",", 
+          RowBox[{"MapThread", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"\"\<      y(\>\"", "<>", 
+              RowBox[{"ToString", "[", "#1", "]"}], "<>", "\"\<)=\>\"", "<>", 
+              "#2", "<>", "\"\<\\n\>\""}], "&"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Range", "[", "nvars", "]"}], ",", " ", "icvals"}], 
+             "}"}]}], "]"}]}], "]"}], "<>", 
+        "\"\<      return\\n      end\\n\>\""}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Fortran", " ", "=", " ", 
+       RowBox[{"Fortran", "<>", "icfor"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      StyleBox[
+       RowBox[{"(*", " ", 
+        RowBox[{"process", " ", "events"}], " ", "*)"}],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"evts", " ", "=", " ", 
+       RowBox[{"Global`SBMLEvents", "/.", "model"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"nevts", " ", "=", " ", 
+       RowBox[{"Length", "[", "evts", "]"}]}], ";", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"debugPrint", "[", 
+       RowBox[{"dbg", ",", "\"\<Fortran: evts = \>\"", ",", " ", "evts"}], 
+       "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"eventFortran", "=", "\"\<\>\""}], ";", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        StyleBox["FortranEventSubroutine",
+         FontColor->RGBColor[0, 0, 1]], "[", 
+        RowBox[{"evname_", "\[Rule]", "evopt_"}], "]"}], ":=", " ", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"f", "=", "\"\<\>\""}], ",", " ", "trigger", ",", " ", 
+           "evdelay", ",", " ", "eventName", ",", " ", "triggername", ",", 
+           " ", "activatename"}], "}"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"eventName", "=", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{
+             RowBox[{"decontextify", "[", "evname", "]"}], ",", 
+             RowBox[{
+             "\"\<\[UnderBracket]\>\"", "\[Rule]", " ", "\"\<_\>\""}]}], 
+            "]"}]}], ";", " ", "\[IndentingNewLine]", 
+          RowBox[{"triggername", " ", "=", " ", 
+           RowBox[{"\"\<trigger_\>\"", "<>", "eventName"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"activatename", "=", 
+           RowBox[{"\"\<activate_\>\"", "<>", "eventName"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"subroutinesGenerated", " ", "=", " ", 
+           RowBox[{"Join", "[", 
+            RowBox[{"subroutinesGenerated", ",", " ", 
+             RowBox[{"{", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"triggername", "<>", "\"\< (function)\>\""}], ",", 
+                 " ", 
+                 RowBox[{"\"\<Trigger event \>\"", "<>", "eventName"}]}], 
+                "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"activatename", "<>", "\"\< (subroutine)\>\""}], ",",
+                  " ", 
+                 RowBox[{
+                 "\"\<Perform activity required by event \>\"", "<>", 
+                  "eventName"}]}], "}"}]}], "}"}]}], "\[IndentingNewLine]", 
+            "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"debugPrint", "[", 
+           RowBox[{
+           "dbg", ",", " ", "\"\<FortranEventSubroutine: eventName\>\"", ",", 
+            "eventName"}], "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"debugPrint", "[", 
+           RowBox[{
+           "dbg", ",", " ", "\"\<FortranEventSubroutine: evopt\>\"", ",", 
+            "evopt"}], "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"f", "=", 
+           RowBox[{
+           "\"\<C\\nC \
+--------------------------------------------------------\\n\>\"", "<>", 
+            "\"\<C\\nC ***** Test to see if event \>\"", "<>", "eventName", 
+            "<>", "\"\< has been triggered\\nC\\n\>\""}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"f", "=", 
+           RowBox[{"f", "<>", 
+            RowBox[{"FortranWrap", "[", "\[IndentingNewLine]", " ", 
+             RowBox[{
+             "\"\<logical function \>\"", "<>", "triggername", "<>", 
+              "\"\<(neq, y)\\n\>\""}], "]"}], "<>", 
+            "\"\<      double precision y\\n\>\"", "<>", 
+            "\[IndentingNewLine]", "\"\<      integer neq\\n\>\"", "<>", 
+            "\[IndentingNewLine]", "\"\<      dimension y(\>\"", "<>", 
+            RowBox[{"ToString", "[", "nvars", "]"}], "<>", "\"\<)\\n\>\"", "<>",
+             "\[IndentingNewLine]", "\"\<      logical triggered\\n\>\""}]}], 
+          ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"trigger", " ", "=", " ", 
+           RowBox[{
+            RowBox[{"\"\<trigger\>\"", "/.", "evopt"}], "/.", 
+            RowBox[{"{", 
+             RowBox[{"\"\<trigger\>\"", "\[Rule]", "\"\<\>\""}], "}"}]}]}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"printWarning", "[", 
+           RowBox[{
+            RowBox[{"trigger", " ", "==", "\"\<\>\""}], ",", " ", 
+            RowBox[{
+            "\"\<No event trigger supplied for event \>\"", "<>", 
+             "evname"}]}], "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"trigger", "=", " ", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"trigger", ",", 
+             RowBox[{"{", 
+              RowBox[{"\"\<[t]\>\"", "\[Rule]", " ", "\"\<\>\""}], "}"}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"trigger", " ", "=", " ", 
+           RowBox[{
+            RowBox[{"ToExpression", "[", "trigger", "]"}], "/.", 
+            "var2NumberedVar"}]}], ";", " ", "\[IndentingNewLine]", 
+          RowBox[{"trigger", " ", "=", " ", 
+           RowBox[{"ToString", "[", "trigger", "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"trigger", " ", "=", " ", 
+           RowBox[{"decontextify", "[", 
+            RowBox[{"trigger", ",", "$SBML$Context"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"trigger", " ", "=", " ", 
+           RowBox[{"ToString", "[", 
+            RowBox[{"FortranForm", "[", 
+             RowBox[{"ToExpression", "[", "trigger", "]"}], "]"}], "]"}]}], 
+          ";", " ", "\[IndentingNewLine]", 
+          RowBox[{"trigger", "=", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"trigger", ",", "yrule"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"f", " ", "=", " ", 
+           RowBox[{"f", "<>", 
+            RowBox[{"FortranWrap", "[", 
+             RowBox[{
+             "\"\<triggered=\>\"", "<>", "trigger", "<>", "\"\<\\n\>\""}], 
+             "]"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"f", " ", "=", " ", 
+           RowBox[{
+           "f", "<>", "\"\<      return(triggered)\\n      end\\n\>\""}]}], 
+          ";", " ", "\[IndentingNewLine]", 
+          RowBox[{"f", "=", 
+           RowBox[{
+           "f", "<>", "\"\<C\\nC ***** Activate event: \>\"", "<>", 
+            "eventName", "<>", "\"\< *****\\nC\\n\>\""}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"f", "=", 
+           RowBox[{"f", "<>", 
+            RowBox[{"FortranWrap", "[", "\[IndentingNewLine]", " ", 
+             RowBox[{
+             "\"\<subroutine \>\"", "<>", "activatename", "<>", 
+              "\"\<(neq, y)\\n\>\""}], "]"}], "<>", 
+            "\"\<      double precision y\\n\>\"", "<>", 
+            "\[IndentingNewLine]", "\"\<      integer neq\\n\>\"", "<>", 
+            "\[IndentingNewLine]", "\"\<      dimension y(\>\"", "<>", 
+            RowBox[{"ToString", "[", "nvars", "]"}], "<>", "\"\<)\\n\>\""}]}],
+           ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"activities", " ", "=", " ", 
+           RowBox[{
+            RowBox[{"\"\<events\>\"", "/.", "evopt"}], "/.", 
+            RowBox[{"{", 
+             RowBox[{"\"\<events\>\"", "\[Rule]", " ", 
+              RowBox[{"{", "}"}]}], "}"}]}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"printWarning", "[", 
+           RowBox[{
+            RowBox[{"activities", " ", "==", "\"\<\>\""}], ",", " ", 
+            RowBox[{
+            "\"\<No event activities supplied for event \>\"", "<>", 
+             "evname"}]}], "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"activities", "=", " ", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"StringReplace", "[", 
+               RowBox[{"#", ",", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<[t]\>\"", "\[Rule]", " ", "\"\<\>\""}], "}"}]}],
+                "]"}], "&"}], ",", " ", "activities"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"activities", " ", "=", 
+           RowBox[{"ToExpression", "/@", "activities"}]}], ";", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"activities", " ", "=", " ", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"#", "/.", "var2NumberedVar"}], "&"}], ",", " ", 
+             "activities"}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+          RowBox[{"activities", " ", "=", " ", 
+           RowBox[{"ToString", "/@", "activities"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"activities", " ", "=", " ", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"decontextify", "[", 
+               RowBox[{"#", ",", " ", "$SBML$Context"}], "]"}], "&"}], ",", 
+             " ", "activities"}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+          RowBox[{"activities", " ", "=", " ", 
+           RowBox[{"ToExpression", "/@", "activities"}]}], ";", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"activities", " ", "=", " ", 
+           RowBox[{"Map", "[", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"ToString", "[", 
+                RowBox[{"FortranForm", "[", 
+                 RowBox[{"First", "[", "#", "]"}], "]"}], "]"}], "<>", 
+               "\"\<=\>\"", "<>", 
+               RowBox[{"ToString", "[", 
+                RowBox[{"FortranForm", "[", 
+                 RowBox[{"Last", "[", "#", "]"}], "]"}], "]"}]}], "&"}], ",", 
+             "\[IndentingNewLine]", "activities"}], "]"}]}], ";", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"activities", "=", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"StringReplace", "[", 
+               RowBox[{"#", ",", "yrule"}], "]"}], "&"}], ",", " ", 
+             "activities"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"activities", " ", "=", " ", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"#", "<>", "\"\<\\n\>\""}], "&"}], ",", " ", 
+             "activities"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"activities", " ", "=", " ", 
+           RowBox[{"Apply", "[", 
+            RowBox[{"StringJoin", ",", 
+             RowBox[{"FortranWrap", "/@", "activities"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"debugPrint", "[", 
+           RowBox[{
+           "dbg", ",", " ", "\"\<Fortran: activities:\>\"", ",", " ", 
+            "activities"}], "]"}], ";", " ", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"f", " ", "=", " ", 
+           RowBox[{
+           "f", "<>", "activities", "<>", 
+            "\"\<      return\\n      end\\n\>\""}]}], ";", " ", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"f", " ", "=", " ", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"f", ",", 
+             RowBox[{"{", 
+              RowBox[{"\"\<\[UnderBracket]\>\"", "\[Rule]", "\"\<_\>\""}], 
+              "}"}]}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"evdelay", " ", "=", "  ", 
+           RowBox[{
+            RowBox[{"\"\<delay\>\"", "/.", "evopt"}], "/.", 
+            RowBox[{"{", 
+             RowBox[{"\"\<delay\>\"", "\[Rule]", "\"\<0\>\""}], "}"}]}]}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"evdelay", " ", "=", " ", 
+           RowBox[{"StringReplace", "[", 
+            RowBox[{"evdelay", ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"\"\<[t]\>\"", "\[Rule]", " ", "\"\<\>\""}], ",", " ", 
+               RowBox[{"\"\<\[UnderBracket]\>\"", "\[Rule]", "\"\<_\>\""}]}], 
+              "}"}]}], "]"}]}], ";", " ", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Return", "[", 
+           RowBox[{"{", 
+            RowBox[{"f", ",", " ", "eventName", ",", " ", "evdelay"}], "}"}], 
+           "]"}], ";"}]}], " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        StyleBox["FortranEventSubroutine",
+         FontColor->RGBColor[0, 0, 1]], "[", "x___", "]"}], ":=", " ", 
+       RowBox[{"printWarning", "[", 
+        RowBox[{"\"\<FortranEventSubroutine: invalid event format: \>\"", "<>", 
+         RowBox[{"ToString", "[", 
+          RowBox[{"InputForm", "[", "x", "]"}], "]"}]}], "]"}]}], ";", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"end", " ", "of", " ", 
+        StyleBox["FortranEventSubroutine",
+         FontColor->RGBColor[0, 0, 1]]}], " ", "*)"}], "  ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"nevts", ">", "0"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"eventFortran", " ", "=", " ", 
+          RowBox[{"FortranEventSubroutine", "/@", "evts"}]}], ";", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+           "eventFortran", ",", " ", "eventNames", ",", " ", "eventDelays"}], 
+           "}"}], " ", "=", " ", 
+          RowBox[{"Transpose", "[", "eventFortran", "]"}]}], ";", " ", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"eventFortran", " ", "=", " ", 
+          RowBox[{"Apply", "[", 
+           RowBox[{"StringJoin", ",", "eventFortran"}], "]"}]}], ";", " ", 
+         "\[IndentingNewLine]", " ", 
+         RowBox[{"debugPrint", "[", 
+          RowBox[{"dbg", ",", "\"\<eventFortran\>\"", ",", "eventFortran"}], 
+          "]"}], ";", " ", "\[IndentingNewLine]", 
+         RowBox[{"debugPrint", "[", 
+          RowBox[{"dbg", ",", "\"\<eventNames\>\"", ",", "eventNames"}], 
+          "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"debugPrint", "[", 
+          RowBox[{"dbg", ",", "\"\<eventDelays\>\"", ",", "eventDelays"}], 
+          "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Fortran", " ", "=", " ", 
+          RowBox[{"Fortran", "<>", "eventFortran"}]}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"generateIndex", "[", "]"}], ":=", " ", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"lmax", " ", ",", "l2max", ",", " ", "stringpad"}], "}"}], 
+         ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"subroutinesGenerated", " ", "=", " ", 
+           RowBox[{"Sort", "[", "subroutinesGenerated", "]"}]}], ";", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"stringpad", "[", 
+            RowBox[{
+             RowBox[{"s_", "?", "StringQ"}], ",", " ", 
+             RowBox[{"n_", "?", "IntegerQ"}], ",", " ", "char_"}], "]"}], ":=",
+            " ", 
+           RowBox[{"Module", "[", 
+            RowBox[{
+             RowBox[{"{", "s1", "}"}], ",", " ", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"s1", " ", "=", " ", "s"}], ";", "\[IndentingNewLine]", 
+              RowBox[{"While", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"StringLength", "[", "s1", "]"}], "<", "n"}], ",", 
+                RowBox[{"s1", "=", 
+                 RowBox[{"s1", "<>", "char"}]}]}], "]"}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"Return", "[", "s1", "]"}], ";"}]}], 
+            "\[IndentingNewLine]", "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"stringpad", "[", 
+            RowBox[{
+             RowBox[{"s_", "?", "StringQ"}], ",", " ", 
+             RowBox[{"n_", "?", "IntegerQ"}]}], "]"}], ":=", " ", 
+           RowBox[{"stringpad", "[", 
+            RowBox[{"s", ",", " ", "n", ",", " ", "\"\< \>\""}], "]"}]}], ";",
+           " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"lmax", " ", "=", " ", 
+           RowBox[{
+            RowBox[{"Map", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"StringLength", "[", 
+                RowBox[{"First", "[", "#", "]"}], "]"}], "&"}], ",", " ", 
+              "subroutinesGenerated"}], "]"}], "//", "Max"}]}], ";", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"l2max", " ", "=", " ", 
+           RowBox[{
+            RowBox[{"Map", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"StringLength", "[", 
+                RowBox[{"Last", "[", "#", "]"}], "]"}], "&"}], ",", " ", 
+              "subroutinesGenerated"}], "]"}], "//", "Max"}]}], ";", " ", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"subroutinesGenerated", " ", "=", " ", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"stringpad", "[", 
+                 RowBox[{
+                  RowBox[{"#", "[", 
+                   RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+                  RowBox[{"1", "+", "lmax"}]}], "]"}], ",", " ", 
+                RowBox[{"#", "[", 
+                 RowBox[{"[", "2", "]"}], "]"}]}], "}"}], "&"}], ",", " ", 
+             "subroutinesGenerated"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"subroutinesGenerated", "=", "\[IndentingNewLine]", 
+           RowBox[{"StringJoin", "@@", "\[IndentingNewLine]", 
+            RowBox[{"Map", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"\"\<C \>\"", "<>", 
+                RowBox[{"Apply", "[", 
+                 RowBox[{"StringJoin", ",", "#"}], "]"}], "<>", 
+                "\"\<\\n\>\""}], "&"}], ",", " ", "subroutinesGenerated"}], 
+             "]"}]}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"subroutinesGenerated", " ", "=", " ", 
+           RowBox[{
+           "\"\<C SBML Model Name:  \>\"", "<>", "name", "<>", 
+            "\"\<\\nC\\n\>\"", "<>", "\"\<C Generated by MathSBML \>\"", "<>",
+             "$MathSBML$Version", "<>", "\"\<\\n\>\"", 
+            StyleBox["\[IndentingNewLine]",
+             FontWeight->"Plain"], "<>", "\"\<C Creation Time: \>\"", "<>", 
+            RowBox[{"now", "[", "]"}], "<>", "\"\<\\n\>\"", 
+            "\[IndentingNewLine]", "<>", "\"\<C User:          \>\"", "<>", 
+            "$UserName", "<>", "\"\<\\n\>\"", "\[IndentingNewLine]", "<>", 
+            "\"\<C Machine:       \>\"", "<>", "$MachineName", "<>", 
+            "\"\<\\n\>\"", "\[IndentingNewLine]", "<>", 
+            "\"\<C Processor:     \>\"", "<>", "$ProcessorType", "<>", 
+            "\"\<\\n\>\"", "\[IndentingNewLine]", "<>", 
+            "\"\<C Machine type:  \>\"", "<>", "$MachineType", "<>", 
+            "\"\<\\n\>\"", "\[IndentingNewLine]", "<>", 
+            "\"\<C Oper. System:  \>\"", "<>", "$OperatingSystem", "<>", 
+            "\"\<\\n\>\"", "\[IndentingNewLine]", "<>", 
+            "\"\<C --------------------------------------------------------\\\
+n\>\"", "\[IndentingNewLine]", "<>", 
+            "\"\<C\\nC lsodi compliant SBML model\\n\>\"", 
+            "\[IndentingNewLine]", "<>", 
+            "\"\<C Reference: http://netlib.org/alliant/ode/prog/lsodi.f\\n\>\
+\"", "\[IndentingNewLine]", "<>", 
+            "\"\<C\\nC \
+--------------------------------------------------------\\n\>\"", "<>", 
+            "\"\<C\\nC This file contains the following modules:\\nC\\nC \
+\>\"", "<>", 
+            RowBox[{"stringpad", "[", 
+             RowBox[{"\"\<Module Name\>\"", ",", 
+              RowBox[{"lmax", "+", "1"}]}], "]"}], "<>", 
+            RowBox[{"stringpad", "[", 
+             RowBox[{"\"\<Description\>\"", ",", "l2max"}], "]"}], "<>", 
+            "\"\<\\nC \>\"", "<>", 
+            RowBox[{"stringpad", "[", 
+             RowBox[{"\"\<\>\"", ",", "lmax", ",", "\"\<-\>\""}], "]"}], 
+            "<>", "\"\< \>\"", "<>", 
+            RowBox[{"stringpad", "[", 
+             RowBox[{"\"\<\>\"", ",", "l2max", ",", "\"\<-\>\""}], "]"}], 
+            "<>", "\"\<\\n\>\"", "<>", "subroutinesGenerated"}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]",
+           "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"Return", "[", "subroutinesGenerated", "]"}], ";"}]}], " ", 
+        "\[IndentingNewLine]", "]"}]}], ";", " ", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"header", " ", "=", " ", 
+       RowBox[{"generateIndex", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Fortran", " ", "=", " ", 
+       RowBox[{"header", "<>", "Fortran"}]}], ";", " ", "\[IndentingNewLine]",
+       "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "Fortran", "]"}], ";"}]}], "\[IndentingNewLine]",
+     "]"}]}], ";"}]], "Input",
+ InitializationCell->True]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["FortranWrap", "Subsection"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"FortranWrap", "[", 
+    RowBox[{"inputString_", "?", "StringQ"}], "]"}], ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"outputString", ",", " ", "wrk", ",", "nextchunk", ",", " ", 
+       RowBox[{"width", "=", "66"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"sixBlanks", "=", "\"\<      \>\""}], ",", " ", 
+       RowBox[{"continuation", " ", "=", " ", "\"\<     &\>\""}], ",", 
+       RowBox[{"first", "=", "True"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"wrk", " ", "=", " ", "inputString"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"outputString", "=", "\"\<       \>\""}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringLength", "[", "wrk", "]"}], ">", "width"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"nextchunk", " ", "=", " ", 
+          RowBox[{"StringTake", "[", 
+           RowBox[{"wrk", ",", " ", "width"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"wrk", " ", "=", " ", 
+          RowBox[{"StringDrop", "[", 
+           RowBox[{"wrk", ",", " ", "width"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{"first", ",", " ", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"outputString", "=", 
+             RowBox[{"sixBlanks", "<>", "nextchunk"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"first", "=", "False"}], ";"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"outputString", "=", 
+             RowBox[{
+             "outputString", "<>", "\"\<\\n\>\"", "<>", "continuation", "<>", 
+              "nextchunk"}]}], ";"}]}], "\[IndentingNewLine]", "]"}], ";"}]}],
+        "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"StringLength", "[", "wrk", "]"}], ">", "0"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{"first", ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"outputString", "=", 
+             RowBox[{"sixBlanks", "<>", "wrk"}]}], ";"}], 
+           "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"outputString", "=", 
+             RowBox[{
+             "outputString", "<>", "\"\<\\n\>\"", "<>", "continuation", "<>", 
+              "wrk"}]}], ";"}]}], "\[IndentingNewLine]", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "outputString", "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FortranWrap", "[", "x_", "]"}], ":=", " ", 
+   RowBox[{"FortranWrap", "[", 
+    RowBox[{"ToString", "[", 
+     RowBox[{"FortranForm", "[", "x", "]"}], "]"}], "]"}]}], ";"}]}], "Input",
+ InitializationCell->True]
+}, Closed]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Exit", "Section",
+ CellChangeTimes->{{3.504973607000592*^9, 3.504973617536195*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+   "LTPrint", "[", "\"\<Loaded SBMLWrite Special Output Formats.\>\"", "]"}], 
+   ";"}], " "}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.5049736195923123`*^9, 3.504973641838585*^9}, {
+  3.506452259938239*^9, 3.506452260126341*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+AutoGeneratedPackage->Automatic,
+WindowSize->{701, 858},
+WindowMargins->{{47, Automatic}, {-5, Automatic}},
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PastelColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 132, 3, 121, "Title"],
+Cell[714, 27, 338, 8, 50, "Text"],
+Cell[CellGroupData[{
+Cell[1077, 39, 154, 2, 78, "Section"],
+Cell[1234, 43, 2114, 39, 389, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3385, 87, 56, 0, 78, "Section"],
+Cell[3444, 89, 224, 7, 40, "Input",
+ InitializationCell->True],
+Cell[CellGroupData[{
+Cell[3693, 100, 54, 0, 39, "Subsection"],
+Cell[3750, 102, 21391, 453, 70, "Input",
+ InitializationCell->True],
+Cell[25144, 557, 1429, 34, 70, "Input",
+ InitializationCell->True],
+Cell[26576, 593, 17246, 385, 70, "Input",
+ InitializationCell->True]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[43859, 983, 31, 0, 31, "Subsection"],
+Cell[43893, 985, 14085, 348, 70, "Input",
+ InitializationCell->True]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[58015, 1338, 106, 2, 31, "Subsection"],
+Cell[58124, 1342, 23618, 572, 70, "Input",
+ InitializationCell->True]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[81779, 1919, 32, 0, 31, "Subsection"],
+Cell[81814, 1921, 52265, 1161, 70, "Input",
+ InitializationCell->True]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[134116, 3087, 33, 0, 31, "Subsection"],
+Cell[134152, 3089, 3055, 72, 70, "Input",
+ InitializationCell->True]
+}, Closed]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[137256, 3167, 89, 1, 78, "Section"],
+Cell[137348, 3170, 296, 8, 40, "Input",
+ InitializationCell->True]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

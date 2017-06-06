@@ -1,0 +1,113 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <meta name="generator" content="Bluefish 2.2.2" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>GeometricSnapShot</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info" border="0"><img src=
+        "logo.svg" alt="The xCellerator Project" width=
+        "150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style=
+            "font-size:x-large;font-weight:bold;">
+            GeometricSnapShot</td>
+
+            <td align="right"><a class="button" href=
+            "./index.html">Cellzilla2D Home</a></td>
+          </tr>
+        </table>
+        <hr color="#ff7636">
+
+        <p class="header">Description</p>
+
+        <p>This requires an externally defined dynamics model.</p>
+
+        <p>This returns an Graphics image of time dependent tissue
+        object, similar to <a href="ShowTissue.html" class=
+        "function">ShowTissue</a>, but where the vertex locations
+        are replaced by the result of a dynamic simulation.</p>
+
+        <p><span class="function">Needs["Cellzilla2D`"];</span></p>
+
+        <p class="header">Return Value</p>
+
+        <p><span class="function">GeometricSnapShot[tissue,
+        solution, {x,y}, {timevariable, time}, options]</span></p>
+
+        <p><span class="function">tissue</span> is any <a href=
+        "Tissue.html" class="function">Tissue</a> object</p>
+
+        <p><span class="function">solution</span> is the output of
+        NDSolve that contains time-dependent information about the
+        vertex locations.</p>
+
+        <p><span class="function">{x,y}</span> are the names of the
+        variables in <span class="function">solution</span> that
+        give the vertex locations. The location of vertex
+        <span class="function">i</span> must be represented by
+        variables <span class="function">{x[i],y[i]}</span> in
+        <span class="function">solution</span>.</p>
+
+        <p><span class="function">timevariable</span> variable that
+        represents time in <span class=
+        "function">solution</span>.</p>
+
+        <p><span class="function">time</span> numeric value of time
+        to plot the solution at.</p>
+
+        <p class="header">Options</p>
+
+        <p>Same options as <a href="ShowTissue.html" class=
+        "function">ShowTissue</a></p>
+
+
+        <p class="header">Example</p>
+
+        <p>[ <a href=
+        "examples/GeometricSnapShot-example.nb.zip">Download
+        Example as Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name=
+        "display" src="./examples/GeometricSnapShot-example.htm"
+        id="display" style="background-color:white;"><a href=
+        "">View as html.</a></iframe></p>
+
+        <p class="header">Implementation Notes</p>
+<p>There is no dynamic model in Cellzilla2D so a user must implement one externally for this function to be useful.</p>
+
+        <p class="header">See Also</p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt=
+            "SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2012 Nov 9
+      ]</span>
+    </div>
+  </center>
+</body>
+</html>

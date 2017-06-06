@@ -1,0 +1,107 @@
+<html>
+<head>
+  <meta name="generator" content="Bluefish 2.2.3" >
+  <meta name="generator" content="Bluefish 2.2.3" >
+  <meta name="generator" content="Bluefish 2.2.3" >
+  <link rel="STYLESHEET" href="main.css" type="text/css">
+
+  <title>SimPlot</title>
+</head>
+
+<body>
+  <a name="TopOfPage"></a>
+
+  <center>
+    <div class="main">
+      <div class="logo">
+        <a href="http://xlr8r.info/" border="0"><img src="logo.svg" alt=
+        "The xCellerator Project" width="150"></a><br>
+        xlr8r:Cellzilla
+      </div>
+
+      <div class="text">
+        <br>
+
+        <table border="0" width="100%">
+          <tr>
+            <td class="function" style="font-size:x-large;font-weight:bold;">
+            SimPlot</td>
+
+            <td align="right"><a class="button" href="./index.html">Cellzilla2D
+            Home</a></td>
+          </tr>
+        </table>
+        <hr color="#ff7636">
+
+        <p class="header">Description</p>
+
+        <p>Plots one or more variables from a simulation produced by <a href=
+        "RunSim.html" class="function">RunSim</a>.</p>
+
+        <p><span class="function">Needs["Cellzilla2D`"];</span></p>
+
+        <p class="header">Return Value</p>
+        
+        <h4>Internal Simulations</h4>
+
+        <p><span class="function">SimPlot[sim, varible, {tstart, tend},
+        options]</span> returns a single graphics object which plots all
+        instances of <span class="function">variable</span> on a single grid
+        over the specified time span. Thus <span class="function">varible[1],
+        variable[2], ..., variable[n]</span> are all plotted on a single
+        figure. Any valid option for <a class="function" href=
+        "http://reference.wolfram.com/mathematica/ref/Plot.html">Plot</a> may
+        be used.</p>
+
+        <p><span class="function">SimPlot[sim, {tstart, tend}, options]</span>
+        returns a list of plots, with one plot for each variable in the
+        simulation.</p>
+
+        <p><span class="function">SimPlot[sim, {var1, var2, ...} {tstart,
+        tend}, options]</span> returns a list of plots, with one plot for each
+        variable specified.</p>
+
+        <p><span class="function">SimPlot[sim, options]</span> returns a list
+        of plots, with one plot for each variable in the simulation, for the
+        entire time span of the simulation..</p>
+        
+        <h4>External Simulations</h4>
+        
+         <p><span class="function">SimPlot[variable, options]</span> returns a single plot; produces 
+         a pop-up menu to select the directory containing the multi-file simulation first. </p>
+
+         <p><span class="function">SimPlot[variable, folder,  options]</span> overrides the popup menu and looks in the requested folder. </p>
+         
+        <p class="header">Options</p>
+
+        <p>Any valid option for <a class="function" href=
+        "http://reference.wolfram.com/mathematica/ref/Plot.html">Plot</a> may
+        be used.</p>
+
+        <p class="header">Example</p>
+
+        <p>[ <a href="examples/SimPlot-example.nb.zip">Download Example as
+        Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name="display"
+        src="./examples/SimPlot-example.htm" id="display" style=
+        "background-color:white;"><a href="">View as html.</a></iframe></p>
+
+        <p class="header">Implementation Notes</p>
+
+        <p class="header">See Also</p>
+
+        <div class="logo">
+          <center>
+            <a href="http://sourceforge.net/projects/xlr8r"><img src=
+            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
+            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+          </center>
+        </div>
+      </div><br>
+      <br>
+      <span style="font-size:xx-small;">[2013 April 12]</span>
+    </div>
+  </center>
+</body>
+</html>
