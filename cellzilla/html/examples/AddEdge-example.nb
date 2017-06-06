@@ -1,0 +1,2689 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[    110702,       2681]
+NotebookOptionsPosition[    108617,       2623]
+NotebookOutlinePosition[    109091,       2642]
+CellTagsIndexPosition[    109048,       2639]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"<<", "xlr8r.m"}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "Cellzilla2D.m"}]}], "Input",
+ CellChangeTimes->{{3.56141358687575*^9, 3.561413595300706*^9}, 
+   3.561414422898377*^9, 3.5614145064013147`*^9, {3.70575560220061*^9, 
+   3.705755604640386*^9}},ExpressionUUID->"68a09d3d-c362-4d4d-abc2-\
+052a15bfbeda"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"xCellerator \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"0.95 (28-Feb-2014) loaded Tue 6 Jun 2017 09:45:19\\nusing \
+Mathematica 11.1.1 for Mac OS X x86 (64-bit) (April 27, 2017) (Version 11.1, \
+Release 1)\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox[
+    TagBox[
+     ButtonBox[
+      PaneSelectorBox[{False->"\<\"GPL License Terms Apply\"\>", True->
+       StyleBox["\<\"GPL License Terms Apply\"\>", "HyperlinkActive"]}, 
+       Dynamic[
+        CurrentValue["MouseOver"]],
+       BaseStyle->{"Hyperlink"},
+       FrameMargins->0,
+       ImageSize->Automatic],
+      BaseStyle->"Hyperlink",
+      ButtonData->{
+        URL["http://www.gnu.org/licenses/gpl.html"], None},
+      ButtonNote->"http://www.gnu.org/licenses/gpl.html"],
+     Annotation[#, "http://www.gnu.org/licenses/gpl.html", "Hyperlink"]& ],
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->Bold]}],
+  SequenceForm[
+   Style["xCellerator ", FontWeight -> "Bold", FontFamily -> "Ubuntu,Arial", 
+    FontSize -> 12], 
+   Style["0.95 (28-Feb-2014) loaded Tue 6 Jun 2017 09:45:19\nusing \
+Mathematica 11.1.1 for Mac OS X x86 (64-bit) (April 27, 2017) (Version 11.1, \
+Release 1)", FontFamily -> "Ubuntu,Arial", FontSize -> 12], 
+   Style[
+    Hyperlink[
+    "GPL License Terms Apply", "http://www.gnu.org/licenses/gpl.html"], 
+    FontWeight -> Bold, FontFamily -> "Ubuntu,Arial", FontSize -> 12]],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.561413596444062*^9, 3.561414117416733*^9, {3.561414392841991*^9, 
+   3.561414422900827*^9}, 3.561414506403119*^9, 3.705755608361875*^9, 
+   3.705756319909748*^9},ExpressionUUID->"b1d4dd2d-24c6-4acd-846e-\
+fd43fe327aa5"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"Warning: \"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]], "\[InvisibleSpace]", 
+   StyleBox["\<\"Cellzilla2D: xSSA.m not found in path. Some stochastic \
+conversion functions may not work as expected. It should be loaded manually \
+before any xSSA (stochastic) simulations can be run.\"\>",
+    StripOnInput->False,
+    FontWeight->Bold]}],
+  SequenceForm[
+   Style["Warning: ", Bold, 
+    RGBColor[1, 0, 0]], 
+   Style["Cellzilla2D: xSSA.m not found in path. Some stochastic conversion \
+functions may not work as expected. It should be loaded manually before any \
+xSSA (stochastic) simulations can be run.", Bold]],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.561413596444062*^9, 3.561414117416733*^9, {3.561414392841991*^9, 
+   3.561414422900827*^9}, 3.561414506403119*^9, 3.705755608361875*^9, 
+   3.705756319922406*^9},ExpressionUUID->"9611d583-6655-4324-b83e-\
+4bd80d87a646"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"Cellzilla2D\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\" (3.0.51 (05 June 2017)) loaded Tue 6 Jun 2017 \
+09:45:20\\nusing \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"xCellerator \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"0.95 and \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"XSSA \"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->"Bold"], "\[InvisibleSpace]", 
+   StyleBox["\<\"** Not Found **\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"\\nGPL License Terms Apply\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]]}],
+  SequenceForm[
+   Style["Cellzilla2D", FontFamily -> "Ubuntu,Arial", FontSize -> 12, 
+    FontWeight -> "Bold"], 
+   Style[" (3.0.51 (05 June 2017)) loaded Tue 6 Jun 2017 09:45:20\nusing ", 
+    FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["xCellerator ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", 
+    FontWeight -> "Bold"], 
+   Style["0.95 and ", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["XSSA ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> 
+    "Bold"], 
+   Style["** Not Found **", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["\nGPL License Terms Apply", FontColor -> RGBColor[1, 0, 0], 
+    FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> Bold]],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.561413596444062*^9, 3.561414117416733*^9, {3.561414392841991*^9, 
+   3.561414422900827*^9}, 3.561414506403119*^9, 3.705755608361875*^9, 
+   3.705756320019779*^9},ExpressionUUID->"f70730d9-a10b-456d-a1eb-\
+7c679d9cc1f5"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["AddEdge-Example.nb", "Section",
+ CellChangeTimes->{{3.454616493069165*^9, 3.4546164962937117`*^9}, {
+   3.454617165097115*^9, 3.45461716610536*^9}, 3.561414422901224*^9, 
+   3.561414506403346*^9, {3.7057563855385723`*^9, 
+   3.705756389003871*^9}},ExpressionUUID->"be603f1f-ead9-4bb7-a34f-\
+549d7337e7de"],
+
+Cell["\<\
+Example Cellzilla2D notebook.
+
+This is virtually identical to AddCell-Example.nb
+
+GPL License applies. 
+See http://xlr8r.info and http://cellzilla.info for further details.\
+\>", "Text",
+ CellChangeTimes->{{3.454616499378996*^9, 3.4546165376658583`*^9}, 
+   3.561414422901309*^9, 3.561414506403427*^9, 3.561416773732497*^9, {
+   3.7057563915406647`*^9, 
+   3.70575640730723*^9}},ExpressionUUID->"e5346536-1099-47c7-9f91-\
+602c7368cf08"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"w", "=", 
+   RowBox[{"RandomizeTemplate", "[", 
+    RowBox[{
+     RowBox[{"TemplateRectangular", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "10", ",", "2"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "10", ",", "2"}], "}"}]}], "]"}], ",", " ", ".02"}],
+     "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.454615649637479*^9, 3.454615670244851*^9}, {
+   3.4546157127468147`*^9, 3.45461578131031*^9}, 3.454615833899519*^9, {
+   3.561413979702477*^9, 3.561413986108707*^9}, {3.5614140238425217`*^9, 
+   3.561414058086906*^9}, 3.5614144229015417`*^9, 
+   3.561414506403578*^9},ExpressionUUID->"6c055982-bf6d-4108-809f-\
+ca0d0a8b110d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ShowTissue", "[", 
+  RowBox[{"w", ",", " ", 
+   RowBox[{"Frame", "\[Rule]", " ", "True"}], ",", " ", 
+   RowBox[{"\"\<Vertices\>\"", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"Directive", "[", 
+      RowBox[{"Green", ",", 
+       RowBox[{"PointSize", "[", ".02", "]"}]}], "]"}], "}"}]}], ",", 
+   RowBox[{"\"\<VertexNumbers\>\"", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"Directive", "[", 
+      RowBox[{"Red", ",", " ", 
+       RowBox[{"FontSize", "\[Rule]", " ", "18"}]}], "]"}], "}"}]}], ",", " ",
+    "\[IndentingNewLine]", 
+   RowBox[{"\"\<EdgeNumbers\>\"", "\[Rule]", " ", "True"}], ",", " ", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<EdgeNumberStyle\>\"", "\[Rule]", " ", 
+    RowBox[{"Directive", "[", 
+     RowBox[{"Blue", ",", " ", 
+      RowBox[{"FontSize", "\[Rule]", " ", "18"}], ",", " ", 
+      RowBox[{"FontFamily", "\[Rule]", " ", "\"\<Arial\>\""}]}], "]"}]}], ",",
+    "  ", 
+   RowBox[{"\"\<CellNumbers\>\"", "\[Rule]", " ", "True"}]}], "]"}]], "Input",\
+
+ CellChangeTimes->{{3.454615758499276*^9, 3.4546157601133137`*^9}, {
+   3.4546158478675117`*^9, 3.454615850905716*^9}, {3.4546159717655773`*^9, 
+   3.4546160128615723`*^9}, 3.4546162590148783`*^9, {3.454616361019251*^9, 
+   3.4546164566646023`*^9}, {3.561413669198393*^9, 3.561413712318205*^9}, {
+   3.56141376633444*^9, 3.561413829117456*^9}, {3.561413864990923*^9, 
+   3.5614138713417673`*^9}, 3.561414422901882*^9, 
+   3.5614145064037943`*^9},ExpressionUUID->"f26457c6-232d-4dc5-9bba-\
+33d5ffc26353"],
+
+Cell[BoxData[
+ GraphicsBox[{{{
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{0.0045450476957256255`, 0.03816318599660532}, {
+       2.0345756157476123`, -0.017426192835300457`}, {2.0041761578349804`, 
+       2.0034781559798365`}, {-0.01503279629419487, 2.003848037582575}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"1\"\>", {1.011738516201202, 1.006120170685594}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{2.0345756157476123`, -0.017426192835300457`}, {
+       4.000934601042707, -0.01587860660108288}, {3.981581776383819, 
+       1.972094801683213}, {2.0041761578349804`, 2.0034781559798365`}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"2\"\>", {3.002612779118723, 0.9864886297305385}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4.000934601042707, -0.01587860660108288}, {
+       6.013712986470905, -0.010098114903651307`}, {6.004878598506252, 
+       1.9957199016440605`}, {3.981581776383819, 1.972094801683213}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"3\"\>", {5.001767059986138, 0.9863480903217043}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6.013712986470905, -0.010098114903651307`}, {
+       8.017864731513878, 0.02438804589446254}, {7.999454788346475, 
+       1.983252551722842}, {6.004878598506252, 1.9957199016440605`}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"4\"\>", {7.0050415843577785, 0.997476093769947}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8.017864731513878, 0.02438804589446254}, {
+       10.032532723264472`, -0.0012319864410962106`}, {9.999506480948908, 
+       2.000721110183802}, {7.999454788346475, 1.983252551722842}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"5\"\>", {9.015991859713196, 1.0006193472716016}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{-0.01503279629419487, 2.003848037582575}, {
+       2.0041761578349804`, 2.0034781559798365`}, {1.999872321630312, 
+       3.9990084105174244`}, {-0.03013280973508331, 3.996681235785835}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"6\"\>", {0.9899441435838393, 3.0016413062264453}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{2.0041761578349804`, 2.0034781559798365`}, {
+       3.981581776383819, 1.972094801683213}, {4.020054033911423, 
+       4.020210625120803}, {1.999872321630312, 3.9990084105174244`}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"7\"\>", {3.0057923217765397, 3.002255155681632}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3.981581776383819, 1.972094801683213}, {6.004878598506252, 
+       1.9957199016440605`}, {5.970964509669695, 3.9754610330727442`}, {
+       4.020054033911423, 4.020210625120803}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"8\"\>", {4.988709218996654, 2.984794586452225}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6.004878598506252, 1.9957199016440605`}, {
+       7.999454788346475, 1.983252551722842}, {8.004965709523065, 
+       4.021158074491586}, {5.970964509669695, 3.9754610330727442`}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"9\"\>", {6.999875262258661, 2.997248237012617}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7.999454788346475, 1.983252551722842}, {9.999506480948908, 
+       2.000721110183802}, {10.002464092771165`, 4.00418151545842}, {
+       8.004965709523065, 4.021158074491586}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"10\"\>", {8.998758049313123, 3.00211893631883}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{-0.03013280973508331, 3.996681235785835}, {
+       1.999872321630312, 3.9990084105174244`}, {2.028441403743929, 
+       5.974026145543971}, {0.006577881263598925, 5.961867298884272}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"11\"\>", {1.0020236185012978, 4.982225784580307}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{1.999872321630312, 3.9990084105174244`}, {
+       4.020054033911423, 4.020210625120803}, {4.017773725814013, 
+       5.991398311598022}, {2.028441403743929, 5.974026145543971}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"12\"\>", {3.0162193477777226, 4.993629734601848}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4.020054033911423, 4.020210625120803}, {5.970964509669695, 
+       3.9754610330727442`}, {5.983850062949293, 5.9878805358441385`}, {
+       4.017773725814013, 5.991398311598022}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"13\"\>", {5.001557704319409, 4.994971779140394}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5.970964509669695, 3.9754610330727442`}, {
+       8.004965709523065, 4.021158074491586}, {8.010630407419772, 
+       6.030766147718463}, {5.983850062949293, 5.9878805358441385`}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"14\"\>", {6.992376615418624, 5.00321659150724}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8.004965709523065, 4.021158074491586}, {
+       10.002464092771165`, 4.00418151545842}, {9.998915742879367, 
+       6.003884772215561}, {8.010630407419772, 6.030766147718463}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"15\"\>", {9.003414629346617, 5.014234905719365}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{0.006577881263598925, 5.961867298884272}, {
+       2.028441403743929, 5.974026145543971}, {1.9899445322391864`, 
+       8.017937819182016}, {-0.012174980674179905`, 8.001678037334395}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"16\"\>", {1.0035687078015447, 6.987215050436286}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{2.028441403743929, 5.974026145543971}, {4.017773725814013, 
+       5.991398311598022}, {4.005962105706435, 8.000203501893496}, {
+       1.9899445322391864`, 8.017937819182016}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"17\"\>", {3.0076118147571353, 6.998105031813099}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4.017773725814013, 5.991398311598022}, {5.983850062949293, 
+       5.9878805358441385`}, {5.998592251527025, 8.00241222029257}, {
+       4.005962105706435, 8.000203501893496}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"18\"\>", {5.002016436255596, 6.9977220772451165}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5.983850062949293, 5.9878805358441385`}, {
+       8.010630407419772, 6.030766147718463}, {7.97396610951554, 
+       7.994481596397046}, {5.998592251527025, 8.00241222029257}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"19\"\>", {6.987561008947836, 6.999566973685625}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8.010630407419772, 6.030766147718463}, {9.998915742879367, 
+       6.003884772215561}, {9.987827783991897, 8.014260996744655}, {
+       7.97396610951554, 7.994481596397046}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"20\"\>", {8.996728763072017, 7.0130042842747455}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{-0.012174980674179905`, 8.001678037334395}, {
+       1.9899445322391864`, 8.017937819182016}, {2.001840611047399, 
+       9.999828053855856}, {-0.0030337811140937095`, 9.996074019761956}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"21\"\>", {0.9930939525234493, 9.004107522704315}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{1.9899445322391864`, 8.017937819182016}, {
+       4.005962105706435, 8.000203501893496}, {4.000141229908526, 
+       9.999545461312302}, {2.001840611047399, 9.999828053855856}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"22\"\>", {3.0009295869878967, 9.002905722489155}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4.005962105706435, 8.000203501893496}, {5.998592251527025, 
+       8.00241222029257}, {6.00025858426802, 10.006543267139891`}, {
+       4.000141229908526, 9.999545461312302}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"23\"\>", {5.001634478871801, 9.002803050962097}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5.998592251527025, 8.00241222029257}, {7.97396610951554, 
+       7.994481596397046}, {7.97490299826145, 9.992068321688384}, {
+       6.00025858426802, 10.006543267139891`}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"24\"\>", {6.986391293263952, 8.998818183798345}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7.97396610951554, 7.994481596397046}, {9.987827783991897, 
+       8.014260996744655}, {9.97766577509837, 10.005068431055866`}, {
+       7.97490299826145, 9.992068321688384}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"25\"\>", {8.97803146647764, 9.00054556779445}]}}}, {{
+     {GrayLevel[0], 
+      LineBox[{{0.0045450476957256255`, 0.03816318599660532}, {
+       2.0345756157476123`, -0.017426192835300457`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"1\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {1.019560331721669, 0.010368496580652432}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{0.0045450476957256255`, 
+       0.03816318599660532}, {-0.01503279629419487, 2.003848037582575}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"2\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {-0.005243874299234622, 1.02100561178959}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.0345756157476123`, -0.017426192835300457`}, {
+       4.000934601042707, -0.01587860660108288}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"3\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {3.0177551083951597, -0.01665239971819167}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.0345756157476123`, -0.017426192835300457`}, {
+       2.0041761578349804`, 2.0034781559798365`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"4\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {2.0193758867912965, 0.993025981572268}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.000934601042707, -0.01587860660108288}, {
+       6.013712986470905, -0.010098114903651307`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"5\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.007323793756806, -0.012988360752367093}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.000934601042707, -0.01587860660108288}, {3.981581776383819, 
+       1.972094801683213}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"6\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {3.991258188713263, 0.978108097541065}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{6.013712986470905, -0.010098114903651307`}, {
+       8.017864731513878, 0.02438804589446254}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"7\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {7.015788858992392, 0.007144965495405616}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{6.013712986470905, -0.010098114903651307`}, {
+       6.004878598506252, 1.9957199016440605`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"8\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {6.009295792488579, 0.9928108933702047}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{8.017864731513878, 0.02438804589446254}, {
+       10.032532723264472`, -0.0012319864410962106`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"9\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {9.025198727389174, 0.011578029726683165}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{8.017864731513878, 0.02438804589446254}, {7.999454788346475, 
+       1.983252551722842}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"10\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {8.008659759930177, 1.0038202988086524}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{10.032532723264472`, -0.0012319864410962106`}, {
+       9.999506480948908, 2.000721110183802}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"11\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {10.01601960210669, 0.999744561871353}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.01503279629419487, 2.003848037582575}, {
+       2.0041761578349804`, 2.0034781559798365`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"12\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {0.9945716807703927, 2.0036630967812057}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.01503279629419487, 
+       2.003848037582575}, {-0.03013280973508331, 3.996681235785835}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"13\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {-0.02258280301463909, 3.000264636684205}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.0041761578349804`, 2.0034781559798365`}, {3.981581776383819,
+        1.972094801683213}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"14\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {2.9928789671094, 1.9877864788315247}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.0041761578349804`, 2.0034781559798365`}, {1.999872321630312,
+        3.9990084105174244`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"15\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {2.002024239732646, 3.0012432832486304}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{3.981581776383819, 1.972094801683213}, {6.004878598506252, 
+       1.9957199016440605`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"16\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {4.993230187445036, 1.9839073516636367}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{3.981581776383819, 1.972094801683213}, {4.020054033911423, 
+       4.020210625120803}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"17\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {4.0008179051476205, 2.996152713402008}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{6.004878598506252, 1.9957199016440605`}, {7.999454788346475, 
+       1.983252551722842}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"18\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {7.002166693426364, 1.9894862266834514}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{6.004878598506252, 1.9957199016440605`}, {5.970964509669695, 
+       3.9754610330727442`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"19\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.987921554087974, 2.9855904673584024}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{7.999454788346475, 1.983252551722842}, {9.999506480948908, 
+       2.000721110183802}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"20\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {8.999480634647691, 1.991986830953322}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{7.999454788346475, 1.983252551722842}, {8.004965709523065, 
+       4.021158074491586}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"21\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {8.00221024893477, 3.002205313107214}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{9.999506480948908, 2.000721110183802}, {10.002464092771165`, 
+       4.00418151545842}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"22\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {10.000985286860036, 3.002451312821111}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.03013280973508331, 3.996681235785835}, {1.999872321630312, 
+       3.9990084105174244`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"23\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {0.9848697559476144, 3.9978448231516297}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.03013280973508331, 3.996681235785835}, {
+       0.006577881263598925, 5.961867298884272}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"24\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {-0.011777464235742193, 4.979274267335054}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{1.999872321630312, 3.9990084105174244`}, {4.020054033911423, 
+       4.020210625120803}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"25\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {3.0099631777708673, 4.009609517819113}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{1.999872321630312, 3.9990084105174244`}, {2.028441403743929, 
+       5.974026145543971}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"26\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {2.0141568626871207, 4.986517278030698}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.020054033911423, 4.020210625120803}, {5.970964509669695, 
+       3.9754610330727442`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"27\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {4.995509271790559, 3.9978358290967737}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.020054033911423, 4.020210625120803}, {4.017773725814013, 
+       5.991398311598022}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"28\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {4.018913879862718, 5.005804468359413}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{5.970964509669695, 3.9754610330727442`}, {8.004965709523065, 
+       4.021158074491586}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"29\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {6.98796510959638, 3.998309553782165}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{5.970964509669695, 3.9754610330727442`}, {5.983850062949293, 
+       5.9878805358441385`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"30\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.977407286309495, 4.981670784458442}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{8.004965709523065, 4.021158074491586}, {10.002464092771165`, 
+       4.00418151545842}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"31\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {9.003714901147115, 4.012669794975003}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{8.004965709523065, 4.021158074491586}, {8.010630407419772, 
+       6.030766147718463}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"32\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {8.007798058471419, 5.0259621111050246}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{10.002464092771165`, 4.00418151545842}, {9.998915742879367, 
+       6.003884772215561}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"33\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {10.000689917825266, 5.00403314383699}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{0.006577881263598925, 5.961867298884272}, {2.028441403743929, 
+       5.974026145543971}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"34\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {1.017509642503764, 5.967946722214121}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{0.006577881263598925, 
+       5.961867298884272}, {-0.012174980674179905`, 8.001678037334395}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"35\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {-0.00279854970529049, 6.9817726681093335}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.028441403743929, 5.974026145543971}, {4.017773725814013, 
+       5.991398311598022}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"36\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {3.023107564778971, 5.982712228570996}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.028441403743929, 5.974026145543971}, {1.9899445322391864`, 
+       8.017937819182016}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"37\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {2.0091929679915577, 6.995981982362993}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.017773725814013, 5.991398311598022}, {5.983850062949293, 
+       5.9878805358441385`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"38\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.000811894381654, 5.98963942372108}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.017773725814013, 5.991398311598022}, {4.005962105706435, 
+       8.000203501893496}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"39\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {4.011867915760224, 6.995800906745759}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{5.983850062949293, 5.9878805358441385`}, {8.010630407419772, 
+       6.030766147718463}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"40\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {6.997240235184533, 6.0093233417813}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{5.983850062949293, 5.9878805358441385`}, {5.998592251527025, 
+       8.00241222029257}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"41\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.99122115723816, 6.995146378068354}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{8.010630407419772, 6.030766147718463}, {9.998915742879367, 
+       6.003884772215561}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"42\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {9.004773075149568, 6.017325459967012}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{8.010630407419772, 6.030766147718463}, {7.97396610951554, 
+       7.994481596397046}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"43\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {7.992298258467656, 7.0126238720577545}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{9.998915742879367, 6.003884772215561}, {9.987827783991897, 
+       8.014260996744655}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"44\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {9.993371763435633, 7.0090728844801085}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.012174980674179905`, 8.001678037334395}, {
+       1.9899445322391864`, 8.017937819182016}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"45\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {0.9888847757825032, 8.009807928258205}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.012174980674179905`, 
+       8.001678037334395}, {-0.0030337811140937095`, 9.996074019761956}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"46\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {-0.007604380894136807, 8.998876028548175}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{1.9899445322391864`, 8.017937819182016}, {4.005962105706435, 
+       8.000203501893496}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"47\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {2.9979533189728107, 8.009070660537756}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{1.9899445322391864`, 8.017937819182016}, {2.001840611047399, 
+       9.999828053855856}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"48\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {1.9958925716432927, 9.008882936518937}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.005962105706435, 8.000203501893496}, {5.998592251527025, 
+       8.00241222029257}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"49\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.00227717861673, 8.001307861093032}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.005962105706435, 8.000203501893496}, {4.000141229908526, 
+       9.999545461312302}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"50\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {4.003051667807481, 8.999874481602898}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{5.998592251527025, 8.00241222029257}, {7.97396610951554, 
+       7.994481596397046}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"51\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {6.986279180521283, 7.998446908344808}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{5.998592251527025, 8.00241222029257}, {6.00025858426802, 
+       10.006543267139891`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"52\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.999425417897523, 9.00447774371623}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{7.97396610951554, 7.994481596397046}, {9.987827783991897, 
+       8.014260996744655}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"53\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {8.980896946753719, 8.00437129657085}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{7.97396610951554, 7.994481596397046}, {7.97490299826145, 
+       9.992068321688384}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"54\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {7.974434553888495, 8.993274959042715}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{9.987827783991897, 8.014260996744655}, {9.97766577509837, 
+       10.005068431055866`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"55\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {9.982746779545133, 9.00966471390026}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.0030337811140937095`, 9.996074019761956}, {
+       2.001840611047399, 9.999828053855856}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"56\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {0.9994034149666526, 9.997951036808907}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.001840611047399, 9.999828053855856}, {4.000141229908526, 
+       9.999545461312302}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"57\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {3.0009909204779626, 9.99968675758408}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.000141229908526, 9.999545461312302}, {6.00025858426802, 
+       10.006543267139891`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"58\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.000199907088273, 10.003044364226096}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{6.00025858426802, 10.006543267139891`}, {7.97490299826145, 
+       9.992068321688384}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"59\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {6.987580791264735, 9.999305794414138}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{7.97490299826145, 9.992068321688384}, {9.97766577509837, 
+       10.005068431055866`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"60\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {8.97628438667991, 9.998568376372125}]}}}, 
+   {RGBColor[0, 1, 0], PointSize[0.02], 
+    PointBox[{0.0045450476957256255`, 0.03816318599660532}], 
+    PointBox[{2.0345756157476123`, -0.017426192835300457`}], 
+    PointBox[{4.000934601042707, -0.01587860660108288}], 
+    PointBox[{6.013712986470905, -0.010098114903651307`}], 
+    PointBox[{8.017864731513878, 0.02438804589446254}], 
+    PointBox[{10.032532723264472`, -0.0012319864410962106`}], 
+    PointBox[{-0.01503279629419487, 2.003848037582575}], 
+    PointBox[{2.0041761578349804`, 2.0034781559798365`}], 
+    PointBox[{3.981581776383819, 1.972094801683213}], 
+    PointBox[{6.004878598506252, 1.9957199016440605`}], 
+    PointBox[{7.999454788346475, 1.983252551722842}], 
+    PointBox[{9.999506480948908, 2.000721110183802}], 
+    PointBox[{-0.03013280973508331, 3.996681235785835}], 
+    PointBox[{1.999872321630312, 3.9990084105174244`}], 
+    PointBox[{4.020054033911423, 4.020210625120803}], 
+    PointBox[{5.970964509669695, 3.9754610330727442`}], 
+    PointBox[{8.004965709523065, 4.021158074491586}], 
+    PointBox[{10.002464092771165`, 4.00418151545842}], 
+    PointBox[{0.006577881263598925, 5.961867298884272}], 
+    PointBox[{2.028441403743929, 5.974026145543971}], 
+    PointBox[{4.017773725814013, 5.991398311598022}], 
+    PointBox[{5.983850062949293, 5.9878805358441385`}], 
+    PointBox[{8.010630407419772, 6.030766147718463}], 
+    PointBox[{9.998915742879367, 6.003884772215561}], 
+    PointBox[{-0.012174980674179905`, 8.001678037334395}], 
+    PointBox[{1.9899445322391864`, 8.017937819182016}], 
+    PointBox[{4.005962105706435, 8.000203501893496}], 
+    PointBox[{5.998592251527025, 8.00241222029257}], 
+    PointBox[{7.97396610951554, 7.994481596397046}], 
+    PointBox[{9.987827783991897, 8.014260996744655}], 
+    PointBox[{-0.0030337811140937095`, 9.996074019761956}], 
+    PointBox[{2.001840611047399, 9.999828053855856}], 
+    PointBox[{4.000141229908526, 9.999545461312302}], 
+    PointBox[{6.00025858426802, 10.006543267139891`}], 
+    PointBox[{7.97490299826145, 9.992068321688384}], 
+    PointBox[{9.97766577509837, 10.005068431055866`}]}, 
+   {RGBColor[1, 0, 0], 
+    StyleBox[{InsetBox["1", {0.0045450476957256255, 0.03816318599660532}], 
+      InsetBox["2", {2.0345756157476123, -0.017426192835300457}], 
+      InsetBox["3", {4.000934601042707, -0.01587860660108288}], 
+      InsetBox["4", {6.013712986470905, -0.010098114903651307}], 
+      InsetBox["5", {8.017864731513878, 0.02438804589446254}], 
+      InsetBox["6", {10.032532723264472, -0.0012319864410962106}], 
+      InsetBox["7", {-0.01503279629419487, 2.003848037582575}], 
+      InsetBox["8", {2.0041761578349804, 2.0034781559798365}], 
+      InsetBox["9", {3.981581776383819, 1.972094801683213}], 
+      InsetBox["10", {6.004878598506252, 1.9957199016440605}], 
+      InsetBox["11", {7.999454788346475, 1.983252551722842}], 
+      InsetBox["12", {9.999506480948908, 2.000721110183802}], 
+      InsetBox["13", {-0.03013280973508331, 3.996681235785835}], 
+      InsetBox["14", {1.999872321630312, 3.9990084105174244}], 
+      InsetBox["15", {4.020054033911423, 4.020210625120803}], 
+      InsetBox["16", {5.970964509669695, 3.9754610330727442}], 
+      InsetBox["17", {8.004965709523065, 4.021158074491586}], 
+      InsetBox["18", {10.002464092771165, 4.00418151545842}], 
+      InsetBox["19", {0.006577881263598925, 5.961867298884272}], 
+      InsetBox["20", {2.028441403743929, 5.974026145543971}], 
+      InsetBox["21", {4.017773725814013, 5.991398311598022}], 
+      InsetBox["22", {5.983850062949293, 5.9878805358441385}], 
+      InsetBox["23", {8.010630407419772, 6.030766147718463}], 
+      InsetBox["24", {9.998915742879367, 6.003884772215561}], 
+      InsetBox["25", {-0.012174980674179905, 8.001678037334395}], 
+      InsetBox["26", {1.9899445322391864, 8.017937819182016}], 
+      InsetBox["27", {4.005962105706435, 8.000203501893496}], 
+      InsetBox["28", {5.998592251527025, 8.00241222029257}], 
+      InsetBox["29", {7.97396610951554, 7.994481596397046}], 
+      InsetBox["30", {9.987827783991897, 8.014260996744655}], 
+      InsetBox["31", {-0.0030337811140937095, 9.996074019761956}], 
+      InsetBox["32", {2.001840611047399, 9.999828053855856}], 
+      InsetBox["33", {4.000141229908526, 9.999545461312302}], 
+      InsetBox["34", {6.00025858426802, 10.006543267139891}], 
+      InsetBox["35", {7.97490299826145, 9.992068321688384}], 
+      InsetBox["36", {9.97766577509837, 10.005068431055866}]},
+     FontSize->18]}, {}, {}, 
+   {GrayLevel[0], Thickness[Tiny], 
+    LineBox[{{0.0045450476957256255`, 0.03816318599660532}, {
+     2.0345756157476123`, -0.017426192835300457`}}], 
+    LineBox[{{0.0045450476957256255`, 
+     0.03816318599660532}, {-0.01503279629419487, 2.003848037582575}}], 
+    LineBox[{{2.0345756157476123`, -0.017426192835300457`}, {
+     4.000934601042707, -0.01587860660108288}}], 
+    LineBox[{{4.000934601042707, -0.01587860660108288}, {
+     6.013712986470905, -0.010098114903651307`}}], 
+    LineBox[{{6.013712986470905, -0.010098114903651307`}, {8.017864731513878, 
+     0.02438804589446254}}], 
+    LineBox[{{8.017864731513878, 0.02438804589446254}, {
+     10.032532723264472`, -0.0012319864410962106`}}], 
+    LineBox[{{10.032532723264472`, -0.0012319864410962106`}, {
+     9.999506480948908, 2.000721110183802}}], 
+    LineBox[{{-0.01503279629419487, 2.003848037582575}, {-0.03013280973508331,
+      3.996681235785835}}], 
+    LineBox[{{9.999506480948908, 2.000721110183802}, {10.002464092771165`, 
+     4.00418151545842}}], 
+    LineBox[{{-0.03013280973508331, 3.996681235785835}, {0.006577881263598925,
+      5.961867298884272}}], 
+    LineBox[{{10.002464092771165`, 4.00418151545842}, {9.998915742879367, 
+     6.003884772215561}}], 
+    LineBox[{{0.006577881263598925, 
+     5.961867298884272}, {-0.012174980674179905`, 8.001678037334395}}], 
+    LineBox[{{9.998915742879367, 6.003884772215561}, {9.987827783991897, 
+     8.014260996744655}}], 
+    LineBox[{{-0.012174980674179905`, 
+     8.001678037334395}, {-0.0030337811140937095`, 9.996074019761956}}], 
+    LineBox[{{9.987827783991897, 8.014260996744655}, {9.97766577509837, 
+     10.005068431055866`}}], 
+    LineBox[{{-0.0030337811140937095`, 9.996074019761956}, {2.001840611047399,
+      9.999828053855856}}], 
+    LineBox[{{2.001840611047399, 9.999828053855856}, {4.000141229908526, 
+     9.999545461312302}}], 
+    LineBox[{{4.000141229908526, 9.999545461312302}, {6.00025858426802, 
+     10.006543267139891`}}], 
+    LineBox[{{6.00025858426802, 10.006543267139891`}, {7.97490299826145, 
+     9.992068321688384}}], 
+    LineBox[{{7.97490299826145, 9.992068321688384}, {9.97766577509837, 
+     10.005068431055866`}}]}},
+  Frame->True]], "Output",
+ CellChangeTimes->{
+  3.454615760520425*^9, {3.454615829475415*^9, 3.454615851288978*^9}, {
+   3.454615980737693*^9, 3.4546160134327707`*^9}, 3.4546162601788483`*^9, {
+   3.454616365633326*^9, 3.454616458497938*^9}, {3.561413610249795*^9, 
+   3.561413631385496*^9}, {3.5614136740538397`*^9, 3.561413713065332*^9}, {
+   3.56141377091042*^9, 3.561413831086649*^9}, 3.561413871962851*^9, 
+   3.561413989208316*^9, 3.561414061963101*^9, 3.561414121162792*^9, {
+   3.561414393188801*^9, 3.561414422919471*^9}, 3.561414506418291*^9, 
+   3.705755649724584*^9, 
+   3.705756329003236*^9},ExpressionUUID->"04addcfc-34e7-4884-892f-\
+665a01e59d86"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"p", "=", 
+  RowBox[{"NTissueVertices", "[", "w", "]"}]}]], "Input",
+ CellChangeTimes->{{3.454615852049234*^9, 3.4546158529828978`*^9}, {
+   3.561413910689254*^9, 3.561413928522862*^9}, {3.561414214841177*^9, 
+   3.561414215208536*^9}, 3.561414422919553*^9, 
+   3.561414506418398*^9},ExpressionUUID->"70c6b88a-0253-4c58-b1c4-\
+38d8196587b5"],
+
+Cell[BoxData["36"], "Output",
+ CellChangeTimes->{
+  3.5614139299053583`*^9, 3.561414164162184*^9, 3.561414217353222*^9, {
+   3.561414393270607*^9, 3.561414422919602*^9}, 3.5614145064184513`*^9, 
+   3.705755653235873*^9, 
+   3.705756368316442*^9},ExpressionUUID->"e825ffd5-fbb8-450f-9d8e-\
+6a6313205265"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"q", "=", 
+   RowBox[{"NTissueEdges", "[", "w", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.561414268263483*^9, 3.5614142735525618`*^9}, 
+   3.5614144229196672`*^9, 
+   3.561414506418522*^9},ExpressionUUID->"215f47e2-e0a9-4d77-8429-\
+1a26ff6df508"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"w1", "=", 
+   RowBox[{"AddVertex", "[", 
+    RowBox[{"w", ",", 
+     RowBox[{"{", 
+      RowBox[{"12.5", ",", " ", "0.25"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"w2", "=", 
+   RowBox[{"AddEdge", "[", 
+    RowBox[{"w1", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"p", "+", "1"}], ",", "6"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"w3", "=", 
+   RowBox[{"AddEdge", "[", 
+    RowBox[{"w2", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"p", "+", "1"}], ",", "12"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"w4", "=", 
+   RowBox[{"AddCell", "[", 
+    RowBox[{"w3", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"q", "+", "1"}], ",", " ", 
+       RowBox[{"q", "+", "2"}], ",", " ", "11"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.454615948729536*^9, 3.454615955855358*^9}, {
+   3.454616095455714*^9, 3.454616154020773*^9}, {3.4546161965396633`*^9, 
+   3.454616211954805*^9}, {3.561414132740007*^9, 3.561414304006831*^9}, {
+   3.561414397870906*^9, 3.561414422919816*^9}, 
+   3.561414506418676*^9},ExpressionUUID->"7cb9d3cb-8616-4472-86e0-\
+d6489cae6975"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ShowTissue", "[", 
+  RowBox[{"w4", ",", " ", 
+   RowBox[{"Frame", "\[Rule]", " ", "True"}], ",", " ", 
+   RowBox[{"\"\<Vertices\>\"", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"Directive", "[", 
+      RowBox[{"Green", ",", 
+       RowBox[{"PointSize", "[", ".02", "]"}]}], "]"}], "}"}]}], ",", 
+   RowBox[{"\"\<VertexNumbers\>\"", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"Directive", "[", 
+      RowBox[{"Red", ",", " ", 
+       RowBox[{"FontSize", "\[Rule]", " ", "18"}]}], "]"}], "}"}]}], ",", " ",
+    "\[IndentingNewLine]", 
+   RowBox[{"\"\<EdgeNumbers\>\"", "\[Rule]", " ", "True"}], ",", " ", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<EdgeNumberStyle\>\"", "\[Rule]", " ", 
+    RowBox[{"Directive", "[", 
+     RowBox[{"Blue", ",", " ", 
+      RowBox[{"FontSize", "\[Rule]", " ", "18"}], ",", " ", 
+      RowBox[{"FontFamily", "\[Rule]", " ", "\"\<Arial\>\""}]}], "]"}]}], ",",
+    "  ", 
+   RowBox[{"\"\<CellNumbers\>\"", "\[Rule]", " ", "True"}]}], "]"}]], "Input",\
+
+ CellChangeTimes->{{3.561414322986079*^9, 3.561414350803685*^9}, 
+   3.561414422919956*^9, 
+   3.561414506418827*^9},ExpressionUUID->"278c6d24-6caf-4e31-a2bd-\
+e306fee2ccc1"],
+
+Cell[BoxData[
+ GraphicsBox[{{{
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{0.0045450476957256255`, 0.03816318599660532}, {
+       2.0345756157476123`, -0.017426192835300457`}, {2.0041761578349804`, 
+       2.0034781559798365`}, {-0.01503279629419487, 2.003848037582575}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"1\"\>", {1.011738516201202, 1.006120170685594}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{2.0345756157476123`, -0.017426192835300457`}, {
+       4.000934601042707, -0.01587860660108288}, {3.981581776383819, 
+       1.972094801683213}, {2.0041761578349804`, 2.0034781559798365`}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"2\"\>", {3.002612779118723, 0.9864886297305385}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4.000934601042707, -0.01587860660108288}, {
+       6.013712986470905, -0.010098114903651307`}, {6.004878598506252, 
+       1.9957199016440605`}, {3.981581776383819, 1.972094801683213}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"3\"\>", {5.001767059986138, 0.9863480903217043}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6.013712986470905, -0.010098114903651307`}, {
+       8.017864731513878, 0.02438804589446254}, {7.999454788346475, 
+       1.983252551722842}, {6.004878598506252, 1.9957199016440605`}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"4\"\>", {7.0050415843577785, 0.997476093769947}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8.017864731513878, 0.02438804589446254}, {
+       10.032532723264472`, -0.0012319864410962106`}, {9.999506480948908, 
+       2.000721110183802}, {7.999454788346475, 1.983252551722842}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"5\"\>", {9.015991859713196, 1.0006193472716016}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{-0.01503279629419487, 2.003848037582575}, {
+       2.0041761578349804`, 2.0034781559798365`}, {1.999872321630312, 
+       3.9990084105174244`}, {-0.03013280973508331, 3.996681235785835}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"6\"\>", {0.9899441435838393, 3.0016413062264453}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{2.0041761578349804`, 2.0034781559798365`}, {
+       3.981581776383819, 1.972094801683213}, {4.020054033911423, 
+       4.020210625120803}, {1.999872321630312, 3.9990084105174244`}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"7\"\>", {3.0057923217765397, 3.002255155681632}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{3.981581776383819, 1.972094801683213}, {6.004878598506252, 
+       1.9957199016440605`}, {5.970964509669695, 3.9754610330727442`}, {
+       4.020054033911423, 4.020210625120803}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"8\"\>", {4.988709218996654, 2.984794586452225}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{6.004878598506252, 1.9957199016440605`}, {
+       7.999454788346475, 1.983252551722842}, {8.004965709523065, 
+       4.021158074491586}, {5.970964509669695, 3.9754610330727442`}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"9\"\>", {6.999875262258661, 2.997248237012617}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7.999454788346475, 1.983252551722842}, {9.999506480948908, 
+       2.000721110183802}, {10.002464092771165`, 4.00418151545842}, {
+       8.004965709523065, 4.021158074491586}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"10\"\>", {8.998758049313123, 3.00211893631883}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{-0.03013280973508331, 3.996681235785835}, {
+       1.999872321630312, 3.9990084105174244`}, {2.028441403743929, 
+       5.974026145543971}, {0.006577881263598925, 5.961867298884272}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"11\"\>", {1.0020236185012978, 4.982225784580307}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{1.999872321630312, 3.9990084105174244`}, {
+       4.020054033911423, 4.020210625120803}, {4.017773725814013, 
+       5.991398311598022}, {2.028441403743929, 5.974026145543971}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"12\"\>", {3.0162193477777226, 4.993629734601848}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4.020054033911423, 4.020210625120803}, {5.970964509669695, 
+       3.9754610330727442`}, {5.983850062949293, 5.9878805358441385`}, {
+       4.017773725814013, 5.991398311598022}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"13\"\>", {5.001557704319409, 4.994971779140394}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5.970964509669695, 3.9754610330727442`}, {
+       8.004965709523065, 4.021158074491586}, {8.010630407419772, 
+       6.030766147718463}, {5.983850062949293, 5.9878805358441385`}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"14\"\>", {6.992376615418624, 5.00321659150724}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8.004965709523065, 4.021158074491586}, {
+       10.002464092771165`, 4.00418151545842}, {9.998915742879367, 
+       6.003884772215561}, {8.010630407419772, 6.030766147718463}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"15\"\>", {9.003414629346617, 5.014234905719365}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{0.006577881263598925, 5.961867298884272}, {
+       2.028441403743929, 5.974026145543971}, {1.9899445322391864`, 
+       8.017937819182016}, {-0.012174980674179905`, 8.001678037334395}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"16\"\>", {1.0035687078015447, 6.987215050436286}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{2.028441403743929, 5.974026145543971}, {4.017773725814013, 
+       5.991398311598022}, {4.005962105706435, 8.000203501893496}, {
+       1.9899445322391864`, 8.017937819182016}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"17\"\>", {3.0076118147571353, 6.998105031813099}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4.017773725814013, 5.991398311598022}, {5.983850062949293, 
+       5.9878805358441385`}, {5.998592251527025, 8.00241222029257}, {
+       4.005962105706435, 8.000203501893496}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"18\"\>", {5.002016436255596, 6.9977220772451165}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5.983850062949293, 5.9878805358441385`}, {
+       8.010630407419772, 6.030766147718463}, {7.97396610951554, 
+       7.994481596397046}, {5.998592251527025, 8.00241222029257}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"19\"\>", {6.987561008947836, 6.999566973685625}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{8.010630407419772, 6.030766147718463}, {9.998915742879367, 
+       6.003884772215561}, {9.987827783991897, 8.014260996744655}, {
+       7.97396610951554, 7.994481596397046}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"20\"\>", {8.996728763072017, 7.0130042842747455}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{-0.012174980674179905`, 8.001678037334395}, {
+       1.9899445322391864`, 8.017937819182016}, {2.001840611047399, 
+       9.999828053855856}, {-0.0030337811140937095`, 9.996074019761956}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"21\"\>", {0.9930939525234493, 9.004107522704315}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{1.9899445322391864`, 8.017937819182016}, {
+       4.005962105706435, 8.000203501893496}, {4.000141229908526, 
+       9.999545461312302}, {2.001840611047399, 9.999828053855856}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"22\"\>", {3.0009295869878967, 9.002905722489155}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{4.005962105706435, 8.000203501893496}, {5.998592251527025, 
+       8.00241222029257}, {6.00025858426802, 10.006543267139891`}, {
+       4.000141229908526, 9.999545461312302}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"23\"\>", {5.001634478871801, 9.002803050962097}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{5.998592251527025, 8.00241222029257}, {7.97396610951554, 
+       7.994481596397046}, {7.97490299826145, 9.992068321688384}, {
+       6.00025858426802, 10.006543267139891`}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"24\"\>", {6.986391293263952, 8.998818183798345}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{7.97396610951554, 7.994481596397046}, {9.987827783991897, 
+       8.014260996744655}, {9.97766577509837, 10.005068431055866`}, {
+       7.97490299826145, 9.992068321688384}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"25\"\>", {8.97803146647764, 9.00054556779445}]}}, {
+     {RGBColor[0.88, 1, 0.88], 
+      PolygonBox[{{12.5, 0.25}, {
+       10.032532723264472`, -0.0012319864410962106`}, {9.999506480948908, 
+       2.000721110183802}}]}, 
+     {GrayLevel[0], 
+      InsetBox["\<\"26\"\>", {10.84401306807114, 0.749829707914236}]}}}, {{
+     {GrayLevel[0], 
+      LineBox[{{0.0045450476957256255`, 0.03816318599660532}, {
+       2.0345756157476123`, -0.017426192835300457`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"1\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {1.019560331721669, 0.010368496580652432}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{0.0045450476957256255`, 
+       0.03816318599660532}, {-0.01503279629419487, 2.003848037582575}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"2\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {-0.005243874299234622, 1.02100561178959}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.0345756157476123`, -0.017426192835300457`}, {
+       4.000934601042707, -0.01587860660108288}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"3\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {3.0177551083951597, -0.01665239971819167}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.0345756157476123`, -0.017426192835300457`}, {
+       2.0041761578349804`, 2.0034781559798365`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"4\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {2.0193758867912965, 0.993025981572268}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.000934601042707, -0.01587860660108288}, {
+       6.013712986470905, -0.010098114903651307`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"5\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.007323793756806, -0.012988360752367093}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.000934601042707, -0.01587860660108288}, {3.981581776383819, 
+       1.972094801683213}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"6\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {3.991258188713263, 0.978108097541065}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{6.013712986470905, -0.010098114903651307`}, {
+       8.017864731513878, 0.02438804589446254}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"7\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {7.015788858992392, 0.007144965495405616}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{6.013712986470905, -0.010098114903651307`}, {
+       6.004878598506252, 1.9957199016440605`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"8\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {6.009295792488579, 0.9928108933702047}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{8.017864731513878, 0.02438804589446254}, {
+       10.032532723264472`, -0.0012319864410962106`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"9\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {9.025198727389174, 0.011578029726683165}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{8.017864731513878, 0.02438804589446254}, {7.999454788346475, 
+       1.983252551722842}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"10\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {8.008659759930177, 1.0038202988086524}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{10.032532723264472`, -0.0012319864410962106`}, {
+       9.999506480948908, 2.000721110183802}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"11\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {10.01601960210669, 0.999744561871353}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.01503279629419487, 2.003848037582575}, {
+       2.0041761578349804`, 2.0034781559798365`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"12\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {0.9945716807703927, 2.0036630967812057}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.01503279629419487, 
+       2.003848037582575}, {-0.03013280973508331, 3.996681235785835}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"13\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {-0.02258280301463909, 3.000264636684205}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.0041761578349804`, 2.0034781559798365`}, {3.981581776383819,
+        1.972094801683213}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"14\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {2.9928789671094, 1.9877864788315247}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.0041761578349804`, 2.0034781559798365`}, {1.999872321630312,
+        3.9990084105174244`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"15\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {2.002024239732646, 3.0012432832486304}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{3.981581776383819, 1.972094801683213}, {6.004878598506252, 
+       1.9957199016440605`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"16\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {4.993230187445036, 1.9839073516636367}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{3.981581776383819, 1.972094801683213}, {4.020054033911423, 
+       4.020210625120803}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"17\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {4.0008179051476205, 2.996152713402008}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{6.004878598506252, 1.9957199016440605`}, {7.999454788346475, 
+       1.983252551722842}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"18\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {7.002166693426364, 1.9894862266834514}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{6.004878598506252, 1.9957199016440605`}, {5.970964509669695, 
+       3.9754610330727442`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"19\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.987921554087974, 2.9855904673584024}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{7.999454788346475, 1.983252551722842}, {9.999506480948908, 
+       2.000721110183802}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"20\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {8.999480634647691, 1.991986830953322}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{7.999454788346475, 1.983252551722842}, {8.004965709523065, 
+       4.021158074491586}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"21\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {8.00221024893477, 3.002205313107214}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{9.999506480948908, 2.000721110183802}, {10.002464092771165`, 
+       4.00418151545842}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"22\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {10.000985286860036, 3.002451312821111}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.03013280973508331, 3.996681235785835}, {1.999872321630312, 
+       3.9990084105174244`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"23\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {0.9848697559476144, 3.9978448231516297}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.03013280973508331, 3.996681235785835}, {
+       0.006577881263598925, 5.961867298884272}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"24\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {-0.011777464235742193, 4.979274267335054}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{1.999872321630312, 3.9990084105174244`}, {4.020054033911423, 
+       4.020210625120803}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"25\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {3.0099631777708673, 4.009609517819113}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{1.999872321630312, 3.9990084105174244`}, {2.028441403743929, 
+       5.974026145543971}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"26\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {2.0141568626871207, 4.986517278030698}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.020054033911423, 4.020210625120803}, {5.970964509669695, 
+       3.9754610330727442`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"27\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {4.995509271790559, 3.9978358290967737}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.020054033911423, 4.020210625120803}, {4.017773725814013, 
+       5.991398311598022}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"28\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {4.018913879862718, 5.005804468359413}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{5.970964509669695, 3.9754610330727442`}, {8.004965709523065, 
+       4.021158074491586}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"29\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {6.98796510959638, 3.998309553782165}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{5.970964509669695, 3.9754610330727442`}, {5.983850062949293, 
+       5.9878805358441385`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"30\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.977407286309495, 4.981670784458442}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{8.004965709523065, 4.021158074491586}, {10.002464092771165`, 
+       4.00418151545842}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"31\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {9.003714901147115, 4.012669794975003}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{8.004965709523065, 4.021158074491586}, {8.010630407419772, 
+       6.030766147718463}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"32\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {8.007798058471419, 5.0259621111050246}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{10.002464092771165`, 4.00418151545842}, {9.998915742879367, 
+       6.003884772215561}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"33\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {10.000689917825266, 5.00403314383699}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{0.006577881263598925, 5.961867298884272}, {2.028441403743929, 
+       5.974026145543971}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"34\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {1.017509642503764, 5.967946722214121}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{0.006577881263598925, 
+       5.961867298884272}, {-0.012174980674179905`, 8.001678037334395}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"35\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {-0.00279854970529049, 6.9817726681093335}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.028441403743929, 5.974026145543971}, {4.017773725814013, 
+       5.991398311598022}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"36\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {3.023107564778971, 5.982712228570996}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.028441403743929, 5.974026145543971}, {1.9899445322391864`, 
+       8.017937819182016}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"37\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {2.0091929679915577, 6.995981982362993}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.017773725814013, 5.991398311598022}, {5.983850062949293, 
+       5.9878805358441385`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"38\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.000811894381654, 5.98963942372108}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.017773725814013, 5.991398311598022}, {4.005962105706435, 
+       8.000203501893496}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"39\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {4.011867915760224, 6.995800906745759}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{5.983850062949293, 5.9878805358441385`}, {8.010630407419772, 
+       6.030766147718463}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"40\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {6.997240235184533, 6.0093233417813}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{5.983850062949293, 5.9878805358441385`}, {5.998592251527025, 
+       8.00241222029257}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"41\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.99122115723816, 6.995146378068354}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{8.010630407419772, 6.030766147718463}, {9.998915742879367, 
+       6.003884772215561}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"42\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {9.004773075149568, 6.017325459967012}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{8.010630407419772, 6.030766147718463}, {7.97396610951554, 
+       7.994481596397046}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"43\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {7.992298258467656, 7.0126238720577545}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{9.998915742879367, 6.003884772215561}, {9.987827783991897, 
+       8.014260996744655}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"44\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {9.993371763435633, 7.0090728844801085}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.012174980674179905`, 8.001678037334395}, {
+       1.9899445322391864`, 8.017937819182016}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"45\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {0.9888847757825032, 8.009807928258205}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.012174980674179905`, 
+       8.001678037334395}, {-0.0030337811140937095`, 9.996074019761956}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"46\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {-0.007604380894136807, 8.998876028548175}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{1.9899445322391864`, 8.017937819182016}, {4.005962105706435, 
+       8.000203501893496}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"47\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {2.9979533189728107, 8.009070660537756}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{1.9899445322391864`, 8.017937819182016}, {2.001840611047399, 
+       9.999828053855856}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"48\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {1.9958925716432927, 9.008882936518937}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.005962105706435, 8.000203501893496}, {5.998592251527025, 
+       8.00241222029257}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"49\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.00227717861673, 8.001307861093032}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.005962105706435, 8.000203501893496}, {4.000141229908526, 
+       9.999545461312302}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"50\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {4.003051667807481, 8.999874481602898}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{5.998592251527025, 8.00241222029257}, {7.97396610951554, 
+       7.994481596397046}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"51\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {6.986279180521283, 7.998446908344808}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{5.998592251527025, 8.00241222029257}, {6.00025858426802, 
+       10.006543267139891`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"52\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.999425417897523, 9.00447774371623}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{7.97396610951554, 7.994481596397046}, {9.987827783991897, 
+       8.014260996744655}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"53\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {8.980896946753719, 8.00437129657085}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{7.97396610951554, 7.994481596397046}, {7.97490299826145, 
+       9.992068321688384}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"54\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {7.974434553888495, 8.993274959042715}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{9.987827783991897, 8.014260996744655}, {9.97766577509837, 
+       10.005068431055866`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"55\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {9.982746779545133, 9.00966471390026}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{-0.0030337811140937095`, 9.996074019761956}, {
+       2.001840611047399, 9.999828053855856}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"56\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {0.9994034149666526, 9.997951036808907}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{2.001840611047399, 9.999828053855856}, {4.000141229908526, 
+       9.999545461312302}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"57\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {3.0009909204779626, 9.99968675758408}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{4.000141229908526, 9.999545461312302}, {6.00025858426802, 
+       10.006543267139891`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"58\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {5.000199907088273, 10.003044364226096}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{6.00025858426802, 10.006543267139891`}, {7.97490299826145, 
+       9.992068321688384}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"59\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {6.987580791264735, 9.999305794414138}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{7.97490299826145, 9.992068321688384}, {9.97766577509837, 
+       10.005068431055866`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"60\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {8.97628438667991, 9.998568376372125}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{12.5, 0.25}, {
+       10.032532723264472`, -0.0012319864410962106`}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"61\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {11.266266361632237, 0.1243840067794519}]}}, {
+     {GrayLevel[0], 
+      LineBox[{{12.5, 0.25}, {9.999506480948908, 2.000721110183802}}]}, 
+     {GrayLevel[0], InsetBox[
+       StyleBox["\<\"62\"\>",
+        StripOnInput->False,
+        LineColor->RGBColor[0, 0, 1],
+        FrontFaceColor->RGBColor[0, 0, 1],
+        BackFaceColor->RGBColor[0, 0, 1],
+        GraphicsColor->RGBColor[0, 0, 1],
+        FontFamily->"Arial",
+        FontSize->18,
+        FontColor->RGBColor[
+         0, 0, 1]], {11.249753240474455, 1.125360555091901}]}}}, 
+   {RGBColor[0, 1, 0], PointSize[0.02], 
+    PointBox[{0.0045450476957256255`, 0.03816318599660532}], 
+    PointBox[{2.0345756157476123`, -0.017426192835300457`}], 
+    PointBox[{4.000934601042707, -0.01587860660108288}], 
+    PointBox[{6.013712986470905, -0.010098114903651307`}], 
+    PointBox[{8.017864731513878, 0.02438804589446254}], 
+    PointBox[{10.032532723264472`, -0.0012319864410962106`}], 
+    PointBox[{-0.01503279629419487, 2.003848037582575}], 
+    PointBox[{2.0041761578349804`, 2.0034781559798365`}], 
+    PointBox[{3.981581776383819, 1.972094801683213}], 
+    PointBox[{6.004878598506252, 1.9957199016440605`}], 
+    PointBox[{7.999454788346475, 1.983252551722842}], 
+    PointBox[{9.999506480948908, 2.000721110183802}], 
+    PointBox[{-0.03013280973508331, 3.996681235785835}], 
+    PointBox[{1.999872321630312, 3.9990084105174244`}], 
+    PointBox[{4.020054033911423, 4.020210625120803}], 
+    PointBox[{5.970964509669695, 3.9754610330727442`}], 
+    PointBox[{8.004965709523065, 4.021158074491586}], 
+    PointBox[{10.002464092771165`, 4.00418151545842}], 
+    PointBox[{0.006577881263598925, 5.961867298884272}], 
+    PointBox[{2.028441403743929, 5.974026145543971}], 
+    PointBox[{4.017773725814013, 5.991398311598022}], 
+    PointBox[{5.983850062949293, 5.9878805358441385`}], 
+    PointBox[{8.010630407419772, 6.030766147718463}], 
+    PointBox[{9.998915742879367, 6.003884772215561}], 
+    PointBox[{-0.012174980674179905`, 8.001678037334395}], 
+    PointBox[{1.9899445322391864`, 8.017937819182016}], 
+    PointBox[{4.005962105706435, 8.000203501893496}], 
+    PointBox[{5.998592251527025, 8.00241222029257}], 
+    PointBox[{7.97396610951554, 7.994481596397046}], 
+    PointBox[{9.987827783991897, 8.014260996744655}], 
+    PointBox[{-0.0030337811140937095`, 9.996074019761956}], 
+    PointBox[{2.001840611047399, 9.999828053855856}], 
+    PointBox[{4.000141229908526, 9.999545461312302}], 
+    PointBox[{6.00025858426802, 10.006543267139891`}], 
+    PointBox[{7.97490299826145, 9.992068321688384}], 
+    PointBox[{9.97766577509837, 10.005068431055866`}], 
+    PointBox[{12.5, 0.25}]}, 
+   {RGBColor[1, 0, 0], 
+    StyleBox[{InsetBox["1", {0.0045450476957256255, 0.03816318599660532}], 
+      InsetBox["2", {2.0345756157476123, -0.017426192835300457}], 
+      InsetBox["3", {4.000934601042707, -0.01587860660108288}], 
+      InsetBox["4", {6.013712986470905, -0.010098114903651307}], 
+      InsetBox["5", {8.017864731513878, 0.02438804589446254}], 
+      InsetBox["6", {10.032532723264472, -0.0012319864410962106}], 
+      InsetBox["7", {-0.01503279629419487, 2.003848037582575}], 
+      InsetBox["8", {2.0041761578349804, 2.0034781559798365}], 
+      InsetBox["9", {3.981581776383819, 1.972094801683213}], 
+      InsetBox["10", {6.004878598506252, 1.9957199016440605}], 
+      InsetBox["11", {7.999454788346475, 1.983252551722842}], 
+      InsetBox["12", {9.999506480948908, 2.000721110183802}], 
+      InsetBox["13", {-0.03013280973508331, 3.996681235785835}], 
+      InsetBox["14", {1.999872321630312, 3.9990084105174244}], 
+      InsetBox["15", {4.020054033911423, 4.020210625120803}], 
+      InsetBox["16", {5.970964509669695, 3.9754610330727442}], 
+      InsetBox["17", {8.004965709523065, 4.021158074491586}], 
+      InsetBox["18", {10.002464092771165, 4.00418151545842}], 
+      InsetBox["19", {0.006577881263598925, 5.961867298884272}], 
+      InsetBox["20", {2.028441403743929, 5.974026145543971}], 
+      InsetBox["21", {4.017773725814013, 5.991398311598022}], 
+      InsetBox["22", {5.983850062949293, 5.9878805358441385}], 
+      InsetBox["23", {8.010630407419772, 6.030766147718463}], 
+      InsetBox["24", {9.998915742879367, 6.003884772215561}], 
+      InsetBox["25", {-0.012174980674179905, 8.001678037334395}], 
+      InsetBox["26", {1.9899445322391864, 8.017937819182016}], 
+      InsetBox["27", {4.005962105706435, 8.000203501893496}], 
+      InsetBox["28", {5.998592251527025, 8.00241222029257}], 
+      InsetBox["29", {7.97396610951554, 7.994481596397046}], 
+      InsetBox["30", {9.987827783991897, 8.014260996744655}], 
+      InsetBox["31", {-0.0030337811140937095, 9.996074019761956}], 
+      InsetBox["32", {2.001840611047399, 9.999828053855856}], 
+      InsetBox["33", {4.000141229908526, 9.999545461312302}], 
+      InsetBox["34", {6.00025858426802, 10.006543267139891}], 
+      InsetBox["35", {7.97490299826145, 9.992068321688384}], 
+      InsetBox["36", {9.97766577509837, 10.005068431055866}], 
+      InsetBox["37", {12.5, 0.25}]},
+     FontSize->18]}, {}, {}, 
+   {GrayLevel[0], Thickness[Tiny], 
+    LineBox[{{0.0045450476957256255`, 0.03816318599660532}, {
+     2.0345756157476123`, -0.017426192835300457`}}], 
+    LineBox[{{0.0045450476957256255`, 
+     0.03816318599660532}, {-0.01503279629419487, 2.003848037582575}}], 
+    LineBox[{{2.0345756157476123`, -0.017426192835300457`}, {
+     4.000934601042707, -0.01587860660108288}}], 
+    LineBox[{{4.000934601042707, -0.01587860660108288}, {
+     6.013712986470905, -0.010098114903651307`}}], 
+    LineBox[{{6.013712986470905, -0.010098114903651307`}, {8.017864731513878, 
+     0.02438804589446254}}], 
+    LineBox[{{8.017864731513878, 0.02438804589446254}, {
+     10.032532723264472`, -0.0012319864410962106`}}], 
+    LineBox[{{-0.01503279629419487, 2.003848037582575}, {-0.03013280973508331,
+      3.996681235785835}}], 
+    LineBox[{{9.999506480948908, 2.000721110183802}, {10.002464092771165`, 
+     4.00418151545842}}], 
+    LineBox[{{-0.03013280973508331, 3.996681235785835}, {0.006577881263598925,
+      5.961867298884272}}], 
+    LineBox[{{10.002464092771165`, 4.00418151545842}, {9.998915742879367, 
+     6.003884772215561}}], 
+    LineBox[{{0.006577881263598925, 
+     5.961867298884272}, {-0.012174980674179905`, 8.001678037334395}}], 
+    LineBox[{{9.998915742879367, 6.003884772215561}, {9.987827783991897, 
+     8.014260996744655}}], 
+    LineBox[{{-0.012174980674179905`, 
+     8.001678037334395}, {-0.0030337811140937095`, 9.996074019761956}}], 
+    LineBox[{{9.987827783991897, 8.014260996744655}, {9.97766577509837, 
+     10.005068431055866`}}], 
+    LineBox[{{-0.0030337811140937095`, 9.996074019761956}, {2.001840611047399,
+      9.999828053855856}}], 
+    LineBox[{{2.001840611047399, 9.999828053855856}, {4.000141229908526, 
+     9.999545461312302}}], 
+    LineBox[{{4.000141229908526, 9.999545461312302}, {6.00025858426802, 
+     10.006543267139891`}}], 
+    LineBox[{{6.00025858426802, 10.006543267139891`}, {7.97490299826145, 
+     9.992068321688384}}], 
+    LineBox[{{7.97490299826145, 9.992068321688384}, {9.97766577509837, 
+     10.005068431055866`}}], 
+    LineBox[{{12.5, 0.25}, {10.032532723264472`, -0.0012319864410962106`}}], 
+    LineBox[{{12.5, 0.25}, {9.999506480948908, 2.000721110183802}}]}},
+  Frame->True]], "Output",
+ CellChangeTimes->{{3.5614143043824053`*^9, 3.561414351355837*^9}, {
+   3.561414393542354*^9, 3.5614144229342213`*^9}, 3.5614145064331093`*^9, 
+   3.705755664480826*^9, 
+   3.705756375871952*^9},ExpressionUUID->"fc24607f-75f8-493b-b576-\
+a94f67518bae"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{640, 750},
+WindowMargins->{{Automatic, 0}, {-28, Automatic}},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+FrontEndVersion->"11.1 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 27, \
+2017)",
+StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 332, 6, 64, "Input", "ExpressionUUID" -> \
+"68a09d3d-c362-4d4d-abc2-052a15bfbeda"],
+Cell[CellGroupData[{
+Cell[924, 32, 1912, 48, 64, "Print", "ExpressionUUID" -> \
+"b1d4dd2d-24c6-4acd-846e-fd43fe327aa5"],
+Cell[2839, 82, 1143, 27, 82, "Print", "ExpressionUUID" -> \
+"9611d583-6655-4324-b83e-4bd80d87a646"],
+Cell[3985, 111, 2150, 55, 63, "Print", "ExpressionUUID" -> \
+"f70730d9-a10b-456d-a1eb-7c679d9cc1f5"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6184, 172, 311, 5, 69, "Section", "ExpressionUUID" -> \
+"be603f1f-ead9-4bb7-a34f-549d7337e7de"],
+Cell[6498, 179, 446, 12, 119, "Text", "ExpressionUUID" -> \
+"e5346536-1099-47c7-9f91-602c7368cf08"],
+Cell[6947, 193, 714, 17, 64, "Input", "ExpressionUUID" -> \
+"6c055982-bf6d-4108-809f-ca0d0a8b110d"],
+Cell[CellGroupData[{
+Cell[7686, 214, 1517, 32, 169, "Input", "ExpressionUUID" -> \
+"f26457c6-232d-4dc5-9bba-33d5ffc26353"],
+Cell[9206, 248, 47446, 1119, 387, "Output", "ExpressionUUID" -> \
+"04addcfc-34e7-4884-892f-665a01e59d86"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[56689, 1372, 364, 7, 42, "Input", "ExpressionUUID" -> \
+"70c6b88a-0253-4c58-b1c4-38d8196587b5"],
+Cell[57056, 1381, 303, 6, 42, "Output", "ExpressionUUID" -> \
+"e825ffd5-fbb8-450f-9d8e-6a6313205265"]
+}, Open  ]],
+Cell[57374, 1390, 286, 7, 42, "Input", "ExpressionUUID" -> \
+"215f47e2-e0a9-4d77-8429-1a26ff6df508"],
+Cell[57663, 1399, 1271, 38, 127, "Input", "ExpressionUUID" -> \
+"7cb9d3cb-8616-4472-86e0-d6489cae6975"],
+Cell[CellGroupData[{
+Cell[58959, 1441, 1189, 28, 169, "Input", "ExpressionUUID" -> \
+"278c6d24-6caf-4e31-a2bd-e306fee2ccc1"],
+Cell[60151, 1471, 48438, 1148, 356, "Output", "ExpressionUUID" -> \
+"fc24607f-75f8-493b-b576-a94f67518bae"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
