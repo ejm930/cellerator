@@ -38,10 +38,11 @@
 
         <p class="header">Return Value</p>
 
-        <p><span class="function">BoundaryCell[Tissue]</span> returns a data list 
-        <code>{"Coordinates"->{{x1,y1},{x2,y2},....},
-        "Edges"->{e1,e2,...}, "Vertices"->{v1,v2,...} }</code> where e1,e2,... are edge numbers, and v1,v2,... are vertex numbers in the 
-        original tissue, and {{x1,y1},...} are the coordinates of the vertices on the bounding cell.
+        <p><span class="function">
+		BoundaryCell[Tissue]</span> returns a data list <br>
+        <code>
+		{"Coordinates"->{{x1,y1},{x2,y2},....}, (* coordinates of bounding vertices *)<br>
+         "Edges"->{e1,e2,...},     (* edge numbers of bounding edges *)<br> "Vertices"->{v1,v2,...} } (* vertex numbers of vertices on boundary *)</code> <br>
       </p>
 
 
@@ -52,13 +53,13 @@
 
         <p class="header">Example</p>
         
-        <p>To create a tissue consisting of a single cell that is equivalent to the boundary of the original cell:</p><p>
-        <code><br>
-        bc="Edges"/.BoundaryCell[T]<br>
-        v=TissueVertices[T]<br>
-        e=TissueEdges[T]<br>
-        Tnew=Tissue[v,e,bc]
-        </code>
+        <p>[ <a href="examples/BoundaryCell-example.nb.zip">Download Example as Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name="display" src="./examples/BoundaryCell-example.html" id=
+        "display" style="background-color:white;"><a href="">View as html.</a></iframe></p>
+
+        
+
         
         
         
@@ -74,14 +75,13 @@
 
         <div class="logo">
           <center>
-            <a href="http://sourceforge.net/projects/xlr8r/"><img src=
-            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4" width="125" height="37" border="0" alt=
-            "SourceForge.net Logo"></a>
+           <a href="https://github.com/biomathman/cellerator"><img src="GitHub_Logo.png" height="37px"> <img src="GitHub-Mark-64px.png" height="37px"></a>
           </center>
         </div>
+
       </div><br>
       <br>
-      <span style="font-size:xx-small;">[2013-04-29]</span>
+      <span style="font-size:xx-small;">[2017 June 6]</span>
     </div>
   </center>
 </body>
