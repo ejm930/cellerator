@@ -19,10 +19,12 @@
 
 
 
+(* ::Input::Initialization:: *)
 BeginPackage["Cellzilla2D`"];
-$Cellzilla2DVersion="3.0.50 (21 Nov 2014)"  
+$Cellzilla2DVersion="3.0.51 (05 June 2017)"  
 
 
+(* ::Input::Initialization:: *)
 If[$VersionNumber<6, Print["This package requires Mathematica Version 6.0.3 or higher."]; Abort[]
 ]; 
 If[$VersionNumber==6 \[And] $ReleaseNumber<3, 
@@ -33,10 +35,12 @@ Abort[];
 Needs["XML`"]; 
 
 
+(* ::Input::Initialization:: *)
 MemoryInstalled::usage="MemoryInstalled[] is the missing function in Mathematica that tells you how much memory you have installed. It requires JLink so it may not work on all operating systems.";
 MemoryFree::usage="MemoryFree[] is the missing function in Mathematica that tells you how much system memory is free (the complement of MemoryInUse[]). Requires JLink so it may not work on all operating systems.";
 
 
+(* ::Input::Initialization:: *)
 DelaunayMean::usage="DelaunayMean[{{\!\(\*SubscriptBox[\(x\), \(1\)]\),\!\(\*SubscriptBox[\(y\), \(1\)]\)},{\!\(\*SubscriptBox[\(x\), \(2\)]\),\!\(\*SubscriptBox[\(y\), \(2\)]\)},...}]\nReturns the average length of all the links in the Delaunay Triangulation"; 
 DelaunayEdges::usage="DelaunayEdges[{{\!\(\*SubscriptBox[\(x\), \(1\)]\),\!\(\*SubscriptBox[\(y\), \(1\)]\)},{\!\(\*SubscriptBox[\(x\), \(2\)]\),\!\(\*SubscriptBox[\(y\), \(2\)]\)},...}]\nReturns a the coordinates of the end points of all the links in the Delaunay Triangulation, {\!\(\*SubscriptBox[\(link\), \(1\)]\), \!\(\*SubscriptBox[\(link\), \(2\)]\),..} where each \!\(\*SubscriptBox[\(link\), \(i\)]\) has the form {{\!\(\*SubscriptBox[\(x\), \(1\)]\),\!\(\*SubscriptBox[\(y\), \(1\)]\)}, {\!\(\*SubscriptBox[\(x\), \(2\)]\),\!\(\*SubscriptBox[\(y\), \(2\)]\)}}."; 
 ConvexHullVertices::usage="ConvexHullVertices[{{\!\(\*SubscriptBox[\(x\), \(1\)]\),\!\(\*SubscriptBox[\(y\), \(1\)]\)},{\!\(\*SubscriptBox[\(x\), \(2\)]\),\!\(\*SubscriptBox[\(y\), \(2\)]\)}, ...}]\nReturns the convex hull as a list of vertex coordinates."; 
@@ -47,6 +51,7 @@ PrunedDelaunayPairs::usage="PrunedDelaunayPairs[points] returns a list of the {i
 DelaunayPairs::usage="DelaunayPairs[{{\!\(\*SubscriptBox[\(x\), \(1\)]\),\!\(\*SubscriptBox[\(y\), \(1\)]\)},{\!\(\*SubscriptBox[\(x\), \(2\)]\),\!\(\*SubscriptBox[\(y\), \(2\)]\)},...}]\nReturns a the indices of the endpoints of the unique edges in the Delaunay Triangulation, as {i,j} pairs in the list of vertices."
 
 
+(* ::Input::Initialization:: *)
 go::usage=""; 
 grow::usage=""; 
 StaticSimulation::usage="StaticSimulation[DTissue, start, stop, options] is a wrapper for grow that configures a static (non-growing) simulation. The tissue does not grow and cell division does not occur.  Equivalent to grow with a division threshold of \[Infinity] and \"Growing\"\[Rule]False. All non-growth related options for grow are still valid. "; 
@@ -85,6 +90,7 @@ CommonTimeDomain::usage="CommonTimeDomain[solution] returns the time range repre
 BellCurve::usage="";
 
 
+(* ::Input::Initialization:: *)
 CelleratorNetwork::usage="CelleratorNetwork[tissue,options]\n\"Reactions\"-> network , wherenetwork is any xCellerator reaction network, e.g., as stored in Sigmoid (NOT indexed by cell; the cell indices will be added\n\"Diffusion\"-> {{x,\!\(\*SubscriptBox[\(\[Beta]\), \(x\)]\)}, {y, \!\(\*SubscriptBox[\(\[Beta]\), \(y\)]\)}, ...}, list of species and penetrability coefficients constants.\n\"Verbose\"\[Rule]True, set to false to suppress printing summary message.\n\"Area\"\[Rule]None, specify a symbol to replace \!\(\*SubscriptBox[\(A\), \(i\)]\) with var[i][t] \n\"Edge\"\[Rule]None, specify a symbol to replace  \!\(\*SubscriptBox[\(\[ScriptL]\), \(ij\)]\) with edge[p][t] where p is the edge number between nodes i and j.\n\nIf cell sizes will change during the simulation the options \"Area\" and \"Edge\" must be specified. If one is specified but the other is not a unique variable name will be generated." ; 
 WalledNetwork::usage="WalledNetwork[internalReactions,\nDiffusionReactions,
 \"Area\"\[Rule]Area Variable Name (None or not used: statis values from tissue),
@@ -96,6 +102,7 @@ SSANetwork::usage="SSANetwork[network, diffusion, tissue]";
 X2SSANetwork::usage="";
 
 
+(* ::Input::Initialization:: *)
 DivisionPotential::usage="";
 OptimizeDivisionPotential::usage="";
 PrincipalGrowthDirection::usage="PrincipalGrowthDirection[DTissue,cellnumber, solution,time,xvar,yvar]\ndetermines the principle direction of cell growth, taken as the eigenvector of the covariance matrix of the velocity vectors, with the largest eigenvalue.";
@@ -125,6 +132,7 @@ Diffusion::Usage="Diffusion is a header for a Diffusion Arrow";
 IGRN::Usage="IGRN is a header for an Intercellular GRN Reaction"
 
 
+(* ::Input::Initialization:: *)
 TemplateHoneycombCover::usage="TemplateHoneycombCover[xmax,ymax]";
 TemplateRectangular::usage="TemplateRectangular[nx,ny]\nTemplateRectangular[{xmin,xmax,dx}, {ymin,ymax,dy}]"; 
 TemplateRectangularCover::usage="TemplateRectangularCover[xmax, ymax, dx, dy, offset:.5]";
@@ -132,7 +140,7 @@ TemplateCircularHoneycomb::usage="TemplateCircularHoneycomb[n,area]\nwhere n is 
 TemplateCircularHoneycombCover::usage="TemplateCircularHoneycombCover[radius, mode]\nmode=-1: circle\nmode=0: semiscircle\nmode=n>0: semicircle atop base of n rows."; 
 RandomizeTemplate::usage="RandomizeTemplate[tissue, rand:.1]";
 TemplateRandom::usage="TemplateRandom[npoints, {{x1,y1}, {x2,y2},..} (boundary)] generates a template of totally random cells that fall within the specified boundary (uses a Voronoi based model).";
-TemplatePolygon::usage="TemplatePolygon[...] returns a single-cell tissue in the shape of a polygon. Arguments are idential to RegularPolygon.";
+TemplatePolygon::usage="TemplatePolygon[...] returns a single-cell tissue in the shape of a polygon. Arguments are idential to regularPolygon.";
 TemplateRing::usage="TemplateRing[number-of-cells, outer-Radius, Area-Per-Cell]";
 TemplateRandomCircularGrid::usage="TemplateRandomCircularGrid[numberOfCells, radius]"; 
 TemplateRandomSemicircularGrid::usage="TemplateRandomSemicircularGrid[n, radius, nbottom]"; 
@@ -143,6 +151,7 @@ CellVerticesToTissue::usage="CellVerticesToTissue[{cell1, cell2, ...}] where cel
 TemplateParabolic::usage="TemplateParabolic[height, rows, randomization:0] returns a template constrained to a parabolic dome with width equal to twice the height and `rows` rows of cells arranged in concentric parabolas, offset by one diameter. In the present version the aspect ratio of teh parabola is fixed.";
 
 
+(* ::Input::Initialization:: *)
 (* MultiPlot::usage="MultiPlot[solution, {variables, ...}, {t, tstart, tend}, options]"; 
 RowPlot::usage="RowPlot[solution, {variables, ...}, {t, tstart, tend}, options]"; *)
 SolutionVariables::usage="SolutionVariables[sim]";
@@ -150,10 +159,12 @@ SolutionVars::usage="SoltionVars[sim]";
 GeometricSnapShot::usage=""; 
 
 
+(* ::Input::Initialization:: *)
 SmootheCell::usage="SmootheCell[tissue, cellNumber]"; 
 SmootheCells::usage="SmootheCells[tissue, {cellNum, cellNum, ...}]\nSmoothCells[tissue] for all cells on boundary";
 
 
+(* ::Input::Initialization:: *)
 Tissue::usage="Tissue[vertices, edges, faces]"; 
 Tissue3D::usage=""; 
 FlatTissue::usage="Tissue[vertices,faces]"; 
@@ -261,6 +272,7 @@ Polygonalize::usage="Polygonalize[Tissue, threshold:.5]";
 
 
 
+(* ::Input::Initialization:: *)
 Rectangularize::usage="Rectangularize[tissue, options]";
 Options[Rectangularize]={"Corners"-> "Automatic", "Method"-> "Perpendicular", "Quiet"-> False,  "Debug"-> False, "Randomness"-> 0.25};
 ToTorus::usage="ToTorus[Tissue[..],..]";
@@ -272,6 +284,7 @@ TorusTissue::usage="";
 TorusRules::usage=""; 
 
 
+(* ::Input::Initialization:: *)
 Help::usage=""; 
 $XLR8RLOAD::usage=""; 
 $XSSALOAD::usage=""; 
@@ -281,12 +294,12 @@ QuadraticFitCoefficients::usage="QuadraticFitCoefficients[P0, P1, PC]"; *)
 Boundary::usage="Boundary[points, directives, options]"; 
 (* DrawSpokes::usage="DrawSpokes[outputOfDropSpokes]"; *)
 
-RegularPolygon::usage="RegularPolygons[NumberOfSides, StartAngle:0, aspect:1, Randomness:-1, RotationAngle:0]"; 
+regularPolygon::usage="regularPolygons[NumberOfSides, StartAngle:0, aspect:1, Randomness:-1, RotationAngle:0]"; 
 RegularStar::usage="RegularStar[NumberOfSides, Rbig/Rlittle:0, StartAngle:0, AspectRatio:1, Random:-1, RotationAngle:0] ";
 Centeroid::usage="Finds the Mean coordinates of a set of points. This function is used when Centroid fails because the Centroid Algorithm only works for Non-intersecting polygons."; 
 Centroid::usage="Centroid[{v1,v2, ...}]\nCentroid[tissue, n]\nCentroid[tissue, {n1,n2,...}]\nCentroid[tissue] - list of all centrois."; 
-Area::usage="Area[{v1, v2, ...}] - area of polygon with specified vertices\nArea[tissue,i] - area of cell i in tissue\nArea[tissue] - list of all areas"; 
-Perimeter::usage="Perimeter[{v1, v2, ...}]\nPerimeter[Tissue, CellNumber]\nPerimeter[Tissue]"; 
+areafunction::usage="areafunction[{v1, v2, ...}] - area of polygon with specified vertices\nareafunction[tissue,i] - area of cell i in tissue\nareafunction[tissue] - list of all areas"; 
+perimeterLength::usage="perimeterLength[{v1, v2, ...}]\nperimeterLength[Tissue, CellNumber]\nperimeterLength[Tissue]"; 
 IsoPerimetricRatio::usage="IsoPerimetricRatio[{point1,  point2,...)]\nIsoPerimetricRatio[Tissue, CellNumber]\nIsoPerimetricRatio[Tissue]\nComputes Q=4\[Pi]A/\!\(\*SuperscriptBox[\(P\), \(2\)]\) for the polygon, cell, or all cells; where A is the area and P is the perimeter. It is normalized so that the isoperimetric ratio of a circle is 1."; 
 InertiaMatrix::usage="InertiaMatrix[{v1, v2, ...}]";  
 distance::usage="distance[p1, p2]"; 
@@ -336,6 +349,7 @@ ColorBlendRectangle::usage="";
 ShowTissueBoundary::usage="ShowTissueBoundary[tissue, style directives]"; 
 
 
+(* ::Input::Initialization:: *)
 LambertPlaneToDome::usage="";
 LambertDomeToPlane::usage="";
 ShowTissueOnDome::usage=""; 
@@ -344,9 +358,11 @@ Options[ShowTissueOnDome]={"CellStyle"-> Automatic, "EdgeStyle"-> Black, "Radius
 
 
 
+(* ::Input::Initialization:: *)
 TissueCentroid::usage=""; 
 
 
+(* ::Input::Initialization:: *)
 FlatFile::usage="FlatFile[tissue] returns a list\nFlatFile[tissue,file] outputs the tissue to a flat file.";
 CSVFile::usage="CSVFile[tissue], CSVFile[tissue, filename], CSVFile[tissue, filename, flat:False]"; 
 CSVToTissue::usage="CSVToTissue[filename] returns a Tissue object. The CSV file must either be formatted as 
@@ -381,6 +397,7 @@ PLYToTissue::usage="";
 PLYToTissue3D::usage=""; 
 
 
+(* ::Input::Initialization:: *)
 ShowTissue3D::usage="ShowTissue3D[T,edge-style]\n"<>"ShowTissue3D[T,edgeStyle,cellNumberStyle,edgeNumberStyle]\n"<>
 "ShowTissue3D[T,edgeStyle,cellNumberStyle,edgeNumberStyle,xrange,yrange,zrange]";
 ShowZProjection::usage="ShowZProjection[T,options]\nSame options as ShowTissue.";
@@ -388,6 +405,7 @@ PolygonArea::usage="PolygonArea[vertices]";
 ZProjection::usage="ZProjection[Tissue]";
 
 
+(* ::Input::Initialization:: *)
 BelowLine::usage="BelowLine[A, B, C] returns True if y<mx+b, where A=(x,y), and m and b are the slope and y-intercept of the line from B to C; and returns False otherwise"; 
 AboveLine::usage="AboveLine[A,B,C] returns True if BelowLine[A,B,C] is False.";
 CellsBelowLine::usage="CellsBelowLine[Tissue, point1, point2] returns a list of cell numbers of the cells that fall below (smaller y coordinate) the non-vertical line connecting the two points.";
@@ -398,6 +416,7 @@ CellsInsidePolygon::usage="CellsInsidePolygon[Tissue, {v1,v2,..}] retursn a list
 GetTissueInsidePolygon::usage="GetTissueInisdePolygon[Tissue, {v1,v2,...}] returns the tissue composed of cells with centers falling inside the specified polygon.";
 
 
+(* ::Input::Initialization:: *)
 Spring::usage="Spring is an uninstantiated function used by Cellzilla arrows.\nSpring[variable, function] where variable is the spring connstant variable (typically k), and function is a function giving its dependence on cell and edge index length. Identical to the control parameter \"k\" except that it is encapsulated by the function Spring instead of k." 
 Grow::usage=="Grow is an uninstantiated function used by the Cellzilla Arrow cell\[LongRightArrow]cell, Grow[Spring[..],Rate[..],Pressure[..]]"; 
 GrowthRate::usage="GrowthRate is an uninstantiated function used by Cellzilla arrows.\nRate[variable, function] where variable is the spring rest length variable, and function is a function giving its growth length. Identical to the control parameter \"mu\" except that it is encapsulated by the function Rate instead of List." 
@@ -409,6 +428,7 @@ ShowCellExtensions::usage="";
 
 
 
+(* ::Input::Initialization:: *)
 Begin["`Private`"];
 Needs["ComputationalGeometry`"]; 
 Needs["ErrorBarPlots`"]; 
@@ -436,6 +456,7 @@ $XSSALOAD=If[$XSSALOAD, ToExpression["$xSSA$Version"], "** Not Found **"];
 FLAGS`ECHOLOAD=saveEcho; 
 
 
+(* ::Input::Initialization:: *)
 Needs["JLink`"];
 InstallJava[];
 LoadJavaClass["java.lang.management.ManagementFactory"];
@@ -444,12 +465,15 @@ MemoryInstalled[]:= JMemQuest[getTotalPhysicalMemorySize];
 MemoryFree[]:= JMemQuest[getFreePhysicalMemorySize];
 
 
+(* ::Input::Initialization:: *)
 MyFilterOptions[f_,opt___?OptionQ]:=Sequence@@FilterRules[Flatten[{opt}],Options[f]];
 
 
+(* ::Input::Initialization:: *)
 DifferentQ[x_,y_]:= Not[SameQ[x,y]]; 
 
 
+(* ::Input::Initialization:: *)
 numPairQ[{x_?NumericQ, y_?NumericQ}]:= True;
 (* (\[Infinity],\[Infinity]) used as a flag for special vertices *)
 numPairQ[{Infinity,Infinity}]:= True;
@@ -470,17 +494,21 @@ intListQ[{i___Integer}]:= True;
 intListQ[x___]:= False; 
 
 
+(* ::Input::Initialization:: *)
 argument[f_[x___]]:= {x}; 
 
 
+(* ::Input::Initialization:: *)
 stringify[x_?StringQ]:= x;
 stringify[x_]:= ToString[x];
 stringify[x__]:= (Print["Error: Multiple arguments to stringify: ",x]; Abort[]);
 
 
+(* ::Input::Initialization:: *)
 hasvalue[x_]:= ToString[ToExpression[x]]!= x;
 
 
+(* ::Input::Initialization:: *)
 default$context="sim";
 current$context=default$context; 
 
@@ -500,6 +528,7 @@ Return[ToExpression[res]]
 ]
 
 
+(* ::Input::Initialization:: *)
 decontextify[x_?StringQ]:= Module[{p,q},
 p = StringPosition[x,"`"];
 If[Length[p]<1, Return[x]];
@@ -520,16 +549,19 @@ decontextify[ToString[InputForm[x]],context]//ToExpression//Return;
 ]; 
 
 
+(* ::Input::Initialization:: *)
 SymbolAppend[name_?AtomQ, appendix_?StringQ]:=Symbol[stringify[name]<>appendix];
 
 SymbolAppend[x___]:= (Print["Expecting SymbolAppend[Atom, Sring], not SymbolAppend[",x,"]"]; $Failed);
 
 
+(* ::Input::Initialization:: *)
 RuleQ[x_?ListQ]:= And@@RuleQ/@x; 
 RuleQ[x_]:= SameQ[Head[x], Rule];
 RuleQ[x_, y__]:= False;
 
 
+(* ::Input::Initialization:: *)
 Symbols[expression_]:= Module[{xml, XML, contexts, nonSystem},
 
 XML[_, _, {u___}]:= {u}; 
@@ -549,9 +581,11 @@ Return[xml];
 ]
 
 
+(* ::Input::Initialization:: *)
 \[CapitalPsi][u_]:=(u+Abs[u])/2;
 
 
+(* ::Input::Initialization:: *)
 yymmdd[]:=DateString[{"YearShort","Month","Day"}];
 dd\[UnderBracket]mon\[UnderBracket]yy[]:= DateString[{"Day","-","MonthNameShort","-","YearShort"}]; 
 dd\[UnderBracket]mon\[UnderBracket]yyyy[]:= DateString[{"Day","-","MonthNameShort","-","Year"}]; 
@@ -561,6 +595,7 @@ now[]:= dd\[UnderBracket]mon\[UnderBracket]yyyy[]<>"-at-"<>DateString["Time"];
 dmyhms[]:= now[]; 
 
 
+(* ::Input::Initialization:: *)
 CreateHomeFolder[]:= Module[{h,d,i},
 i=0;
 d=$HomeDirectory; 
@@ -576,6 +611,7 @@ Return[h]
 ]]; 
 
 
+(* ::Input::Initialization:: *)
 createTodaysFolder[base_:"Simulations-"]:= Module[{f,f1,i},
 f=ToString[base]<>dd\[UnderBracket]mon\[UnderBracket]yy[];
 f1=f;i=0;
@@ -589,6 +625,7 @@ Return[f1]
 ]
 
 
+(* ::Input::Initialization:: *)
 createUniqueFolder[base_:"Simulation-"]:= Module[{f,f1,i},
 (* f=ToString[base]<>hhmmss[]; *)
 f=ToString[base]<>DateString[{"Day","MonthNameShort","YearShort","-","Hour24","Minute"}];
@@ -602,6 +639,7 @@ Return[f1]
 ]
 
 
+(* ::Input::Initialization:: *)
 UniqueFileName[folder_,base_,extension_]:= Module[{f,f1,i,b},
 b=base; 
 f=ToFileName[folder, base]; 
@@ -622,13 +660,16 @@ UniqueFileName[x___]:= (Print["Expecting UniqueFileName[folder,base,extension], 
 
 
 
+(* ::Input::Initialization:: *)
 Intersects[A_?ListQ,B_?ListQ]:=Length[Intersection[A,B]]>0;
 
 
 
+(* ::Input::Initialization:: *)
 AbortIf[flag_, message_]:= If[flag, Print[message];Abort[]]; 
 
 
+(* ::Input::Initialization:: *)
 IntervalCheck[x_, All]:= True; 
 IntervalCheck[x_, {xmin_,xmax_}]:= IntervalMemberQ[Interval[{xmax,xmin}], x];
 IntervalCheck[{x_,y_}, xrange_,yrange_]:= Module[{xok,yok,zok},
@@ -644,6 +685,7 @@ And[xok,yok,zok]
 ]
 
 
+(* ::Input::Initialization:: *)
 BellCurve[max_, {mux_,muy_},{sigmax_,sigmay_}]:= Module[{m},
 m=(2.0*Pi*sigmax*sigmay);
 (max*m)*PDF[BinormalDistribution[{mux,muy},{sigmax,sigmay}, 0], {#1,#2}]&
@@ -654,6 +696,7 @@ m*max*PDF[NormalDistribution[mu,sigma]][#]&
 ]; 
 
 
+(* ::Input::Initialization:: *)
 distance[v1_?ListQ,v2_?ListQ]:=Module[{v,nv1,nv2},
 nv1=(Abs[Norm[v1]]==\[Infinity]);
 nv2=(Abs[Norm[v2]]==\[Infinity]);
@@ -663,10 +706,12 @@ v=v1-v2;
 Return[Sqrt[v.v]];];
 
 
+(* ::Input::Initialization:: *)
 Vector[from_?PointQ, to_?PointQ]:= to-from; 
 Vector[{from_?PointQ, to_?PointQ}]:= to-from;
 
 
+(* ::Input::Initialization:: *)
 unitVector[v1_?ListQ,v2_?ListQ]:=Module[{v,d},If[v1==v2,Return[{0,0}]];
 v=v1-v2;
 d=distance[v1,v2];
@@ -674,6 +719,7 @@ v=v/d;
 Return[v];];
 
 
+(* ::Input::Initialization:: *)
 PointQ[{x_Symbol,y_Symbol}]:=True;
 PointQ[{x_[t_], y_[t_]}]:= True;
 PointQ[{x_[i_][t_], y_[i_][t_]}]:= True;
@@ -689,9 +735,11 @@ CZEdgeQ[{p1_?PointQ, p2_?PointQ}]:= True;
 CZEdgeQ[x___]:= False; 
 
 
+(* ::Input::Initialization:: *)
 Points2Edges[{points__?PointQ}]:= Partition[{points}, 2, 1,1]
 
 
+(* ::Input::Initialization:: *)
 PointOnLineSegment[{{x1_, y1_}, {x2_, y2_}}, {p_, q_}, tol_:0.00001]:= Module[
 {tolerance,x,y, xmin, xmax, ymin, ymax, tx, ty, segLen},
 segLen = distance[{x1,y1}, {x2,y2}]; 
@@ -718,6 +766,7 @@ Return[Abs[tx-ty]<= tolerance];
 PointOnLineSegment[x___]:= (Print["Expecting PointOnLineSegment[{{x1,y1}, {x2,y2}}, {xp,yp}, tolerance]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 Boundary[{points__?PointQ}]:= Boundary[{points}, {}]; 
 
 Boundary[{points__?PointQ}, {dir___}, opt___?OptionQ]:= Module[{g}, 
@@ -734,6 +783,7 @@ Return[g];
 ]
 
 
+(* ::Input::Initialization:: *)
 DrawSpokes[SpokeData_, opt___?OptionQ]:= Module[{g, ep, angles, vectors, pointstyle, spokestyle, points, number, numbers , np, origin, textcolor, textstyle, offset},
 
 ep="Endpoints"/.SpokeData;
@@ -773,6 +823,7 @@ g=Flatten[{g, BaseStyle-> textstyle}];
 ]
 
 
+(* ::Input::Initialization:: *)
 ShowTissue[tissue_?DTissueQ,opt___?OptionQ]:= Module[{cellnumbers,T,g,c,toDynamicNumberRules,toStaticNumberRules},
 cellnumbers="CellNumbers"/.{opt}/.{"CellNumbers"-> False}; 
 T=DTissue2Tissue[tissue]; 
@@ -786,6 +837,7 @@ ShowTissue[T,"ToDynamic"-> toDynamicNumberRules,"ToStatic"-> toStaticNumberRules
 ]
 
 
+(* ::Input::Initialization:: *)
 ShowTissue[tissue_?TissueQ, opt___?OptionQ]:= Module[
 {cellstyles, n, nv, ne,cells, boundarystyle, cellnumbers,vertexnumbers,vnstyle,vertexstyle,numberstyle, gvertex, gedgenums,edgenumbers, edgenumberstyle, danglingEdges, deg, gdir, outer, picture, edgestyles, firststyle, nuclear, gBoundary,vertexnumberstyle,
 poly, polys, v, e, starts, ends,vers, edges, line, edgecellpairs, centroids, gedges, cc,ee,st,
@@ -1061,9 +1113,11 @@ Return[picture];
 ]
 
 
+(* ::Input::Initialization:: *)
 ShowTissue[tissue_?TorusQ, opt___?OptionQ]:= ShowTissue[TorusTissue[tissue], opt];
 
 
+(* ::Input::Initialization:: *)
 ShowEdgeNormal[{p1_?PointQ, p2_?PointQ}, style_:{}, edge_:False]:= Module[{nv, origin, g, l},
 nv=NormalVector[{p1,p2}]; 
 origin = (p1+p2)/2; 
@@ -1076,6 +1130,7 @@ Return[Show[g, l]]
 ]
 
 
+(* ::Input::Initialization:: *)
 ShowOutwardNormals[{p__?PointQ}, style_:{}, edge_:False]:=Module[
 {e, vecs, midpoints, arrows, l},
 vecs = OutwardNormalVector[{p}, 0]; 
@@ -1110,6 +1165,7 @@ Show[g1,g2]
 ]
 
 
+(* ::Input::Initialization:: *)
 ShowTissueCells[tissue_?TissueQ, {cells__?IntegerQ}, color_, opt___?OptionQ]:= Module[{colors,p,n, dc, T1,v,e,c},
 n=NTissueCells[tissue]; 
 dc = "CellStyles"/.{opt}/.{"CellStyle"-> LightGreen}; 
@@ -1127,6 +1183,7 @@ ShowTissueCells[x___]:= (
 Print[Short/@{x},15]; Print["Error: Expecting ShowTissueCells[tissue, {i1,i2,...}] or \nShowTissueCells[tissue, {i1, i2, ..}, color, options]"]; $Failed);
 
 
+(* ::Input::Initialization:: *)
 ShowTissueFunction[tissue_?TissueQ, 
 f_, {fmin_, fmax_}, {cmin_, cmax_},
 opt___?OptionQ]:=Module[
@@ -1142,6 +1199,7 @@ Return[pic]
 ];
 
 
+(* ::Input::Initialization:: *)
 ShowTissueBoundary[q_, style_:{Thin,Black}]:= Module[
 {eb,v,e,defaultStyle={Thin,Black}, STYLE},
 STYLE=style;
@@ -1154,12 +1212,15 @@ Graphics[{Directive[STYLE],Line[v[[#]]]&/@e}]
 ]
 
 
+(* ::Input::Initialization:: *)
 Circle3D[{x_,y_,z_},r_]:=Line[(r*{Cos[#],Sin[#],0}+{x,y,z})&/@Range[0,2 Pi,2 Pi/100.]]
 
 
+(* ::Input::Initialization:: *)
 SolutionVars[system_]:= Union[Head/@SolutionVariables[system]]; 
 
 
+(* ::Input::Initialization:: *)
 SolutionVariables[system_]:= SolutionVariables[system, {}]; 
 SolutionVariables[system_, {var___}]:= Module[{s,v, p},
 s=Flatten[{system}]; 
@@ -1171,6 +1232,7 @@ v=Flatten[v]
 SolutionVariables[x___]:= "??";
 
 
+(* ::Input::Initialization:: *)
 MultiPlot[solution_, {var__},  {time_, tstart_, tend_}, opt___?OptionQ]:= Module[
 {variables, points, data, sol1, times, singleLine, singleCurve, dir, n},
 points="PlotPoints"/.{opt}/.{"PlotPoints"-> 50};
@@ -1199,12 +1261,14 @@ Frame-> True, FrameTicks-> {Automatic,Automatic, None, None}, AspectRatio-> 1]
 MultiPlot[x___]:= Print["??"]; 
 
 
+(* ::Input::Initialization:: *)
 RowPlot[solution_, {var__}, {t_, tstart_, tend_}, opt___?OptionQ]:= With[{gropt=MyFilterOptions[GraphicsRow, opt]}, 
 GraphicsRow[
 MultiPlot[solution, {#}, {t, tstart, tend}, opt, PlotLabel-> ToString[#]]&/@{var}, gropt]
 ];
 
 
+(* ::Input::Initialization:: *)
 GeometricSnapShot[tissue_?TissueQ, solution_, {x_, y_}, {timeVariable_, time_}, opt___?OptionQ]:= Module[{c,e, n, v, p},
 c=TissueCells[tissue];
 e=TissueEdges[tissue];
@@ -1222,7 +1286,8 @@ GeometricSnapShot[T, x]
 GeometricSnapShot[x___]:= (Print["Expecting GeometricSnapShot[Tissue, solution, {x,y}, {timevariable, time}]"]; Abort[]); 
 
 
-RegularPolygon[n_,start_: 0,aspect_: 1.0,rnd_:-1,rotationAngle_: 0]:=Module[{v,angles,rv,RM},(*generate the precise vertex coordinates*)angles=Table[j,{j,0.0+start,0.0+start+2.0*((n-1)/n) Pi,2.0*Pi/n}];
+(* ::Input::Initialization:: *)
+regularPolygon[n_,start_: 0,aspect_: 1.0,rnd_:-1,rotationAngle_: 0]:=Module[{v,angles,rv,RM},(*generate the precise vertex coordinates*)angles=Table[j,{j,0.0+start,0.0+start+2.0*((n-1)/n) Pi,2.0*Pi/n}];
 v={Cos[#],aspect*Sin[#]}&/@angles;
 (*add randomness if desired*)If[rnd>0,rv:=RandomReal[{-rnd,rnd}];
 v=Map[{rv,rv}+#&,v];];
@@ -1231,6 +1296,7 @@ v=v.RM;
 Return[v];]
 
 
+(* ::Input::Initialization:: *)
 RegularStar[npoints_,ROverr_: 0,start_: 0,aspect_: 1.0,rand_:-1,rotationAngle_: 0]:=Module[{v,n,angles,rv,RM,Rr,mults,rnd},(*generate the precise vertex coordinates*)n=npoints*2;
 rnd=If[rand>0,rand,0];
 Rr=Abs[ROverr];
@@ -1245,6 +1311,7 @@ v=v.RM;
 Return[v];]
 
 
+(* ::Input::Initialization:: *)
 InertiaMatrix[{xydata__?PointQ}]:=InertiaMatrix[xydata]
 InertiaMatrix[xydata__?PointQ]:=Module[{v,n,Ixx,Ixy,Iyy,x,y,Inertia},v={xydata};
 n=Length[v];
@@ -1272,6 +1339,7 @@ InertiaMatrix[tis_?TissueQ]:= InertiaMatrix/@CellVertexCoordinates[tis];
 InertiaMatrix[x___]:=(Print["Error: Expecting InertiaMatrix[point1, point2, ...] or \nInertiaMatrix[tissue,n] or \nInertiaMatrix[tissue]"]; $Failed);
 
 
+(* ::Input::Initialization:: *)
 Mass[{xydata__?PointQ}]:= Mass[xydata]; 
 Mass[xydata__?PointQ]:=Module[{v,j,n,x,y,mass},(*will be negative if cells are clockwise,positive otherwise*)
 v={xydata};
@@ -1288,28 +1356,30 @@ MassSign[{x__?PointQ}]:=MassSign[x];
 Mass[x___]:= (Print["Expecting Mass[..list of points..]"]; Abort[]); 
 
 
-Area[{}]:= 0; 
-Area[xydata__?PointQ]:=Abs[Mass[xydata]]; 
-Area[{xydata__?PointQ}]:=Area[xydata];
+(* ::Input::Initialization:: *)
+areafunction[{}]:= 0; 
+areafunction[xydata__?PointQ]:=Abs[Mass[xydata]]; 
+areafunction[{xydata__?PointQ}]:=areafunction[xydata];
 
-Area[tis_?TissueQ, i_?IntegerQ]:= Area[CellVertexCoordinates[tis,i]];
+areafunction[tis_?TissueQ, i_?IntegerQ]:= areafunction[CellVertexCoordinates[tis,i]];
 
-Area[tis_?TissueQ, {i__?IntegerQ}]:= Module[{cvc},
+areafunction[tis_?TissueQ, {i__?IntegerQ}]:= Module[{cvc},
 cvc = CellVertexCoordinates[tis]; 
 cvc = cvc[[{i}]]; 
-Return[Area/@cvc]; 
+Return[areafunction/@cvc]; 
 ]
 
-Area[tis_?TissueQ]:= Area/@CellVertexCoordinates[tis]; 
+areafunction[tis_?TissueQ]:= areafunction/@CellVertexCoordinates[tis]; 
 
-Area[DT_?DTissueQ]:= Area/@CellVertexCoordinates[DT]; 
-Area[DT_?DTissueQ, i_?IntegerQ]:= Area[CellVertexCoordinates[DT,i]]; 
+areafunction[DT_?DTissueQ]:= areafunction/@CellVertexCoordinates[DT]; 
+areafunction[DT_?DTissueQ, i_?IntegerQ]:= areafunction[CellVertexCoordinates[DT,i]]; 
 
-Area[P_?PointList3DQ]:= PolygonArea[P]; 
+areafunction[P_?PointList3DQ]:= PolygonArea[P]; 
 
-Area[x___]:=(Print["Expecting Area[P1, P2, ...] or Area[tissue, i] or Area[tissue]"]; $Failed);
+areafunction[x___]:=(Print["Expecting areafunction[P1, P2, ...] or areafunction[tissue, i] or areafunction[tissue]"]; $Failed);
 
 
+(* ::Input::Initialization:: *)
 CentroidFormula[T_Tissue,j_, x_,y_,area_]:= Module[{cv,n,myx,myy,f,XVAR,YVAR,sign},
 cv=CellVertexNumbers[T,j];
 sign=MassSign[CellVertexCoordinates[T,j]]; 
@@ -1321,6 +1391,7 @@ sign*(f/.{XVAR-> myx, YVAR-> myy})/(6*area[j][Global`t])
 ]
 
 
+(* ::Input::Initialization:: *)
 CentroidFormula[xvar_,yvar_,n_]:=Module[{x,y, cx, cy,j},
 
 x[0]:= xvar[n];
@@ -1336,12 +1407,13 @@ cy=cy+(y[j]+y[j+1]) (x[j] y[j+1]-x[j+1] y[j]);
 ]
 
 
+(* ::Input::Initialization:: *)
 Centroid[{xydata__?PointQ}]:= Centroid[xydata]; 
 Centroid[xydata__?PointQ]:=Module[{v,j,n,x,y,cx,cy,area,sign,centroid},v={xydata};
 n=Length[v];
 cx=cy=0;
 sign=MassSign[xydata];
-area=Area[xydata];
+area=areafunction[xydata];
 x[i_]:=If[i==0,v[[n,1]],v[[i,1]]];
 y[i_]:=If[i==0,v[[n,2]],v[[i,2]]];
 For[j=0,j<n,j++,cx=cx+(x[j]+x[j+1]) (x[j] y[j+1]-x[j+1] y[j]);
@@ -1373,6 +1445,7 @@ Centroid[q_?DTissueQ, x___]:= Centroid[DTissue2Tissue[q], x];
 Centroid[x___]:= (Print["Error: Expecting Centroid[{v1,v2, ...}]"]; $Failed);
 
 
+(* ::Input::Initialization:: *)
 Centeroid[{xydata__?PointQ}]:= Mean[{xydata}];
 Centeroid[T_?ISTissue]:= Module[{cvc},
 cvc=CellVertexCoordinates[T]; 
@@ -1385,6 +1458,7 @@ Centeroid[cvc]
 Centeroid[x___]:= (Print["Expecting Centeroid[{{x1,y1},{x2,y2},...}] or Centeroid[Tissue] or Centeroid[Tissue,number], not:", x]; Abort[];)
 
 
+(* ::Input::Initialization:: *)
 TissueCentroid[g_Tissue]:= Module[{e,v,c, G},
 (* create a tissue with a single cell that has only the boundary edges *)
 e=TissueEdges[g]; 
@@ -1400,28 +1474,31 @@ TissueCentroid[g_DTissue]:= TissueCentroid[DTissue2Tissue[g]];
 TissueCentroid[x___]:= (Print["Unexpected Input for TissueCentroid[]"]; {Indeterminate, Indeterminate})
 
 
+(* ::Input::Initialization:: *)
 PerimeterFormula[T_Tissue,j_, edgeVariable_]:= Module[{c},
 c=TissueCells[T][[j]];
 Plus@@(edgeVariable[#][Global`t]&/@c)
 ]
 
 
-Perimeter[{points__?PointQ}]:=Module[{pts,c},pts=Partition[{points},2,1,1];
+(* ::Input::Initialization:: *)
+perimeterLength[{points__?PointQ}]:=Module[{pts,c},pts=Partition[{points},2,1,1];
 c=distance@@#&/@pts;
 Return[Plus@@c]];
-Perimeter[points__?PointQ]:= Perimeter[{points}]; 
-Perimeter[tissue_?TissueQ, i_]:= Perimeter[CellVertexCoordinates[tissue,i]]; 
-Perimeter[tissue_?DTissueQ, i_]:= Perimeter[CellVertexCoordinates[tissue,i]]; 
+perimeterLength[points__?PointQ]:= perimeterLength[{points}]; 
+perimeterLength[tissue_?TissueQ, i_]:= perimeterLength[CellVertexCoordinates[tissue,i]]; 
+perimeterLength[tissue_?DTissueQ, i_]:= perimeterLength[CellVertexCoordinates[tissue,i]]; 
 
 
-Perimeter[tissue_?TissueQ]:= Perimeter/@CellVertexCoordinates[tissue]; 
-Perimeter[tissue_?DTissueQ]:= Perimeter[DTissue2Tissue[tissue]];
-Perimeter[x___]:= (Print["Error: Expecting Perimeter[Point1, Point2, ...] or \nPerimeter[tissue] or \nPerimeter[tissue, i]"]; $Failed); 
+perimeterLength[tissue_?TissueQ]:= perimeterLength/@CellVertexCoordinates[tissue]; 
+perimeterLength[tissue_?DTissueQ]:= perimeterLength[DTissue2Tissue[tissue]];
+perimeterLength[x___]:= (Print["Error: Expecting perimeterLength[Point1, Point2, ...] or \nperimeterLength[tissue] or \nperimeterLength[tissue, i]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 IsoPerimetricRatio[{points__?PointQ}]:= Module[{P},
 P={points};  
-4Pi Area[P]/(Perimeter[P]^2)];
+4Pi areafunction[P]/(perimeterLength[P]^2)];
 IsoPerimetricRatio[T_?TissueQ, n_]:= Module[{cell},
 cell=CellVertexCoordinates[T,n];
 IsoPerimetricRatio[cell]
@@ -1433,11 +1510,12 @@ IsoPerimetricRatio[cell]
 
 IsoPerimetricRatio[T_?TissueQ]:= IsoPerimetricRatio/@CellVertexCoordinates[T]; 
 
-IsoPerimetricRatio[P_?PointList3DQ]:= 4Pi*Area[P]/(Perimeter[P]^2);
+IsoPerimetricRatio[P_?PointList3DQ]:= 4Pi*areafunction[P]/(perimeterLength[P]^2);
 
 IsoPerimetricRatio[x___]:= (Print["Expecting IsoPerimetricRatio[{points}]"]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 Inside[{vertices__?PointQ},point_?PointQ]:=Module[{i,j,c,n,xp,yp,x, y,  points},
 
 points={vertices}; 
@@ -1468,6 +1546,7 @@ Inside[cvc, point]
 Inside[x___]:= (Print["Error: Expecting Inside[{v1, v2, ...}, point]"]; $Failed;);
 
 
+(* ::Input::Initialization:: *)
 OutsideBox[{objectVertices__?numPairQ}, {boxVertices__?numPairQ}]:= Module[{vertexOutside, outside},
 vertexOutside[{x_, y_}]:= !Inside[{boxVertices}, {x,y}]; 
 outside = vertexOutside/@{objectVertices};
@@ -1476,6 +1555,7 @@ Return[outside];
 ]
 
 
+(* ::Input::Initialization:: *)
 PrimaryAxes[{vertices__?PointQ}, opt___?OptionQ]:=Module[{M,evalues,relativeEigenvalues,evectors,norms,centroid,arrows,g,angles,V, dbg, dPrint, listOfVertices, eigenvalues},
 
 dbg= "Debug"/.{opt}/.{"Debug"-> False}; 
@@ -1516,6 +1596,7 @@ PrimaryAxes[tiss_?TissueQ, i_?IntegerQ, opt___?OptionQ]:= PrimaryAxes[tiss, {i},
 PrimaryAxes[tiss_?TissueQ, opt___?OptionQ]:= PrimaryAxes[tiss, Range[NTissueCells[tiss]], opt];
 
 
+(* ::Input::Initialization:: *)
 PrimaryAxesVectors[{vertices__?NumericPointQ}, opt___?OptionQ]:= Module[{pa, evectors, evalues},
 pa=PrimaryAxes[{vertices}]; 
 evectors = "Vectors"/.pa;
@@ -1534,12 +1615,13 @@ PrimaryAxesVectors[tiss_?TissueQ, i_?IntegerQ, opt___?OptionQ]:= PrimaryAxesVect
 PrimaryAxesVectors[tiss_?TissueQ, opt___?OptionQ]:= PrimaryAxesVectors[tiss, Range[NTissueCells[tiss]], opt]; 
 
 
+(* ::Input::Initialization:: *)
 FitEllipse[V_]:=Module[{axes,V1,V2,\[Lambda]1,\[Lambda]2,K,axis1,axis2,A,Centroid,\[Theta]1,\[Theta]2,g},
 axes=PrimaryAxes[V];
 {V1,V2}="Vectors"/.axes;
 {\[Lambda]1,\[Lambda]2}="Eigenvalues"/.axes;
 K=\[Lambda]1/\[Lambda]2;
-A=Area[V];
+A=areafunction[V];
 axis2=Sqrt[A/(\[Pi]*K)];
 axis1=K*axis2;
 Centroid=V1[[1]];
@@ -1549,6 +1631,7 @@ g=Show[g,Graphics[{Purple,Rotate[Circle[Centroid,{axis1,axis2}],\[Theta]1]}]];
 Return[{"Angle"->\[Theta]1,"Axes"->{axis1,axis2},"Graphics"->g}];]
 
 
+(* ::Input::Initialization:: *)
 LineEdgeIntersection[edge_?CZEdgeQ,point_?PointQ,direction_?PointQ]:=Module[{vedge,\[CapitalDelta]y,\[CapitalDelta]x,A,Ainv,b,x,y, p1, p2, xc, yc, v1, v2, x1, y1, x2, y2,dbg=False, dPrint,VERYSMALL,NotSoSmall,dot},
 VERYSMALL[u_]:= Abs[u]<10^(-10); 
 NotSoSmall[u_]:= Not[VERYSMALL[u]]; 
@@ -1609,6 +1692,7 @@ Return[{x,y}]];
 LineEdgeIntersection[x___]:=(Print["Error: Expecting LineEdgeIntersection[edge, point, direction]: ", {x}]; $Failed);
 
 
+(* ::Input::Initialization:: *)
 DropPerpendicular[point_?PointQ, edge_?CZEdgeQ, slide_:False]:= Module[{perp, intersection, d1, d2},
 
 If[distance@@edge==0, Print["Error: DropPerpendicular: Edge ", edge, " has zero length."]; Return[$Failed]]; 
@@ -1634,9 +1718,11 @@ Return[edge[[2]]]
 DropPerpendicular[x___]:= (Print["Error: Expecing DropPerpendicular[point, edge, slide]"]; $Failed);
 
 
+(* ::Input::Initialization:: *)
 DropLineToNearestPointOnEdge[point_?PointQ, edge_?CZEdgeQ]:= DropPerpendicular[point, edge, True];
 
 
+(* ::Input::Initialization:: *)
 PolygonIntersection[vector_?PointQ,{vertex__?PointQ}]:=Module[{nv,centroid,edges,debug=False,int,range,v, ok},nv=Length[{vertex}];
 If[nv<3,Print["eh? polygonIntersect: expecting more than ",nv," vertices. Vector: ",vector," vertices: ",{vertex}];
 Return[$Failed];];
@@ -1648,6 +1734,7 @@ PolygonIntersection[{centroid, centroid+vector}, {vertex}]
 ]
 
 
+(* ::Input::Initialization:: *)
 PolygonIntersection[{p1_?PointQ, p2_?PointQ},{vertex__?PointQ}]:=Module[{nv,edges,vector, debug=False,int,range,v,ok, toomany, dPrint},
 dPrint[x___]:= If[debug, Print["PolygonIntersection: ", x]]; 
 nv=Length[{vertex}];
@@ -1729,6 +1816,7 @@ Return[int];
 PolygonIntersection[x___]:= (Print["Error: Expecting PolygonIntersection[{point1, point2}, {vertices}] or PolygonIntersection[DirectionVector, {vertices}]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 NormalVector[{p1_, p2_}]:= NormalVector[{p1,p2}, 1]; 
 NormalVector[{p__?PointQ}, i_Integer]:= Module[{v, e, vec},
 v=Append[{p}, First[{p}]];
@@ -1743,6 +1831,7 @@ NormalVector[x___]:= (Print["Expecting NormalVector[{vertex, vertex, ...}, index
 
 
 
+(* ::Input::Initialization:: *)
 OutwardNormalVector[{pt__?PointQ}]:= OutwardNormalVector[{pt}, 0]; 
 OutwardNormalVector[{pt__?PointQ}, j_Integer]:= Module[
 {v, OutwardNormal}, 
@@ -1793,6 +1882,7 @@ Return[$Failed];
 OutwardNormalVector[x___]:= (Print["Error; Expecting OutwardNormalVector[{p1,p2,...}, index:0] or OutwardNormalVector[Tissue, cellNumber:0, edgeNumber:0] (0 means all)"]; Return[$Failed]); 
 
 
+(* ::Input::Initialization:: *)
 MidPoint[p1_?PointQ, p2_?PointQ]:= Mean[{p1,p2}];
 MidPoint[{p1_?PointQ, p2_?PointQ}]:= Mean[{p1,p2}]; 
 MidPoint[{p1_?PointQ, p2_?PointQ, p3__?PointQ}]:=MidPoint[{p1,p2, p3}, 0]; 
@@ -1821,8 +1911,9 @@ Return[mp];
 ]; 
 
 
+(* ::Input::Initialization:: *)
 PartitionPolygon[points_?ListQ,n_]:=Module[{input,perimeter,DL,PartitionSegment,segments,partitioning,distances,short},input=Append[points,First[points]];
-perimeter=Perimeter[points];
+perimeter=perimeterLength[points];
 DL=perimeter/(1.0*n);
 PartitionSegment[p1_,p2_,DL_]:=Module[{d,m},d=distance[p1,p2];
 m=Round[0.5+(d/DL)];
@@ -1835,6 +1926,7 @@ partitioning=Pick[partitioning,Not/@short]
 ]
 
 
+(* ::Input::Initialization:: *)
 RadialPolygon[inputdata_?ListQ,n_,order_:1]:= Module[{p,c,pts,thetas,rs, data,lastpoint, firstpoint,r,points},
 points = inputdata;
 If[First[points]==Last[points], points=Most[points]]; 
@@ -1858,6 +1950,7 @@ r=Interpolation[data,InterpolationOrder-> order, PeriodicInterpolation-> True]
 ]
 
 
+(* ::Input::Initialization:: *)
 AngularPerimeterFunction[points_,n_:100]:= Module[{ptab,pfunc},
 ptab = AngularPerimeterInterpolationTable[points,n]; 
 pfunc=Interpolation[ptab]; 
@@ -1892,6 +1985,7 @@ MapThread[P2R, {radii, angles}]
 ]
 
 
+(* ::Input::Initialization:: *)
 Point2DQ[{x_,y_}]:= True;
 Point2DQ[x___]:= False;
 
@@ -1902,7 +1996,8 @@ PointList3DQ[{v___?Point3DQ}]:=True;
 PointList3DQ[x___]:= False;
 
 
-Perimeter[p_?PointList3DQ]:= Module[{pointPairs,segments,lengths},
+(* ::Input::Initialization:: *)
+perimeterLength[p_?PointList3DQ]:= Module[{pointPairs,segments,lengths},
 If[Length[p]<2, Return[0]]; 
 pointPairs=Partition[p,2,1,1];
 segments = Subtract@@#&/@pointPairs;
@@ -1911,10 +2006,12 @@ Return[Plus@@lengths]
 ]
 
 
+(* ::Input::Initialization:: *)
 Centeroid[p_?PointList3DQ]:= If[Length[p]<1, Return[{0,0,0}], Mean[p]]; 
 Centroid[p_?PointList3DQ]:= Centeroid[p]; 
 
 
+(* ::Input::Initialization:: *)
 Hero[a_,b_,c_]:= Module[{s,A},
 s=(a+b+c)/2;
 A=Sqrt[s(s-a)(s-b)(s-c)]; 
@@ -1934,6 +2031,7 @@ Hero[r1,r2,c]
 ]
 
 
+(* ::Input::Initialization:: *)
 AreaTriangle[p_?Point3DQ, q_?Point3DQ,r_?Point3DQ]:= Hero1[p,q,r]; 
 AreaTriangle[p_?Point2DQ, q_?Point2DQ, r_?Point2DQ]:= AreaTriangle[Append[p,0],Append[q,0], Append[r,0]];
 AreaTriangle[{p_?Point3DQ, q_?Point3DQ,r_?Point3DQ}]:= AreaTriangle[p,q,r];
@@ -1941,6 +2039,7 @@ AreaTriangle[{p_?Point2DQ, q_?Point2DQ, r_?Point2DQ}]:= AreaTriangle[p,q,r];
 AreaTriangle[x___]:= (Print["Expecting AreaTriangle[point,point,point], not: ", x]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 AltitudeTriangle[a_,b_,c_]:= Module[{s},
 Abs[Hero[a,b,c]*2/a]
 ];
@@ -1953,6 +2052,7 @@ AltitudeTriangle[a,r1,r2]
 ]
 
 
+(* ::Input::Initialization:: *)
 PolygonArea[p_]:= Module[{center, triangles, pairs, areas,area},
 If[Length[p]<3, Return[0]]; 
 
@@ -1965,12 +2065,14 @@ Return[area];
 ];
 
 
+(* ::Input::Initialization:: *)
 ZProjection[T_?TissueQ]:= Module[{v,e,c},
 {v,e,c}=T/.{Tissue-> List}; 
 Tissue[Most/@v,e,c]
 ];
 
 
+(* ::Input::Initialization:: *)
 ShowZProjection[T_?TissueQ,opt___?OptionQ]:= Module[{T1},
 T1=ZProjection[T]; 
 ShowTissue[T1,opt]
@@ -1978,6 +2080,7 @@ ShowTissue[T1,opt]
 ShowZProjection[x___]:= (Print["Expecting ShowZProjection[Tissue,options]"];Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 ShowTissue3D[T_, edgestyle_:Black,cellnumberstyle_:None, edgenumberstyle_:None, xrange_:All, yrange_:All,zrange_:All]:= Module[{v,e,c,ne,edges,cellnumbers,CVC,CC,CellNumbers,EdgeNumbers,edgenumbers,EVC,EC, edgesUsedInCells,edgeInRange,plottableEdges,plottable},
 v=TissueVertices[T];
 c=TissueCells[T];
@@ -2036,6 +2139,7 @@ EdgeNumbers
 ShowTissue3D[x___]:= (Print["Expecting ShowTissue3D[Tissue, Edge-Styles, Cell-Number-Styles:None, Edge-Number-Styles:None"]; Abort[]);
 
 
+(* ::Input::Initialization:: *)
 LambertPlaneToDome[{p_, q_}]:= Module[{x,y,z, r, theta},
 (* transform to a dome with the north pole at (0,0,-1) *)
 r=p^2+q^2;
@@ -2066,6 +2170,7 @@ Return[{p,q}];
 ]
 
 
+(* ::Input::Initialization:: *)
 ProjectPlaneToParaboloid[{x_,y_}, a_:.01, h_:0,k_:0]:= Module[{r, rp, \[Lambda]},
 r=Sqrt[(x-h)^2+(y-k)^2]; 
 rp = Sqrt[(1.0+6(a * r)^2)^(2/3)-1]/(2.0*a);
@@ -2075,6 +2180,7 @@ Return[{h+x*\[Lambda], k+y*\[Lambda],-a*rp^2}]
 
 
 
+(* ::Input::Initialization:: *)
 ParaboloidPlot[tissue_?TissueQ,r_?NumberQ, a_?NumberQ, h_?NumberQ, k_?NumberQ, opt___?OptionQ]:= Module[{},
 ShowTissueOnDome[tissue,"shape"-> "Paraboloid", "Radius"-> r, "A"-> a, "h"-> h, "k"-> k, opt] 
 ];
@@ -2087,6 +2193,7 @@ ShowTissueOnDome[tissue,"shape"-> "Paraboloid", "Radius"-> r, "A"-> a, "h"-> h, 
 ];
 
 
+(* ::Input::Initialization:: *)
 ShowTissueOnDome[tissue_Tissue, opt___?OptionQ]:=Module[{v,n,vdome, c, cc,scalefactor,r,colors,cg,edges,cells,ToDome, ToParaboloid, cdome, edome, e, eg, radius, a,h,k, shape, eused,smax,EdgeCellLine,edgecellpairs, centroids, u, xmax, zmax, plotrange, gedges, scale, origin,x0,y0, boundary, circle, shapes={"Paraboloid","Hemisphere"}},
 e=TissueEdges[tissue]; 
 c=TissueCells[tissue]; 
@@ -2238,12 +2345,15 @@ Return[Show[{ circle, cg,eg, gedges}, gopt, PlotRange-> plotrange]]
 
 
 
+(* ::Input::Initialization:: *)
 TissueQ[object_]:=TissueCheck[object, "Quiet"-> True]; 
 
 
+(* ::Input::Initialization:: *)
 TissueOrTorusQ[object_]:= Or[TissueQ[object], TorusQ[object]]
 
 
+(* ::Input::Initialization:: *)
 TissueCells[tissue_?TissueQ]:=argument[tissue][[3]]; 
 TissueCells[torus_?TorusQ]:= TissueCells[TorusTissue[torus]]; 
 TissueCells[tissue_?DTissueQ]:= argument[tissue][[3]]; 
@@ -2271,6 +2381,7 @@ NTissueEdges[tissue_?DTissueQ]:= NTissueEdges[DTissue2Tissue[tissue]];
 
 
 
+(* ::Input::Initialization:: *)
 AdjacentVertices[g_Tissue,i_?IntegerQ]:= Module[{e,vb},
 e=TissueEdges[g];
 Complement[Union[Flatten[Select[e, MemberQ[#,i]&]]],{i}]
@@ -2278,6 +2389,7 @@ Complement[Union[Flatten[Select[e, MemberQ[#,i]&]]],{i}]
 AdjacentVertices[x___]:= (Print["Expecting AdjacentVertices[Tisue, integer]"]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 AdjacentBoundaryVertices[g_Tissue,i_?IntegerQ]:= Module[{e,vb,adj, bv},
 e=TissueEdges[g];
 bv =VerticesOnBoundary[g]; 
@@ -2287,6 +2399,7 @@ Intersection[adj,bv]
 AdjacentBoundaryVertices[x___]:= (Print["Expecting AdjacentBoundaryVertices[Tisue, integer]"]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 CellOutwardVector[T_Tissue, cell_?IntegerQ, vertex_?IntegerQ]:= Module[{cvn, c, v, vec},
 c=Centroid[T, cell]; 
 cvn = CellVertexNumbers[T, cell];
@@ -2300,12 +2413,14 @@ vec = Normalize[v-c]
 ]
 
 
+(* ::Input::Initialization:: *)
 OutwardVector[xyall_, xy_]:= Module[{c,vec},
 c=Centroid[xyall];
 Return[Normalize[xy-c]]
 ];
 
 
+(* ::Input::Initialization:: *)
 VertexOutwardVector[tis_Tissue, i_, mean_:False]:= Module[{bv,abv,v,P,edges,nvs,center,vc,cvn,whichcells},bv=VerticesOnBoundary[tis];
 If[!MemberQ[bv,i],Return[{}]];
 cvn=CellVertexNumbers[tis];
@@ -2320,6 +2435,7 @@ VertexOutwardVector[T_DTissue, x___] := VertexOutwardVector[DTissue2Tissue[T], x
 VertexOutwardVector[x___]:= (Print["Expecting VertexOutwardVector[tissue, integer]"]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 
 
 VerticesOnDirectional[q_Tissue, {dx_,dy_}]:= 
@@ -2355,6 +2471,7 @@ VerticesOnRight[w_DTissue]:= VerticesOnRight[DTissue2Tissue[w]];
 
 
 
+(* ::Input::Initialization:: *)
 EdgesOnLeft[w_Tissue]:=Module[{e,cb,vb,el,uel},e=TissueEdges[w];
 cb=CellsOnBoundary[w];
 vb=VerticesOnLeft[w];
@@ -2390,6 +2507,7 @@ EdgesOnLeft[w_DTissue]:= EdgesOnBottom[DTissue2Tissue[w]];
 }
 
 
+(* ::Input::Initialization:: *)
 StaticToDynamicNumberRules[DT_DTissue]:= Module[{cn,nc,s2d},
 cn=First/@TissueCells[DT]; 
 nc = Range[Length[cn]]; 
@@ -2397,6 +2515,7 @@ s2d = MapThread[Rule,{nc,cn}]
 ]
 
 
+(* ::Input::Initialization:: *)
 CellsOnLeft[w_Tissue]:=Module[{cb,el,c,cl},cb=CellsOnBoundary[w];
 el=EdgesOnLeft[w];
 c=TissueCells[w];
@@ -2424,6 +2543,7 @@ CellsOnBottom[w_DTissue]:= CellsOnBottom[DTissue2Tissue[w]/.StaticToDynamicNumbe
 
 
 
+(* ::Input::Initialization:: *)
 TissueCheck[Tissue[v_, e_, f_], opt___?OptionQ]:= Module[{ok, notok, num, ne, nv, nf, quiet, qPrint, passed, dangEdge,ok3},
 
 quiet = "Quiet"/.{opt}/.{"Quiet"-> False}; 
@@ -2534,12 +2654,15 @@ qPrint["TissueCheck: Error: Expecting Tissue[vertices, edges, faces]. Input does
  False]; 
 
 
+(* ::Input::Initialization:: *)
 DanglingEdges[tissue_?TissueQ]:= Complement[Range[NTissueEdges[tissue]],Union[TissueCells[tissue]//Flatten]];
 
 
+(* ::Input::Initialization:: *)
 DanglingVertices[tissue_?TissueQ]:= Complement[Range[NTissueVertices[tissue]], Union[Flatten[TissueEdges[tissue]]]]
 
 
+(* ::Input::Initialization:: *)
 UndangleEdge[tissue_?TissueQ, number_]:= Module[{v,e,c, n, q, edgen}, 
 v=TissueVertices[tissue];
 e=TissueEdges[tissue]; 
@@ -2581,6 +2704,7 @@ UndangleEdge[x___]:= (Print["Error: Expecting UndangleEdge[tissue, number]"]; $F
 RemoveEdge[x___]:= UndangleEdge[x]; 
 
 
+(* ::Input::Initialization:: *)
 RemoveEdges[T_?TissueQ, edges_?ListQ]:= Module[{ed,T1,ne},
 T1=T;
 ed=Sort[edges]; 
@@ -2594,6 +2718,7 @@ Return[T1];
 RemoveEdges[x___]:= (Print["Error: Expecting RemoveEdge[tissue, list-of-edge-numbers]"]); 
 
 
+(* ::Input::Initialization:: *)
 UndangleEdges[tissue_?TissueQ]:= Module[{danglers, q}, 
 danglers = DanglingEdges[tissue];
 danglers = Reverse[Sort[danglers]]; 
@@ -2608,6 +2733,7 @@ UndangleEdges[x___]:= (Print["Expecing UndangleEdges[tissue]"]; $Failed);
 
 
 
+(* ::Input::Initialization:: *)
 UndangleVertex[tissue_?TissueQ, vNumber_?IntegerQ]:= Module[{dv, nv, ne, rule, i, e, c, v}, 
 
 dv = DanglingVertices[tissue]; 
@@ -2644,6 +2770,7 @@ UndangleVertex[x___]:= (Print["Expecting[UndangleVertex[tissue, vertexNumber]"];
 RemoveVertex[x___]:= UndangleVertex[x]; 
 
 
+(* ::Input::Initialization:: *)
 RemoveVertices[T_?TissueQ, vlist_?ListQ]:= Module[{vl,T1,vn},
 T1=T;
 vl=Sort[vlist]; 
@@ -2657,6 +2784,7 @@ Return[T1];
 RemoveVertices[x___]:= (Print["Error: Expecting RemoveVertices[tissue, list-of-vertex-numbers]"]); 
 
 
+(* ::Input::Initialization:: *)
 UndangleVertices[tissue_?TissueQ]:= Module[{dv, q}, 
 dv = DanglingVertices[tissue]; 
 dv = Reverse[Sort[dv]]; 
@@ -2670,6 +2798,7 @@ Return[q];
 UndangleVertices[x___]:= (Print["Expecting UndangleVertices[tissue]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 EdgeVertices[{i_, j_}, vertices_]:={vertices[[i]], vertices[[j]]};
 
 EdgeVertices[{edge__?intPairQ}, vertices_]:= EdgeVertices[#, vertices]&/@{edge};
@@ -2680,6 +2809,7 @@ EdgeVertices[DT_?DTissueQ]:= EdgeVertices[DTissue2Tissue[DT]];
 EdgeVertices[u_]:= (Print["Expecting EdgeVertices[tissue] or EdgeVertices[dtissue]"];Abort[];)
 
 
+(* ::Input::Initialization:: *)
 EdgeLengths[tissue_?TissueQ]:= distance@@#&/@EdgeVertices[tissue];  
 EdgeLengths[DT_?DTissueQ]:= EdgeLengths[DTissue2Tissue[DT]]; 
 EdgeLength[DT_?DTissueQ, i_?IntegerQ]:= EdgeLength[DTissue2Tissue[DT],i]; 
@@ -2702,6 +2832,7 @@ CellEdgeLengths[x___]:= (Print["Expecting CellEdgeLengths[tissue, cellNumber]"];
 
 
 
+(* ::Input::Initialization:: *)
 SortCellsCounterClockwise[tis_Tissue]:=Module[{centroids, c,nc, e, s, v, clockwise, snew, i, vnext, enext},
 centroids=Centroid[tis];
 c=TissueCells[tis];
@@ -2733,6 +2864,7 @@ Return[snew]
 SortCellsCounterClockwise[x_]:= (Print["Expecting SortCellsCounterClockwise[tissue]"]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 SortCellEdges[edges_?intListQ,alledges_]:=Module[{dbg=False,dPrint,edgepairs,allVertices,EndPoints,ep1,ep2,i,pair,result,v,eresult,EdgeNumber,vresult,lastpoint},
 dPrint[u___]:=If[dbg,Print["SCE: ",u]];
 edgepairs=alledges[[edges]];
@@ -2784,6 +2916,7 @@ Return[{"Edges"->eresult,"Vertices"->vresult}];]
 SortCellEdges[x___]:= (Print["Expecting SortCellEdges[cell, edges], where cell={e1,e2,...} and edges={{v11,v12}, {v21, v22}, ...}"]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 (* SortCellEdges[cell_?intListQ, edges_]:= Module[{ep, num , sortedep, sortednums, edge, v2,p, index, vertices, dbg=False , firstpair, dPrint, lastver, setappend},
 dPrint[u___]:= If[dbg ,Print["SortCellEdges: ", u]]; 
 If[Length[cell]>0,
@@ -2875,6 +3008,7 @@ Return[{"Edges"\[Rule] sortednums,
 SortCellEdges[x___]:= (Print["Expecting SortCellEdges[cell, edges], where cell={e1,e2,...} and edges={{v11,v12}, {v21, v22}, ...}"]; Abort[]);  *)
 
 
+(* ::Input::Initialization:: *)
 CellVertexNumbers[cell_?intListQ, edges_]:= Module[{f},
 f=SortCellEdges[cell, edges]; 
 If[f===$Failed, 
@@ -2903,6 +3037,7 @@ CellVertexNumbers[T1,n1]
 CellVertexNumbers[T_?DTissueQ]:= CellVertexNumbers[DTissue2Tissue[T]]
 
 
+(* ::Input::Initialization:: *)
 CellVertexCoordinates[cell_?intListQ, edges_, vertices_]:= Module[{v},
 v=CellVertexNumbers[cell, edges]; 
 If[v===$Failed, Print["Error: CellVertexCoordinates: Failure code returned from CellVertexNumbers."]; Return[$Failed]]; 
@@ -2943,6 +3078,7 @@ CellVertexCoordinates[x__]:= (Print["Expecting CellVertexCoordinates[(d)tissue, 
 
 
 
+(* ::Input::Initialization:: *)
 EdgesOnBoundary[tissue_?TissueQ]:= Module[{ne, c,e,  keep, edgenums},
 e=TissueEdges[tissue];
 ne=Length[e]; 
@@ -2958,10 +3094,12 @@ Return[keep];
 EdgesOnBoundary[DT_?DTissueQ]:= EdgesOnBoundary[DTissue2Tissue[DT]];
 
 
+(* ::Input::Initialization:: *)
 EdgesNotOnBoundary[tissue_?TissueQ]:=Complement[Range[NTissueEdges[tissue]], EdgesOnBoundary[tissue]];
 EdgesNotOnBoundary[DT_?DTissueQ]:= EdgesNotOnBoundary[DTissue2Tissue[DT]];
 
 
+(* ::Input::Initialization:: *)
 VerticesOnBoundary[tissue_?TissueQ]:= Module[{be, e},
 be=EdgesOnBoundary[tissue]; 
 e=TissueEdges[tissue]; 
@@ -2973,10 +3111,12 @@ Return[
 VerticesOnBoundary[DT_?DTissueQ]:= VerticesOnBoundary[DTissue2Tissue[DT]]; 
 
 
+(* ::Input::Initialization:: *)
 VerticesNotOnBoundary[tissue_?TissueQ]:= Complement[Range[NTissueVertices[tissue]], VerticesOnBoundary[tissue]]; 
 VerticesNotOnBoundary[DT_?DTissueQ]:= VerticesNotOnBoundary[DTissue2Tissue[DT]];
 
 
+(* ::Input::Initialization:: *)
 CellsOnBoundary[tissue_?TissueQ]:= Module[{be, c, keep},
 be=EdgesOnBoundary[tissue];
 c=TissueCells[tissue];
@@ -2993,6 +3133,7 @@ s2d = MapThread[Rule,{nc,cn}];
 CellsOnBoudary[x___]:= (Print["Expecting CellsOnBoundary[tissue]"];Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 InteriorCells[tissue_?TissueQ]:= Module[{nc,bc,ic},
 bc=CellsOnBoundary[tissue];
 nc=NTissueCells[tissue];
@@ -3006,6 +3147,7 @@ Complement[cn,bc]
 InteriorCells[x___]:=(Print["Expecting InteriorCells[tissue]"];Abort[]);
 
 
+(* ::Input::Initialization:: *)
 DivideEdges[tissue_?TissueQ, edgeNumbers_?intListQ,
 segments_?IntegerQ, randomness_:0]:= Module[
 {edges2divide, next, new},
@@ -3027,6 +3169,7 @@ Return[DivideEdges[tissue,  Range[n], segments, randomness]]];
 DivideEdges[x___]:= (Print["Error: expecting DivideEdges[tissue, segments, random] or DivideEdges[tissue, {n1,n2, ...}, segments, random]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 DivideEdge[tissue_?TissueQ, edgeNumber_?IntegerQ,
 parts_?IntegerQ, random_:0]:= Module[{r, e, ne,nv, i, j,v, c,  vi, vj, dbg=False, dPrint, vnew, newEdgeNumbers, newEdges, length, randoms, q},
 
@@ -3085,6 +3228,7 @@ Return[q];
 
 
 
+(* ::Input::Initialization:: *)
 DivideEdge[tissue_?TissueQ, edgeNumber_?IntegerQ,  {x_?NumericQ, y_?NumericQ}]:= Module[{v,e,c,ne, v1, v2,e1, e2,  nv, q}, 
 e=TissueEdges[tissue];
 ne=Length[e]; 
@@ -3119,9 +3263,11 @@ Return[q];
 ];
 
 
+(* ::Input::Initialization:: *)
 DivideEdge[x___]:= (Print["Error: Expecting DivideEdge[tissue, edge number, parts, random] or \nDivideEdge[tissue, edge number, {x,y}]\ninstead of \n",{x}]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 MergeEdges[tissue_?TissueQ, e1_?IntegerQ, e2_?IntegerQ, opt___?OptionQ]:= Module[{v,e,c, tnew, edge1, edge2,ne, vcommon, v1, v2, enew, cnew, cchanged, cnum, csorted, cunsorted, undangle, sharedwith},
 v=TissueVertices[tissue]; 
 e=TissueEdges[tissue];
@@ -3176,6 +3322,7 @@ Return[tnew];
 MergeEdges[x___]:= (Print["Error: Expecting MergeEdges[tissue, e1, e2]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 MergeVertices[tissue_Tissue, edge_Integer, opt___?OptionQ]:= Module[{v,e,c,ne, v1, v2, keep, chuck, enew, cnew,vnew,vkeep, tnew, edgeChanges},
 c=TissueCells[tissue];
 e=TissueEdges[tissue];
@@ -3216,6 +3363,7 @@ MergeVertices[tissue, i, opt]];
 MergeVertices[x___]:= (Print["Expecting MergeVertices[tissue, {v1,v2}] or MergeVertices[tissue, edgeNumber.]"]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 DivideCell[tiss_?TissueQ, j_?IntegerQ, {p1in_?NumericPointQ, p2in_?NumericPointQ}, opt___?OptionQ]:= Module[{dbg, dPrint, c,v,e, nv, ne, nc, cvc, intersections, ce1,ce2, e1,e2, v1, v2, enew, e1val, e2val, e1new, e2new,ne1, ne2,  ne1new, ne2new, cold, cnew, coldvn, cnewvn, Sorted, p1, p2, edgechanges, cj},
 Sorted[{x_,y_}]:= x<=y; 
  
@@ -3440,6 +3588,7 @@ Return[Tissue[v,e,c]];
 DivideCell[x___]:= (Print["Error: Expecting DivideCell[tissue, cell-number, {point1,point2}]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 RemoveCell[tissue_?TissueQ, cellNumber_?IntegerQ]:= Module[{nc, c, v, e, q},
 v=TissueVertices[tissue]; 
 e=TissueEdges[tissue]; 
@@ -3482,6 +3631,7 @@ Return[q];
 RemoveCell[x___]:=(Print["Expecting RemoveCell[tissue, cellNumber]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 AddVertex[tissue_?TissueQ, {x_?NumericQ, y_?NumericQ}]:= Module[{v,e,c, q},
 v=Append[TissueVertices[tissue], {x,y}];
 e=TissueEdges[tissue];
@@ -3491,6 +3641,7 @@ Return[Tissue[v,e,c]];
 AddVertex[x___]:= (Print["Expecting AddVertex[Tissue, {number, number}]"]; Return[$Failed]); 
 
 
+(* ::Input::Initialization:: *)
 AddEdge[tissue_?TissueQ, {i_?IntegerQ, j_?IntegerQ}]:= Module[{v,e,c, nv, q, failed},
 v=TissueVertices[tissue];
 nv=Length[v]; 
@@ -3506,6 +3657,7 @@ Return[q];
 AddEdge[x___]:= (Print["Expecting AddEdge[Tissue, {int, int}]"]; Return[$Failed]); 
 
 
+(* ::Input::Initialization:: *)
 AddCell[tissue_?TissueQ, {i_?IntegerQ, j_?IntegerQ, k__?IntegerQ}]:= Module[{v,e,c,ne, q, failed},
 v=TissueVertices[tissue];
 e=TissueEdges[tissue]; 
@@ -3522,6 +3674,7 @@ Return[q];
 ]; 
 
 
+(* ::Input::Initialization:: *)
 EntangledVertices[tissue_?TissueQ]:= Module[
 {e,v, entangled, entanglements, unresolved, rv, nv, ne},
 e=TissueEdges[tissue];
@@ -3546,6 +3699,7 @@ unresolved/@Range[ne]
 ]
 
 
+(* ::Input::Initialization:: *)
 DisentangleVertices[tissue_?TissueQ]:= Module[{ ev, v, dbg=False, dPrint, e, ne, c, nc, entangled, rules, tnew},
 dPrint[x___]:= If[dbg, Print[x]];  
 v= TissueVertices[tissue]; 
@@ -3630,11 +3784,13 @@ Return[tnew];
 ]; 
 
 
+(* ::Input::Initialization:: *)
 SmootheCell[tissue_?TissueQ, cellNumber_?IntegerQ]:= 
 SmootheCells[tissue, {cellNumber}]; 
 SmootheCell[x___]:= (Print["Error: expecting SmootheCell[tissue, integer]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 SmootheCells[tissue_?TissueQ, {cellNumbers___?IntegerQ}, dbg_:False]:= Module[{c,v,e, nc, ne, bc,be,  cell,edges,dPrint, newEdge, newCell, vertices, sortedEdgeNumbers, cellNumber,newTissue, cn}, 
 dPrint[x___]:= If[dbg, Print["SmoothCell: ", x]]; 
 
@@ -3731,6 +3887,7 @@ SmootheCells[tissue_?TissueQ]:= SmootheCells[tissue, CellsOnBoundary[tissue]];
 SmootheCells[x___]:= (Print["Error: expecting SmootheCells[tissue, {integer, integer, ...}]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 ConnectionList[tissue_?TissueQ, opt___?OptionQ]:= Module[{c, clist, n, i, cell1, connections, cellnums, ut},
 c=TissueCells[tissue];
 clist={}; 
@@ -3767,6 +3924,7 @@ Return[SparseArray[mat]];
 *)
 
 
+(* ::Input::Initialization:: *)
 ConnectionList[torus_?TorusQ, opt___?OptionQ]:= Module[{c, clist, tissue, rules, incell, r, ut},
 tissue = TorusTissue[torus]; 
 c=TissueCells[tissue];
@@ -3808,9 +3966,11 @@ Return[SparseArray[mat]];
 *)
 
 
+(* ::Input::Initialization:: *)
 ConnectionList[x___]:= (Print["Error: Expecting ConnectionList[tissue]."]; $Failed); ConnectionMatrix[x___]:= (Print["Error: Expecting ConnectionMatrix[tissue]."]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 InLineVertices[tissue_?TissueQ, opt___?OptionQ]:= Module[{dbg, dPrint,v,e, nv,vn, VerticesInEdge, vie, candidates, removable, inline, vertices, ok},
 
 dbg="Debug"/.{opt}/.{"Debug"-> False}; 
@@ -3859,6 +4019,7 @@ Return[inline];
 InLineVertices[x___]:=(Print["Error: Expecting InLineVertices[tissue]."];Return[$Failed];)
 
 
+(* ::Input::Initialization:: *)
 VertexNeighbors[tis_Tissue, n_]:=
 Complement[Flatten[Select[TissueEdges[tis],MemberQ[#,n]&]],{n}];
 VertexNeighbors[tis_Tissue]:= Module[{n},
@@ -3868,6 +4029,7 @@ VertexNeighbors[tis,#]&/@Range[n]
 VertexNeighbors[x___]:= (Print["Expecting VertexNeighbors[tissue, integer]"]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 CellNeighbors[tis_?TissueQ, p_?IntegerQ]:= Module[{rv, n}, 
 n=NTissueCells[tis]; 
 If[p>n \[Or] p<1, 
@@ -3897,6 +4059,7 @@ Return[nbrs/@Range[n] ]
 CellNeighbors[x___]:= (Print["Expecting CellNeigbors[tissue, n] or CellNeighbors[Torus, n]"]; Return[$Failed]); 
 
 
+(* ::Input::Initialization:: *)
 EdgeBetween[Q_?TissueQ, p_?IntegerQ, q_?IntegerQ]:= Module[{
 c,nc,
 edgeNumber}, 
@@ -3985,6 +4148,7 @@ Return[edges]
 
 
 
+(* ::Input::Initialization:: *)
 RemoveShortEdges[tis_Tissue, threshold_:0.01]:=Module[{dbg=False, dPrint, el, mean, tooshort, g, ne},
 dPrint[x___]:= If[dbg, Print["RemoveShortEdges: ", x]]; 
 g=tis; 
@@ -4011,6 +4175,7 @@ Return[g];
 RemoveShortEdges[x___]:= (Print["Expecting RemoveShortEdges[tissue, threshold]"]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 CellEdgePairs[tissue_?TissueQ]:= Module[{ c, ntq},
 ntq=Range[NTissueCells[tissue]];
 c=TissueCells[tissue]; 
@@ -4018,6 +4183,7 @@ Join@@Transpose/@({Table[#,{Length[c[[#]]]}],c[[#]]}&/@ntq)
 ]
 
 
+(* ::Input::Initialization:: *)
 EdgesUsed[tissue_?TissueQ]:= Module[{e},
 c=TissueCells[tissue];
 e=Union[Flatten[c]]
@@ -4030,6 +4196,7 @@ Union[Flatten[e[[eu]]]]
 ];
 
 
+(* ::Input::Initialization:: *)
 IntersectingEdges[T_?ISTissue, num_]:= Module[{notused,e,ne,edge},
 e = TissueEdges[T]; 
 ne=Length[e];
@@ -4043,6 +4210,7 @@ notused,
 ]
 
 
+(* ::Input::Initialization:: *)
 BelowLine[pt_,pt1_,pt2_]:=Module[{m,y},m=(pt2[[2]]-pt1[[2]])/(pt2[[1]]-pt1[[1]]);
 y=pt1[[2]]+m*(pt[[1]]-pt1[[1]]);
 Return[pt[[2]]<y]];
@@ -4079,6 +4247,7 @@ GetTissueBelowLine[x___]:= (Print["Expecting GetTissueBelowLine[Tissue, point1, 
 
 
 
+(* ::Input::Initialization:: *)
 CellsInsidePolygon[T_?TissueQ,{vertices__?PointQ}]:= Module[{polygon, centers, inside,n},
 polygon={vertices};
 centers = Centeroid[T]; 
@@ -4101,6 +4270,7 @@ Tissue[v,e,c[[cip]]]
 GetTissueInsidePolygon[x___]:= (Print["Expecting GetTissueInsidePolygon[Tissue, {v1,v2,..}]"]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 Tissue2FlatTissue[T_?TissueQ]:= Module[{v,cvn},
 v=TissueVertices[T];
 cvn=CellVertexNumbers[T];
@@ -4109,6 +4279,7 @@ FlatTissue[v,cvn]
 Tissue2FlatTissue[x___]:=( Print["Expecting[Tissue2FlatTissue[Tissue]]"]; Abort[]);
 
 
+(* ::Input::Initialization:: *)
 CVN2Edges[cvn_]:=Module[{makepairs,CellEdgePairs,edges,EdgePairToEdgeNumber,CellEdgePair2CellEdgeNumber,c},makepairs[{ijk__}]:=Sort/@Partition[{ijk},2,1,1];
 CellEdgePairs=makepairs/@cvn;
 edges=Union[Join@@CellEdgePairs];
@@ -4119,6 +4290,7 @@ c=CellEdgePair2CellEdgeNumber/@CellEdgePairs;
 ]
 
 
+(* ::Input::Initialization:: *)
 FlatTissue2Tissue[F_FlatTissue]:=Module[{v,e,c, cvn},
 {v,cvn}=F/.{FlatTissue-> List}; 
 {e,c}=CVN2Edges[cvn]; 
@@ -4126,6 +4298,7 @@ Tissue[v,e,c]
 ]
 
 
+(* ::Input::Initialization:: *)
 TranslateTissue[T_Tissue,vector_?ListQ]:=Module[{v,e,c,dim, DX,DY,DZ,vnew},
 {v,e,c}=T/.{Tissue-> List};
 dim = Length[v[[1]]]; 
@@ -4142,6 +4315,7 @@ Tissue[vnew,e,c]
 TranslateTissue[x___]:=(Print["Expecting TranslateTissue[Tissue, vector]"]; Abort[]);
 
 
+(* ::Input::Initialization:: *)
 TranslateToOrigin[T_?TissueQ]:= Module[{v,C},
 v=TissueVertices[T]; 
 C=Mean[v];
@@ -4151,6 +4325,7 @@ TranslateToOrigin[x___]:=(Print["Expecting TranslateToOrigin[Tissue]"]; Abort[])
 
 
 
+(* ::Input::Initialization:: *)
 RotateTissue[T_Tissue, degrees_]:= Module[{v,e,c,dim, radians, R, vnew},
 {v,e,c}=T/.{Tissue-> List};
 dim = Length[v[[1]]]; 
@@ -4166,6 +4341,7 @@ Tissue[vnew, e,c]
 RotateTissue[x___]:=(Print["Expecting RotateTissue[Tissue, AngleInDegrees]"]; Abort[])
 
 
+(* ::Input::Initialization:: *)
 ReflectTissue[T_Tissue, "y"]:= Module[{v,e,c, dim, mult},
 {v,e,c}=T/.{Tissue-> List};
 dim=Length[v[[1]]]; 
@@ -4193,6 +4369,7 @@ Tissue[v,e,c]
 ReflectTissue[x___]:= (Print["Expecting ReflectTissue[Tissue, axis] where axis is \"x\" or \"y\""]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 BoundaryCell[T_?TissueQ]:= Module[{v,e,c,be,sce, coords},
 {v,e,c}=T/.{Tissue-> List}; 
 be=EdgesOnBoundary[T];
@@ -4205,6 +4382,7 @@ Prepend[sce, "Coordinates"-> coords]
 BoundaryCell[x___]:= (Print["Expecting BoundaryCell[Tissue]"]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 NeighborQ[T_?TissueQ, {n1_, n2_}]:= Module[{cl},
 cl=ConnectionList[T];
 cl=Select[cl, MemberQ[#,n1]&];
@@ -4212,6 +4390,7 @@ Or@@(MemberQ[#,n2]&/@cl)
 ]
 
 
+(* ::Input::Initialization:: *)
 MergeCells[T_?TissueQ,n_?ListQ]:= Module[{v,e,c,bl,T1,ncells, nlist},
 {v,e,c}=T/.{Tissue-> List}; 
 T1=Tissue[v,e,c[[n]]];
@@ -4223,6 +4402,7 @@ Tissue[v,e,Append[Delete[c,nlist], bl]]
 ]
 
 
+(* ::Input::Initialization:: *)
 SharedWall[T_?TissueQ, p_Integer, q_Integer]:= Module[{v,e,c,nc, cell1, cell2, common, edge,pairs, hasBV,VoB,VoE, Vall, cvnp,cvnq, overlap,overlaplist,done,i, edges, vertices},
 {v,e,c}=T/.{Tissue-> List};
 nc = Length[c];
@@ -4283,10 +4463,11 @@ vertices=firstpair
 SharedWall[x___]:= (Print["Expecting SharedWall[Tissue, cellnumber1, cellnumber2]"]; Abort[]); 
 
 
+(* ::Input::Initialization:: *)
 L1Cells[T_Tissue, opt___?OptionQ]:= Module[{bottom, bc, centroids, OK, L1, RMIN, allcenters, BOTTOM, CBOT, xCBOT, xr, xl},
 bottom="Bottom"/.{opt}/.{"Bottom"-> Automatic};
 RMIN = "MinimumRadius"/.{opt}/.{"MinimumRadius"-> 0}; 
-If[ToString[bottom]== "Automatic", bottom = 0 (*Sqrt[Mean[Area[T]]]*)]; 
+If[ToString[bottom]== "Automatic", bottom = 0 (*Sqrt[Mean[areafunction[T]]]*)]; 
 bc=CellsOnBoundary[T]; 
 allcenters=centroids=Centroid[T];
 If[bottom>-Infinity,
@@ -4326,6 +4507,7 @@ cells/.rules
 L1Cells[x___]:= AbortIf[True, "Error: Expecting L1Cells[Tissue] or L1Cells[DTissue]"]; 
 
 
+(* ::Input::Initialization:: *)
 L2Cells[T_Tissue, opt___?OptionQ]:= Module[{L1,L1CellEdges, bc, c, L2, e, v, LRest,n, cellnumber, celledges,ISL2,dbg=False, dPrint},
 dPrint[u___]:= If[dbg, Print["L2Cells: ", u]]; 
 L1=L1Cells[T,opt]; 
@@ -4363,6 +4545,7 @@ cells/.rules
 L2Cells[x___]:= AbortIf[True, "Error: Expecting L2Cells[Tissue] or L1Cells[DTissue]"]; 
 
 
+(* ::Input::Initialization:: *)
 Polygonalize[T_,threshold_: .5]:=Module[{c,v,e,cvn,nv,p,p3,RepeatedVertices,vp,n,r,PolyCell,newcells,F,Tnew,BC,IC,AIC,ABC,toosmall, dbg=False, dPrint, degen},
 dPrint[u___]:= If[dbg, Print["Polygonzlize:", u]]; 
 {v,e,c}=T/.{Tissue->List};
@@ -4390,9 +4573,9 @@ dPrint["Converting to Tissue."];
 Tnew=FlatTissue2Tissue[F];
 BC=CellsOnBoundary[Tnew];
 IC=Complement[Range[Length[newcells]],BC];
-AIC=Mean[Area[Tnew,IC]];
+AIC=Mean[areafunction[Tnew,IC]];
 dPrint["Deleting cells smaller than ",threshold*AIC];
-ABC=Area[Tnew,BC];
+ABC=areafunction[Tnew,BC];
 toosmall=Pick[BC,(#<threshold*AIC)&/@ABC];
 {v,e,c}=Tnew/.{Tissue->List};
 c=Delete[c,List/@toosmall];
@@ -4405,6 +4588,7 @@ Tnew=Tissue[v,e,c]
 ]
 
 
+(* ::Input::Initialization:: *)
 DelaunayEdges[{vertices__?numPairQ}]:= Module[{dt,xy, pairup, edges, edgeCoords},
 xy={vertices}; 
 
@@ -4421,6 +4605,7 @@ edges = edgeCoords/@edges
 DelaunayEdges[x___]:= (Print["Expecting DelaunayEdges[{{x,y},{x,y},...}]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 DelaunayPairs[{vertices__?numPairQ}]:= Module[{dt,xy, pairup, pairs},
 xy={vertices}; 
 pairup[{v1_, {vlist__}}]:= {v1,#}&/@{vlist}; 
@@ -4434,6 +4619,7 @@ DelaunayPairs[x___]:= (Print["Expecting \!\(\*
 StyleBox[\"DelaunayPairs\",\nFontWeight->\"Plain\"]\)[{{x,y},{x,y},...}]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 DelaunayMean[{vertices__?numPairQ}]:= Module[{xy,  edges,  dmean},
 edges = DelaunayEdges[{vertices}]; 
 If[SameQ[edges, $Failed], Return[$Failed]]; 
@@ -4443,12 +4629,14 @@ Return[dmean];
 DelaunayMean[x___]:= (Print["Expecting DelaunayMean[{{x,y},{x,y},...}]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 ConvexHullVertices[points_]:= Module[{ch},
 ch=ConvexHull[points];
 ch=points[[ch]]
 ]
 
 
+(* ::Input::Initialization:: *)
 GenerateBoundaryLayer[pointsInput_, opt___?OptionQ]:= Module[{chull, diameter, dbg, dPrint, points},
 dbg = "Debug"/.{opt}/.{"Debug"-> False}; 
 dPrint[x___]:= If[dbg, Print["GenerateBoundaryLayer: ", x]]; 
@@ -4528,6 +4716,7 @@ Return[points];
 ]
 
 
+(* ::Input::Initialization:: *)
 BoundedCellVoronoi[{centers__?numPairQ}, opt___?OptionQ]:= Module[{bl, xy, pts, boundary, bv, n,dPrint,dbg, v,c, vall, tiss},
 dbg = "Debug"/.{opt}/.{"Debug"-> False}; 
 dPrint[x___]:= If[dbg , Print["BoundedCellVoronoi: ", x]]; 
@@ -4552,6 +4741,7 @@ tiss
 BoundedCellVoronoi[x___]:= (Print["Expecting BoundedCellVoronoi[{point, point, ...}]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 PrunedDelaunayPairs[{points__?numPairQ}, opt___?OptionQ]:= Module[
 {dt, cl, w, udt},
 dt = DelaunayPairs[{points}]; 
@@ -4569,6 +4759,7 @@ Return[edges];
 ];
 
 
+(* ::Input::Initialization:: *)
 RandomizeTemplate[q_?TissueQ, rand_:0]:=Module[
 {qq, e, v, nv,c, el, r, rn, lengths, directions, offsets},
 If[rand>0,
@@ -4592,6 +4783,7 @@ qq=q];
 Return[qq]]; 
 
 
+(* ::Input::Initialization:: *)
 TemplateHoneycombCover[xmax_, ymax_]:= Module[{oddxcenters, evenxcenters, centers, y, even, thesecenters, unithex,hexat, v, vcells, vertexNumber, CellsByVertexNumber, cellbyvertex, cellsByEdgePair, edges, cellsByEdgeNumber, edgeNumber},
 
 unithex={Cos[#],Sin[#]}&/@Most[Range[0,2 Pi,Pi/3]];
@@ -4624,6 +4816,7 @@ Return[CellsByVertexToTissue[v, vcells]];
 ]
 
 
+(* ::Input::Initialization:: *)
 TemplateRectangular[nx_, ny_]:= Module[{dbg, dPrint, x,y, v, i, j, bl, br, tr, tl, cvc, cells, tiss},
 dPrint[x___]:= If[dbg, Print["TemplateRectangular: ", x]]; 
 
@@ -4667,6 +4860,7 @@ Return[tiss];
 TemplateRectangular[x___]:= (Print["Expecting TemplateRectangular[nx,ny] or TemplateRectangular[{xmin,xmax,dx}, {ymin,ymax,dy}]"]; Abort[]);
 
 
+(* ::Input::Initialization:: *)
 TemplateRectangularCover[xmax_, ymax_, \[CapitalDelta]x_, \[CapitalDelta]y_, offset_:(1/2), dbg_:False]:= Module[
 {n, oddxcenters, evenxcenters, centers, y, even, data, corners, rectangleAt, rline, v, vcells, q, outsiders, dPrint},
 
@@ -4740,6 +4934,7 @@ Return[q];
 ]
 
 
+(* ::Input::Initialization:: *)
 CellsByVertexToTissue[v_, vcells_]:= Module[
 {vertexNumber, cellbyvertex, CellsByVertexNumber, cellsByEdgePair, edges, edgeNumber, cellsByEdgeNumber}, 
 vertexNumber[{xc_, yc_}]:= Position[v, {xc, yc}][[1, 1]]; 
@@ -4768,10 +4963,12 @@ Tissue[v, edges, cellsByEdgeNumber]
  
 
 
+(* ::Input::Initialization:: *)
 CellVerticesToTissue[vcells_]:= CellsByVertexToTissue[Union[Join@@vcells], vcells]; 
 
 
 
+(* ::Input::Initialization:: *)
 TemplateCircularHoneycomb[layers_, area_]:= Module[{q, mult,hexarea=(3.0 Sqrt[3])/2, v, e, c},
 q=TemplateCircularHoneycombCover[layers]; 
 mult = 1.0* Sqrt[area/hexarea];
@@ -4782,6 +4979,7 @@ Tissue[v,e,c]
 ]
 
 
+(* ::Input::Initialization:: *)
 TemplateCircularHoneycombCover[radius_, mode_:-1]:= Module[{oddxcenters, evenxcenters, centers, y, even, thesecenters, unithex,hexat, v, vcells, vertexNumber, CellsByVertexNumber, cellbyvertex, cellsByEdgePair, edges, cellsByEdgeNumber, edgeNumber, r, topcenters, bottomcenters, tissue, semicircle, allthesecenters},
 
 If[IntegerQ[mode], 
@@ -4853,6 +5051,7 @@ Return[tissue];
 ]
 
 
+(* ::Input::Initialization:: *)
 TemplateRing[n_, R_, A_]:= Module[{r, Amax, v,c,e},
 Amax = Pi*R^2/n; 
 If[A >Amax, Print["Error: incompatible input {n,R,A}=", {n,R,A}, "\nTo fit this many cells the area must be at most ", Amax];
@@ -4875,6 +5074,7 @@ Return[Tissue[v,e,c]]
 ]
 
 
+(* ::Input::Initialization:: *)
 TemplateRandom[npoints_?IntegerQ, {xy__?numPairQ}, opt___?OptionQ]:= Module[{rx, ry, xmax, ymax, xmin, ymin, i, points,point, itotal, bvd, trace=True, tPrint,  v, val, cells, e, c, cellEdges, boundary, q},
 
 trace = "Debug"/.{opt}/.{"Debug"-> False}; 
@@ -4942,6 +5142,7 @@ Return[q];
 TemplateRandom[x___]:= (Print["Error: expecting TemplateRandom[numPoints, convex_bounds_as_list_of_points"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 TemplateRandomSquareGrid[npoints_?IntegerQ, {xmin_, ymin_}, {xmax_, ymax_}, limit_:0.8, offset_:0.5]:= Module[{rx, ry, i,j,  points,point, itotal, bvd, trace=False, tPrint,  v, val, cells, e, c, cellEdges, boundary, q, ngrids, \[CapitalDelta]x, \[CapitalDelta]y, x1, x2, y1, y2, limitation, off},
 
 AbortIf[xmin>= xmax, "Error: TemplateRandomSquareGrid: xmin = "<>ToString[xmin]" \[GreaterEqual] xmax = "<>ToString[xmax]]; 
@@ -5051,6 +5252,7 @@ Return[q];
 TemplateRandomSquareGrid[x___]:= (Print["Error: expecting TemplateRandomSquareGrid[numPoints, {xmin, xmax}, {ymin, ymax}]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 RandomSquareGridCenters[ {xmin_, ymin_}, {xmax_, ymax_}, nx_, ny_, limit_:0.4, offset_:0.5]:= Module[{rx, ry, i,j,  points,point, itotal, bvd, trace=True, tPrint,  v, val, cells, e, c, cellEdges, boundary, q, ngrids,  x1, x2, y1, y2, limitation, off, \[CapitalDelta]x, \[CapitalDelta]y},
 
 tPrint[x___]:= If[trace, Print["TemplateRandomSquareGrid: ", x]]; 
@@ -5105,6 +5307,7 @@ Return[points];
 
 
 
+(* ::Input::Initialization:: *)
 VoronoiToTissue[points_, boundary_, trace_:False]:= Module[{bvd, v, val, tPrint, cells, cellEdges, e, c, q},
 
 tPrint[x___]:= If[trace, Print["VoronoiToTissue: ", x]]; 
@@ -5142,6 +5345,7 @@ Return[q];
 VoronoiToTissue[x___]:= (Print["Error: Expecting VoronoiToTissue[points, boundary]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 TemplateRandomCircularGrid[npoints_?IntegerQ, radius_?NumericQ]:= Module[{n, dbg=False, dPrint, layers,layer,  point, points, cellsInLayer, \[Delta]\[Theta], \[Theta]0, \[Theta]centers, thetas, offset, r, \[Delta]r, rvals, pointsInLayer, q},
 dPrint[x___]:= If[dbg, Print["TemplateRandomCircularGrid: ", x]]; 
 (* find smallest square integer that is larger or equal to npoints *) 
@@ -5233,6 +5437,7 @@ TemplateRandomCircularGrid[x___]:= (Print["Error: Expecting TemplateRandomCircul
 
 
 
+(* ::Input::Initialization:: *)
 TemplateRandomSemicircularGrid[nrcpoints_?IntegerQ, radius_?NumericQ, nbot_?IntegerQ]:= Module[{n, dbg=False, dPrint, layers,layer,  point, points, cellsInLayer, \[Delta]\[Theta], \[Theta]0, \[Theta]centers, thetas, offset, r, \[Delta]r, rvals, pointsInLayer, q, npoints, toplayer, bottom, nbottom},
 dPrint[x___]:= If[dbg, Print["TemplateRandomCircularGrid: ", x]]; 
 (* find smallest square integer that is larger or equal to npoints *) 
@@ -5356,8 +5561,9 @@ TemplateRandomCircularGrid[x___]:= (Print["Error: Expecting TemplateRandomCircul
 
 
 
+(* ::Input::Initialization:: *)
 TemplatePolygon[sides_Integer, StartAngle_:0, aspect_:1, rnd_:-1, rot_:0]:= Module[{v, nv, e, c}, 
-v=RegularPolygon[sides, StartAngle, aspect, rnd, rot]; 
+v=regularPolygon[sides, StartAngle, aspect, rnd, rot]; 
 nv=Length[v];
 e=Partition[Range[nv], 2,1,1];
 c={Range[nv]}; 
@@ -5365,6 +5571,7 @@ Return[Tissue[v,e,c]]
 ];
 
 
+(* ::Input::Initialization:: *)
 TemplateRandomOvalish[n_, {a_, b_}, dbg_:False]:= Module[
 {rx,ry,point,points,i,OK, ch, q, dPrint},
 dPrint[x___]:= If[dbg, Print["TemplateRandomOvalish: ", x]]; 
@@ -5423,6 +5630,7 @@ Return[q];
 ]
 
 
+(* ::Input::Initialization:: *)
 TemplateParabolic[height_,nRows_, rnd_:0]:=Module[{W,H,delta,i,g,gnext,parab,NMdist,pts,k=0,x,y,off,t,q,q1,n,n1,bv,v,e,c,ymin,xbv,vnew,vbvnew,vbv,bottomlayer,dPrint,rng,mxrnd,RemoveExtraBottomVertices, gcurves, dummyCells},
 dPrint[u___]:=If[debug,Print["Meristem Template: ",u]];
 
@@ -5542,7 +5750,7 @@ dPrint["L1/L2 Interface smoothed out: ", ShowTissue[q1,"CellNumbers"->True,Image
 Block[{averageArea, areas, cvc, cvcy, takeys, bot,abot, atotbot, overallwidth, xmax, xmin, ysquish}, 
 q=q1; 
 takeys[vertexlist_]:= Transpose[vertexlist][[2]]; 
-areas = Area[q]; 
+areas = areafunction[q]; 
 averageArea=areas//Mean;
 dPrint["averageArea: ", averageArea]; 
 {v,e,c}=q/.{Tissue->List};
@@ -5576,6 +5784,7 @@ q1=Tissue[vnew,e,c];
 Return[q1]];
 
 
+(* ::Input::Initialization:: *)
 CheckEdges[T_, msg_:""]:= Module[{v,e,c,lengths},
 {v,e,c}=T/.{Tissue-> List};
 lengths=Length/@e;
@@ -5584,6 +5793,7 @@ AbortIf[lengths!= {2},msg<>"Possible Program Error: Invalid List of edge pairs: 
 ]
 
 
+(* ::Input::Initialization:: *)
 TemplateParabolic[height_, width_, mu_, sigma_, opt___?OptionQ]:=Module[{W,H,delta,i,g,gnext,parab,NMdist,pts,k=0,x,y,off,t,q,q1,n,n1,bv,v,e,c,ymin,xbv,vnew,vbvnew,vbv,bottomlayer,dPrint, gcurves, nextpoint, nRows, told, dummyCells, doEdgeChecks=False, DoEdgeCheck, debug, Points, PPoints},
 
 debug="Debug"/.{opt}/.{"Debug"-> False}; 
@@ -5781,6 +5991,7 @@ Return[q1]
 ];
 
 
+(* ::Input::Initialization:: *)
 RemoveExtraBottomVertices[q_,  CellIndex_]:= Module[{xvals,left,right,extraVertices,edges,edgepairs, qnew, qnew1,e,en, cv, cvb, edgeOnBottom, enb, dPrint, dbg=False,v,c,bv, cvn},
 dPrint[u___]:=If[dbg, Print["RemoveExtraBottomVertices (",CellIndex,"):", u]]; 
 {v,e,c}=q/.{Tissue->List};
@@ -5833,6 +6044,7 @@ qnew1
 ]
 
 
+(* ::Input::Initialization:: *)
 BottomCellsExcludingCorners[q_, delta_]:= Module[{flags,bc,xcoords,leftmost,rightmost,endcells,v,e,c,bv,cvn},
 cvn=CellVertexNumbers[q];
 {v,e,c}=q/.{Tissue->List};
@@ -5858,6 +6070,7 @@ bc=Complement[bc,endcells];
 ]
 
 
+(* ::Input::Initialization:: *)
 SmootheL1OuterEdge[q_,delta_,height_, width_:-1, dbg_:False]:=Module[{v,e,c,W,f,g,H,newvxy,X,Y,vmap,vnew,Tnew,dPrint, vtop},
 dPrint[u___]:=If[dbg,Print["SmootheL1OuterEdge: ",u]];
 H=height+0.5delta;
@@ -5892,6 +6105,7 @@ dPrint[Show[ShowTissue[q,"CellNumbers"->True,Frame->True,"VertexNumbers"->True,"
 Return[Tnew];]
 
 
+(* ::Input::Initialization:: *)
 SmootheL1L2Interface[q_,delta_,height_, width_:-1]:=Module[{v,e,c,L1L2vertices,W,f,g,H,newvxy,X,Y,vmap,vnew,Tnew,dbg=False,dPrint},
 
 
@@ -5916,6 +6130,7 @@ dPrint[Show[ShowTissue[q,"CellNumbers"->True,Frame->True,"VertexNumbers"->True,"
 Return[Tnew];]
 
 
+(* ::Input::Initialization:: *)
 SmootheL2L3Interface[q_,delta_,height_, width_:-1]:=Module[{v,e,c,L1L2vertices,W,f,g,H,newvxy,X,Y,vmap,vnew,Tnew,dbg=False,dPrint},
 
 
@@ -5940,6 +6155,7 @@ dPrint[Show[ShowTissue[q,"CellNumbers"->True,Frame->True,"VertexNumbers"->True,"
 Return[Tnew];]
 
 
+(* ::Input::Initialization:: *)
 FlattenTopWalls[q_Tissue]:=Module[{v,e,c,L1,centroids,dbg=False,dPrint,leftmost,rightmost,boundaryCellNumber,eob,eobi,sortedCellEdges,sortedBoundaryVertices,ep1,ep2,newEdge,enew,cnew,ne,oldcell,oldcellpositions,mappings,newcell, T,bottommost},
 dPrint[x___]:=If[dbg,Print["FlattenTopWalls:",x]];
 {v,e,c}=q/.{Tissue->List};
@@ -5994,6 +6210,7 @@ T=UndangleVertices[T]
 ]
 
 
+(* ::Input::Initialization:: *)
 FindL2L3Vertices[q_, delta_]:=Module[{v,e,c,nc,vob,cvn,l1cells,l2cells,l1vn,l2vn,l2l3,dbg=False, dPrint},
 dPrint[u___]:= If[dbg, Print["FindL2L3Vertices: ", u]]; 
 {v,e,c}=q/.{Tissue->List};
@@ -6014,6 +6231,7 @@ l2l3 =Complement[ Complement[l2vn,l1vn],vob]
 FindL2L3Vertices[x___]:= "Huh?"
 
 
+(* ::Input::Initialization:: *)
 FindL1L2Vertices[q_,delta_]:= Module[{L1L2vertices,l1cells,l1vertices,bv,cvn,vob,nc,v,c,e},
 {v,e,c}=q/.{Tissue->List};
 cvn=CellVertexNumbers[q];
@@ -6030,6 +6248,7 @@ Return[L1L2vertices];
 ]
 
 
+(* ::Input::Initialization:: *)
 FindL1L2Edges[q_,delta_]:= Module[{L1L2V,v,e,c,ne, mostofthem, others,vnums,onbot},
 
 (* onbot is true if one vertex has y<delta/2 and the other has y > delta/2 *)
@@ -6052,6 +6271,7 @@ Join[mostofthem, others]
 ]
 
 
+(* ::Input::Initialization:: *)
 Rectangularize[tis_?TissueQ, opt___?OptionQ]:= Module[{v,e,c, bv, corners, method, debug, dPrint, xmin,ymin, xmax, ymax, projections, i, xy, tnew, meanarea, quiet, verbose, Sorted, tissue}, 
 Sorted[{x_,y_}]:= x<= y; 
 
@@ -6070,7 +6290,7 @@ verbose["Projecting vertices .."];
 
 v=TissueVertices[tissue]; 
 bv=VerticesOnBoundary[tissue];
-meanarea = Mean[Area[tissue]]; 
+meanarea = Mean[areafunction[tissue]]; 
 
 (* identify options *)
 
@@ -6136,6 +6356,7 @@ Return[tnew];
 Rectangularize[x___]:= (Print["Error: Expecting Rectangularize[tissue, options]"]; $Failed);
 
 
+(* ::Input::Initialization:: *)
 RegularizeMass[tissue_?TissueQ, area_, opt___?OptionQ]:= Module[{dbg=False, dPrint, bc, bcarea, bcareas, sigma, ic,icareas,icarea,  icsigma,  c, nc,  tosplit, cvc, axes, tnew, j, vector, Splittables, nvstart, vfinal,nvfinal,  rand, dist, bv, v2randomize}, 
 
 dbg="Debug"/.{opt}/.{"Debug"-> False}; 
@@ -6144,7 +6365,7 @@ c=TissueCells[tissue];
 
 (* save this for later *)
 nvstart=NTissueVertices[tissue]; 
-dist = Sqrt[Mean[Area[tissue]]]; 
+dist = Sqrt[Mean[areafunction[tissue]]]; 
 
 nc = Length[c]; 
 
@@ -6156,11 +6377,11 @@ Print["Warning: RegularizeMass: interior cells: ", Length[ic], " Exterior cells:
 Return[tissue];
 ];
 
-bcareas = Area[tissue, bc]; 
+bcareas = areafunction[tissue, bc]; 
 bcarea=Mean[bcareas]; 
 sigma=StandardDeviation[bcareas]; 
 
-icareas = Area[tissue, ic]; 
+icareas = areafunction[tissue, ic]; 
 icarea = Mean[icareas];
 icsigma = StandardDeviation[icareas]; 
 
@@ -6215,7 +6436,7 @@ If[TissueQ[tnew], dPrint[ShowTissue[tnew,"CellNumbers"-> True, ImageSize-> 200]]
 
 Block[{daughters, areas, more2split, it, newaxes},
 daughters = {j,  NTissueCells[tnew]}; 
-areas = Area[tnew, daughters]; 
+areas = areafunction[tnew, daughters]; 
 more2split = Pick[daughters, Splittable/@areas]; 
 it=1;
 If[Length[more2split]>0 ,
@@ -6273,6 +6494,7 @@ Return[tnew];
 ]; 
 
 
+(* ::Input::Initialization:: *)
 (* this form is less elegant and less efficient *)
 RemoveInLineVertices[tissue_?TissueQ]:= Module[{tnew,  vnum, e1, e2, ilv,  dPrint, i,imax = 1000,  dbg=False},
 dPrint[x___]:=If[dbg, Print["RemoveInLineVertices: ", x]]; 
@@ -6322,7 +6544,8 @@ Return[tnew];
 ];
 
 
-AddCorners[tissue_?TissueQ,{{xmin_,ymin_},{xmax_,ymax_}}]:=Module[{vec,bv,bvxy,debug=False,dPrint,eps,onBottom,onTop,onLeft,onRight,OnBottom,OnTop,OnLeft,OnRight, cvn, TopRight, TopLeft, BottomRight, BottomLeft, cob, bl, br, tl, tr, q, v, e, c, needbl, needbr, needtl, needtr},eps=(0.001)*Sqrt[Mean[Area[tissue]]];dPrint[x___]:=If[debug,Print["AddCorners: ",x]];v=TissueVertices[tissue];
+(* ::Input::Initialization:: *)
+AddCorners[tissue_?TissueQ,{{xmin_,ymin_},{xmax_,ymax_}}]:=Module[{vec,bv,bvxy,debug=False,dPrint,eps,onBottom,onTop,onLeft,onRight,OnBottom,OnTop,OnLeft,OnRight, cvn, TopRight, TopLeft, BottomRight, BottomLeft, cob, bl, br, tl, tr, q, v, e, c, needbl, needbr, needtl, needtr},eps=(0.001)*Sqrt[Mean[areafunction[tissue]]];dPrint[x___]:=If[debug,Print["AddCorners: ",x]];v=TissueVertices[tissue];
 e=TissueEdges[tissue];
 c=TissueCells[tissue];
 
@@ -6400,6 +6623,7 @@ Return[q];
 AddCorners[x___]:=(Print["Error: AddCorners."];$Failed);
 
 
+(* ::Input::Initialization:: *)
 ProjectVerticesToBoundary[tissue_,"Perpendicular",  {{xmin_,ymin_}, {xmax_, ymax_}}, debug_]:= 
 Module[{v,bv, bvxy,  dPrint, top, bottom, left, right, topi,bottomi, lefti, righti, perps, minDist, projections},
 dPrint[x___]:= If[debug, Print["ProjectVerticesToBoundary: ", x]]; 
@@ -6442,6 +6666,7 @@ Return[projections];
 ProjectVerticesToBoundary[tissue_,method_,  {{xmin_,ymin_}, {xmax_, ymax_}}, debug_]:= (Print["Error: ProjectVerticesToBoundary: Unkown Method: ", method]; Return[$Failed]); 
 
 
+(* ::Input::Initialization:: *)
 GetCorners[tissue_?TissueQ, "Automatic"]:= Module[{v,  xmin, ymin, xmax, ymax},
 v=TissueVertices[tissue]; 
 
@@ -6465,6 +6690,7 @@ GetCorners[x___]:= (Print["Error: Expecting corners[tissue, corners]"]; $Failed)
 
 
 
+(* ::Input::Initialization:: *)
 ToTorus[tissue_?TissueQ, opt___?OptionQ]:= Module[{tnew,v,e,c, debug,inputtolerance, tolerance, dPrint,xs, ys,  bottom, top, left, right, tv, bv, lv, rv, vertexNumbers, nv, el, er, et, eb, eob, whichedges, corners, newvr, newvl, newvt, newvb, nnewvl, nnewvr, nnewvt, nnewvb, nnewvlj, nnewvrj, nnewvtj, nnewvbj, VertexOnEdge, VerticesOnWhichEdge, VertexEdgePairs, EdgeMatches},
 debug = "Debug"/.{opt}/.Options[ToTorus]; 
 inputtolerance="Tolerance"/.{opt}/.Options[ToTorus]; 
@@ -6478,7 +6704,7 @@ eob = EdgesOnBoundary[tissue];
 nv = Length[v]; 
 vertexNumbers=Range[nv]; 
 
-tolerance = inputtolerance * Sqrt[Mean[Area[tissue]]]; 
+tolerance = inputtolerance * Sqrt[Mean[areafunction[tissue]]]; 
 
 dPrint["Tolerance:", tolerance]; 
 
@@ -6686,6 +6912,7 @@ Return[Tissue[v,e,c]];
 
 
 
+(* ::Input::Initialization:: *)
 TorusQ[Torus[x_?TissueQ, y_]]:= Module[{isrule, ok}, 
 isrule[z_Rule]:= True;
 isrule[z___]:= False; 
@@ -6715,6 +6942,7 @@ Return[tissuecheck];
 TorusCheck[x___]:=(Print["Error: Expecting TorusCheck[Torus[Tissue[], rules]"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 TorusTissue[Torus[tissue_, rules_]]:= Module[{ok},
 ok = TorusQ[Torus[tissue, rules]]; 
 If[Not[ok],
@@ -6737,11 +6965,13 @@ Return[rules];
 TorusRules[x___]:=(Print["Error: expecting TorusRules[Torus[..]]."]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 DTissueQ[DTissue[v_?ListQ,e_?ListQ,c_?ListQ]]:= RuleQ[c];
 DTissueQ[x___]:= False;
 ISTissue[x___]:= TissueQ[x]\[Or]DTissueQ[x];
 
 
+(* ::Input::Initialization:: *)
 Tissue2DTissue[tissue_?TissueQ,opt___?OptionQ]:= Module[{numbers,v,e,c,nc,maxnumber},
 numbers ="Numbers"/.{opt}/.{"Numbers"-> {}}; 
 v=TissueVertices[tissue];
@@ -6760,6 +6990,7 @@ DTissue[v,e,c]
 Tissue2DTissue[x___]:= $Failed
 
 
+(* ::Input::Initialization:: *)
 DTissue2Tissue[DTissue[v_,e_,c_]]:= 
 If[DTissueQ[DTissue[v,e,c]],Tissue[v,e,Last/@c],$Failed];
 DTissue2Tissue[DTissue[v_,e_,c_], sim_,time_,x_:Global`x,y_:Global`y]:= Module[{vnew,NV,vused,vflags,vold},
@@ -6778,6 +7009,7 @@ Tissue[vnew,e,Last/@c]
 DTissue2Tissue[x___]:= $Failed; 
 
 
+(* ::Input::Initialization:: *)
 DeleteCell[dtissue_?DTissueQ, n_]:= Module[{v,e,c,T,cells,indices, found},
 v=TissueVertices[dtissue];
 e=TissueEdges[dtissue];
@@ -6797,6 +7029,7 @@ Return[DTissue[v,e,c]];
 ]; 
 
 
+(* ::Input::Initialization:: *)
 CellAreaEquations[tissue_?TissueQ,opt___?OptionQ]:= Module[{x,y,area, xy},
 xy="xy"/.{opt}/.{"xy"-> True}; 
 
@@ -6814,12 +7047,12 @@ nc = Length[vertices];
 (* area function for a single cell *)
 f[vlist_]:= Module[{coords}, 
 coords={x[#][Global`t],y[#][Global`t]}&/@vlist;
-Area[coords]
+areafunction[coords]
 ];
 cellnumbers = "Numbers"/.{opt}/.{"Numbers"-> {}}; 
 If[cellnumbers=={}, cellnumbers = Range[nc]]; 
 If[Length[cellnumbers]<nc, Print["Error: ", Length[cellnumbers], " cell numbers provided for ", nc," cells."]; Return[$Failed]]; 
-eqlhs = area[#][Global`t]&/@cellnumbers; 
+eqlhs = areafunction[#][Global`t]&/@cellnumbers; 
 eqrhs = f/@vertices;
 equations = MapThread[Equal,{eqlhs,eqrhs}]
 ];
@@ -6835,6 +7068,7 @@ CellAreaEquations[T,x,y,area,"Numbers"-> cellnumbers, opt]
 ]
 
 
+(* ::Input::Initialization:: *)
 FastPolyArea[r_,angle1_,angle2_, nint_:50]:=Module[{angles, dtheta,rs,left,right,sindtheta},
 dtheta = Abs[angle2-angle1]/nint; 
 sindtheta = Sin[dtheta]; 
@@ -6844,6 +7078,7 @@ rs = r/@angles;
 ];
 
 
+(* ::Input::Initialization:: *)
 FastTrapPolyArea[r_,angle1_,angle2_,nint_:50]:= Module[{dtheta,angles,rs,first, last},
 dtheta = Abs[angle2-angle1]/nint; 
 angles=Table[angle1+i*dtheta,{i,0,nint}];
@@ -6854,6 +7089,7 @@ first = First[rs]; last = Last[rs];
 ]
 
 
+(* ::Input::Initialization:: *)
 FastTrapPartialArea[r_,angle1_,angle2_,nint_:50]:=Module[{sector,triangle,DTR,r1,r2,r3,a1,a2,sign},a1=Min[angle1,angle2];
 a2=Max[angle1,angle2];
 sector=FastTrapPolyArea[r,angle1,angle2,nint];
@@ -6863,6 +7099,7 @@ sign=If[Abs[angle1-angle2]<Pi,-1,1];
 sector+sign*triangle]
 
 
+(* ::Input::Initialization:: *)
 FastPolyPartialArea[r_,angle1_,angle2_,nint_: 50]:=
 Module[{sector,triangle,r1,r2,a1,a2,sign},
 a1=Min[angle1,angle2];
@@ -6874,14 +7111,16 @@ sign=If[Abs[angle1-angle2]<Pi,-1,1];
 sector+sign*triangle]
 
 
+(* ::Input::Initialization:: *)
 PartialArea[r_,theta1_,theta2_,n_]:=Module[{pts,dt},
 If[theta1==theta2, Return[0]]; 
 dt=(theta2-theta1)/n;
 pts=r[#] {Cos[#],Sin[#]}&/@Range[theta1,theta2-dt,dt];
 If[Length[pts]<3,Return[0.]];
-Area[pts]]
+areafunction[pts]]
 
 
+(* ::Input::Initialization:: *)
 FastPolyDegAreaSector[r_,angle1_,angle2_,nint_: 50]:=Module[{angles,dtheta,rs,left,right,sindtheta,DTR},
 DTR=Pi/180.0;
 dtheta=Abs[angle2-angle1]/nint;
@@ -6902,6 +7141,7 @@ sector+sign*triangle]
 
 
 
+(* ::Input::Initialization:: *)
 HalfAreaAngle[r_,theta1_,A_]:=Module[{f,x1,x2,y1,y2,i,x3,y3,yprime,imin},f[\[Theta]_]:=FastPolyDegArea[r,theta1,theta1+\[Theta],500]-A/2;
 x1=90;x2=180;
 y1=f[x1];
@@ -6940,6 +7180,7 @@ Return[result]
 
 
 
+(* ::Input::Initialization:: *)
 AreaPotentialMatrix[points_,dtheta_,opt___?OptionQ]:=Module[{A,r,n, theta1,theta2,delta,v,V,i,j,m},
 n="Intervals"/.{opt}/.{"Intervals"-> 100}; 
 r=RadialPolygon[points,n];
@@ -6975,6 +7216,7 @@ A2=A-A1;
 ]
 
 
+(* ::Input::Initialization:: *)
 $LENGTH\[UnderBracket]ALT\[UnderBracket]MULT=1.0;
 LengthPotentialFunction[r_,dmin_, theta1_, theta2_]:= Module[{r1, r2,x1,y1,x2,y2,d,v1,v2,v3,cosa,sina,h,V,teeny=.0001, altitude, a, dbg=False, dPrint},
 dPrint[x___]:= If[dbg, Print["LengthPotentialFunction: ", x]]; 
@@ -7006,6 +7248,7 @@ Return[V];
 
 
 
+(* ::Input::Initialization:: *)
 $DIRECTION\[UnderBracket]ALT\[UnderBracket]MULT=1;
 $DIRECTION\[UnderBracket]EXPONENT=2; 
 DirectionPotentialFunction[r_, thetaa1_, thetaa2_,v_]:= Module[{r1,r2,x1,x2,y1,y2,v1,v2,v3,v4,val,lv3,theta1,theta2,n, teeny=.001*Pi/180.,V,altitude},
@@ -7036,6 +7279,7 @@ V+$DIRECTION\[UnderBracket]ALT\[UnderBracket]MULT*altitude
 ]
 
 
+(* ::Input::Initialization:: *)
 DivisionPotential[r_,A_,dmin_, weights_?ListQ,VGrowth_?ListQ, VCell_?ListQ,{theta1_,theta2_}]:= Module[{w,v, VA, VL, VD,VX,q1,q2,VTotal,u,w1,w2,w3,w4,vg,vc, dbg=False, dPrint},
 dPrint[x___]:= If[dbg, Print["DivisionPotential: ", x]]; 
 
@@ -7065,6 +7309,7 @@ Return[VTotal];
 ]
 
 
+(* ::Input::Initialization:: *)
 $DEBUGMINIMIZATION=False;
 GlobalSearchMinimizationOfDivisionPotential[R_,A_,d_,w_,v1_,v2_, dangle_:3.6,angleDiffMin_: 135]:=Module[{x,y,f,F,xmin,ymin,val,angle1,angle2,vnew,delta,dbg=$DEBUGMINIMIZATION, dPrint, fdata, fdatarow},
 dPrint[u___]:= If[dbg, Print["GlobalSearchMinimizationOfDivisionPotential: ", u]]; 
@@ -7094,6 +7339,7 @@ dPrint[{val, xmin, ymin}];
 ]
 
 
+(* ::Input::Initialization:: *)
 $DEBUGOPTIMIZATION=False;
 OptimizeDivisionPotential[points_, w_?ListQ,vgrowth_?ListQ,vcell_?ListQ,anglespreadmin_]:= Module[{result,angles,r,A,A1,A2, p1,p2,C,dmin,tab},
 
@@ -7101,7 +7347,7 @@ If[$DEBUGOPTIMIZATION, Print["OptimizeDivisionPotential (1):  w=",w, " vg=",vgro
 
 
 r = RadialPolygon[points,100]; 
-A = Area[points]; 
+A = areafunction[points]; 
 (*Find minimum pseudo-diameter from 100 points*)
 dmin=Min[Table[r[u]+r[u+Pi],{u,0,Pi,Pi/100.0}]]; 
 OptimizeDivisionPotential[r, A, dmin, Centroid[points], w,vgrowth,vcell,anglespreadmin]
@@ -7135,6 +7381,7 @@ Return[{angles, p1, p2}];
 ]
 
 
+(* ::Input::Initialization:: *)
 PrincipalCellDirection[T_?DTissueQ,cellnumber_, solution_,time_,xvar_,yvar_]:= Module[{vertexNumbers,vertexNumbersT,coordinates,CM,evals,evec,tissue,C},
 vertexNumbers=CellVertexNumbers[T,cellnumber];
 vertexNumbersT={xvar[#][Global`t],yvar[#][Global`t]}&/@vertexNumbers;
@@ -7149,6 +7396,7 @@ Return[evec];
 PrincipalCellDirection[x___]:= (Print["Expecting PrincipalCellDirection[Tissue,cell,solution,t,x,y]; x = ",Short/@{x}]);
 
 
+(* ::Input::Initialization:: *)
 PrincipalGrowthDirection[T_?DTissueQ,cellnumber_, solution_,time_,xvar_,yvar_]:= Module[{vertexNumbers,vertexNumbersT,velocities,CM,evals,evec,tissue,C},
 vertexNumbers=CellVertexNumbers[T,cellnumber];
 vertexNumbersT={xvar[#][Global`t],yvar[#][Global`t]}&/@vertexNumbers;
@@ -7160,6 +7408,7 @@ evec=Eigenvectors[CM][[1]]
 PrincipalGrowthDirection[x___]:= (Print["Expecting PrincipalGrowthDirection[Tissue,cell,solution,t,x,y]; x = ",Short/@{x}]);
 
 
+(* ::Input::Initialization:: *)
 CellEigenRatio[T_?TissueQ,i_]:= EigenRatio[CellVertexCoordinates[T,i]]; 
 CellEigenRatio[x___]:= AbortIf[True, "Error: Expecting CellEigenRatio[Tissue, index]"]; 
 EigenRatio[listOfVertices_?ListQ]:= Module[{Cov, e1, e2, ratio},
@@ -7175,6 +7424,7 @@ If[e1!= 0, Return[e1/e2], Return[Infinity]];
 EigenRatio[x___]:= AbortIf[True, "Unexpected Input to EigenRatio: "<>ToString[InputForm[x]]]; 
 
 
+(* ::Input::Initialization:: *)
 PrincipalDirectionFormula[T_Tissue, x___]:= AbortIf[True, "Expecting a DTissue as the first argument to PrincipalDirectionFormula"]; 
 PrincipalDirectionFormula[T_?DTissueQ, center_, PD_, x_, y_]:= Module[{PDBASE, PDX, PDY, PDUNITX, PDUNITY, PDNORM, PDEV1, PDEV2, PDMAXEV, PDA, PDB, PDD},
 PDBASE = ToString[PD]; 
@@ -7248,6 +7498,7 @@ funcs
 ]
 
 
+(* ::Input::Initialization:: *)
 SVDPrincipalDirectionFormula[T_Tissue]:= AbortIf[True, "Expecting SVDPrincipalDirection[DTissue,...], not Tissue"];
 (*SVDPrincipalDirectionFormula[T_?DTissueQ, center_, PD_, x_, y_]:= Module[{PDBASE, PDX, PDY, PD2X,PD2Y, PDUNITX, PDUNITY, PD2N,PDU2X,PDU2Y, PDNORM},
 PDBASE = ToString[PD]; 
@@ -7335,6 +7586,7 @@ funcs
 ]
 
 
+(* ::Input::Initialization:: *)
 DetermineL2AnticlinalPlane[T_, i_]:= Module[{cn, l1, v, e, c, cvn, cvni, cvnn,icvn, ipairs, vpairs, ipair, v1, v2, p1, p2, dx, dy, cvc, theta1, theta2, cen, dbg=False, dPrint},
 dPrint[u___]:= If[dbg, Print["DetermineL2AnticlinalPlane: ", u]]; 
 cn=CellNeighbors[T,i];
@@ -7380,6 +7632,7 @@ Return[{{theta1, theta2}, p1,p2}]
 ]
 
 
+(* ::Input::Initialization:: *)
 DetermineAnticlinalPlane[T_, i_]:= Module[{v,e,c,outeredge,vouter, cvc,cen,v1,v2,dx,dy,p1,p2,theta1,theta2,dbg=False, dPrint},
 dPrint[u___]:= If[dbg, Print["DetermineAnticlinalPlane: ", u]]; 
 {v,e,c} = T/.{Tissue-> List}; 
@@ -7411,6 +7664,7 @@ Return[{{theta1, theta2}, p1,p2}]
 ]
 
 
+(* ::Input::Initialization:: *)
 DetermineCellDivisionPoints[sim_,DT_?DTissueQ,L1Anticlinal_,L2Anticlinal_, L2AnticlinalRatio_, upwards_, w_?ListQ,x_: Global`x,y_: Global`y,method_, minAngleSpread_:135]:=Module[{divided,span,done,s,T,actualCellNumber,CDT,CT,dividedCellEdgeNumbers,positionalcellindex,CVC,PGD,dPrint,dbg=False,weight,angles, results, PCD,cellMinimumYCoordinate, BC,doneByL1L2,v,ymin,meanradius,evr},dPrint[u___]:=If[dbg,Print["DetermineCellDivision: ",u]];
 done="Finished"/.sim;
 s="Solution"/.sim;
@@ -7423,7 +7677,7 @@ CT=TissueCells[T];
 v=TissueVertices[T];
 
 ymin=Min[Transpose[v][[2]]]; 
-meanradius=Sqrt[Mean[Area[T]]/Pi];
+meanradius=Sqrt[Mean[areafunction[T]]/Pi];
 
 results={}; 
 
@@ -7513,11 +7767,12 @@ Return[results]
 ]
 
 
+(* ::Input::Initialization:: *)
 DivideNSigmas[q_Tissue,nsig_]:=Module[{cvc,q1,q2,areas,sigma,nsigs,mu,n,angles,p1,p2,dbg=False,dPrint},
 dPrint[u___]:= If[dbg, Print["DivideNSigmas: ", u]]; 
 cvc=CellVertexCoordinates[q];
 q1=q;
-areas=Area[q];
+areas=areafunction[q];
 mu=Mean[areas];
 sigma=StandardDeviation[areas];
 dPrint["mu=",mu," sigma=",sigma];
@@ -7533,6 +7788,7 @@ dPrint[Show[ShowTissue[q1, "CellNumbers"-> True],ImageSize->300]];
 q1]
 
 
+(* ::Input::Initialization:: *)
 CelleratorNetwork[inputTissue_, 
 opt___?OptionQ
 ]:= Module[{r, k, n, in, out,  diff, reactions, i, j, vPrint, nInside, nDiff, nTotal, ok, istissue, istorus, c, icc,  tissue, intracellular, dPrint, edgeVariable, areaVariable, debug, verbose, diffusingSpecies, pumps, boundaryConditions,static,areas,edgeLengths}, 
@@ -7589,7 +7845,7 @@ nInside=Length[in];
 vPrint[nInside, " intracellular reactions."]; 
 
 edgeLengths = EdgeLengths[tissue]; 
-areas = Area[tissue]; 
+areas = areafunction[tissue]; 
 
 (* generate diffusion reactions *)
 diff={}; 
@@ -7655,6 +7911,7 @@ Return[reactions];
 CelleratorNetwork[x___]:= (Print["Error: CelleratorNetwork: Expecting CelleratorNetwork[tissue,options]"]; $Failed);
 
 
+(* ::Input::Initialization:: *)
 UnwalledNetwork[tissue_?DTissueQ, opt___?OptionQ
 ]:= Module[
 {r,k,n,ne, in,out,diff,reactions,i,j,vPrint,nInside,nDiff,nTotal,ok,istissue,istorus,c,icc,dPrint,edgeVariable,areaVariable,debug,wall, verbose,e,v,  static, wallreactions,nwall, Depth,requestedDynamic,
@@ -7734,7 +7991,7 @@ dPrint["edgeLengths:", edgeLengths];
 
 (* The following use the static cell number *)
 
-areas=Area[inputTissue];
+areas=areafunction[inputTissue];
 allEdgesBetween=EdgesBetween[inputTissue];
 allneighbors=CellNeighbors[inputTissue];
 neighbors[p_]:=allneighbors[[p]];
@@ -7841,6 +8098,7 @@ Return[{reactions, equations}];
 UnwalledNetwork[x___]:= (Print["Error: UnwalledNetwork: Expecting UnwalledNetwork[DTissue,options]"]; $Failed);
 
 
+(* ::Input::Initialization:: *)
 generateIntercellularReactions[c_, intercellular_, allneighbors_, outercells_,  outeredges_,  areaVariable_, x_, y_,  boundaryConditionSet_,debug_]:= Module[{dPrint, HandleReaction, grn},
 dPrint[u___]:= If[debug, Print["generateIntercellularReactions: ", u]]; 
 
@@ -7871,6 +8129,7 @@ grn
 ];
 
 
+(* ::Input::Initialization:: *)
 generateDiffusionReactions[c_, e_, eused_, diffusingSpecies_, 
 allEdgesBetween_, allneighbors_, outercells_,  outeredges_, edgeVariable_, areaVariable_, x_, y_, edgeLengths_,  boundaryConditionSet_,
 debug_]:=
@@ -7954,6 +8213,7 @@ diff
 ]; 
 
 
+(* ::Input::Initialization:: *)
 generatePumpReactions[c_,  pumps_, allEdgesBetween_, allneighbors_,outercells_, outeredges_, 
 edgeVariable_, areaVariable_, opt___?OptionQ]:= Module[{dbg, dPrint, pumpdata,r, pump, var, fout, fin, PR, toStaticNumberRules, toDynamicNumberRules, cellNumbers, neighbors, XPR, pumpReactions, rnew},
 dbg = "Debug"/.{opt}/.{"debug"-> False}; 
@@ -8011,6 +8271,7 @@ r = Join[r, rnew];
 r];
 
 
+(* ::Input::Initialization:: *)
 WalledNetwork[tissue_?DTissueQ,opt___?OptionQ]:=Module[{r,k,n,ne, in,out,diff,reactions,i,j,vPrint,nInside,nDiff,nTotal,ok,istissue,istorus,c,icc,dPrint,edgeVariable,areaVariable,debug,wall, verbose,e,v,  static,aij, wallreactions,nwall, Depth,requestedDynamic,
 areas,edgeLengths, boundaryConditions,allEdgesBetween, neighbors, allneighbors,outeredges, outercells,One,ZERO,subnet,
 pumps,pr,diffusingSpecies, intracellular,getTransferFunction, growing,GR,GE,nv,growthstuff,AEQ,equations,x,y,cvn,eused,vused, inputTissue,cellNumbers,cellEdgeIndices
@@ -8092,7 +8353,7 @@ dPrint["edgeLengths:", edgeLengths];
 
 (* The following use the static cell number *)
 
-areas=Area[inputTissue];
+areas=areafunction[inputTissue];
 allEdgesBetween=EdgesBetween[inputTissue];
 allneighbors=CellNeighbors[inputTissue];
 neighbors[p_]:=allneighbors[[p]];
@@ -8167,6 +8428,7 @@ Return[{reactions, equations}];
 WalledNetwork[x___]:=(Print["Error: Expecting WalledNetwork[DTissue, options]"];$Failed);
 
 
+(* ::Input::Initialization:: *)
 generateCelleratorWalledDiffusionReactions[c_, e_, eused_, diffusingSpecies_, 
 allEdgesBetween_, allneighbors_, outercells_,  outeredges_, edgeVariable_, areaVariable_, x_, y_, edgeLengths_, aij_, 
 debug_]:= Module[{diff,DR,DRW, DRWW,DRWWC, diffusionReactions,diffusionWWReactions,edgeBetween,l,beta,Y,difSpec,temp,diffData,func,  \[Beta]in,\[Beta]out,\[Beta]wall, fin, fout, fwall,intesectingEdges, diffusionOEReactions, neighborSharingEdge, drow, DROW, nxtra,dPrint, neighbors, getTransferFunction,ne, n, neused,eflags,cellNumbers,toDynamicNumberRules,toStaticNumberRules,cellIndices}, 
@@ -8455,6 +8717,7 @@ Return[diff]
 ]; 
 
 
+(* ::Input::Initialization:: *)
 generateCelleratorWalledPumpReactions[c_,  pumps_, allEdgesBetween_, allneighbors_,outercells_, outeredges_, 
 edgeVariable_, areaVariable_, aij_, options___?OptionQ]:= Module[{pr,XPR,XPROW,  pumpReactions,pumpReactionsOuterWall,pumpdata,nextpump,Y, F,F1,Fin,Fout,F2,  temp1, temp2, temp, DPrint, ZERO, neighbors,dbg,n, cellNumbers,toDynamicNumberRules,toStaticNumberRules, cellIndices}, 
 dbg = "Debug"/.{options}/.{"Debug"-> False};
@@ -8583,6 +8846,7 @@ Return[pr]
 ];
 
 
+(* ::Input::Initialization:: *)
 generateCelleratorInWallReactions[wall_,cells_, verbose_:True]:= Module[{wallreactions,w,cellnumber,edgenumber,thenextcell,edgewallpairs,subnet,i},
 wallreactions={}; 
 If[Length[wall]>0,
@@ -8597,6 +8861,7 @@ Return[wallreactions];
 ];
 
 
+(* ::Input::Initialization:: *)
 getBC[opt___?OptionQ]:=Module[{boundaryConditions,okbc,BCVars,BCVals, dbg=False, dPrint, diffVars, pumpVars,missingBC},
 dPrint[x___]:= If[dbg, Print["getBC: ", x]]; 
 boundaryConditions = "BoundaryConditions"/.{opt}/.{"BoundaryConditions"-> {}}; 
@@ -8628,6 +8893,7 @@ Return[boundaryConditions];
 
 
 
+(* ::Input::Initialization:: *)
 StaticSimulation[DT_DTissue, tstart_, tstop_, opt___?OptionQ]:= Module[{},
 
 grow[DT,tstart, tstop,
@@ -8655,6 +8921,7 @@ opt,
 ]
 
 
+(* ::Input::Initialization:: *)
 generateTipEquations[T_, x_, y_, tip_]:= Module[{ v, tipEQ, vx,vy, itip,n,tops, found, top,allcellnumbers}, 
 If[ToString[tip]=="False", Return[{"equations"-> {}, "vertex"-> False}]]; 
 
@@ -8679,6 +8946,7 @@ Return[{"equations"-> tipEQ, "vertex"-> itip}]
 ];
 
 
+(* ::Input::Initialization:: *)
 generateTipIndicatorEquations[T_, TIP_, vtip_]:= Module[{cvn,icell,n, eqs},
 If[ToString[TIP]== "False", Return[{}]]; 
 AbortIf[ToString[vtip]=="False", "\"TipFlag\"\[Rule]True but by \"tip\"\[Rule]False; A tip variable must be set if the TipFlag is used."];
@@ -8691,6 +8959,7 @@ Return[eqs];
 ]
 
 
+(* ::Input::Initialization:: *)
 generateCenterEquations[T_Tissue,center_,x_, y_,  area_]:= Module[{centroidEQS, cf,j, n,fx, fy}, 
 n=NTissueCells[T]; 
 centroidEQS={}; 
@@ -8707,6 +8976,7 @@ Return[centroidEQS]
 ];
 
 
+(* ::Input::Initialization:: *)
 generateTipDistanceEquations[tipdist_,center_, tip_,n_]:= Module[{tipdistEQS, j}, 
 tipdistEQS={}; 
  
@@ -8733,6 +9003,7 @@ Return[tipdistEQS]
 ]; 
 
 
+(* ::Input::Initialization:: *)
 generateL1Equations[T_, L1_]:= Module[{l1cells,n,eqs},
 If[ToString[L1]== "False", Return[{}]]; 
 l1cells=L1Cells[T];
@@ -8749,6 +9020,7 @@ eqs
 ]
 
 
+(* ::Input::Initialization:: *)
 generatePDEquations[T_Tissue, center_, PD_, x_, y_]:= Module[{DT},
 If[ToString[PD]== "False", Return[{}]]; 
 DT=Tissue2DTissue[T];
@@ -8757,6 +9029,7 @@ SVDPrincipalDirectionFormula[DT,center, PD,x,y]
 ]
 
 
+(* ::Input::Initialization:: *)
 generateSpecialVariables[T_, opt___?OptionQ]:= Module[{tip, tipEQ, center,x, y, v, area, centroidEQS, tipdist, tipdistEQS, eqs,n, L1, L2, L1EQS, L2EQS, vtip, tipf, TFEQ, dbg=False, dPrint, xy, PD, PDEQS}, 
 
 dPrint[u___]:= If[dbg, Print["generateSpecialVariables: ", u]]; 
@@ -8812,6 +9085,7 @@ Return[eqs]
 ]
 
 
+(* ::Input::Initialization:: *)
 generateGrowthReactions[c_,cvn_, e_,vertexCoordinates_,eused_,vused_, edgeVariable_,outeredges_, opt___?OptionQ]:=Module[{ne,\[Mu],k,P,\[CapitalPsi],rest,ER,DR,GR,verbose,vPrint,edgeBetween,nv,v,neighbors,xR,xRterm,XYR,yR,yRterm,x,y,R,equations,EV,EVS,PR,eflags,vflags,neused,nvused, eallowed,
 GV, \[Mu]min, \[Mu]max, \[Mu]\[Theta]0,\[Mu]outer, GVS, isotropic,kmin, kmax,k\[Theta]0,kouter, isospring, SE, SES,kvar, kformula,kindexed, dbg=False, dPrint,cellsAbuttingEdge, outers,upwards, tip,iv, tipEQ,
 muindexed,muvar,muformula,vx,vy,itip,outerperps, L1L2,kouters, muouters, muL1L2,muouterperps,\[Mu]L1,\[Mu]L1L2,center, DT, T,area, cf, centroidEQS,n,fx,fy, perim, perimEQS,  PREQ, tipdist, tipdistEQS,j,SVEQS, EVX, EVY, EVARX, EVARY, ell
@@ -9097,6 +9371,7 @@ R=Join[GR,XYR,PR];
 Return[{"reactions"->R,"equations"->equations}];];
 
 
+(* ::Input::Initialization:: *)
 findOuters[upwards_,v_,e_,c_, outeredges_]:= Module[{ymin,dbg=False,dPrint,eoe,eouter,edgelengths,len,top,meanlength,tops,bottoms,outers,perps,n,L1AC,flags, L1L2, T},
 
 dPrint[u___]:= If[dbg, Print["findOuters: ", u]]; 
@@ -9138,6 +9413,7 @@ Return[{outers,perps, L1L2}];
 ]
 
 
+(* ::Input::Initialization:: *)
 generateIndexedPressureReactions[P_, x_,y_, v_, e_, c_, vused_, eused_, cvn_]:= Module[{dbg=False, dPrint, pvar, pfunc, cellnumbers, cells,  edgesAtVertex,ev, cellsAbuttingEdge,cellsAbuttingEdges,cv,i, vertex, RelevantEdges, RelevantCells,centroids,nv,xreactions,yreactions, edge, edgecells,iedge, nextcell, TheEdge, TheVertices, TheMidPoint,x1,y1,x2,y2,ANormalVector,TheVerticesVariables,x1v,x2v,y1v,y2v,ANormalVectorVariables,TheCentroid,AnOutwardVector,TheNormalVector,TheNormalVectorVariables,mult,TheRates,xRate,yRate,icell, eqs},
 dPrint[u___]:= If[dbg, Print["Indexed Pressure: ", u]]; 
 pvar = First[P];
@@ -9224,6 +9500,7 @@ Return[ {
 ];
 
 
+(* ::Input::Initialization:: *)
 generateCelleratorOuterWallPressurePressureReactions[x_,y_,P_,c_,cvn_, e_,outeredges_,vertexCoordinates_,vused_, eused_, opt___?OptionQ]:=Module[{r,reactions,allneighbors, oddneighbor,neighbors,outerv,outere, whichcell,dbg=False, dPrint,v},
 dbg="DebugPressure"/.{opt}/.{"DebugPressure"-> False}; 
 dPrint[u___]:= If[dbg, Print["generateCelleratorOuterWallPressurePressureReactions: ",u]]; 
@@ -9278,6 +9555,7 @@ Return[reactions];
 ]
 
 
+(* ::Input::Initialization:: *)
 ShowPressureArrows[sim_,DT_,time_,pressure_,x_,y_, opt___?OptionQ]:=Module[{T,nv,n,origins,indices,xy,ct,ctr,cvn, vr,gt=Global`t,directions,a,cells,be,edges,PR,g,vused, dbg,dPrint,edgesused}, 
 dbg="DebugPressure"/.{opt}/.{"DebugPressure"-> False}; 
 dPrint[u___]:= If[dbg, Print["ShowPressureArrows: ",u]]; 
@@ -9306,6 +9584,7 @@ g=SimShow[sim,time,DT,opt];
 Show[{g,a},MyFilterOptions[Graphics,opt]]];
 
 
+(* ::Input::Initialization:: *)
 ProcessVolumeCorrectionArrows[net_, growing_, cell_]:= Module[{ species,dbg=False, dPrint,arrow, rnew},
 dPrint[u___]:= If[dbg, Print["ProcessVolumeCorrectionArrows: ", u]]; 
 
@@ -9319,6 +9598,7 @@ Return[rnew];
 ];
 
 
+(* ::Input::Initialization:: *)
 TransportQ[{X_\[LongRightArrow]X_,  Transport[u___]}]:= True;
 TransportQ[u___]:= False; 
 BadTransportQ[{X_\[LongRightArrow] Y_, Transport[u___]}]:= (ToString[X]!= ToString[Y]); 
@@ -9565,12 +9845,13 @@ Return[opt1];
 ]
 
 
+(* ::Input::Initialization:: *)
 go[DT_?DTissueQ, network_,  tbegin_, tend_,opt___?OptionQ]:= Module[{s, equations, odes,vars,systemvars, event,sim,w,DTNOW, TF1,TF, lineage,edgelineage, dbg, IRH, dPrint, save,SaveODES, stepstring,simdir,memtrace,cpu0,MemPrint,OK,ic,parameters,initialRates,result, TF2,maxradius,eventequations,SaveEquations,eventIC,
 dbgDivide, upwards,y,x,lhs, lhshead, rhs, found,n, LHS, RHS, UPONLY,variables, variable,meanradius,yvals,ybottom,i, newode,index, divisionthreshold, dump, growing, cell,okflag,mostrates, cellrates},
 
 index[x_[j_]]:= j; 
 
-meanradius = Sqrt[(1.0/Pi)*Mean[Area[DT]]];
+meanradius = Sqrt[(1.0/Pi)*Mean[areafunction[DT]]];
 yvals=#[[2]]&/@TissueVertices[DT]; 
 ybottom = (#<.5*meanradius)&/@yvals;
 ybottom=Pick[Range[Length[yvals]],ybottom];
@@ -9766,6 +10047,7 @@ Return[result]
 ];
 
 
+(* ::Input::Initialization:: *)
 ExpungeOutliers[sim_,opt___?OptionQ]:=Module[{s,dbg,rmax,dPrint, T,bcells,cvc,TC,d, droppers, TNew,D2S,nstatic,cnums,staticbcells, origin},
 dbg = False;
 dPrint[u___]:= If[dbg, Print["DropOutlyingCells: ", u]]; 
@@ -9827,6 +10109,7 @@ Return[TNew];
 ];
 
 
+(* ::Input::Initialization:: *)
 grow[DT1_?DTissueQ,tstart_, tend_, options___?OptionQ]:= Module[{Network,Equations,ell,area,restlength,k,mu,P, IC,x,y, extension,rmin,rmax,OK,parameters,S,DT,weights, DivThresh,DivSigma,DivVar,ThreshVar,Rates, BC, internal,save,simdir,tdir,stepcounter,stepstring,stepdigits=4, show,showoptions,species,done,tbegin,initial,MinAngleSpread,dbg, dPrint,maxdivs,ndivs,lineage,edgeLineage,ne,cpu0,memtrace,MemPrint, haswalls, tstopped,maxradius, DTOLD,origin,Virtual,MaxMemAllowed, SaveEquations, SaveODES, SaveNet,continuation, continuationnote, GB,TestCase,snapshot, IgnoreDivisionBeyondThisRadius, divisionModel, IsotropicGrowth, IsotropicSprings, L1Anticlinal, L2Anticlinal,L2AnticlinalRatio, tip,center,perim,tipdist, growing, L1, L2, TIPF, opt, xy,dump, PD},
 
 GB=1024.0*1024.0*1024.0;
@@ -10138,6 +10421,7 @@ Return["Solution"/.S]
 
 
 
+(* ::Input::Initialization:: *)
 grow[opt___?OptionQ]:= Module[{GetTimeDomainFromFile, d, TFiles,nT,SFiles, dPrint, dbg, nS,nN,  n, NFiles, TSFile, tended, tstart, tend, oldopts, options, DT, DTOLD, S, Network, ell, area, x, y,restlength,IC, thetimespan,sim, lineage, edgelineage,cells, edges,note},
 
 dbg = "Debug"/.{opt}/.{"Debug"-> False}; 
@@ -10253,21 +10537,25 @@ Return[result]
 ]
 
 
+(* ::Input::Initialization:: *)
 grow[somethingElse___]:= (Print["Unexpected Input to grow."];Abort[]; );
 
 
+(* ::Input::Initialization:: *)
 SaveFile[filename_, object_]:= Module[{symbol,f},
 f=filename;
 symbol=object;
 Save[filename,symbol]];
 
 
+(* ::Input::Initialization:: *)
 MemTable[context_,xmin_]:=Module[{names, sizes},
 names=Names[context<>"*"];
 sizes=ByteCount/@ToExpression/@names;Select[Transpose[{sizes,names}],#[[1]]>xmin&]//Sort//Reverse
 ]
 
 
+(* ::Input::Initialization:: *)
 initialize$olutions[]:= Module[{},
 $Tissues={};
 $Solutions={};
@@ -10278,6 +10566,7 @@ $TimeSpans={};
 ]
 
 
+(* ::Input::Initialization:: *)
 identifyReasonForHalt[s_, DT_,eventequations_,normalstop_,   opt___?OptionQ]:= Module[{divisionthreshold, divisionvariable,ss, tstop,vals,vars,readyToDivide, ctd, IgnoreDivisionBeyondThisRadius, dPrint,ThreshVar,dbg=False, threshvars,threshvals, index, varrules,threshrules, test},
 dPrint[x___]:= If[dbg, Print["identifyReasonForHalt: ", x]]; 
 index[x_[i_]]:= i; 
@@ -10358,6 +10647,7 @@ Return[{
 ]
 
 
+(* ::Input::Initialization:: *)
 setDivision[allvars_, DT_, opt___?OptionQ]:= Module[{divisionthreshold,divisionvariable,vars,div,smallarea, IgnoreDivisionBeyondThisRadius,centroids, Origin, radii, cellnumbers,divisible,dPrint, sigma,thresholds,  dbg=False, dbgDivide, index,indices,heads, ThreshVar,threshequations,thresholdIC,test, setprecision, areas, oldICRules,GetDivisionThreshold},
 dbgDivide="DivideDebug"/.{opt}/.{"DivideDebug"-> False};
 dPrint[x___]:= If[dbg \[Or] dbgDivide, Print["setDivision: ", x]]; 
@@ -10412,7 +10702,7 @@ RandomVariate[NormalDistribution[divisionthreshold, sigma]], {Length[vars]}];thr
 (* Make sure new thresholds exceed current areas *)
 
 dPrint["thresholds (before cap): ", thresholds];
-thresholds = MapThread[Max[1.001*Area[DT,#1],#2]&,{indices, thresholds}];
+thresholds = MapThread[Max[1.001*areafunction[DT,#1],#2]&,{indices, thresholds}];
 
 dPrint["thresholds (after cap): ", thresholds];
 
@@ -10449,6 +10739,7 @@ Return[{div,threshequations, thresholdIC}];
 ]; 
 
 
+(* ::Input::Initialization:: *)
 performAllNecessaryCellDivisions[sim_, DTSTART_,opt___?OptionQ]:= Module[{TFinal, cells,cell,celldivstuff,DT,c,cellnumbers,dbg, dPrint,done, tstart,tend,s,angles,p1,p2,T1,T2,nmax,toDynamicNumberRules,toStaticNumberRules, staticcell, newlineage,edgechanges,newedgelineage,MinAngleSpread,x,y, lineage, edgelineage,weights, divisionmodel,method, L1Anticlinal,L2Anticlinal, L2AnticlinalRatio,upwards},
 dbg = "DivideDebug"/.{opt}/.{"DivideDebug"-> False};
 upwards="Upwards"/.{opt}/.{"Upwards"-> False}; 
@@ -10540,6 +10831,7 @@ T2=Tissue2DTissue[T1,"Numbers"-> cellnumbers];
 
 
 
+(* ::Input::Initialization:: *)
 ShowSavedFiles[]:= FileNames[ToFileName[$SIMDIR,#]&/@{"*.nb", "*.mx"}];
 ShowSavedFiles[type_]:= Module[{Type,f},
 Type=ToString[type]; 
@@ -10639,10 +10931,12 @@ Return[object]
 
 
 
+(* ::Input::Initialization:: *)
 GetODES[odes_?ListQ, vars_?ListQ]:= Pick[odes, MemberQ[vars,#]&/@Head/@First/@Head/@First/@odes];
 GetODES[odes_?ListQ, var_]:= GetODES[odes, {var}]; 
 
 
+(* ::Input::Initialization:: *)
 BalanceLineage[linput_]:=Module[{newlineage,next,parent,child,newnode,rule,l},l=linput;
 newlineage={};
 While[Length[l]>0,next=First[l];
@@ -10656,6 +10950,7 @@ newlineage=Join[newlineage,{newnode->parent,newnode->child}];,newlineage=Join[ne
 Return[newlineage];]
 
 
+(* ::Input::Initialization:: *)
 ShowBalancedLineage[l_,position_,label_:True]:= Module[{pstring,new,okpositions={Top,Bottom,Left,Right,Center}},
 If[Not[MemberQ[okpositions,position]], Print["Error: ShowBalancedLineage: position must be one of ", okpositions]; Return[Graphics[]]];
 pstring[s_]:=Module[{p,str},str=If[StringQ[s],s,ToString[s]];
@@ -10672,6 +10967,7 @@ TreePlot[new,position,0]
 ]
 
 
+(* ::Input::Initialization:: *)
 SetNextIC[Tnew_,Told_, Sim_,NewNet_, equations_, ell_,area_,resting_,x_,y_, IsotropicGrowth_, mu_,IsotropicSprings_,k_, tip_,  center_,tipdist_, perim_,P_, L1_, L2_, TIPF_, PD_,parameters_,  dbg_]:=Module[{species, eused,ne,eflags,eneeded,lvalsneeded,icell,cellnumbers,icarea,nv,vflags,vused,vneeded,xyused,vall,icx,icy,s,values,tbegin,tend, dPrint,icfromsim,icallsim,icneeded, lineage, firstArg, restingneeded,redge,icrnew,elengthrules, lastdivision,parent, child, icchild,icchildp, replaceFirstArg,ic, edgelineage,edgeparents,secondArg, cellparents,replaceSecondArg,nargs,cc,incell,redgecell,redgeparents,redgeparentvalues,parentelextensions,parentallengths,icrok, icstillneeded,adjacentedges, adjacentresting, adjacentlengths,adjacentextensions,lengths,restingAppliedErroneouslyNums, restingAppliedErroneously,restingApplied,restingAppliedNums,muic,kic,tic,ticrules,kvar,muvar,centerIC,perimIC, tipdistIC, PressureIC,Pvar, L1IC, L2IC, TIPFIC, PDIC, EVIC},
 dPrint[u___]:= If[dbg, Print["SetNextIC: ", u]]; 
 nargs[afunction_[u___]]:= Length[{u}]; 
@@ -10843,7 +11139,7 @@ icneeded = MapThread[Rule, {icneeded, values}];
 dPrint["icneeded: ", icneeded]; 
 
 icell=MapThread[Rule,{ell/@eneeded,lvalsneeded}];
-icarea=MapThread[Rule,{area/@cellnumbers,Area[Tnew]}];
+icarea=MapThread[Rule,{area/@cellnumbers,areafunction[Tnew]}];
 
 icx=MapThread[Rule,{x/@vneeded,First/@xyused}];
 icy=MapThread[Rule,{y/@vneeded,Last/@xyused}];
@@ -10985,6 +11281,7 @@ Return[ic/.parameters];
 ]
 
 
+(* ::Input::Initialization:: *)
 DEBUG$IC=False; 
 ThingIs[thing_, val_]:= ToString[Head[First[thing]]]==ToString[val]; 
 ThingEndsWith[thing_,val_,end_]:= ThingIs[thing, ToString[val]<>end]; 
@@ -11061,7 +11358,7 @@ dPrint["yic=", yic];
 
 If[ToString[area]=="False", 
 areaic={}, 
-areaic = MapThread[Rule,{area/@cellnumbers,Area[tissue]}]
+areaic = MapThread[Rule,{area/@cellnumbers,areafunction[tissue]}]
 ];
 dPrint["areaic=", areaic];  
 
@@ -11187,6 +11484,7 @@ Return[ic]
 ]
 
 
+(* ::Input::Initialization:: *)
 ShowInitialRates[eqs_, ic_, rates_, BoundaryConditions_]:= Module[{iclist, BC },
 (* eqs=interpret[network][[1]]; J*)
 iclist =ic/.{Rule-> List}; 
@@ -11197,6 +11495,7 @@ eqs/.iclist/.rates/.BC
 ]
 
 
+(* ::Input::Initialization:: *)
 $DebugHasSufficientInfo=False; 
 HasSufficientInfo[network_,equations_, ic_,parameters_,growing_, x_, y_, cell_, ReturnString_]:= Module[{eq,species}, 
 {eq,species}=interpret[network];
@@ -11325,6 +11624,7 @@ Return[{ok,Join[ir, APRATES]}]
 ]
 
 
+(* ::Input::Initialization:: *)
 X2SSANetwork[net_, diff_,  tissue_?TissueQ, verbose_:True]:= Module[{bignet},
 bignet = CelleratorNetwork[tissue, "Reactions"-> net, "Diffusion"-> diff, "Verbose"-> verbose]; 
 bignet=ToExpression[StringReplace[ToString[bignet],"[t]"->""]];
@@ -11333,6 +11633,7 @@ Return[bignet];
 ]
 
 
+(* ::Input::Initialization:: *)
 SSANetwork[net_, diff_,  tissue_?TissueQ, verbose_:True]:= Module[{bignet},
 bignet = SSAtoXLR8R[net]; 
 bignet = X2SSANetwork[bignet, diff, tissue, verbose]; 
@@ -11340,6 +11641,7 @@ Return[bignet];
 ]
 
 
+(* ::Input::Initialization:: *)
 indexify[{},index_]:= {}; 
 indexify[net_,index_, opt___?OptionQ]:=Module[{species,reactions,rateRules,rules,indexedSpecies, mysub, mysup, myexpr, dbg=False, dPrint, lengths, extraSpecies, tipdist, xcenter, ycenter, center, myxcenter,myycenter, hasCEN,L1,L2,TIPFLAG, A, cellindex},
 
@@ -11438,6 +11740,7 @@ reactions = reactions/.{cellindex-> index};
 Return[reactions]];
 
 
+(* ::Input::Initialization:: *)
 RunSim[bignet_, parameters_, ic_, {tstart_, tend_}, opt___?OptionQ]:= Module[{sim},
 sim = run[bignet,{tstart, tend},  xlr8r`initialConditions-> ic, xlr8r`rates-> parameters, opt]; 
 sim=Flatten[sim]; 
@@ -11445,6 +11748,7 @@ Return[sim]
 ]
 
 
+(* ::Input::Initialization:: *)
 Bins2Histogram[bins_,{binmin_,binmax_,bindelta_},opt___?OptionQ]:=Module[{g,nb,h,theHistogram,meanHistPlot,meanStyle,plotStyle, EB, sigmas, SD, xvals, yvals,BINS, TBINS, errorbars, means, plt ,scatter, normalize, totals,navg,savg, labels,meanarea, SDarea, rounding,plot,BINLHS, format,showStatistics,frameticks},
 
 SD[{x__}]:= If[Length[{x}]<2,0.0, StandardDeviation[1.0*{x}]]; 
@@ -11526,6 +11830,7 @@ _ , Print["Unrecognized \"Format\"\[Rule] ", format]; Return[plot]
 ]
 
 
+(* ::Input::Initialization:: *)
 BinData[data_,{binmin_, binmax_, bindelta_}]:=Module[{nbins, WhichBin,bins,whichbin,sigma,mu},
 nbins = (binmax-binmin)/bindelta; 
 WhichBin[value_]:= Which[
@@ -11548,6 +11853,7 @@ Return[
 ]
 
 
+(* ::Input::Initialization:: *)
 SimBinData[var_, {binmin_, binmax_, bindelta_}, opt___?OptionQ]:= Module[{d,dPrint,SFiles,TFiles, nS,dbg,plots,f,plot,s,needed, solutionsneeded,solutionFiles,nFiles, nbins,bins, binspec, WhichBin,  samples, reallyneeded, results,reverseneeded, origin, rmax, times, tfile, arg},
 dbg="Debug"/.{opt}/.{"Debug"-> False}; 
 arg[a_[b_]]:= b; 
@@ -11657,6 +11963,7 @@ Return[results];
 
 
 
+(* ::Input::Initialization:: *)
 SimBinSides[ opt___?OptionQ]:= Module[{d,dbg,dPrint,f,file,T,c,bins,i,ncells,sides,hbin,results, selected, first, last, j, rmax, origin, R},
 dbg="Debug"/.{opt}/.{"Debug"-> False}; 
 dPrint[u___]:= If[dbg, Print["SimBinData: ", u]]; 
@@ -11708,6 +12015,7 @@ Return[results];
 
 
 
+(* ::Input::Initialization:: *)
 SimPlot[solution_?ListQ, var_, {tbegin_, tend_}, opt___?OptionQ]:= Module[{allvars, vars, s, n, timepoints, dt, fline, lines, colors, nvars},
 n="Points"/.{opt}/.{"Points"-> 100};
 dt=(tend-tbegin)/n;  
@@ -11735,6 +12043,7 @@ AspectRatio-> 1, PlotLabel-> ToString[var]]
 ];
 
 
+(* ::Input::Initialization:: *)
 SimPlot[solution_?ListQ, {var__}, {tbegin_, tend_}, opt___?OptionQ]:= Module[{ plots, columns}, 
 (* make the plots *)
 plots = SimPlot[solution, #, {tbegin, tend}, opt]&/@{var};
@@ -11751,6 +12060,7 @@ plots
 ]
 
 
+(* ::Input::Initialization:: *)
 SimPlot[solution_?ListQ, var_, opt___?OptionQ]:= Module[{ plot, columns, tbegin, tend}, 
 (* make the plots *)
 {tbegin,tend}=CommonTimeDomain[solution]; 
@@ -11759,6 +12069,7 @@ Return[plot];
 ]
 
 
+(* ::Input::Initialization:: *)
 SimPlot[solution_?ListQ, {tbegin_, tend_}, opt___?OptionQ]:= Module[{allvars,  plots, columns},
 allvars = IndexedVarsInSolution[solution]; 
 plots = SimPlot[solution, #, {tbegin, tend}, opt]&/@allvars;
@@ -11774,6 +12085,7 @@ plots
 ]
 
 
+(* ::Input::Initialization:: *)
 SimPlot[solution_?ListQ, opt___?OptionQ]:= Module[{start, stop, times,p},
 
 (* determine common time domain *)
@@ -11787,9 +12099,11 @@ Return[p];
 ];
 
 
+(* ::Input::Initialization:: *)
 MultiSimPlot[{solutions__?ListQ}, var_, opt___?OptionQ]:= Show[SimPlot[#,var, opt]&/@{solutions}]
 
 
+(* ::Input::Initialization:: *)
 SimPlot[var_Symbol, f_?StringQ, opt___?OptionQ]:= SimPlot[var, "InputFolder"-> f, opt]; 
 SimPlot[var_Symbol, opt___?OptionQ]:= Module[{d,dPrint,SFiles,nS,dbg,plots,f,plot,s,needed, solutionsneeded,solutionFiles,nFiles},
 dbg="Debug"/.{opt}/.{"Debug"-> False}; 
@@ -11894,6 +12208,7 @@ Show[plots]
 
 
 
+(* ::Input::Initialization:: *)
 IndexedVarsInSolution[solution_]:= Module[{s, allvars, indexed, nonindexed},
 s=Flatten[solution]; 
 allvars = First/@s;
@@ -11905,6 +12220,7 @@ Return[allvars];
 ];
 
 
+(* ::Input::Initialization:: *)
 CommonTimeDomain[solution_]:= 
 Module[{s, domains, maxs, mins, start, stop}, 
 s=Last/@Flatten[solution];
@@ -11920,11 +12236,13 @@ Return[{start, stop}];
 ]
 
 
+(* ::Input::Initialization:: *)
 IndexedQ[var_?AtomQ]:= False; 
 IndexedQ[var_[index__]]:= True; 
 IndexedQ[x___]:= False;
 
 
+(* ::Input::Initialization:: *)
 ShowResults[d_,n_, specs_, opt___?OptionQ]:=Module[{s,spec,g,SPECS,time, var,vmin,vmax,cmin,cmax, p,plabel,f,S, T},
 s=IntegerString[n,10,4];
 f=ToFileName[d,"DTissue"<>s<>".nb"];
@@ -11961,6 +12279,7 @@ g
 
 
 
+(* ::Input::Initialization:: *)
 SimShow[solution_,time_,tissue_?DTissueQ,opt___?OptionQ]:=Module[{numbers,T,c,toDynamicNumberRules, toStaticNumberRules},
 T=DTissue2Tissue[tissue,solution,time];
 
@@ -11979,6 +12298,7 @@ ShowTissue[T, "ToStatic"->toStaticNumberRules, "ToDynamic"->toDynamicNumberRules
 ];
 
 
+(* ::Input::Initialization:: *)
 SimShow[solution_,variable_,time_,tissue_?DTissueQ,{rgbfrom_RGBColor,rgbto_RGBColor},{vmin_,vmax_},opt___?OptionQ]:=Module[{numbers,T,c,toDynamicNumberRules, toStaticNumberRules},
 T=DTissue2Tissue[tissue,solution,time];
 numbers="CellNumbers"/.{opt}/.{"CellNumbers"->False};
@@ -11993,6 +12313,7 @@ SimShow[solution,variable,time,T,{rgbfrom,rgbto},{vmin,vmax}, "ToStatic"->toStat
 ];
 
 
+(* ::Input::Initialization:: *)
 SimShow[solution_,variable_, time_,  tissue_?TissueQ, {rgbfrom_RGBColor, rgbto_RGBColor}, {vmin_, vmax_}, opt___?OptionQ]:= Module[{allvars, s, n, colors, g, dbg, dprint, cellstyles, arglists, cellvars, cellnums, edgevars, celledgepairs,cellif, edgeif,cellcolors,edgecolors,cellvals,edgevals,ced,nextdata, hue,huefrom,hueto},
 
 dbg = "Debug"/.{opt}/.{"Debug"-> False}; 
@@ -12100,11 +12421,13 @@ Return[g];
 
 
 
+(* ::Input::Initialization:: *)
 SimShow[solution_,variable_, time_,  tissue_?ISTissue, {gfrom_GrayLevel, rgbto_RGBColor}, {vmin_, vmax_}, opt___?OptionQ]:=SimShow[solution,variable,time,tissue, {ColorConvert[gfrom,"RGB"],rgbto},{vmin,vmax},opt];
 SimShow[solution_,variable_, time_,  tissue_?ISTissue, {rgbfrom_RGBColor, gto_GrayLevel}, {vmin_, vmax_}, opt___?OptionQ]:=SimShow[solution,variable,time,tissue,{rgbfrom,ColorConvert[gto,"RGB"]},{vmin,vmax},opt];
 SimShow[solution_,variable_, time_,  tissue_?ISTissue, {gfrom_GrayLevel, gto_GrayLevel}, {vmin_, vmax_}, opt___?OptionQ]:=SimShow[solution,variable,time,tissue,{ColorConvert[gfrom,"RGB"],ColorConvert[gto,"RGB"]},{vmin,vmax},opt];
 
 
+(* ::Input::Initialization:: *)
 SimShow[solution_,variable_,time_,tissue_?DTissueQ,{rgbfrom_RGBColor,rgbto_RGBColor},{vmin_,vmax_},{xmin_,xmax_},{ymin_,ymax_},opt___?OptionQ]:=Module[
 {numbers,T, toDynamicNumberRules, toStaticNumberRules},
 T=DTissue2Tissue[tissue,solution,time];
@@ -12122,6 +12445,7 @@ SimShow[solution,variable,time,T,{rgbfrom,rgbto},{vmin,vmax},{xmin,xmax},{ymin,y
 ]; 
 
 
+(* ::Input::Initialization:: *)
 SimShow[solution_,variable_, time_,  tissue_?TissueQ, {rgbfrom_RGBColor, rgbto_RGBColor}, {vmin_, vmax_}, 
 {xmin_, xmax_}, {ymin_, ymax_}, 
 opt___?OptionQ]:= Module[
@@ -12174,17 +12498,20 @@ Return[g];
 ]
 
 
+(* ::Input::Initialization:: *)
 SimShow[solution_,variable_, time_,  tissue_?ISTissue, {gfrom_GrayLevel, rgbto_RGBColor}, {vmin_, vmax_},{xmin_, xmax_}, {ymin_, ymax_}, opt___?OptionQ]:=SimShow[solution,variable,time,tissue, {ColorConvert[gfrom,"RGB"],rgbto},{vmin,vmax},{xmin,xmax}, {ymin,ymax}, opt];
 SimShow[solution_,variable_, time_,  tissue_?ISTissue, {rgbfrom_RGBColor, gto_GrayLevel}, {vmin_, vmax_},{xmin_, xmax_}, {ymin_, ymax_},  opt___?OptionQ]:=SimShow[solution,variable,time,tissue,{rgbfrom,ColorConvert[gto,"RGB"]},{vmin,vmax},{xmin,xmax}, {ymin,ymax},opt];
 SimShow[solution_,variable_, time_,  tissue_?ISTissue, {gfrom_GrayLevel, gto_GrayLevel}, {vmin_, vmax_}, {xmin_, xmax_}, {ymin_, ymax_}, opt___?OptionQ]:=SimShow[solution,variable,time,tissue,{ColorConvert[gfrom,"RGB"],ColorConvert[gto,"RGB"]},{vmin,vmax},{xmin,xmax}, {ymin,ymax},opt];
 
 
+(* ::Input::Initialization:: *)
 SimShow[solution_,variable_,time_,tissue_?DTissueQ,{rgbfrom_RGBColor,rgbto_RGBColor},threshold_,opt___?OptionQ]:=Module[{numbers,T},T=DTissue2Tissue[tissue,solution,time];
 numbers="CellNumbers"/.{opt}/.{"CellNumbers"->False};
 If[numbers,numbers=First/@TissueCells[tissue];
 SimShow[solution,variable,time,T,{rgbfrom,rgbto},threshold,"CellNumbers"->numbers,opt],SimShow[solution,variable,time,T,{rgbfrom,rgbto},threshold,opt]]];
 
 
+(* ::Input::Initialization:: *)
 SimShow[opt___?OptionQ]:=Module[{T,TS,S,SS,f,folder, solution,sequence, tissue,time, ctd,
 DefaultMinColor=Purple,
 DefaultMaxColor=Orange,
@@ -12285,9 +12612,11 @@ SimShow[S, var, time, T, colors, range, opt]
 SimShow[variable_, opt___?OptionQ]:= SimShow["Variable"-> variable, opt]
 
 
+(* ::Input::Initialization:: *)
 SimShow[anythingElse___]:= (Print["Unexpected Input for SimShow:",Short[{anythingElse}, 5]]); 
 
 
+(* ::Input::Initialization:: *)
 HueInterpolate[x_, {xmin_, xmax_}, {hue1_, hue2_}]:= Module[{h1, h2, tmp,m},
 (* limit to [0, 1] *)
 If[xmin>= xmax, Return[Hue[(hue1+hue2)/2.0]]]; 
@@ -12305,6 +12634,7 @@ Return[Hue[h1+m*(x-h1)]]
 ]
 
 
+(* ::Input::Initialization:: *)
 RGBInterpolate[x_, {xmin_, xmax_}, {RGB1_, RGB2_, RGBS__}]:= Module[{colors, nc, y,r1, r2, X, X1, X2, C1, C2},
 colors={RGB1, RGB2, RGBS};
 nc = Length[colors];  
@@ -12321,6 +12651,7 @@ RGBInterpolate[x, {X1, X2}, {C1,C2}]
 ]
 
 
+(* ::Input::Initialization:: *)
 RGBErr=0; 
 RGBInterpolate[x_, {xmin_, xmax_}, {RGBmin_RGBColor, RGBmax_RGBColor}]:=Module[{X, y, RGB, y1, y2, RGBMax=3},
 RGB[RGBColor[r_, g_, b_]]:= {r, g, b};
@@ -12347,11 +12678,13 @@ Return[RGBColor@@y];
 RGBInterpolate[x___]:= (Print["Error: Expecting RGBInterpolate[x, {xmin, xmax}, {rgbmin, rgbmax}], not ", x]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 RGBThreshold[x_,  threshold_, {RGBmin_RGBColor, RGBmax_RGBColor}] := If[x>= threshold, RGBmax, RGBmin];
 
 RGBThreshold[x__]:= (Print["Error: Expecting RGBThreshold[x, {xmin, xmax}, {rgbmin, rgbmax}], not ", x]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 ColorBlendRectangle[{xmin_, ymin_}, {xmax_, ymax_}, {rgbfrom_, rgbto_, rgbs__}, {textmin_:"Min", textmax_:"Max"}, textstyle_:{}]:= Module[
 {n, rect, colors, ncolors, deltay,htotal, h, y1s, y2s, boxes, tmin, tmax, r}, 
 colors={rgbfrom, rgbto, rgbs};
@@ -12390,6 +12723,7 @@ Return[r];
 
 
 
+(* ::Input::Initialization:: *)
 ColorBlendRectangle[{xmin_, ymin_}, {xmax_, ymax_}, {rgbfrom_, rgbto_}, {textmin_:"Min", textmax_:"Max"}, textstyle_:{}]:= Module[{n, deltay, y, r, rnext, color, tmin, tmax}, 
 n=100;
 deltay=1.0*(ymax-ymin)/n; 
@@ -12412,6 +12746,7 @@ Return[r];
 
 
 
+(* ::Input::Initialization:: *)
 SimShowFinal[solution_,variable_,tissue_?DTissueQ,{mincolor_,maxcolor_},opt___?OptionQ]:=Module[{numbers,T,time,times},
 times=CommonTimeDomain[solution];
 time=Last[times];
@@ -12422,6 +12757,7 @@ If[numbers,numbers=First/@TissueCells[tissue];
 SimShowFinal[solution,variable,T,{mincolor,maxcolor},"CellNumbers"->numbers,opt],SimShowFinal[solution,variable,T,{mincolor,maxcolor},opt]]];
 
 
+(* ::Input::Initialization:: *)
 SimShowFinal[solution_,variable_,tissue_?DTissueQ,{mincolor_,maxcolor_},threshold_, opt___?OptionQ]:=Module[{numbers,T,time,times},
 times=CommonTimeDomain[solution];
 time=Last[times];
@@ -12431,6 +12767,7 @@ If[numbers,numbers=First/@TissueCells[tissue];
 SimShowFinal[solution,variable,T,{mincolor,maxcolor},threshold, "CellNumbers"->numbers,opt],SimShowFinal[solution,variable,T,{mincolor,maxcolor},threshold, opt]]];
 
 
+(* ::Input::Initialization:: *)
 SimShowFinal[sim_, variable_, template_, {mincolor_, maxcolor_},  
  opt___?OptionQ]:= Module[
 {times, xrange, yrange, varmin, varmax, tmax, p, dbg, dprint}, 
@@ -12480,12 +12817,14 @@ Return[p];
 
 
 
+(* ::Input::Initialization:: *)
 SimShowAt[solution_,variable_,time_,tissue_?DTissueQ,{mincolor_,maxcolor_},{vmin_,vmax_},opt___?OptionQ]:=Module[{numbers,T},T=DTissue2Tissue[tissue,solution,time];
 numbers="CellNumbers"/.{opt}/.{"CellNumbers"->False};
 If[numbers,numbers=First/@TissueCells[tissue];
 SimShowAt[solution,variable,time,T,{mincolor,maxcolor},{vmin,vmax},"CellNumbers"->numbers,opt],SimShowAt[solution,variable,time,T,{mincolor,maxcolor},{vmin,vmax},opt]]];
 
 
+(* ::Input::Initialization:: *)
 SimShowAt[sim_, variable_,time_,  template_, {mincolor_, maxcolor_},{varmin_, varmax_},   opt___?OptionQ]:= Module[
 {times, xrange, yrange,   p, dbg, dprint}, 
 
@@ -12509,12 +12848,14 @@ Return[p];
 
 
 
+(* ::Input::Initialization:: *)
 SimShowAt[solution_,variable_,time_,tissue_?DTissueQ,{mincolor_,maxcolor_},opt___?OptionQ]:=Module[{numbers,T},T=DTissue2Tissue[tissue,solution,time];
 numbers="CellNumbers"/.{opt}/.{"CellNumbers"->False};
 If[numbers,numbers=First/@TissueCells[tissue];
 SimShowAt[solution,variable,time,T,{mincolor,maxcolor},"CellNumbers"->numbers,opt],SimShowAt[solution,variable,time,T,{mincolor,maxcolor},opt]]];
 
 
+(* ::Input::Initialization:: *)
 SimShowAt[sim_, variable_,time_,  template_, {mincolor_, maxcolor_},  opt___?OptionQ]:= Module[
 {times,  varmin, varmax,  p}, 
 
@@ -12532,6 +12873,7 @@ Return[p];
 
 
 
+(* ::Input::Initialization:: *)
 ShowCellExtensions[S_, DT_DTissue, PD_, t_, opt___?OptionQ]:= Module[{n, T1,vals, PDUNITX, PDUNITY,cellcenters},
 n=NTissueCells[DT]; 
 T1=DTissue2Tissue[DT,S,t];
@@ -12547,6 +12889,7 @@ gopt]
 ]
 
 
+(* ::Input::Initialization:: *)
 SimInterpolate[sim_, var_, time_]:= Module[{allvars, s, vals, timerange},
 timeRange=CommonTimeDomain[sim]; 
 If[time>timeRange[[2]] \[Or] time<timeRange[[1]], Print["Error: SimRange: requested time ", time, " is not in the data range of ", timeRange]; Return[$Failed]]; 
@@ -12560,6 +12903,7 @@ vals=(#[time]&)/@(allvars/.s)
 ]
 
 
+(* ::Input::Initialization:: *)
 SimRange[sim_, var_, time_?NumericQ]:= Module[{vals, range},
 vals = SimInterpolate[sim, var, time]; 
 If[SameQ[vals, $Failed], Return[$Failed]]; 
@@ -12568,6 +12912,7 @@ Return[range];
 ]
 
 
+(* ::Input::Initialization:: *)
 SimRange[sim_, var_, {tstart_?NumericQ, tend_?NumericQ, tdelta_?NumericQ}]:= Module[{s},
 s=SimRange[sim, var, #]&/@Range[tstart, tend, tdelta]; 
 s=Transpose[s]; 
@@ -12578,6 +12923,7 @@ Return[s];
 SimRange[x___]:= (Print["Error: Expecting SimRange[sim, var, time] or SimRange[sim, var, {tstart, tend, tdelta}"]; $Failed); 
 
 
+(* ::Input::Initialization:: *)
 WTAAnimate[vars_?ListQ, varcolors_?ListQ, opt___?OptionQ]:= Module[{d,dbg=False, dPrint,TFiles,SFiles, nT,nS,n,GetTimeDomainFromFile, timespans,i,dt, TSFile, nTimespans,plottimes,frames,interval,tstart,tend,times, tstarts,whichinterval,whichtime,jnext,timespan,timeshere,j,needed, colors,values,pix,need,T,S,dmovie,iframe,time,pixfile,type,runstring,error,rate,imagetype,label,showtime,framelabel,isize, cwd,themovie,TheMovieFile, TNOW},
 
 dbg = "debug"/.{opt}/.{"debug"-> False}; 
@@ -12673,6 +13019,7 @@ Return[TheMovieFile]
 
 
 
+(* ::Input::Initialization:: *)
 WTASHOW[DT_DTissue, S_, time_, x___]:=Module[{T}, 
 T= DTissue2Tissue[DT,S,time];
 WTAShow[T, S, time, x]
@@ -12727,6 +13074,7 @@ WTAShow[x___]:= AbortIf[True, "WTAShow: Unexpected input."];
 
 
 
+(* ::Input::Initialization:: *)
 UniqueRandomColors[n_]:= Module[{r, rl,j},
 r=Range[n]; 
 rl={}; 
@@ -12739,6 +13087,7 @@ Hue/@((rl-1.)/n)
 ]
 
 
+(* ::Input::Initialization:: *)
 LineageAnimate[f_?StringQ, opt___?OptionQ]:= LineageAnimate["InputFolder"-> f, opt]; 
 LineageAnimate[opt___?OptionQ]:= Module[{d,dbg, dPrint,TFiles,SFiles, nT,nS,n,GetTimeDomainFromFile, timespans,i,dt, TSFile, nTimespans,plottimes,frames,interval,tstart,tend,times, tstarts,whichinterval,whichtime,jnext,timespan,timeshere,j,needed, colors,values,pix,need,T,S,dmovie,iframe,time,pixfile,type,runstring,error,rate,imagetype,label,showtime,framelabel,isize, cwd,themovie,TheMovieFile, TNOW, L, nAncestralCells, autoscale},
 
@@ -12859,12 +13208,14 @@ Return[TheMovieFile]
 
 
 
+(* ::Input::Initialization:: *)
 LineageShow[DT_DTissue, S_, time_, L_, opt___?OptionQ]:= Module[{T},
 T= DTissue2Tissue[DT,S,time];
 LineageShow[T, L, opt]
 ]
 
 
+(* ::Input::Initialization:: *)
 LineageShow[T_Tissue, L_, opt___?OptionQ]:= Module[{n, ancestors, originals, cn, AMap, rr,rh, colors, colormap},
 originals=Select[L,First[#]==0&];
 n = Length[originals]; 
@@ -12889,6 +13240,7 @@ ShowTissue[T, opt, "CellStyles"-> colormap]
 ]
 
 
+(* ::Input::Initialization:: *)
 SimAnimate[variable_Symbol, d_?StringQ, opt___?OptionQ]:= SimAnimate[variable, "InputFolder"-> d, opt];  
 SimAnimate[variable_Symbol, opt___?OptionQ]:= Module[{d,dbg=True, dPrint,TFiles,SFiles, nT,nS,n,GetTimeDomainFromFile, timespans,i,dt, TSFile, nTimespans,plottimes,frames,interval,tstart,tend,times, tstarts,whichinterval,whichtime,jnext,timespan,timeshere,j,needed, colors,values,pix,need,T,S,dmovie,iframe,time,pixfile,type,runstring,error,rate,imagetype,label, none,showtime,framelabel,isize, cwd,themovie,TheMovieFile, autoscale},
 
@@ -12989,6 +13341,7 @@ Return[TheMovieFile]
 
 
 
+(* ::Input::Initialization:: *)
 SimAnimate[sim_, variable_, template_, {tstart_, tend_, tdelta_},
 {minColor_, maxColor_}, {minVal_, maxVal_}, {xmin_, xmax_}, {ymin_, ymax_}, opt___?OptionQ]:= Module[{s},
 RGBErr=0; 
@@ -13008,6 +13361,7 @@ SimAnimate[sim, variable, template, {tstart, tend, tdelta}, {minColor, maxColor}
 
 
 
+(* ::Input::Initialization:: *)
 GetSimulationPoints[opt___?OptionQ]:= Module[{d}, 
 d=SystemDialogInput["Directory",ToFileName[NotebookDirectory[]],WindowTitle->"Please select the folder that contains DTissue*.nb, Solution*.nb,etc.):"];
 If[SameQ[d,$Canceled], Return[$Canceled]]; 
@@ -13015,6 +13369,7 @@ GetSimulationPoints[d, opt]
 ]; 
 
 
+(* ::Input::Initialization:: *)
 GetSimulationPoints[d_, opt___?OptionQ]:=Module[{GetTimeDomainFromFile, TFiles,nT,SFiles,nS,n, TSFile,i,dt,timespans,nTimespans,plottimes, tstart,tend,frames, interval,tstarts,times,whichtime,needed,j,jnext,timespan,timeshere, dbg, dPrint},
 dbg = "Debug"/.{opt}/.{"Debug"-> False}; 
 dPrint[x___]:= If[dbg, Print["GetSimulationPoints: ", x]]; 
@@ -13094,6 +13449,7 @@ dPrint["Exiting"];
 ];
 
 
+(* ::Input::Initialization:: *)
 GetSimulationTissuePoints[opt___?OptionQ]:=Module[{stuff,f,which,tissues,indices,times,solutions},
 stuff=GetSimulationPoints[opt];
 f="folder"/.stuff;
@@ -13108,6 +13464,7 @@ solutions=solutions[[indices]];
 ]
 
 
+(* ::Input::Initialization:: *)
 AutoScaleTemplate[DT_DTissue, x___]:= AutoScaleTemplate[DTissue2Tissue[DT],x]
 AutoScaleTemplate[template_?TissueQ, xpad_:10, ypad_:10]:= Module[{v, x,y, xmin, xmax, ymin, ymax, width, height, dx, dl, dy},
 v=TissueVertices[template]; 
@@ -13132,6 +13489,7 @@ Return[{{xmin, xmax}, {ymin, ymax}}];
 ]
 
 
+(* ::Input::Initialization:: *)
 SaveFrames[pictures_?ListQ,type_, size_, movieType_:".avi",  label_:"MovieData-", framerate_:16]:= Module[{dir,cwd, labl,frnames, moviedir,framedir,  moviefile, runstring,typ,error, FrameName, FrameNames, dotavi, today, $TEMP, rate,CellzillaHome},
 
 
@@ -13213,6 +13571,7 @@ SetDirectory[cwd];
 ]; 
 
 
+(* ::Input::Initialization:: *)
 ToAVI[pics_?ListQ,title_:"MovieData",  size_:400, rate_:16]:= SaveFrames[pics, "JPG", size,".avi", title, rate];
 ToMOV[pics_?ListQ,title_:"MovieData",  size_:400, rate_:16]:= SaveFrames[pics, "JPG", size,".mov", title, rate];
 
@@ -13221,6 +13580,7 @@ ToMOV[___]:= Print["Expecting[ToMOV[{picture, picture, ...}, title_:\"SomeTextLa
 
 
 
+(* ::Input::Initialization:: *)
 CSVFile[w_?TissueQ]:= Module[{nv,ne,nf,nc,v, e, f, output,dim=2},
 v=TissueVertices[w];
 dim=Length[v[[1]]]; 
@@ -13252,6 +13612,7 @@ ExpandFileName[actual]
 CSVFile[x___]:= Print["Expecting CSVFile[tissue] or CSVFile[tissue,filename]"];
 
 
+(* ::Input::Initialization:: *)
 CSVFlatFile[w_?TissueQ]:= Module[{nv,nf,nc,v,  f, output,dim=2, cvn},
 v=TissueVertices[w];
 cvn = CellVertexNumbers[w]; 
@@ -13267,6 +13628,7 @@ output=Join[output,cvn]
 
 
 
+(* ::Input::Initialization:: *)
 CSVToTissue[filename_]:= Module[{Q, lens, dim, nv,ne,nf, nlines, vertices, edges, vlens, faces, vmax, pvmax,vmin, pvmin, emin, emax, pemin, pemax, dPrint, dbg=False},
 dPrint[x___]:=If[dbg, Print["CSVToTissue: ", x]]; 
 AbortIf[Not[FileExistsQ[filename]], "Unable to locate "<>ToString[filename]];
@@ -13339,6 +13701,7 @@ Tissue[vertices,edges, faces]
 ];
 
 
+(* ::Input::Initialization:: *)
 FlatCSVToTissue[filename_]:= Module[{Q, lens, dim, nv,nf, nlines, vertices, vlens, faces, vmax, pvmax,vmin, pvmin, emin, emax, pemin, pemax, dPrint, dbg=False},
 dPrint[x___]:=If[dbg, Print["CSVToTissue: ", x]]; 
 AbortIf[Not[FileExistsQ[filename]], "Unable to locate "<>ToString[filename]];
@@ -13392,6 +13755,7 @@ FlatTissue2Tissue[FlatTissue[vertices, faces]]
 ]
 
 
+(* ::Input::Initialization:: *)
 FlatFile[w_?TissueQ]:= Module[{nv,ne,nf,nc,v, e, f, output,dim=2},
 v=TissueVertices[w];
 dim=Length[v[[1]]]; 
@@ -13417,6 +13781,7 @@ ExpandFileName[actual]
 FlatFile[x___]:= Print["Expecting FlatFile[tissue] or FlatFile[tissue,filename]"];
 
 
+(* ::Input::Initialization:: *)
 TissueToPLY[w_?TissueQ]:=Module[{nv,nc,ne,v,c,e,efrom0,cfrom0,sub1,facelengths,faces,output,header, cvn,cvnfrom0, dim},v=TissueVertices[w];
 e=TissueEdges[w];
 c=TissueCells[w];
@@ -13469,6 +13834,7 @@ ExpandFileName[actual]
 TissueToPLY[x___]:= Print["Expecting TissueToPLY[tissue] or TissueToPLY[tissue,filename]"];
 
 
+(* ::Input::Initialization:: *)
 PLYToTissue[filename_,maxedges_: 100]:=Module[{u,nv,nf,EH,vertices,cells,Cells,cell,edges,EdgePairsInThisCell,nextEdge,EdgesInThisCell,k,p,q,vcell,centroid},u=Import[filename,"table"];
 nv=Flatten[Cases[u,{"element","vertex",_}]];
 While[ListQ[nv],nv=Last[nv]];
@@ -13500,6 +13866,7 @@ Cells = Select[Cells, Length[#]>2&];
 Tissue[vertices,edges,Cells]]
 
 
+(* ::Input::Initialization:: *)
 PLYToTissue3D[filename_,maxedges_: 100]:=Module[{u,nv,nf,EH,vertices,cells,Cells,cell,edges,EdgePairsInThisCell,nextEdge,EdgesInThisCell,k,p,q,vcell,centroid, vertices3D},u=Import[filename,"table"];
 nv=Flatten[Cases[u,{"element","vertex",_}]];
 While[ListQ[nv],nv=Last[nv]];
@@ -13534,6 +13901,7 @@ Cells = Select[Cells, Length[#]>2&];
 Tissue[vertices3D,edges,Cells]]
 
 
+(* ::Input::Initialization:: *)
 Help[]:= Module[{names, usagestrings, print}, 
 names=decontextify/@Names["Cellzilla2D`*"];
 usagestrings = ToExpression/@((ToString[#]<>"::usage")&/@names); 
@@ -13550,6 +13918,7 @@ MapThread[print, {names, usagestrings}];
 ];
 
 
+(* ::Input::Initialization:: *)
 End[];
 If[FLAGS`ECHOLOAD,
 
