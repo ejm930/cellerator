@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     10217,        297]
-NotebookOptionsPosition[      9111,        255]
-NotebookOutlinePosition[      9569,        273]
-CellTagsIndexPosition[      9526,        270]
+NotebookDataLength[     16386,        450]
+NotebookOptionsPosition[     13957,        382]
+NotebookOutlinePosition[     14429,        401]
+CellTagsIndexPosition[     14386,        398]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -30,7 +30,9 @@ Cell["DropPerpendicular-example.nb", "Section",
    3.45487696487158*^9}, {3.454877016601164*^9, 3.4548770230067463`*^9}, {
    3.4549464679022923`*^9, 3.454946472766996*^9}, {3.454952051881212*^9, 
    3.4549520564947844`*^9}, {3.4549528105725307`*^9, 3.454952827618351*^9}, {
-   3.454960934879204*^9, 3.454960955000971*^9}, 3.561462347377486*^9}],
+   3.454960934879204*^9, 3.454960955000971*^9}, 
+   3.561462347377486*^9},ExpressionUUID->"caab74e7-43b0-4a6c-ae93-\
+8e4aa3509a3f"],
 
 Cell["\<\
 Example Cellzilla2D notebook.
@@ -39,7 +41,9 @@ GPL License applies.
 See http://xlr8r.info and http://cellzilla.info for further details.\
 \>", "Text",
  CellChangeTimes->{{3.454616499378996*^9, 3.4546165376658583`*^9}, 
-   3.454617821271595*^9, {3.561462319283502*^9, 3.561462347377596*^9}}],
+   3.454617821271595*^9, {3.561462319283502*^9, 
+   3.561462347377596*^9}},ExpressionUUID->"e8ef7aca-240d-4051-b053-\
+2bf9ef3cd603"],
 
 Cell[CellGroupData[{
 
@@ -47,7 +51,40 @@ Cell[BoxData[
  RowBox[{"<<", "Cellzilla2D.m"}]], "Input",
  CellChangeTimes->{{3.4546177024873037`*^9, 3.4546177066717863`*^9}, {
    3.4546177419301577`*^9, 3.454617750289276*^9}, 3.454617821271983*^9, 
-   3.561462347377742*^9}],
+   3.561462347377742*^9},ExpressionUUID->"6d584c17-bf1d-4cbd-8015-\
+6fb69eb202cc"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   StyleBox["\<\"Warning: \"\>",
+    StripOnInput->False,
+    LineColor->RGBColor[1, 0, 0],
+    FrontFaceColor->RGBColor[1, 0, 0],
+    BackFaceColor->RGBColor[1, 0, 0],
+    GraphicsColor->RGBColor[1, 0, 0],
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]], "\[InvisibleSpace]", 
+   StyleBox["\<\"Cellzilla2D: xSSA.m not found in path. Some stochastic \
+conversion functions may not work as expected. It should be loaded manually \
+before any xSSA (stochastic) simulations can be run.\"\>",
+    StripOnInput->False,
+    FontWeight->Bold]}],
+  SequenceForm[
+   Style["Warning: ", Bold, 
+    RGBColor[1, 0, 0]], 
+   Style["Cellzilla2D: xSSA.m not found in path. Some stochastic conversion \
+functions may not work as expected. It should be loaded manually before any \
+xSSA (stochastic) simulations can be run.", Bold]],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.454946483733527*^9, 3.454952105523391*^9, 3.454960534144863*^9, 
+   3.454960926572427*^9, 3.454961112212707*^9, {3.561462322018762*^9, 
+   3.561462347378626*^9}, 
+   3.7058588527453737`*^9},ExpressionUUID->"7cbce284-5c64-45e2-ab83-\
+3dbfd148dbfa"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -57,8 +94,8 @@ Cell[BoxData[
     FontFamily->"Ubuntu,Arial",
     FontSize->12,
     FontWeight->"Bold"], "\[InvisibleSpace]", 
-   StyleBox["\<\" (2.3.6 (9-Nov-2012)) loaded Fri 9 Nov 2012 07:05:21\\nusing \
-\"\>",
+   StyleBox["\<\" (3.0.51 (05 June 2017)) loaded Wed 7 Jun 2017 \
+14:14:12\\nusing \"\>",
     StripOnInput->False,
     FontFamily->"Ubuntu,Arial",
     FontSize->12], "\[InvisibleSpace]", 
@@ -67,7 +104,7 @@ Cell[BoxData[
     FontFamily->"Ubuntu,Arial",
     FontSize->12,
     FontWeight->"Bold"], "\[InvisibleSpace]", 
-   StyleBox["\<\"0.90 and \"\>",
+   StyleBox["\<\"0.95 and \"\>",
     StripOnInput->False,
     FontFamily->"Ubuntu,Arial",
     FontSize->12], "\[InvisibleSpace]", 
@@ -76,26 +113,37 @@ Cell[BoxData[
     FontFamily->"Ubuntu,Arial",
     FontSize->12,
     FontWeight->"Bold"], "\[InvisibleSpace]", 
-   StyleBox["\<\"1204002\"\>",
+   StyleBox["\<\"** Not Found **\"\>",
     StripOnInput->False,
     FontFamily->"Ubuntu,Arial",
-    FontSize->12]}],
+    FontSize->12], "\[InvisibleSpace]", 
+   StyleBox["\<\"\\nGPL License Terms Apply\"\>",
+    StripOnInput->False,
+    FontFamily->"Ubuntu,Arial",
+    FontSize->12,
+    FontWeight->Bold,
+    FontColor->RGBColor[1, 0, 0]]}],
   SequenceForm[
    Style["Cellzilla2D", FontFamily -> "Ubuntu,Arial", FontSize -> 12, 
     FontWeight -> "Bold"], 
-   Style[" (2.3.6 (9-Nov-2012)) loaded Fri 9 Nov 2012 07:05:21\nusing ", 
+   Style[" (3.0.51 (05 June 2017)) loaded Wed 7 Jun 2017 14:14:12\nusing ", 
     FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
    Style["xCellerator ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", 
     FontWeight -> "Bold"], 
-   Style["0.90 and ", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["0.95 and ", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
    Style["XSSA ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> 
     "Bold"], 
-   Style["1204002", FontSize -> 12, FontFamily -> "Ubuntu,Arial"]],
+   Style["** Not Found **", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["\nGPL License Terms Apply", FontColor -> RGBColor[1, 0, 0], 
+    FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> Bold]],
   Editable->False]], "Print",
  CellChangeTimes->{
   3.454946483733527*^9, 3.454952105523391*^9, 3.454960534144863*^9, 
    3.454960926572427*^9, 3.454961112212707*^9, {3.561462322018762*^9, 
-   3.561462347378626*^9}}]
+   3.561462347378626*^9}, 
+   3.705858852856271*^9},ExpressionUUID->"7bfdc5ab-bc9c-479e-85f9-\
+d78003accc12"]
+}, Open  ]]
 }, Open  ]],
 
 Cell[BoxData[{
@@ -121,7 +169,9 @@ Cell[BoxData[{
     RowBox[{"2", ",", 
      RowBox[{"-", "1.7"}]}], "}"}]}], ";"}]}], "Input",
  CellChangeTimes->{{3.4549605647675533`*^9, 3.4549605823171263`*^9}, {
-   3.454960882734474*^9, 3.4549608838274717`*^9}, 3.561462347378879*^9}],
+   3.454960882734474*^9, 3.4549608838274717`*^9}, 
+   3.561462347378879*^9},ExpressionUUID->"da06f104-a42e-49ca-b992-\
+96c36276969a"],
 
 Cell[CellGroupData[{
 
@@ -130,7 +180,9 @@ Cell[BoxData[
   RowBox[{"DropPerpendicular", "[", 
    RowBox[{"APoint", ",", "ALineSegment"}], "]"}]}]], "Input",
  CellChangeTimes->{{3.454960533664716*^9, 3.454960555619812*^9}, {
-   3.454960587553838*^9, 3.4549606017543497`*^9}, 3.561462347379037*^9}],
+   3.454960587553838*^9, 3.4549606017543497`*^9}, 
+   3.561462347379037*^9},ExpressionUUID->"0d544437-b883-4467-9e8c-\
+8467d47cc27c"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -139,7 +191,9 @@ Cell[BoxData[
    FractionBox["17", "13"]}], "}"}]], "Output",
  CellChangeTimes->{
   3.454960556305263*^9, 3.454960602326528*^9, 3.454960926671151*^9, 
-   3.4549611123733997`*^9, {3.561462325215785*^9, 3.561462347379231*^9}}]
+   3.4549611123733997`*^9, {3.561462325215785*^9, 3.561462347379231*^9}, 
+   3.705858862268235*^9},ExpressionUUID->"c9cb0031-e1e3-41fa-ae05-\
+0f686e372be1"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -161,9 +215,8 @@ Cell[BoxData[
       "\[IndentingNewLine]", 
       RowBox[{"Line", "[", 
        RowBox[{"{", 
-        RowBox[{"APoint", ",", " ", "intersectionPoint"}], "}"}], "]"}], ",", 
-      "\[IndentingNewLine]", "Red", ",", " ", 
-      RowBox[{"Point", "[", "AnotherPoint", "]"}]}], "}"}], "]"}], ",", " ", 
+        RowBox[{"APoint", ",", " ", "intersectionPoint"}], "}"}], "]"}]}], 
+     "}"}], "]"}], ",", " ", 
    RowBox[{"Frame", "\[Rule]", " ", "True"}], ",", " ", 
    RowBox[{"PlotRange", "\[Rule]", " ", 
     RowBox[{"{", 
@@ -177,45 +230,57 @@ Cell[BoxData[
    RowBox[{"AspectRatio", "\[Rule]", " ", "1"}], ",", " ", 
    RowBox[{"Axes", "\[Rule]", " ", "True"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.45496060498875*^9, 3.454960795081243*^9}, {
-   3.454960900180705*^9, 3.4549609047693996`*^9}, 3.561462347379672*^9}],
+   3.454960900180705*^9, 3.4549609047693996`*^9}, 3.561462347379672*^9, {
+   3.705859016551878*^9, 
+   3.705859019421781*^9}},ExpressionUUID->"566bd932-9e79-48da-8477-\
+d8955cd6e337"],
 
 Cell[BoxData[
  GraphicsBox[
   {RGBColor[0, 0, 1], PointSize[0.05], PointBox[{1, 1}], 
    {RGBColor[0.6, 0.4, 0.2], Thickness[Large], LineBox[{{2, 4}, {3, -1}}], 
-    {RGBColor[0, 0, 1], PointBox[{2.5384615384615383`, 1.3076923076923077`}]}, 
+    {RGBColor[0, 0, 1], 
+     PointBox[NCache[{Rational[33, 13], Rational[17, 13]}, {
+       2.5384615384615383`, 1.3076923076923077`}]]}, 
     {RGBColor[0.33333333333333337`, 0, 0.33333333333333337`], 
      Dashing[{Small, Small}], 
-     LineBox[{{1, 1}, {2.5384615384615383`, 1.3076923076923077`}}], 
-     {RGBColor[1, 0, 0], PointBox[{2, -1.7}]}}}},
+     LineBox[NCache[{{1, 1}, {Rational[33, 13], Rational[17, 13]}}, {{1, 1}, {
+        2.5384615384615383`, 1.3076923076923077`}}]]}}},
   AspectRatio->1,
   Axes->True,
   Frame->True,
   PlotRange->{{-2, 5}, {-2, 5}}]], "Output",
  CellChangeTimes->{{3.454960638901634*^9, 3.45496079549295*^9}, {
    3.4549609055041313`*^9, 3.4549609267165127`*^9}, 3.454961112425055*^9, {
-   3.561462329673998*^9, 3.561462347384922*^9}}]
+   3.561462329673998*^9, 3.561462347384922*^9}, 3.7058588663680573`*^9, 
+   3.705859020327269*^9},ExpressionUUID->"5f246d9d-d0b0-40b0-a14a-\
+8ecbe643f204"]
 }, Open  ]],
 
-Cell[TextData[StyleBox["Returns $Failed if the perprendicular from the point \
+Cell[TextData[StyleBox["Returns $Failed if the perpendicular from the point \
 to the line segment does not intersect the line segment.",
  FontSize->16]], "Text",
  CellChangeTimes->{{3.454961196700199*^9, 3.454961219598565*^9}, 
-   3.561462347385005*^9}],
+   3.561462347385005*^9, 
+   3.705858872999682*^9},ExpressionUUID->"934aa51f-ca04-4d15-9968-\
+240ba145c116"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"\[IndentingNewLine]", 
-  RowBox[{"DropPerpendicular", "[", 
-   RowBox[{"AnotherPoint", ",", " ", "ALineSegment"}], "]"}]}]], "Input",
+ RowBox[{"DropPerpendicular", "[", 
+  RowBox[{"AnotherPoint", ",", " ", "ALineSegment"}], "]"}]], "Input",
  CellChangeTimes->{{3.454960833136509*^9, 3.4549608793353863`*^9}, 
-   3.561462347385157*^9}],
+   3.561462347385157*^9, 
+   3.7058588775157633`*^9},ExpressionUUID->"84dfa851-37c6-4862-a707-\
+f73a77d1d179"],
 
 Cell[BoxData["$Failed"], "Output",
  CellChangeTimes->{
   3.4549608683112297`*^9, 3.4549609267939787`*^9, 3.4549611125116568`*^9, {
-   3.561462333540018*^9, 3.561462347385273*^9}}]
+   3.561462333540018*^9, 3.561462347385273*^9}, 
+   3.705858879850019*^9},ExpressionUUID->"f9704113-b082-4c86-89e4-\
+ce9b48f98444"]
 }, Open  ]],
 
 Cell[TextData[Cell[BoxData[
@@ -230,34 +295,97 @@ Cell[TextData[Cell[BoxData[
    RowBox[{
    "by", " ", "sliding", " ", "the", " ", "result", " ", "to", " ", "the", 
     " ", "nearest", " ", 
-    RowBox[{"endpoint", "."}]}]}], TraditionalForm]]]], "Text",
+    RowBox[{"endpoint", "."}]}]}], 
+  TraditionalForm]],ExpressionUUID->"3f0cb393-888a-4aa1-aad6-5707870e7060"]], \
+"Text",
  CellChangeTimes->{{3.454961135653171*^9, 3.45496116846245*^9}, {
   3.561462347385475*^9, 3.561462347386345*^9}},
- FontSize->16],
+ FontSize->16,ExpressionUUID->"70e9b20e-7559-4f7c-9dbd-81712ca9e9b8"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"DropPerpendicular", "[", 
-  RowBox[{"AnotherPoint", ",", " ", "ALineSegment", ",", " ", "True"}], 
-  "]"}]], "Input",
+ RowBox[{"Nearestendpoint", "=", 
+  RowBox[{"DropPerpendicular", "[", 
+   RowBox[{"AnotherPoint", ",", " ", "ALineSegment", ",", " ", "True"}], 
+   "]"}]}]], "Input",
  CellChangeTimes->{{3.454961113997796*^9, 3.454961125605834*^9}, 
-   3.561462347386496*^9}],
+   3.561462347386496*^9, {3.705858934451022*^9, 
+   3.705858945626153*^9}},ExpressionUUID->"3cd56df2-e7ac-490e-b938-\
+9dec4aae94a2"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"3", ",", 
    RowBox[{"-", "1"}]}], "}"}]], "Output",
  CellChangeTimes->{
-  3.454961126053884*^9, {3.561462335755249*^9, 3.561462347386629*^9}}]
+  3.454961126053884*^9, {3.561462335755249*^9, 3.561462347386629*^9}, 
+   3.7058588880915823`*^9, 
+   3.705858946976367*^9},ExpressionUUID->"031c8919-12b0-4548-90d6-\
+f60910166dfd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"Graphics", "[", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{"Blue", ",", " ", 
+      RowBox[{"PointSize", "[", ".05", "]"}], ",", " ", 
+      RowBox[{"Point", "[", "Nearestendpoint", "]"}], ",", " ", 
+      "\[IndentingNewLine]", "Brown", ",", "Thick", ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Line", "[", "ALineSegment", "]"}], ",", "\[IndentingNewLine]", 
+      
+      RowBox[{"Darker", "[", "Purple", "]"}], ",", " ", "Dashed", ",", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Line", "[", 
+       RowBox[{"{", 
+        RowBox[{"AnotherPoint", ",", " ", "Nearestendpoint"}], "}"}], "]"}], 
+      ",", "\[IndentingNewLine]", "Red", ",", " ", 
+      RowBox[{"Point", "[", "AnotherPoint", "]"}]}], "}"}], "]"}], ",", " ", 
+   RowBox[{"Frame", "\[Rule]", " ", "True"}], ",", " ", 
+   RowBox[{"PlotRange", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "2"}], ",", "5"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "2"}], ",", " ", "5"}], "}"}]}], "}"}]}], ",", " ", 
+   RowBox[{"AspectRatio", "\[Rule]", " ", "1"}], ",", " ", 
+   RowBox[{"Axes", "\[Rule]", " ", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7058589563022747`*^9, 
+  3.7058590056975937`*^9}},ExpressionUUID->"00c3c497-2c49-4fb7-8ff9-\
+5132649edd4e"],
+
+Cell[BoxData[
+ GraphicsBox[
+  {RGBColor[0, 0, 1], PointSize[0.05], PointBox[{3, -1}], 
+   {RGBColor[0.6, 0.4, 0.2], Thickness[Large], LineBox[{{2, 4}, {3, -1}}], 
+    {RGBColor[0.33333333333333337`, 0, 0.33333333333333337`], 
+     Dashing[{Small, Small}], LineBox[{{2, -1.7}, {3, -1}}], 
+     {RGBColor[1, 0, 0], PointBox[{2, -1.7}]}}}},
+  AspectRatio->1,
+  Axes->True,
+  Frame->True,
+  PlotRange->{{-2, 5}, {-2, 5}}]], "Output",
+ CellChangeTimes->{
+  3.7058589150269613`*^9, {3.705858962749506*^9, 
+   3.705859006915196*^9}},ExpressionUUID->"a4b9e999-b1ee-40d1-8442-\
+a2de0ec49b6d"]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{849, 787},
-WindowMargins->{{Automatic, -1488}, {50, Automatic}},
+WindowSize->{703, 787},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
 ShowSelection->True,
 CellLabelAutoDelete->True,
-FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+FrontEndVersion->"11.1 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 27, \
+2017)",
 StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
   CharacterEncoding -> "UTF-8"]
 ]
@@ -273,34 +401,58 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[567, 22, 789, 10, 74, "Section"],
-Cell[1359, 34, 285, 7, 87, "Text"],
+Cell[567, 22, 850, 12, 69, "Section", "ExpressionUUID" -> \
+"caab74e7-43b0-4a6c-ae93-8e4aa3509a3f"],
+Cell[1420, 36, 346, 9, 83, "Text", "ExpressionUUID" -> \
+"e8ef7aca-240d-4051-b053-2bf9ef3cd603"],
 Cell[CellGroupData[{
-Cell[1669, 45, 227, 4, 40, "Input"],
-Cell[1899, 51, 1724, 46, 43, "Print"]
+Cell[1791, 49, 284, 5, 42, "Input", "ExpressionUUID" -> \
+"6d584c17-bf1d-4cbd-8015-6fb69eb202cc"],
+Cell[CellGroupData[{
+Cell[2100, 58, 1171, 28, 82, "Print", "ExpressionUUID" -> \
+"7cbce284-5c64-45e2-ab83-3dbfd148dbfa"],
+Cell[3274, 88, 2176, 56, 63, "Print", "ExpressionUUID" -> \
+"7bfdc5ab-bc9c-479e-85f9-d78003accc12"]
+}, Open  ]]
 }, Open  ]],
-Cell[3638, 100, 735, 23, 79, "Input"],
+Cell[5477, 148, 796, 25, 85, "Input", "ExpressionUUID" -> \
+"da06f104-a42e-49ca-b992-96c36276969a"],
 Cell[CellGroupData[{
-Cell[4398, 127, 289, 5, 40, "Input"],
-Cell[4690, 134, 284, 7, 57, "Output"]
+Cell[6298, 177, 350, 7, 42, "Input", "ExpressionUUID" -> \
+"0d544437-b883-4467-9e8c-8467d47cc27c"],
+Cell[6651, 186, 367, 9, 59, "Output", "ExpressionUUID" -> \
+"c9cb0031-e1e3-41fa-ae05-0f686e372be1"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5011, 146, 1519, 33, 212, "Input"],
-Cell[6533, 181, 737, 15, 381, "Output"]
+Cell[7055, 200, 1532, 35, 211, "Input", "ExpressionUUID" -> \
+"566bd932-9e79-48da-8477-d8955cd6e337"],
+Cell[8590, 237, 921, 19, 424, "Output", "ExpressionUUID" -> \
+"5f246d9d-d0b0-40b0-a14a-8ecbe643f204"]
 }, Open  ]],
-Cell[7285, 199, 254, 4, 59, "Text"],
+Cell[9526, 259, 336, 6, 51, "Text", "ExpressionUUID" -> \
+"934aa51f-ca04-4d15-9968-240ba145c116"],
 Cell[CellGroupData[{
-Cell[7564, 207, 251, 5, 60, "Input"],
-Cell[7818, 214, 179, 3, 40, "Output"]
+Cell[9887, 269, 299, 6, 42, "Input", "ExpressionUUID" -> \
+"84dfa851-37c6-4862-a707-f73a77d1d179"],
+Cell[10189, 277, 262, 5, 42, "Output", "ExpressionUUID" -> \
+"f9704113-b082-4c86-89e4-ce9b48f98444"]
 }, Open  ]],
-Cell[8012, 220, 627, 15, 63, "Text"],
+Cell[10466, 285, 742, 17, 53, "Text", "ExpressionUUID" -> \
+"70e9b20e-7559-4f7c-9dbd-81712ca9e9b8"],
 Cell[CellGroupData[{
-Cell[8664, 239, 233, 5, 40, "Input"],
-Cell[8900, 246, 183, 5, 40, "Output"]
+Cell[11233, 306, 379, 8, 42, "Input", "ExpressionUUID" -> \
+"3cd56df2-e7ac-490e-b938-9dec4aae94a2"],
+Cell[11615, 316, 294, 8, 42, "Output", "ExpressionUUID" -> \
+"031c8919-12b0-4548-90d6-f60910166dfd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11946, 329, 1397, 33, 190, "Input", "ExpressionUUID" -> \
+"00c3c497-2c49-4fb7-8ff9-5132649edd4e"],
+Cell[13346, 364, 583, 14, 390, "Output", "ExpressionUUID" -> \
+"a4b9e999-b1ee-40d1-8442-a2de0ec49b6d"]
 }, Open  ]]
 }, Open  ]]
 }
 ]
 *)
 
-(* End of internal cache information *)
