@@ -21,7 +21,7 @@
 
 (* ::Input::Initialization:: *)
 BeginPackage["Cellzilla2D`"];
-$Cellzilla2DVersion="3.0.51 (05 June 2017)"  
+$Cellzilla2DVersion="3.0.51a (07 June 2017)"  
 
 
 (* ::Input::Initialization:: *)
@@ -4065,6 +4065,7 @@ c,nc,
 edgeNumber}, 
 c=TissueCells[Q]; 
 nc=Length[c]; 
+If[p==q,  Return[{}]]; 
 If[p>nc \[Or] q>nc \[Or] p<1 \[Or] q<1, 
 Print["Error: EdgeBetween: invalid connection: ", {p,q}," there are only ", nc," cells."];
 Return[$Failed]; 
@@ -4080,6 +4081,7 @@ Return[{}];
 EdgeBetween[Q_?TorusQ, p_?IntegerQ, q_?IntegerQ]:= Module[{c, nc, edgeNumber, pos, InCell, trules, toroidalconnections, icc}, 
 c=TissueCells[TorusTissue[Q]]; 
 nc=Length[c]; 
+If[p==q,  Return[{}]];
 If[p>nc \[Or] q>nc \[Or] p<1 \[Or] q<1, 
 Print["Error: EdgeBetween: invalid connection: ", {p,q}," there are only ", nc," cells."];
 Return[$Failed]; 
