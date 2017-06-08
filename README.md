@@ -13,4 +13,6 @@ download the latest Cellerator install file.
 
 For the python version, see the pycellerator project at https://github.com/biomathman/pycellerator
 
+To make a bug report or feature request please go to https://github.com/biomathman/cellerator/issues 
+
 
