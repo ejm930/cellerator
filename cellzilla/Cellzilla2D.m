@@ -21,7 +21,7 @@
 
 (* ::Input::Initialization:: *)
 BeginPackage["Cellzilla2D`"];
-$Cellzilla2DVersion="3.0.51a (07 June 2017)"  
+$Cellzilla2DVersion="3.0.51c (08 June 2017)"  
 
 
 (* ::Input::Initialization:: *)
@@ -1376,7 +1376,7 @@ areafunction[DT_?DTissueQ, i_?IntegerQ]:= areafunction[CellVertexCoordinates[DT,
 
 areafunction[P_?PointList3DQ]:= PolygonArea[P]; 
 
-areafunction[x___]:=(Print["Expecting areafunction[P1, P2, ...] or areafunction[tissue, i] or areafunction[tissue]"]; $Failed);
+areafunction[x___]:=(Print["Expecting areafunction[P1, P2, ...] or areafunction[tissue, i] or areafunction[tissue], not ", x]; $Failed; Abort[]);
 
 
 (* ::Input::Initialization:: *)
@@ -7032,7 +7032,12 @@ Return[DTissue[v,e,c]];
 
 
 (* ::Input::Initialization:: *)
-CellAreaEquations[tissue_?TissueQ,opt___?OptionQ]:= Module[{x,y,area, xy},
+CellAreaEquations[tissue_?TissueQ,opt___?OptionQ]:= Module[{x,y,area, xy, dbg, dPrint},
+
+dbg = "debug"/.{opt}/.{"debug"-> False}; 
+dPrint[u___]:= If[dbg, Print["CellAreaEquations (1): ", u]]; 
+
+dPrint["Begin"]; 
 xy="xy"/.{opt}/.{"xy"-> True}; 
 
 x = "x"/.{opt}/.{"x"-> Global`x}; 
@@ -7040,30 +7045,53 @@ y = "y"/.{opt}/.{"y"-> Global`y};
 area="CellVariable"/.{opt}/.{"CellVariable"-> Global`cell};
 If[ToString[area]=="False", Return[{}]]; 
 AbortIf[ToString[xy]=="False", "\"CellVariable\"\[Rule]"<>ToString[area]<>" but \"xy\"\[Rule]False; vertex coordinates must be recorded if the area is to be calculated."];
+dPrint["x:", x];
+dPrint["y:", y];
+dPrint["area:", area];
+dPrint["{opt}:",{opt}]; 
 CellAreaEquations[tissue,x,y,area,opt]
 ]; 
-CellAreaEquations[tissue_?TissueQ,x_,y_, area_,opt___?OptionQ]:= Module[{vertices, f,cellnumbers,nc,eqlhs, eqrhs, equations},
+CellAreaEquations[tissue_?TissueQ,x_,y_, area_,opt___?OptionQ]:= Module[{vertices, f,cellnumbers,nc,eqlhs, eqrhs, equations, dbg, dPrint},
+dbg = "debug"/.{opt}/.{"debug"-> False}; 
+dPrint[u___]:= If[dbg, Print["CellAreaEquations (2): ", u]]; 
+dPrint["Begin"]; 
 
 vertices = CellVertexNumbers[tissue];
+dPrint["vertices:", vertices];
+
 nc = Length[vertices];  
 (* area function for a single cell *)
 f[vlist_]:= Module[{coords}, 
 coords={x[#][Global`t],y[#][Global`t]}&/@vlist;
 areafunction[coords]
 ];
+
+
 cellnumbers = "Numbers"/.{opt}/.{"Numbers"-> {}}; 
+dPrint["cellnumbers:", cellnumbers]; 
+
 If[cellnumbers=={}, cellnumbers = Range[nc]]; 
 If[Length[cellnumbers]<nc, Print["Error: ", Length[cellnumbers], " cell numbers provided for ", nc," cells."]; Return[$Failed]]; 
-eqlhs = areafunction[#][Global`t]&/@cellnumbers; 
+eqlhs = area[#][Global`t]&/@cellnumbers; 
+
 eqrhs = f/@vertices;
 equations = MapThread[Equal,{eqlhs,eqrhs}]
 ];
-CellAreaEquations[tissue_?DTissueQ,opt___?OptionQ]:= Module[{cellnumbers, T},
+CellAreaEquations[tissue_?DTissueQ,opt___?OptionQ]:= Module[{cellnumbers, T, dbg, dPrint},
+dbg = "debug"/.{opt}/.{"debug"-> False}; 
+dPrint[u___]:= If[dbg, Print["CellAreaEquations (3): ", u]]; 
+dPrint["Begin"]; 
+
 T=DTissue2Tissue[tissue]; 
 cellnumbers = First/@TissueCells[tissue]; 
+dPrint["cellnumbers:", cellnumbers]; 
 CellAreaEquations[T,"Numbers"-> cellnumbers, opt]
 ];
-CellAreaEquations[tissue_?DTissueQ, x_,y_,area_,opt___?OptionQ]:= Module[{cellnumbers, T},
+CellAreaEquations[tissue_?DTissueQ, x_,y_,area_,opt___?OptionQ]:= Module[{cellnumbers, T, dbg, dPrint},
+dbg = "debug"/.{opt}/.{"debug"-> False}; 
+dPrint[u___]:= If[dbg, Print["CellAreaEquations (4): ", u]]; 
+dPrint["Begin"]; 
+
 T=DTissue2Tissue[tissue]; 
 cellnumbers = First/@TissueCells[tissue]; 
 CellAreaEquations[T,x,y,area,"Numbers"-> cellnumbers, opt]
@@ -7973,6 +8001,7 @@ dPrint["v=", v, " nv=", nv];
 
 dPrint["intracellular: ", intracellular]; 
 r=lowLevelReactions[intracellular];
+dPrint["r:", r]; 
 subnet[i_]:=indexify[r,i, opt];
 dPrint["subnet[i] = ", subnet[i]]; 
 n=Length[c]; 
@@ -8022,16 +8051,20 @@ debug];
 
 
 nDiff=Length[diff];
-vPrint[nDiff," diffusion reactions."];
+dPrint[nDiff," diffusion reactions."];
 
-(*generate intercellular reactions if spectified*)
+(*generate intercellular reactions if specified*)
 
 
 out = generateIntercellularReactions[c, INTERCELLULARReactions, allneighbors, outercells,  outeredges,  areaVariable, x, y,  boundaryConditionSet,
 debug];
 
+dPrint["out: ", out]; 
 
 reactions=Join[in,diff, pr, out];
+
+dPrint["reactions: ", reactions]; 
+dPrint["static: ", static];
 
 (* If static tissue is requested *)
 (* replace variable names with static values *)
@@ -8048,8 +8081,8 @@ newy[i_][Global`t]:= v[[i,2]];
 reactions = (reactions/.{ edgeVariable-> NewEdgeVariable, areaVariable-> NewAreaVariable, x-> newx, y-> newy});
 AEQ={}; 
 ],
-AEQ=CellAreaEquations[tissue,opt]; 
-vPrint[Length[AEQ], " equations for cell area."]; 
+AEQ=CellAreaEquations[tissue,"debug"-> debug, opt]; 
+dPrint[Length[AEQ], " equations for cell area."]; 
 ]; 
 
 cvn = CellVertexNumbers[tissue]; 
@@ -8124,8 +8157,13 @@ Join@@(makereaci/@ilist)
 ];
 
 HandleReaction[u___]:= (Print["generateIntercellularReactions: Invalid Intercellular Reaction: ", u];Abort[]);  
-grn = Join@@(HandleReaction/@intercellular);
 
+dPrint["Handle Block:"];
+Block[{hr},
+hr=(HandleReaction/@intercellular);
+dPrint["hr:",hr]; 
+grn = Join@@hr;
+];
 dPrint["grn reactions: ", grn]; 
 grn
 ];
@@ -8329,6 +8367,7 @@ dPrint["v=", v, " nv=", nv];
 
 dPrint["intracellular: ", intracellular]; 
 r=lowLevelReactions[intracellular];
+dPrint["r: ", r];
 subnet[i_]:=indexify[r,i, opt];
 dPrint["subnet[i] = ", subnet[i]]; 
 n=Length[c]; 
@@ -11645,9 +11684,9 @@ Return[bignet];
 
 (* ::Input::Initialization:: *)
 indexify[{},index_]:= {}; 
-indexify[net_,index_, opt___?OptionQ]:=Module[{species,reactions,rateRules,rules,indexedSpecies, mysub, mysup, myexpr, dbg=False, dPrint, lengths, extraSpecies, tipdist, xcenter, ycenter, center, myxcenter,myycenter, hasCEN,L1,L2,TIPFLAG, A, cellindex},
+indexify[net_,index_, opt___?OptionQ]:=Module[{species,reactions,rateRules,rules,indexedSpecies, mysub, mysup, myexpr, dbg, dPrint, lengths, extraSpecies, tipdist, xcenter, ycenter, center, myxcenter,myycenter, hasCEN,L1,L2,TIPFLAG, A, cellindex},
 
-
+dbg="indexifydbg"/.{opt}/.{"indexifydbg"-> False}; 
 
 dPrint[x___]:= If[dbg, Print["indexify: ", x]]; 
 
@@ -11688,8 +11727,13 @@ hasCEN=True;
 mysub[x__]:= stringify[InputForm[Subscript[x]]]; 
 mysup[x__]:= stringify[InputForm[Superscript[x]]]; 
 
+(* add the following If statement 3.0.51c *)
 
-species=interpret[net][[2]];
+If[Length[net]>0, 
+species=interpret[net][[2]],
+species={}
+];
+
 species = Join[species, extraSpecies]; 
 indexedSpecies=#[index]&/@species;
 rules=MapThread[Rule,{species,indexedSpecies}];
