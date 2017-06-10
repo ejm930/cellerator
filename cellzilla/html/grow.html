@@ -38,11 +38,58 @@
 		
 	
         <p class="header">Description</p>
-	<p><span style="function">grow</span>  is the main simulation wrapper for Cellzilla.</p>
+	<p><span class="function">grow</span>  is the main simulation wrapper for Cellzilla.</p>
+	
+		<p><span class="function">grow[DTissue, start, stop, options]</span> is initialization mode, to start a
+		 new simulation</p>
+
+		<p><span class="function">grow[options]</span> is continuation mode, to pick up an old
+		  simulation where it left off. A pop up menu will ask you to click on the output folder 
+		  of the original simulation.</p>
 	
         <p><span class="function">Needs["Cellzilla2D`"];</span></p>
 
         <p class="header">Return Value</p>
+        
+        <p>The name of the folder that contains the results of the simulations.</p>
+        
+        <p>The results of the simulation are written to a collection of output files. A summary 
+        is written to the screen (notebook) after each cell division. </p> 
+        
+         <p>A new folder is created 
+        for each simuation. Simulations are written to the folder "Cellzilla" within the users 
+        home directory (i.e. <span class="function">~/Cellzilla/</span>). If this folder does not already exist 
+        it is created. </p> 
+        
+         <p>A subfolder "Simulations-todays-date" (i.e., <span class="function">~/Cellzilla/Simulations-dd-mon-yy/</span>)
+        is also created each calendar day that the grow is run, if it does not already exist. </p> 
+        
+         <p>
+        For each new simulation, a unique subfolder is created to 
+        house the results (e.g. <span class="function">~/Cellzilla/Simulations-dd-mm-yy/testcase-ddmonyy-hhmm/</span>) where
+        <span class="function">"testcase"</span> is the value of the option
+         <span class="function">"testcase"->testcase</span> (default value: "Growzilla"). Here 
+         <span class="function">dd</span> (01-31), <span class="function">mon</span> (JAN-DEC), 
+        <span class="function">yy</span> (00-99)
+        are the integer day of month, 3 character month, and two character year; and <span class="function">hh</span>
+         (00-23) and <span class="function">mm</span> (00-59) are the integer
+        hour and minute at which the simulation is invoked.</p> 
+        
+         <p> Files may add up to several gigabytes during a simulation.  Typical files include: </p>
+        <ol>
+
+	<li>Tissues after each cell division describing the cell geometry</li>
+	<li>Cellerator reaction network for each tissue. </li>
+	<li>Initial conditions for each tissue</li>
+	<li> Numerical solutions corresponding to (1) -> (3) until the next cell division is indicated. </li>
+	<li>png snapshots at each cell division. </li>
+	<li>Single notebooks consisting of lists of time spans; lists of run parameters; and cell lineages.</li>
+        </ol>
+        
+        <p>Simulations can be imported and
+	 visualized with  <span class="function"><a href="SimAnimate.html">SimAnimate</a></span></p>
+        <p>It is possible to begin a new simulation from scratch using the initial conditions and tissue output. This
+        can be useful in case the system crashes for any reason such as memory overflow.</p>
 
         <p class="header">Options</p>
 
