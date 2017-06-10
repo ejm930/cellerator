@@ -21,7 +21,7 @@
 
 (* ::Input::Initialization:: *)
 BeginPackage["Cellzilla2D`"];
-$Cellzilla2DVersion="3.0.51c (08 June 2017)"  
+$Cellzilla2DVersion="3.0.51d (10 June 2017)"  
 
 
 (* ::Input::Initialization:: *)
@@ -13064,10 +13064,14 @@ iframe = iframe+1;
 
 SetDirectory[dmovie]; 
 themovie = "Movie"<>type;
-runstring="ffmpeg -sameq -r "<>rate<>" -i 'FRAME%4d"<>imagetype<>"' '"<>themovie<>"'";
+runstring="ffmpeg -r "<>rate<>" -i 'FRAME%4d"<>imagetype<>"' '"<>themovie<>"'";
 Print[runstring]; 
 error=Run[runstring]; 
-If[error!= 0, Print["ffmpeg return code is: ", error]]; 
+If[error!= 0, 
+Print["ERROR: ffmpeg return code is: ", error];
+Print["On some versions of Mathematica, the Kernel is unable to locate the correct path execute ffmpeg. You must do this manually:\n\nIn a command shell such as bash, terminal, or cmd, change your current working directory to (e.g., with the cd command):\n" ,dmovie,"\nThe type the following:\n",runstring,"\nThis should create a movie file ",ToFileName[dmovie,themovie]
+];
+]; 
 TheMovieFile=FileNames[ToFileName[dmovie,themovie]];
 
 SetDirectory[cwd];
@@ -13253,10 +13257,15 @@ iframe = iframe+1;
 
 SetDirectory[dmovie]; 
 themovie = "Movie"<>type;
-runstring="ffmpeg -sameq -r "<>rate<>" -i 'FRAME%4d"<>imagetype<>"' '"<>themovie<>"'";
+runstring="ffmpeg -r "<>rate<>" -i 'FRAME%4d"<>imagetype<>"' '"<>themovie<>"'";
 Print[runstring]; 
 error=Run[runstring]; 
-If[error!= 0, Print["ffmpeg return code is: ", error]]; 
+If[error!= 0, 
+Print["ERROR: ffmpeg return code is: ", error];
+Print["On some versions of Mathematica, the Kernel is unable to locate the correct path execute ffmpeg. You must do this manually:\n\nIn a command shell such as bash, terminal, or cmd,  change your current working directory to (e.g., with the cd command):\n" ,dmovie,"\nThe type the following:\n",runstring,"\nThis should create a movie file ",ToFileName[dmovie,themovie]
+]; 
+
+]; 
 TheMovieFile=FileNames[ToFileName[dmovie,themovie]];
 
 SetDirectory[cwd];
@@ -13386,10 +13395,14 @@ iframe = iframe+1;
 ];
 SetDirectory[dmovie]; 
 themovie = "Movie"<>type;
-runstring="ffmpeg -sameq -r "<>rate<>" -i 'FRAME%4d"<>imagetype<>"' '"<>themovie<>"'";
+runstring="ffmpeg -r "<>rate<>" -i 'FRAME%4d"<>imagetype<>"' '"<>themovie<>"'";
 Print[runstring]; 
 error=Run[runstring]; 
-If[error!= 0, Print["ffmpeg return code is: ", error]]; 
+If[error!= 0, 
+Print["ERROR: ffmpeg return code is: ", error];
+Print["On some versions of Mathematica, the Kernel is unable to locate the correct path execute ffmpeg. You must do this manually:\n\nIn a command shell such as bash, terminal, or cmd, change your current working directory to (e.g., with the cd command):\n" ,dmovie,"\nThe type the following:\n",runstring,"\nThis should create a movie file ",ToFileName[dmovie,themovie]
+]
+]; 
 TheMovieFile=FileNames[ToFileName[dmovie,themovie]];
 
 SetDirectory[cwd];
@@ -13415,6 +13428,13 @@ SimAnimate[sim_, variable_, template_, {tstart_, tend_, tdelta_},
 {minColor_, maxColor_},   opt___?OptionQ]:= Module[{minVal, maxVal},
 {minVal, maxVal}=SimRange[sim, variable, {tstart, tend, tdelta}]; 
 SimAnimate[sim, variable, template, {tstart, tend, tdelta}, {minColor, maxColor}, {minVal, maxVal}, Sequence@@AutoScaleTemplate[template], opt]]; 
+
+SimAnimate[u___]:=Print["Expecting one of the following:\n
+SimAnimate[var, options]\n
+SimAnimate[var, directory, options]\n
+SimAnimate[sim, var, template, {t,start,delta}, {colormin,colormax},options] \n
+SimAnimate[sim, var, template, {t,start,delta}, {colormin,colormax}, {PlotMin,PlotMax},options]\n
+SimAnimate[sim, var, template, {t,start,delta}, {colormin,colormax}, {PlotMin,PlotMax}, {xmin, xmax}, {ymin, ymax} options]"];
 
 
 

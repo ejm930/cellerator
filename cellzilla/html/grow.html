@@ -3,10 +3,6 @@
 
 <html>
 <head>
-  <meta name="generator" content="Bluefish 2.2.3" >
-  <meta name="generator" content="Bluefish 2.2.3" >
-  <meta name="generator" content="Bluefish 2.2.3" >
-  <meta name="generator" content="Bluefish 2.2.3" >
   <link rel="STYLESHEET" href="main.css" type="text/css">
 
   <title>grow</title>
@@ -37,12 +33,13 @@
         </table>
         <hr color="#FF7636">
 
-        <center class="header">
-          UNDER CONSTRUCTION
-        </center>
 
+
+		
+	
         <p class="header">Description</p>
-
+	<p><span style="function">grow</span>  is the main simulation wrapper for Cellzilla.</p>
+	
         <p><span class="function">Needs["Cellzilla2D`"];</span></p>
 
         <p class="header">Return Value</p>
@@ -561,13 +558,25 @@
           </tr>    
         </table>
 
-        <h4>Output Control</h4>
+       
 
         <a name="example"></a>
         <p class="header">Example</p>
+        
+         <a href="examples/grow-example.nb.zip">Download the following example as a 
+				 zipped Mathematica notebook</a>
 
         <center>
           <table summary="whatever" border="0">
+			  
+
+            <tr>
+              <td colspan="2" style="background:white;"><iframe width="100%" height="500px" src=
+                "examples/grow-example.htm">Frames are not available. <a href=
+                "examples/grow-example.htm">Open example in Browser</a></iframe>
+              </td>
+            </tr> 
+			  
             <tr>
               <td align="center">Growth Movie - <a href="SimAnimate.html"
               class="boldfunc">SimAnimate</a><iframe width="300px" height=
@@ -584,32 +593,43 @@
               <a href="./examples/grow/lineage.mov">View as mov
               instead</a></td>
             </tr>
-            <tr><td colspan="2"><p><a href="examples/grow-example.nb.zip">Download the following example as a zipped Mathematica notebook</a></p></td>
-            
-            </tr>
-            <tr>
-              <td colspan="2" style="background:white;"><iframe width="100%" height="500px" src=
-                "examples/grow-example.htm">Frames are not available. <a href=
-                "examples/grow-example.htm">Open example in Browser</a></iframe>
-              </td>
-            </tr>
+           
           </table>
         </center>
 
         <p class="header">Implementation Notes</p>
+        
+        <p>A lot of output is typically produced; to reduce the amount of output, set the flag
+        <span class="function">"Verbose"->False</span>. In addition, many files (potentially several gigabytes) of files are written 
+        to disk after each cell division. Typical files include: </p>
+        <ol>
+
+	<li>Tissues after each cell division describing the cell geometry</li>
+	<li>Cellerator reaction network for each tissue. </li>
+	<li>Initial conditions for each tissue</li>
+	<li> Numerical solutions corresponding to (1) -> (3) until the next cell division is indicated. </li>
+	<li>png snapshots at each cell division. </li>
+	<li>Single notebooks consisting of lists of time spans; lists of run parameters; and cell lineages.</li>
+        </ol>
+        
+        <p>Simulations can be imported and
+	 visualized with  <span class="function"><a href="SimAnimate.html">SimAnimate</a></span></p>
+        <p>It is possible to begin a new simulation from scratch using the initial conditions and tissue output. This
+        can be useful in case the system crashes for any reason such as memory overflow.</p>
 
         <p class="header">See Also</p>
+        
+        
 
         <div class="logo">
           <center>
-            <a href="http://sourceforge.net/projects/xlr8r"><img src=
-            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
-            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+           <a href="https://github.com/biomathman/cellerator"><img src="GitHub_Logo.png" height="37px"> <img src="GitHub-Mark-64px.png" height="37px"></a>
           </center>
         </div>
+
       </div><br>
       <br>
-      <span style="font-size:xx-small;">[4.17.2013]</span>
+      <span style="font-size:xx-small;">[09.06.2017]</span>
     </div>
   </center>
 </body>
