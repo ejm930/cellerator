@@ -8433,6 +8433,7 @@ reactions=Join[in,diff, pr, out,wallreactions];
 
 (* If static tissue is requestested *)
 (* replace variable names with static values *)
+dPrint["static:", static]; 
 
 If[static,
 Block[{NewEdgeVariable, NewAreaVariable,NewVertexVariable, newx, newy},
@@ -8448,21 +8449,31 @@ AEQ={};
 AEQ=CellAreaEquations[tissue,opt]; 
 
 vPrint[Length[AEQ], " equations for cell area."]; 
+dPrint["AEQ:", AEQ]; 
 ]; 
 
 cvn = CellVertexNumbers[tissue]; 
 growthstuff=generateGrowthReactions[c,cvn, e,v, eused, vused, edgeVariable, outeredges,  opt];
 GR="reactions"/.growthstuff; 
+dPrint["GR: ", GR]; 
+
 GE="equations"/.growthstuff; 
 vPrint[Length[GE]," algebraic equations for spring growth."]; 
 
+dPrint["GE: ", GE]; 
+
 reactions = Join[reactions, GR]; 
+
+dPrint["reactions (1):", reactions]; 
 reactions = reactions /.boundaryConditions; 
+dPrint["reactions (2):", reactions]; 
 
 nTotal=Length[reactions];
 vPrint[nTotal," total reactions."];
 
 equations = Join[GE, AEQ]; 
+
+dPrint["equations:", equations]; 
 
 Return[{reactions, equations}];
 ];
@@ -10311,7 +10322,7 @@ If[haswalls,
 {Network, Equations}=WalledNetwork[DT,"EdgeVariable"-> ell, "CellVariable"-> area,"Restlength"-> restlength,"k"-> k,  "mu"-> mu,"P"-> P,"x"-> x, "y"-> y, opt]; ,
 {Network, Equations}=UnwalledNetwork[DT,"EdgeVariable"-> ell, "CellVariable"-> area,"Restlength"-> restlength,"k"-> k,  "mu"-> mu,"P"-> P,"x"-> x, "y"-> y, opt]; 
 ]; 
-dPrint["newtwork:", Short[Network,5]]; 
+dPrint["network:", Short[Network,5]]; 
 
 MemPrint["Generating Network."]; 
 
