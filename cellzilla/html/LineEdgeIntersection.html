@@ -43,16 +43,18 @@
         <p class="header">Return Value</p>
 
         <p><span class="function">LineEdgeIntersection[lineSegment, point,
-        direction ]</span> returns True if a ray starting at point in the given
-        direction intersects the line segment and False otherwise.</p>
+        direction ]</span> returns the coordinates <span class="function">{x,y}</span>
+        of the intersection between a line segement and a line passing through <span class="function">point</span>
+         and <span class="function">$Failed</span> otherwise.</p>
 
         <p><span class="function">lineSegment={{x1,y1}, {x2,y2}}</span> -
         endpoints</p>
 
-        <p><span class="function">point={x,y}</span> - coordinates</p>
+        <p><span class="function">point={a,b}</span> - coordinates</p>
 
-        <p><span class="function">direction={vx,vy}</span> - direction vector,
-        does not need to be normalized.</p>
+        <p><span class="function">direction={vx,vy}</span> - direction vector of the line. The 
+  iine is assumed to pass through <span class="function">point</span> and be parallel to 
+  <span class="function">direction</span>.</p>
 
         <p class="header">Options</p>
 
@@ -72,16 +74,16 @@
         <p><a class="function" href=
         "PolygonIntersection.html">PolygonIntersection</a></p>
 
-        <div class="logo">
+           <div class="logo">
           <center>
-            <a href="http://sourceforge.net/projects/xlr8r"><img src=
-            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
-            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+           <a href="https://github.com/biomathman/cellerator"><img src="GitHub_Logo.png" height="37px"> <img src="GitHub-Mark-64px.png" height="37px"></a>
           </center>
         </div>
+
       </div><br>
       <br>
-      <span style="font-size:xx-small;">[2012 Nov 9]</span>
+      <span style="font-size:xx-small;">[ 10.06.2017 
+      ]</span>
     </div>
   </center>
 </body>

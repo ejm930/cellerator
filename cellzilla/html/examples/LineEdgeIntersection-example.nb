@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     12153,        332]
-NotebookOptionsPosition[     11154,        293]
-NotebookOutlinePosition[     11612,        311]
-CellTagsIndexPosition[     11569,        308]
+NotebookDataLength[     13757,        366]
+NotebookOptionsPosition[     11998,        314]
+NotebookOutlinePosition[     12471,        333]
+CellTagsIndexPosition[     12428,        330]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -31,7 +31,9 @@ Cell["LineEdgeIntersection-example.nb", "Section",
    3.4549652698050423`*^9, 3.4549652712583437`*^9}, {3.454965767515271*^9, 
    3.454965770836801*^9}, {3.4550619459380074`*^9, 3.455061948233714*^9}, {
    3.455063938764555*^9, 3.455063939753069*^9}, {3.4550642111209383`*^9, 
-   3.4550642141356487`*^9}, 3.561511722847427*^9}],
+   3.4550642141356487`*^9}, 
+   3.561511722847427*^9},ExpressionUUID->"68592eb0-c356-4add-8be3-\
+5577156c3179"],
 
 Cell["\<\
 Example Cellzilla2D notebook.
@@ -41,7 +43,8 @@ See http://xlr8r.info and http://cellzilla.info for further details.\
 \>", "Text",
  CellChangeTimes->{{3.454616499378996*^9, 3.4546165376658583`*^9}, 
    3.454617821271595*^9, 3.454626173243154*^9, 3.561511667857048*^9, 
-   3.56151172284748*^9}],
+   3.56151172284748*^9},ExpressionUUID->"3b8fa92b-667b-4bdc-9d73-\
+f38dbe32da37"],
 
 Cell[CellGroupData[{
 
@@ -51,7 +54,9 @@ Cell[BoxData[
    3.4546177419301577`*^9, 3.454617750289276*^9}, 3.454617821271983*^9, 
    3.454626173243626*^9, {3.4549627766074247`*^9, 3.4549627778385353`*^9}, {
    3.454966063277678*^9, 3.454966076183756*^9}, {3.4550173926434717`*^9, 
-   3.4550174062071047`*^9}, 3.561511722847547*^9}],
+   3.4550174062071047`*^9}, 
+   3.561511722847547*^9},ExpressionUUID->"5ecfde1c-1d8a-40c1-a3ec-\
+b81103726b4c"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -61,8 +66,8 @@ Cell[BoxData[
     FontFamily->"Ubuntu,Arial",
     FontSize->12,
     FontWeight->"Bold"], "\[InvisibleSpace]", 
-   StyleBox["\<\" (2.3.6 (9-Nov-2012)) loaded Fri 9 Nov 2012 20:47:51\\nusing \
-\"\>",
+   StyleBox["\<\" (3.0.51d (10 June 2017)) loaded Sat 10 Jun 2017 \
+18:57:46\\nusing \"\>",
     StripOnInput->False,
     FontFamily->"Ubuntu,Arial",
     FontSize->12], "\[InvisibleSpace]", 
@@ -71,7 +76,7 @@ Cell[BoxData[
     FontFamily->"Ubuntu,Arial",
     FontSize->12,
     FontWeight->"Bold"], "\[InvisibleSpace]", 
-   StyleBox["\<\"0.90 and \"\>",
+   StyleBox["\<\"0.95 and \"\>",
     StripOnInput->False,
     FontFamily->"Ubuntu,Arial",
     FontSize->12], "\[InvisibleSpace]", 
@@ -80,7 +85,7 @@ Cell[BoxData[
     FontFamily->"Ubuntu,Arial",
     FontSize->12,
     FontWeight->"Bold"], "\[InvisibleSpace]", 
-   StyleBox["\<\"1204002\"\>",
+   StyleBox["\<\"1.3.2\"\>",
     StripOnInput->False,
     FontFamily->"Ubuntu,Arial",
     FontSize->12], "\[InvisibleSpace]", 
@@ -93,21 +98,23 @@ Cell[BoxData[
   SequenceForm[
    Style["Cellzilla2D", FontFamily -> "Ubuntu,Arial", FontSize -> 12, 
     FontWeight -> "Bold"], 
-   Style[" (2.3.6 (9-Nov-2012)) loaded Fri 9 Nov 2012 20:47:51\nusing ", 
+   Style[" (3.0.51d (10 June 2017)) loaded Sat 10 Jun 2017 18:57:46\nusing ", 
     FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
    Style["xCellerator ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", 
     FontWeight -> "Bold"], 
-   Style["0.90 and ", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["0.95 and ", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
    Style["XSSA ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> 
     "Bold"], 
-   Style["1204002", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["1.3.2", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
    Style["\nGPL License Terms Apply", FontColor -> RGBColor[1, 0, 0], 
     FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> Bold]],
   Editable->False]], "Print",
  CellChangeTimes->{{3.4550174077972593`*^9, 3.455017416899165*^9}, 
    3.45506244633648*^9, 3.4550636466826477`*^9, 3.4550637941637573`*^9, 
    3.455063945979568*^9, 3.455064493684299*^9, 3.561511671269979*^9, 
-   3.5615117228480988`*^9}]
+   3.5615117228480988`*^9, 
+   3.706135066933679*^9},ExpressionUUID->"7e8e8893-b70a-47c0-a25f-\
+be1e5858ec0d"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -172,7 +179,9 @@ Cell[BoxData[{
    RowBox[{"Frame", "\[Rule]", " ", "True"}]}], "]"}]}], "Input",
  CellChangeTimes->{{3.455061953561186*^9, 3.455061976693626*^9}, {
    3.455063651776065*^9, 3.4550637273420343`*^9}, {3.455064227903289*^9, 
-   3.455064262005806*^9}, 3.561511722848328*^9}],
+   3.455064262005806*^9}, 
+   3.561511722848328*^9},ExpressionUUID->"b0eed4b0-bfb1-4b17-b42d-\
+edc5887820f6"],
 
 Cell[BoxData[
  GraphicsBox[{
@@ -192,7 +201,9 @@ Cell[BoxData[
    3.45506365823136*^9}, {3.455063709684166*^9, 3.455063727748803*^9}, 
    3.4550637943870087`*^9, 3.4550639461775103`*^9, {3.455064234773179*^9, 
    3.45506426291206*^9}, 3.455064493854204*^9, 3.56151167253736*^9, 
-   3.5615117228498793`*^9}]
+   3.5615117228498793`*^9, 
+   3.7061350670492277`*^9},ExpressionUUID->"86143272-a777-4831-9dfc-\
+99108ac43a6e"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -204,13 +215,17 @@ Cell[BoxData[
     RowBox[{"1", ",", ".5"}], "}"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.455063739768906*^9, 3.455063743878113*^9}, {
    3.4550642757162046`*^9, 3.455064300929881*^9}, {3.455064437363287*^9, 
-   3.455064438020618*^9}, 3.561511722849964*^9}],
+   3.455064438020618*^9}, 
+   3.561511722849964*^9},ExpressionUUID->"19d704bf-dc73-4927-b548-\
+af9e570769aa"],
 
 Cell[BoxData["$Failed"], "Output",
  CellChangeTimes->{
   3.455063744189981*^9, 3.455063794487788*^9, 3.4550639463369827`*^9, {
    3.455064293939392*^9, 3.455064301441938*^9}, 3.455064438422346*^9, 
-   3.455064493929927*^9, 3.561511676625811*^9, 3.5615117228500137`*^9}]
+   3.455064493929927*^9, 3.561511676625811*^9, 3.5615117228500137`*^9, 
+   3.7061350671168423`*^9},ExpressionUUID->"3b154483-1478-4c74-a3fa-\
+a6ea3f9e6aad"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -223,7 +238,8 @@ Cell[BoxData[
      RowBox[{
       RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.4550643138720284`*^9, 3.4550643204446907`*^9}, 
-   3.561511722850088*^9}],
+   3.561511722850088*^9},ExpressionUUID->"3c011849-43ac-42b3-a260-\
+8d0c9c05eeac"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -231,7 +247,9 @@ Cell[BoxData[
    RowBox[{"-", "0.05154739132342506`"}], ",", "0.30154739132342506`"}], 
   "}"}]], "Output",
  CellChangeTimes->{{3.45506431437037*^9, 3.455064320942822*^9}, 
-   3.455064494023674*^9, 3.561511688287301*^9, 3.5615117228501453`*^9}]
+   3.455064494023674*^9, 3.561511688287301*^9, 3.5615117228501453`*^9, 
+   3.7061350671790667`*^9},ExpressionUUID->"18000a3c-ee4f-4496-9213-\
+00890de9f70b"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -266,7 +284,8 @@ Cell[BoxData[
    ",", " ", "\[IndentingNewLine]", " ", 
    RowBox[{"Frame", "\[Rule]", " ", "True"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.455064334015485*^9, 3.455064442965469*^9}, 
-   3.5615117228503113`*^9}],
+   3.5615117228503113`*^9},ExpressionUUID->"117b6ca5-ea53-44a6-9737-\
+c2975668074c"],
 
 Cell[BoxData[
  GraphicsBox[{
@@ -287,15 +306,18 @@ Cell[BoxData[
   Frame->True]], "Output",
  CellChangeTimes->{{3.455064340739105*^9, 3.4550643628335*^9}, {
    3.455064403758563*^9, 3.4550644434914627`*^9}, 3.455064494147193*^9, 
-   3.5615116908536787`*^9, 3.5615117228519297`*^9}]
+   3.5615116908536787`*^9, 3.5615117228519297`*^9, 
+   3.7061350672533817`*^9},ExpressionUUID->"50a78805-2805-4987-ba76-\
+932ec4e3c5ae"]
 }, Open  ]]
 }, Open  ]]
 },
 WindowSize->{702, 780},
-WindowMargins->{{Automatic, -1224}, {Automatic, 32}},
+WindowMargins->{{Automatic, 0}, {Automatic, 32}},
 ShowSelection->True,
 CellLabelAutoDelete->True,
-FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+FrontEndVersion->"11.1 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 27, \
+2017)",
 StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
   CharacterEncoding -> "UTF-8"]
 ]
@@ -311,31 +333,42 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[567, 22, 840, 11, 74, "Section"],
-Cell[1410, 35, 308, 8, 87, "Text"],
+Cell[567, 22, 901, 13, 69, "Section", "ExpressionUUID" -> \
+"68592eb0-c356-4add-8be3-5577156c3179"],
+Cell[1471, 37, 365, 9, 83, "Text", "ExpressionUUID" -> \
+"3b8fa92b-667b-4bdc-9d73-f38dbe32da37"],
 Cell[CellGroupData[{
-Cell[1743, 47, 403, 6, 40, "Input"],
-Cell[2149, 55, 2123, 54, 62, "Print"]
+Cell[1861, 50, 464, 8, 42, "Input", "ExpressionUUID" -> \
+"5ecfde1c-1d8a-40c1-a3ec-b81103726b4c"],
+Cell[2328, 60, 2212, 56, 63, "Print", "ExpressionUUID" -> \
+"7e8e8893-b70a-47c0-a25f-be1e5858ec0d"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4309, 114, 2198, 60, 288, "Input"],
-Cell[6510, 176, 991, 18, 292, "Output"]
+Cell[4577, 121, 2259, 62, 316, "Input", "ExpressionUUID" -> \
+"b0eed4b0-bfb1-4b17-b42d-edc5887820f6"],
+Cell[6839, 185, 1076, 20, 298, "Output", "ExpressionUUID" -> \
+"86143272-a777-4831-9dfc-99108ac43a6e"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7538, 199, 364, 7, 40, "Input"],
-Cell[7905, 208, 269, 4, 40, "Output"]
+Cell[7952, 210, 425, 9, 42, "Input", "ExpressionUUID" -> \
+"19d704bf-dc73-4927-b548-af9e570769aa"],
+Cell[8380, 221, 354, 6, 42, "Output", "ExpressionUUID" -> \
+"3b154483-1478-4c74-a3fa-a6ea3f9e6aad"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8211, 217, 319, 8, 40, "Input"],
-Cell[8533, 227, 270, 6, 40, "Output"]
+Cell[8771, 232, 376, 9, 42, "Input", "ExpressionUUID" -> \
+"3c011849-43ac-42b3-a260-8d0c9c05eeac"],
+Cell[9150, 243, 355, 8, 42, "Output", "ExpressionUUID" -> \
+"18000a3c-ee4f-4496-9213-00890de9f70b"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8840, 238, 1219, 30, 136, "Input"],
-Cell[10062, 270, 1064, 19, 341, "Output"]
+Cell[9542, 256, 1276, 31, 148, "Input", "ExpressionUUID" -> \
+"117b6ca5-ea53-44a6-9737-c2975668074c"],
+Cell[10821, 289, 1149, 21, 348, "Output", "ExpressionUUID" -> \
+"50a78805-2805-4987-ba76-932ec4e3c5ae"]
 }, Open  ]]
 }, Open  ]]
 }
 ]
 *)
 
-(* End of internal cache information *)
