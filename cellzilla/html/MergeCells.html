@@ -44,30 +44,39 @@
         <p><span class="function">MergeCells[tissue, {i, j, k, ...}]</span> returns a
         new tissue object with the specified cells merged into a single cell.</p>
         
-        <p>NOTE: The cells must be neighbors; this is NOT CHECKED. If the cells are not neighbors, unexpected
+        <p>NOTE (1): The cells must be neighbors; this is NOT CHECKED. If the cells are not neighbors, unexpected
         results will occur. In particular, while all of the original cells will be deleted, the shape of the newly merged
         cells will contain only a partial subset of the desired cells. </p>
+        
+        <p>NOTE (2): The cells will be renumbered in the new tissue. </p>
         
 
         <p class="header">Options</p>
 
         <p class="header">Example</p>
 
-    
+         <p>[ <a href="examples/MergeCells-example.nb.zip">Download
+        Example as Zipped Mathematica Notebook</a> ]</p>
+
+        <p><iframe frameborder="1" width="100%" height="500" name="display"
+        src="./examples/Mergecells-example.htm" id="display" style=
+        "background-color:white;"><a href="">View as html.</a></iframe></p>
+  
         <p class="header">Implementation Notes</p>
 
         <p class="header">See Also</p>
 
         <div class="logo">
           <center>
-            <a href="http://sourceforge.net/projects/xlr8r"><img src=
-            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
-            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+           <a href="https://github.com/biomathman/cellerator"><img src="GitHub_Logo.png" height="37px"> <img src="GitHub-Mark-64px.png" height="37px"></a>
           </center>
         </div>
+
       </div><br>
       <br>
-      <span style="font-size:xx-small;">[2013 Apr 29]</span>
+      <span style="font-size:xx-small;">[10.06.2017
+      
+      ]</span>
     </div>
   </center>
 </body>
