@@ -21,7 +21,7 @@
 
 (* ::Input::Initialization:: *)
 BeginPackage["Cellzilla2D`"];
-$Cellzilla2DVersion="3.0.51d (10 June 2017)"  
+$Cellzilla2DVersion="3.0.51e (11 June 2017)"  
 
 
 (* ::Input::Initialization:: *)
@@ -3358,7 +3358,7 @@ Return[{{}, tissue}],
 Return[tissue]]]; 
 If[Length[i]>1, Print["Error: MergeVertices: Edge ", {v1, v2}, " found in multiple locations in tissue. Check tissue for errors."]; Abort[]]; 
 i=First[Flatten[i]]; 
-Print[i]; 
+ 
 MergeVertices[tissue, i, opt]]; 
 MergeVertices[x___]:= (Print["Expecting MergeVertices[tissue, {v1,v2}] or MergeVertices[tissue, edgeNumber.]"]; Abort[]); 
 
