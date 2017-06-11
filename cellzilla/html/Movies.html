@@ -68,13 +68,28 @@
         <p>Mathematica will automatically run ffmpeg for you, however, the default configuration built into Cellzilla may not work on 
         your installation; it depends on the installation of the proper codecs on your system and the 
         options you choose. See the ffmpeg documentation for further details. If you want to crop or convert the resulting movie, after you
-        create it, to another format, you can do this with ffmpeg. Here are some useful commands for this: </p>
+        create it, to another format, you can do this with ffmpeg.  </p>
         
-        <p>If the frames were generated, e.g., in PNG format, but the movie was not produce dfor some reason, try the following: </p>
+        <p>Impementation note: This uses the Mathematica <code>Run</code>
+        function to spawn a subprocess. Some versions/subversions of Mathematica
+        are not able to locate the ffmpeg executable. This will depend
+        on where your operating system installed it and how it modified
+        the system path variable. You may have to run ffpmeg manually, as 
+        described in the following program. (Alternatively, any application that will convert
+        a collection of image files to a movie can also be used. )</p>
         
-        <code>ffmpeq -sameq -r 8 -i "FRAME%4d.PNG" filename.mov</code>
+        <p>If the frames were generated, e.g., in PNG format, but the movie was not produced for some reason, use
+        the command shell (<code>cmd</code> in windows; <code></code> in mac and linux) and <code>cd</code>
+        to the folder condtaining the PNG files; the try the following: </p>
+        
+        <code>ffmpeq -r 8 -i "FRAME%4d.PNG" filename.mov</code>
+        
+        <p>Depending on what codecs were installed along with ffmpeg, you can replace mov with avi, mpg, swf, etc. for different
+        movie formats.</p>
         
         <p>The number after the r is the number of frames per second. </p>
+        
+
         
         <p>For Cropping: </p>
         
@@ -91,14 +106,14 @@
 
         <div class="logo">
           <center>
-            <a href="http://sourceforge.net/projects/xlr8r"><img src=
-            "http://sourceforge.net/sflogo.php?group_id=137521&amp;type=4"
-            width="125" height="37" border="0" alt="SourceForge.net Logo"></a>
+           <a href="https://github.com/biomathman/cellerator"><img src="GitHub_Logo.png" height="37px"> <img src="GitHub-Mark-64px.png" height="37px"></a>
           </center>
         </div>
+
       </div><br>
       <br>
-      <span style="font-size:xx-small;">[4.27.2013]</span>
+      <span style="font-size:xx-small;">[11.June.2017  
+      ]</span>
     </div>
   </center>
 </body>
