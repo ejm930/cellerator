@@ -21,7 +21,7 @@
 
 (* ::Input::Initialization:: *)
 BeginPackage["Cellzilla2D`"];
-$Cellzilla2DVersion="3.0.51e (11 June 2017)"  
+$Cellzilla2DVersion="3.0.51f (14 June 2017)"  
 
 
 (* ::Input::Initialization:: *)
@@ -13593,13 +13593,6 @@ FrameNames[number_, type1_:"EPS"]:= FrameName[#, type1]&/@Range[number];
 
 cwd = Directory[];  
 
-(* 
-If[Length[FileNames[$TEMP]]<1, 
-Print["Creating new output directory ", $TEMP];
-CreateDirectory[$TEMP]
-]; 
-*)
-
 SetDirectory[$TEMP]; 
 
 
@@ -13608,18 +13601,10 @@ dir=createUniqueFolder[ToFileName[$TEMP,ToString[label]]];
 Print["Created folder: ", dir]; 
 
 moviefile=Last[FileNameSplit[dir]]<>dotavi;
-moviefile=ToFileName[dir,moviefile];
-Print["moviefile will be: ", moviefile]; 
+(* moviefile=ToFileName[dir,moviefile]; *)
+Print["movie file will be: ", moviefile]; 
+Print["movie file will be in the folder: ", dir]; 
 SetDirectory[dir];
-
-(*
-dir=DateString[ {"Day", "-", "MonthNameShort", "-", "YearShort", "-", "Hour24","Minute"}]; 
-labl=ToString[label]; 
-If[StringLength[labl]>0, dir =labl<>"-"<> dir]; 
-moviefile=dir<>dotavi; 
-moviefile = ToFileName[Directory[], moviefile]; 
-*)
-
 
 framedir=CreateDirectory["Frames"]; 
 Print["Created directory: ", framedir]; 
@@ -13637,10 +13622,13 @@ If[StringTake[typ, {1,1}]!= ".", typ = "."<>typ];
 
 rate=ToString[Round[framerate]]; 
 
-runstring="ffmpeg -sameq -r "<>rate<>" -i 'FRAME%4d"<>typ<>"' '"<>moviefile<>"'";
+runstring="ffmpeg -r "<>rate<>" -i 'FRAME%4d"<>typ<>"' '"<>moviefile<>"'";
 Print[runstring]; 
 error=Run[runstring]; 
-If[error!= 0, Print["ffmpeg return code is: ", error]]; 
+If[error!= 0, 
+  Print["ERROR: Unable to produce movie. ffmpeg return code is: ", error," On some versions of Mathematica (such as the version installed on this computer), the Kernel is unable to locate the correct path execute ffmpeg. You must do this manually:\n\nIn a command shell such as bash, terminal, or cmd, change your current working directory to (e.g., with the cd command):\n cd " ,dir,"\nThen type the following:\n",runstring,"\nYou can change the last field to whatever you want the movie to actually be called. In this case, it will be called "<>moviefile<>" and be in the same folder as all the frames."
+]; 
+];
 Print["Created Movie: ", #]&/@FileNames[moviefile];
 
 SetDirectory[cwd]; 
