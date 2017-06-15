@@ -21,7 +21,7 @@
 
 (* ::Input::Initialization:: *)
 BeginPackage["Cellzilla2D`"];
-$Cellzilla2DVersion="3.0.51f (14 June 2017)"  
+$Cellzilla2DVersion="3.0.51g (15 June 2017)"  
 
 
 (* ::Input::Initialization:: *)
@@ -246,7 +246,7 @@ NTissueVertices::usage="NTissueVertices[tissue] returns the number of vertices i
 (* DynamicalEquations::usage=""; *)
 (* SpringEquations::usage=""; 
 PressureEquations::usage="";*)
-DeleteCell::usage="DeleteCell[dtissue,number]"; 
+DeleteCell::usage="DeleteCell[dtissue,number] or DeleteCell[dtissue,list of cells]"; 
 RemoveCell::usage="RemoveCell[tissue, cellNumber]\nremoveCell[tissue,{cell1,cell2,...}]\nremoves a specififed cell (or list of cells) and removes any remaining dangling edges and vertices";
 AddVertex::usage="AddVertex[tissue, {x,y}]"; 
 AddEdge::usage="AddEdge[tissue, {i,j}]"; 
@@ -7012,7 +7012,15 @@ DTissue2Tissue[x___]:= $Failed;
 
 
 (* ::Input::Initialization:: *)
-DeleteCell[dtissue_?DTissueQ, n_]:= Module[{v,e,c,T,cells,indices, found},
+DeleteCell[T_?DTissueQ,nlist_?ListQ]:=Module[{TNew},
+If[Length[nlist]<1, Return[T]]; 
+If[Length[nlist]==1, Return[DeleteCell[T, nlist[[1]]]]];
+n1=First[nlist];
+nrest=Rest[nlist];
+TNew=DeleteCell[T,n1];
+Return[DeleteCell[TNew,nrest]]; 
+];
+DeleteCell[dtissue_?DTissueQ, n_?AtomQ]:= Module[{v,e,c,T,cells,indices, found},
 v=TissueVertices[dtissue];
 e=TissueEdges[dtissue];
 c=TissueCells[dtissue];
