@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+        "HTMLFiles/xhtml-math11-f.dtd">
+
+<!-- Created with the Wolfram Language : www.wolfram.com -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>
+  Wuschel-2013G
+ </title>
+ <link href="HTMLFiles/Wuschel-2013G.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<p class="Section">
+ Wuschel-example.nb
+</p>
+
+
+
+<p class="Text">
+ Example Cellzilla2D notebook.<br /><br />GPL License applies. <br />See http://xlr8r.info and http://cellzilla.info for further details.
+</p>
+
+
+
+<p class="Text">
+ This is a Cellzilla2D example that is based on the &quot;Activator&quot; model in <br />H Jonsson, M Heisler, GV Reddy, V Agrawal, V Gor, BE Shapiro, E Mjolsness &amp; EM Meyerowitz (2005) &quot;Modeling the organization of the WUSCHEL expression domain in the shoot apical meristem,&quot; Bioinformatics, Vol. 21 Suppl. 1, 2005, pages i232-i240.<br /><br />For more details on the model see<br />http://bioinformatics.oxfordjournals.org/cgi/content/abstract/21/suppl_1/i232<br /><br />This CPU times shown reflect a 2015 MacBook.<br />
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_1.gif" alt="Wuschel-2013G_1.gif" width="121" height="39" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Wuschel-2013G_2.png" alt="Wuschel-2013G_2.png" width="508" height="56" style="vertical-align:middle;" usemap="#map_2" />
+<map name="map_2">
+<area shape="rect" coords="8,54,157,39" href="http://www.gnu.org/licenses/gpl.html" />
+</map>
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Wuschel-2013G_3.png" alt="Wuschel-2013G_3.png" width="375" height="55" style="vertical-align:middle" />
+</p>
+
+<p class="Section">
+ build a honeycomb template
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_4.gif" alt="Wuschel-2013G_4.gif" width="304" height="60" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_5.png" alt="Wuschel-2013G_5.png" width="437" height="39" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/Wuschel-2013G_6.gif" alt="Wuschel-2013G_6.gif" width="360" height="400" style="vertical-align:middle" />
+</p>
+
+<p class="Subsection">
+ DISPLAY THE CELLS ON THE BOUNDARY
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_7.gif" alt="Wuschel-2013G_7.gif" width="189" height="39" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/Wuschel-2013G_8.png" alt="Wuschel-2013G_8.png" width="468" height="39" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_9.png" alt="Wuschel-2013G_9.png" width="178" height="17" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/Wuschel-2013G_10.gif" alt="Wuschel-2013G_10.gif" width="360" height="401" style="vertical-align:middle" />
+</p>
+
+<p class="Subsection">
+ convert to a dynamic tissue for the simulation
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_11.gif" alt="Wuschel-2013G_11.gif" width="181" height="39" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/Wuschel-2013G_12.png" alt="Wuschel-2013G_12.png" width="16" height="17" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_13.png" alt="Wuschel-2013G_13.png" width="150" height="17" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/Wuschel-2013G_14.png" alt="Wuschel-2013G_14.png" width="16" height="17" style="vertical-align:middle" />
+</p>
+
+<p class="Section">
+ Define the Cellerator network that will produce the ODES as specified in the model
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_15.png" alt="Wuschel-2013G_15.png" width="329" height="249" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ <br /><br />L1 is an indicator function that must be 1 on the boundary and zero elsewhere.&nbsp;&nbsp;Te reaction for L1 ensures that it remains equal to its initial condition, as demonstrated in the following differential equation:
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_16.png" alt="Wuschel-2013G_16.png" width="233" height="17" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/Wuschel-2013G_17.png" alt="Wuschel-2013G_17.png" width="147" height="17" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ Define the initial conditions of all variables. Here we use random values for A, B, W, Y.<br />We set L1 equal to 1 on the boundary and zero elsewhere. 
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_18.png" alt="Wuschel-2013G_18.png" width="137" height="17" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_19.png" alt="Wuschel-2013G_19.png" width="437" height="17" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_20.gif" alt="Wuschel-2013G_20.gif" width="395" height="39" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ <br />Define the parameters for the model<br />
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_21.png" alt="Wuschel-2013G_21.png" width="516" height="81" style="vertical-align:middle" />
+</p>
+
+<p class="Section">
+ <br />Run a StaticSimulation<br />
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_22.png" alt="Wuschel-2013G_22.png" width="381" height="312" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Wuschel-2013G_23.png" alt="Wuschel-2013G_23.png" width="64" height="16" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Wuschel-2013G_24.png" alt="Wuschel-2013G_24.png" width="251" height="16" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Wuschel-2013G_25.png" alt="Wuschel-2013G_25.png" width="252" height="16" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Wuschel-2013G_26.png" alt="Wuschel-2013G_26.png" width="158" height="16" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Wuschel-2013G_27.png" alt="Wuschel-2013G_27.png" width="180" height="16" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Wuschel-2013G_28.png" alt="Wuschel-2013G_28.png" width="287" height="16" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Wuschel-2013G_29.png" alt="Wuschel-2013G_29.png" width="151" height="16" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <img src="HTMLFiles/Wuschel-2013G_30.png" alt="Wuschel-2013G_30.png" width="580" height="16" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ <br />Plot the results of a single variable (depending upon geometry and parameter values it can go to either a steady state or it might oscillate)<br />
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_31.png" alt="Wuschel-2013G_31.png" width="512" height="39" style="vertical-align:middle" />
+</p>
+
+<p class="Subsection">
+ <br />Use SimShowFinal to find the solution at the stop time of the simulation and automatically set the scales.<br />
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_32.png" alt="Wuschel-2013G_32.png" width="264" height="17" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/Wuschel-2013G_33.gif" alt="Wuschel-2013G_33.gif" width="360" height="336" style="vertical-align:middle" />
+</p>
+
+<p class="Section">
+ Use SimAnimate and ListAnimate to plot convergence
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_34.gif" alt="Wuschel-2013G_34.gif" width="502" height="39" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/Wuschel-2013G_35.gif" alt="Wuschel-2013G_35.gif" width="547" height="642" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/Wuschel-2013G_36.png" alt="Wuschel-2013G_36.png" width="227" height="17" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/Wuschel-2013G_37.gif" alt="Wuschel-2013G_37.gif" width="405" height="412" style="vertical-align:middle" />
+</p>
+
+
+
+
+<div style="font-family:Helvetica; font-size:11px; width:100%; border:1px none #999999; border-top-style:solid; padding-top:2px; margin-top:20px;">
+ <a href="http://www.wolfram.com/language/" style="color:#000; text-decoration:none;">
+  <span style="color:#555555">Created with the Wolfram Language</span> 
+ </a>
+</div>
+</body>
+
+</html>

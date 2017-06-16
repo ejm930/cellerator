@@ -21,7 +21,7 @@
 
 (* ::Input::Initialization:: *)
 BeginPackage["Cellzilla2D`"];
-$Cellzilla2DVersion="3.0.51g (15 June 2017)"  
+$Cellzilla2DVersion="3.0.51h (15 June 2017)"  
 
 
 (* ::Input::Initialization:: *)
@@ -8059,7 +8059,7 @@ debug];
 
 
 nDiff=Length[diff];
-dPrint[nDiff," diffusion reactions."];
+vPrint[nDiff," diffusion reactions."];
 
 (*generate intercellular reactions if specified*)
 
@@ -8071,28 +8071,31 @@ dPrint["out: ", out];
 
 reactions=Join[in,diff, pr, out];
 
-dPrint["reactions: ", reactions]; 
+dPrint["reactions (1): ", reactions]; 
 dPrint["static: ", static];
 
 (* If static tissue is requested *)
 (* replace variable names with static values *)
 
 If[static,
+
 Block[{NewEdgeVariable, NewAreaVariable,NewVertexVariable, newx, newy, temp},
 NewEdgeVariable[edgeNumber_][Global`t]:=edgeLengths[[edgeNumber]]; 
-NewAreaVariable[cellNumber_][Global`t]:= areas[[cellNumber]];
+NewAreaVariable[cellNumber_][Global`t]:= 
+areafunction[inputTissue,cellNumber];(*areas[[cellNumber]];*)
 NewAreaVariable[cellNumber_]'[Global`t]:= 0; 
 newx[i_][Global`t]:= v[[i,1]];
 newy[i_][Global`t]:= v[[i,2]];
 
 
-reactions = (reactions/.{ edgeVariable-> NewEdgeVariable, areaVariable-> NewAreaVariable, x-> newx, y-> newy});
+reactions = (reactions/.{ edgeVariable-> NewEdgeVariable,  areaVariable-> NewAreaVariable,
+ x-> newx, y-> newy});
 AEQ={}; 
 ],
 AEQ=CellAreaEquations[tissue,"debug"-> debug, opt]; 
 dPrint[Length[AEQ], " equations for cell area."]; 
 ]; 
-
+dPrint["reactions (2): ", reactions];
 cvn = CellVertexNumbers[tissue]; 
 
 dPrint["boundaryConditions: ", boundaryConditions]; 
@@ -8106,7 +8109,7 @@ GE={};
 If[xy, 
 GE=Flatten[{x[#][Global`t]== v[[#,1]], y[#][Global`t]==v[[#,2]]}&/@vused];
 ]; 
-AEQ=CellAreaEquations[tissue,opt];
+(* AEQ=CellAreaEquations[tissue,opt]; *)
 GE = Join[TE, GE]; 
 ,
 growthstuff=generateGrowthReactions[c,cvn, e,v, eused, vused, edgeVariable, outeredges,  opt];
@@ -8446,7 +8449,9 @@ dPrint["static:", static];
 If[static,
 Block[{NewEdgeVariable, NewAreaVariable,NewVertexVariable, newx, newy},
 NewEdgeVariable[edgeNumber_][Global`t]:=edgeLengths[[edgeNumber]]; 
-NewAreaVariable[cellNumber_][Global`t]:= areas[[cellNumber]];
+NewAreaVariable[cellNumber_][Global`t]:= 
+areafunction[inputTissue,cellNumber];
+(* areas[[cellNumber]]; *) 
 newx[i_][Global`t]:= v[[i,1]];
 newy[i_][Global`t]:= v[[i,2]];
 
@@ -8922,7 +8927,8 @@ Return[wallreactions];
 
 
 (* ::Input::Initialization:: *)
-getBC[opt___?OptionQ]:=Module[{boundaryConditions,okbc,BCVars,BCVals, dbg=False, dPrint, diffVars, pumpVars,missingBC},
+getBC[opt___?OptionQ]:=Module[{boundaryConditions,okbc,BCVars,BCVals, dbg, dPrint, diffVars, pumpVars,missingBC},
+dbg="DebugBC"/.{opt}/.{"DebugBC"-> False}; 
 dPrint[x___]:= If[dbg, Print["getBC: ", x]]; 
 boundaryConditions = "BoundaryConditions"/.{opt}/.{"BoundaryConditions"-> {}}; 
 diffVars = First/@("Diffusion"/.{opt}/.{"Diffusion"-> {}});
@@ -8947,7 +8953,7 @@ missingBC = (#[0][Global`t]-> 0)&/@missingBC;
 dPrint["missinBC: ", missingBC];  
 boundaryConditions = Join[boundaryConditions, missingBC]; 
 
-
+dPrint["BC: ", boundaryConditions];
 Return[boundaryConditions]; 
 ]
 
@@ -9987,10 +9993,14 @@ odes = Append[odes, Equal[LHS, RHS]];
 
 ];
 parameters="Parameters"/.{opt}/.{"Parameters"-> {}};
-dPrint["Checking ICs"]; 
+dPrint["Checking ICs:", ic]; 
+
 OK = HasSufficientInfo[odes,vars,equations,ic,parameters, growing, x, y, cell, False];
  
 {okflag, initialRates}=OK; 
+
+(*add 3.0.51 h*)
+If [Not[growing], initialRates={}];
 
 MemPrint["Checking ICs"];
  
@@ -10062,6 +10072,12 @@ $$IC=ic;
 $$RATES=initialRates/.{Global`t-> tbegin};
 
 $$EQUATIONS=equations; 
+dPrint["Calling run: odes:", odes]; 
+dPrint["Calling run: vars:", vars];
+dPrint ["Calling run: equations: ", equations]; 
+dPrint["Calling run: ic: ", ic]; 
+dPrint["Calling run: rates: ", $$RATES];
+ 
 If[Length[equations]==0, initialRates={}]; 
 s=run[{odes,vars}, 
 "Equations"-> equations, 
@@ -10354,6 +10370,7 @@ IC=SetNextIC[DT,DTOLD, S,Network,Equations,  ell,area,restlength,x,y, IsotropicG
 ];
 MemPrint["Generating ICs"]; 
 
+dPrint["IC:", IC]; 
 
 dPrint["Running simulation."]; 
 
@@ -11416,7 +11433,7 @@ dPrint["xic=", xic];
 dPrint["yic=", yic]; 
 
 
-If[ToString[area]=="False", 
+If[ToString[area]=="False"  \[Or] growing == False, 
 areaic={}, 
 areaic = MapThread[Rule,{area/@cellnumbers,areafunction[tissue]}]
 ];
@@ -11567,10 +11584,10 @@ parameters = parms;
 
 dPrint[u___]:= If[dbg, Print["HasSufficientInfo: ", u]]; 
 
-dPrint["eq: ", Short[eq,5]]; 
+dPrint["eq: ", eq]; 
 dPrint["parameters = ", parameters]; 
-dPrint["species = ", Short[species,3]]; 
-dPrint["equations = ", Short[equations,3]]; 
+dPrint["species = ", species]; 
+dPrint["equations = ", equations]; 
 
 APRATES={}; 
 If[growing,
@@ -11578,10 +11595,12 @@ If[growing,
 Block[{APIC, APRHS,APLHS,myx, xir, yir, aprules},
 APIC=Select[equations, ToString[Head[Head[First[#]]]]==ToString[cell]&]; 
 APLHS = First/@APIC;
+dPrint["APLHS: ", APLHS];
+
 APRHS = InputForm[(Last/@APIC)]; 
 
 APRHS=ToExpression[StringReplace[ToString[APRHS], {"[t]"-> "'[t]" }]]; 
-dPrint["APRHS: ", Short[APRHS, 5]]; 
+dPrint["APRHS: ", APRHS]; 
 
 
 ir=ShowInitialRates[eq,ic,parameters,{}]; 
@@ -11594,21 +11613,23 @@ dPrint["xir=", Short[xir,5]];
 dPrint["yir=", Short[yir, 5]]; 
 
 APRHS = (APRHS/.xir/.yir); 
-dPrint["APRHS: ", Short[APRHS, 5]]; 
+dPrint["APRHS: ", APRHS]; 
 
 
 APLHS=ToExpression[StringReplace[ToString[APLHS], {"[t]"-> "'[t]" }]];
-dPrint["APLHS: ", Short[APLHS, 5]]; 
+dPrint["APLHS: ", APLHS]; 
 
 APRATES = MapThread[Equal, {APLHS, APRHS}]; 
-dPrint["APRATES: ", Short[APRATES, 5]]; 
+dPrint["APRATES: ",  APRATES]; 
 
 aprules = APRATES/.{Equal-> Rule}; 
-dPrint["aprules: ", Short[aprules, 5]]; 
+dPrint["aprules: ",  aprules]; 
 
 parameters = Join[parameters, aprules]; 
 
 ];
+,
+dPrint["not growing"];
 ]; 
 
 
@@ -11620,24 +11641,24 @@ r1=(#-> #[Global`t])&/@species;
 r1=Join[r1,xr1]; 
 
 icr1=ic/.r1;
-dPrint["ic: ", Short[ic,3]]; 
-dPrint["icr1: ", Short[icr1,3]]; 
+dPrint["ic: ", ic]; 
+dPrint["icr1: ",icr1]; 
 
 (* if variables in equations have ic this won't be necessary to check but it shouldn't hurt *)
 eqlhs = First/@equations;
-dPrint["eqlhs: ", Short[eqlhs,3]]; 
+dPrint["eqlhs: ", eqlhs]; 
 
 eqrhs =( Last/@equations)/.icr1/.parameters;
-dPrint["eqrhs: ", Short[eqrhs,3]]; 
+dPrint["eqrhs: ", eqrhs]; 
 
 xr2 = MapThread[Rule,{eqlhs,eqrhs}]; 
 
-dPrint["xr2: ", Short[xr2,3]]; 
+dPrint["xr2: ", xr2]; 
 
 vals=Last/@((eq/.(icr1))/.parameters);
-dPrint["vals: ", Short[vals,3]]; 
+dPrint["vals: ", vaks]; 
 vals = 1.0*vals/.xr2; 
-dPrint["vals/.xr2: ", Short[vals,3]];
+dPrint["vals/.xr2: ",vals];
 (* Complex Infinity Might Arise *)
 vals = Quiet[vals/.{Global`t-> 1}];  
 vals = Complement[vals, {Infinity, -Infinity, ComplexInfinity}]; 
@@ -11666,7 +11687,7 @@ ir=Indeterminate;
 If[OK,
 ir=ShowInitialRates[eq,ic,parameters,{}]; 
 
-
+dPrint["ir=",ir];
 
 
 vals =NumericQ/@(Last/@(ir));
@@ -11679,7 +11700,7 @@ rok]
 
 ];
 
-
+dPrint["APRATES:", APRATES];
 Return[{ok,Join[ir, APRATES]}]
 ]
 
