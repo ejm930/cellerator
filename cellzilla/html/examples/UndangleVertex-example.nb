@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       145,          7]
-NotebookDataLength[     20230,        551]
-NotebookOptionsPosition[     18739,        494]
-NotebookOutlinePosition[     19197,        512]
-CellTagsIndexPosition[     19154,        509]
+NotebookDataLength[     22758,        608]
+NotebookOptionsPosition[     20008,        530]
+NotebookOutlinePosition[     20482,        549]
+CellTagsIndexPosition[     20439,        546]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -33,7 +33,9 @@ UndangleVertex, UndangleEdge example\
    3.45487696487158*^9}, {3.454877016601164*^9, 3.4548770230067463`*^9}, {
    3.4549464679022923`*^9, 3.454946472766996*^9}, {3.454952051881212*^9, 
    3.4549520564947844`*^9}, {3.4549528105725307`*^9, 3.454952827618351*^9}, {
-   3.454953320614189*^9, 3.4549533318403873`*^9}, 3.561679673456725*^9}],
+   3.454953320614189*^9, 3.4549533318403873`*^9}, 
+   3.561679673456725*^9},ExpressionUUID->"fa1c2ce4-2df0-40be-b82d-\
+efd263cfafba"],
 
 Cell["\<\
 Example Cellzilla2D notebook.
@@ -42,7 +44,9 @@ GPL License applies.
 See http://xlr8r.info and http://cellzilla.info for further details.\
 \>", "Text",
  CellChangeTimes->{{3.454616499378996*^9, 3.4546165376658583`*^9}, 
-   3.454617821271595*^9, 3.561679525633791*^9, 3.56167967345683*^9}],
+   3.454617821271595*^9, 3.561679525633791*^9, 
+   3.56167967345683*^9},ExpressionUUID->"30fcbdfc-c396-415e-886b-\
+2ac6bba718d5"],
 
 Cell[CellGroupData[{
 
@@ -50,7 +54,9 @@ Cell[BoxData[
  RowBox[{"<<", "Cellzilla2D.m"}]], "Input",
  CellChangeTimes->{{3.4546177024873037`*^9, 3.4546177066717863`*^9}, {
    3.4546177419301577`*^9, 3.454617750289276*^9}, 3.454617821271983*^9, 
-   3.561679673456962*^9}],
+   3.561679673456962*^9, {3.70679818755781*^9, 
+   3.706798188371573*^9}},ExpressionUUID->"7430c9b2-3ca7-4150-a5bb-\
+7f5ff281ad65"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -60,8 +66,8 @@ Cell[BoxData[
     FontFamily->"Ubuntu,Arial",
     FontSize->12,
     FontWeight->"Bold"], "\[InvisibleSpace]", 
-   StyleBox["\<\" (3.0.0 (11-Nov-2012)) loaded Sun 11 Nov 2012 \
-19:25:28\\nusing \"\>",
+   StyleBox["\<\" (3.0.51i (18 June 2017)) loaded Sun 18 Jun 2017 \
+11:09:49\\nusing \"\>",
     StripOnInput->False,
     FontFamily->"Ubuntu,Arial",
     FontSize->12], "\[InvisibleSpace]", 
@@ -70,7 +76,7 @@ Cell[BoxData[
     FontFamily->"Ubuntu,Arial",
     FontSize->12,
     FontWeight->"Bold"], "\[InvisibleSpace]", 
-   StyleBox["\<\"0.92 and \"\>",
+   StyleBox["\<\"0.95 and \"\>",
     StripOnInput->False,
     FontFamily->"Ubuntu,Arial",
     FontSize->12], "\[InvisibleSpace]", 
@@ -79,7 +85,7 @@ Cell[BoxData[
     FontFamily->"Ubuntu,Arial",
     FontSize->12,
     FontWeight->"Bold"], "\[InvisibleSpace]", 
-   StyleBox["\<\"1204002\"\>",
+   StyleBox["\<\"1.3.2\"\>",
     StripOnInput->False,
     FontFamily->"Ubuntu,Arial",
     FontSize->12], "\[InvisibleSpace]", 
@@ -92,25 +98,28 @@ Cell[BoxData[
   SequenceForm[
    Style["Cellzilla2D", FontFamily -> "Ubuntu,Arial", FontSize -> 12, 
     FontWeight -> "Bold"], 
-   Style[" (3.0.0 (11-Nov-2012)) loaded Sun 11 Nov 2012 19:25:28\nusing ", 
+   Style[" (3.0.51i (18 June 2017)) loaded Sun 18 Jun 2017 11:09:49\nusing ", 
     FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
    Style["xCellerator ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", 
     FontWeight -> "Bold"], 
-   Style["0.92 and ", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["0.95 and ", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
    Style["XSSA ", FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> 
     "Bold"], 
-   Style["1204002", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
+   Style["1.3.2", FontSize -> 12, FontFamily -> "Ubuntu,Arial"], 
    Style["\nGPL License Terms Apply", FontColor -> RGBColor[1, 0, 0], 
     FontSize -> 12, FontFamily -> "Ubuntu,Arial", FontWeight -> Bold]],
   Editable->False]], "Print",
  CellChangeTimes->{3.454946483733527*^9, 3.454952105523391*^9, 
   3.4549533360664663`*^9, 3.454953414424878*^9, 3.454953490126842*^9, 
-  3.5616795283970823`*^9, 3.561679673458088*^9}]
+  3.5616795283970823`*^9, 3.561679673458088*^9, 
+  3.706798189814721*^9},ExpressionUUID->"12c5b2c3-c5da-466c-a3ba-\
+e16534e0b55c"]
 }, Open  ]],
 
 Cell["Create a tissue with a point and an edge that aren't used.", "Text",
  CellChangeTimes->{{3.454948265977695*^9, 3.454948276878396*^9}, 
-   3.5616796734581547`*^9}],
+   3.5616796734581547`*^9},ExpressionUUID->"e897bd42-1897-4825-9725-\
+cbf6f1d2adfd"],
 
 Cell[CellGroupData[{
 
@@ -157,7 +166,8 @@ Cell[BoxData[{
  CellChangeTimes->{{3.4549465214768143`*^9, 3.4549465715843163`*^9}, {
    3.4549466872435713`*^9, 3.454946688432949*^9}, {3.4549519838067102`*^9, 
    3.454951986376079*^9}, {3.454952022012528*^9, 3.4549520235389013`*^9}, 
-   3.561679673458538*^9}],
+   3.561679673458538*^9},ExpressionUUID->"dd707b5c-5697-4081-aff3-\
+29470acd8adc"],
 
 Cell[BoxData[
  RowBox[{"Tissue", "[", 
@@ -190,7 +200,9 @@ Cell[BoxData[
  CellChangeTimes->{3.454946571907584*^9, 3.4549466892980547`*^9, 
   3.4549519868185062`*^9, 3.4549520239446163`*^9, 3.454952105717558*^9, 
   3.454952862927421*^9, 3.454953337121437*^9, 3.4549534903945837`*^9, 
-  3.5616795295042562`*^9, 3.561679673458817*^9}]
+  3.5616795295042562`*^9, 3.561679673458817*^9, 
+  3.706798192115055*^9},ExpressionUUID->"9e5370a8-1445-48aa-aa1d-\
+936498df44aa"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -198,13 +210,16 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"DanglingEdges", "[", "q", "]"}]], "Input",
  CellChangeTimes->{{3.454952003316556*^9, 3.454952015925557*^9}, 
-   3.561679673458974*^9}],
+   3.561679673458974*^9},ExpressionUUID->"a21748ca-05a0-4d96-a463-\
+232d0d641674"],
 
 Cell[BoxData[
  RowBox[{"{", "4", "}"}]], "Output",
  CellChangeTimes->{3.454952016431603*^9, 3.4549521057712507`*^9, 
   3.4549528652509623`*^9, 3.454953339320731*^9, 3.4549534904020243`*^9, 
-  3.561679533104645*^9, 3.561679673459092*^9}]
+  3.561679533104645*^9, 3.561679673459092*^9, 
+  3.706798194940856*^9},ExpressionUUID->"9b13503d-52c0-45e0-a82e-\
+061c2529756c"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -212,20 +227,25 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"DanglingVertices", "[", "q", "]"}]], "Input",
  CellChangeTimes->{{3.454952032049158*^9, 3.454952036791519*^9}, 
-   3.561679673459231*^9}],
+   3.561679673459231*^9},ExpressionUUID->"828dca38-3b1f-4eaf-acd6-\
+cb82defa7ba5"],
 
 Cell[BoxData[
  RowBox[{"{", "5", "}"}]], "Output",
  CellChangeTimes->{3.4549520373353863`*^9, 3.45495210592349*^9, 
   3.454952867370398*^9, 3.4549533491229267`*^9, 3.454953490408011*^9, 
-  3.561679535680987*^9, 3.5616796734593487`*^9}]
+  3.561679535680987*^9, 3.5616796734593487`*^9, 
+  3.706798197009262*^9},ExpressionUUID->"5e337230-38d5-4fda-a6a6-\
+7e60ff1ca36f"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["Show the tissue", "Section",
- CellChangeTimes->{{3.561679654648242*^9, 3.5616796734594193`*^9}}],
+ CellChangeTimes->{{3.561679654648242*^9, 
+  3.5616796734594193`*^9}},ExpressionUUID->"68a5173b-721e-4b0b-94b0-\
+28a46a53f055"],
 
 Cell[CellGroupData[{
 
@@ -247,18 +267,22 @@ Cell[BoxData[
      RowBox[{"Blue", ",", 
       RowBox[{"FontSize", "\[Rule]", " ", "16"}]}], "}"}]}], ",", " ", 
    RowBox[{"\"\<All\>\"", "\[Rule]", " ", "True"}], " ", ",", " ", 
-   RowBox[{"\"\<EdgeStyles\>\"", "\[Rule]", " ", "Dashed"}], ",", " ", 
-   RowBox[{"Background", "\[Rule]", " ", "LightOrange"}]}], "]"}]], "Input",
+   RowBox[{"\"\<EdgeStyles\>\"", "\[Rule]", " ", "Dashed"}]}], "]"}]], "Input",\
+
  CellChangeTimes->{{3.4549465735607367`*^9, 3.4549467188044243`*^9}, {
    3.454947510970971*^9, 3.4549475178079557`*^9}, {3.454947606865212*^9, 
    3.4549476074126787`*^9}, {3.454947653925746*^9, 3.45494768179688*^9}, {
    3.454947951943265*^9, 3.4549479912037163`*^9}, {3.5616795396886663`*^9, 
-   3.56167957423309*^9}, 3.561679673459753*^9}],
+   3.56167957423309*^9}, 3.561679673459753*^9, 
+   3.706798205281785*^9},ExpressionUUID->"04a5501a-98b4-4dc6-9a3d-\
+bd8abdbbb3b8"],
 
 Cell[BoxData[
  GraphicsBox[{{
     {RGBColor[0.88, 1, 0.88], PolygonBox[{{0, 0}, {2, 0}, {1, 2}}]}, 
-    {GrayLevel[0], InsetBox["\<\"1\"\>", {1., 0.6666666666666666}]}}, {
+    {GrayLevel[0], 
+     InsetBox["\<\"1\"\>", 
+      NCache[{1, Rational[2, 3]}, {1, 0.6666666666666666}]]}}, {
     {Dashing[{Small, Small}], LineBox[{{0, 0}, {2, 0}}], 
      {GrayLevel[0], InsetBox[
        StyleBox["\<\"1\"\>",
@@ -306,8 +330,7 @@ Cell[BoxData[
       InsetBox["3", {1, 2}], InsetBox["4", {2, 1}], InsetBox["5", {2, 2}]},
      FontSize->20]}, {}, {}, 
    {GrayLevel[0], Thickness[Tiny], LineBox[{{0, 0}, {2, 0}}], 
-    LineBox[{{2, 0}, {1, 2}}], LineBox[{{1, 2}, {0, 0}}]}},
-  Background->RGBColor[1, 0.9, 0.8]]], "Output",
+    LineBox[{{2, 0}, {1, 2}}], LineBox[{{1, 2}, {0, 0}}]}}]], "Output",
  CellChangeTimes->{
   3.4549465759671507`*^9, {3.4549466115910587`*^9, 3.454946719279154*^9}, {
    3.454947507958685*^9, 3.454947547897935*^9}, {3.45494760013547*^9, 
@@ -315,16 +338,18 @@ Cell[BoxData[
    3.45494795660996*^9, 3.454947992040045*^9}, 3.454951988897887*^9, 
    3.454952025529458*^9, 3.4549521059629393`*^9, 3.4549528692765493`*^9, 
    3.454953351007462*^9, 3.4549534166334877`*^9, 3.454953490487212*^9, {
-   3.5616795560740833`*^9, 3.56167957461346*^9}, 3.561679673463354*^9}]
+   3.5616795560740833`*^9, 3.56167957461346*^9}, 3.561679673463354*^9, 
+   3.7067982057928343`*^9},ExpressionUUID->"5ea742d9-aed8-400e-9acc-\
+0c99282e8a34"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["\<\
-Remove a specific dangling edge\
-\>", "Section",
- CellChangeTimes->{{3.561679644576614*^9, 3.561679673463426*^9}}],
+Cell["Remove a specific dangling edge", "Section",
+ CellChangeTimes->{{3.561679644576614*^9, 
+  3.561679673463426*^9}},ExpressionUUID->"e262b0dc-e008-4982-a4ac-\
+3f0f5ee41774"],
 
 Cell[CellGroupData[{
 
@@ -348,16 +373,20 @@ Cell[BoxData[
      RowBox[{"Blue", ",", 
       RowBox[{"FontSize", "\[Rule]", " ", "16"}]}], "}"}]}], ",", " ", 
    RowBox[{"\"\<All\>\"", "\[Rule]", " ", "True"}], " ", ",", " ", 
-   RowBox[{"\"\<EdgeStyles\>\"", "\[Rule]", " ", "Dashed"}], ",", " ", 
-   RowBox[{"Background", "\[Rule]", " ", "LightOrange"}]}], "]"}]], "Input",
+   RowBox[{"\"\<EdgeStyles\>\"", "\[Rule]", " ", "Dashed"}]}], "]"}]], "Input",\
+
  CellChangeTimes->{{3.4549528702428217`*^9, 3.454952898350665*^9}, {
    3.454953356881227*^9, 3.454953363648531*^9}, 3.561679584014021*^9, 
-   3.5616796734638033`*^9}],
+   3.5616796734638033`*^9, 
+   3.7067982130682573`*^9},ExpressionUUID->"9a1d9afc-d2c7-4bdb-85c9-\
+60b97be84b87"],
 
 Cell[BoxData[
  GraphicsBox[{{
     {RGBColor[0.88, 1, 0.88], PolygonBox[{{0, 0}, {2, 0}, {1, 2}}]}, 
-    {GrayLevel[0], InsetBox["\<\"1\"\>", {1., 0.6666666666666666}]}}, {
+    {GrayLevel[0], 
+     InsetBox["\<\"1\"\>", 
+      NCache[{1, Rational[2, 3]}, {1, 0.6666666666666666}]]}}, {
     {Dashing[{Small, Small}], LineBox[{{0, 0}, {2, 0}}], 
      {GrayLevel[0], InsetBox[
        StyleBox["\<\"1\"\>",
@@ -395,11 +424,12 @@ Cell[BoxData[
       InsetBox["3", {1, 2}], InsetBox["4", {2, 1}], InsetBox["5", {2, 2}]},
      FontSize->20]}, {}, {}, 
    {GrayLevel[0], Thickness[Tiny], LineBox[{{0, 0}, {2, 0}}], 
-    LineBox[{{2, 0}, {1, 2}}], LineBox[{{1, 2}, {0, 0}}]}},
-  Background->RGBColor[1, 0.9, 0.8]]], "Output",
+    LineBox[{{2, 0}, {1, 2}}], LineBox[{{1, 2}, {0, 0}}]}}]], "Output",
  CellChangeTimes->{3.4549528988199663`*^9, 3.454953365422666*^9, 
   3.454953424158094*^9, 3.454953490557497*^9, 3.5616795849020452`*^9, 
-  3.5616796734652233`*^9}]
+  3.5616796734652233`*^9, 
+  3.706798213649122*^9},ExpressionUUID->"bddca370-90e8-4370-adde-\
+03d5211c7d0c"]
 }, Open  ]]
 }, Open  ]],
 
@@ -410,7 +440,8 @@ Removing Edge 4 followed by vertex 4 makes the old vertex 5 (still dangling) \
 a new (still dangling) vertex 4\
 \>", "Section",
  CellChangeTimes->{{3.561679608017083*^9, 3.56167963639223*^9}, 
-   3.5616796734652557`*^9}],
+   3.5616796734652557`*^9},ExpressionUUID->"93561adf-2fbd-4333-af66-\
+69526a338c93"],
 
 Cell[CellGroupData[{
 
@@ -436,16 +467,20 @@ Cell[BoxData[
      RowBox[{"Blue", ",", 
       RowBox[{"FontSize", "\[Rule]", " ", "16"}]}], "}"}]}], ",", " ", 
    RowBox[{"\"\<All\>\"", "\[Rule]", " ", "True"}], " ", ",", " ", 
-   RowBox[{"\"\<EdgeStyles\>\"", "\[Rule]", " ", "Dashed"}], ",", " ", 
-   RowBox[{"Background", "\[Rule]", " ", "LightOrange"}]}], "]"}]], "Input",
+   RowBox[{"\"\<EdgeStyles\>\"", "\[Rule]", " ", "Dashed"}]}], "]"}]], "Input",\
+
  CellChangeTimes->{{3.454952905918874*^9, 3.454952908948957*^9}, {
    3.4549534343044653`*^9, 3.454953449018471*^9}, {3.561679591766782*^9, 
-   3.561679597170288*^9}, 3.5616796734654207`*^9}],
+   3.561679597170288*^9}, 3.5616796734654207`*^9, 
+   3.7067982273882008`*^9},ExpressionUUID->"d320c9ac-7cb2-4dbf-a3ac-\
+adee2aae6075"],
 
 Cell[BoxData[
  GraphicsBox[{{
     {RGBColor[0.88, 1, 0.88], PolygonBox[{{0, 0}, {2, 0}, {1, 2}}]}, 
-    {GrayLevel[0], InsetBox["\<\"1\"\>", {1., 0.6666666666666666}]}}, {
+    {GrayLevel[0], 
+     InsetBox["\<\"1\"\>", 
+      NCache[{1, Rational[2, 3]}, {1, 0.6666666666666666}]]}}, {
     {Dashing[{Small, Small}], LineBox[{{0, 0}, {2, 0}}], 
      {GrayLevel[0], InsetBox[
        StyleBox["\<\"1\"\>",
@@ -483,21 +518,23 @@ Cell[BoxData[
       InsetBox["3", {1, 2}], InsetBox["4", {2, 2}]},
      FontSize->20]}, {}, {}, 
    {GrayLevel[0], Thickness[Tiny], LineBox[{{0, 0}, {2, 0}}], 
-    LineBox[{{2, 0}, {1, 2}}], LineBox[{{1, 2}, {0, 0}}]}},
-  Background->RGBColor[1, 0.9, 0.8]]], "Output",
+    LineBox[{{2, 0}, {1, 2}}], LineBox[{{1, 2}, {0, 0}}]}}]], "Output",
  CellChangeTimes->{
   3.454952909367001*^9, {3.454953445215781*^9, 3.454953449507814*^9}, 
    3.454953490635235*^9, {3.561679592484428*^9, 3.561679597621129*^9}, 
-   3.5616796734663563`*^9}]
+   3.5616796734663563`*^9, 
+   3.706798228014176*^9},ExpressionUUID->"ad9e90f7-095e-4a95-ac7a-\
+8309d3162542"]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{849, 787},
-WindowMargins->{{Automatic, -1542}, {72, Automatic}},
+WindowSize->{696, 654},
+WindowMargins->{{Automatic, 51}, {Automatic, 25}},
 ShowSelection->True,
 CellLabelAutoDelete->True,
-FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
-StyleDefinitions->FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", 
+FrontEndVersion->"11.1 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 27, \
+2017)",
+StyleDefinitions->FrontEnd`FileName[{"Report"}, "StandardReport.nb", 
   CharacterEncoding -> "UTF-8"]
 ]
 (* End of Notebook Content *)
@@ -512,49 +549,68 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[567, 22, 833, 13, 100, "Section"],
-Cell[1403, 37, 282, 7, 87, "Text"],
+Cell[567, 22, 894, 15, 101, "Section", "ExpressionUUID" -> \
+"fa1c2ce4-2df0-40be-b82d-efd263cfafba"],
+Cell[1464, 39, 343, 9, 87, "Text", "ExpressionUUID" -> \
+"30fcbdfc-c396-415e-886b-2ac6bba718d5"],
 Cell[CellGroupData[{
-Cell[1710, 48, 227, 4, 40, "Input"],
-Cell[1940, 54, 2072, 53, 62, "Print"]
+Cell[1832, 52, 333, 6, 41, "Input", "ExpressionUUID" -> \
+"7430c9b2-3ca7-4150-a5bb-7f5ff281ad65"],
+Cell[2168, 60, 2156, 55, 63, "Print", "ExpressionUUID" -> \
+"12c5b2c3-c5da-466c-a3ba-e16534e0b55c"]
 }, Open  ]],
-Cell[4027, 110, 168, 2, 30, "Text"],
+Cell[4339, 118, 225, 3, 30, "Text", "ExpressionUUID" -> \
+"e897bd42-1897-4825-9725-cbf6f1d2adfd"],
 Cell[CellGroupData[{
-Cell[4220, 116, 1411, 43, 98, "Input"],
-Cell[5634, 161, 1062, 31, 60, "Output"]
+Cell[4589, 125, 1468, 44, 105, "Input", "ExpressionUUID" -> \
+"dd707b5c-5697-4081-aff3-29470acd8adc"],
+Cell[6060, 171, 1144, 33, 63, "Output", "ExpressionUUID" -> \
+"9e5370a8-1445-48aa-aa1d-936498df44aa"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6733, 197, 158, 3, 40, "Input"],
-Cell[6894, 202, 236, 4, 40, "Output"]
+Cell[7241, 209, 215, 4, 41, "Input", "ExpressionUUID" -> \
+"a21748ca-05a0-4d96-a463-232d0d641674"],
+Cell[7459, 215, 318, 6, 41, "Output", "ExpressionUUID" -> \
+"9b13503d-52c0-45e0-a82e-061c2529756c"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7167, 211, 161, 3, 40, "Input"],
-Cell[7331, 216, 235, 4, 40, "Output"]
+Cell[7814, 226, 218, 4, 41, "Input", "ExpressionUUID" -> \
+"828dca38-3b1f-4eaf-acd6-cb82defa7ba5"],
+Cell[8035, 232, 317, 6, 41, "Output", "ExpressionUUID" -> \
+"5e337230-38d5-4fda-a6a6-7e60ff1ca36f"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7615, 226, 102, 1, 74, "Section"],
+Cell[8401, 244, 162, 3, 66, "Section", "ExpressionUUID" -> \
+"68a5173b-721e-4b0b-94b0-28a46a53f055"],
 Cell[CellGroupData[{
-Cell[7742, 231, 1285, 24, 98, "Input"],
-Cell[9030, 257, 2752, 60, 388, "Output"]
+Cell[8588, 251, 1301, 26, 105, "Input", "ExpressionUUID" -> \
+"04a5501a-98b4-4dc6-9a3d-bd8abdbbb3b8"],
+Cell[9892, 279, 2841, 63, 387, "Output", "ExpressionUUID" -> \
+"5ea742d9-aed8-400e-9acc-0c99282e8a34"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[11831, 323, 124, 3, 74, "Section"],
+Cell[12782, 348, 176, 3, 66, "Section", "ExpressionUUID" -> \
+"e262b0dc-e008-4982-a4ac-3f0f5ee41774"],
 Cell[CellGroupData[{
-Cell[11980, 330, 1174, 24, 98, "Input"],
-Cell[13157, 356, 1996, 45, 388, "Output"]
+Cell[12983, 355, 1192, 26, 105, "Input", "ExpressionUUID" -> \
+"9a1d9afc-d2c7-4bdb-85c9-60b97be84b87"],
+Cell[14178, 383, 2082, 48, 387, "Output", "ExpressionUUID" -> \
+"bddca370-90e8-4370-adde-03d5211c7d0c"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[15202, 407, 230, 5, 100, "Section"],
+Cell[16309, 437, 287, 6, 101, "Section", "ExpressionUUID" -> \
+"93561adf-2fbd-4333-af66-69526a338c93"],
 Cell[CellGroupData[{
-Cell[15457, 416, 1269, 26, 117, "Input"],
-Cell[16729, 444, 1982, 46, 388, "Output"]
+Cell[16621, 447, 1287, 28, 126, "Input", "ExpressionUUID" -> \
+"d320c9ac-7cb2-4dbf-a3ac-adee2aae6075"],
+Cell[17911, 477, 2069, 49, 421, "Output", "ExpressionUUID" -> \
+"ad9e90f7-095e-4a95-ac7a-8309d3162542"]
 }, Open  ]]
 }, Open  ]]
 }
 ]
 *)
 
-(* End of internal cache information *)
