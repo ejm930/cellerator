@@ -43,7 +43,8 @@
         <p><span class="function">Needs["Cellzilla2D`"];</span></p>
 
         <p>For full functionality <a href="http://ffmpeg.org/" class=
-        "function">ffmpeg</a> and the appropriate codecs installed.</p>
+        "function">ffmpeg</a> and the appropriate codecs installed. For more
+        information on this see <a href="Movies.html">Making Movies in Cellzilla</a></p>
 
         <p class="header">Return Value</p>
 
@@ -63,7 +64,9 @@
 
         <p><span class="function">MovieType</span> - movie file format. Default
         is ".AVI". Options depend upon Export options for your operating
-        system.</p>
+        system.  If <span class="function">MovieType</span> is "NONE" then 
+        the movie will not be generated but the individual frames will still
+        be saved to disk, e.g., as JPG files.</p>
 
         <p><span class="function">Label</span> - optional text label to be
         prepended to the file name. The default value is MovieData.</p>

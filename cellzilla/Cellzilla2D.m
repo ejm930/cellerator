@@ -21,7 +21,7 @@
 
 (* ::Input::Initialization:: *)
 BeginPackage["Cellzilla2D`"];
-$Cellzilla2DVersion="3.0.51h (15 June 2017)"  
+$Cellzilla2DVersion="3.0.51i (18 June 2017)"  
 
 
 (* ::Input::Initialization:: *)
@@ -81,7 +81,7 @@ Allows all values to be displayed using RGBInterpolate on a range of [background
 Options for SimShow may be used";
 LineageAnimate::usage="LineageAnimate[options] or LineageAnimate[folder, options], displays the tissue as an animation of the lineags of the ancestral cells (in the first tissue). Options are the same as SimAnimate; additionally, \"Colors\" may be specified (up to the number of cells in the original tissue). "; 
 LineageShow::usage="LineageShow[Tissue, Lineage] or LineageShow[DTissue, Solution, Time, Lineage]. Lieage is the lineage data structure written by Grow."; 
-SaveFrames::usage="SaveFrames[pictures_?ListQ,type_, size_, movieType_:\".avi\",  label_:\"MovieData\", framerate_:8]";
+SaveFrames::usage="SaveFrames[pictures_?ListQ,type_, size_, movieType_:\".avi\",  label_:\"MovieData\", framerate_:8]; if movieType is \"NONE\" then only the frames are saved, and no movie is produced; otherise, a the frames are saved in format type and a movie is produced using FFMPEG.";
 ToAVI::usage="ToAvi[pics_,title_:\"MovieData\",  size_:400, rate_:16]";
 ToMOV::usage="ToMOV[pics_,title_:\"MovieData\",  size_:400, rate_:16]"; 
 SimRange::usage="SimRange[solution, Variable,time] gives {min, max} of variable over the tissute."; 
@@ -13596,20 +13596,19 @@ Return[{{xmin, xmax}, {ymin, ymax}}];
 
 
 (* ::Input::Initialization:: *)
-SaveFrames[pictures_?ListQ,type_, size_, movieType_:".avi",  label_:"MovieData-", framerate_:16]:= Module[{dir,cwd, labl,frnames, moviedir,framedir,  moviefile, runstring,typ,error, FrameName, FrameNames, dotavi, today, $TEMP, rate,CellzillaHome},
+SaveFrames[pictures_?ListQ,type_, size_, movieType_:".avi",  label_:"MovieData-", framerate_:16]:= Module[{dir,cwd, labl,frnames, moviedir,framedir,  moviefile, runstring,typ,error, FrameName, FrameNames, dotavi, today, $TEMP, rate,CellzillaHome, ISMOVIE},
 
+ISMOVIE = (ToUpperCase[movieType]!= "NONE");
 
 CellzillaHome=CreateHomeFolder[]; 
 
 $TEMP = createTodaysFolder[ToFileName[CellzillaHome,"Simulations-"]];
  
-(*
-today=DateString[{"Day","-","MonthNameShort","-","YearShort"}]; 
-$TEMP=ToFileName[$HomeDirectory, "Simulations-"<>today];
-*)
 
+If[ISMOVIE,
 dotavi = movieType; 
 If[StringTake[dotavi, 1]!= ".", dotavi = "."<>dotavi]; 
+]; 
 
 FrameName[x_, type1_:"EPS"]:= Module[{y, ty},
 ty = ToString[type1]; 
@@ -13629,10 +13628,13 @@ dir=createUniqueFolder[ToFileName[$TEMP,ToString[label]]];
 
 Print["Created folder: ", dir]; 
 
+If[ISMOVIE,
 moviefile=Last[FileNameSplit[dir]]<>dotavi;
 (* moviefile=ToFileName[dir,moviefile]; *)
 Print["movie file will be: ", moviefile]; 
-Print["movie file will be in the folder: ", dir]; 
+];
+Print["Files will be in the folder: ", dir]; 
+
 SetDirectory[dir];
 
 framedir=CreateDirectory["Frames"]; 
@@ -13640,7 +13642,7 @@ Print["Created directory: ", framedir];
 
 SetDirectory[framedir]; 
 
-Print["Putting movie frames in  in " , framedir]; 
+Print["Putting movie frames in " , framedir]; 
  
 
 frnames=FrameNames[Length[pictures], ToString[type]]; 
@@ -13648,8 +13650,16 @@ MapThread[Export[#1, #2, ImageSize-> {size,size}]&, {frnames, pictures}];
 
 typ=type; 
 If[StringTake[typ, {1,1}]!= ".", typ = "."<>typ]; 
-
 rate=ToString[Round[framerate]]; 
+
+If[Not[ISMOVIE], 
+SetDirectory[cwd]; 
+runstring="ffmpeg -r "<>rate<>" -i 'FRAME%4d"<>typ<>"' '"<>"my-movie-name.mov"<>"'";
+Print["To create a movie, type the following lines in a command shell:\ncd"<>framedir<>"\n"<>runstring]; 
+Return[]
+]; 
+
+
 
 runstring="ffmpeg -r "<>rate<>" -i 'FRAME%4d"<>typ<>"' '"<>moviefile<>"'";
 Print[runstring]; 
