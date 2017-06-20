@@ -21,7 +21,7 @@
 
 (* ::Input::Initialization:: *)
 BeginPackage["Cellzilla2D`"];
-$Cellzilla2DVersion="3.0.51i (18 June 2017)"  
+$Cellzilla2DVersion="3.1.0 (20 June 2017)"  
 
 
 (* ::Input::Initialization:: *)
