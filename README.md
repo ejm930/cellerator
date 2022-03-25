@@ -10,7 +10,7 @@ numerical integration or stochastic simulation.
 For a basic installation of all required mathematical files and plugins, 
 download the latest Cellerator install file. 
 
-For the python version, see the pycellerator project at https://github.com/biomathman/pycellerator
+For the python version, see the pycellerator project at https://github.com/ejm930/pycellerator
 
 To make a bug report or feature request please go to https://github.com/biomathman/cellerator/issues, however this is a fork of an unmaintained code, so feel free to PR this fork with any changes. 
 
