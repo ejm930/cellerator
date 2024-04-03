@@ -1,0 +1,565 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[     24629,        564]
+NotebookOptionsPosition[     22773,        502]
+NotebookOutlinePosition[     23628,        530]
+CellTagsIndexPosition[     23585,        527]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["xlr8r Basic installer", "Title",
+ CellChangeTimes->{{3.504485227970614*^9, 3.504485229832902*^9}, {
+  3.559306300615526*^9, 3.559306302750272*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["revision log (click to right to open)", "Section",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.551650182213244*^9, 3.551650197604362*^9}}],
+
+Cell["\<\
+01 Sept 2012 - add Cascade Palette to installation
+31 Aug 2012 - add kMech to default installation
+21 Aug 2012 - fixed typo in MathSBML and xSSAlite install
+18 July 2012 - revised for new web help page, add full MathSBML installation\
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.5044852363626966`*^9, 3.504485271444233*^9}, {
+  3.504485372749297*^9, 3.5044853911854277`*^9}, {3.507391269504168*^9, 
+  3.5073912720556517`*^9}, {3.551650197604515*^9, 3.551650233035754*^9}, {
+  3.551657250776292*^9, 3.551657286689251*^9}, {3.551657415209406*^9, 
+  3.551657432351735*^9}, {3.554597961180138*^9, 3.554597978186882*^9}, {
+  3.555459133067812*^9, 3.555459142097537*^9}, {3.555510796918373*^9, 
+  3.555510819572928*^9}}],
+
+Cell["\<\
+revised 3 - Feb - 2012 for License update and to change pop up menu location \
+for xlr8r - 12 - 02 - 084\
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.5516502524653587`*^9, 3.551650275010446*^9}}],
+
+Cell["\<\
+revised 22 Feb 2011 to work with MathSBML for M8
+automatically installs the entire new version of MathSBML
+so a separate installation is not required.\
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.5073912941402483`*^9, 3.507391335062976*^9}, 
+   3.551650197604656*^9}],
+
+Cell["\<\
+19 January 2011
+B.E.Shapiro Version 1.0 for xlr8r - 0.78
+Tested in Mathematica 7 and 8 
+should be compatable with all operating systems.\
+\>", "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.},
+ CellChangeTimes->{{3.551657277203454*^9, 3.551657291703117*^9}, 
+   3.551657417241214*^9}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["\nHow to use this installer:\n(1) Open this file in ",
+  FontSize->18,
+  FontColor->GrayLevel[0]],
+ StyleBox["Mathematica",
+  FontSize->18,
+  FontSlant->"Italic",
+  FontColor->GrayLevel[0]],
+ StyleBox[" 8\n(2) From the menu bar select Evaluation/Notebook\n(3) Answer \
+the dialogs on the pop-up menu - the rest should be done automatically.",
+  FontSize->18,
+  FontColor->GrayLevel[0]]
+}], "Subsubtitle",
+ CellChangeTimes->{{3.5044852783852367`*^9, 3.504485353801318*^9}, {
+   3.507389922465856*^9, 3.507389925137548*^9}, {3.537291386262435*^9, 
+   3.537291432865903*^9}, 3.551650244745234*^9, {3.55165039774088*^9, 
+   3.551650423971335*^9}, {3.551651124448029*^9, 3.55165112926548*^9}},
+ Background->GrayLevel[1]],
+
+Cell[CellGroupData[{
+
+Cell["Source Code (click to right to open)", "Section",
+ CellChangeTimes->{{3.5516503810272903`*^9, 3.551650391994646*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["GPL License", "Subsubsection",
+ CellChangeTimes->{{3.537291443882032*^9, 3.537291448961548*^9}, 
+   3.551317753613263*^9}],
+
+Cell["\<\
+ This file  is part of xlr8r.
+ xlr8r is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+You should have received a copy of the GNU  General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.\
+\>", "Text",
+ CellChangeTimes->{{3.537291460562875*^9, 3.537291470298647*^9}, {
+  3.551317757838827*^9, 3.551317768421406*^9}, {3.551651093824986*^9, 
+  3.551651094254251*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["XLR8RINST is the installer for XLR8R", "Subsubsection",
+ CellChangeTimes->{{3.507389933657744*^9, 3.507389943001389*^9}, {
+  3.507391285103777*^9, 3.507391285767866*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"XLR8RINST", "[", "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "f", ",", " ", "appsfolder", ",", " ", "palettes", ",", " ", "new", ",", 
+      " ", "old", ",", " ", "InstallFile", ",", " ", "math", ",", " ", 
+      "lfname", ",", " ", "logfile", ",", " ", "GOOD", ",", " ", "BAD", ",", 
+      " ", "apps", ",", " ", "pals", ",", " ", "ExpectedApps", ",", " ", 
+      "ExpectedPals"}], "}"}], ",", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Block", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "lfbasename", ",", "Done", ",", "lfcount", ",", "existing", ",", 
+          "open"}], "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"lfbasename", "=", "\"\<xlr8r-Installation\>\""}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Done", "=", "False"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"lfcount", "=", "0"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"lfname", "=", 
+          RowBox[{"ToFileName", "[", 
+           RowBox[{
+            RowBox[{"NotebookDirectory", "[", "]"}], ",", " ", 
+            RowBox[{"lfbasename", "<>", "\"\<.log\>\""}]}], "]"}]}], ";", " ",
+          "\[IndentingNewLine]", 
+         RowBox[{"While", "[", 
+          RowBox[{
+           RowBox[{"Not", "[", "Done", "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"existing", "=", 
+             RowBox[{"FileNames", "[", "lfname", "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"open", "=", 
+             RowBox[{"Streams", "[", "lfname", "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"Length", "[", "open", "]"}], "<", "1"}], "\[And]", 
+               RowBox[{
+                RowBox[{"Length", "[", "existing", "]"}], "<", "1"}]}], ",", 
+              RowBox[{
+               RowBox[{"Done", "=", "True"}], ";", 
+               RowBox[{"Break", "[", "]"}]}]}], "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Length", "[", "open", "]"}], ">", "0"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Print", "[", 
+                  RowBox[{
+                  "\"\<Closing previously existing stream \>\"", ",", "#"}], 
+                  "]"}], "&"}], "/@", "open"}], ";", " ", 
+               "\[IndentingNewLine]", 
+               RowBox[{"Close", "/@", "open"}]}]}], "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"lfcount", "++"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"lfname", "=", 
+             RowBox[{
+              RowBox[{"ToFileName", "[", 
+               RowBox[{
+                RowBox[{"NotebookDirectory", "[", "]"}], ",", " ", 
+                "lfbasename"}], "]"}], "<>", "\"\<-\>\"", "<>", 
+              RowBox[{"IntegerString", "[", "lfcount", "]"}], "<>", 
+              "\"\<.log\>\""}]}], ";"}]}], "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";"}], "\[IndentingNewLine]", ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<Writing log to \>\"", ",", " ", "lfname"}], "]"}], ";", 
+     " ", "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"logfile", "=", 
+      RowBox[{"OpenWrite", "[", "lfname", "]"}]}], ";", "\[IndentingNewLine]",
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"logfile", ",", 
+       RowBox[{"\"\<xCellerator Installation Log \>\"", "<>", 
+        RowBox[{"DateString", "[", "]"}]}]}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"logfile", ",", 
+       RowBox[{"\"\<\\n\>\"", "<>", "$Version", "<>", "\"\<\\n\>\""}]}], 
+      "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"GOOD", "=", "0"}], ";", " ", 
+     RowBox[{"BAD", "=", "0"}], ";", " ", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"appsfolder", "=", 
+      RowBox[{"ToFileName", "[", 
+       RowBox[{"$UserBaseDirectory", ",", " ", "\"\<Applications\>\""}], 
+       "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"palettes", "=", 
+      RowBox[{"ToFileName", "[", 
+       RowBox[{"{", 
+        RowBox[{
+        "$UserBaseDirectory", ",", "\"\<SystemFiles\>\"", ",", 
+         "\"\<FrontEnd\>\"", ",", "\"\<Palettes\>\""}], "}"}], "]"}]}], ";", 
+     " ", "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"InstallFile", "[", 
+       RowBox[{"name_", ",", "todir_"}], "]"}], ":=", " ", 
+      RowBox[{"Module", "[", 
+       RowBox[{
+        RowBox[{"{", "c", "}"}], ",", " ", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"new", "=", "name"}], ";", " ", "\[IndentingNewLine]", 
+         RowBox[{"old", "=", 
+          RowBox[{"ToFileName", "[", 
+           RowBox[{"todir", ",", 
+            RowBox[{"Last", "[", 
+             RowBox[{"FileNameSplit", "[", "name", "]"}], "]"}]}], "]"}]}], 
+         ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"WriteString", "[", 
+          RowBox[{
+          "logfile", ",", " ", "\"\<Installing \>\"", ",", " ", "name", ",", 
+           " ", "\"\< --> \>\"", ",", " ", "old"}], "]"}], ";", " ", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Length", "[", 
+             RowBox[{"FileNames", "[", "old", "]"}], "]"}], ">", "0"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"WriteString", "[", 
+             RowBox[{"logfile", ",", 
+              RowBox[{"\"\<\\nRemoving old file \>\"", "<>", "old"}]}], "]"}],
+             ";", " ", "\[IndentingNewLine]", 
+            RowBox[{"DeleteFile", "[", "old", "]"}], ";"}]}], " ", 
+          "\[IndentingNewLine]", "]"}], ";", " ", "\[IndentingNewLine]", 
+         RowBox[{"c", "=", 
+          RowBox[{"CopyFile", "[", 
+           RowBox[{"new", ",", "old"}], "]"}]}], ";", "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"c", "===", " ", "$Failed"}], ",", " ", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"WriteString", "[", 
+             RowBox[{"logfile", ",", 
+              RowBox[{"\"\<\\nUnable to install \>\"", "<>", "name"}]}], 
+             "]"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"WriteString", "[", 
+             RowBox[{
+             "logfile", ",", "\"\<\\n===============================\>\""}], 
+             "]"}], ";", " ", "\[IndentingNewLine]", 
+            RowBox[{"BAD", "++"}], ";"}], " ", "\[IndentingNewLine]", ",", 
+           " ", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"WriteString", "[", 
+             RowBox[{"logfile", ",", 
+              RowBox[{
+              "\"\<\\nInstalled\>\"", "<>", "new", "<>", "\"\< --> \>\"", " ",
+                "<>", "todir"}]}], "]"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"WriteString", "[", 
+             RowBox[{
+             "logfile", ",", "\"\<\\n===============================\>\""}], 
+             "]"}], ";", " ", "\[IndentingNewLine]", 
+            RowBox[{"GOOD", "++"}], ";"}]}], "\[IndentingNewLine]", "]"}], 
+         ";"}]}], " ", "\[IndentingNewLine]", "]"}]}], ";", " ", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"apps", " ", "=", " ", 
+      RowBox[{"FileNames", "[", 
+       RowBox[{"ToFileName", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+           "\"\<applications\>\""}], "}"}], ",", " ", "\"\<*.m\>\""}], "]"}], 
+       "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"pals", " ", "=", " ", 
+      RowBox[{"FileNames", "[", 
+       RowBox[{"ToFileName", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<palettes\>\""}],
+           "}"}], ",", " ", "\"\<*.nb\>\""}], "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "[", "apps", "]"}], "<", "1"}], ",", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+        "ChoiceDialog", "[", 
+         "\"\<Installer Error. No application files found. This file must be \
+physically located in the same folder that was created when you unzipped the \
+file release from Launchpad. Otherwise, it will not work. \>\"", "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Exit", "[", "]"}]}]}], "\[IndentingNewLine]", "]"}], ";", 
+     " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"ExpectedApps", "=", "15"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"ExpectedPals", "=", "3"}], ";", " ", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "[", "apps", "]"}], "<", "ExpectedApps"}], ",", " ",
+        "\[IndentingNewLine]", 
+       RowBox[{"ChoiceDialog", "[", 
+        RowBox[{
+        "\"\<Installer Error. Some Application Files appear to be missing. \
+There are \>\"", "<>", 
+         RowBox[{"ToString", "[", 
+          RowBox[{"Length", "[", "apps", "]"}], "]"}], " ", "<>", 
+         "\"\< applications, and \>\"", "<>", 
+         RowBox[{"ToString", "[", "ExpectedApps", "]"}], "<>", 
+         "\"\< were expected. The installed software may not work correctly. \
+Try re-downloading the install file. \>\""}], "]"}]}], "\[IndentingNewLine]", 
+      "]"}], ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "[", "pals", "]"}], "<", "1"}], ",", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+        "ChoiceDialog", "[", 
+         "\"\<Installer Error. No palette files found. \>\"", "]"}], ";"}]}], 
+      "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "[", "pals", "]"}], "<", "ExpectedPals"}], ",", " ",
+        "\[IndentingNewLine]", 
+       RowBox[{"ChoiceDialog", "[", 
+        RowBox[{
+        "\"\<Installer Error. Some Palette Files appear to be missing. There \
+are \>\"", "<>", 
+         RowBox[{"ToString", "[", 
+          RowBox[{"Length", "[", "pals", "]"}], "]"}], " ", "<>", 
+         "\"\< applications, and \>\"", "<>", 
+         RowBox[{"ToString", "[", "ExpectedPals", "]"}], "<>", 
+         "\"\< were expected. Missing Palettes can be downloaded from the \
+repository, but the software should still work. \>\""}], "]"}]}], 
+      "\[IndentingNewLine]", "]"}], ";", " ", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"InstallFile", "[", 
+        RowBox[{"#", ",", "appsfolder"}], "]"}], "&"}], "/@", "apps"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"InstallFile", "[", 
+        RowBox[{"#", ",", "palettes"}], "]"}], "&"}], "/@", "pals"}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"ChoiceDialog", "[", 
+        RowBox[{
+         RowBox[{
+         "\"\<Installation of xCellerator Completed. \\n\\n\>\"", "<>", 
+          "\"\<Successfully installed: \>\"", "<>", 
+          RowBox[{"ToString", "[", "GOOD", "]"}], "<>", "\"\< files\\n\>\"", 
+          "<>", "\"\<Failed to install: \>\"", "<>", 
+          RowBox[{"ToString", "[", "BAD", "]"}], "<>", "\"\< files.\>\"", 
+          "<>", "\"\<\\n\\nFor more details see the installation log in \\n\>\
+\"", "<>", 
+          RowBox[{"ToFileName", "[", 
+           RowBox[{
+            RowBox[{"Directory", "[", "]"}], ",", "lfname"}], "]"}], "<>", 
+          "\"\<\\n\\nClick \\\"View Log\\\" to see the log, or \\\"Exit\\\" \
+to leave the installer.\>\""}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"\"\<View Log\>\"", "\[Rule]", "False"}], ",", 
+           RowBox[{"\"\<Exit\>\"", "\[Rule]", "True"}]}], "}"}]}], "]"}], ",",
+        "\[IndentingNewLine]", 
+       RowBox[{"Exit", "[", "]"}], ",", " ", "\[IndentingNewLine]", 
+       RowBox[{"MessageDialog", "[", 
+        RowBox[{
+         RowBox[{"Import", "[", 
+          RowBox[{"lfname", ",", "\"\<text\>\""}], "]"}], ",", 
+         RowBox[{"WindowSize", "\[Rule]", "Medium"}], ",", 
+         RowBox[{"WindowElements", "\[Rule]", 
+          RowBox[{"{", "\"\<VerticalScrollBar\>\"", "}"}]}]}], "]"}]}], 
+      "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.504480374666387*^9, 3.50448046217585*^9}, {
+   3.5044805013211823`*^9, 3.504480589679153*^9}, {3.504480698418406*^9, 
+   3.504480834142685*^9}, {3.504480897943645*^9, 3.504480963645219*^9}, {
+   3.5044810422223673`*^9, 3.5044810426293287`*^9}, {3.504481076964476*^9, 
+   3.5044811024975367`*^9}, {3.504481170889179*^9, 3.50448157718958*^9}, {
+   3.5044816673117723`*^9, 3.5044816747299967`*^9}, {3.504481707780623*^9, 
+   3.504481803956623*^9}, {3.504482043403677*^9, 3.5044821155512867`*^9}, {
+   3.5044821599097643`*^9, 3.504482262869622*^9}, {3.504482324209392*^9, 
+   3.504482384151902*^9}, {3.504482414687625*^9, 3.5044824336322737`*^9}, {
+   3.5044824701857967`*^9, 3.5044825674967623`*^9}, {3.504482669755971*^9, 
+   3.5044826974398737`*^9}, {3.504482796372467*^9, 3.504482800910578*^9}, {
+   3.504482858796582*^9, 3.504483119265416*^9}, {3.504483153702211*^9, 
+   3.5044831711929483`*^9}, {3.5044832124010353`*^9, 3.504483239141307*^9}, {
+   3.50448327596833*^9, 3.504483338097987*^9}, {3.504483405279976*^9, 
+   3.504483410538975*^9}, {3.504483484213251*^9, 3.504483586764777*^9}, 
+   3.5044836308023148`*^9, {3.504483677530382*^9, 3.504483690210067*^9}, {
+   3.504483796837886*^9, 3.504483833539332*^9}, {3.504483878887994*^9, 
+   3.5044839032661657`*^9}, {3.5044839365639877`*^9, 3.504484014443184*^9}, {
+   3.5044840873152742`*^9, 3.504484110416291*^9}, {3.504484172890855*^9, 
+   3.504484201282737*^9}, {3.507389983765539*^9, 3.5073900637995*^9}, {
+   3.507390296727724*^9, 3.5073904662209787`*^9}, {3.5073905221671658`*^9, 
+   3.507390545012641*^9}, {3.507390599185217*^9, 3.507390779071206*^9}, {
+   3.507391088325782*^9, 3.507391093669545*^9}, 3.507392126926355*^9, {
+   3.551657122296365*^9, 3.551657123693037*^9}, {3.551657155486603*^9, 
+   3.551657163032777*^9}, {3.551657638323168*^9, 3.5516576392556057`*^9}, {
+   3.554597513904614*^9, 3.55459751882882*^9}, {3.554597699809355*^9, 
+   3.5545977015942783`*^9}, {3.554597762176976*^9, 3.5545977811383543`*^9}, {
+   3.5545978396751423`*^9, 3.554597843585332*^9}, {3.55545904821939*^9, 
+   3.555459067744109*^9}, {3.5555107506225777`*^9, 3.555510768422187*^9}, {
+   3.55930646459275*^9, 3.55930654255989*^9}, {3.559306682902295*^9, 
+   3.559306772756571*^9}, {3.559306840345586*^9, 3.559306990367866*^9}, {
+   3.5593070268550653`*^9, 3.559307290985976*^9}, {3.559307376907057*^9, 
+   3.5593074728378487`*^9}, {3.559307610212142*^9, 3.559307635467853*^9}, {
+   3.559307788136406*^9, 3.559307796040596*^9}, {3.55930782927203*^9, 
+   3.559307850438941*^9}, {3.559307920443095*^9, 3.559307933094851*^9}, {
+   3.559307987948842*^9, 3.559308048670244*^9}, {3.559308131090876*^9, 
+   3.559308199083766*^9}, {3.559308253482596*^9, 3.5593083710190687`*^9}, {
+   3.55930843564053*^9, 3.559308523355942*^9}, {3.5593085549148827`*^9, 
+   3.559308810682008*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"ChoiceDialog", "[", "\[IndentingNewLine]", 
+      RowBox[{
+      "\"\<Welcome to the xCellerator installer. \\n\\nThis will insall all \
+basic modules needed to run \\nxCellerator. \\n\\n xlr8r (also known as \
+xCellerator) is free software: you can redistribute it and/or modify it under \
+the terms of the GNU General Public License as published by the Free Software \
+Foundation, either version 3 of the License, or (at your option) any later \
+version.\\n\\nThis program is distributed in the hope that it will be \
+useful,but WITHOUT ANY WARRANTY; without even the implied warranty of \
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General \
+Public License for more details. You should have received a copy of the GNU \
+General Public License along with this program.  If not, see \
+<http://www.gnu.org/licenses/>.\\n\\nBy Clicking \\\"I Agree\\\", you \
+indicate that you agree to the terms of the GNU General Public License for \
+xCellerator.\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"\"\<I Do Not Agree\>\"", "\[Rule]", " ", "False"}], ",", 
+         " ", 
+         RowBox[{"\"\<I Agree\>\"", "\[Rule]", " ", "True"}]}], "}"}]}], 
+      "]"}], ",", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"XLR8RINST", "[", "]"}]}], "\[IndentingNewLine]", "]"}], ";"}], 
+  " "}]], "Input",
+ CellChangeTimes->{{3.5044799987256203`*^9, 3.5044800442674522`*^9}, {
+   3.504480137470756*^9, 3.50448017138127*^9}, {3.504480279399579*^9, 
+   3.504480284005734*^9}, {3.5044842093151417`*^9, 3.504484213421404*^9}, {
+   3.50448427569003*^9, 3.5044844183122053`*^9}, {3.504484517918963*^9, 
+   3.504484647720573*^9}, {3.5044846805256844`*^9, 3.504484718948864*^9}, {
+   3.504484796073242*^9, 3.504485132431264*^9}, 3.507394757484947*^9, {
+   3.537291520724738*^9, 3.537291744288623*^9}, {3.537291795627473*^9, 
+   3.537291800919178*^9}, {3.537291926969234*^9, 3.537292008736191*^9}, {
+   3.537292107009252*^9, 3.537292164351985*^9}, {3.551650337680359*^9, 
+   3.551650353148328*^9}, {3.551651099851553*^9, 3.5516511001530123`*^9}, {
+   3.5593063380636997`*^9, 3.559306356198512*^9}, {3.559306428662516*^9, 
+   3.5593064314776917`*^9}, 3.559306472730897*^9}]
+}, Closed]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1196, 612},
+WindowMargins->{{Automatic, -1871}, {Automatic, 117}},
+ShowSelection->True,
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.25, 1.25 Inherited],
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (October 10, 2011)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> 
+     FrontEnd`FileName[{"Creative"}, "PrimaryColor.nb", CharacterEncoding -> 
+       "UTF-8"]]], 
+   Cell[
+    StyleData["Section"], CellFrame -> {{0, 0}, {0, 2}}, Background -> 
+    GrayLevel[1]]}, Visible -> False, FrontEndVersion -> 
+  "8.0 for Linux x86 (64-bit) (October 10, 2011)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[422, 15, 153, 2, 105, "Title"],
+Cell[CellGroupData[{
+Cell[600, 21, 175, 2, 89, "Section",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+Cell[778, 25, 768, 13, 136, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+Cell[1549, 40, 249, 5, 46, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+Cell[1801, 47, 321, 7, 106, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}],
+Cell[2125, 56, 305, 8, 136, "Text",
+ CellGroupingRules->{GroupTogetherGrouping, 10000.}]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[2467, 69, 742, 17, 160, "Subsubtitle"],
+Cell[CellGroupData[{
+Cell[3234, 90, 123, 1, 89, "Section"],
+Cell[CellGroupData[{
+Cell[3382, 95, 128, 2, 35, "Subsubsection"],
+Cell[3513, 99, 831, 17, 322, "Text"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[4381, 121, 176, 2, 26, "Subsubsection"],
+Cell[4560, 125, 15863, 330, 2419, "Input"],
+Cell[20426, 457, 2295, 39, 395, "Input"]
+}, Closed]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
